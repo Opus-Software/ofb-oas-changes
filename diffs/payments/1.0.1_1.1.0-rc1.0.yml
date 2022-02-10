@@ -1,6 +1,8 @@
-﻿### New Endpoints: 1
+﻿### New Endpoints: 3
 --------------------
 PATCH /consents/{consentId}  
+POST /ted-tef/payments  
+GET /ted-tef/payments/{paymentId}  
 ### Deleted Endpoints: None
 ---------------------------
 ### Modified Endpoints: 4
@@ -13,6 +15,27 @@ POST /consents
         - Properties changed
           - Modified property: data
             - Properties changed
+              - Modified property: debtorAccount
+                - Properties changed
+                  - Modified property: accountType
+                    - Description changed from 'Tipos de contas usadas para pagamento via Pix.  
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.  
+Segue descrição de cada valor do ENUM para o escopo do Pix.  
+CACC - Current - Conta Corrente.  
+SLRY - Salary - Conta-Salário.  
+SVGS - Savings - Conta de Poupança.  
+TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+' to 'Tipos de contas usadas para pagamento via Pix.
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.
+Segue descrição de cada valor do ENUM para o escopo do Pix.
+CACC - Current - Conta Corrente.
+SLRY - Salary - Conta-Salário.
+SVGS - Savings - Conta de Poupança.
+TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+[Restrição] O <b>campo data.payment.creditorAccount.accountType</b> quando o arranjo alvo for TED só suportará os tipos <b>CACC</b> (Conta corrente), <b>SVGS</b> (Poupança) e <b>TRAN</b> (Conta de Pagamento pré-paga).<br/><br/>
+'
               - Modified property: loggedUser
                 - Description changed from 'Usuário (pessoa natural) que encontra-se logado na instituição Iniciadora de Pagamento.' to 'Usuário (pessoa natural) que encontra-se logado na instituição Iniciadora de Pagamento.
 [Restrição] Deve obrigatoriamente ser enviado quando a revogação for feita pelo usuário final, ou seja, se o campo revokedBy estiver com o valor 'USER'.
@@ -21,13 +44,25 @@ POST /consents
                   - Modified property: document
                     - Description changed from '' to 'Objeto que contém os dados de identificação do usuário.'
               - Modified property: payment
+                - Property 'OneOf' changed
+                  - 3 schemas added
+                - Type changed from 'object' to ''
+                - Description changed from 'Objeto contendo dados de pagamento para consentimento.' to ''
+                - AdditionalProperties changed from false to null
                 - Required changed
+                  - Deleted required property: amount
+                  - Deleted required property: currency
                   - Deleted required property: date
+                  - Deleted required property: details
+                  - Deleted required property: type
                 - Properties changed
-                  - New property: schedule
-                  - Modified property: date
-                    - Description changed from 'Data do pagamento, conforme especificação RFC-3339.' to 'Mutuamente exclusivo com o objeto schedule. Este campo é obrigatório no caso de pagamento único. Neste caso, o objeto schedule não deve ser informado.
-'
+                  - Deleted property: amount
+                  - Deleted property: currency
+                  - Deleted property: date
+                  - Deleted property: details
+                  - Deleted property: ibgeTownCode
+                  - Deleted property: type
+                - Discriminator changed
 - Responses changed
   - Modified response: 201
     - Content changed
@@ -37,6 +72,27 @@ POST /consents
             - Modified property: data
               - Properties changed
                 - New property: revocation
+                - Modified property: debtorAccount
+                  - Properties changed
+                    - Modified property: accountType
+                      - Description changed from 'Tipos de contas usadas para pagamento via Pix.  
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.  
+Segue descrição de cada valor do ENUM para o escopo do Pix.  
+CACC - Current - Conta Corrente.  
+SLRY - Salary - Conta-Salário.  
+SVGS - Savings - Conta de Poupança.  
+TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+' to 'Tipos de contas usadas para pagamento via Pix.
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.
+Segue descrição de cada valor do ENUM para o escopo do Pix.
+CACC - Current - Conta Corrente.
+SLRY - Salary - Conta-Salário.
+SVGS - Savings - Conta de Poupança.
+TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+[Restrição] O <b>campo data.payment.creditorAccount.accountType</b> quando o arranjo alvo for TED só suportará os tipos <b>CACC</b> (Conta corrente), <b>SVGS</b> (Poupança) e <b>TRAN</b> (Conta de Pagamento pré-paga).<br/><br/>
+'
                 - Modified property: loggedUser
                   - Description changed from 'Usuário (pessoa natural) que encontra-se logado na instituição Iniciadora de Pagamento.' to 'Usuário (pessoa natural) que encontra-se logado na instituição Iniciadora de Pagamento.
 [Restrição] Deve obrigatoriamente ser enviado quando a revogação for feita pelo usuário final, ou seja, se o campo revokedBy estiver com o valor 'USER'.
@@ -47,8 +103,12 @@ POST /consents
                 - Modified property: payment
                   - Required changed
                     - Deleted required property: date
+                    - Deleted required property: type
                   - Properties changed
                     - New property: schedule
+                    - Deleted property: details
+                    - Deleted property: ibgeTownCode
+                    - Deleted property: type
                     - Modified property: date
                       - Description changed from 'Data do pagamento, conforme especificação RFC-3339.' to 'Mutuamente exclusivo com o objeto schedule. Este campo é obrigatório no caso de pagamento único. Neste caso, o objeto schedule não deve ser informado.
 '
@@ -131,7 +191,61 @@ REVOKED - Revogado
     - Content changed
       - Modified media type: application/jwt
         - Schema changed
+          - Description changed from '' to '<b>[Regra negócio] A detentora de conta deve validar se o consentimento para pagamento de TED está dentro de sua grade funcionamento para o arranjo.</b>
+'
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Description changed from 'Códigos de erros previstos na criação de consentimento para a iniciação de pagamentos:  
+• FORMA_PGTO_INVALIDA: Forma de pagamento inválida.  
+• DATA_PGTO_INVALIDA: Data de pagamento inválida.  
+• DETALHE_PGTO_INVALIDO: Detalhe do pagamento inválido.  
+• NAO_INFORMADO: Não informado.   
+' to 'Códigos de erros previstos na criação de consentimento para a iniciação de pagamentos:  
+• FORMA_PGTO_INVALIDA: Forma de pagamento inválida.  
+• DATA_PGTO_INVALIDA: Data de pagamento inválida.  
+• DETALHE_PGTO_INVALIDO: Detalhe do pagamento inválido.  
+• NAO_INFORMADO: Não informado.   
+• AGENDAMENTO_INVALIDO: Agendamento inválido.   
+• TIPO_CONTA_NAO_SUPORTADO: Tipo de conta não suportado pelo arranjo alvo.   
+• JANELA_HORARIO_NAO_PERMITIDA: Janela de horário do arranjo de pagamento alvo não permitida.   
+• VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente.
+'
+                    - New enum values: [AGENDAMENTO_INVALIDO TIPO_CONTA_NAO_SUPORTADO JANELA_HORARIO_NAO_PERMITIDA VALOR_ACIMA_LIMITE]
+                  - Modified property: detail
+                    - Description changed from 'Descrição específica do erro de acordo com o código reportado:  
+• FORMA_PGTO_INVALIDA – Meio de pagamento inválido.  
+• DATA_PGTO_INVALIDA – Data de pagamento inválida no contexto, por exemplo, data no passado. Para pagamentos únicos deve ser informada a data atual, do dia corrente.  
+• DETALHE_PGTO_INVALIDO: O campo [nome_campo] não atende os requisitos de preenchimento.  
+• NAO_INFORMADO – Não reportado/identificado pela instituição detentora de conta.  
+' to 'Descrição específica do erro de acordo com o código reportado:  
+• FORMA_PGTO_INVALIDA – Meio de pagamento inválido.  
+• DATA_PGTO_INVALIDA – Data de pagamento inválida no contexto, por exemplo, data no passado. Para pagamentos únicos deve ser informada a data atual, do dia corrente.  
+• DETALHE_PGTO_INVALIDO: O campo [nome_campo] não atende os requisitos de preenchimento.  
+• NAO_INFORMADO – Não reportado/identificado pela instituição detentora de conta.  
+• AGENDAMENTO_INVALIDO – O campo data.payment.schedule.single.date deverá sempre ser no mínimo D+1 corrido, ou seja, a data imediatamente posterior em relação a data do consentimento considerando o fuso horário de Brasília. O campo data.payment.schedule.single.date deverá ser no máximo um ano corrido a partir da data do consentimento considerando o fuso horário de Brasília.    
+• TIPO_CONTA_NAO_SUPORTADO: Tipo de conta não suportado pelo arranjo alvo.    
+• JANELA_HORARIO_NAO_PERMITIDA: Janela de horário do arranjo de pagamento alvo não permitida.    
+• VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente.
+'
+                  - Modified property: title
+                    - Description changed from 'Título específico do erro reportado, de acordo com o código enviado:  
+• FORMA_PGTO_INVALIDA: Forma de pagamento inválida.  
+• DATA_PGTO_INVALIDA: Data de pagamento inválida. 
+• DETALHE_PGTO_INVALIDO: Detalhe do pagamento inválido.
+• NAO_INFORMADO: Não informado.    
+' to 'Título específico do erro reportado, de acordo com o código enviado:  
+• FORMA_PGTO_INVALIDA: Forma de pagamento inválida.  
+• DATA_PGTO_INVALIDA: Data de pagamento inválida. 
+• DETALHE_PGTO_INVALIDO: Detalhe do pagamento inválido.
+• NAO_INFORMADO: Não informado.    
+• AGENDAMENTO_INVALIDO: Agendamento inválido.    
+• TIPO_CONTA_NAO_SUPORTADO: Tipo de conta não suportado pelo arranjo alvo.    
+• JANELA_HORARIO_NAO_PERMITIDA: Janela de horário do arranjo de pagamento alvo não permitida.    
+• VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente.
+'
             - Modified property: meta
               - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
   - Modified response: 429
@@ -156,18 +270,6 @@ REVOKED - Revogado
             - Modified property: meta
               - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
 GET /consents/{consentId}
-- Modified path param: consentId
-  - Description changed from 'O consentId é o identificador único do consentimento e deverá ser um URN - Uniform Resource Name.  
-Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource 
-Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN 
-seja um identificador de recurso persistente e independente da localização.  
-Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
-- o namespace(urn)
-- o identificador associado ao namespace da instituição transnmissora (bancoex) 
-- o identificador específico dentro do namespace (C1DD33123).  
-Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
-' to 'O consentId é o identificador único do consentimento a ser revogado e deverá ser um URN - Uniform Resource Name.
-'
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -177,6 +279,27 @@ Informações mais detalhadas sobre a construção de namespaces devem ser consu
             - Modified property: data
               - Properties changed
                 - New property: revocation
+                - Modified property: debtorAccount
+                  - Properties changed
+                    - Modified property: accountType
+                      - Description changed from 'Tipos de contas usadas para pagamento via Pix.  
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.  
+Segue descrição de cada valor do ENUM para o escopo do Pix.  
+CACC - Current - Conta Corrente.  
+SLRY - Salary - Conta-Salário.  
+SVGS - Savings - Conta de Poupança.  
+TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+' to 'Tipos de contas usadas para pagamento via Pix.
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.
+Segue descrição de cada valor do ENUM para o escopo do Pix.
+CACC - Current - Conta Corrente.
+SLRY - Salary - Conta-Salário.
+SVGS - Savings - Conta de Poupança.
+TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+[Restrição] O <b>campo data.payment.creditorAccount.accountType</b> quando o arranjo alvo for TED só suportará os tipos <b>CACC</b> (Conta corrente), <b>SVGS</b> (Poupança) e <b>TRAN</b> (Conta de Pagamento pré-paga).<br/><br/>
+'
                 - Modified property: loggedUser
                   - Description changed from 'Usuário (pessoa natural) que encontra-se logado na instituição Iniciadora de Pagamento.' to 'Usuário (pessoa natural) que encontra-se logado na instituição Iniciadora de Pagamento.
 [Restrição] Deve obrigatoriamente ser enviado quando a revogação for feita pelo usuário final, ou seja, se o campo revokedBy estiver com o valor 'USER'.
@@ -187,8 +310,12 @@ Informações mais detalhadas sobre a construção de namespaces devem ser consu
                 - Modified property: payment
                   - Required changed
                     - Deleted required property: date
+                    - Deleted required property: type
                   - Properties changed
                     - New property: schedule
+                    - Deleted property: details
+                    - Deleted property: ibgeTownCode
+                    - Deleted property: type
                     - Modified property: date
                       - Description changed from 'Data do pagamento, conforme especificação RFC-3339.' to 'Mutuamente exclusivo com o objeto schedule. Este campo é obrigatório no caso de pagamento único. Neste caso, o objeto schedule não deve ser informado.
 '
@@ -282,6 +409,55 @@ REVOKED - Revogado
             - Modified property: meta
               - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
 POST /pix/payments
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: creditorAccount
+                - Description changed from 'Objeto que contém a identificação da conta de destino do beneficiário/recebedor.  
+' to 'Objeto que contém a identificação da conta de destino do beneficiário/recebedor.
+'
+                - Properties changed
+                  - Modified property: accountType
+                    - Description changed from 'Tipos de contas usadas para pagamento via Pix.  
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.  
+Segue descrição de cada valor do ENUM para o escopo do Pix.  
+CACC - Current - Conta Corrente.  
+SLRY - Salary - Conta-Salário.  
+SVGS - Savings - Conta de Poupança.  
+TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+' to 'Tipos de contas usadas para pagamento via Pix.
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.
+Segue descrição de cada valor do ENUM para o escopo do Pix.
+CACC - Current - Conta Corrente.
+SLRY - Salary - Conta-Salário.
+SVGS - Savings - Conta de Poupança.
+TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+[Restrição] O <b>campo data.payment.creditorAccount.accountType</b> quando o arranjo alvo for TED só suportará os tipos <b>CACC</b> (Conta corrente), <b>SVGS</b> (Poupança) e <b>TRAN</b> (Conta de Pagamento pré-paga).<br/><br/>
+'
+                  - Modified property: issuer
+                    - Description changed from 'Código da Agência emissora da conta sem dígito.  
+(Agência é a dependência destinada ao atendimento aos clientes, ao público em geral e aos associados de cooperativas de crédito,  
+no exercício de atividades da instituição, não podendo ser móvel ou transitória).  
+[Restrição] Preenchimento obrigatório para os seguintes tipos de conta: CACC (CONTA_DEPOSITO_A_VISTA), SVGS (CONTA_POUPANCA) e SLRY (CONTA_SALARIO).
+' to 'Código da Agência emissora da conta sem dígito.
+(Agência é a dependência destinada ao atendimento aos clientes, ao público em geral e aos associados de cooperativas de crédito,
+no exercício de atividades da instituição, não podendo ser móvel ou transitória).
+[Restrição] Preenchimento obrigatório para os seguintes tipos de conta: CACC (CONTA_DEPOSITO_A_VISTA), SVGS (CONTA_POUPANCA) e SLRY (CONTA_SALARIO).
+'
+                  - Modified property: number
+                    - Description changed from 'Deve ser preenchido com o número da conta do usuário recebedor, com dígito verificador (se este existir),  
+se houver valor alfanumérico, este deve ser convertido para 0.
+' to 'Deve ser preenchido com o número da conta do usuário recebedor, com dígito verificador (se este existir),
+se houver valor alfanumérico, este deve ser convertido para 0.
+'
+              - Modified property: payment
+                - Description changed from 'Objeto contendo dados do pagameto como moeda e valor.' to 'Objeto contendo dados do pagamento como moeda e valor.'
 - Responses changed
   - Modified response: 201
     - Content changed
@@ -290,6 +466,48 @@ POST /pix/payments
           - Properties changed
             - Modified property: data
               - Properties changed
+                - Modified property: creditorAccount
+                  - Description changed from 'Objeto que contém a identificação da conta de destino do beneficiário/recebedor.  
+' to 'Objeto que contém a identificação da conta de destino do beneficiário/recebedor.
+'
+                  - Properties changed
+                    - Modified property: accountType
+                      - Description changed from 'Tipos de contas usadas para pagamento via Pix.  
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.  
+Segue descrição de cada valor do ENUM para o escopo do Pix.  
+CACC - Current - Conta Corrente.  
+SLRY - Salary - Conta-Salário.  
+SVGS - Savings - Conta de Poupança.  
+TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+' to 'Tipos de contas usadas para pagamento via Pix.
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.
+Segue descrição de cada valor do ENUM para o escopo do Pix.
+CACC - Current - Conta Corrente.
+SLRY - Salary - Conta-Salário.
+SVGS - Savings - Conta de Poupança.
+TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+[Restrição] O <b>campo data.payment.creditorAccount.accountType</b> quando o arranjo alvo for TED só suportará os tipos <b>CACC</b> (Conta corrente), <b>SVGS</b> (Poupança) e <b>TRAN</b> (Conta de Pagamento pré-paga).<br/><br/>
+'
+                    - Modified property: issuer
+                      - Description changed from 'Código da Agência emissora da conta sem dígito.  
+(Agência é a dependência destinada ao atendimento aos clientes, ao público em geral e aos associados de cooperativas de crédito,  
+no exercício de atividades da instituição, não podendo ser móvel ou transitória).  
+[Restrição] Preenchimento obrigatório para os seguintes tipos de conta: CACC (CONTA_DEPOSITO_A_VISTA), SVGS (CONTA_POUPANCA) e SLRY (CONTA_SALARIO).
+' to 'Código da Agência emissora da conta sem dígito.
+(Agência é a dependência destinada ao atendimento aos clientes, ao público em geral e aos associados de cooperativas de crédito,
+no exercício de atividades da instituição, não podendo ser móvel ou transitória).
+[Restrição] Preenchimento obrigatório para os seguintes tipos de conta: CACC (CONTA_DEPOSITO_A_VISTA), SVGS (CONTA_POUPANCA) e SLRY (CONTA_SALARIO).
+'
+                    - Modified property: number
+                      - Description changed from 'Deve ser preenchido com o número da conta do usuário recebedor, com dígito verificador (se este existir),  
+se houver valor alfanumérico, este deve ser convertido para 0.
+' to 'Deve ser preenchido com o número da conta do usuário recebedor, com dígito verificador (se este existir),
+se houver valor alfanumérico, este deve ser convertido para 0.
+'
+                - Modified property: payment
+                  - Description changed from 'Objeto contendo dados do pagameto como moeda e valor.' to 'Objeto contendo dados do pagamento como moeda e valor.'
                 - Modified property: rejectionReason
                   - Description changed from 'Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.  
 ABORTED_SETTLEMENT_TIMEOUT - Liquidação da transação interrompida devido a timeout no SPI (AB03).  
@@ -407,6 +625,7 @@ Em caso insucesso:
 RJCT (REJECTED) - Instrução de pagamento rejeitada.
 '
                   - New enum values: [SASP SASC]
+                  - Example changed from 'PDNG' to 'RJCT'
             - Modified property: meta
               - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
   - Modified response: 400
@@ -495,6 +714,48 @@ GET /pix/payments/{paymentId}
           - Properties changed
             - Modified property: data
               - Properties changed
+                - Modified property: creditorAccount
+                  - Description changed from 'Objeto que contém a identificação da conta de destino do beneficiário/recebedor.  
+' to 'Objeto que contém a identificação da conta de destino do beneficiário/recebedor.
+'
+                  - Properties changed
+                    - Modified property: accountType
+                      - Description changed from 'Tipos de contas usadas para pagamento via Pix.  
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.  
+Segue descrição de cada valor do ENUM para o escopo do Pix.  
+CACC - Current - Conta Corrente.  
+SLRY - Salary - Conta-Salário.  
+SVGS - Savings - Conta de Poupança.  
+TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+' to 'Tipos de contas usadas para pagamento via Pix.
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.
+Segue descrição de cada valor do ENUM para o escopo do Pix.
+CACC - Current - Conta Corrente.
+SLRY - Salary - Conta-Salário.
+SVGS - Savings - Conta de Poupança.
+TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+[Restrição] O <b>campo data.payment.creditorAccount.accountType</b> quando o arranjo alvo for TED só suportará os tipos <b>CACC</b> (Conta corrente), <b>SVGS</b> (Poupança) e <b>TRAN</b> (Conta de Pagamento pré-paga).<br/><br/>
+'
+                    - Modified property: issuer
+                      - Description changed from 'Código da Agência emissora da conta sem dígito.  
+(Agência é a dependência destinada ao atendimento aos clientes, ao público em geral e aos associados de cooperativas de crédito,  
+no exercício de atividades da instituição, não podendo ser móvel ou transitória).  
+[Restrição] Preenchimento obrigatório para os seguintes tipos de conta: CACC (CONTA_DEPOSITO_A_VISTA), SVGS (CONTA_POUPANCA) e SLRY (CONTA_SALARIO).
+' to 'Código da Agência emissora da conta sem dígito.
+(Agência é a dependência destinada ao atendimento aos clientes, ao público em geral e aos associados de cooperativas de crédito,
+no exercício de atividades da instituição, não podendo ser móvel ou transitória).
+[Restrição] Preenchimento obrigatório para os seguintes tipos de conta: CACC (CONTA_DEPOSITO_A_VISTA), SVGS (CONTA_POUPANCA) e SLRY (CONTA_SALARIO).
+'
+                    - Modified property: number
+                      - Description changed from 'Deve ser preenchido com o número da conta do usuário recebedor, com dígito verificador (se este existir),  
+se houver valor alfanumérico, este deve ser convertido para 0.
+' to 'Deve ser preenchido com o número da conta do usuário recebedor, com dígito verificador (se este existir),
+se houver valor alfanumérico, este deve ser convertido para 0.
+'
+                - Modified property: payment
+                  - Description changed from 'Objeto contendo dados do pagameto como moeda e valor.' to 'Objeto contendo dados do pagamento como moeda e valor.'
                 - Modified property: rejectionReason
                   - Description changed from 'Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.  
 ABORTED_SETTLEMENT_TIMEOUT - Liquidação da transação interrompida devido a timeout no SPI (AB03).  
@@ -612,6 +873,7 @@ Em caso insucesso:
 RJCT (REJECTED) - Instrução de pagamento rejeitada.
 '
                   - New enum values: [SASP SASC]
+                  - Example changed from 'PDNG' to 'RJCT'
             - Modified property: meta
               - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
   - Modified response: 400
