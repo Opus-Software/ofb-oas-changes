@@ -1,0 +1,51 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 4
+-------------------------
+POST /consents
+- Request body changed
+  - Content changed
+    - New media type: application/jwt
+    - Deleted media type: application/json
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - New media type: application/jwt
+      - Deleted media type: application/json
+- Security changed
+  - New security requirements: OAuth2ClientCredentials AND OpenId
+  - Deleted security requirements: OAuth2Security AND OpenId
+GET /consents/{consentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - New media type: application/jwt
+      - Deleted media type: application/json
+- Security changed
+  - New security requirements: OAuth2ClientCredentials
+  - Deleted security requirements: OAuth2Security AND OpenId
+POST /pix/payments
+- Request body changed
+  - Content changed
+    - New media type: application/jwt
+    - Deleted media type: application/json
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - New media type: application/jwt
+      - Deleted media type: application/json
+- Security changed
+  - New security requirements: OAuth2AuthorizationCode
+  - Deleted security requirements: OAuth2Security AND OpenId
+GET /pix/payments/{paymentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - New media type: application/jwt
+      - Deleted media type: application/json
+- Security changed
+  - New security requirements: OAuth2AuthorizationCode
+  - New security requirements: OAuth2ClientCredentials
+  - Deleted security requirements: OAuth2Security AND OpenId

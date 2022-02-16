@@ -1,0 +1,273 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 4
+-------------------------
+POST /consents
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: debtorAccount
+                - Required changed
+                  - Deleted required property: checkDigit
+                - Properties changed
+                  - Deleted property: checkDigit
+                  - Modified property: number
+                    - Description changed from 'Número da conta sem o dígito.' to 'Deve ser preenchido com o número da conta transacional do usuário pagador, com dígito verificador (se este existir),  
+se houver valor alfanumérico, este deve ser convertido para 0.
+'
+              - Modified property: payment
+                - Properties changed
+                  - Modified property: amount
+                    - MinLength changed from 0 to 4
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Required changed
+            - New required property: links
+            - New required property: meta
+          - Properties changed
+            - New property: links
+            - New property: meta
+            - Modified property: data
+              - Required changed
+                - Deleted required property: debtor
+              - Properties changed
+                - Modified property: debtorAccount
+                  - Required changed
+                    - Deleted required property: checkDigit
+                  - Properties changed
+                    - Deleted property: checkDigit
+                    - Modified property: number
+                      - Description changed from 'Número da conta sem o dígito.' to 'Deve ser preenchido com o número da conta transacional do usuário pagador, com dígito verificador (se este existir),  
+se houver valor alfanumérico, este deve ser convertido para 0.
+'
+                - Modified property: payment
+                  - Properties changed
+                    - Modified property: amount
+                      - MinLength changed from 0 to 4
+  - Modified response: 422
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Examples changed
+          - Deleted example: Data de pagamento inválida
+          - Deleted example: Desconhecido
+- Security changed
+  - New security requirements: OAuth2Security AND OpenId
+  - Deleted security requirements: OpenId
+GET /consents/{consentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Required changed
+            - New required property: links
+            - New required property: meta
+          - Properties changed
+            - New property: links
+            - New property: meta
+            - Modified property: data
+              - Required changed
+                - Deleted required property: debtor
+              - Properties changed
+                - Modified property: debtorAccount
+                  - Required changed
+                    - Deleted required property: checkDigit
+                  - Properties changed
+                    - Deleted property: checkDigit
+                    - Modified property: number
+                      - Description changed from 'Número da conta sem o dígito.' to 'Deve ser preenchido com o número da conta transacional do usuário pagador, com dígito verificador (se este existir),  
+se houver valor alfanumérico, este deve ser convertido para 0.
+'
+                - Modified property: payment
+                  - Properties changed
+                    - Modified property: amount
+                      - MinLength changed from 0 to 4
+- Security changed
+  - New security requirements: OAuth2Security AND OpenId
+  - Deleted security requirements: OpenId
+POST /pix/payments
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Required changed
+              - New required property: localInstrument
+              - Deleted required property: endToEndId
+            - Properties changed
+              - New property: localInstrument
+              - Deleted property: endToEndId
+              - Modified property: creditorAccount
+                - Required changed
+                  - Deleted required property: checkDigit
+                - Properties changed
+                  - Deleted property: checkDigit
+                  - Modified property: number
+                    - Description changed from 'Número da conta sem o dígito.' to 'Deve ser preenchido com o número da conta do usuário recebedor, com dígito verificador (se este existir),  
+se houver valor alfanumérico, este deve ser convertido para 0.
+'
+              - Modified property: proxy
+                - Description changed from 'Chave cadastrada no DICT pertencente ao recebedor. Os tipos de chaves podem ser: telefone, e-mail, cpf/cnpj ou chave aleatória.  
+No caso de telefone celular deve ser informado no padrão E.1641.  
+Para e-mail deve ter o formato xxxxxxxx@xxxxxxx.xxx(.xx) e no máximo 77 caracteres.  
+No caso de CPF deverá ser informado com 11 números, sem pontos ou traços.  
+Para o caso de CNPJ deverá ser informado com 14 números, sem pontos ou traços.  
+No caso de chave aleatória deve ser informado o UUID gerado pelo DICT, conforme formato especificado na RFC41223.  
+[Restrição] Preenchimento obrigatório para pagamentos via Chave.
+' to 'Chave cadastrada no DICT pertencente ao recebedor. Os tipos de chaves podem ser: telefone, e-mail, cpf/cnpj ou chave aleatória.  
+No caso de telefone celular deve ser informado no padrão E.1641.  
+Para e-mail deve ter o formato xxxxxxxx@xxxxxxx.xxx(.xx) e no máximo 77 caracteres.  
+No caso de CPF deverá ser informado com 11 números, sem pontos ou traços.  
+Para o caso de CNPJ deverá ser informado com 14 números, sem pontos ou traços.  
+No caso de chave aleatória deve ser informado o UUID gerado pelo DICT, conforme formato especificado na RFC41223.  
+[Restrição] Obrigatório quando o campo localInstrument for igual a DICT.
+'
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Required changed
+            - New required property: links
+            - New required property: meta
+          - Properties changed
+            - New property: links
+            - New property: meta
+            - Modified property: data
+              - Required changed
+                - New required property: creditorAccount
+                - New required property: localInstrument
+                - Deleted required property: creditor
+              - Properties changed
+                - New property: localInstrument
+                - Modified property: creditorAccount
+                  - Required changed
+                    - Deleted required property: checkDigit
+                  - Properties changed
+                    - Deleted property: checkDigit
+                    - Modified property: number
+                      - Description changed from 'Número da conta sem o dígito.' to 'Deve ser preenchido com o número da conta do usuário recebedor, com dígito verificador (se este existir),  
+se houver valor alfanumérico, este deve ser convertido para 0.
+'
+                - Modified property: endToEndId
+                  - Description changed from 'Código de identificação único da transação no arranjo do Pix. É usado em toda a cadeia de mensagens de uma instrução de pagamento no SPI. É um código gerado pela instituição detentora da conta que está iniciando o pagamento.  
+Deve ser preenchido no formato padrão ExxxxxxxxyyyyMMddHHmmkkkkkkkkkkk (32 caracteres), sendo:  
+• “E” – fixo (1 caractere);  
+• xxxxxxxx – identificação do agente que gerou o `endToEndId`, podendo ser: o ISPB do participante direto ou o ISPB do participante indireto (8 caracteres numéricos [0-9]);  
+• yyyyMMddHHmm – data, hora e minuto (12 caracteres), seguindo o horário UTC, da submissão da ordem de pagamento, caso a liquidação seja prioritária, ou prevista para o envio da ordem ao sistema de liquidação, caso seja realizado um agendamento. No caso de ordens prioritárias, aceita-se o preenchimento, pelo agente que gerou o <EndToEndId>, com uma tolerância máxima de 1 hora e 30 minutos, para o futuro e para o passado, em relação ao horário efetivo de processamento da ordem pelo SPI. Para ordens não prioritárias, a tolerância máxima é de 12 horas, para o futuro e para o passado;  
+• kkkkkkkkkkk – sequencial criado pelo agente que gerou o `endToEndId` (11 caracteres alfanuméricos [a-z|A-Z|0-9]). Deve ser único dentro de cada “yyyyMMddHHmm”.  
+Exemplo: E000000002020080120300000000001B  
+O `endToEndId` é gerado pela detentora. Ele deve ser único, não podendo ser repetido em qualquer outra operação enviada ao SPI.
+' to 'Deve ser preenchido no formato padrão ExxxxxxxxyyyyMMddHHmmkkkkkkkkkkk (32 caracteres; “case sensitive”, isso é, diferencia letras maiúsculas e minúsculas), sendo:
+• “E” – fixo (1 caractere);  
+• xxxxxxxx – identificação do agente que gerou o ´EndToEndId´, podendo ser: o ISPB do participante direto ou o ISPB do participante indireto (8 caracteres numéricos [0-9]);  
+• yyyyMMddHHmm – data, hora e minuto (12 caracteres), seguindo o horário UTC, da submissão da ordem de pagamento, caso a liquidação seja prioritária, ou prevista para o envio da ordem ao sistema de liquidação, caso seja realizado um agendamento. Para ordens prioritárias e não prioritárias, aceita-se o preenchimento, pelo agente que gerou o ´EndToEndId´, com uma tolerância máxima de 12 horas, para o futuro e para o passado, em relação ao horário efetivo de processamento da ordem pelo SPI;  
+• kkkkkkkkkkk – sequencial criado pelo agente que gerou o ´EndToEndId´ (11 caracteres alfanuméricos [a-z/A-Z/0-9]). Deve ser único dentro de cada “yyyyMMddHHmm”.  
+Admite-se que o ´EndToEndId´ seja gerado pelo participante direto, pelo participante indireto ou pelo iniciador de pagamento.  
+Ele deve ser único, não podendo ser repetido em qualquer outra operação enviada ao SPI.
+'
+                - Modified property: proxy
+                  - Description changed from 'Chave cadastrada no DICT pertencente ao recebedor. Os tipos de chaves podem ser: telefone, e-mail, cpf/cnpj ou chave aleatória.  
+No caso de telefone celular deve ser informado no padrão E.1641.  
+Para e-mail deve ter o formato xxxxxxxx@xxxxxxx.xxx(.xx) e no máximo 77 caracteres.  
+No caso de CPF deverá ser informado com 11 números, sem pontos ou traços.  
+Para o caso de CNPJ deverá ser informado com 14 números, sem pontos ou traços.  
+No caso de chave aleatória deve ser informado o UUID gerado pelo DICT, conforme formato especificado na RFC41223.  
+[Restrição] Preenchimento obrigatório para pagamentos via Chave.
+' to 'Chave cadastrada no DICT pertencente ao recebedor. Os tipos de chaves podem ser: telefone, e-mail, cpf/cnpj ou chave aleatória.  
+No caso de telefone celular deve ser informado no padrão E.1641.  
+Para e-mail deve ter o formato xxxxxxxx@xxxxxxx.xxx(.xx) e no máximo 77 caracteres.  
+No caso de CPF deverá ser informado com 11 números, sem pontos ou traços.  
+Para o caso de CNPJ deverá ser informado com 14 números, sem pontos ou traços.  
+No caso de chave aleatória deve ser informado o UUID gerado pelo DICT, conforme formato especificado na RFC41223.  
+[Restrição] Obrigatório quando o campo localInstrument for igual a DICT.
+'
+  - Modified response: 422
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Examples changed
+          - Deleted example: Acima do limite estabelecido
+          - Deleted example: Beneficiário incompatível
+          - Deleted example: Cobrança inválida
+          - Deleted example: Consentimento inválido
+          - Deleted example: Desconhecido
+          - Deleted example: Janela de operação inválida
+          - Deleted example: Valor da transação incompatível
+          - Deleted example: Valor inválido
+- Security changed
+  - New security requirements: OAuth2Security AND OpenId
+  - Deleted security requirements: OpenId
+GET /pix/payments/{paymentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Required changed
+            - New required property: links
+            - New required property: meta
+          - Properties changed
+            - New property: links
+            - New property: meta
+            - Modified property: data
+              - Required changed
+                - New required property: creditorAccount
+                - New required property: localInstrument
+                - Deleted required property: creditor
+              - Properties changed
+                - New property: localInstrument
+                - Modified property: creditorAccount
+                  - Required changed
+                    - Deleted required property: checkDigit
+                  - Properties changed
+                    - Deleted property: checkDigit
+                    - Modified property: number
+                      - Description changed from 'Número da conta sem o dígito.' to 'Deve ser preenchido com o número da conta do usuário recebedor, com dígito verificador (se este existir),  
+se houver valor alfanumérico, este deve ser convertido para 0.
+'
+                - Modified property: endToEndId
+                  - Description changed from 'Código de identificação único da transação no arranjo do Pix. É usado em toda a cadeia de mensagens de uma instrução de pagamento no SPI. É um código gerado pela instituição detentora da conta que está iniciando o pagamento.  
+Deve ser preenchido no formato padrão ExxxxxxxxyyyyMMddHHmmkkkkkkkkkkk (32 caracteres), sendo:  
+• “E” – fixo (1 caractere);  
+• xxxxxxxx – identificação do agente que gerou o `endToEndId`, podendo ser: o ISPB do participante direto ou o ISPB do participante indireto (8 caracteres numéricos [0-9]);  
+• yyyyMMddHHmm – data, hora e minuto (12 caracteres), seguindo o horário UTC, da submissão da ordem de pagamento, caso a liquidação seja prioritária, ou prevista para o envio da ordem ao sistema de liquidação, caso seja realizado um agendamento. No caso de ordens prioritárias, aceita-se o preenchimento, pelo agente que gerou o <EndToEndId>, com uma tolerância máxima de 1 hora e 30 minutos, para o futuro e para o passado, em relação ao horário efetivo de processamento da ordem pelo SPI. Para ordens não prioritárias, a tolerância máxima é de 12 horas, para o futuro e para o passado;  
+• kkkkkkkkkkk – sequencial criado pelo agente que gerou o `endToEndId` (11 caracteres alfanuméricos [a-z|A-Z|0-9]). Deve ser único dentro de cada “yyyyMMddHHmm”.  
+Exemplo: E000000002020080120300000000001B  
+O `endToEndId` é gerado pela detentora. Ele deve ser único, não podendo ser repetido em qualquer outra operação enviada ao SPI.
+' to 'Deve ser preenchido no formato padrão ExxxxxxxxyyyyMMddHHmmkkkkkkkkkkk (32 caracteres; “case sensitive”, isso é, diferencia letras maiúsculas e minúsculas), sendo:
+• “E” – fixo (1 caractere);  
+• xxxxxxxx – identificação do agente que gerou o ´EndToEndId´, podendo ser: o ISPB do participante direto ou o ISPB do participante indireto (8 caracteres numéricos [0-9]);  
+• yyyyMMddHHmm – data, hora e minuto (12 caracteres), seguindo o horário UTC, da submissão da ordem de pagamento, caso a liquidação seja prioritária, ou prevista para o envio da ordem ao sistema de liquidação, caso seja realizado um agendamento. Para ordens prioritárias e não prioritárias, aceita-se o preenchimento, pelo agente que gerou o ´EndToEndId´, com uma tolerância máxima de 12 horas, para o futuro e para o passado, em relação ao horário efetivo de processamento da ordem pelo SPI;  
+• kkkkkkkkkkk – sequencial criado pelo agente que gerou o ´EndToEndId´ (11 caracteres alfanuméricos [a-z/A-Z/0-9]). Deve ser único dentro de cada “yyyyMMddHHmm”.  
+Admite-se que o ´EndToEndId´ seja gerado pelo participante direto, pelo participante indireto ou pelo iniciador de pagamento.  
+Ele deve ser único, não podendo ser repetido em qualquer outra operação enviada ao SPI.
+'
+                - Modified property: proxy
+                  - Description changed from 'Chave cadastrada no DICT pertencente ao recebedor. Os tipos de chaves podem ser: telefone, e-mail, cpf/cnpj ou chave aleatória.  
+No caso de telefone celular deve ser informado no padrão E.1641.  
+Para e-mail deve ter o formato xxxxxxxx@xxxxxxx.xxx(.xx) e no máximo 77 caracteres.  
+No caso de CPF deverá ser informado com 11 números, sem pontos ou traços.  
+Para o caso de CNPJ deverá ser informado com 14 números, sem pontos ou traços.  
+No caso de chave aleatória deve ser informado o UUID gerado pelo DICT, conforme formato especificado na RFC41223.  
+[Restrição] Preenchimento obrigatório para pagamentos via Chave.
+' to 'Chave cadastrada no DICT pertencente ao recebedor. Os tipos de chaves podem ser: telefone, e-mail, cpf/cnpj ou chave aleatória.  
+No caso de telefone celular deve ser informado no padrão E.1641.  
+Para e-mail deve ter o formato xxxxxxxx@xxxxxxx.xxx(.xx) e no máximo 77 caracteres.  
+No caso de CPF deverá ser informado com 11 números, sem pontos ou traços.  
+Para o caso de CNPJ deverá ser informado com 14 números, sem pontos ou traços.  
+No caso de chave aleatória deve ser informado o UUID gerado pelo DICT, conforme formato especificado na RFC41223.  
+[Restrição] Obrigatório quando o campo localInstrument for igual a DICT.
+'
+- Security changed
+  - New security requirements: OAuth2Security AND OpenId
+  - Deleted security requirements: OpenId

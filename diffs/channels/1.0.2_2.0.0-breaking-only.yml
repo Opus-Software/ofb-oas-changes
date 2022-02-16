@@ -1,0 +1,216 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 5
+-------------------------
+GET /banking-agents
+- Deleted query param: page
+- Deleted query param: page-size
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Properties changed
+                    - Modified property: companies
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - Schema #/components/schemas/CNPJ modified
+                            - Properties changed
+                              - Modified property: cnpjNumber
+                                - Pattern changed from '^(\d{14})$|^NA$' to '^(\d{14})$'
+                        - Properties changed
+                          - Modified property: contractors
+                            - Items changed
+                              - Property 'AllOf' changed
+                                - Schema #/components/schemas/CNPJ modified
+                                  - Properties changed
+                                    - Modified property: cnpjNumber
+                                      - Pattern changed from '^(\d{14})$|^NA$' to '^(\d{14})$'
+                              - Properties changed
+                                - Modified property: bankingAgents
+                                  - Items changed
+                                    - Properties changed
+                                      - Modified property: identification
+                                        - Property 'AllOf' changed
+                                          - Schema #/components/schemas/CNPJ modified
+                                            - Properties changed
+                                              - Modified property: cnpjNumber
+                                                - Pattern changed from '^(\d{14})$|^NA$' to '^(\d{14})$'
+                                      - Modified property: locations
+                                        - Items changed
+                                          - Properties changed
+                                            - Modified property: phones
+                                              - Items changed
+                                                - Properties changed
+                                                  - Modified property: countryCallingCode
+                                                    - Pattern changed from '^\d{1,4}$' to '^\d{2}$'
+                                            - Modified property: postalAddress
+                                              - Property 'AllOf' changed
+                                                - Schema #/components/schemas/PostalAddress modified
+                                                  - Properties changed
+                                                    - Modified property: geographicCoordinates
+                                                      - Properties changed
+                                                        - Modified property: latitude
+                                                          - Pattern changed from '^-?\d{1,2}\.\d{1,9}$' to '^-?\d{1,2}\.\d{1,9}$|^NA$'
+                                                        - Modified property: longitude
+                                                          - Pattern changed from '^-?\d{1,3}\.\d{1,8}$' to '^-?\d{1,3}\.\d{1,8}$|^NA$'
+                                                    - Modified property: ibgeCode
+                                                      - Pattern changed from '^\d{7}$' to '\d{7}|^NA$'
+GET /branches
+- Deleted query param: page
+- Deleted query param: page-size
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Properties changed
+                    - Modified property: companies
+                      - MinItems changed from 1 to 0
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - Schema #/components/schemas/CNPJ modified
+                            - Properties changed
+                              - Modified property: cnpjNumber
+                                - Pattern changed from '^(\d{14})$|^NA$' to '^(\d{14})$'
+                        - Properties changed
+                          - Modified property: branches
+                            - MinItems changed from 1 to 0
+                            - Items changed
+                              - Properties changed
+                                - Modified property: availability
+                                  - Properties changed
+                                    - Modified property: standards
+                                      - MinItems changed from 1 to 0
+                                      - MaxItems changed from 7 to null
+                                      - Items changed
+                                        - Properties changed
+                                          - Modified property: closingTime
+                                            - Pattern changed from '^(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)|Z$|^NA$' to '^(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)|Z$'
+                                          - Modified property: openingTime
+                                            - Pattern changed from '^(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)|Z$|^NA$' to '^(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)|Z$'
+                                - Modified property: identification
+                                  - Properties changed
+                                    - Modified property: checkDigit
+                                      - Pattern changed from '\w*\W*' to '^\d{1}$'
+                                    - Modified property: code
+                                      - Pattern changed from '^\d{4}$|^NA$' to '^\d{4}$'
+                                    - Modified property: relatedBranch
+                                      - Pattern changed from '^\d{4}$' to '^\d{4}$|^NA$'
+                                - Modified property: phones
+                                  - MinItems changed from 1 to 0
+                                  - Items changed
+                                    - Property 'AllOf' changed
+                                      - 1 schemas deleted
+                                - Modified property: postalAddresses
+                                  - Property 'AllOf' changed
+                                    - Schema #/components/schemas/PostalAddress modified
+                                      - Properties changed
+                                        - Modified property: geographicCoordinates
+                                          - Properties changed
+                                            - Modified property: latitude
+                                              - Pattern changed from '^-?\d{1,2}\.\d{1,9}$' to '^-?\d{1,2}\.\d{1,9}$|^NA$'
+                                            - Modified property: longitude
+                                              - Pattern changed from '^-?\d{1,3}\.\d{1,8}$' to '^-?\d{1,3}\.\d{1,8}$|^NA$'
+                                        - Modified property: ibgeCode
+                                          - Pattern changed from '^\d{7}$' to '\d{7}|^NA$'
+                                - Modified property: services
+                                  - MinItems changed from 1 to 0
+                                  - MaxItems changed from 20 to null
+                          - Modified property: cnpjNumber
+                            - Pattern changed from '^(\d{14})$|^NA$' to '^(\d{14})$'
+GET /electronic-channels
+- Deleted query param: page
+- Deleted query param: page-size
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Properties changed
+                    - Modified property: companies
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - Schema #/components/schemas/CNPJ modified
+                            - Properties changed
+                              - Modified property: cnpjNumber
+                                - Pattern changed from '^(\d{14})$|^NA$' to '^(\d{14})$'
+GET /phone-channels
+- Deleted query param: page
+- Deleted query param: page-size
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Properties changed
+                    - Modified property: companies
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - Schema #/components/schemas/CNPJ modified
+                            - Properties changed
+                              - Modified property: cnpjNumber
+                                - Pattern changed from '^(\d{14})$|^NA$' to '^(\d{14})$'
+                        - Properties changed
+                          - Modified property: phoneChannels
+                            - Items changed
+                              - Properties changed
+                                - Modified property: identification
+                                  - Properties changed
+                                    - Modified property: phones
+                                      - Items changed
+                                        - Properties changed
+                                          - Modified property: areaCode
+                                            - Pattern changed from '^\d{2}$|^NA$' to '^\d{2}$'
+                                          - Modified property: countryCallingCode
+                                            - Pattern changed from '^\d{1,4}$|^NA$' to '^\d{2}$'
+                                          - Modified property: number
+                                            - Pattern changed from '^([0-9]{8,11})$|^NA$' to '^([0-9]{4,5})-([0-9]{4,7})$'
+GET /shared-automated-teller-machines
+- Deleted query param: page
+- Deleted query param: page-size
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Properties changed
+                    - Modified property: companies
+                      - Items changed
+                        - Properties changed
+                          - Modified property: sharedAutomatedTellerMachines
+                            - MaxItems changed from 1 to null
+                            - Items changed
+                              - Properties changed
+                                - Modified property: postalAddress
+                                  - Properties changed
+                                    - Modified property: geographicCoordinates
+                                      - Properties changed
+                                        - Modified property: latitude
+                                          - Pattern changed from '^-?\d{1,2}\.\d{1,9}$' to '^-?\d{1,2}\.\d{1,9}$|^NA$'
+                                        - Modified property: longitude
+                                          - Pattern changed from '^-?\d{1,3}\.\d{1,8}$' to '^-?\d{1,3}\.\d{1,8}$|^NA$'
+                                    - Modified property: ibgeCode
+                                      - Pattern changed from '\d{7}' to '\d{7}|^NA$'

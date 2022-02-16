@@ -1,0 +1,464 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 3
+-------------------------
+POST /consents
+- Modified header param: Authorization
+  - Schema changed
+    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+- Modified header param: x-customer-user-agent
+  - Schema changed
+    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+- Modified header param: x-fapi-customer-ip-address
+  - Schema changed
+    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Required changed
+              - New required property: expirationDateTime
+            - Properties changed
+              - Modified property: expirationDateTime
+                - Description changed from 'Data e hora de expiração da permissão. Se não for preenchido, a permissão terá a data aberta. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).' to 'Data e hora de expiração da permissão. De preenchimento obrigatório, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).'
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Required changed
+                - New required property: expirationDateTime
+              - Properties changed
+                - Modified property: expirationDateTime
+                  - Description changed from 'Data e hora de expiração da permissão. Se não for preenchido, a permissão terá a data aberta. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).' to 'Data e hora de expiração da permissão. De preenchimento obrigatório, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).'
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: detail
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: title
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: detail
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: title
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: detail
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: title
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: detail
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: title
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: detail
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: title
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: detail
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: title
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+  - Modified response: 415
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: detail
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: title
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: detail
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: title
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: detail
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: title
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: detail
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: title
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+DELETE /consents/{consentId}
+- Modified header param: Authorization
+  - Schema changed
+    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+- Modified header param: x-customer-user-agent
+  - Schema changed
+    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+- Modified header param: x-fapi-customer-ip-address
+  - Schema changed
+    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+- Responses changed
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: detail
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: title
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: detail
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: title
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: detail
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: title
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: detail
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: title
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: detail
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: title
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: detail
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: title
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: detail
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: title
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: detail
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: title
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: detail
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: title
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+GET /consents/{consentId}
+- Modified header param: Authorization
+  - Schema changed
+    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+- Modified header param: x-customer-user-agent
+  - Schema changed
+    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+- Modified header param: x-fapi-customer-ip-address
+  - Schema changed
+    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Required changed
+                - New required property: expirationDateTime
+              - Properties changed
+                - Modified property: expirationDateTime
+                  - Description changed from 'Data e hora de expiração da permissão. Se não for preenchido, a permissão terá a data aberta. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).' to 'Data e hora de expiração da permissão. De preenchimento obrigatório, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).'
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: detail
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: title
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: detail
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: title
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: detail
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: title
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: detail
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: title
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: detail
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: title
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: detail
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: title
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: detail
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: title
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: detail
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: title
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: detail
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: title
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'

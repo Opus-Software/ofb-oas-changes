@@ -1,0 +1,240 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 5
+-------------------------
+GET /accounts
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - MinItems changed from 1 to 0
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - MinItems changed from 1 to 0
+GET /accounts/{creditCardAccountId}/bills
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: financeCharges
+                    - Items changed
+                      - Properties changed
+                        - Modified property: type
+                          - Description changed from 'Traz a denominação dos Encargos que 
+incidem na fatura da conta de pagamento pós-paga. (Vide Enum)
+- Juros remuneratórios por atraso no pagamento da fatura
+- Multa por atraso no pagamento da fatura
+- Juros de mora por atraso no pagamento da fatura
+- IOF
+- Sem Encargo
+- Outros
+' to 'Traz a denominação dos Encargos que
+incidem na fatura da conta de pagamento pós-paga. (Vide Enum)
+- Juros remuneratórios por atraso no pagamento da fatura
+- Multa por atraso no pagamento da fatura
+- Juros de mora por atraso no pagamento da fatura
+- IOF
+- Sem Encargo
+- Outros
+'
+                          - MaxLength changed from null to 44
+                  - Modified property: payments
+                    - MinItems changed from 1 to 0
+                    - Items changed
+                      - Properties changed
+                        - Modified property: paymentMode
+                          - MaxLength changed from null to 21
+                        - Modified property: valueType
+                          - MaxLength changed from null to 32
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: financeCharges
+                    - Items changed
+                      - Properties changed
+                        - Modified property: type
+                          - Description changed from 'Traz a denominação dos Encargos que 
+incidem na fatura da conta de pagamento pós-paga. (Vide Enum)
+- Juros remuneratórios por atraso no pagamento da fatura
+- Multa por atraso no pagamento da fatura
+- Juros de mora por atraso no pagamento da fatura
+- IOF
+- Sem Encargo
+- Outros
+' to 'Traz a denominação dos Encargos que
+incidem na fatura da conta de pagamento pós-paga. (Vide Enum)
+- Juros remuneratórios por atraso no pagamento da fatura
+- Multa por atraso no pagamento da fatura
+- Juros de mora por atraso no pagamento da fatura
+- IOF
+- Sem Encargo
+- Outros
+'
+                          - MaxLength changed from null to 44
+                  - Modified property: payments
+                    - MinItems changed from 1 to 0
+                    - Items changed
+                      - Properties changed
+                        - Modified property: paymentMode
+                          - MaxLength changed from null to 21
+                        - Modified property: valueType
+                          - MaxLength changed from null to 32
+GET /accounts/{creditCardAccountId}/bills/{billId}/transactions
+- Modified query param: transactionType
+  - Schema changed
+    - MaxLength changed from null to 36
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: feeType
+                    - Description changed from 'Traz os tipos de Tarifas: (Vide Enum)
+Anuidade, Saque com cartão no Brasil, Saque com cartão no exterior, Avaliação emergencial de crédito, Emissão segunda via, Tarifa pagamento de contas, SMS, OUTRA. 
+[Restrição] Preenchimento obrigatório se Tipo de Transação selecionada for 'TARIFA' 
+' to 'Traz os tipos de Tarifas: (Vide Enum)
+Anuidade, Saque com cartão no Brasil, Saque com cartão no exterior, Avaliação emergencial de crédito, Emissão segunda via, Tarifa pagamento de contas, SMS, OUTRA.
+[Restrição] Preenchimento obrigatório se Tipo de Transação selecionada for 'TARIFA'
+'
+                    - MaxLength changed from null to 29
+                  - Modified property: lineName
+                    - MaxLength changed from null to 28
+                  - Modified property: otherCreditsType
+                    - MaxLength changed from null to 19
+                  - Modified property: paymentType
+                    - MaxLength changed from null to 7
+                  - Modified property: transactionType
+                    - MaxLength changed from null to 36
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: feeType
+                    - Description changed from 'Traz os tipos de Tarifas: (Vide Enum)
+Anuidade, Saque com cartão no Brasil, Saque com cartão no exterior, Avaliação emergencial de crédito, Emissão segunda via, Tarifa pagamento de contas, SMS, OUTRA. 
+[Restrição] Preenchimento obrigatório se Tipo de Transação selecionada for 'TARIFA' 
+' to 'Traz os tipos de Tarifas: (Vide Enum)
+Anuidade, Saque com cartão no Brasil, Saque com cartão no exterior, Avaliação emergencial de crédito, Emissão segunda via, Tarifa pagamento de contas, SMS, OUTRA.
+[Restrição] Preenchimento obrigatório se Tipo de Transação selecionada for 'TARIFA'
+'
+                    - MaxLength changed from null to 29
+                  - Modified property: lineName
+                    - MaxLength changed from null to 28
+                  - Modified property: otherCreditsType
+                    - MaxLength changed from null to 19
+                  - Modified property: paymentType
+                    - MaxLength changed from null to 7
+                  - Modified property: transactionType
+                    - MaxLength changed from null to 36
+GET /accounts/{creditCardAccountId}/limits
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: consolidationType
+                    - MaxLength changed from null to 11
+                  - Modified property: creditLineLimitType
+                    - MaxLength changed from null to 34
+                  - Modified property: lineName
+                    - MaxLength changed from null to 28
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: consolidationType
+                    - MaxLength changed from null to 11
+                  - Modified property: creditLineLimitType
+                    - MaxLength changed from null to 34
+                  - Modified property: lineName
+                    - MaxLength changed from null to 28
+GET /accounts/{creditCardAccountId}/transactions
+- Modified query param: transactionType
+  - Schema changed
+    - MaxLength changed from null to 36
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: feeType
+                    - Description changed from 'Traz os tipos de Tarifas: (Vide Enum)
+Anuidade, Saque com cartão no Brasil, Saque com cartão no exterior, Avaliação emergencial de crédito, Emissão segunda via, Tarifa pagamento de contas, SMS, OUTRA. 
+[Restrição] Preenchimento obrigatório se Tipo de Transação selecionada for 'TARIFA' 
+' to 'Traz os tipos de Tarifas: (Vide Enum)
+Anuidade, Saque com cartão no Brasil, Saque com cartão no exterior, Avaliação emergencial de crédito, Emissão segunda via, Tarifa pagamento de contas, SMS, OUTRA.
+[Restrição] Preenchimento obrigatório se Tipo de Transação selecionada for 'TARIFA'
+'
+                    - MaxLength changed from null to 29
+                  - Modified property: lineName
+                    - MaxLength changed from null to 28
+                  - Modified property: otherCreditsType
+                    - MaxLength changed from null to 19
+                  - Modified property: paymentType
+                    - MaxLength changed from null to 7
+                  - Modified property: transactionType
+                    - MaxLength changed from null to 36
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: feeType
+                    - Description changed from 'Traz os tipos de Tarifas: (Vide Enum)
+Anuidade, Saque com cartão no Brasil, Saque com cartão no exterior, Avaliação emergencial de crédito, Emissão segunda via, Tarifa pagamento de contas, SMS, OUTRA. 
+[Restrição] Preenchimento obrigatório se Tipo de Transação selecionada for 'TARIFA' 
+' to 'Traz os tipos de Tarifas: (Vide Enum)
+Anuidade, Saque com cartão no Brasil, Saque com cartão no exterior, Avaliação emergencial de crédito, Emissão segunda via, Tarifa pagamento de contas, SMS, OUTRA.
+[Restrição] Preenchimento obrigatório se Tipo de Transação selecionada for 'TARIFA'
+'
+                    - MaxLength changed from null to 29
+                  - Modified property: lineName
+                    - MaxLength changed from null to 28
+                  - Modified property: otherCreditsType
+                    - MaxLength changed from null to 19
+                  - Modified property: paymentType
+                    - MaxLength changed from null to 7
+                  - Modified property: transactionType
+                    - MaxLength changed from null to 36

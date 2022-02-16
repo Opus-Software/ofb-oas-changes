@@ -1,0 +1,160 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 3
+-------------------------
+GET /contracts/{contractId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: CET
+                  - Nullable changed from false to true
+                - Modified property: amortizationScheduled
+                  - MaxLength changed from 24 to 23
+                - Modified property: amortizationScheduledAdditionalInfo
+                  - Description changed from 'Campo obrigatório para complementar a informação relativa à amortização quando selecionada a opção OUTROS.
+[Restrição] Obrigatório para complementar a informação relativa à amortização quando selecionada a opção OUTROS, para os demais casos informar "NA".       
+' to 'Campo obrigatório para complementar a informação relativa à amortização quando selecionada a opção OUTROS.
+[Restrição] Obrigatório para complementar a informação relativa à amortização quando selecionada a opção OUTROS, para os demais casos informar "NA".
+'
+                - Modified property: contractedFees
+                  - MinItems changed from 1 to 0
+                  - Items changed
+                    - Properties changed
+                      - Modified property: feeChargeType
+                        - MaxLength changed from 10 to 11
+                - Modified property: contractedFinanceCharges
+                  - MinItems changed from 1 to 0
+                - Modified property: instalmentPeriodicity
+                  - MaxLength changed from null to 25
+                - Modified property: instalmentPeriodicityAdditionalInfo
+                  - Description changed from 'Campo obrigatório para complementar a informação relativa à periodicidade de pagamento regular quando tiver a opção OUTROS.
+[Restrição] Obrigatório para complementar a informação relativa da periodicidade de pagamento regular, quando selecionada o tipo ou subtipo OUTRO.       
+' to 'Campo obrigatório para complementar a informação relativa à periodicidade de pagamento regular quando tiver a opção OUTROS.
+[Restrição] Obrigatório para complementar a informação relativa da periodicidade de pagamento regular, quando selecionada o tipo ou subtipo OUTRO.
+'
+                - Modified property: interestRates
+                  - Items changed
+                    - Properties changed
+                      - Modified property: additionalInfo
+                        - Description changed from 'Texto com informações adicionais sobre a composição das taxas de juros pactuadas.
+[Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.       
+' to 'Texto com informações adicionais sobre a composição das taxas de juros pactuadas.
+[Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
+'
+                      - Modified property: interestRateType
+                        - MaxLength changed from 10 to 8
+                      - Modified property: preFixedRate
+                        - Nullable changed from false to true
+                      - Modified property: taxType
+                        - MaxLength changed from 10 to 7
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: CET
+                  - Nullable changed from false to true
+                - Modified property: amortizationScheduled
+                  - MaxLength changed from 24 to 23
+                - Modified property: amortizationScheduledAdditionalInfo
+                  - Description changed from 'Campo obrigatório para complementar a informação relativa à amortização quando selecionada a opção OUTROS.
+[Restrição] Obrigatório para complementar a informação relativa à amortização quando selecionada a opção OUTROS, para os demais casos informar "NA".       
+' to 'Campo obrigatório para complementar a informação relativa à amortização quando selecionada a opção OUTROS.
+[Restrição] Obrigatório para complementar a informação relativa à amortização quando selecionada a opção OUTROS, para os demais casos informar "NA".
+'
+                - Modified property: contractedFees
+                  - MinItems changed from 1 to 0
+                  - Items changed
+                    - Properties changed
+                      - Modified property: feeChargeType
+                        - MaxLength changed from 10 to 11
+                - Modified property: contractedFinanceCharges
+                  - MinItems changed from 1 to 0
+                - Modified property: instalmentPeriodicity
+                  - MaxLength changed from null to 25
+                - Modified property: instalmentPeriodicityAdditionalInfo
+                  - Description changed from 'Campo obrigatório para complementar a informação relativa à periodicidade de pagamento regular quando tiver a opção OUTROS.
+[Restrição] Obrigatório para complementar a informação relativa da periodicidade de pagamento regular, quando selecionada o tipo ou subtipo OUTRO.       
+' to 'Campo obrigatório para complementar a informação relativa à periodicidade de pagamento regular quando tiver a opção OUTROS.
+[Restrição] Obrigatório para complementar a informação relativa da periodicidade de pagamento regular, quando selecionada o tipo ou subtipo OUTRO.
+'
+                - Modified property: interestRates
+                  - Items changed
+                    - Properties changed
+                      - Modified property: additionalInfo
+                        - Description changed from 'Texto com informações adicionais sobre a composição das taxas de juros pactuadas.
+[Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.       
+' to 'Texto com informações adicionais sobre a composição das taxas de juros pactuadas.
+[Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
+'
+                      - Modified property: interestRateType
+                        - MaxLength changed from 10 to 8
+                      - Modified property: preFixedRate
+                        - Nullable changed from false to true
+                      - Modified property: taxType
+                        - MaxLength changed from 10 to 7
+GET /contracts/{contractId}/scheduled-instalments
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: typeContractRemaining
+                  - Description changed from 'Tipo de prazo remanescente do contrato referente à modalidade de crédito informada.   
+' to 'Tipo de prazo remanescente do contrato referente à modalidade de crédito informada.
+'
+                  - MaxLength changed from 6 to 22
+                - Modified property: typeNumberOfInstalments
+                  - MaxLength changed from 6 to 15
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: typeContractRemaining
+                  - Description changed from 'Tipo de prazo remanescente do contrato referente à modalidade de crédito informada.   
+' to 'Tipo de prazo remanescente do contrato referente à modalidade de crédito informada.
+'
+                  - MaxLength changed from 6 to 22
+                - Modified property: typeNumberOfInstalments
+                  - MaxLength changed from 6 to 15
+GET /contracts/{contractId}/warranties
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: warrantySubType
+                    - MaxLength changed from 100 to 96
+                  - Modified property: warrantyType
+                    - MaxLength changed from 40 to 37
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: warrantySubType
+                    - MaxLength changed from 100 to 96
+                  - Modified property: warrantyType
+                    - MaxLength changed from 40 to 37

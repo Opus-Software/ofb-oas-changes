@@ -1,0 +1,387 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 12
+--------------------------
+GET /business-accounts
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Properties changed
+                    - Modified property: companies
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - Schema #/components/schemas/Company modified
+                            - Property 'AllOf' changed
+                              - Schema #/components/schemas/CNPJ modified
+                                - Properties changed
+                                  - Modified property: cnpjNumber
+                                    - Pattern changed from '^(\d{14})$' to '^(\d{14})$|^NA$'
+                        - Properties changed
+                          - Modified property: businessAccounts
+                            - Items changed
+                              - Properties changed
+                                - Modified property: serviceBundles
+                                  - Items changed
+                                    - Properties changed
+                                      - Modified property: services
+                                        - Items changed
+                                          - Properties changed
+                                            - Modified property: chargingTriggerInfo
+                                              - Format changed from '\w*\W*' to ''
+                                              - Pattern changed from '' to '\w*\W*'
+                                            - Modified property: code
+                                              - Format changed from '\w*\W*' to ''
+                                              - Pattern changed from '' to '\w*\W*'
+                                            - Modified property: eventLimitQuantity
+                                              - Format changed from '^(\d{1,6}){1}$' to ''
+                                              - Pattern changed from '' to '^(\d{1,6}){1}$'
+                                            - Modified property: freeEventQuantity
+                                              - Format changed from '^(\d{1,6}){1}$' to ''
+                                              - Pattern changed from '' to '^(\d{1,6}){1}$'
+GET /business-credit-cards
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Properties changed
+                    - Modified property: companies
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - Schema #/components/schemas/Company modified
+                            - Property 'AllOf' changed
+                              - Schema #/components/schemas/CNPJ modified
+                                - Properties changed
+                                  - Modified property: cnpjNumber
+                                    - Pattern changed from '^(\d{14})$' to '^(\d{14})$|^NA$'
+                        - Properties changed
+                          - Modified property: businessCreditCards
+                            - Items changed
+                              - Properties changed
+                                - Modified property: fees
+                                  - Properties changed
+                                    - Modified property: services
+                                      - MaxItems changed from 8 to 9
+                                - Modified property: interest
+                                  - Required changed
+                                    - Deleted required property: feeRate
+                                    - Deleted required property: instalmentRate
+                                    - Deleted required property: interestRates
+                                  - Properties changed
+                                    - Deleted property: feeRate
+                                    - Deleted property: instalmentRate
+                                    - Deleted property: interestRates
+GET /business-financings
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Properties changed
+                    - Modified property: companies
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - Schema #/components/schemas/Company modified
+                            - Property 'AllOf' changed
+                              - Schema #/components/schemas/CNPJ modified
+                                - Properties changed
+                                  - Modified property: cnpjNumber
+                                    - Pattern changed from '^(\d{14})$' to '^(\d{14})$|^NA$'
+                        - Properties changed
+                          - Modified property: businessFinancings
+                            - Items changed
+                              - Required changed
+                                - Deleted required property: interestRate
+                              - Properties changed
+                                - Deleted property: interestRate
+                                - Modified property: type
+                                  - Deleted enum values: [FINANCIAMENTO_IMOBILIARIO_SISTEMA_FINANCEIRO_HABILITACAO_SFH FINANCIAMENTO_IMOBILIARIO_SISTEMA_FINANCEIRO_HABILITACAO_SFI]
+GET /business-invoice-financings
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Properties changed
+                    - Modified property: companies
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - Schema #/components/schemas/Company modified
+                            - Property 'AllOf' changed
+                              - Schema #/components/schemas/CNPJ modified
+                                - Properties changed
+                                  - Modified property: cnpjNumber
+                                    - Pattern changed from '^(\d{14})$' to '^(\d{14})$|^NA$'
+                        - Properties changed
+                          - Modified property: businessInvoiceFinancings
+                            - Items changed
+                              - Required changed
+                                - Deleted required property: interestRate
+                              - Properties changed
+                                - Deleted property: interestRate
+GET /business-loans
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Properties changed
+                    - Modified property: companies
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - Schema #/components/schemas/CNPJ modified
+                            - Properties changed
+                              - Modified property: cnpjNumber
+                                - Pattern changed from '^(\d{14})$' to '^(\d{14})$|^NA$'
+                        - Properties changed
+                          - Modified property: businessLoans
+                            - Items changed
+                              - Properties changed
+                                - Deleted property: interestRate
+GET /business-unarranged-account-overdraft
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Properties changed
+                    - Modified property: companies
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - Schema #/components/schemas/Company modified
+                            - Property 'AllOf' changed
+                              - Schema #/components/schemas/CNPJ modified
+                                - Properties changed
+                                  - Modified property: cnpjNumber
+                                    - Pattern changed from '^(\d{14})$' to '^(\d{14})$|^NA$'
+                        - Properties changed
+                          - Modified property: businessUnarrangedAccountOverdraft
+                            - Items changed
+                              - Properties changed
+                                - Deleted property: interestRate
+GET /personal-accounts
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Properties changed
+                    - Modified property: companies
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - Schema #/components/schemas/Company modified
+                            - Property 'AllOf' changed
+                              - Schema #/components/schemas/CNPJ modified
+                                - Properties changed
+                                  - Modified property: cnpjNumber
+                                    - Pattern changed from '^(\d{14})$' to '^(\d{14})$|^NA$'
+                        - Properties changed
+                          - Modified property: personalAccounts
+                            - Items changed
+                              - Properties changed
+                                - Modified property: fees
+                                  - Properties changed
+                                    - Modified property: otherServices
+                                      - Items changed
+                                        - Properties changed
+                                          - Modified property: name
+                                            - Pattern changed from '' to '\w*\W*'
+                                    - Modified property: priorityServices
+                                      - MaxItems changed from 31 to 40
+                                      - Items changed
+                                        - Properties changed
+                                          - Modified property: code
+                                            - Deleted enum values: [2_VIA-CARTAO_POUPANCA DOCELETRONICO]
+                                          - Modified property: name
+                                            - MaxLength changed from 250 to null
+                                - Modified property: serviceBundles
+                                  - Items changed
+                                    - Properties changed
+                                      - Modified property: services
+                                        - Items changed
+                                          - Properties changed
+                                            - Modified property: chargingTriggerInfo
+                                              - Format changed from '\w*\W*' to ''
+                                              - Pattern changed from '' to '\w*\W*'
+                                            - Modified property: code
+                                              - Format changed from '\w*\W*' to ''
+                                              - Pattern changed from '' to '\w*\W*'
+                                            - Modified property: eventLimitQuantity
+                                              - Format changed from '^(\d{1,6}){1}$' to ''
+                                              - Pattern changed from '' to '^(\d{1,6}){1}$'
+                                            - Modified property: freeEventQuantity
+                                              - Format changed from '^(\d{1,6}){1}$' to ''
+                                              - Pattern changed from '' to '^(\d{1,6}){1}$'
+GET /personal-credit-cards
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Properties changed
+                    - Modified property: companies
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - Schema #/components/schemas/Company modified
+                            - Property 'AllOf' changed
+                              - Schema #/components/schemas/CNPJ modified
+                                - Properties changed
+                                  - Modified property: cnpjNumber
+                                    - Pattern changed from '^(\d{14})$' to '^(\d{14})$|^NA$'
+                        - Properties changed
+                          - Modified property: personalCreditCards
+                            - Items changed
+                              - Properties changed
+                                - Modified property: fees
+                                  - Properties changed
+                                    - Modified property: services
+                                      - MaxItems changed from 8 to 9
+                                - Modified property: interest
+                                  - Required changed
+                                    - Deleted required property: feeRate
+                                    - Deleted required property: instalmentRate
+                                    - Deleted required property: interestRates
+                                  - Properties changed
+                                    - Deleted property: feeRate
+                                    - Deleted property: instalmentRate
+                                    - Deleted property: interestRates
+GET /personal-financings
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Properties changed
+                    - Modified property: companies
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - Schema #/components/schemas/Company modified
+                            - Property 'AllOf' changed
+                              - Schema #/components/schemas/CNPJ modified
+                                - Properties changed
+                                  - Modified property: cnpjNumber
+                                    - Pattern changed from '^(\d{14})$' to '^(\d{14})$|^NA$'
+                        - Properties changed
+                          - Modified property: personalFinancings
+                            - Items changed
+                              - Required changed
+                                - Deleted required property: interestRate
+                              - Properties changed
+                                - Deleted property: interestRate
+                                - Modified property: type
+                                  - Deleted enum values: [FINANCIAMENTO_IMOBILIARIO_SISTEMA_FINANCEIRO_HABILITACAO_SFH FINANCIAMENTO_IMOBILIARIO_SISTEMA_FINANCEIRO_HABILITACAO_SFI]
+GET /personal-invoice-financings
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Properties changed
+                    - Modified property: companies
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - Schema #/components/schemas/Company modified
+                            - Property 'AllOf' changed
+                              - Schema #/components/schemas/CNPJ modified
+                                - Properties changed
+                                  - Modified property: cnpjNumber
+                                    - Pattern changed from '^(\d{14})$' to '^(\d{14})$|^NA$'
+                        - Properties changed
+                          - Modified property: personalInvoiceFinancings
+                            - Items changed
+                              - Required changed
+                                - Deleted required property: interestRate
+                              - Properties changed
+                                - Deleted property: interestRate
+GET /personal-loans
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Properties changed
+                    - Modified property: companies
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - Schema #/components/schemas/CNPJ modified
+                            - Properties changed
+                              - Modified property: cnpjNumber
+                                - Pattern changed from '^(\d{14})$' to '^(\d{14})$|^NA$'
+                        - Properties changed
+                          - Modified property: personalLoans
+                            - Items changed
+                              - Properties changed
+                                - Deleted property: interestRate
+GET /personal-unarranged-account-overdraft
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Properties changed
+                    - Modified property: companies
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - Schema #/components/schemas/Company modified
+                            - Property 'AllOf' changed
+                              - Schema #/components/schemas/CNPJ modified
+                                - Properties changed
+                                  - Modified property: cnpjNumber
+                                    - Pattern changed from '^(\d{14})$' to '^(\d{14})$|^NA$'
+                        - Properties changed
+                          - Modified property: personalUnarrangedAccountOverdraft
+                            - Items changed
+                              - Properties changed
+                                - Deleted property: interestRate

@@ -1,0 +1,85 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 3
+-------------------------
+GET /banking-agents
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Properties changed
+                    - Modified property: companies
+                      - Items changed
+                        - Properties changed
+                          - Modified property: contractors
+                            - Items changed
+                              - Properties changed
+                                - Modified property: bankingAgents
+                                  - Items changed
+                                    - Properties changed
+                                      - Modified property: locations
+                                        - Items changed
+                                          - Properties changed
+                                            - Modified property: phones
+                                              - Items changed
+                                                - Properties changed
+                                                  - Modified property: countryCallingCode
+                                                    - MaxLength changed from 4 to 2
+                                                    - Pattern changed from '^\d{1,4}$' to '^\d{2}$'
+GET /branches
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Properties changed
+                    - Modified property: companies
+                      - Items changed
+                        - Properties changed
+                          - Modified property: branches
+                            - Items changed
+                              - Properties changed
+                                - Modified property: phones
+                                  - Items changed
+                                    - Property 'AllOf' changed
+                                      - Schema #/components/schemas/Phone modified
+                                        - Properties changed
+                                          - Modified property: countryCallingCode
+                                            - MaxLength changed from 4 to 2
+                                            - Pattern changed from '^\d{1,4}$' to '^\d{2}$'
+GET /phone-channels
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Properties changed
+                    - Modified property: companies
+                      - Items changed
+                        - Properties changed
+                          - Modified property: phoneChannels
+                            - Items changed
+                              - Properties changed
+                                - Modified property: identification
+                                  - Properties changed
+                                    - Modified property: phones
+                                      - Items changed
+                                        - Properties changed
+                                          - Modified property: countryCallingCode
+                                            - MaxLength changed from 4 to 2
+                                            - Pattern changed from '^\d{1,4}$|^NA$' to '^\d{2}$|^NA$'

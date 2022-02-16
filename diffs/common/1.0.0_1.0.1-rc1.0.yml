@@ -1,0 +1,45 @@
+﻿### New Endpoints: 1
+--------------------
+GET /outages  
+### Deleted Endpoints: 1
+------------------------
+GET /outstage  
+### Modified Endpoints: 1
+-------------------------
+GET /status
+- New query param: page
+- New query param: page-size
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Required changed
+                - Deleted required property: detectionTime
+                - Deleted required property: expectedResolutionTime
+                - Deleted required property: explanation
+                - Deleted required property: updateTime
+              - Properties changed
+                - Modified property: status
+                  - Items changed
+                    - Required changed
+                      - New required property: code
+                      - New required property: explanation
+                    - Properties changed
+                      - New property: unavailableEndpoints
+                      - Modified property: code
+                        - Description changed from 'Enum com Status da API. OK (a implementação é totalmente funcional). PARTIAL_FAILURE (um ou mais endpoints estão indisponíveis). UNAVAILABLE (a implementação completa está indisponível). SCHEDULED_OUTAGE (uma interrupção anunciada está em vigor)' to 'Condição atual da API:
+  * `OK` - A implementação é totalmente funcional
+  * `PARTIAL_FAILURE` - Um ou mais endpoints estão indisponíveis
+  * `UNAVAILABLE` - A implementação completa está indisponível
+  * `SCHEDULED_OUTAGE` - Uma interrupção anunciada está em vigor
+'
+                        - New enum values: [OK PARTIAL_FAILURE UNAVAILABLE SCHEDULED_OUTAGE]
+                      - Modified property: detectionTime
+                        - Description changed from 'A data e hora em que a interrupção atual foi detectada. Só deve estar presente se a propriedade status for PARTIAL_FAILURE ou UNAVAILABLE' to 'A data e hora em que a interrupção atual foi detectada. Será obrigatoriamente preenchido se a propriedade code for PARTIAL_FAILURE ou UNAVAILABLE'
+                      - Modified property: expectedResolutionTime
+                        - Description changed from 'A data e hora em que o serviço completo deve continuar (se conhecido). Não deve estar presente se a propriedade status tiver um valor OK.' to 'A data e hora em que o serviço completo deve continuar (se conhecido). Será obrigatoriamente preenchido se code tiver algum valor que não seja OK'
+                      - Modified property: explanation
+                        - Description changed from 'Fornece uma explicação da interrupção atual que pode ser exibida para um cliente final. Obrigatório se a propriedade status tiver algum valor que não seja OK' to 'Fornece uma explicação da interrupção atual que pode ser exibida para um cliente final. Será obrigatoriamente preenchido se code tiver algum valor que não seja OK'

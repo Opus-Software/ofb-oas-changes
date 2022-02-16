@@ -1,0 +1,214 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 6
+-------------------------
+GET /accounts
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: brandName
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: name
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: networkAdditionalInfo
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: productAdditionalInfo
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to ''
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: brandName
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: name
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: networkAdditionalInfo
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: productAdditionalInfo
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to ''
+GET /accounts/{creditCardAccountId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: name
+                  - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                - Modified property: networkAdditionalInfo
+                  - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                - Modified property: productAdditionalInfo
+                  - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to ''
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: name
+                  - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                - Modified property: networkAdditionalInfo
+                  - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                - Modified property: productAdditionalInfo
+                  - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to ''
+GET /accounts/{creditCardAccountId}/bills
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: financeCharges
+                    - Items changed
+                      - Properties changed
+                        - Modified property: additionalInfo
+                          - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: payments
+                    - Nullable changed from false to true
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to ''
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: financeCharges
+                    - Items changed
+                      - Properties changed
+                        - Modified property: additionalInfo
+                          - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: payments
+                    - Nullable changed from false to true
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to ''
+GET /accounts/{creditCardAccountId}/bills/{billId}/transactions
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: chargeIdentificator
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: transactionName
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to ''
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: chargeIdentificator
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: transactionName
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to ''
+GET /accounts/{creditCardAccountId}/limits
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Required changed
+                  - Deleted required property: currency
+                - Properties changed
+                  - Modified property: lineNameAdditionalInfo
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to ''
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Required changed
+                  - Deleted required property: currency
+                - Properties changed
+                  - Modified property: lineNameAdditionalInfo
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to ''
+GET /accounts/{creditCardAccountId}/transactions
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: chargeIdentificator
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: transactionName
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to ''
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: chargeIdentificator
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: transactionName
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to ''

@@ -1,0 +1,215 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 5
+-------------------------
+GET /contracts
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: brandName
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: contractId
+                    - Pattern changed from '' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: brandName
+                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                  - Modified property: contractId
+                    - Pattern changed from '' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
+GET /contracts/{contractId}
+- Modified path param: contractId
+  - Schema changed
+    - MaxLength changed from 40 to 100
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: CET
+                  - Nullable changed from false to true
+                - Modified property: amortizationScheduledAdditionalInfo
+                  - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                - Modified property: contractedFees
+                  - Nullable changed from false to true
+                  - Items changed
+                    - Properties changed
+                      - Modified property: feeCode
+                        - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                      - Modified property: feeName
+                        - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                - Modified property: contractedFinanceCharges
+                  - Nullable changed from false to true
+                  - Items changed
+                    - Properties changed
+                      - Modified property: chargeAdditionalInfo
+                        - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                - Modified property: instalmentPeriodicityAdditionalInfo
+                  - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                - Modified property: interestRates
+                  - Nullable changed from false to true
+                  - Items changed
+                    - Properties changed
+                      - Modified property: additionalInfo
+                        - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                      - Modified property: preFixedRate
+                        - Nullable changed from false to true
+                      - Modified property: referentialRateIndexerAdditionalInfo
+                        - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                - Modified property: productName
+                  - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: CET
+                  - Nullable changed from false to true
+                - Modified property: amortizationScheduledAdditionalInfo
+                  - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                - Modified property: contractedFees
+                  - Nullable changed from false to true
+                  - Items changed
+                    - Properties changed
+                      - Modified property: feeCode
+                        - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                      - Modified property: feeName
+                        - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                - Modified property: contractedFinanceCharges
+                  - Nullable changed from false to true
+                  - Items changed
+                    - Properties changed
+                      - Modified property: chargeAdditionalInfo
+                        - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                - Modified property: instalmentPeriodicityAdditionalInfo
+                  - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                - Modified property: interestRates
+                  - Nullable changed from false to true
+                  - Items changed
+                    - Properties changed
+                      - Modified property: additionalInfo
+                        - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                      - Modified property: preFixedRate
+                        - Nullable changed from false to true
+                      - Modified property: referentialRateIndexerAdditionalInfo
+                        - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                - Modified property: productName
+                  - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+GET /contracts/{contractId}/payments
+- Modified path param: contractId
+  - Schema changed
+    - MaxLength changed from 40 to 100
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: contractOutstandingBalance
+                  - Nullable changed from false to true
+                - Modified property: releases
+                  - Nullable changed from false to true
+                  - Items changed
+                    - Properties changed
+                      - Modified property: isOverParcelPayment
+                        - Nullable changed from false to true
+                      - Modified property: overParcel
+                        - Properties changed
+                          - Modified property: charges
+                            - Nullable changed from false to true
+                            - Items changed
+                              - Properties changed
+                                - Modified property: chargeAdditionalInfo
+                                  - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                          - Modified property: fees
+                            - Nullable changed from false to true
+                            - Items changed
+                              - Properties changed
+                                - Modified property: feeCode
+                                  - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                - Modified property: feeName
+                                  - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                      - Modified property: paidAmount
+                        - Nullable changed from false to true
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: contractOutstandingBalance
+                  - Nullable changed from false to true
+                - Modified property: releases
+                  - Nullable changed from false to true
+                  - Items changed
+                    - Properties changed
+                      - Modified property: isOverParcelPayment
+                        - Nullable changed from false to true
+                      - Modified property: overParcel
+                        - Properties changed
+                          - Modified property: charges
+                            - Nullable changed from false to true
+                            - Items changed
+                              - Properties changed
+                                - Modified property: chargeAdditionalInfo
+                                  - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                          - Modified property: fees
+                            - Nullable changed from false to true
+                            - Items changed
+                              - Properties changed
+                                - Modified property: feeCode
+                                  - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                - Modified property: feeName
+                                  - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                      - Modified property: paidAmount
+                        - Nullable changed from false to true
+GET /contracts/{contractId}/scheduled-instalments
+- Modified path param: contractId
+  - Schema changed
+    - MaxLength changed from 40 to 100
+GET /contracts/{contractId}/warranties
+- Modified path param: contractId
+  - Schema changed
+    - MaxLength changed from 40 to 100
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: warrantyAmount
+                    - Nullable changed from false to true
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: warrantyAmount
+                    - Nullable changed from false to true

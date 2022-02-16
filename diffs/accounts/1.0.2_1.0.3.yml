@@ -1,0 +1,85 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 3
+-------------------------
+GET /accounts
+- Modified query param: accountType
+  - Schema changed
+    - MaxLength changed from null to 24
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - MinItems changed from 1 to 0
+              - Items changed
+                - Properties changed
+                  - Modified property: type
+                    - MaxLength changed from null to 24
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - MinItems changed from 1 to 0
+              - Items changed
+                - Properties changed
+                  - Modified property: type
+                    - MaxLength changed from null to 24
+GET /accounts/{accountId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: subtype
+                  - MaxLength changed from null to 18
+                - Modified property: type
+                  - MaxLength changed from null to 24
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: subtype
+                  - MaxLength changed from null to 18
+                - Modified property: type
+                  - MaxLength changed from null to 24
+GET /accounts/{accountId}/transactions
+- Modified query param: fromBookingDate
+  - Description changed from 'Data inicial de filtragem.' to 'Data inicial de filtragem. [Restrição] Deve obrigatoriamente ser enviado caso o campo toBookingDate seja informado. Caso não seja informado, deve ser assumido o dia atual.'
+- Modified query param: toBookingDate
+  - Description changed from 'Data final de filtragem.' to 'Data final de filtragem. [Restrição] Deve obrigatoriamente ser enviado caso o campo fromBookingDate seja informado. Caso não seja informado, deve ser assumido o dia atual.'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - MinItems changed from 1 to 0
+              - Items changed
+                - Properties changed
+                  - Modified property: partiePersonType
+                    - MaxLength changed from null to 15
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - MinItems changed from 1 to 0
+              - Items changed
+                - Properties changed
+                  - Modified property: partiePersonType
+                    - MaxLength changed from null to 15
