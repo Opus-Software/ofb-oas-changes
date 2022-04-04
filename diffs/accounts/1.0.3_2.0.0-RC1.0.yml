@@ -1,0 +1,81 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 5
+-------------------------
+GET /accounts
+- Responses changed
+  - New response: 422
+  - Deleted response: default
+GET /accounts/{accountId}
+- Responses changed
+  - New response: 422
+  - Deleted response: default
+GET /accounts/{accountId}/balances
+- Responses changed
+  - New response: 422
+  - Deleted response: default
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: automaticallyInvestedAmount
+                  - Type changed from 'number' to 'string'
+                  - Format changed from 'double' to ''
+                  - Example changed from 100000.04 to '100000.04'
+                - Modified property: availableAmount
+                  - Type changed from 'number' to 'string'
+                  - Format changed from 'double' to ''
+                  - Example changed from 100000.04 to '100000.0400'
+                - Modified property: blockedAmount
+                  - Type changed from 'number' to 'string'
+                  - Format changed from 'double' to ''
+                  - Example changed from 99.9999 to '99.9999'
+GET /accounts/{accountId}/overdraft-limits
+- Responses changed
+  - New response: 422
+  - Deleted response: default
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: overdraftContractedLimit
+                  - Type changed from 'number' to 'string'
+                  - Format changed from 'double' to ''
+                  - Example changed from 99.9999 to '99.9999'
+                - Modified property: unarrangedOverdraftAmount
+                  - Type changed from 'number' to 'string'
+                  - Format changed from 'double' to ''
+                  - Example changed from 99.9999 to '99.9999'
+GET /accounts/{accountId}/transactions
+- Responses changed
+  - New response: 422
+  - Deleted response: default
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: amount
+                    - Type changed from 'number' to 'string'
+                    - Format changed from 'double' to ''
+                    - Example changed from 500.54 to '500.54'
+                  - Modified property: partiePersonType
+                    - Description changed from 'Identificação do Tipo de Pessoa da pessoa envolvida na transação.
+Pessoa Natural - Informar CPF no campo “payerCnpjCpf”
+Pessoa Jurídica - Informar CNPJ no campo “payerCnpjCpf”
+' to 'Identificação do Tipo de Pessoa da pessoa envolvida na transação.   
+Pessoa Natural - Informar CPF no campo “payerCnpjCpf”.   
+Pessoa Jurídica - Informar CNPJ no campo “payerCnpjCpf”.
+'
+                    - New enum values: [NAO_SE_APLICA]

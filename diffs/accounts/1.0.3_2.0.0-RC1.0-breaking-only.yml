@@ -1,0 +1,61 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 5
+-------------------------
+GET /accounts
+- Responses changed
+  - Deleted response: default
+GET /accounts/{accountId}
+- Responses changed
+  - Deleted response: default
+GET /accounts/{accountId}/balances
+- Responses changed
+  - Deleted response: default
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: automaticallyInvestedAmount
+                  - Type changed from 'number' to 'string'
+                  - Format changed from 'double' to ''
+                - Modified property: availableAmount
+                  - Type changed from 'number' to 'string'
+                  - Format changed from 'double' to ''
+                - Modified property: blockedAmount
+                  - Type changed from 'number' to 'string'
+                  - Format changed from 'double' to ''
+GET /accounts/{accountId}/overdraft-limits
+- Responses changed
+  - Deleted response: default
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: overdraftContractedLimit
+                  - Type changed from 'number' to 'string'
+                  - Format changed from 'double' to ''
+                - Modified property: unarrangedOverdraftAmount
+                  - Type changed from 'number' to 'string'
+                  - Format changed from 'double' to ''
+GET /accounts/{accountId}/transactions
+- Responses changed
+  - Deleted response: default
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: amount
+                    - Type changed from 'number' to 'string'
+                    - Format changed from 'double' to ''

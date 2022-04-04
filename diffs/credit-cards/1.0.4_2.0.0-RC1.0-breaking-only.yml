@@ -1,0 +1,85 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 6
+-------------------------
+GET /accounts
+- Responses changed
+  - Deleted response: default
+GET /accounts/{creditCardAccountId}
+- Responses changed
+  - Deleted response: default
+GET /accounts/{creditCardAccountId}/bills
+- Responses changed
+  - Deleted response: default
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Required changed
+                  - Deleted required property: payments
+                - Properties changed
+                  - Modified property: billTotalAmount
+                    - Type changed from 'number' to 'string'
+                    - Format changed from 'double' to ''
+GET /accounts/{creditCardAccountId}/bills/{billId}/transactions
+- Responses changed
+  - Deleted response: default
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Required changed
+                  - Deleted required property: feeType
+                  - Deleted required property: otherCreditsAdditionalInfo
+                - Properties changed
+                  - Deleted property: currency
+                  - Modified property: amount
+                    - Type changed from 'number' to 'object'
+                    - Format changed from 'double' to ''
+                    - AdditionalProperties changed from null to false
+                    - Nullable changed from true to false
+                    - MaxLength changed from 20 to null
+                  - Modified property: brazilianAmount
+                    - Type changed from 'number' to 'object'
+                    - Format changed from 'double' to ''
+                    - AdditionalProperties changed from null to false
+                    - Nullable changed from true to false
+                    - MaxLength changed from 20 to null
+GET /accounts/{creditCardAccountId}/limits
+- Responses changed
+  - Deleted response: default
+GET /accounts/{creditCardAccountId}/transactions
+- Responses changed
+  - Deleted response: default
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Required changed
+                  - Deleted required property: feeType
+                  - Deleted required property: otherCreditsAdditionalInfo
+                - Properties changed
+                  - Deleted property: currency
+                  - Modified property: amount
+                    - Type changed from 'number' to 'object'
+                    - Format changed from 'double' to ''
+                    - AdditionalProperties changed from null to false
+                    - Nullable changed from true to false
+                    - MaxLength changed from 20 to null
+                  - Modified property: brazilianAmount
+                    - Type changed from 'number' to 'object'
+                    - Format changed from 'double' to ''
+                    - AdditionalProperties changed from null to false
+                    - Nullable changed from true to false
+                    - MaxLength changed from 20 to null

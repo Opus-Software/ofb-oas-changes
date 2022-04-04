@@ -1,0 +1,162 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 6
+-------------------------
+GET /business/financial-relations
+- Responses changed
+  - Deleted response: default
+GET /business/identifications
+- Responses changed
+  - Deleted response: default
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Required changed
+                  - Deleted required property: tradeName
+                - Properties changed
+                  - Modified property: contacts
+                    - Properties changed
+                      - Modified property: postalAddresses
+                        - Items changed
+                          - Required changed
+                            - Deleted required property: districtName
+                          - Properties changed
+                            - Modified property: address
+                              - Pattern changed from '[\w\W\s]*' to '^\w{2}[\w\W\s]*$'
+                            - Modified property: country
+                              - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                            - Modified property: districtName
+                              - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                            - Modified property: townName
+                              - Pattern changed from '[\w\W\s]*' to '^\w{2}[\w\W\s]*$'
+                  - Modified property: otherDocuments
+                    - Items changed
+                      - Required changed
+                        - Deleted required property: country
+                        - Deleted required property: number
+                  - Modified property: parties
+                    - Items changed
+                      - Required changed
+                        - Deleted required property: documentCountry
+                        - Deleted required property: documentExpirationDate
+                        - Deleted required property: socialName
+                      - Properties changed
+                        - Modified property: documentCountry
+                          - Pattern changed from '' to '[\w*\W*]'
+GET /business/qualifications
+- Responses changed
+  - Deleted response: default
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: economicActivities
+                  - Items changed
+                    - Properties changed
+                      - Modified property: code
+                        - Type changed from 'number' to 'string'
+                - Modified property: informedPatrimony
+                  - Properties changed
+                    - Modified property: amount
+                      - Type changed from 'number' to 'string'
+                      - Format changed from 'double' to ''
+                      - Nullable changed from true to false
+                      - MaxLength changed from 20 to 21
+                - Modified property: informedRevenue
+                  - Properties changed
+                    - Modified property: amount
+                      - Type changed from 'number' to 'string'
+                      - Format changed from 'double' to ''
+                      - Nullable changed from true to false
+                      - MaxLength changed from 20 to 21
+GET /personal/financial-relations
+- Responses changed
+  - Deleted response: default
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Required changed
+                - Deleted required property: procurators
+              - Properties changed
+                - Modified property: procurators
+                  - MinItems changed from 1 to 0
+                  - Items changed
+                    - Required changed
+                      - Deleted required property: socialName
+                    - Properties changed
+                      - Modified property: type
+                        - Deleted enum values: [NAO_APLICA]
+                - Modified property: productsServicesTypeAdditionalInfo
+                  - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+GET /personal/identifications
+- Responses changed
+  - Deleted response: default
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: contacts
+                    - Properties changed
+                      - Modified property: postalAddresses
+                        - Items changed
+                          - Required changed
+                            - Deleted required property: districtName
+                  - Modified property: documents
+                    - Properties changed
+                      - Modified property: passportNumber
+                        - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                  - Modified property: filiation
+                    - Items changed
+                      - Properties changed
+                        - Modified property: civilName
+                          - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                        - Modified property: socialName
+                          - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                  - Modified property: nationality
+                    - Items changed
+                      - Properties changed
+                        - Modified property: documents
+                          - Items changed
+                            - Properties changed
+                              - Modified property: country
+                                - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+GET /personal/qualifications
+- Responses changed
+  - Deleted response: default
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: informedIncome
+                  - Properties changed
+                    - Modified property: amount
+                      - Type changed from 'number' to 'string'
+                      - Format changed from 'double' to ''
+                      - Nullable changed from true to false
+                      - MaxLength changed from 20 to 21
+                - Modified property: informedPatrimony
+                  - Properties changed
+                    - Modified property: amount
+                      - Type changed from 'number' to 'string'
+                      - Format changed from 'double' to ''
+                      - Nullable changed from true to false
+                      - MaxLength changed from 20 to 21
