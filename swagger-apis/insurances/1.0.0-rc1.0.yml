@@ -135,7 +135,7 @@ components:
     CnpjNumber:
       type: string
       description: 'O CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica. Deve-se ter apenas os números do CNPJ, sem máscara.'
-      pattern: '^\d{14}$'
+      pattern: '\d{14}$'
       example: '13456789000112'
     AssistanceServicesItem:
       type: object
@@ -326,6 +326,36 @@ components:
         - MESES
         - NAO_APLICA
       example: MESES
+    InsurancePensionCoverageDeductible:
+      type: object
+      required:
+        - amount
+        - currency
+      description: Listagem de franquia em reais para cada combinação de modalidade/cobertura do produto.
+      properties:
+        amount:
+          type: string
+          maxLength: 21
+          pattern: '^\d{1,16}\.\d{2,4}$'
+          example: '0.01'
+        currency:
+          $ref: '#/components/schemas/CurrencyCode'
+      additionalProperties: false
+    InsurancePensionCoverageDifferentiatedDeductible:
+      type: object
+      required:
+        - amount
+        - currency
+      description: 'Detalhamento da franquia em reais diferentes para cada cobertura que exista alguma especificidade.<br>Caso a seguradora não tenha essa diferenciação, não retornará nada no campo.'
+      properties:
+        amount:
+          type: string
+          maxLength: 21
+          pattern: '^\d{1,16}\.\d{2,4}$'
+          example: '0.01'
+        currency:
+          $ref: '#/components/schemas/CurrencyCode'
+      additionalProperties: false
     InsurancePensionEnumPmbacRemuneration:
       type: object
       properties:
@@ -337,7 +367,38 @@ components:
         updateIndexes:
           type: array
           items:
-            $ref: '#/components/schemas/InsuranceBenefitRecalculation/properties/updateIndexes/items'
+            $ref: '#/components/schemas/InsurancePensionBenefitRecalculation/properties/updateIndexes/items'
+      additionalProperties: false
+    InsurancePensionBenefitRecalculation:
+      type: object
+      required:
+        - criterias
+        - updateIndexes
+      properties:
+        criterias:
+          type: array
+          items:
+            type: string
+            enum:
+              - INDICE
+              - VINCULADO_SALDO_DEVEDOR
+              - VARIAVEL_ACORDO_CRITERIO_ESPECIFICO
+            maxLength: 35
+        updateIndexes:
+          type: array
+          items:
+            type: string
+            description: |
+              Índice utilizado na atualização da PMBaC:
+                1. IPCA (IBGE)
+                2. IGP-M (FGV)
+                3. INPC (IBGE)
+            maxLength: 9
+            enum:
+              - IPCA
+              - IGP_M
+              - INPC
+            example: IPCA
       additionalProperties: false
     AgeAdjustment:
       type: object
@@ -348,7 +409,20 @@ components:
         criterias:
           type: array
           items:
-            $ref: '#/components/schemas/EnumInsurancePersonalAgeAdjustmentCriteria'
+            type: string
+            description: |
+              Critério escolhido para reenquadramento etário
+                1. Após período em anos
+                2. A cada período em anos
+                3. Por mudança de faixa etária
+                4. Não aplicável
+            maxLength: 27
+            example: APOS_PERIODO_ANOS
+            enum:
+              - APOS_PERIODO_ANOS
+              - CADA_PERIODO_ANOS
+              - MUDANCA_FAIXA_ETARIA
+              - NAO_APLICAVEL
         frequency:
           type: integer
           description: 'Período em anos, caso critério de reenquadramento após ou a cada período em anos.'
@@ -430,7 +504,7 @@ components:
         links:
           $ref: '#/components/schemas/Links'
         meta:
-          $ref: '#/components/schemas/OpenDataMeta'
+          $ref: '#/components/schemas/Phase4Meta'
       additionalProperties: false
     AutomotiveInsuranceData:
       type: object
@@ -573,7 +647,7 @@ components:
         - FURTO_TOTAL_OU_PARCIAL
         - ABALROAMENTO
         - DESPESAS_NECESSARIAS_SOCORRO_SALVAMENTO
-        - DESPESAS_HIGIENIZACAO_VEICULO
+        - DESPESAS_HIGIENIZACAO_VEÍCULO
         - DESPESAS_EXTRAORDINARIAS
         - DESPESAS_EXTRAORDINARIAS_MOTO
         - DESPESAS_MEDICO_HOSPITALARES
@@ -625,7 +699,7 @@ components:
         - COBERTURA_PARA_CHOQUE
         - ENVELOPAMENTO
         - DIARIA_INDISPONIBILIDADE
-        - MOTOR_TRANSMISSAO
+        - MOTOR_TRANSMISSÃO
         - MOTOR_TRANSMISSAO_DIRECAO_SUSPENSAO_FREIOS
         - MOTOR_TRANSMISSAO_DIRECAO_SUSPENSAO_FREIOS_SISTEMA_ELETRICO_AR_CONDICIONADO
         - COMPLETA
@@ -781,14 +855,6 @@ components:
         - INTERNACIONAL
         - OUTROS_PAISES
       example: NACIONAL
-    EnumInsurancePersonalBenefitRecalculationCriteria:
-      type: string
-      enum:
-        - INDICE
-        - VINCULADO_SALDO_DEVEDOR
-        - VARIAVEL_ACORDO_CRITERIO_ESPECIFICO
-        - NAO_APLICA
-      maxLength: 35
     AutomotivePartsItem:
       type: object
       properties:
@@ -995,7 +1061,7 @@ components:
         links:
           $ref: '#/components/schemas/Links'
         meta:
-          $ref: '#/components/schemas/OpenDataMeta'
+          $ref: '#/components/schemas/Phase4Meta'
       additionalProperties: false
     HomeInsuranceData:
       type: object
@@ -1090,6 +1156,7 @@ components:
       type: object
       required:
         - type
+        - attributes
       properties:
         type:
           $ref: '#/components/schemas/EnumHomeCoverageType'
@@ -1256,62 +1323,6 @@ components:
         - CONTEUDO
         - AMBOS
       example: PREDIO
-    InsuranceCoverageDeductible:
-      type: object
-      required:
-        - amount
-        - currency
-      description: Listagem de franquia em reais para cada combinação de modalidade/cobertura do produto.
-      properties:
-        amount:
-          type: string
-          maxLength: 21
-          pattern: '^\d{1,16}\.\d{2,4}$'
-          example: '0.01'
-        currency:
-          $ref: '#/components/schemas/CurrencyCode'
-      additionalProperties: false
-    InsuranceCoverageDifferentiatedDeductible:
-      type: object
-      required:
-        - amount
-        - currency
-      description: 'Detalhamento da franquia em reais diferentes para cada cobertura que exista alguma especificidade.<br>Caso a seguradora não tenha essa diferenciação, não retornará nada no campo.'
-      properties:
-        amount:
-          type: string
-          maxLength: 21
-          pattern: '^\d{1,16}\.\d{2,4}$'
-          example: '0.01'
-        currency:
-          $ref: '#/components/schemas/CurrencyCode'
-      additionalProperties: false
-    InsuranceBenefitRecalculation:
-      type: object
-      required:
-        - criterias
-        - updateIndexes
-      properties:
-        criterias:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnumInsurancePersonalBenefitRecalculationCriteria'
-        updateIndexes:
-          type: array
-          items:
-            type: string
-            description: |
-              Índice utilizado na atualização da PMBaC:
-                1. IPCA (IBGE)
-                2. IGP-M (FGV)
-                3. INPC (IBGE)
-            maxLength: 5
-            enum:
-              - IPCA
-              - IGP_M
-              - INPC
-            example: IPCA
-      additionalProperties: false
     OKResponsePersonalInsuranceList:
       type: object
       required:
@@ -1326,7 +1337,7 @@ components:
         links:
           $ref: '#/components/schemas/Links'
         meta:
-          $ref: '#/components/schemas/OpenDataMeta'
+          $ref: '#/components/schemas/Phase4Meta'
       additionalProperties: false
     PersonalInsuranceData:
       type: object
@@ -1361,7 +1372,7 @@ components:
           maxLength: 80
           example: '0001'
         category:
-          $ref: '#/components/schemas/EnumInsuranceCategory'
+          $ref: '#/components/schemas/EnumInsurancePensionCategory'
         modality:
           $ref: '#/components/schemas/EnumProductModality'
         coverages:
@@ -1478,7 +1489,7 @@ components:
         pmbacRemuneration:
           $ref: '#/components/schemas/InsurancePensionEnumPmbacRemuneration'
         benefitRecalculation:
-          $ref: '#/components/schemas/InsuranceBenefitRecalculation'
+          $ref: '#/components/schemas/InsurancePensionBenefitRecalculation'
         ageAdjustment:
           $ref: '#/components/schemas/AgeAdjustment'
         financialRegimes:
@@ -1593,6 +1604,9 @@ components:
         - minValue
         - maxValue
         - gracePeriod
+        - deductibleBRL
+        - differentiatedDeductibleBRL
+        - assistanceTypes
       properties:
         indemnityPaymentMethods:
           description: Listagem da forma de pagamento da indenização para cada combinação de modalidade/cobertura do produto.
@@ -1637,9 +1651,9 @@ components:
           maxLength: 10
           example: 15
         deductible:
-          $ref: '#/components/schemas/InsuranceCoverageDeductible'
+          $ref: '#/components/schemas/InsurancePensionCoverageDeductible'
         differentiatedDeductible:
-          $ref: '#/components/schemas/InsuranceCoverageDifferentiatedDeductible'
+          $ref: '#/components/schemas/InsurancePensionCoverageDifferentiatedDeductible'
         excludedRisks:
           type: array
           items:
@@ -1656,7 +1670,7 @@ components:
               1. true
               2. false
       additionalProperties: false
-    EnumInsuranceCategory:
+    EnumInsurancePensionCategory:
       type: string
       description: Indicar a categoria do Produto&#58;<br><ol><li>Tradicional</li><li>Microsseguro</li></ol>
       maxLength: 12
@@ -1672,21 +1686,6 @@ components:
         - INDENIZACAO_UNICA
         - DIARIA_OU_PARCELA
       example: INDENIZACAO_UNICA
-    EnumInsurancePersonalAgeAdjustmentCriteria:
-      type: string
-      description: |
-        Critério escolhido para reenquadramento etário
-          1. Após período em anos
-          2. A cada período em anos
-          3. Por mudança de faixa etária
-          4. Não aplicável
-      maxLength: 27
-      example: APOS_PERIODO_ANOS
-      enum:
-        - APOS_PERIODO_ANOS
-        - CADA_PERIODO_ANOS
-        - MUDANCA_FAIXA_ETARIA
-        - NAO_APLICAVEL
     EnumExcludedRisks:
       type: string
       description: Listagem para indicar quais serão o(s) risco(s) excluído(s) aplicável(is) à(s) cobertura(s).
@@ -1837,7 +1836,32 @@ components:
           example: 'https://api.banco.com.br/open-banking/api/v1/resource'
           pattern: '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
       additionalProperties: false
-    OpenDataMeta:
+    Meta:
+      type: object
+      description: Meta informações referente à API requisitada.
+      required:
+        - totalRecords
+        - totalPages
+        - requestDateTime
+      properties:
+        totalRecords:
+          type: integer
+          format: int32
+          description: Número total de registros no resultado
+          example: 1
+        totalPages:
+          type: integer
+          format: int32
+          description: Número total de páginas no resultado
+          example: 1
+        requestDateTime:
+          description: 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.'
+          type: string
+          maxLength: 20
+          format: date-time
+          example: '2021-05-21T08:30:00Z'
+      additionalProperties: false
+    Phase4Meta:
       type: object
       description: Meta informações referente à API requisitada.
       required:
@@ -1949,7 +1973,7 @@ components:
                       maxLength: 2048
                   additionalProperties: false
               meta:
-                $ref: '#/components/schemas/OpenDataMeta'
+                $ref: '#/components/schemas/Meta'
             additionalProperties: false
     TooManyRequests:
       description: 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido'
