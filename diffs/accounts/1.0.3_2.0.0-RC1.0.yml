@@ -8,22 +8,6 @@ GET /accounts
 - Responses changed
   - New response: 422
   - Deleted response: default
-  - Modified response: 200
-    - Content changed
-      - Modified media type: application/json
-        - Schema changed
-          - Properties changed
-            - Modified property: data
-              - Items changed
-                - Properties changed
-                  - Modified property: branchCode
-                    - Pattern changed from '\d{4}|^NA$' to '^\d{4}$'
-                  - Modified property: companyCnpj
-                    - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
-                  - Modified property: compeCode
-                    - Pattern changed from '\d{3}|^NA$' to '^\d{3}$'
-                  - Modified property: number
-                    - Pattern changed from '^\d{8,20}$|^NA$' to '^\d{8,20}$'
 GET /accounts/{accountId}
 - Responses changed
   - New response: 422
@@ -38,19 +22,56 @@ GET /accounts/{accountId}/balances
         - Schema changed
           - Properties changed
             - Modified property: data
+              - Required changed
+                - Deleted required property: automaticallyInvestedAmountCurrency
+                - Deleted required property: availableAmountCurrency
+                - Deleted required property: blockedAmountCurrency
               - Properties changed
+                - Deleted property: automaticallyInvestedAmountCurrency
+                - Deleted property: availableAmountCurrency
+                - Deleted property: blockedAmountCurrency
                 - Modified property: automaticallyInvestedAmount
-                  - Type changed from 'number' to 'string'
+                  - Type changed from 'number' to 'object'
                   - Format changed from 'double' to ''
-                  - Example changed from 100000.04 to '100000.04'
+                  - Example changed from 100000.04 to null
+                  - AdditionalProperties changed from null to false
+                  - Nullable changed from true to false
+                  - MaxLength changed from 20 to null
+                  - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                  - Required changed
+                    - New required property: amount
+                    - New required property: currency
+                  - Properties changed
+                    - New property: amount
+                    - New property: currency
                 - Modified property: availableAmount
-                  - Type changed from 'number' to 'string'
+                  - Type changed from 'number' to 'object'
                   - Format changed from 'double' to ''
-                  - Example changed from 100000.04 to '100000.0400'
+                  - Description changed from 'Saldo disponível para utilização imediata. No caso de conta de depósito a vista, sem considerar cheque especial e investimentos atrelados a conta. Admite saldo negativo. Expresso em valor monetário com 4 casas decimais.' to 'Saldo disponível para utilização imediata. No caso de conta de depósito a vista, sem considerar cheque especial e investimentos atrelados a conta. Expresso em valor monetário com 4 casas decimais.'
+                  - Example changed from 100000.04 to null
+                  - AdditionalProperties changed from null to false
+                  - Nullable changed from true to false
+                  - MaxLength changed from 20 to null
+                  - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                  - Required changed
+                    - New required property: amount
+                    - New required property: currency
+                  - Properties changed
+                    - New property: amount
+                    - New property: currency
                 - Modified property: blockedAmount
-                  - Type changed from 'number' to 'string'
+                  - Type changed from 'number' to 'object'
                   - Format changed from 'double' to ''
-                  - Example changed from 99.9999 to '99.9999'
+                  - Example changed from 99.9999 to null
+                  - Nullable changed from true to false
+                  - MaxLength changed from 20 to null
+                  - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                  - Required changed
+                    - New required property: amount
+                    - New required property: currency
+                  - Properties changed
+                    - New property: amount
+                    - New property: currency
 GET /accounts/{accountId}/overdraft-limits
 - Responses changed
   - New response: 422
