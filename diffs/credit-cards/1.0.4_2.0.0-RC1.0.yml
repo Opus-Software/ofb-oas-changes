@@ -8,10 +8,33 @@ GET /accounts
 - Responses changed
   - New response: 422
   - Deleted response: default
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: creditCardNetwork
+                    - MaxLength changed from 17 to null
+                  - Modified property: productType
+                    - MaxLength changed from 26 to null
 GET /accounts/{creditCardAccountId}
 - Responses changed
   - New response: 422
   - Deleted response: default
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: creditCardNetwork
+                  - MaxLength changed from 17 to null
+                - Modified property: productType
+                  - MaxLength changed from 26 to null
 GET /accounts/{creditCardAccountId}/bills
 - Responses changed
   - New response: 422
@@ -30,7 +53,22 @@ GET /accounts/{creditCardAccountId}/bills
                     - Type changed from 'number' to 'string'
                     - Format changed from 'double' to ''
                     - Example changed from 100000.04 to '100000.0400'
+                  - Modified property: financeCharges
+                    - Items changed
+                      - Properties changed
+                        - Modified property: type
+                          - MaxLength changed from 44 to null
+                  - Modified property: payments
+                    - Items changed
+                      - Properties changed
+                        - Modified property: paymentMode
+                          - MaxLength changed from 21 to null
+                        - Modified property: valueType
+                          - MaxLength changed from 32 to null
 GET /accounts/{creditCardAccountId}/bills/{billId}/transactions
+- Modified query param: transactionType
+  - Schema changed
+    - MaxLength changed from 36 to null
 - Responses changed
   - New response: 422
   - Deleted response: default
@@ -42,6 +80,7 @@ GET /accounts/{creditCardAccountId}/bills/{billId}/transactions
             - Modified property: data
               - Items changed
                 - Required changed
+                  - Deleted required property: currency
                   - Deleted required property: feeType
                   - Deleted required property: otherCreditsAdditionalInfo
                 - Properties changed
@@ -88,6 +127,7 @@ Para transmissora: quando não for do tipo TARIFA, preenche com OUTRA.
 Para recebedora: ignorar o campo preenchido conforme esse cenário.
 [Restrição] Preenchimento obrigatório se Tipo de Transação selecionada for 'TARIFA'.
 '
+                    - MaxLength changed from 29 to null
                   - Modified property: otherCreditsAdditionalInfo
                     - Description changed from 'Campo livre, de preenchimento obrigatório quando selecionado tipo de crédito "OUTROS"' to 'Campo livre, de preenchimento obrigatório quando selecionado tipo de crédito "OUTROS".
 Para transmissora: Preencher campo com "NA" quando OtherCreditType não for tipo OUTROS.
@@ -101,11 +141,15 @@ Para recebedora: Ignorar o campo preenchido conforme esse cenário.
 Para transmissora: Quando não for do tipo OPERACOES_CREDITO_CONTRATADAS_CARTAO, preencher com OUTROS.
 Para recebedora: Ignorar o campo preenchido conforme esse cenário.
 '
+                    - MaxLength changed from 19 to null
                   - Modified property: paymentType
                     - Description changed from 'Traz os tipos de pagamento. Preenchimento obrigatório se selecionado tipo de transação PAGAMENTO.' to 'Traz os tipos de pagamento. Preenchimento obrigatório se selecionado tipo de transação PAGAMENTO.
 Para transmissora: preencher com qualquer opção.
 Para recebedora: ignorar o campo preenchido quando não for uma transação do tipo pagamento.
 '
+                    - MaxLength changed from 7 to null
+                  - Modified property: transactionType
+                    - MaxLength changed from 36 to null
 GET /accounts/{creditCardAccountId}/limits
 - Responses changed
   - New response: 422
@@ -120,7 +164,18 @@ GET /accounts/{creditCardAccountId}/limits
 Cenário de limite com valor zerado, deve ter um registro explícito informando o valor como zero.
 Cenário de "cartão sem limite", isto é, cartões em que o uso do limite é ilimitado, deve ser informado em um registro explícito com isLimitFlexible como true.
 '
+              - Items changed
+                - Properties changed
+                  - Modified property: consolidationType
+                    - MaxLength changed from 11 to null
+                  - Modified property: creditLineLimitType
+                    - MaxLength changed from 34 to null
+                  - Modified property: lineName
+                    - MaxLength changed from 28 to null
 GET /accounts/{creditCardAccountId}/transactions
+- Modified query param: transactionType
+  - Schema changed
+    - MaxLength changed from 36 to null
 - Responses changed
   - New response: 422
   - Deleted response: default
@@ -132,6 +187,7 @@ GET /accounts/{creditCardAccountId}/transactions
             - Modified property: data
               - Items changed
                 - Required changed
+                  - Deleted required property: currency
                   - Deleted required property: feeType
                   - Deleted required property: otherCreditsAdditionalInfo
                 - Properties changed
@@ -178,6 +234,7 @@ Para transmissora: quando não for do tipo TARIFA, preenche com OUTRA.
 Para recebedora: ignorar o campo preenchido conforme esse cenário.
 [Restrição] Preenchimento obrigatório se Tipo de Transação selecionada for 'TARIFA'.
 '
+                    - MaxLength changed from 29 to null
                   - Modified property: otherCreditsAdditionalInfo
                     - Description changed from 'Campo livre, de preenchimento obrigatório quando selecionado tipo de crédito "OUTROS"' to 'Campo livre, de preenchimento obrigatório quando selecionado tipo de crédito "OUTROS".
 Para transmissora: Preencher campo com "NA" quando OtherCreditType não for tipo OUTROS.
@@ -191,8 +248,12 @@ Para recebedora: Ignorar o campo preenchido conforme esse cenário.
 Para transmissora: Quando não for do tipo OPERACOES_CREDITO_CONTRATADAS_CARTAO, preencher com OUTROS.
 Para recebedora: Ignorar o campo preenchido conforme esse cenário.
 '
+                    - MaxLength changed from 19 to null
                   - Modified property: paymentType
                     - Description changed from 'Traz os tipos de pagamento. Preenchimento obrigatório se selecionado tipo de transação PAGAMENTO.' to 'Traz os tipos de pagamento. Preenchimento obrigatório se selecionado tipo de transação PAGAMENTO.
 Para transmissora: preencher com qualquer opção.
 Para recebedora: ignorar o campo preenchido quando não for uma transação do tipo pagamento.
 '
+                    - MaxLength changed from 7 to null
+                  - Modified property: transactionType
+                    - MaxLength changed from 36 to null
