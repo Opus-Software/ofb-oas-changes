@@ -528,6 +528,7 @@ components:
       description: |
         Sub tipo da modalidades de crédito contratadas, conforme  circular 4.015 e descrição do DOC3040 do SCR). (Vide Enum)
         Desconto de duplicatas, Desconto de cheques,  Antecipação da fatura do cartão de crédito, Outros direitos creditórios descontados, Outros títulos descontados
+      maxLength: 39
       enum:
         - DESCONTO_DUPLICATAS
         - DESCONTO_CHEQUES
@@ -540,6 +541,7 @@ components:
       description: |
         Tipo da modalidade de crédito contratada, conforme  circular 4.015 e descrição do DOC3040 do SCR). (Vide Enum)
         Direitos creditórios descontados
+      maxLength: 32
       enum:
         - DIREITOS_CREDITORIOS_DESCONTADOS
       example: DIREITOS_CREDITORIOS_DESCONTADOS
@@ -823,7 +825,7 @@ components:
           type: number
           description: |
             Representa o valor do encargo em percentual pactuado no contrato. Exemplo: 0.0210 (=2.1%).
-          maximum: 100000000000000000000
+          maxLength: 19
           example: 0.07
       additionalProperties: false
     InvoiceFinancingsBalloonPayment:
@@ -882,7 +884,7 @@ components:
           example: MES
         totalNumberOfInstalments:
           type: number
-          maximum: 999999
+          maxLength: 6
           example: 130632
           nullable: true
           description: 'Prazo Total segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.'
@@ -894,29 +896,30 @@ components:
             - MES
             - ANO
             - SEM_PRAZO_REMANESCENTE
+          maxLength: 22
           description: |
             Tipo de prazo remanescente do contrato referente à modalidade de crédito informada.
         contractRemainingNumber:
           type: number
-          maximum: 999999
+          maxLength: 6
           description: 'Prazo Remanescente segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.'
           nullable: true
           example: 14600
         paidInstalments:
           type: number
           description: 'Quantidade de prestações pagas. (No caso de modalidades que não possuam parcelas, o número de prestações é igual a zero)'
-          maximum: 999
+          maxLength: 3
           nullable: true
           example: 73
         dueInstalments:
           type: number
-          maximum: 999
+          maxLength: 3
           description: 'Quantidade de prestações a vencer.(No caso de modalidades que não possuam parcelas, o número de prestações é igual a zero)'
           nullable: true
           example: 57
         pastDueInstalments:
           type: number
-          maximum: 999
+          maxLength: 3
           nullable: true
           description: 'Quantidade de prestações vencidas. (No caso de modalidades que não possuam parcelas, o número de prestações é igual a zero)'
           example: 73
@@ -989,7 +992,7 @@ components:
       properties:
         paidInstalments:
           type: number
-          maximum: 999
+          maxLength: 3
           nullable: true
           example: 73
           description: Quantidade total de parcelas pagas do contrato referente à Modalidade de Crédito informada.
@@ -1120,6 +1123,7 @@ components:
         chargeType:
           type: string
           description: Tipo de encargo pago fora da parcela
+          maxLength: 31
           enum:
             - JUROS_REMUNERATORIOS_POR_ATRASO
             - MULTA_ATRASO_PAGAMENTO

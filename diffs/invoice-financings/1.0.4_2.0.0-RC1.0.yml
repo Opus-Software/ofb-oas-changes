@@ -21,10 +21,6 @@ GET /contracts
                   - Modified property: ipocCode
                     - MinLength changed from 0 to 22
                     - Pattern changed from '' to '^\d{22,67}$'
-                  - Modified property: productSubType
-                    - MaxLength changed from 39 to null
-                  - Modified property: productType
-                    - MaxLength changed from 32 to null
 GET /contracts/{contractId}
 - Responses changed
   - New response: 422
@@ -91,9 +87,6 @@ GET /contracts/{contractId}
                 - Modified property: contractedFinanceCharges
                   - Items changed
                     - Properties changed
-                      - Modified property: chargeRate
-                        - Max changed from null to 1e+20
-                        - MaxLength changed from 19 to null
                       - Modified property: chargeType
                         - MaxLength changed from 31 to null
                 - Modified property: dueDate
@@ -142,10 +135,6 @@ GET /contracts/{contractId}
                 - Modified property: ipocCode
                   - MinLength changed from 0 to 22
                   - Pattern changed from '' to '^\d{22,67}$'
-                - Modified property: productSubType
-                  - MaxLength changed from 39 to null
-                - Modified property: productType
-                  - MaxLength changed from 32 to null
 GET /contracts/{contractId}/payments
 - Responses changed
   - New response: 422
@@ -163,9 +152,6 @@ GET /contracts/{contractId}/payments
                   - Example changed from 100000.04 to '100000.0400'
                   - MinLength changed from 0 to 1
                   - MaxLength changed from 20 to 21
-                - Modified property: paidInstalments
-                  - Max changed from null to 999
-                  - MaxLength changed from 3 to null
                 - Modified property: releases
                   - Items changed
                     - Properties changed
@@ -181,8 +167,6 @@ GET /contracts/{contractId}/payments
                                   - Nullable changed from true to false
                                   - MinLength changed from 0 to 1
                                   - MaxLength changed from 20 to 21
-                                - Modified property: chargeType
-                                  - MaxLength changed from 31 to null
                           - Modified property: fees
                             - Items changed
                               - Properties changed
@@ -237,23 +221,6 @@ GET /contracts/{contractId}/scheduled-instalments
                       - Modified property: dueDate
                         - MinLength changed from 0 to 2
                         - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$'
-                - Modified property: contractRemainingNumber
-                  - Max changed from null to 999999
-                  - MaxLength changed from 6 to null
-                - Modified property: dueInstalments
-                  - Max changed from null to 999
-                  - MaxLength changed from 3 to null
-                - Modified property: paidInstalments
-                  - Max changed from null to 999
-                  - MaxLength changed from 3 to null
-                - Modified property: pastDueInstalments
-                  - Max changed from null to 999
-                  - MaxLength changed from 3 to null
-                - Modified property: totalNumberOfInstalments
-                  - Max changed from null to 999999
-                  - MaxLength changed from 6 to null
-                - Modified property: typeContractRemaining
-                  - MaxLength changed from 22 to null
                 - Modified property: typeNumberOfInstalments
                   - MaxLength changed from 15 to null
 GET /contracts/{contractId}/warranties
