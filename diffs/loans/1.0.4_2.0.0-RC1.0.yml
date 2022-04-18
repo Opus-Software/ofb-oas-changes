@@ -39,6 +39,8 @@ GET /contracts/{contractId}
                   - MinLength changed from 0 to 6
                   - MaxLength changed from 19 to 6
                   - Pattern changed from '' to '^\d{1}\.\d{4}$'
+                - Modified property: amortizationScheduled
+                  - MaxLength changed from 23 to null
                 - Modified property: contractAmount
                   - Type changed from 'number' to 'string'
                   - Format changed from 'double' to ''
@@ -52,6 +54,10 @@ GET /contracts/{contractId}
                 - Modified property: contractedFees
                   - Items changed
                     - Properties changed
+                      - Modified property: feeCharge
+                        - MaxLength changed from 10 to null
+                      - Modified property: feeChargeType
+                        - MaxLength changed from 11 to null
                       - Modified property: feeRate
                         - Type changed from 'number' to 'string'
                         - Format changed from 'double' to ''
@@ -60,6 +66,11 @@ GET /contracts/{contractId}
                         - MinLength changed from 0 to 6
                         - MaxLength changed from 19 to 6
                         - Pattern changed from '' to '^\d{1}\.\d{4}$'
+                - Modified property: contractedFinanceCharges
+                  - Items changed
+                    - Properties changed
+                      - Modified property: chargeType
+                        - MaxLength changed from 31 to null
                 - Modified property: dueDate
                   - Description changed from 'Data de vencimento Final da operação. Especificação RFC-3339' to 'Data de vencimento Final da operação. Especificação RFC-3339.
 [Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
@@ -71,10 +82,16 @@ GET /contracts/{contractId}
 [Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA
 '
                   - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$'
+                - Modified property: instalmentPeriodicity
+                  - MaxLength changed from 25 to null
                 - Modified property: interestRates
                   - Description changed from '' to 'Caso o contrato não possua taxas de juros, deve ser compartilhado uma lista vazia. Caso o contrato possua uma taxa de juros com valor 0, deve ser compartilhado um objeto com o valor 0 explícito.'
                   - Items changed
                     - Properties changed
+                      - Modified property: calculation
+                        - MaxLength changed from 6 to null
+                      - Modified property: interestRateType
+                        - MaxLength changed from 8 to null
                       - Modified property: postFixedRate
                         - Type changed from 'number' to 'string'
                         - Example changed from 0.55 to '0.5500'
@@ -89,6 +106,14 @@ GET /contracts/{contractId}
                         - MinLength changed from 0 to 6
                         - MaxLength changed from 19 to 6
                         - Pattern changed from '' to '^\d{1}\.\d{4}$'
+                      - Modified property: referentialRateIndexerSubType
+                        - MaxLength changed from 24 to null
+                      - Modified property: referentialRateIndexerType
+                        - MaxLength changed from 18 to null
+                      - Modified property: taxPeriodicity
+                        - MaxLength changed from 2 to null
+                      - Modified property: taxType
+                        - MaxLength changed from 7 to null
                 - Modified property: ipocCode
                   - MinLength changed from 0 to 22
                   - Pattern changed from '' to '^\d{22,67}$'
@@ -124,6 +149,8 @@ GET /contracts/{contractId}/payments
                                   - Nullable changed from true to false
                                   - MinLength changed from 0 to 4
                                   - MaxLength changed from 20 to 21
+                                - Modified property: chargeType
+                                  - MaxLength changed from 31 to null
                           - Modified property: fees
                             - Items changed
                               - Properties changed
@@ -177,6 +204,8 @@ GET /contracts/{contractId}/scheduled-instalments
 '
                         - MinLength changed from 0 to 2
                         - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$'
+                - Modified property: typeNumberOfInstalments
+                  - MaxLength changed from 15 to null
 GET /contracts/{contractId}/warranties
 - Responses changed
   - New response: 422
@@ -197,3 +226,6 @@ GET /contracts/{contractId}/warranties
                     - MaxLength changed from 20 to 21
                   - Modified property: warrantySubType
                     - New enum values: [ACORDOS_COMPENSACAO_LIQUIDACAO_OBRIGACOES PROAGRO SEM_SUB_TIPO_GARANTIA]
+                    - MaxLength changed from 96 to null
+                  - Modified property: warrantyType
+                    - MaxLength changed from 37 to null
