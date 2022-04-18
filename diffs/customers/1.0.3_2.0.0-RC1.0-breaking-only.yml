@@ -7,6 +7,21 @@
 GET /business/financial-relations
 - Responses changed
   - Deleted response: default
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: procurators
+                  - Items changed
+                    - Properties changed
+                      - Modified property: type
+                        - MaxLength changed from 19 to null
+                - Modified property: productsServicesType
+                  - Items changed
+                    - MaxLength changed from 24 to null
 GET /business/identifications
 - Responses changed
   - Deleted response: default
@@ -17,11 +32,23 @@ GET /business/identifications
           - Properties changed
             - Modified property: data
               - Items changed
+                - AdditionalProperties changed from null to false
                 - Required changed
                   - Deleted required property: tradeName
                 - Properties changed
+                  - Modified property: companyCnpjNumber
+                    - MaxLength changed from 14 to null
+                    - Items changed
+                      - Pattern changed from '' to '\d{14}|^NA$'
                   - Modified property: contacts
                     - Properties changed
+                      - Modified property: phones
+                        - Items changed
+                          - Properties changed
+                            - Modified property: areaCode
+                              - MaxLength changed from 2 to null
+                            - Modified property: type
+                              - MaxLength changed from 5 to null
                       - Modified property: postalAddresses
                         - Items changed
                           - Required changed
@@ -49,6 +76,8 @@ GET /business/identifications
                       - Properties changed
                         - Modified property: documentCountry
                           - Pattern changed from '' to '[\w*\W*]'
+                        - Modified property: type
+                          - MaxLength changed from 13 to null
 GET /business/qualifications
 - Responses changed
   - Deleted response: default
@@ -61,6 +90,7 @@ GET /business/qualifications
               - Properties changed
                 - Modified property: economicActivities
                   - Items changed
+                    - AdditionalProperties changed from null to false
                     - Properties changed
                       - Modified property: code
                         - Type changed from 'number' to 'string'
@@ -78,6 +108,8 @@ GET /business/qualifications
                       - Format changed from 'double' to ''
                       - Nullable changed from true to false
                       - MaxLength changed from 20 to 21
+                    - Modified property: year
+                      - MaxLength changed from 4 to null
 GET /personal/financial-relations
 - Responses changed
   - Deleted response: default
@@ -98,6 +130,10 @@ GET /personal/financial-relations
                     - Properties changed
                       - Modified property: type
                         - Deleted enum values: [NAO_APLICA]
+                        - MaxLength changed from 19 to null
+                - Modified property: productsServicesType
+                  - Items changed
+                    - MaxLength changed from 24 to null
                 - Modified property: productsServicesTypeAdditionalInfo
                   - Pattern changed from '[\w\W\s]*' to '\w*\W*'
 GET /personal/identifications
@@ -113,6 +149,13 @@ GET /personal/identifications
                 - Properties changed
                   - Modified property: contacts
                     - Properties changed
+                      - Modified property: phones
+                        - Items changed
+                          - Properties changed
+                            - Modified property: areaCode
+                              - MaxLength changed from 2 to null
+                            - Modified property: type
+                              - MaxLength changed from 5 to null
                       - Modified property: postalAddresses
                         - Items changed
                           - Required changed
@@ -160,3 +203,5 @@ GET /personal/qualifications
                       - Format changed from 'double' to ''
                       - Nullable changed from true to false
                       - MaxLength changed from 20 to 21
+                    - Modified property: year
+                      - MaxLength changed from 4 to null
