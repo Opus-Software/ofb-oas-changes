@@ -13,20 +13,57 @@ GET /bank-fixed-incomes
           - Properties changed
             - Modified property: data
               - Items changed
+                - Required changed
+                  - New required property: investimentType
+                  - Deleted required property: investmentType
+                  - Deleted required property: issuerInstitutionName
+                  - Deleted required property: targetAudience
                 - Properties changed
+                  - New property: investimentType
+                  - Deleted property: investmentType
+                  - Deleted property: issuerInstitutionName
+                  - Deleted property: targetAudience
                   - Modified property: index
                     - Properties changed
+                      - Modified property: indexer
+                        - Description changed from 'Índice utilizado como referência para a correção da rentabilidade e/ou rendimentos do ativo (p.ex. CDI).<br><br>Pré-fixado, em linha com padronização da B3&#58;<br><br><ol><li>CDI</li><li>DI</li><li>TR</li><li>IPCA</li><li>IGP-M</li><li>IGP-DI</li><li>INPC</li><li>BCP</li><li>TLC</li><li>Selic</li><li>PRE_FIXADO</li><li>Outros</li></ol>' to 'Índice utilizado como referência para a correção da rentabilidade e/ou rendimentos do ativo (p.ex. CDI).<br><br>Pré-fixado, em linha com padronização da B3&#58;<br><br><ol><li>CDI</li><li>DI</li><li>TR</li><li>IPCA</li><li>IGP-M</li><li>IGP-DI</li><li>INPC</li><li>BCP</li><li>TLC</li><li>Selic</li><li>Outros</li></ol>'
+                        - Deleted enum values: [PRE_FIXADO]
+                        - MaxLength changed from 10 to 6
                       - Modified property: issueRemunerationRate
                         - AdditionalProperties changed from false to null
                         - Properties changed
                           - Modified property: prices
+                            - Example changed from [map[interval:1_FAIXA operationRate:0.500000 value:0.020300] map[interval:2_FAIXA operationRate:0.100000 value:0.030600] map[interval:3_FAIXA operationRate:0.300000 value:0.034300] map[interval:4_FAIXA operationRate:0.100000 value:0.246800]] to [map[customerRate:0.500000 interval:1_FAIXA value:0.020300] map[customerRate:0.100000 interval:2_FAIXA value:0.030600] map[customerRate:0.300000 interval:3_FAIXA value:0.034300] map[customerRate:0.100000 interval:4_FAIXA value:0.246800]]
                             - Items changed
                               - AdditionalProperties changed from false to null
+                              - Required changed
+                                - New required property: customerRate
+                                - Deleted required property: operationRate
+                              - Properties changed
+                                - New property: customerRate
+                                - Deleted property: operationRate
                   - Modified property: investmentConditions
+                    - Required changed
+                      - New required property: maximumExpirationTerm
+                      - New required property: maximumGracePeriod
+                      - New required property: minimumExpirationTerm
+                      - New required property: minimumGracePeriod
+                      - Deleted required property: expirationPeriod
+                      - Deleted required property: gracePeriod
                     - Properties changed
+                      - New property: maximumExpirationTerm
+                      - New property: maximumGracePeriod
+                      - New property: minimumExpirationTerm
+                      - New property: minimumGracePeriod
+                      - Deleted property: expirationPeriod
+                      - Deleted property: gracePeriod
                       - Modified property: redemptionTerm
                         - New enum values: [DIARIA_APOS_PRAZO_CARENCIA]
                         - Deleted enum values: [DIARIA_PRAZO_CARENCIA]
+                  - Modified property: participant
+                    - Properties changed
+                      - Modified property: cnpjNumber
+                        - Pattern changed from '^\d{14}$' to '\d{14}$'
   - Modified response: 400
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -34,6 +71,10 @@ GET /bank-fixed-incomes
           - Properties changed
             - Modified property: meta
               - Description changed from 'Meta informações referente à API requisitada.' to 'Meta informações referente a API requisitada.'
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
   - Modified response: 404
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -41,6 +82,10 @@ GET /bank-fixed-incomes
           - Properties changed
             - Modified property: meta
               - Description changed from 'Meta informações referente à API requisitada.' to 'Meta informações referente a API requisitada.'
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
   - Modified response: 405
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -48,6 +93,10 @@ GET /bank-fixed-incomes
           - Properties changed
             - Modified property: meta
               - Description changed from 'Meta informações referente à API requisitada.' to 'Meta informações referente a API requisitada.'
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
   - Modified response: 429
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -55,6 +104,10 @@ GET /bank-fixed-incomes
           - Properties changed
             - Modified property: meta
               - Description changed from 'Meta informações referente à API requisitada.' to 'Meta informações referente a API requisitada.'
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
   - Modified response: 500
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -62,6 +115,10 @@ GET /bank-fixed-incomes
           - Properties changed
             - Modified property: meta
               - Description changed from 'Meta informações referente à API requisitada.' to 'Meta informações referente a API requisitada.'
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
 GET /credit-fixed-incomes
 - Responses changed
   - Modified response: 200
@@ -71,19 +128,41 @@ GET /credit-fixed-incomes
           - Properties changed
             - Modified property: data
               - Items changed
+                - Required changed
+                  - Deleted required property: participant
+                  - Deleted required property: targetAudience
                 - Properties changed
+                  - Deleted property: targetAudience
                   - Modified property: custodyFee
                     - AdditionalProperties changed from false to null
                     - Properties changed
                       - Modified property: prices
+                        - Example changed from [map[interval:1_FAIXA operationRate:0.500000 value:0.020300] map[interval:2_FAIXA operationRate:0.100000 value:0.030600] map[interval:3_FAIXA operationRate:0.300000 value:0.034300] map[interval:4_FAIXA operationRate:0.100000 value:0.246800]] to [map[customerRate:0.500000 interval:1_FAIXA value:0.020300] map[customerRate:0.100000 interval:2_FAIXA value:0.030600] map[customerRate:0.300000 interval:3_FAIXA value:0.034300] map[customerRate:0.100000 interval:4_FAIXA value:0.246800]]
                         - Items changed
                           - AdditionalProperties changed from false to null
+                          - Required changed
+                            - New required property: customerRate
+                            - Deleted required property: operationRate
+                          - Properties changed
+                            - New property: customerRate
+                            - Deleted property: operationRate
                   - Modified property: loadingRate
                     - AdditionalProperties changed from false to null
                     - Properties changed
                       - Modified property: prices
+                        - Example changed from [map[interval:1_FAIXA operationRate:0.500000 value:0.020300] map[interval:2_FAIXA operationRate:0.100000 value:0.030600] map[interval:3_FAIXA operationRate:0.300000 value:0.034300] map[interval:4_FAIXA operationRate:0.100000 value:0.246800]] to [map[customerRate:0.500000 interval:1_FAIXA value:0.020300] map[customerRate:0.100000 interval:2_FAIXA value:0.030600] map[customerRate:0.300000 interval:3_FAIXA value:0.034300] map[customerRate:0.100000 interval:4_FAIXA value:0.246800]]
                         - Items changed
                           - AdditionalProperties changed from false to null
+                          - Required changed
+                            - New required property: customerRate
+                            - Deleted required property: operationRate
+                          - Properties changed
+                            - New property: customerRate
+                            - Deleted property: operationRate
+                  - Modified property: participant
+                    - Properties changed
+                      - Modified property: cnpjNumber
+                        - Pattern changed from '^\d{14}$' to '\d{14}$'
   - Modified response: 400
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -91,6 +170,10 @@ GET /credit-fixed-incomes
           - Properties changed
             - Modified property: meta
               - Description changed from 'Meta informações referente à API requisitada.' to 'Meta informações referente a API requisitada.'
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
   - Modified response: 404
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -98,6 +181,10 @@ GET /credit-fixed-incomes
           - Properties changed
             - Modified property: meta
               - Description changed from 'Meta informações referente à API requisitada.' to 'Meta informações referente a API requisitada.'
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
   - Modified response: 405
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -105,6 +192,10 @@ GET /credit-fixed-incomes
           - Properties changed
             - Modified property: meta
               - Description changed from 'Meta informações referente à API requisitada.' to 'Meta informações referente a API requisitada.'
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
   - Modified response: 429
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -112,6 +203,10 @@ GET /credit-fixed-incomes
           - Properties changed
             - Modified property: meta
               - Description changed from 'Meta informações referente à API requisitada.' to 'Meta informações referente a API requisitada.'
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
   - Modified response: 500
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -119,6 +214,10 @@ GET /credit-fixed-incomes
           - Properties changed
             - Modified property: meta
               - Description changed from 'Meta informações referente à API requisitada.' to 'Meta informações referente a API requisitada.'
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
 GET /funds
 - Responses changed
   - Modified response: 200
@@ -128,11 +227,15 @@ GET /funds
           - Properties changed
             - Modified property: data
               - Items changed
+                - Required changed
+                  - Deleted required property: fees
                 - Properties changed
                   - Modified property: admin
                     - Type changed from 'object' to ''
                     - AdditionalProperties changed from false to null
                   - Modified property: fees
+                    - Required changed
+                      - Deleted required property: maxAdminFee
                     - Properties changed
                       - Modified property: performanceFee
                         - AdditionalProperties changed from false to null
@@ -143,14 +246,24 @@ GET /funds
                     - Properties changed
                       - Modified property: application
                         - AdditionalProperties changed from false to null
+                        - Properties changed
+                          - Modified property: quotationDays
+                            - Description changed from 'Prazo em dias indicado no regulamento do fundo para a conversão do dinheiro em cotas do fundo.' to 'Indica se o fundo estabelece um período em que o investidor não pode resgatar os recursos aplicados no fundo. Caso ocorra resgate antes do período, o investidor perderá a rentabilidade do período.'
                       - Modified property: minimumAmount
                         - AdditionalProperties changed from false to null
                         - Properties changed
                           - Modified property: currency
                             - Description changed from 'Moeda referente ao valor monetário, seguindo o modelo ISO-4217.' to 'Moeda referente ao valor da transação, segundo modelo ISO-4217. p.ex. 'BRL'<br>Todos os saldos informados estão representados com a moeda vigente do Brasil'
-                            - MaxLength changed from 3 to null
                       - Modified property: redemption
                         - AdditionalProperties changed from false to null
+                        - Properties changed
+                          - Modified property: graceDays
+                            - Example changed from 365 to 60
+                            - Min changed from null to 0
+                  - Modified property: participant
+                    - Properties changed
+                      - Modified property: cnpjNumber
+                        - Pattern changed from '^\d{14}$' to '\d{14}$'
   - Modified response: 400
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -158,6 +271,10 @@ GET /funds
           - Properties changed
             - Modified property: meta
               - Description changed from 'Meta informações referente à API requisitada.' to 'Meta informações referente a API requisitada.'
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
   - Modified response: 404
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -165,6 +282,10 @@ GET /funds
           - Properties changed
             - Modified property: meta
               - Description changed from 'Meta informações referente à API requisitada.' to 'Meta informações referente a API requisitada.'
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
   - Modified response: 405
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -172,6 +293,10 @@ GET /funds
           - Properties changed
             - Modified property: meta
               - Description changed from 'Meta informações referente à API requisitada.' to 'Meta informações referente a API requisitada.'
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
   - Modified response: 429
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -179,6 +304,10 @@ GET /funds
           - Properties changed
             - Modified property: meta
               - Description changed from 'Meta informações referente à API requisitada.' to 'Meta informações referente a API requisitada.'
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
   - Modified response: 500
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -186,6 +315,10 @@ GET /funds
           - Properties changed
             - Modified property: meta
               - Description changed from 'Meta informações referente à API requisitada.' to 'Meta informações referente a API requisitada.'
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
 GET /treasure-titles
 - Responses changed
   - Modified response: 200
@@ -195,19 +328,39 @@ GET /treasure-titles
           - Properties changed
             - Modified property: data
               - Items changed
+                - Required changed
+                  - Deleted required property: participant
                 - Properties changed
                   - Modified property: custodyFee
                     - AdditionalProperties changed from false to null
                     - Properties changed
                       - Modified property: prices
+                        - Example changed from [map[interval:1_FAIXA operationRate:0.500000 value:0.020300] map[interval:2_FAIXA operationRate:0.100000 value:0.030600] map[interval:3_FAIXA operationRate:0.300000 value:0.034300] map[interval:4_FAIXA operationRate:0.100000 value:0.246800]] to [map[customerRate:0.500000 interval:1_FAIXA value:0.020300] map[customerRate:0.100000 interval:2_FAIXA value:0.030600] map[customerRate:0.300000 interval:3_FAIXA value:0.034300] map[customerRate:0.100000 interval:4_FAIXA value:0.246800]]
                         - Items changed
                           - AdditionalProperties changed from false to null
+                          - Required changed
+                            - New required property: customerRate
+                            - Deleted required property: operationRate
+                          - Properties changed
+                            - New property: customerRate
+                            - Deleted property: operationRate
                   - Modified property: loadingRate
                     - AdditionalProperties changed from false to null
                     - Properties changed
                       - Modified property: prices
+                        - Example changed from [map[interval:1_FAIXA operationRate:0.500000 value:0.020300] map[interval:2_FAIXA operationRate:0.100000 value:0.030600] map[interval:3_FAIXA operationRate:0.300000 value:0.034300] map[interval:4_FAIXA operationRate:0.100000 value:0.246800]] to [map[customerRate:0.500000 interval:1_FAIXA value:0.020300] map[customerRate:0.100000 interval:2_FAIXA value:0.030600] map[customerRate:0.300000 interval:3_FAIXA value:0.034300] map[customerRate:0.100000 interval:4_FAIXA value:0.246800]]
                         - Items changed
                           - AdditionalProperties changed from false to null
+                          - Required changed
+                            - New required property: customerRate
+                            - Deleted required property: operationRate
+                          - Properties changed
+                            - New property: customerRate
+                            - Deleted property: operationRate
+                  - Modified property: participant
+                    - Properties changed
+                      - Modified property: cnpjNumber
+                        - Pattern changed from '^\d{14}$' to '\d{14}$'
   - Modified response: 400
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -215,6 +368,10 @@ GET /treasure-titles
           - Properties changed
             - Modified property: meta
               - Description changed from 'Meta informações referente à API requisitada.' to 'Meta informações referente a API requisitada.'
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
   - Modified response: 404
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -222,6 +379,10 @@ GET /treasure-titles
           - Properties changed
             - Modified property: meta
               - Description changed from 'Meta informações referente à API requisitada.' to 'Meta informações referente a API requisitada.'
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
   - Modified response: 405
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -229,6 +390,10 @@ GET /treasure-titles
           - Properties changed
             - Modified property: meta
               - Description changed from 'Meta informações referente à API requisitada.' to 'Meta informações referente a API requisitada.'
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
   - Modified response: 429
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -236,6 +401,10 @@ GET /treasure-titles
           - Properties changed
             - Modified property: meta
               - Description changed from 'Meta informações referente à API requisitada.' to 'Meta informações referente a API requisitada.'
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
   - Modified response: 500
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -243,6 +412,10 @@ GET /treasure-titles
           - Properties changed
             - Modified property: meta
               - Description changed from 'Meta informações referente à API requisitada.' to 'Meta informações referente a API requisitada.'
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
 GET /variable-incomes
 - Responses changed
   - Modified response: 200
@@ -252,19 +425,41 @@ GET /variable-incomes
           - Properties changed
             - Modified property: data
               - Items changed
+                - Required changed
+                  - Deleted required property: participant
+                  - Deleted required property: targetAudience
                 - Properties changed
+                  - Deleted property: targetAudience
                   - Modified property: custodyFee
                     - AdditionalProperties changed from false to null
                     - Properties changed
                       - Modified property: prices
+                        - Example changed from [map[interval:1_FAIXA operationRate:0.500000 value:0.020300] map[interval:2_FAIXA operationRate:0.100000 value:0.030600] map[interval:3_FAIXA operationRate:0.300000 value:0.034300] map[interval:4_FAIXA operationRate:0.100000 value:0.246800]] to [map[customerRate:0.500000 interval:1_FAIXA value:0.020300] map[customerRate:0.100000 interval:2_FAIXA value:0.030600] map[customerRate:0.300000 interval:3_FAIXA value:0.034300] map[customerRate:0.100000 interval:4_FAIXA value:0.246800]]
                         - Items changed
                           - AdditionalProperties changed from false to null
+                          - Required changed
+                            - New required property: customerRate
+                            - Deleted required property: operationRate
+                          - Properties changed
+                            - New property: customerRate
+                            - Deleted property: operationRate
                   - Modified property: loadingRate
                     - AdditionalProperties changed from false to null
                     - Properties changed
                       - Modified property: prices
+                        - Example changed from [map[interval:1_FAIXA operationRate:0.500000 value:0.020300] map[interval:2_FAIXA operationRate:0.100000 value:0.030600] map[interval:3_FAIXA operationRate:0.300000 value:0.034300] map[interval:4_FAIXA operationRate:0.100000 value:0.246800]] to [map[customerRate:0.500000 interval:1_FAIXA value:0.020300] map[customerRate:0.100000 interval:2_FAIXA value:0.030600] map[customerRate:0.300000 interval:3_FAIXA value:0.034300] map[customerRate:0.100000 interval:4_FAIXA value:0.246800]]
                         - Items changed
                           - AdditionalProperties changed from false to null
+                          - Required changed
+                            - New required property: customerRate
+                            - Deleted required property: operationRate
+                          - Properties changed
+                            - New property: customerRate
+                            - Deleted property: operationRate
+                  - Modified property: participant
+                    - Properties changed
+                      - Modified property: cnpjNumber
+                        - Pattern changed from '^\d{14}$' to '\d{14}$'
   - Modified response: 400
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -272,6 +467,10 @@ GET /variable-incomes
           - Properties changed
             - Modified property: meta
               - Description changed from 'Meta informações referente à API requisitada.' to 'Meta informações referente a API requisitada.'
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
   - Modified response: 404
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -279,6 +478,10 @@ GET /variable-incomes
           - Properties changed
             - Modified property: meta
               - Description changed from 'Meta informações referente à API requisitada.' to 'Meta informações referente a API requisitada.'
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
   - Modified response: 405
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -286,6 +489,10 @@ GET /variable-incomes
           - Properties changed
             - Modified property: meta
               - Description changed from 'Meta informações referente à API requisitada.' to 'Meta informações referente a API requisitada.'
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
   - Modified response: 429
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -293,6 +500,10 @@ GET /variable-incomes
           - Properties changed
             - Modified property: meta
               - Description changed from 'Meta informações referente à API requisitada.' to 'Meta informações referente a API requisitada.'
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
   - Modified response: 500
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -300,3 +511,7 @@ GET /variable-incomes
           - Properties changed
             - Modified property: meta
               - Description changed from 'Meta informações referente à API requisitada.' to 'Meta informações referente a API requisitada.'
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime

@@ -14,27 +14,100 @@ GET /risk-coverages
             - Modified property: data
               - Items changed
                 - Properties changed
+                  - New property: allowPortability
+                  - New property: benefitRecalculation
+                  - New property: category
+                  - New property: globalCapital
+                  - New property: indemnityPaymentIncomes
+                  - New property: portabilityGraceTime
+                  - New property: premiumPayment
+                  - New property: terms
                   - Modified property: coverages
                     - Items changed
                       - Properties changed
                         - Modified property: attributes
                           - Properties changed
-                            - Modified property: deductible
-                              - Properties changed
-                                - Modified property: currency
-                                  - MaxLength changed from 3 to null
-                            - Modified property: differentiatedDeductible
-                              - Properties changed
-                                - Modified property: currency
-                                  - MaxLength changed from 3 to null
-                            - Modified property: maxValue
-                              - Properties changed
-                                - Modified property: currency
-                                  - MaxLength changed from 3 to null
-                            - Modified property: minValue
-                              - Properties changed
-                                - Modified property: currency
-                                  - MaxLength changed from 3 to null
+                            - New property: allowApartPurchase
+                            - New property: deductible
+                            - New property: deductibleDays
+                            - New property: differentiatedDeductible
+                            - New property: differentiatedDeductibleDays
+                            - New property: differentiatedGracePeriod
+                            - New property: gracePeriod
+                            - New property: indemnityPaymentFrequencies
+                            - New property: indemnityPaymentMethods
+                            - New property: maximumQtyIndemnifiableInstallments
+                  - Modified property: minimumRequirement
+                    - Properties changed
+                      - Modified property: contractType
+                        - Description changed from 'O tipo de serviço contratado. A considerar os domínios abaixo&#58;<br><ol><li>Coletivo</li><li>Individual</li></ol>' to 'O tipo de serviço contratado. A considerar os domínios abaixo&#58;<br><ol><li>Coletivo Averbado</li><li>Coletivo Instituído</li><li>Individual</li></ol>'
+                        - New enum values: [COLETIVO_AVERBADO COLETIVO_INSTITUIDO]
+                        - Deleted enum values: [COLETIVO]
+                        - Example changed from 'COLETIVO' to 'COLETIVO_AVERBADO'
+                        - MaxLength changed from 10 to 19
+                  - Modified property: participant
+                    - Properties changed
+                      - Modified property: cnpjNumber
+                        - Pattern changed from '^\d{14}$' to '\d{14}$'
+                  - Modified property: pmbacRemuneration
+                    - Properties changed
+                      - Modified property: updateIndexes
+                        - Items changed
+                          - MaxLength changed from 5 to 9
+                  - Modified property: society
+                    - Properties changed
+                      - Modified property: cnpjNumber
+                        - Pattern changed from '^\d{14}$' to '\d{14}$'
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
 GET /survival-coverages
 - Responses changed
   - Modified response: 200
@@ -50,17 +123,74 @@ GET /survival-coverages
                       - Modified property: investmentFunds
                         - Items changed
                           - Properties changed
-                            - Modified property: currency
-                              - MaxLength changed from 3 to null
-                      - Modified property: minimumPremiums
-                        - Items changed
-                          - Properties changed
-                            - Modified property: currency
-                              - MaxLength changed from 3 to null
+                            - Modified property: cnpjNumber
+                              - Pattern changed from '^\d{14}$' to '\d{14}$'
                   - Modified property: grantPeriodBenefit
+                    - Required changed
+                      - New required property: biometricTable
                     - Properties changed
+                      - Modified property: biometricTable
+                        - MinItems changed from 0 to 1
                       - Modified property: investmentFunds
                         - Items changed
                           - Properties changed
-                            - Modified property: currency
-                              - MaxLength changed from 3 to null
+                            - Modified property: cnpjNumber
+                              - Pattern changed from '^\d{14}$' to '\d{14}$'
+                  - Modified property: participant
+                    - Properties changed
+                      - Modified property: cnpjNumber
+                        - Pattern changed from '^\d{14}$' to '\d{14}$'
+                  - Modified property: society
+                    - Properties changed
+                      - Modified property: cnpjNumber
+                        - Pattern changed from '^\d{14}$' to '\d{14}$'
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
