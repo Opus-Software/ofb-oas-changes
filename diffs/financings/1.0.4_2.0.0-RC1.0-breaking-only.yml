@@ -5,6 +5,9 @@
 ### Modified Endpoints: 5
 -------------------------
 GET /contracts
+- Modified query param: page
+  - Schema changed
+    - Max changed from null to 2.147483647e+09
 - Responses changed
   - Deleted response: default
   - Modified response: 200
@@ -17,6 +20,10 @@ GET /contracts
                 - Properties changed
                   - Modified property: ipocCode
                     - Pattern changed from '' to '^\d{22,67}$'
+                  - Modified property: productSubType
+                    - MaxLength changed from 37 to null
+                  - Modified property: productType
+                    - MaxLength changed from 27 to null
 GET /contracts/{contractId}
 - Responses changed
   - Deleted response: default
@@ -30,6 +37,8 @@ GET /contracts/{contractId}
                 - Modified property: CET
                   - Type changed from 'number' to 'string'
                   - Pattern changed from '' to '^\d{1}\.\d{4}$'
+                - Modified property: amortizationScheduled
+                  - MaxLength changed from 23 to null
                 - Modified property: contractAmount
                   - Type changed from 'number' to 'string'
                   - Format changed from 'double' to ''
@@ -39,10 +48,19 @@ GET /contracts/{contractId}
                 - Modified property: contractedFees
                   - Items changed
                     - Properties changed
+                      - Modified property: feeCharge
+                        - MaxLength changed from 10 to null
+                      - Modified property: feeChargeType
+                        - MaxLength changed from 11 to null
                       - Modified property: feeRate
                         - Type changed from 'number' to 'string'
                         - Format changed from 'double' to ''
                         - Pattern changed from '' to '^\d{1}\.\d{4}$'
+                - Modified property: contractedFinanceCharges
+                  - Items changed
+                    - Properties changed
+                      - Modified property: chargeType
+                        - MaxLength changed from 31 to null
                 - Modified property: disbursementDate
                   - Type changed from 'string' to 'array'
                   - Format changed from 'date' to ''
@@ -53,18 +71,39 @@ GET /contracts/{contractId}
                   - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$'
                 - Modified property: firstInstalmentDueDate
                   - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$'
+                - Modified property: instalmentPeriodicity
+                  - MaxLength changed from 25 to null
                 - Modified property: interestRates
                   - Items changed
                     - Properties changed
+                      - Modified property: calculation
+                        - MaxLength changed from 6 to null
+                      - Modified property: interestRateType
+                        - MaxLength changed from 8 to null
                       - Modified property: postFixedRate
                         - Type changed from 'number' to 'string'
                         - Pattern changed from '' to '^\d{1}\.\d{4}$'
                       - Modified property: preFixedRate
                         - Type changed from 'number' to 'string'
                         - Pattern changed from '' to '^\d{1}\.\d{4}$'
+                      - Modified property: referentialRateIndexerSubType
+                        - MaxLength changed from 24 to null
+                      - Modified property: referentialRateIndexerType
+                        - MaxLength changed from 18 to null
+                      - Modified property: taxPeriodicity
+                        - MaxLength changed from 2 to null
+                      - Modified property: taxType
+                        - MaxLength changed from 7 to null
                 - Modified property: ipocCode
                   - Pattern changed from '' to '^\d{22,67}$'
+                - Modified property: productSubType
+                  - MaxLength changed from 37 to null
+                - Modified property: productType
+                  - MaxLength changed from 27 to null
 GET /contracts/{contractId}/payments
+- Modified query param: page
+  - Schema changed
+    - Max changed from null to 2.147483647e+09
 - Responses changed
   - Deleted response: default
   - Modified response: 200
@@ -90,6 +129,8 @@ GET /contracts/{contractId}/payments
                                   - Type changed from 'number' to 'string'
                                   - Format changed from 'double' to ''
                                   - MaxLength changed from 20 to 21
+                                - Modified property: chargeType
+                                  - MaxLength changed from 31 to null
                           - Modified property: fees
                             - Items changed
                               - Properties changed
@@ -102,6 +143,9 @@ GET /contracts/{contractId}/payments
                         - Format changed from 'double' to ''
                         - MaxLength changed from 20 to 21
 GET /contracts/{contractId}/scheduled-instalments
+- Modified query param: page
+  - Schema changed
+    - Max changed from null to 2.147483647e+09
 - Responses changed
   - Deleted response: default
   - Modified response: 200
@@ -120,7 +164,14 @@ GET /contracts/{contractId}/scheduled-instalments
                         - Type changed from 'number' to 'string'
                         - Format changed from 'double' to ''
                         - MaxLength changed from 20 to 21
+                - Modified property: typeContractRemaining
+                  - MaxLength changed from 22 to null
+                - Modified property: typeNumberOfInstalments
+                  - MaxLength changed from 15 to null
 GET /contracts/{contractId}/warranties
+- Modified query param: page
+  - Schema changed
+    - Max changed from null to 2.147483647e+09
 - Responses changed
   - Deleted response: default
   - Modified response: 200
@@ -135,3 +186,7 @@ GET /contracts/{contractId}/warranties
                     - Type changed from 'number' to 'string'
                     - Format changed from 'double' to ''
                     - MaxLength changed from 20 to 21
+                  - Modified property: warrantySubType
+                    - MaxLength changed from 96 to null
+                  - Modified property: warrantyType
+                    - MaxLength changed from 37 to null
