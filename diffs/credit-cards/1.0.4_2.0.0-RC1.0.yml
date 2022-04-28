@@ -10,8 +10,19 @@ GET /accounts
     - Max changed from null to 2.147483647e+09
 - Responses changed
   - New response: 422
-  - Deleted response: default
   - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: creditCardNetwork
+                    - MaxLength changed from 17 to null
+                  - Modified property: productType
+                    - MaxLength changed from 26 to null
+  - Modified response: default
     - Content changed
       - Modified media type: application/json
         - Schema changed
@@ -26,8 +37,18 @@ GET /accounts
 GET /accounts/{creditCardAccountId}
 - Responses changed
   - New response: 422
-  - Deleted response: default
   - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: creditCardNetwork
+                  - MaxLength changed from 17 to null
+                - Modified property: productType
+                  - MaxLength changed from 26 to null
+  - Modified response: default
     - Content changed
       - Modified media type: application/json
         - Schema changed
@@ -44,8 +65,33 @@ GET /accounts/{creditCardAccountId}/bills
     - Max changed from null to 2.147483647e+09
 - Responses changed
   - New response: 422
-  - Deleted response: default
   - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Required changed
+                  - Deleted required property: payments
+                - Properties changed
+                  - Modified property: billTotalAmount
+                    - Type changed from 'number' to 'string'
+                    - Format changed from 'double' to ''
+                    - Example changed from 100000.04 to '100000.0400'
+                  - Modified property: financeCharges
+                    - Items changed
+                      - Properties changed
+                        - Modified property: type
+                          - MaxLength changed from 44 to null
+                  - Modified property: payments
+                    - Items changed
+                      - Properties changed
+                        - Modified property: paymentMode
+                          - MaxLength changed from 21 to null
+                        - Modified property: valueType
+                          - MaxLength changed from 32 to null
+  - Modified response: default
     - Content changed
       - Modified media type: application/json
         - Schema changed
@@ -80,8 +126,85 @@ GET /accounts/{creditCardAccountId}/bills/{billId}/transactions
     - MaxLength changed from 36 to null
 - Responses changed
   - New response: 422
-  - Deleted response: default
   - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Required changed
+                  - Deleted required property: currency
+                  - Deleted required property: feeType
+                  - Deleted required property: otherCreditsAdditionalInfo
+                - Properties changed
+                  - Deleted property: currency
+                  - Deleted property: lineName
+                  - Modified property: amount
+                    - Type changed from 'number' to 'object'
+                    - Format changed from 'double' to ''
+                    - Description changed from 'Valor da transação efetuada no exterior e convertida em moeda nacional com 4 casas decimais. Expresso em valor monetário com 4 casas decimais' to 'Valor da transação. Expresso em valor monetário com 4 casas decimais. Se a transação foi realizada em moeda estrangeira, deve ser preenchido com o valor original da transação, sem convertê-lo.'
+                    - Example changed from 100000.04 to null
+                    - AdditionalProperties changed from null to false
+                    - Nullable changed from true to false
+                    - MaxLength changed from 20 to null
+                    - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                    - Required changed
+                      - New required property: amount
+                      - New required property: currency
+                    - Properties changed
+                      - New property: amount
+                      - New property: currency
+                  - Modified property: brazilianAmount
+                    - Type changed from 'number' to 'object'
+                    - Format changed from 'double' to ''
+                    - Example changed from 100000.04 to null
+                    - AdditionalProperties changed from null to false
+                    - Nullable changed from true to false
+                    - MaxLength changed from 20 to null
+                    - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                    - Required changed
+                      - New required property: amount
+                      - New required property: currency
+                    - Properties changed
+                      - New property: amount
+                      - New property: currency
+                  - Modified property: creditDebitType
+                    - MaxLength changed from 7 to null
+                  - Modified property: feeType
+                    - Description changed from 'Traz os tipos de Tarifas: (Vide Enum)
+Anuidade, Saque com cartão no Brasil, Saque com cartão no exterior, Avaliação emergencial de crédito, Emissão segunda via, Tarifa pagamento de contas, SMS, OUTRA.
+[Restrição] Preenchimento obrigatório se Tipo de Transação selecionada for 'TARIFA'
+' to 'Traz os tipos de Tarifas: (Vide Enum)
+Anuidade, Saque com cartão no Brasil, Saque com cartão no exterior, Avaliação emergencial de crédito, Emissão segunda via, Tarifa pagamento de contas, SMS, OUTRA.   
+Para transmissora: quando não for do tipo TARIFA, preenche com OUTRA.
+Para recebedora: ignorar o campo preenchido conforme esse cenário.
+[Restrição] Preenchimento obrigatório se Tipo de Transação selecionada for 'TARIFA'.
+'
+                    - MaxLength changed from 29 to null
+                  - Modified property: otherCreditsAdditionalInfo
+                    - Description changed from 'Campo livre, de preenchimento obrigatório quando selecionado tipo de crédito "OUTROS"' to 'Campo livre, de preenchimento obrigatório quando selecionado tipo de crédito "OUTROS".
+Para transmissora: Preencher campo com "NA" quando OtherCreditType não for tipo OUTROS.
+Para recebedora: Ignorar o campo preenchido conforme esse cenário.
+'
+                  - Modified property: otherCreditsType
+                    - Description changed from 'Traz outros tipos de crédito contratados no cartão.
+[Restrição] Preenchimento obrigatório se o tipo transação selecionado for 'OPERACOES_CREDITO_CONTRATADAS_CARTAO'
+' to 'Traz outros tipos de crédito contratados no cartão.   
+[Restrição] Preenchimento obrigatório se o tipo transação selecionado for 'OPERACOES_CREDITO_CONTRATADAS_CARTAO'.
+Para transmissora: Quando não for do tipo OPERACOES_CREDITO_CONTRATADAS_CARTAO, preencher com OUTROS.
+Para recebedora: Ignorar o campo preenchido conforme esse cenário.
+'
+                    - MaxLength changed from 19 to null
+                  - Modified property: paymentType
+                    - Description changed from 'Traz os tipos de pagamento. Preenchimento obrigatório se selecionado tipo de transação PAGAMENTO.' to 'Traz os tipos de pagamento. Preenchimento obrigatório se selecionado tipo de transação PAGAMENTO.
+Para transmissora: preencher com qualquer opção.
+Para recebedora: ignorar o campo preenchido quando não for uma transação do tipo pagamento.
+'
+                    - MaxLength changed from 7 to null
+                  - Modified property: transactionType
+                    - MaxLength changed from 36 to null
+  - Modified response: default
     - Content changed
       - Modified media type: application/json
         - Schema changed
@@ -162,8 +285,25 @@ Para recebedora: ignorar o campo preenchido quando não for uma transação do t
 GET /accounts/{creditCardAccountId}/limits
 - Responses changed
   - New response: 422
-  - Deleted response: default
   - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Description changed from '' to '[Restrição] A lista vazia deve ser interpretada como a ausência da informação.
+Cenário de limite com valor zerado, deve ter um registro explícito informando o valor como zero.
+Cenário de "cartão sem limite", isto é, cartões em que o uso do limite é ilimitado, deve ser informado em um registro explícito com isLimitFlexible como true.
+'
+              - Items changed
+                - Properties changed
+                  - Modified property: consolidationType
+                    - MaxLength changed from 11 to null
+                  - Modified property: creditLineLimitType
+                    - MaxLength changed from 34 to null
+                  - Modified property: lineName
+                    - MaxLength changed from 28 to null
+  - Modified response: default
     - Content changed
       - Modified media type: application/json
         - Schema changed
@@ -190,8 +330,85 @@ GET /accounts/{creditCardAccountId}/transactions
     - MaxLength changed from 36 to null
 - Responses changed
   - New response: 422
-  - Deleted response: default
   - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Required changed
+                  - Deleted required property: currency
+                  - Deleted required property: feeType
+                  - Deleted required property: otherCreditsAdditionalInfo
+                - Properties changed
+                  - Deleted property: currency
+                  - Deleted property: lineName
+                  - Modified property: amount
+                    - Type changed from 'number' to 'object'
+                    - Format changed from 'double' to ''
+                    - Description changed from 'Valor da transação efetuada no exterior e convertida em moeda nacional com 4 casas decimais. Expresso em valor monetário com 4 casas decimais' to 'Valor da transação. Expresso em valor monetário com 4 casas decimais. Se a transação foi realizada em moeda estrangeira, deve ser preenchido com o valor original da transação, sem convertê-lo.'
+                    - Example changed from 100000.04 to null
+                    - AdditionalProperties changed from null to false
+                    - Nullable changed from true to false
+                    - MaxLength changed from 20 to null
+                    - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                    - Required changed
+                      - New required property: amount
+                      - New required property: currency
+                    - Properties changed
+                      - New property: amount
+                      - New property: currency
+                  - Modified property: brazilianAmount
+                    - Type changed from 'number' to 'object'
+                    - Format changed from 'double' to ''
+                    - Example changed from 100000.04 to null
+                    - AdditionalProperties changed from null to false
+                    - Nullable changed from true to false
+                    - MaxLength changed from 20 to null
+                    - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                    - Required changed
+                      - New required property: amount
+                      - New required property: currency
+                    - Properties changed
+                      - New property: amount
+                      - New property: currency
+                  - Modified property: creditDebitType
+                    - MaxLength changed from 7 to null
+                  - Modified property: feeType
+                    - Description changed from 'Traz os tipos de Tarifas: (Vide Enum)
+Anuidade, Saque com cartão no Brasil, Saque com cartão no exterior, Avaliação emergencial de crédito, Emissão segunda via, Tarifa pagamento de contas, SMS, OUTRA.
+[Restrição] Preenchimento obrigatório se Tipo de Transação selecionada for 'TARIFA'
+' to 'Traz os tipos de Tarifas: (Vide Enum)
+Anuidade, Saque com cartão no Brasil, Saque com cartão no exterior, Avaliação emergencial de crédito, Emissão segunda via, Tarifa pagamento de contas, SMS, OUTRA.   
+Para transmissora: quando não for do tipo TARIFA, preenche com OUTRA.
+Para recebedora: ignorar o campo preenchido conforme esse cenário.
+[Restrição] Preenchimento obrigatório se Tipo de Transação selecionada for 'TARIFA'.
+'
+                    - MaxLength changed from 29 to null
+                  - Modified property: otherCreditsAdditionalInfo
+                    - Description changed from 'Campo livre, de preenchimento obrigatório quando selecionado tipo de crédito "OUTROS"' to 'Campo livre, de preenchimento obrigatório quando selecionado tipo de crédito "OUTROS".
+Para transmissora: Preencher campo com "NA" quando OtherCreditType não for tipo OUTROS.
+Para recebedora: Ignorar o campo preenchido conforme esse cenário.
+'
+                  - Modified property: otherCreditsType
+                    - Description changed from 'Traz outros tipos de crédito contratados no cartão.
+[Restrição] Preenchimento obrigatório se o tipo transação selecionado for 'OPERACOES_CREDITO_CONTRATADAS_CARTAO'
+' to 'Traz outros tipos de crédito contratados no cartão.   
+[Restrição] Preenchimento obrigatório se o tipo transação selecionado for 'OPERACOES_CREDITO_CONTRATADAS_CARTAO'.
+Para transmissora: Quando não for do tipo OPERACOES_CREDITO_CONTRATADAS_CARTAO, preencher com OUTROS.
+Para recebedora: Ignorar o campo preenchido conforme esse cenário.
+'
+                    - MaxLength changed from 19 to null
+                  - Modified property: paymentType
+                    - Description changed from 'Traz os tipos de pagamento. Preenchimento obrigatório se selecionado tipo de transação PAGAMENTO.' to 'Traz os tipos de pagamento. Preenchimento obrigatório se selecionado tipo de transação PAGAMENTO.
+Para transmissora: preencher com qualquer opção.
+Para recebedora: ignorar o campo preenchido quando não for uma transação do tipo pagamento.
+'
+                    - MaxLength changed from 7 to null
+                  - Modified property: transactionType
+                    - MaxLength changed from 36 to null
+  - Modified response: default
     - Content changed
       - Modified media type: application/json
         - Schema changed

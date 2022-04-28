@@ -9,8 +9,19 @@ GET /accounts
   - Schema changed
     - Max changed from null to 2.147483647e+09
 - Responses changed
-  - Deleted response: default
   - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: creditCardNetwork
+                    - MaxLength changed from 17 to null
+                  - Modified property: productType
+                    - MaxLength changed from 26 to null
+  - Modified response: default
     - Content changed
       - Modified media type: application/json
         - Schema changed
@@ -24,8 +35,18 @@ GET /accounts
                     - MaxLength changed from 26 to null
 GET /accounts/{creditCardAccountId}
 - Responses changed
-  - Deleted response: default
   - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: creditCardNetwork
+                  - MaxLength changed from 17 to null
+                - Modified property: productType
+                  - MaxLength changed from 26 to null
+  - Modified response: default
     - Content changed
       - Modified media type: application/json
         - Schema changed
@@ -41,8 +62,32 @@ GET /accounts/{creditCardAccountId}/bills
   - Schema changed
     - Max changed from null to 2.147483647e+09
 - Responses changed
-  - Deleted response: default
   - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Required changed
+                  - Deleted required property: payments
+                - Properties changed
+                  - Modified property: billTotalAmount
+                    - Type changed from 'number' to 'string'
+                    - Format changed from 'double' to ''
+                  - Modified property: financeCharges
+                    - Items changed
+                      - Properties changed
+                        - Modified property: type
+                          - MaxLength changed from 44 to null
+                  - Modified property: payments
+                    - Items changed
+                      - Properties changed
+                        - Modified property: paymentMode
+                          - MaxLength changed from 21 to null
+                        - Modified property: valueType
+                          - MaxLength changed from 32 to null
+  - Modified response: default
     - Content changed
       - Modified media type: application/json
         - Schema changed
@@ -72,8 +117,42 @@ GET /accounts/{creditCardAccountId}/bills/{billId}/transactions
   - Schema changed
     - Max changed from null to 2.147483647e+09
 - Responses changed
-  - Deleted response: default
   - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Required changed
+                  - Deleted required property: currency
+                  - Deleted required property: feeType
+                  - Deleted required property: otherCreditsAdditionalInfo
+                - Properties changed
+                  - Deleted property: currency
+                  - Modified property: amount
+                    - Type changed from 'number' to 'object'
+                    - Format changed from 'double' to ''
+                    - AdditionalProperties changed from null to false
+                    - Nullable changed from true to false
+                    - MaxLength changed from 20 to null
+                  - Modified property: brazilianAmount
+                    - Type changed from 'number' to 'object'
+                    - Format changed from 'double' to ''
+                    - AdditionalProperties changed from null to false
+                    - Nullable changed from true to false
+                    - MaxLength changed from 20 to null
+                  - Modified property: creditDebitType
+                    - MaxLength changed from 7 to null
+                  - Modified property: feeType
+                    - MaxLength changed from 29 to null
+                  - Modified property: otherCreditsType
+                    - MaxLength changed from 19 to null
+                  - Modified property: paymentType
+                    - MaxLength changed from 7 to null
+                  - Modified property: transactionType
+                    - MaxLength changed from 36 to null
+  - Modified response: default
     - Content changed
       - Modified media type: application/json
         - Schema changed
@@ -110,8 +189,21 @@ GET /accounts/{creditCardAccountId}/bills/{billId}/transactions
                     - MaxLength changed from 36 to null
 GET /accounts/{creditCardAccountId}/limits
 - Responses changed
-  - Deleted response: default
   - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: consolidationType
+                    - MaxLength changed from 11 to null
+                  - Modified property: creditLineLimitType
+                    - MaxLength changed from 34 to null
+                  - Modified property: lineName
+                    - MaxLength changed from 28 to null
+  - Modified response: default
     - Content changed
       - Modified media type: application/json
         - Schema changed
@@ -130,8 +222,42 @@ GET /accounts/{creditCardAccountId}/transactions
   - Schema changed
     - Max changed from null to 2.147483647e+09
 - Responses changed
-  - Deleted response: default
   - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Required changed
+                  - Deleted required property: currency
+                  - Deleted required property: feeType
+                  - Deleted required property: otherCreditsAdditionalInfo
+                - Properties changed
+                  - Deleted property: currency
+                  - Modified property: amount
+                    - Type changed from 'number' to 'object'
+                    - Format changed from 'double' to ''
+                    - AdditionalProperties changed from null to false
+                    - Nullable changed from true to false
+                    - MaxLength changed from 20 to null
+                  - Modified property: brazilianAmount
+                    - Type changed from 'number' to 'object'
+                    - Format changed from 'double' to ''
+                    - AdditionalProperties changed from null to false
+                    - Nullable changed from true to false
+                    - MaxLength changed from 20 to null
+                  - Modified property: creditDebitType
+                    - MaxLength changed from 7 to null
+                  - Modified property: feeType
+                    - MaxLength changed from 29 to null
+                  - Modified property: otherCreditsType
+                    - MaxLength changed from 19 to null
+                  - Modified property: paymentType
+                    - MaxLength changed from 7 to null
+                  - Modified property: transactionType
+                    - MaxLength changed from 36 to null
+  - Modified response: default
     - Content changed
       - Modified media type: application/json
         - Schema changed
