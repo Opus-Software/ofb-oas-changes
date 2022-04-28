@@ -20,10 +20,6 @@ GET /contracts
                 - Properties changed
                   - Modified property: ipocCode
                     - Pattern changed from '' to '^\d{22,67}$'
-                  - Modified property: productSubType
-                    - MaxLength changed from 47 to null
-                  - Modified property: productType
-                    - MaxLength changed from 11 to null
 GET /contracts/{contractId}
 - Responses changed
   - Deleted response: default
@@ -40,6 +36,8 @@ GET /contracts/{contractId}
                   - Pattern changed from '' to '^\d{1}\.\d{4}$'
                 - Modified property: amortizationScheduled
                   - MaxLength changed from 23 to null
+                - Modified property: cnpjConsignee
+                  - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
                 - Modified property: contractAmount
                   - Type changed from 'number' to 'string'
                   - Format changed from 'double' to ''
@@ -50,6 +48,8 @@ GET /contracts/{contractId}
                 - Modified property: contractedFees
                   - Items changed
                     - Properties changed
+                      - Modified property: feeAmount
+                        - MaxLength changed from 20 to null
                       - Modified property: feeCharge
                         - MaxLength changed from 10 to null
                       - Modified property: feeChargeType
@@ -62,12 +62,10 @@ GET /contracts/{contractId}
                 - Modified property: contractedFinanceCharges
                   - Items changed
                     - Properties changed
+                      - Modified property: chargeRate
+                        - MaxLength changed from 19 to null
                       - Modified property: chargeType
                         - MaxLength changed from 31 to null
-                - Modified property: dueDate
-                  - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$'
-                - Modified property: firstInstalmentDueDate
-                  - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$'
                 - Modified property: instalmentPeriodicity
                   - MaxLength changed from 25 to null
                 - Modified property: interestRates
@@ -95,10 +93,8 @@ GET /contracts/{contractId}
                         - MaxLength changed from 7 to null
                 - Modified property: ipocCode
                   - Pattern changed from '' to '^\d{22,67}$'
-                - Modified property: productSubType
-                  - MaxLength changed from 47 to null
-                - Modified property: productType
-                  - MaxLength changed from 11 to null
+                - Modified property: settlementDate
+                  - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
 GET /contracts/{contractId}/payments
 - Modified query param: page
   - Schema changed
