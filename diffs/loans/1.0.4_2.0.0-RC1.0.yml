@@ -23,6 +23,10 @@ GET /contracts
                   - Modified property: ipocCode
                     - MinLength changed from 0 to 22
                     - Pattern changed from '' to '^\d{22,67}$'
+                  - Modified property: productSubType
+                    - MaxLength changed from 47 to null
+                  - Modified property: productType
+                    - MaxLength changed from 11 to null
   - Modified response: default
     - Content changed
       - Modified media type: application/json
@@ -36,6 +40,10 @@ GET /contracts
                   - Modified property: ipocCode
                     - MinLength changed from 0 to 22
                     - Pattern changed from '' to '^\d{22,67}$'
+                  - Modified property: productSubType
+                    - MaxLength changed from 47 to null
+                  - Modified property: productType
+                    - MaxLength changed from 11 to null
 GET /contracts/{contractId}
 - Responses changed
   - New response: 422
@@ -55,6 +63,18 @@ GET /contracts/{contractId}
                   - Pattern changed from '' to '^\d{1}\.\d{4}$'
                 - Modified property: amortizationScheduled
                   - MaxLength changed from 23 to null
+                - Modified property: amortizationScheduledAdditionalInfo
+                  - Description changed from 'Campo obrigatório para complementar a informação relativa à amortização quando selecionada a opção OUTROS.
+[Restrição] Obrigatório para complementar a informação relativa à amortização quando selecionada a opção OUTROS, para os demais casos informar "NA".
+' to 'Campo obrigatório para complementar a informação relativa à amortização quando selecionada a opção OUTROS.
+'
+                - Modified property: cnpjConsignee
+                  - Description changed from 'CNPJ do consignante (CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica). Deve-se ter apenas os números do CNPJ, sem máscara. Informação adicional específica para Modalidade de Crédito: Empréstimo-Crédito Pessoal Consignado
+' to 'CNPJ do consignante (CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica). 
+Deve-se ter apenas os números do CNPJ, sem máscara. 
+Informação adicional específica para Modalidade de Crédito: Empréstimo-Crédito Pessoal Consignado
+'
+                  - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
                 - Modified property: contractAmount
                   - Type changed from 'number' to 'string'
                   - Format changed from 'double' to ''
@@ -68,6 +88,10 @@ GET /contracts/{contractId}
                 - Modified property: contractedFees
                   - Items changed
                     - Properties changed
+                      - Modified property: feeAmount
+                        - Nullable changed from true to false
+                        - Max changed from null to 2.147483647e+09
+                        - MaxLength changed from 20 to null
                       - Modified property: feeCharge
                         - MaxLength changed from 10 to null
                       - Modified property: feeChargeType
@@ -83,19 +107,18 @@ GET /contracts/{contractId}
                 - Modified property: contractedFinanceCharges
                   - Items changed
                     - Properties changed
+                      - Modified property: chargeRate
+                        - Max changed from null to 2.147483647e+09
+                        - MaxLength changed from 19 to null
                       - Modified property: chargeType
                         - MaxLength changed from 31 to null
                 - Modified property: dueDate
                   - Description changed from 'Data de vencimento Final da operação. Especificação RFC-3339' to 'Data de vencimento Final da operação. Especificação RFC-3339.
-[Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
 '
                   - MinLength changed from 0 to 2
-                  - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$'
                 - Modified property: firstInstalmentDueDate
-                  - Description changed from 'Data de vencimento primeira parcela do principal' to 'Data de vencimento primeira parcela do principal
-[Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA
+                  - Description changed from 'Data de vencimento primeira parcela do principal' to 'Data de vencimento primeira parcela do principal.
 '
-                  - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$'
                 - Modified property: instalmentPeriodicity
                   - MaxLength changed from 25 to null
                 - Modified property: interestRates
@@ -131,6 +154,16 @@ GET /contracts/{contractId}
                 - Modified property: ipocCode
                   - MinLength changed from 0 to 22
                   - Pattern changed from '' to '^\d{22,67}$'
+                - Modified property: productSubType
+                  - MaxLength changed from 47 to null
+                - Modified property: productType
+                  - MaxLength changed from 11 to null
+                - Modified property: settlementDate
+                  - Description changed from 'Data de liquidação da operação.
+[Restrição] Deve aceitar NA caso não seja retornado pela instituição.
+' to 'Data de liquidação da operação.
+'
+                  - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
   - Modified response: default
     - Content changed
       - Modified media type: application/json
@@ -147,6 +180,18 @@ GET /contracts/{contractId}
                   - Pattern changed from '' to '^\d{1}\.\d{4}$'
                 - Modified property: amortizationScheduled
                   - MaxLength changed from 23 to null
+                - Modified property: amortizationScheduledAdditionalInfo
+                  - Description changed from 'Campo obrigatório para complementar a informação relativa à amortização quando selecionada a opção OUTROS.
+[Restrição] Obrigatório para complementar a informação relativa à amortização quando selecionada a opção OUTROS, para os demais casos informar "NA".
+' to 'Campo obrigatório para complementar a informação relativa à amortização quando selecionada a opção OUTROS.
+'
+                - Modified property: cnpjConsignee
+                  - Description changed from 'CNPJ do consignante (CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica). Deve-se ter apenas os números do CNPJ, sem máscara. Informação adicional específica para Modalidade de Crédito: Empréstimo-Crédito Pessoal Consignado
+' to 'CNPJ do consignante (CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica). 
+Deve-se ter apenas os números do CNPJ, sem máscara. 
+Informação adicional específica para Modalidade de Crédito: Empréstimo-Crédito Pessoal Consignado
+'
+                  - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
                 - Modified property: contractAmount
                   - Type changed from 'number' to 'string'
                   - Format changed from 'double' to ''
@@ -160,6 +205,10 @@ GET /contracts/{contractId}
                 - Modified property: contractedFees
                   - Items changed
                     - Properties changed
+                      - Modified property: feeAmount
+                        - Nullable changed from true to false
+                        - Max changed from null to 2.147483647e+09
+                        - MaxLength changed from 20 to null
                       - Modified property: feeCharge
                         - MaxLength changed from 10 to null
                       - Modified property: feeChargeType
@@ -175,19 +224,18 @@ GET /contracts/{contractId}
                 - Modified property: contractedFinanceCharges
                   - Items changed
                     - Properties changed
+                      - Modified property: chargeRate
+                        - Max changed from null to 2.147483647e+09
+                        - MaxLength changed from 19 to null
                       - Modified property: chargeType
                         - MaxLength changed from 31 to null
                 - Modified property: dueDate
                   - Description changed from 'Data de vencimento Final da operação. Especificação RFC-3339' to 'Data de vencimento Final da operação. Especificação RFC-3339.
-[Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
 '
                   - MinLength changed from 0 to 2
-                  - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$'
                 - Modified property: firstInstalmentDueDate
-                  - Description changed from 'Data de vencimento primeira parcela do principal' to 'Data de vencimento primeira parcela do principal
-[Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA
+                  - Description changed from 'Data de vencimento primeira parcela do principal' to 'Data de vencimento primeira parcela do principal.
 '
-                  - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$'
                 - Modified property: instalmentPeriodicity
                   - MaxLength changed from 25 to null
                 - Modified property: interestRates
@@ -223,6 +271,16 @@ GET /contracts/{contractId}
                 - Modified property: ipocCode
                   - MinLength changed from 0 to 22
                   - Pattern changed from '' to '^\d{22,67}$'
+                - Modified property: productSubType
+                  - MaxLength changed from 47 to null
+                - Modified property: productType
+                  - MaxLength changed from 11 to null
+                - Modified property: settlementDate
+                  - Description changed from 'Data de liquidação da operação.
+[Restrição] Deve aceitar NA caso não seja retornado pela instituição.
+' to 'Data de liquidação da operação.
+'
+                  - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
 GET /contracts/{contractId}/payments
 - Modified query param: page
   - Schema changed
@@ -242,6 +300,10 @@ GET /contracts/{contractId}/payments
                   - Example changed from 100000.04 to '100000.0400'
                   - MinLength changed from 0 to 4
                   - MaxLength changed from 20 to 21
+                - Modified property: paidInstalments
+                  - Nullable changed from true to false
+                  - Max changed from null to 2.147483647e+09
+                  - MaxLength changed from 3 to null
                 - Modified property: releases
                   - Items changed
                     - Properties changed
@@ -271,11 +333,9 @@ GET /contracts/{contractId}/payments
                                   - MaxLength changed from 20 to 21
                                 - Modified property: feeCode
                                   - Description changed from 'Sigla identificadora da tarifa pactuada' to 'Sigla identificadora da tarifa pactuadas.
-[Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA
 '
                                 - Modified property: feeName
                                   - Description changed from 'Denominação da Tarifa pactuada' to 'Denominação da Tarifa pactuada.  
-[Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
 '
                       - Modified property: paidAmount
                         - Type changed from 'number' to 'string'
@@ -296,6 +356,10 @@ GET /contracts/{contractId}/payments
                   - Example changed from 100000.04 to '100000.0400'
                   - MinLength changed from 0 to 4
                   - MaxLength changed from 20 to 21
+                - Modified property: paidInstalments
+                  - Nullable changed from true to false
+                  - Max changed from null to 2.147483647e+09
+                  - MaxLength changed from 3 to null
                 - Modified property: releases
                   - Items changed
                     - Properties changed
@@ -325,11 +389,9 @@ GET /contracts/{contractId}/payments
                                   - MaxLength changed from 20 to 21
                                 - Modified property: feeCode
                                   - Description changed from 'Sigla identificadora da tarifa pactuada' to 'Sigla identificadora da tarifa pactuadas.
-[Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA
 '
                                 - Modified property: feeName
                                   - Description changed from 'Denominação da Tarifa pactuada' to 'Denominação da Tarifa pactuada.  
-[Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
 '
                       - Modified property: paidAmount
                         - Type changed from 'number' to 'string'
