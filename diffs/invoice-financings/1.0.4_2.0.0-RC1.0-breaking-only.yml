@@ -9,8 +9,21 @@ GET /contracts
   - Schema changed
     - Max changed from null to 2.147483647e+09
 - Responses changed
-  - Deleted response: default
   - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: ipocCode
+                    - Pattern changed from '' to '^\d{22,67}$'
+                  - Modified property: productSubType
+                    - MaxLength changed from 39 to null
+                  - Modified property: productType
+                    - MaxLength changed from 32 to null
+  - Modified response: default
     - Content changed
       - Modified media type: application/json
         - Schema changed
@@ -26,8 +39,92 @@ GET /contracts
                     - MaxLength changed from 32 to null
 GET /contracts/{contractId}
 - Responses changed
-  - Deleted response: default
   - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: CET
+                  - Type changed from 'number' to 'string'
+                  - Format changed from 'double' to ''
+                  - Nullable changed from true to false
+                  - Pattern changed from '' to '^[0-1]\.\d{4}$'
+                - Modified property: amortizationScheduled
+                  - MaxLength changed from 23 to null
+                - Modified property: contractAmount
+                  - Type changed from 'number' to 'string'
+                  - Format changed from 'double' to ''
+                  - Nullable changed from true to false
+                  - MaxLength changed from 20 to 21
+                - Modified property: contractNumber
+                  - Pattern changed from '' to '^\d{1,100}$'
+                - Modified property: contractedFees
+                  - Items changed
+                    - Properties changed
+                      - Modified property: feeAmount
+                        - Type changed from 'number' to 'string'
+                        - Format changed from 'double' to ''
+                        - Nullable changed from true to false
+                        - MaxLength changed from 20 to 21
+                      - Modified property: feeCharge
+                        - MaxLength changed from 10 to null
+                      - Modified property: feeChargeType
+                        - MaxLength changed from 11 to null
+                      - Modified property: feeCode
+                        - Pattern changed from '[\w\W\s]*' to '[\w\W\s]+'
+                      - Modified property: feeName
+                        - Pattern changed from '[\w\W\s]*' to '[\w\W\s]+'
+                      - Modified property: feeRate
+                        - Type changed from 'number' to 'string'
+                        - Format changed from 'double' to ''
+                        - Nullable changed from true to false
+                - Modified property: contractedFinanceCharges
+                  - Items changed
+                    - Properties changed
+                      - Modified property: chargeRate
+                        - MaxLength changed from 19 to null
+                      - Modified property: chargeType
+                        - MaxLength changed from 31 to null
+                - Modified property: dueDate
+                  - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$'
+                - Modified property: firstInstalmentDueDate
+                  - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$'
+                - Modified property: instalmentPeriodicity
+                  - MaxLength changed from 25 to null
+                - Modified property: interestRates
+                  - Items changed
+                    - Properties changed
+                      - Modified property: calculation
+                        - MaxLength changed from 6 to null
+                      - Modified property: interestRateType
+                        - MaxLength changed from 8 to null
+                      - Modified property: postFixedRate
+                        - Type changed from 'number' to 'string'
+                        - Format changed from 'double' to ''
+                        - Nullable changed from true to false
+                        - Pattern changed from '' to '^[0-1]\.\d{4}$'
+                      - Modified property: preFixedRate
+                        - Type changed from 'number' to 'string'
+                        - Format changed from 'double' to ''
+                        - Nullable changed from true to false
+                        - Pattern changed from '' to '^[0-1]\.\d{4}$'
+                      - Modified property: referentialRateIndexerSubType
+                        - MaxLength changed from 24 to null
+                      - Modified property: referentialRateIndexerType
+                        - MaxLength changed from 18 to null
+                      - Modified property: taxPeriodicity
+                        - MaxLength changed from 2 to null
+                      - Modified property: taxType
+                        - MaxLength changed from 7 to null
+                - Modified property: ipocCode
+                  - Pattern changed from '' to '^\d{22,67}$'
+                - Modified property: productSubType
+                  - MaxLength changed from 39 to null
+                - Modified property: productType
+                  - MaxLength changed from 32 to null
+  - Modified response: default
     - Content changed
       - Modified media type: application/json
         - Schema changed
@@ -117,7 +214,6 @@ GET /contracts/{contractId}/payments
   - Schema changed
     - Max changed from null to 2.147483647e+09
 - Responses changed
-  - Deleted response: default
   - Modified response: 200
     - Content changed
       - Modified media type: application/json
@@ -155,9 +251,53 @@ GET /contracts/{contractId}/payments
                                   - Nullable changed from true to false
                                   - MaxLength changed from 20 to 21
                                 - Modified property: feeCode
-                                  - Pattern changed from '[\w\W\s]*' to 'NA|[\w\W\s]+'
+                                  - Pattern changed from '[\w\W\s]*' to '[\w\W\s]+'
                                 - Modified property: feeName
-                                  - Pattern changed from '[\w\W\s]*' to 'NA|[\w\W\s]+'
+                                  - Pattern changed from '[\w\W\s]*' to '[\w\W\s]+'
+                      - Modified property: paidAmount
+                        - Type changed from 'number' to 'string'
+                        - Format changed from 'double' to ''
+                        - MaxLength changed from 20 to 21
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: contractOutstandingBalance
+                  - Type changed from 'number' to 'string'
+                  - Format changed from 'double' to ''
+                  - MaxLength changed from 20 to 21
+                - Modified property: paidInstalments
+                  - MaxLength changed from 3 to null
+                - Modified property: releases
+                  - Items changed
+                    - Properties changed
+                      - Modified property: overParcel
+                        - Properties changed
+                          - Modified property: charges
+                            - Items changed
+                              - Properties changed
+                                - Modified property: chargeAmount
+                                  - Type changed from 'number' to 'string'
+                                  - Format changed from 'double' to ''
+                                  - Nullable changed from true to false
+                                  - MaxLength changed from 20 to 21
+                                - Modified property: chargeType
+                                  - MaxLength changed from 31 to null
+                          - Modified property: fees
+                            - Items changed
+                              - Properties changed
+                                - Modified property: feeAmount
+                                  - Type changed from 'number' to 'string'
+                                  - Format changed from 'double' to ''
+                                  - Nullable changed from true to false
+                                  - MaxLength changed from 20 to 21
+                                - Modified property: feeCode
+                                  - Pattern changed from '[\w\W\s]*' to '[\w\W\s]+'
+                                - Modified property: feeName
+                                  - Pattern changed from '[\w\W\s]*' to '[\w\W\s]+'
                       - Modified property: paidAmount
                         - Type changed from 'number' to 'string'
                         - Format changed from 'double' to ''
@@ -167,8 +307,40 @@ GET /contracts/{contractId}/scheduled-instalments
   - Schema changed
     - Max changed from null to 2.147483647e+09
 - Responses changed
-  - Deleted response: default
   - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Required changed
+                - Deleted required property: balloonPayments
+              - Properties changed
+                - Modified property: balloonPayments
+                  - Items changed
+                    - Properties changed
+                      - Modified property: amount
+                        - Type changed from 'number' to 'string'
+                        - Format changed from 'double' to ''
+                        - Nullable changed from true to false
+                        - MaxLength changed from 20 to 21
+                      - Modified property: dueDate
+                        - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$'
+                - Modified property: contractRemainingNumber
+                  - MaxLength changed from 6 to null
+                - Modified property: dueInstalments
+                  - MaxLength changed from 3 to null
+                - Modified property: paidInstalments
+                  - MaxLength changed from 3 to null
+                - Modified property: pastDueInstalments
+                  - MaxLength changed from 3 to null
+                - Modified property: totalNumberOfInstalments
+                  - MaxLength changed from 6 to null
+                - Modified property: typeContractRemaining
+                  - MaxLength changed from 22 to null
+                - Modified property: typeNumberOfInstalments
+                  - MaxLength changed from 15 to null
+  - Modified response: default
     - Content changed
       - Modified media type: application/json
         - Schema changed
@@ -206,8 +378,23 @@ GET /contracts/{contractId}/warranties
   - Schema changed
     - Max changed from null to 2.147483647e+09
 - Responses changed
-  - Deleted response: default
   - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: warrantyAmount
+                    - Type changed from 'number' to 'string'
+                    - Format changed from 'double' to ''
+                    - MaxLength changed from 20 to 21
+                  - Modified property: warrantySubType
+                    - MaxLength changed from 96 to null
+                  - Modified property: warrantyType
+                    - MaxLength changed from 37 to null
+  - Modified response: default
     - Content changed
       - Modified media type: application/json
         - Schema changed
