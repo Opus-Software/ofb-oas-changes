@@ -44,7 +44,10 @@ GET /contracts/{contractId}
                 - Modified property: contractAmount
                   - Type changed from 'number' to 'string'
                   - Format changed from 'double' to ''
+                  - Nullable changed from true to false
                   - MaxLength changed from 20 to 21
+                - Modified property: contractNumber
+                  - Pattern changed from '' to '^\d{1,100}$'
                 - Modified property: contractedFees
                   - Items changed
                     - Properties changed
@@ -58,9 +61,9 @@ GET /contracts/{contractId}
                       - Modified property: feeChargeType
                         - MaxLength changed from 11 to null
                       - Modified property: feeCode
-                        - Pattern changed from '[\w\W\s]*' to 'NA|[\w\W\s]+'
+                        - Pattern changed from '[\w\W\s]*' to '[\w\W\s]+'
                       - Modified property: feeName
-                        - Pattern changed from '[\w\W\s]*' to 'NA|[\w\W\s]+'
+                        - Pattern changed from '[\w\W\s]*' to '[\w\W\s]+'
                       - Modified property: feeRate
                         - Type changed from 'number' to 'string'
                         - Format changed from 'double' to ''
@@ -175,29 +178,22 @@ GET /contracts/{contractId}/scheduled-instalments
                 - Deleted required property: balloonPayments
               - Properties changed
                 - Modified property: balloonPayments
-                  - Nullable changed from true to false
                   - Items changed
                     - Properties changed
-                      - Deleted property: currency
                       - Modified property: amount
-                        - Type changed from 'number' to 'object'
+                        - Type changed from 'number' to 'string'
                         - Format changed from 'double' to ''
-                        - AdditionalProperties changed from null to false
                         - Nullable changed from true to false
-                        - MaxLength changed from 20 to null
+                        - MaxLength changed from 20 to 21
                       - Modified property: dueDate
                         - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$'
                 - Modified property: contractRemainingNumber
-                  - Nullable changed from true to false
                   - MaxLength changed from 6 to null
                 - Modified property: dueInstalments
-                  - Nullable changed from true to false
                   - MaxLength changed from 3 to null
                 - Modified property: paidInstalments
-                  - Nullable changed from true to false
                   - MaxLength changed from 3 to null
                 - Modified property: pastDueInstalments
-                  - Nullable changed from true to false
                   - MaxLength changed from 3 to null
                 - Modified property: totalNumberOfInstalments
                   - MaxLength changed from 6 to null
