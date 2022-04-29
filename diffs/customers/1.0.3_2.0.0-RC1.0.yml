@@ -1,1 +1,882 @@
-﻿failed to load revision spec from "/data/2.0.0-RC1.0.yml" with map key "content" not found
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 6
+-------------------------
+GET /business/financial-relations
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: procurators
+                  - Items changed
+                    - Properties changed
+                      - Modified property: type
+                        - MaxLength changed from 19 to null
+                - Modified property: productsServicesType
+                  - Items changed
+                    - MaxLength changed from 24 to null
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: procurators
+                  - Items changed
+                    - Properties changed
+                      - Modified property: type
+                        - MaxLength changed from 19 to null
+                - Modified property: productsServicesType
+                  - Items changed
+                    - MaxLength changed from 24 to null
+GET /business/identifications
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - AdditionalProperties changed from null to false
+                - Required changed
+                  - Deleted required property: tradeName
+                - Properties changed
+                  - Modified property: cnpjNumber
+                    - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
+                  - Modified property: companyCnpjNumber
+                    - MaxLength changed from 14 to null
+                    - Pattern changed from '\d{14}|^NA$' to ''
+                    - Items changed
+                      - Example changed from null to '50685362000135'
+                      - MaxLength changed from null to 14
+                      - Pattern changed from '' to '^\d{14}$'
+                  - Modified property: contacts
+                    - Properties changed
+                      - Modified property: phones
+                        - Items changed
+                          - Properties changed
+                            - Modified property: areaCode
+                              - MaxLength changed from 2 to null
+                            - Modified property: countryCallingCode
+                              - Pattern changed from '^\d{2,4}$|^NA$' to '^\d{2,4}$'
+                            - Modified property: number
+                              - Pattern changed from '^([0-9]{8,11})|^NA$' to '^([0-9]{8,11})$'
+                            - Modified property: phoneExtension
+                              - Pattern changed from '^\d{1,5}$|^NA$' to '^\d{1,5}$'
+                            - Modified property: type
+                              - MaxLength changed from 5 to null
+                      - Modified property: postalAddresses
+                        - Items changed
+                          - Required changed
+                            - New required property: countryCode
+                            - Deleted required property: districtName
+                          - Properties changed
+                            - Modified property: address
+                              - Description changed from 'Corresponde ao endereço comercial do cliente' to 'Corresponde ao endereço comercial do cliente.
+[Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
+'
+                              - MinLength changed from 0 to 2
+                              - Pattern changed from '[\w\W\s]*' to '^\w{2}[\w\W\s]*$'
+                            - Modified property: country
+                              - Description changed from 'Nome do país' to 'Nome do país
+[Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
+'
+                              - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                            - Modified property: countryCode
+                              - Description changed from 'Código do pais de acordo com o código “alpha3” do ISO-3166' to 'Código do pais de acordo com o código alpha3 do ISO-3166'
+                              - Pattern changed from '' to '^([A-Z]{3})$'
+                            - Modified property: districtName
+                              - Description changed from 'Bairro é uma comunidade ou região localizada em uma cidade ou município de acordo com as suas subdivisões geográficas.' to 'Bairro é uma comunidade ou região localizada em uma cidade ou município de acordo com as suas subdivisões geográficas. Preenchimento obrigatório, se houver.
+'
+                              - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                            - Modified property: geographicCoordinates
+                              - Properties changed
+                                - Modified property: latitude
+                                  - Description changed from 'Informação da Latitude referente a geolocalização informada. Entre -90 e 90.p.ex. '-90.8365180'. (2 casas antes da vírgula, 11 posições) 
+' to 'Informação da Latitude referente a geolocalização informada. Entre -90 e 90.p.ex. '-23.5475000'. (2 casas antes da vírgula, 11 posições)
+'
+                                  - Example changed from '-90.8365180' to '-23.5475000'
+                                - Modified property: longitude
+                                  - Description changed from 'Informação da Longitude referente a geolocalização informada. Entre -180 e 180. p.ex '-180.836519.' (3 casas antes da vírgula, 11 posições) 
+' to 'Informação da Longitude referente a geolocalização informada. Entre -180 e 180. p.ex '-46.6361100'. (3 casas antes da vírgula, 11 posições)
+'
+                                  - Example changed from '-180.836519' to '-46.6361100'
+                            - Modified property: postCode
+                              - Pattern changed from '\d{8}|^NA$' to '^\d{8}$'
+                            - Modified property: townName
+                              - Description changed from 'Localidade: O nome da localidade corresponde à designação da cidade ou município no qual o endereço está localizado.
+' to 'Localidade: O nome da localidade corresponde à designação da cidade ou município no qual o endereço está localizado.  
+[Restrição] Caso a transmissora não possua a informação deverá retornar "NA" neste campo.
+'
+                              - MinLength changed from 0 to 2
+                              - Pattern changed from '[\w\W\s]*' to '^\w{2}[\w\W\s]*$'
+                  - Modified property: otherDocuments
+                    - Items changed
+                      - Required changed
+                        - Deleted required property: country
+                        - Deleted required property: number
+                      - Properties changed
+                        - Modified property: country
+                          - Description changed from 'Pais de emissão do tipo de documento informado. Código do pais de acordo com o código “alpha3” do ISO-3166' to 'Pais de emissão do tipo de documento informado. Código do pais de acordo com o código alpha3 do ISO-3166'
+                          - Pattern changed from '^(\w{3}){1}$|^NA$' to '^(\w{3}){1}$'
+                        - Modified property: expirationDate
+                          - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                  - Modified property: parties
+                    - Items changed
+                      - Required changed
+                        - Deleted required property: documentCountry
+                        - Deleted required property: documentExpirationDate
+                        - Deleted required property: socialName
+                      - Properties changed
+                        - Modified property: documentCountry
+                          - Description changed from 'País de emissão do documento. Código do pais de acordo com o código alpha3 do ISO-3166.' to 'País de emissão do documento. Código do pais de acordo com o código alpha3 do ISO-3166.
+'
+                          - Pattern changed from '' to '[\w*\W*]'
+                        - Modified property: documentExpirationDate
+                          - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                        - Modified property: shareholding
+                          - Pattern changed from '^((\d{1,9}\.\d{2}){1}|NA)$' to '^((\d{1,9}\.\d{2}){1})$'
+                        - Modified property: socialName
+                          - Description changed from 'Nome social da pessoa natural, se houver. (aquele pelo qual travestis e transexuais se reconhecem, bem como são identificados por sua comunidade e em seu meio social, conforme Decreto Local)' to 'Nome social da pessoa natural, se houver. (aquele pelo qual travestis e transexuais se reconhecem, bem como são identificados por sua comunidade e em seu meio social, conforme Decreto Local).   
+[Restrição] De preenchimento obrigatório, se houver.
+'
+                        - Modified property: type
+                          - MaxLength changed from 13 to null
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - AdditionalProperties changed from null to false
+                - Required changed
+                  - Deleted required property: tradeName
+                - Properties changed
+                  - Modified property: cnpjNumber
+                    - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
+                  - Modified property: companyCnpjNumber
+                    - MaxLength changed from 14 to null
+                    - Pattern changed from '\d{14}|^NA$' to ''
+                    - Items changed
+                      - Example changed from null to '50685362000135'
+                      - MaxLength changed from null to 14
+                      - Pattern changed from '' to '^\d{14}$'
+                  - Modified property: contacts
+                    - Properties changed
+                      - Modified property: phones
+                        - Items changed
+                          - Properties changed
+                            - Modified property: areaCode
+                              - MaxLength changed from 2 to null
+                            - Modified property: countryCallingCode
+                              - Pattern changed from '^\d{2,4}$|^NA$' to '^\d{2,4}$'
+                            - Modified property: number
+                              - Pattern changed from '^([0-9]{8,11})|^NA$' to '^([0-9]{8,11})$'
+                            - Modified property: phoneExtension
+                              - Pattern changed from '^\d{1,5}$|^NA$' to '^\d{1,5}$'
+                            - Modified property: type
+                              - MaxLength changed from 5 to null
+                      - Modified property: postalAddresses
+                        - Items changed
+                          - Required changed
+                            - New required property: countryCode
+                            - Deleted required property: districtName
+                          - Properties changed
+                            - Modified property: address
+                              - Description changed from 'Corresponde ao endereço comercial do cliente' to 'Corresponde ao endereço comercial do cliente.
+[Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
+'
+                              - MinLength changed from 0 to 2
+                              - Pattern changed from '[\w\W\s]*' to '^\w{2}[\w\W\s]*$'
+                            - Modified property: country
+                              - Description changed from 'Nome do país' to 'Nome do país
+[Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
+'
+                              - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                            - Modified property: countryCode
+                              - Description changed from 'Código do pais de acordo com o código “alpha3” do ISO-3166' to 'Código do pais de acordo com o código alpha3 do ISO-3166'
+                              - Pattern changed from '' to '^([A-Z]{3})$'
+                            - Modified property: districtName
+                              - Description changed from 'Bairro é uma comunidade ou região localizada em uma cidade ou município de acordo com as suas subdivisões geográficas.' to 'Bairro é uma comunidade ou região localizada em uma cidade ou município de acordo com as suas subdivisões geográficas. Preenchimento obrigatório, se houver.
+'
+                              - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                            - Modified property: geographicCoordinates
+                              - Properties changed
+                                - Modified property: latitude
+                                  - Description changed from 'Informação da Latitude referente a geolocalização informada. Entre -90 e 90.p.ex. '-90.8365180'. (2 casas antes da vírgula, 11 posições) 
+' to 'Informação da Latitude referente a geolocalização informada. Entre -90 e 90.p.ex. '-23.5475000'. (2 casas antes da vírgula, 11 posições)
+'
+                                  - Example changed from '-90.8365180' to '-23.5475000'
+                                - Modified property: longitude
+                                  - Description changed from 'Informação da Longitude referente a geolocalização informada. Entre -180 e 180. p.ex '-180.836519.' (3 casas antes da vírgula, 11 posições) 
+' to 'Informação da Longitude referente a geolocalização informada. Entre -180 e 180. p.ex '-46.6361100'. (3 casas antes da vírgula, 11 posições)
+'
+                                  - Example changed from '-180.836519' to '-46.6361100'
+                            - Modified property: postCode
+                              - Pattern changed from '\d{8}|^NA$' to '^\d{8}$'
+                            - Modified property: townName
+                              - Description changed from 'Localidade: O nome da localidade corresponde à designação da cidade ou município no qual o endereço está localizado.
+' to 'Localidade: O nome da localidade corresponde à designação da cidade ou município no qual o endereço está localizado.  
+[Restrição] Caso a transmissora não possua a informação deverá retornar "NA" neste campo.
+'
+                              - MinLength changed from 0 to 2
+                              - Pattern changed from '[\w\W\s]*' to '^\w{2}[\w\W\s]*$'
+                  - Modified property: otherDocuments
+                    - Items changed
+                      - Required changed
+                        - Deleted required property: country
+                        - Deleted required property: number
+                      - Properties changed
+                        - Modified property: country
+                          - Description changed from 'Pais de emissão do tipo de documento informado. Código do pais de acordo com o código “alpha3” do ISO-3166' to 'Pais de emissão do tipo de documento informado. Código do pais de acordo com o código alpha3 do ISO-3166'
+                          - Pattern changed from '^(\w{3}){1}$|^NA$' to '^(\w{3}){1}$'
+                        - Modified property: expirationDate
+                          - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                  - Modified property: parties
+                    - Items changed
+                      - Required changed
+                        - Deleted required property: documentCountry
+                        - Deleted required property: documentExpirationDate
+                        - Deleted required property: socialName
+                      - Properties changed
+                        - Modified property: documentCountry
+                          - Description changed from 'País de emissão do documento. Código do pais de acordo com o código alpha3 do ISO-3166.' to 'País de emissão do documento. Código do pais de acordo com o código alpha3 do ISO-3166.
+'
+                          - Pattern changed from '' to '[\w*\W*]'
+                        - Modified property: documentExpirationDate
+                          - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                        - Modified property: shareholding
+                          - Pattern changed from '^((\d{1,9}\.\d{2}){1}|NA)$' to '^((\d{1,9}\.\d{2}){1})$'
+                        - Modified property: socialName
+                          - Description changed from 'Nome social da pessoa natural, se houver. (aquele pelo qual travestis e transexuais se reconhecem, bem como são identificados por sua comunidade e em seu meio social, conforme Decreto Local)' to 'Nome social da pessoa natural, se houver. (aquele pelo qual travestis e transexuais se reconhecem, bem como são identificados por sua comunidade e em seu meio social, conforme Decreto Local).   
+[Restrição] De preenchimento obrigatório, se houver.
+'
+                        - Modified property: type
+                          - MaxLength changed from 13 to null
+GET /business/qualifications
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: economicActivities
+                  - Items changed
+                    - AdditionalProperties changed from null to false
+                    - Properties changed
+                      - Modified property: code
+                        - Type changed from 'number' to 'string'
+                        - Example changed from 8.599604e+06 to '8599604'
+                        - MinLength changed from 0 to 2
+                        - Pattern changed from '^\d{7}$|^NA$' to '^\d{7}$'
+                      - Modified property: isMain
+                        - Description changed from 'Indica se é o ramo principal de atividade da empresa quando true e se é o ramo secundário quando false.' to 'Indica se é o ramo principal de atividade da empresa quando true e se é o ramo secundário quando false. [Restrição] Somente uma ocorrência relativa ao código da atividade econômica principal deve trazer o valor true.'
+                - Modified property: informedPatrimony
+                  - Required changed
+                    - Deleted required property: currency
+                  - Properties changed
+                    - Deleted property: currency
+                    - Modified property: amount
+                      - Type changed from 'number' to 'object'
+                      - Format changed from 'double' to ''
+                      - Description changed from 'Valor do patrimônio informado. Expresso em valor monetário com 4 casas decimais.
+Patrimônio é o conjunto de bens vinculado a uma pessoa ou a uma entidade.
+' to 'Valor do patrimônio informado'
+                      - Example changed from 100000.04 to null
+                      - AdditionalProperties changed from null to false
+                      - Nullable changed from true to false
+                      - MaxLength changed from 20 to null
+                      - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                      - Required changed
+                        - New required property: amount
+                        - New required property: currency
+                      - Properties changed
+                        - New property: amount
+                        - New property: currency
+                    - Modified property: date
+                      - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                - Modified property: informedRevenue
+                  - Required changed
+                    - Deleted required property: currency
+                  - Properties changed
+                    - Deleted property: currency
+                    - Modified property: amount
+                      - Type changed from 'number' to 'object'
+                      - Format changed from 'double' to ''
+                      - Description changed from 'Valor do patrimônio informado. Expresso em valor monetário com 4 casas decimais.
+Patrimônio é o conjunto de bens vinculado a uma pessoa ou a uma entidade.
+' to 'Valor do patrimônio informado'
+                      - Example changed from 100000.04 to null
+                      - AdditionalProperties changed from null to false
+                      - Nullable changed from true to false
+                      - MaxLength changed from 20 to null
+                      - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                      - Required changed
+                        - New required property: amount
+                        - New required property: currency
+                      - Properties changed
+                        - New property: amount
+                        - New property: currency
+                    - Modified property: frequencyAdditionalInfo
+                      - Description changed from 'Texto livre para complementar informação relativa ao patrimonio. 
+[Restrição] Preencher quando frequency for igual OUTROS.
+' to 'Texto livre para complementar informação relativa ao patrimonio.
+[Restrição] Preencher quando frequency for igual OUTROS.
+'
+                    - Modified property: year
+                      - Nullable changed from true to false
+                      - MaxLength changed from 4 to null
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: economicActivities
+                  - Items changed
+                    - AdditionalProperties changed from null to false
+                    - Properties changed
+                      - Modified property: code
+                        - Type changed from 'number' to 'string'
+                        - Example changed from 8.599604e+06 to '8599604'
+                        - MinLength changed from 0 to 2
+                        - Pattern changed from '^\d{7}$|^NA$' to '^\d{7}$'
+                      - Modified property: isMain
+                        - Description changed from 'Indica se é o ramo principal de atividade da empresa quando true e se é o ramo secundário quando false.' to 'Indica se é o ramo principal de atividade da empresa quando true e se é o ramo secundário quando false. [Restrição] Somente uma ocorrência relativa ao código da atividade econômica principal deve trazer o valor true.'
+                - Modified property: informedPatrimony
+                  - Required changed
+                    - Deleted required property: currency
+                  - Properties changed
+                    - Deleted property: currency
+                    - Modified property: amount
+                      - Type changed from 'number' to 'object'
+                      - Format changed from 'double' to ''
+                      - Description changed from 'Valor do patrimônio informado. Expresso em valor monetário com 4 casas decimais.
+Patrimônio é o conjunto de bens vinculado a uma pessoa ou a uma entidade.
+' to 'Valor do patrimônio informado'
+                      - Example changed from 100000.04 to null
+                      - AdditionalProperties changed from null to false
+                      - Nullable changed from true to false
+                      - MaxLength changed from 20 to null
+                      - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                      - Required changed
+                        - New required property: amount
+                        - New required property: currency
+                      - Properties changed
+                        - New property: amount
+                        - New property: currency
+                    - Modified property: date
+                      - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                - Modified property: informedRevenue
+                  - Required changed
+                    - Deleted required property: currency
+                  - Properties changed
+                    - Deleted property: currency
+                    - Modified property: amount
+                      - Type changed from 'number' to 'object'
+                      - Format changed from 'double' to ''
+                      - Description changed from 'Valor do patrimônio informado. Expresso em valor monetário com 4 casas decimais.
+Patrimônio é o conjunto de bens vinculado a uma pessoa ou a uma entidade.
+' to 'Valor do patrimônio informado'
+                      - Example changed from 100000.04 to null
+                      - AdditionalProperties changed from null to false
+                      - Nullable changed from true to false
+                      - MaxLength changed from 20 to null
+                      - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                      - Required changed
+                        - New required property: amount
+                        - New required property: currency
+                      - Properties changed
+                        - New property: amount
+                        - New property: currency
+                    - Modified property: frequencyAdditionalInfo
+                      - Description changed from 'Texto livre para complementar informação relativa ao patrimonio. 
+[Restrição] Preencher quando frequency for igual OUTROS.
+' to 'Texto livre para complementar informação relativa ao patrimonio.
+[Restrição] Preencher quando frequency for igual OUTROS.
+'
+                    - Modified property: year
+                      - Nullable changed from true to false
+                      - MaxLength changed from 4 to null
+GET /personal/financial-relations
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Required changed
+                - Deleted required property: procurators
+              - Properties changed
+                - Modified property: accounts
+                  - Description changed from 'Lista de contas depósito à vista, poupança e pagamento pré-pagas mantidas pelo cliente na instituição transmissora.    
+' to 'Lista de contas depósito à vista, poupança e pagamento pré-pagas mantidas pelo cliente na instituição transmissora.
+'
+                  - Items changed
+                    - Properties changed
+                      - Modified property: branchCode
+                        - Pattern changed from '\d{4}|^NA$' to '^\d{4}$'
+                      - Modified property: compeCode
+                        - Pattern changed from '\d{3}|^NA$' to '^\d{3}$'
+                      - Modified property: number
+                        - Pattern changed from '^\d{8,20}$|^NA$' to '^\d{8,20}$'
+                - Modified property: procurators
+                  - Description changed from 'Lista dos representantes. De preenchimento obrigatório se houver representante.' to 'Lista dos representantes. 
+[Restrição] De preenchimento obrigatório se houver representante.
+'
+                  - MinItems changed from 1 to 0
+                  - Items changed
+                    - Required changed
+                      - Deleted required property: socialName
+                    - Properties changed
+                      - Modified property: cpfNumber
+                        - Pattern changed from '^\d{11}$|^NA$' to '^\d{11}$'
+                      - Modified property: type
+                        - New enum values: [NAO_POSSUI]
+                        - Deleted enum values: [NAO_APLICA]
+                        - MaxLength changed from 19 to null
+                - Modified property: productsServicesType
+                  - Items changed
+                    - MaxLength changed from 24 to null
+                - Modified property: productsServicesTypeAdditionalInfo
+                  - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Required changed
+                - Deleted required property: procurators
+              - Properties changed
+                - Modified property: accounts
+                  - Description changed from 'Lista de contas depósito à vista, poupança e pagamento pré-pagas mantidas pelo cliente na instituição transmissora.    
+' to 'Lista de contas depósito à vista, poupança e pagamento pré-pagas mantidas pelo cliente na instituição transmissora.
+'
+                  - Items changed
+                    - Properties changed
+                      - Modified property: branchCode
+                        - Pattern changed from '\d{4}|^NA$' to '^\d{4}$'
+                      - Modified property: compeCode
+                        - Pattern changed from '\d{3}|^NA$' to '^\d{3}$'
+                      - Modified property: number
+                        - Pattern changed from '^\d{8,20}$|^NA$' to '^\d{8,20}$'
+                - Modified property: procurators
+                  - Description changed from 'Lista dos representantes. De preenchimento obrigatório se houver representante.' to 'Lista dos representantes. 
+[Restrição] De preenchimento obrigatório se houver representante.
+'
+                  - MinItems changed from 1 to 0
+                  - Items changed
+                    - Required changed
+                      - Deleted required property: socialName
+                    - Properties changed
+                      - Modified property: cpfNumber
+                        - Pattern changed from '^\d{11}$|^NA$' to '^\d{11}$'
+                      - Modified property: type
+                        - New enum values: [NAO_POSSUI]
+                        - Deleted enum values: [NAO_APLICA]
+                        - MaxLength changed from 19 to null
+                - Modified property: productsServicesType
+                  - Items changed
+                    - MaxLength changed from 24 to null
+                - Modified property: productsServicesTypeAdditionalInfo
+                  - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+GET /personal/identifications
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: companyCnpj
+                    - Items changed
+                      - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
+                  - Modified property: contacts
+                    - Properties changed
+                      - Modified property: phones
+                        - Items changed
+                          - Properties changed
+                            - Modified property: areaCode
+                              - MaxLength changed from 2 to null
+                            - Modified property: countryCallingCode
+                              - Pattern changed from '^\d{2,4}$|^NA$' to '^\d{2,4}$'
+                            - Modified property: number
+                              - Pattern changed from '^([0-9]{8,11})|^NA$' to '^([0-9]{8,11})$'
+                            - Modified property: phoneExtension
+                              - Pattern changed from '^\d{1,5}$|^NA$' to '^\d{1,5}$'
+                            - Modified property: type
+                              - MaxLength changed from 5 to null
+                      - Modified property: postalAddresses
+                        - Items changed
+                          - Required changed
+                            - Deleted required property: districtName
+                          - Properties changed
+                            - Modified property: countryCode
+                              - Description changed from 'Código do pais de acordo com o código “alpha3” do ISO-3166.' to 'Código do pais de acordo com o código alpha3 do ISO-3166.'
+                              - Pattern changed from '' to '^([A-Z]{3})$'
+                            - Modified property: districtName
+                              - Description changed from 'Bairro é uma comunidade ou região localizada em uma cidade ou município de acordo com as suas subdivisões geográficas.' to 'Bairro é uma comunidade ou região localizada em uma cidade ou município de acordo com as suas subdivisões geográficas.
+[Restrição] De preenchimento obrigatório, se houver.
+'
+                            - Modified property: geographicCoordinates
+                              - Properties changed
+                                - Modified property: latitude
+                                  - Description changed from 'Informação da Latitude referente a geolocalização informada. Entre -90 e 90.p.ex. '-90.8365180'. (2 casas antes da vírgula, 11 posições) 
+' to 'Informação da Latitude referente a geolocalização informada. Entre -90 e 90.p.ex. '-23.5475000'. (2 casas antes da vírgula, 11 posições)
+'
+                                  - Example changed from '-90.8365180' to '-23.5475000'
+                                - Modified property: longitude
+                                  - Description changed from 'Informação da Longitude referente a geolocalização informada. Entre -180 e 180. p.ex '-180.836519.' (3 casas antes da vírgula, 11 posições) 
+' to 'Informação da Longitude referente a geolocalização informada. Entre -180 e 180. p.ex '-46.6361100'. (3 casas antes da vírgula, 11 posições)
+'
+                                  - Example changed from '-180.836519' to '-46.6361100'
+                            - Modified property: postCode
+                              - Pattern changed from '\d{8}|^NA$' to '^\d{8}$'
+                  - Modified property: documents
+                    - Properties changed
+                      - Modified property: cpfNumber
+                        - Pattern changed from '^\d{11}$|^NA$' to '^\d{11}$'
+                      - Modified property: passportCountry
+                        - Pattern changed from '^(\w{3}){1}$|^NA$' to '^(\w{3}){1}$'
+                      - Modified property: passportExpirationDate
+                        - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                      - Modified property: passportIssueDate
+                        - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                      - Modified property: passportNumber
+                        - Description changed from 'Número do Passaporte. Documento concedido aos viajantes por uma autoridade
+administrativa nacional a fim de certificar sua identidade perante autoridades
+estrangeiras. De preenchimento obrigatório. Aplicável somente à Pessoa natural
+residente no exterior desobrigada de inscrição no CPF.
+' to 'Número do Passaporte. Documento concedido aos viajantes por uma autoridade
+administrativa nacional a fim de certificar sua identidade perante autoridades
+estrangeiras. De preenchimento obrigatório. Aplicável somente à Pessoa natural
+residente no exterior desobrigada de inscrição no CPF.
+[Restrição] Aplicável somente à Pessoa natural residente no exterior desobrigada de inscrição no CPF.
+'
+                        - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                  - Modified property: filiation
+                    - Items changed
+                      - Properties changed
+                        - Modified property: civilName
+                          - Description changed from 'Nome civil completo da pessoa relativa à filiação.
+(Direito fundamental da pessoa, o nome civil é aquele atribuído à pessoa natural desde o registro de seu nascimento, 
+com o qual será identificada por toda a sua vida, bem como após a sua morte)
+' to 'Nome civil completo da pessoa relativa à filiação.
+(Direito fundamental da pessoa, o nome civil é aquele atribuído à pessoa natural desde o registro de seu nascimento, 
+com o qual será identificada por toda a sua vida, bem como após a sua morte).
+'
+                          - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                        - Modified property: socialName
+                          - Description changed from 'Nome social da pessoa natural, se houver. 
+(aquele pelo qual travestis e transexuais se reconhecem, 
+bem como são identificados por sua comunidade e em seu meio social, conforme Decreto Local)
+' to 'Nome social da pessoa natural, se houver. 
+(aquele pelo qual travestis e transexuais se reconhecem, 
+bem como são identificados por sua comunidade e em seu meio social, conforme Decreto Local).
+'
+                          - Example changed from 'NA' to null
+                          - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                  - Modified property: hasBrazilianNationality
+                    - Nullable changed from true to false
+                  - Modified property: maritalStatusAdditionalInfo
+                    - Description changed from 'Campo livre para complementar a informação relativa ao estado marital, quando selecionada a opção 'OUTROS'' to 'Campo livre para complementar a informação relativa ao estado marital.
+[Restrição] Preenchimento obrigatório quando selecionado o tipo 'OUTRO'.
+'
+                  - Modified property: maritalStatusCode
+                    - Description changed from 'Estado marital do cliente. 
+' to 'Estado marital do cliente.
+'
+                    - New enum values: [NAO_DISPONIVEL]
+                  - Modified property: nationality
+                    - Items changed
+                      - Properties changed
+                        - Modified property: documents
+                          - Items changed
+                            - Properties changed
+                              - Modified property: country
+                                - Description changed from 'Nome do país' to 'Nome do país.
+'
+                                - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                              - Modified property: expirationDate
+                                - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                              - Modified property: issueDate
+                                - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                        - Modified property: otherNationalitiesInfo
+                          - Description changed from 'Campo de preenchimento obrigatório caso o cliente não possua nacionalidade brasileira. Preencher indicando todas suas demais nacionalidades utilizando o código de pais de acordo com o código “alpha3” do ISO-3166.p.ex.'CAN'
+' to 'Campo de preenchimento obrigatório caso o cliente não possua nacionalidade brasileira. Preencher indicando todas suas demais nacionalidades utilizando o código de pais de acordo com o código alpha3 do ISO-3166.p.ex.'CAN'
+'
+                          - Pattern changed from '' to '^\S[\s\S]*$'
+                  - Modified property: otherDocuments
+                    - Items changed
+                      - Properties changed
+                        - Modified property: expirationDate
+                          - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: companyCnpj
+                    - Items changed
+                      - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
+                  - Modified property: contacts
+                    - Properties changed
+                      - Modified property: phones
+                        - Items changed
+                          - Properties changed
+                            - Modified property: areaCode
+                              - MaxLength changed from 2 to null
+                            - Modified property: countryCallingCode
+                              - Pattern changed from '^\d{2,4}$|^NA$' to '^\d{2,4}$'
+                            - Modified property: number
+                              - Pattern changed from '^([0-9]{8,11})|^NA$' to '^([0-9]{8,11})$'
+                            - Modified property: phoneExtension
+                              - Pattern changed from '^\d{1,5}$|^NA$' to '^\d{1,5}$'
+                            - Modified property: type
+                              - MaxLength changed from 5 to null
+                      - Modified property: postalAddresses
+                        - Items changed
+                          - Required changed
+                            - Deleted required property: districtName
+                          - Properties changed
+                            - Modified property: countryCode
+                              - Description changed from 'Código do pais de acordo com o código “alpha3” do ISO-3166.' to 'Código do pais de acordo com o código alpha3 do ISO-3166.'
+                              - Pattern changed from '' to '^([A-Z]{3})$'
+                            - Modified property: districtName
+                              - Description changed from 'Bairro é uma comunidade ou região localizada em uma cidade ou município de acordo com as suas subdivisões geográficas.' to 'Bairro é uma comunidade ou região localizada em uma cidade ou município de acordo com as suas subdivisões geográficas.
+[Restrição] De preenchimento obrigatório, se houver.
+'
+                            - Modified property: geographicCoordinates
+                              - Properties changed
+                                - Modified property: latitude
+                                  - Description changed from 'Informação da Latitude referente a geolocalização informada. Entre -90 e 90.p.ex. '-90.8365180'. (2 casas antes da vírgula, 11 posições) 
+' to 'Informação da Latitude referente a geolocalização informada. Entre -90 e 90.p.ex. '-23.5475000'. (2 casas antes da vírgula, 11 posições)
+'
+                                  - Example changed from '-90.8365180' to '-23.5475000'
+                                - Modified property: longitude
+                                  - Description changed from 'Informação da Longitude referente a geolocalização informada. Entre -180 e 180. p.ex '-180.836519.' (3 casas antes da vírgula, 11 posições) 
+' to 'Informação da Longitude referente a geolocalização informada. Entre -180 e 180. p.ex '-46.6361100'. (3 casas antes da vírgula, 11 posições)
+'
+                                  - Example changed from '-180.836519' to '-46.6361100'
+                            - Modified property: postCode
+                              - Pattern changed from '\d{8}|^NA$' to '^\d{8}$'
+                  - Modified property: documents
+                    - Properties changed
+                      - Modified property: cpfNumber
+                        - Pattern changed from '^\d{11}$|^NA$' to '^\d{11}$'
+                      - Modified property: passportCountry
+                        - Pattern changed from '^(\w{3}){1}$|^NA$' to '^(\w{3}){1}$'
+                      - Modified property: passportExpirationDate
+                        - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                      - Modified property: passportIssueDate
+                        - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                      - Modified property: passportNumber
+                        - Description changed from 'Número do Passaporte. Documento concedido aos viajantes por uma autoridade
+administrativa nacional a fim de certificar sua identidade perante autoridades
+estrangeiras. De preenchimento obrigatório. Aplicável somente à Pessoa natural
+residente no exterior desobrigada de inscrição no CPF.
+' to 'Número do Passaporte. Documento concedido aos viajantes por uma autoridade
+administrativa nacional a fim de certificar sua identidade perante autoridades
+estrangeiras. De preenchimento obrigatório. Aplicável somente à Pessoa natural
+residente no exterior desobrigada de inscrição no CPF.
+[Restrição] Aplicável somente à Pessoa natural residente no exterior desobrigada de inscrição no CPF.
+'
+                        - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                  - Modified property: filiation
+                    - Items changed
+                      - Properties changed
+                        - Modified property: civilName
+                          - Description changed from 'Nome civil completo da pessoa relativa à filiação.
+(Direito fundamental da pessoa, o nome civil é aquele atribuído à pessoa natural desde o registro de seu nascimento, 
+com o qual será identificada por toda a sua vida, bem como após a sua morte)
+' to 'Nome civil completo da pessoa relativa à filiação.
+(Direito fundamental da pessoa, o nome civil é aquele atribuído à pessoa natural desde o registro de seu nascimento, 
+com o qual será identificada por toda a sua vida, bem como após a sua morte).
+'
+                          - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                        - Modified property: socialName
+                          - Description changed from 'Nome social da pessoa natural, se houver. 
+(aquele pelo qual travestis e transexuais se reconhecem, 
+bem como são identificados por sua comunidade e em seu meio social, conforme Decreto Local)
+' to 'Nome social da pessoa natural, se houver. 
+(aquele pelo qual travestis e transexuais se reconhecem, 
+bem como são identificados por sua comunidade e em seu meio social, conforme Decreto Local).
+'
+                          - Example changed from 'NA' to null
+                          - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                  - Modified property: hasBrazilianNationality
+                    - Nullable changed from true to false
+                  - Modified property: maritalStatusAdditionalInfo
+                    - Description changed from 'Campo livre para complementar a informação relativa ao estado marital, quando selecionada a opção 'OUTROS'' to 'Campo livre para complementar a informação relativa ao estado marital.
+[Restrição] Preenchimento obrigatório quando selecionado o tipo 'OUTRO'.
+'
+                  - Modified property: maritalStatusCode
+                    - Description changed from 'Estado marital do cliente. 
+' to 'Estado marital do cliente.
+'
+                    - New enum values: [NAO_DISPONIVEL]
+                  - Modified property: nationality
+                    - Items changed
+                      - Properties changed
+                        - Modified property: documents
+                          - Items changed
+                            - Properties changed
+                              - Modified property: country
+                                - Description changed from 'Nome do país' to 'Nome do país.
+'
+                                - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                              - Modified property: expirationDate
+                                - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                              - Modified property: issueDate
+                                - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                        - Modified property: otherNationalitiesInfo
+                          - Description changed from 'Campo de preenchimento obrigatório caso o cliente não possua nacionalidade brasileira. Preencher indicando todas suas demais nacionalidades utilizando o código de pais de acordo com o código “alpha3” do ISO-3166.p.ex.'CAN'
+' to 'Campo de preenchimento obrigatório caso o cliente não possua nacionalidade brasileira. Preencher indicando todas suas demais nacionalidades utilizando o código de pais de acordo com o código alpha3 do ISO-3166.p.ex.'CAN'
+'
+                          - Pattern changed from '' to '^\S[\s\S]*$'
+                  - Modified property: otherDocuments
+                    - Items changed
+                      - Properties changed
+                        - Modified property: expirationDate
+                          - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+GET /personal/qualifications
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: companyCnpj
+                  - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
+                - Modified property: informedIncome
+                  - Required changed
+                    - Deleted required property: currency
+                  - Properties changed
+                    - Deleted property: currency
+                    - Modified property: amount
+                      - Type changed from 'number' to 'object'
+                      - Format changed from 'double' to ''
+                      - Description changed from 'Valor total da renda informada. Expresso em valor monetário com 4 casas decimais. 
+Renda primária indica os montantes a pagar ou a receber em troca do uso temporário de recursos financeiros, trabalho ou ativos não financeiros não produzidos, a saber, remuneração de trabalhadores, renda de investimentos e demais rendas primárias.
+Fazem parte da primeira a remuneração do trabalho assalariado (salários e ordenados); da segunda, renda de investimento direto, renda de investimento em carteira, renda de outros investimentos e renda de ativos de reserva; e da terceira, tributos sobre a produção e importação, subsídios e aluguéis.
+Fonte: Banco Central do Brasil – Departamento Econômico
+' to 'Valor total da renda informada'
+                      - Example changed from 100000.04 to null
+                      - AdditionalProperties changed from null to false
+                      - Nullable changed from true to false
+                      - MaxLength changed from 20 to null
+                      - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                      - Required changed
+                        - New required property: amount
+                        - New required property: currency
+                      - Properties changed
+                        - New property: amount
+                        - New property: currency
+                    - Modified property: date
+                      - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                - Modified property: informedPatrimony
+                  - Required changed
+                    - Deleted required property: currency
+                  - Properties changed
+                    - Deleted property: currency
+                    - Modified property: amount
+                      - Type changed from 'number' to 'object'
+                      - Format changed from 'double' to ''
+                      - Description changed from 'Valor do patrimônio informado. Expresso em valor monetário com 4 casas decimais.
+Patrimônio é o conjunto de bens vinculado a uma pessoa ou a uma entidade.
+' to 'Valor do patrimônio informado'
+                      - Example changed from 100000.04 to null
+                      - AdditionalProperties changed from null to false
+                      - Nullable changed from true to false
+                      - MaxLength changed from 20 to null
+                      - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                      - Required changed
+                        - New required property: amount
+                        - New required property: currency
+                      - Properties changed
+                        - New property: amount
+                        - New property: currency
+                    - Modified property: year
+                      - Nullable changed from true to false
+                      - MaxLength changed from 4 to null
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: companyCnpj
+                  - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
+                - Modified property: informedIncome
+                  - Required changed
+                    - Deleted required property: currency
+                  - Properties changed
+                    - Deleted property: currency
+                    - Modified property: amount
+                      - Type changed from 'number' to 'object'
+                      - Format changed from 'double' to ''
+                      - Description changed from 'Valor total da renda informada. Expresso em valor monetário com 4 casas decimais. 
+Renda primária indica os montantes a pagar ou a receber em troca do uso temporário de recursos financeiros, trabalho ou ativos não financeiros não produzidos, a saber, remuneração de trabalhadores, renda de investimentos e demais rendas primárias.
+Fazem parte da primeira a remuneração do trabalho assalariado (salários e ordenados); da segunda, renda de investimento direto, renda de investimento em carteira, renda de outros investimentos e renda de ativos de reserva; e da terceira, tributos sobre a produção e importação, subsídios e aluguéis.
+Fonte: Banco Central do Brasil – Departamento Econômico
+' to 'Valor total da renda informada'
+                      - Example changed from 100000.04 to null
+                      - AdditionalProperties changed from null to false
+                      - Nullable changed from true to false
+                      - MaxLength changed from 20 to null
+                      - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                      - Required changed
+                        - New required property: amount
+                        - New required property: currency
+                      - Properties changed
+                        - New property: amount
+                        - New property: currency
+                    - Modified property: date
+                      - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                - Modified property: informedPatrimony
+                  - Required changed
+                    - Deleted required property: currency
+                  - Properties changed
+                    - Deleted property: currency
+                    - Modified property: amount
+                      - Type changed from 'number' to 'object'
+                      - Format changed from 'double' to ''
+                      - Description changed from 'Valor do patrimônio informado. Expresso em valor monetário com 4 casas decimais.
+Patrimônio é o conjunto de bens vinculado a uma pessoa ou a uma entidade.
+' to 'Valor do patrimônio informado'
+                      - Example changed from 100000.04 to null
+                      - AdditionalProperties changed from null to false
+                      - Nullable changed from true to false
+                      - MaxLength changed from 20 to null
+                      - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                      - Required changed
+                        - New required property: amount
+                        - New required property: currency
+                      - Properties changed
+                        - New property: amount
+                        - New property: currency
+                    - Modified property: year
+                      - Nullable changed from true to false
+                      - MaxLength changed from 4 to null

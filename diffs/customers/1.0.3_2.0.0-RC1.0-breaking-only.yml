@@ -1,1 +1,568 @@
-﻿failed to load revision spec from "/data/2.0.0-RC1.0.yml" with map key "content" not found
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 6
+-------------------------
+GET /business/financial-relations
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: procurators
+                  - Items changed
+                    - Properties changed
+                      - Modified property: type
+                        - MaxLength changed from 19 to null
+                - Modified property: productsServicesType
+                  - Items changed
+                    - MaxLength changed from 24 to null
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: procurators
+                  - Items changed
+                    - Properties changed
+                      - Modified property: type
+                        - MaxLength changed from 19 to null
+                - Modified property: productsServicesType
+                  - Items changed
+                    - MaxLength changed from 24 to null
+GET /business/identifications
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - AdditionalProperties changed from null to false
+                - Required changed
+                  - Deleted required property: tradeName
+                - Properties changed
+                  - Modified property: cnpjNumber
+                    - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
+                  - Modified property: companyCnpjNumber
+                    - MaxLength changed from 14 to null
+                    - Items changed
+                      - Pattern changed from '' to '^\d{14}$'
+                  - Modified property: contacts
+                    - Properties changed
+                      - Modified property: phones
+                        - Items changed
+                          - Properties changed
+                            - Modified property: areaCode
+                              - MaxLength changed from 2 to null
+                            - Modified property: countryCallingCode
+                              - Pattern changed from '^\d{2,4}$|^NA$' to '^\d{2,4}$'
+                            - Modified property: number
+                              - Pattern changed from '^([0-9]{8,11})|^NA$' to '^([0-9]{8,11})$'
+                            - Modified property: phoneExtension
+                              - Pattern changed from '^\d{1,5}$|^NA$' to '^\d{1,5}$'
+                            - Modified property: type
+                              - MaxLength changed from 5 to null
+                      - Modified property: postalAddresses
+                        - Items changed
+                          - Required changed
+                            - Deleted required property: districtName
+                          - Properties changed
+                            - Modified property: address
+                              - Pattern changed from '[\w\W\s]*' to '^\w{2}[\w\W\s]*$'
+                            - Modified property: country
+                              - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                            - Modified property: countryCode
+                              - Pattern changed from '' to '^([A-Z]{3})$'
+                            - Modified property: districtName
+                              - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                            - Modified property: postCode
+                              - Pattern changed from '\d{8}|^NA$' to '^\d{8}$'
+                            - Modified property: townName
+                              - Pattern changed from '[\w\W\s]*' to '^\w{2}[\w\W\s]*$'
+                  - Modified property: otherDocuments
+                    - Items changed
+                      - Required changed
+                        - Deleted required property: country
+                        - Deleted required property: number
+                      - Properties changed
+                        - Modified property: country
+                          - Pattern changed from '^(\w{3}){1}$|^NA$' to '^(\w{3}){1}$'
+                        - Modified property: expirationDate
+                          - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                  - Modified property: parties
+                    - Items changed
+                      - Required changed
+                        - Deleted required property: documentCountry
+                        - Deleted required property: documentExpirationDate
+                        - Deleted required property: socialName
+                      - Properties changed
+                        - Modified property: documentCountry
+                          - Pattern changed from '' to '[\w*\W*]'
+                        - Modified property: documentExpirationDate
+                          - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                        - Modified property: shareholding
+                          - Pattern changed from '^((\d{1,9}\.\d{2}){1}|NA)$' to '^((\d{1,9}\.\d{2}){1})$'
+                        - Modified property: type
+                          - MaxLength changed from 13 to null
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - AdditionalProperties changed from null to false
+                - Required changed
+                  - Deleted required property: tradeName
+                - Properties changed
+                  - Modified property: cnpjNumber
+                    - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
+                  - Modified property: companyCnpjNumber
+                    - MaxLength changed from 14 to null
+                    - Items changed
+                      - Pattern changed from '' to '^\d{14}$'
+                  - Modified property: contacts
+                    - Properties changed
+                      - Modified property: phones
+                        - Items changed
+                          - Properties changed
+                            - Modified property: areaCode
+                              - MaxLength changed from 2 to null
+                            - Modified property: countryCallingCode
+                              - Pattern changed from '^\d{2,4}$|^NA$' to '^\d{2,4}$'
+                            - Modified property: number
+                              - Pattern changed from '^([0-9]{8,11})|^NA$' to '^([0-9]{8,11})$'
+                            - Modified property: phoneExtension
+                              - Pattern changed from '^\d{1,5}$|^NA$' to '^\d{1,5}$'
+                            - Modified property: type
+                              - MaxLength changed from 5 to null
+                      - Modified property: postalAddresses
+                        - Items changed
+                          - Required changed
+                            - Deleted required property: districtName
+                          - Properties changed
+                            - Modified property: address
+                              - Pattern changed from '[\w\W\s]*' to '^\w{2}[\w\W\s]*$'
+                            - Modified property: country
+                              - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                            - Modified property: countryCode
+                              - Pattern changed from '' to '^([A-Z]{3})$'
+                            - Modified property: districtName
+                              - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                            - Modified property: postCode
+                              - Pattern changed from '\d{8}|^NA$' to '^\d{8}$'
+                            - Modified property: townName
+                              - Pattern changed from '[\w\W\s]*' to '^\w{2}[\w\W\s]*$'
+                  - Modified property: otherDocuments
+                    - Items changed
+                      - Required changed
+                        - Deleted required property: country
+                        - Deleted required property: number
+                      - Properties changed
+                        - Modified property: country
+                          - Pattern changed from '^(\w{3}){1}$|^NA$' to '^(\w{3}){1}$'
+                        - Modified property: expirationDate
+                          - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                  - Modified property: parties
+                    - Items changed
+                      - Required changed
+                        - Deleted required property: documentCountry
+                        - Deleted required property: documentExpirationDate
+                        - Deleted required property: socialName
+                      - Properties changed
+                        - Modified property: documentCountry
+                          - Pattern changed from '' to '[\w*\W*]'
+                        - Modified property: documentExpirationDate
+                          - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                        - Modified property: shareholding
+                          - Pattern changed from '^((\d{1,9}\.\d{2}){1}|NA)$' to '^((\d{1,9}\.\d{2}){1})$'
+                        - Modified property: type
+                          - MaxLength changed from 13 to null
+GET /business/qualifications
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: economicActivities
+                  - Items changed
+                    - AdditionalProperties changed from null to false
+                    - Properties changed
+                      - Modified property: code
+                        - Type changed from 'number' to 'string'
+                        - Pattern changed from '^\d{7}$|^NA$' to '^\d{7}$'
+                - Modified property: informedPatrimony
+                  - Required changed
+                    - Deleted required property: currency
+                  - Properties changed
+                    - Deleted property: currency
+                    - Modified property: amount
+                      - Type changed from 'number' to 'object'
+                      - Format changed from 'double' to ''
+                      - AdditionalProperties changed from null to false
+                      - Nullable changed from true to false
+                      - MaxLength changed from 20 to null
+                    - Modified property: date
+                      - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                - Modified property: informedRevenue
+                  - Required changed
+                    - Deleted required property: currency
+                  - Properties changed
+                    - Deleted property: currency
+                    - Modified property: amount
+                      - Type changed from 'number' to 'object'
+                      - Format changed from 'double' to ''
+                      - AdditionalProperties changed from null to false
+                      - Nullable changed from true to false
+                      - MaxLength changed from 20 to null
+                    - Modified property: year
+                      - Nullable changed from true to false
+                      - MaxLength changed from 4 to null
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: economicActivities
+                  - Items changed
+                    - AdditionalProperties changed from null to false
+                    - Properties changed
+                      - Modified property: code
+                        - Type changed from 'number' to 'string'
+                        - Pattern changed from '^\d{7}$|^NA$' to '^\d{7}$'
+                - Modified property: informedPatrimony
+                  - Required changed
+                    - Deleted required property: currency
+                  - Properties changed
+                    - Deleted property: currency
+                    - Modified property: amount
+                      - Type changed from 'number' to 'object'
+                      - Format changed from 'double' to ''
+                      - AdditionalProperties changed from null to false
+                      - Nullable changed from true to false
+                      - MaxLength changed from 20 to null
+                    - Modified property: date
+                      - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                - Modified property: informedRevenue
+                  - Required changed
+                    - Deleted required property: currency
+                  - Properties changed
+                    - Deleted property: currency
+                    - Modified property: amount
+                      - Type changed from 'number' to 'object'
+                      - Format changed from 'double' to ''
+                      - AdditionalProperties changed from null to false
+                      - Nullable changed from true to false
+                      - MaxLength changed from 20 to null
+                    - Modified property: year
+                      - Nullable changed from true to false
+                      - MaxLength changed from 4 to null
+GET /personal/financial-relations
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Required changed
+                - Deleted required property: procurators
+              - Properties changed
+                - Modified property: accounts
+                  - Items changed
+                    - Properties changed
+                      - Modified property: branchCode
+                        - Pattern changed from '\d{4}|^NA$' to '^\d{4}$'
+                      - Modified property: compeCode
+                        - Pattern changed from '\d{3}|^NA$' to '^\d{3}$'
+                      - Modified property: number
+                        - Pattern changed from '^\d{8,20}$|^NA$' to '^\d{8,20}$'
+                - Modified property: procurators
+                  - MinItems changed from 1 to 0
+                  - Items changed
+                    - Required changed
+                      - Deleted required property: socialName
+                    - Properties changed
+                      - Modified property: cpfNumber
+                        - Pattern changed from '^\d{11}$|^NA$' to '^\d{11}$'
+                      - Modified property: type
+                        - Deleted enum values: [NAO_APLICA]
+                        - MaxLength changed from 19 to null
+                - Modified property: productsServicesType
+                  - Items changed
+                    - MaxLength changed from 24 to null
+                - Modified property: productsServicesTypeAdditionalInfo
+                  - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Required changed
+                - Deleted required property: procurators
+              - Properties changed
+                - Modified property: accounts
+                  - Items changed
+                    - Properties changed
+                      - Modified property: branchCode
+                        - Pattern changed from '\d{4}|^NA$' to '^\d{4}$'
+                      - Modified property: compeCode
+                        - Pattern changed from '\d{3}|^NA$' to '^\d{3}$'
+                      - Modified property: number
+                        - Pattern changed from '^\d{8,20}$|^NA$' to '^\d{8,20}$'
+                - Modified property: procurators
+                  - MinItems changed from 1 to 0
+                  - Items changed
+                    - Required changed
+                      - Deleted required property: socialName
+                    - Properties changed
+                      - Modified property: cpfNumber
+                        - Pattern changed from '^\d{11}$|^NA$' to '^\d{11}$'
+                      - Modified property: type
+                        - Deleted enum values: [NAO_APLICA]
+                        - MaxLength changed from 19 to null
+                - Modified property: productsServicesType
+                  - Items changed
+                    - MaxLength changed from 24 to null
+                - Modified property: productsServicesTypeAdditionalInfo
+                  - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+GET /personal/identifications
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: companyCnpj
+                    - Items changed
+                      - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
+                  - Modified property: contacts
+                    - Properties changed
+                      - Modified property: phones
+                        - Items changed
+                          - Properties changed
+                            - Modified property: areaCode
+                              - MaxLength changed from 2 to null
+                            - Modified property: countryCallingCode
+                              - Pattern changed from '^\d{2,4}$|^NA$' to '^\d{2,4}$'
+                            - Modified property: number
+                              - Pattern changed from '^([0-9]{8,11})|^NA$' to '^([0-9]{8,11})$'
+                            - Modified property: phoneExtension
+                              - Pattern changed from '^\d{1,5}$|^NA$' to '^\d{1,5}$'
+                            - Modified property: type
+                              - MaxLength changed from 5 to null
+                      - Modified property: postalAddresses
+                        - Items changed
+                          - Required changed
+                            - Deleted required property: districtName
+                          - Properties changed
+                            - Modified property: countryCode
+                              - Pattern changed from '' to '^([A-Z]{3})$'
+                            - Modified property: postCode
+                              - Pattern changed from '\d{8}|^NA$' to '^\d{8}$'
+                  - Modified property: documents
+                    - Properties changed
+                      - Modified property: cpfNumber
+                        - Pattern changed from '^\d{11}$|^NA$' to '^\d{11}$'
+                      - Modified property: passportCountry
+                        - Pattern changed from '^(\w{3}){1}$|^NA$' to '^(\w{3}){1}$'
+                      - Modified property: passportExpirationDate
+                        - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                      - Modified property: passportIssueDate
+                        - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                      - Modified property: passportNumber
+                        - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                  - Modified property: filiation
+                    - Items changed
+                      - Properties changed
+                        - Modified property: civilName
+                          - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                        - Modified property: socialName
+                          - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                  - Modified property: hasBrazilianNationality
+                    - Nullable changed from true to false
+                  - Modified property: nationality
+                    - Items changed
+                      - Properties changed
+                        - Modified property: documents
+                          - Items changed
+                            - Properties changed
+                              - Modified property: country
+                                - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                              - Modified property: expirationDate
+                                - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                              - Modified property: issueDate
+                                - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                        - Modified property: otherNationalitiesInfo
+                          - Pattern changed from '' to '^\S[\s\S]*$'
+                  - Modified property: otherDocuments
+                    - Items changed
+                      - Properties changed
+                        - Modified property: expirationDate
+                          - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: companyCnpj
+                    - Items changed
+                      - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
+                  - Modified property: contacts
+                    - Properties changed
+                      - Modified property: phones
+                        - Items changed
+                          - Properties changed
+                            - Modified property: areaCode
+                              - MaxLength changed from 2 to null
+                            - Modified property: countryCallingCode
+                              - Pattern changed from '^\d{2,4}$|^NA$' to '^\d{2,4}$'
+                            - Modified property: number
+                              - Pattern changed from '^([0-9]{8,11})|^NA$' to '^([0-9]{8,11})$'
+                            - Modified property: phoneExtension
+                              - Pattern changed from '^\d{1,5}$|^NA$' to '^\d{1,5}$'
+                            - Modified property: type
+                              - MaxLength changed from 5 to null
+                      - Modified property: postalAddresses
+                        - Items changed
+                          - Required changed
+                            - Deleted required property: districtName
+                          - Properties changed
+                            - Modified property: countryCode
+                              - Pattern changed from '' to '^([A-Z]{3})$'
+                            - Modified property: postCode
+                              - Pattern changed from '\d{8}|^NA$' to '^\d{8}$'
+                  - Modified property: documents
+                    - Properties changed
+                      - Modified property: cpfNumber
+                        - Pattern changed from '^\d{11}$|^NA$' to '^\d{11}$'
+                      - Modified property: passportCountry
+                        - Pattern changed from '^(\w{3}){1}$|^NA$' to '^(\w{3}){1}$'
+                      - Modified property: passportExpirationDate
+                        - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                      - Modified property: passportIssueDate
+                        - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                      - Modified property: passportNumber
+                        - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                  - Modified property: filiation
+                    - Items changed
+                      - Properties changed
+                        - Modified property: civilName
+                          - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                        - Modified property: socialName
+                          - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                  - Modified property: hasBrazilianNationality
+                    - Nullable changed from true to false
+                  - Modified property: nationality
+                    - Items changed
+                      - Properties changed
+                        - Modified property: documents
+                          - Items changed
+                            - Properties changed
+                              - Modified property: country
+                                - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                              - Modified property: expirationDate
+                                - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                              - Modified property: issueDate
+                                - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                        - Modified property: otherNationalitiesInfo
+                          - Pattern changed from '' to '^\S[\s\S]*$'
+                  - Modified property: otherDocuments
+                    - Items changed
+                      - Properties changed
+                        - Modified property: expirationDate
+                          - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+GET /personal/qualifications
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: companyCnpj
+                  - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
+                - Modified property: informedIncome
+                  - Required changed
+                    - Deleted required property: currency
+                  - Properties changed
+                    - Deleted property: currency
+                    - Modified property: amount
+                      - Type changed from 'number' to 'object'
+                      - Format changed from 'double' to ''
+                      - AdditionalProperties changed from null to false
+                      - Nullable changed from true to false
+                      - MaxLength changed from 20 to null
+                    - Modified property: date
+                      - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                - Modified property: informedPatrimony
+                  - Required changed
+                    - Deleted required property: currency
+                  - Properties changed
+                    - Deleted property: currency
+                    - Modified property: amount
+                      - Type changed from 'number' to 'object'
+                      - Format changed from 'double' to ''
+                      - AdditionalProperties changed from null to false
+                      - Nullable changed from true to false
+                      - MaxLength changed from 20 to null
+                    - Modified property: year
+                      - Nullable changed from true to false
+                      - MaxLength changed from 4 to null
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: companyCnpj
+                  - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
+                - Modified property: informedIncome
+                  - Required changed
+                    - Deleted required property: currency
+                  - Properties changed
+                    - Deleted property: currency
+                    - Modified property: amount
+                      - Type changed from 'number' to 'object'
+                      - Format changed from 'double' to ''
+                      - AdditionalProperties changed from null to false
+                      - Nullable changed from true to false
+                      - MaxLength changed from 20 to null
+                    - Modified property: date
+                      - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                - Modified property: informedPatrimony
+                  - Required changed
+                    - Deleted required property: currency
+                  - Properties changed
+                    - Deleted property: currency
+                    - Modified property: amount
+                      - Type changed from 'number' to 'object'
+                      - Format changed from 'double' to ''
+                      - AdditionalProperties changed from null to false
+                      - Nullable changed from true to false
+                      - MaxLength changed from 20 to null
+                    - Modified property: year
+                      - Nullable changed from true to false
+                      - MaxLength changed from 4 to null
