@@ -7,6 +7,21 @@
 GET /business/financial-relations
 - Responses changed
   - Deleted response: default
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: procurators
+                  - Items changed
+                    - Properties changed
+                      - Modified property: type
+                        - MaxLength changed from 19 to null
+                - Modified property: productsServicesType
+                  - Items changed
+                    - MaxLength changed from 24 to null
 GET /business/identifications
 - Responses changed
   - Deleted response: default
@@ -17,11 +32,32 @@ GET /business/identifications
           - Properties changed
             - Modified property: data
               - Items changed
+                - AdditionalProperties changed from null to false
                 - Required changed
                   - Deleted required property: tradeName
                 - Properties changed
+                  - Modified property: companyCnpjNumber
+                    - MaxLength changed from 14 to null
+                    - Pattern changed from '\d{14}|^NA$' to ''
+                    - Items changed
+                      - Example changed from null to '50685362000135'
+                      - MaxLength changed from null to 14
+                      - Pattern changed from '' to '\d{14}|^NA$'
                   - Modified property: contacts
                     - Properties changed
+                      - Modified property: phones
+                        - Items changed
+                          - Properties changed
+                            - Modified property: areaCode
+                              - MaxLength changed from 2 to null
+                            - Modified property: countryCallingCode
+                              - Pattern changed from '^\d{2,4}$|^NA$' to '^\d{2,4}$'
+                            - Modified property: number
+                              - Pattern changed from '^([0-9]{8,11})|^NA$' to '^([0-9]{8,11})$'
+                            - Modified property: phoneExtension
+                              - Pattern changed from '^\d{1,5}$|^NA$' to '^\d{1,5}$'
+                            - Modified property: type
+                              - MaxLength changed from 5 to null
                       - Modified property: postalAddresses
                         - Items changed
                           - Required changed
@@ -87,6 +123,8 @@ GET /business/identifications
                           - Description changed from 'Nome social da pessoa natural, se houver. (aquele pelo qual travestis e transexuais se reconhecem, bem como são identificados por sua comunidade e em seu meio social, conforme Decreto Local)' to 'Nome social da pessoa natural, se houver. (aquele pelo qual travestis e transexuais se reconhecem, bem como são identificados por sua comunidade e em seu meio social, conforme Decreto Local).   
 [Restrição] De preenchimento obrigatório, se houver.
 '
+                        - Modified property: type
+                          - MaxLength changed from 13 to null
 GET /business/qualifications
 - Responses changed
   - Deleted response: default
@@ -99,6 +137,7 @@ GET /business/qualifications
               - Properties changed
                 - Modified property: economicActivities
                   - Items changed
+                    - AdditionalProperties changed from null to false
                     - Properties changed
                       - Modified property: code
                         - Type changed from 'number' to 'string'
@@ -130,6 +169,8 @@ GET /business/qualifications
 ' to 'Texto livre para complementar informação relativa ao patrimonio.
 [Restrição] Preencher quando frequency for igual OUTROS.
 '
+                    - Modified property: year
+                      - MaxLength changed from 4 to null
 GET /personal/financial-relations
 - Responses changed
   - Deleted response: default
@@ -158,6 +199,10 @@ GET /personal/financial-relations
                       - Modified property: type
                         - New enum values: [NAO_POSSUI]
                         - Deleted enum values: [NAO_APLICA]
+                        - MaxLength changed from 19 to null
+                - Modified property: productsServicesType
+                  - Items changed
+                    - MaxLength changed from 24 to null
                 - Modified property: productsServicesTypeAdditionalInfo
                   - Pattern changed from '[\w\W\s]*' to '\w*\W*'
 GET /personal/identifications
@@ -171,8 +216,24 @@ GET /personal/identifications
             - Modified property: data
               - Items changed
                 - Properties changed
+                  - Modified property: companyCnpj
+                    - Items changed
+                      - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
                   - Modified property: contacts
                     - Properties changed
+                      - Modified property: phones
+                        - Items changed
+                          - Properties changed
+                            - Modified property: areaCode
+                              - MaxLength changed from 2 to null
+                            - Modified property: countryCallingCode
+                              - Pattern changed from '^\d{2,4}$|^NA$' to '^\d{2,4}$'
+                            - Modified property: number
+                              - Pattern changed from '^([0-9]{8,11})|^NA$' to '^([0-9]{8,11})$'
+                            - Modified property: phoneExtension
+                              - Pattern changed from '^\d{1,5}$|^NA$' to '^\d{1,5}$'
+                            - Modified property: type
+                              - MaxLength changed from 5 to null
                       - Modified property: postalAddresses
                         - Items changed
                           - Required changed
@@ -180,6 +241,7 @@ GET /personal/identifications
                           - Properties changed
                             - Modified property: countryCode
                               - Description changed from 'Código do pais de acordo com o código “alpha3” do ISO-3166.' to 'Código do pais de acordo com o código alpha3 do ISO-3166.'
+                              - Pattern changed from '' to '^([A-Z]{3})$'
                             - Modified property: districtName
                               - Description changed from 'Bairro é uma comunidade ou região localizada em uma cidade ou município de acordo com as suas subdivisões geográficas.' to 'Bairro é uma comunidade ou região localizada em uma cidade ou município de acordo com as suas subdivisões geográficas.
 [Restrição] De preenchimento obrigatório, se houver.
@@ -196,8 +258,18 @@ GET /personal/identifications
 ' to 'Informação da Longitude referente a geolocalização informada. Entre -180 e 180. p.ex '-46.6361100'. (3 casas antes da vírgula, 11 posições)
 '
                                   - Example changed from '-180.836519' to '-46.6361100'
+                            - Modified property: postCode
+                              - Pattern changed from '\d{8}|^NA$' to '^\d{8}$'
                   - Modified property: documents
                     - Properties changed
+                      - Modified property: cpfNumber
+                        - Pattern changed from '^\d{11}$|^NA$' to '^\d{11}$'
+                      - Modified property: passportCountry
+                        - Pattern changed from '^(\w{3}){1}$|^NA$' to '^(\w{3}){1}$'
+                      - Modified property: passportExpirationDate
+                        - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                      - Modified property: passportIssueDate
+                        - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
                       - Modified property: passportNumber
                         - Description changed from 'Número do Passaporte. Documento concedido aos viajantes por uma autoridade
 administrativa nacional a fim de certificar sua identidade perante autoridades
@@ -220,7 +292,6 @@ com o qual será identificada por toda a sua vida, bem como após a sua morte)
 ' to 'Nome civil completo da pessoa relativa à filiação.
 (Direito fundamental da pessoa, o nome civil é aquele atribuído à pessoa natural desde o registro de seu nascimento, 
 com o qual será identificada por toda a sua vida, bem como após a sua morte).
-[Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
 '
                           - Pattern changed from '[\w\W\s]*' to '\w*\W*'
                         - Modified property: socialName
@@ -233,6 +304,8 @@ bem como são identificados por sua comunidade e em seu meio social, conforme De
 '
                           - Example changed from 'NA' to null
                           - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                  - Modified property: hasBrazilianNationality
+                    - Nullable changed from true to false
                   - Modified property: maritalStatusAdditionalInfo
                     - Description changed from 'Campo livre para complementar a informação relativa ao estado marital, quando selecionada a opção 'OUTROS'' to 'Campo livre para complementar a informação relativa ao estado marital.
 [Restrição] Preenchimento obrigatório quando selecionado o tipo 'OUTRO'.
@@ -252,10 +325,20 @@ bem como são identificados por sua comunidade e em seu meio social, conforme De
                                 - Description changed from 'Nome do país' to 'Nome do país.
 '
                                 - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                              - Modified property: expirationDate
+                                - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                              - Modified property: issueDate
+                                - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
                         - Modified property: otherNationalitiesInfo
                           - Description changed from 'Campo de preenchimento obrigatório caso o cliente não possua nacionalidade brasileira. Preencher indicando todas suas demais nacionalidades utilizando o código de pais de acordo com o código “alpha3” do ISO-3166.p.ex.'CAN'
 ' to 'Campo de preenchimento obrigatório caso o cliente não possua nacionalidade brasileira. Preencher indicando todas suas demais nacionalidades utilizando o código de pais de acordo com o código alpha3 do ISO-3166.p.ex.'CAN'
 '
+                          - Pattern changed from '' to '^\S[\s\S]*$'
+                  - Modified property: otherDocuments
+                    - Items changed
+                      - Properties changed
+                        - Modified property: expirationDate
+                          - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
 GET /personal/qualifications
 - Responses changed
   - Deleted response: default
@@ -284,3 +367,5 @@ GET /personal/qualifications
                       - Nullable changed from true to false
                       - MinLength changed from 0 to 4
                       - MaxLength changed from 20 to 21
+                    - Modified property: year
+                      - MaxLength changed from 4 to null
