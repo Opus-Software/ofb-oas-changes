@@ -18,11 +18,15 @@ GET /contracts
             - Modified property: data
               - Items changed
                 - Properties changed
+                  - Modified property: companyCnpj
+                    - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
                   - Modified property: contractId
                     - MinLength changed from 0 to 1
                   - Modified property: ipocCode
                     - MinLength changed from 0 to 22
                     - Pattern changed from '' to '^\d{22,67}$'
+                  - Modified property: productType
+                    - MaxLength changed from 27 to null
   - Modified response: default
     - Content changed
       - Modified media type: application/json
@@ -31,11 +35,15 @@ GET /contracts
             - Modified property: data
               - Items changed
                 - Properties changed
+                  - Modified property: companyCnpj
+                    - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
                   - Modified property: contractId
                     - MinLength changed from 0 to 1
                   - Modified property: ipocCode
                     - MinLength changed from 0 to 22
                     - Pattern changed from '' to '^\d{22,67}$'
+                  - Modified property: productType
+                    - MaxLength changed from 27 to null
 GET /contracts/{contractId}
 - Responses changed
   - New response: 422
@@ -140,6 +148,8 @@ GET /contracts/{contractId}
                 - Modified property: ipocCode
                   - MinLength changed from 0 to 22
                   - Pattern changed from '' to '^\d{22,67}$'
+                - Modified property: productType
+                  - MaxLength changed from 27 to null
   - Modified response: default
     - Content changed
       - Modified media type: application/json
@@ -241,6 +251,8 @@ GET /contracts/{contractId}
                 - Modified property: ipocCode
                   - MinLength changed from 0 to 22
                   - Pattern changed from '' to '^\d{22,67}$'
+                - Modified property: productType
+                  - MaxLength changed from 27 to null
 GET /contracts/{contractId}/payments
 - Modified query param: page
   - Schema changed
@@ -401,6 +413,7 @@ GET /contracts/{contractId}/scheduled-instalments
                           - New property: amount
                           - New property: currency
                 - Modified property: contractRemainingNumber
+                  - Example changed from 14600 to 80
                   - Nullable changed from true to false
                   - Max changed from null to 999
                   - MaxLength changed from 6 to null
@@ -456,6 +469,7 @@ GET /contracts/{contractId}/scheduled-instalments
                           - New property: amount
                           - New property: currency
                 - Modified property: contractRemainingNumber
+                  - Example changed from 14600 to 80
                   - Nullable changed from true to false
                   - Max changed from null to 999
                   - MaxLength changed from 6 to null
