@@ -42,6 +42,7 @@ GET /contracts/{contractId}
                 - Modified property: CET
                   - Type changed from 'number' to 'string'
                   - Example changed from 0.29 to '0.2900'
+                  - Nullable changed from true to false
                   - MaxLength changed from 19 to 6
                   - Pattern changed from '' to '^\d{1}\.\d{4}$'
                 - Modified property: amortizationScheduled
@@ -50,6 +51,7 @@ GET /contracts/{contractId}
                   - Type changed from 'number' to 'string'
                   - Format changed from 'double' to ''
                   - Example changed from 100000.04 to '100000.0400'
+                  - Nullable changed from true to false
                   - MinLength changed from 0 to 4
                   - MaxLength changed from 20 to 21
                 - Modified property: contractNumber
@@ -57,6 +59,12 @@ GET /contracts/{contractId}
                 - Modified property: contractedFees
                   - Items changed
                     - Properties changed
+                      - Modified property: feeAmount
+                        - Type changed from 'number' to 'string'
+                        - Format changed from 'double' to ''
+                        - Nullable changed from true to false
+                        - MinLength changed from 0 to 4
+                        - MaxLength changed from 20 to 21
                       - Modified property: feeCharge
                         - MaxLength changed from 10 to null
                       - Modified property: feeChargeType
@@ -65,6 +73,7 @@ GET /contracts/{contractId}
                         - Type changed from 'number' to 'string'
                         - Format changed from 'double' to ''
                         - Example changed from 0.2 to '0.2000'
+                        - Nullable changed from true to false
                         - MaxLength changed from 19 to 6
                         - Pattern changed from '' to '^\d{1}\.\d{4}$'
                 - Modified property: contractedFinanceCharges
@@ -84,9 +93,7 @@ GET /contracts/{contractId}
                     - Schema added
                 - Modified property: dueDate
                   - Description changed from 'Data de vencimento Final da operação. Especificação RFC-3339' to 'Data de vencimento Final da operação. Especificação RFC-3339.   
-[Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
 '
-                  - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$'
                 - Modified property: firstInstalmentDueDate
                   - Description changed from 'Data de vencimento primeira parcela do principal' to 'Data de vencimento primeira parcela do principal. [Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
 '
@@ -106,11 +113,13 @@ Receptora deve interpretar a informação conforme orientação acima.
                       - Modified property: postFixedRate
                         - Type changed from 'number' to 'string'
                         - Example changed from 0.55 to '0.5500'
+                        - Nullable changed from true to false
                         - MaxLength changed from 19 to 6
                         - Pattern changed from '' to '^\d{1}\.\d{4}$'
                       - Modified property: preFixedRate
                         - Type changed from 'number' to 'string'
                         - Example changed from 0.6 to '0.6000'
+                        - Nullable changed from true to false
                         - MaxLength changed from 19 to 6
                         - Pattern changed from '' to '^\d{1}\.\d{4}$'
                       - Modified property: referentialRateIndexerSubType
@@ -128,6 +137,12 @@ Receptora deve interpretar a informação conforme orientação acima.
                   - MaxLength changed from 37 to null
                 - Modified property: productType
                   - MaxLength changed from 27 to null
+                - Modified property: settlementDate
+                  - Description changed from 'Data de liquidação da operação.
+[Restrição] Deve aceitar NA caso não seja retornado pela instituição.
+' to 'Data de liquidação da operação.
+'
+                  - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
 GET /contracts/{contractId}/payments
 - Modified query param: page
   - Schema changed
@@ -148,10 +163,6 @@ GET /contracts/{contractId}/payments
                   - Example changed from 100000.04 to '100000.0400'
                   - MinLength changed from 0 to 4
                   - MaxLength changed from 20 to 21
-                - Modified property: paidInstalments
-                  - Nullable changed from true to false
-                  - Max changed from null to 2.147483647e+09
-                  - MaxLength changed from 3 to null
                 - Modified property: releases
                   - Items changed
                     - Properties changed
@@ -164,7 +175,6 @@ GET /contracts/{contractId}/payments
                                   - Type changed from 'number' to 'string'
                                   - Format changed from 'double' to ''
                                   - Example changed from 100000.04 to '100000.0400'
-                                  - Nullable changed from true to false
                                   - MinLength changed from 0 to 4
                                   - MaxLength changed from 20 to 21
                                 - Modified property: chargeType
@@ -176,7 +186,6 @@ GET /contracts/{contractId}/payments
                                   - Type changed from 'number' to 'string'
                                   - Format changed from 'double' to ''
                                   - Example changed from 100000.04 to '100000.0400'
-                                  - Nullable changed from true to false
                                   - MinLength changed from 0 to 4
                                   - MaxLength changed from 20 to 21
                                 - Modified property: feeCode

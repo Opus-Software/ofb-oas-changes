@@ -38,18 +38,25 @@ GET /contracts/{contractId}
               - Properties changed
                 - Modified property: CET
                   - Type changed from 'number' to 'string'
+                  - Nullable changed from true to false
                   - Pattern changed from '' to '^\d{1}\.\d{4}$'
                 - Modified property: amortizationScheduled
                   - MaxLength changed from 23 to null
                 - Modified property: contractAmount
                   - Type changed from 'number' to 'string'
                   - Format changed from 'double' to ''
+                  - Nullable changed from true to false
                   - MaxLength changed from 20 to 21
                 - Modified property: contractNumber
                   - Pattern changed from '' to '^\d{1,100}$'
                 - Modified property: contractedFees
                   - Items changed
                     - Properties changed
+                      - Modified property: feeAmount
+                        - Type changed from 'number' to 'string'
+                        - Format changed from 'double' to ''
+                        - Nullable changed from true to false
+                        - MaxLength changed from 20 to 21
                       - Modified property: feeCharge
                         - MaxLength changed from 10 to null
                       - Modified property: feeChargeType
@@ -57,6 +64,7 @@ GET /contracts/{contractId}
                       - Modified property: feeRate
                         - Type changed from 'number' to 'string'
                         - Format changed from 'double' to ''
+                        - Nullable changed from true to false
                         - Pattern changed from '' to '^\d{1}\.\d{4}$'
                 - Modified property: contractedFinanceCharges
                   - Items changed
@@ -69,8 +77,6 @@ GET /contracts/{contractId}
                   - MaxLength changed from 10 to null
                   - Items changed
                     - Schema added
-                - Modified property: dueDate
-                  - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$'
                 - Modified property: firstInstalmentDueDate
                   - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$'
                 - Modified property: instalmentPeriodicity
@@ -84,9 +90,11 @@ GET /contracts/{contractId}
                         - MaxLength changed from 8 to null
                       - Modified property: postFixedRate
                         - Type changed from 'number' to 'string'
+                        - Nullable changed from true to false
                         - Pattern changed from '' to '^\d{1}\.\d{4}$'
                       - Modified property: preFixedRate
                         - Type changed from 'number' to 'string'
+                        - Nullable changed from true to false
                         - Pattern changed from '' to '^\d{1}\.\d{4}$'
                       - Modified property: referentialRateIndexerSubType
                         - MaxLength changed from 24 to null
@@ -102,6 +110,8 @@ GET /contracts/{contractId}
                   - MaxLength changed from 37 to null
                 - Modified property: productType
                   - MaxLength changed from 27 to null
+                - Modified property: settlementDate
+                  - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
 GET /contracts/{contractId}/payments
 - Modified query param: page
   - Schema changed
@@ -119,9 +129,6 @@ GET /contracts/{contractId}/payments
                   - Type changed from 'number' to 'string'
                   - Format changed from 'double' to ''
                   - MaxLength changed from 20 to 21
-                - Modified property: paidInstalments
-                  - Nullable changed from true to false
-                  - MaxLength changed from 3 to null
                 - Modified property: releases
                   - Items changed
                     - Properties changed
@@ -133,7 +140,6 @@ GET /contracts/{contractId}/payments
                                 - Modified property: chargeAmount
                                   - Type changed from 'number' to 'string'
                                   - Format changed from 'double' to ''
-                                  - Nullable changed from true to false
                                   - MaxLength changed from 20 to 21
                                 - Modified property: chargeType
                                   - MaxLength changed from 31 to null
@@ -143,7 +149,6 @@ GET /contracts/{contractId}/payments
                                 - Modified property: feeAmount
                                   - Type changed from 'number' to 'string'
                                   - Format changed from 'double' to ''
-                                  - Nullable changed from true to false
                                   - MaxLength changed from 20 to 21
                       - Modified property: paidAmount
                         - Type changed from 'number' to 'string'
