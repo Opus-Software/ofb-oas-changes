@@ -204,14 +204,47 @@ GET /contracts/{contractId}/scheduled-instalments
                 - Deleted required property: balloonPayments
               - Properties changed
                 - Modified property: balloonPayments
+                  - Nullable changed from true to false
                   - Items changed
+                    - Required changed
+                      - Deleted required property: currency
                     - Properties changed
+                      - Deleted property: currency
                       - Modified property: amount
-                        - Type changed from 'number' to 'string'
+                        - Type changed from 'number' to 'object'
                         - Format changed from 'double' to ''
-                        - Example changed from 100000.04 to '100000.0400'
-                        - MinLength changed from 0 to 4
-                        - MaxLength changed from 20 to 21
+                        - Description changed from 'Valor monetário da parcela não regular a vencer. Expresso em valor monetário com 4 casas decimais.' to 'Valor monetário da parcela não regular a vencer'
+                        - Example changed from 100000.04 to null
+                        - AdditionalProperties changed from null to false
+                        - Nullable changed from true to false
+                        - MaxLength changed from 20 to null
+                        - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                        - Required changed
+                          - New required property: amount
+                          - New required property: currency
+                        - Properties changed
+                          - New property: amount
+                          - New property: currency
+                - Modified property: contractRemainingNumber
+                  - Nullable changed from true to false
+                  - Max changed from null to 999999
+                  - MaxLength changed from 6 to null
+                - Modified property: dueInstalments
+                  - Nullable changed from true to false
+                  - Max changed from null to 999
+                  - MaxLength changed from 3 to null
+                - Modified property: paidInstalments
+                  - Nullable changed from true to false
+                  - Max changed from null to 999
+                  - MaxLength changed from 3 to null
+                - Modified property: pastDueInstalments
+                  - Nullable changed from true to false
+                  - Max changed from null to 999
+                  - MaxLength changed from 3 to null
+                - Modified property: totalNumberOfInstalments
+                  - Nullable changed from true to false
+                  - Max changed from null to 999999
+                  - MaxLength changed from 6 to null
                 - Modified property: typeContractRemaining
                   - MaxLength changed from 22 to null
                 - Modified property: typeNumberOfInstalments
