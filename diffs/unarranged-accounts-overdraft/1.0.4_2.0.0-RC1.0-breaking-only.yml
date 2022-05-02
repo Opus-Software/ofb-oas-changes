@@ -17,12 +17,8 @@ GET /contracts
             - Modified property: data
               - Items changed
                 - Properties changed
-                  - Modified property: companyCnpj
-                    - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
                   - Modified property: ipocCode
                     - Pattern changed from '' to '^\d{22,67}$'
-                  - Modified property: productType
-                    - MaxLength changed from 27 to null
   - Modified response: default
     - Content changed
       - Modified media type: application/json
@@ -31,12 +27,8 @@ GET /contracts
             - Modified property: data
               - Items changed
                 - Properties changed
-                  - Modified property: companyCnpj
-                    - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
                   - Modified property: ipocCode
                     - Pattern changed from '' to '^\d{22,67}$'
-                  - Modified property: productType
-                    - MaxLength changed from 27 to null
 GET /contracts/{contractId}
 - Responses changed
   - Modified response: 200
@@ -62,6 +54,9 @@ GET /contracts/{contractId}
                 - Modified property: contractedFees
                   - Items changed
                     - Properties changed
+                      - Modified property: feeAmount
+                        - Type changed from 'number' to 'string'
+                        - Nullable changed from true to false
                       - Modified property: feeCharge
                         - MaxLength changed from 10 to null
                       - Modified property: feeChargeType
@@ -74,6 +69,11 @@ GET /contracts/{contractId}
                 - Modified property: contractedFinanceCharges
                   - Items changed
                     - Properties changed
+                      - Modified property: chargeRate
+                        - Type changed from 'number' to 'string'
+                        - Format changed from '' to 'double'
+                        - MaxLength changed from 19 to 20
+                        - Pattern changed from '' to '^\d{1,15}\.\d{2,4}$'
                       - Modified property: chargeType
                         - MaxLength changed from 31 to null
                 - Modified property: dueDate
@@ -106,8 +106,6 @@ GET /contracts/{contractId}
                         - MaxLength changed from 7 to null
                 - Modified property: ipocCode
                   - Pattern changed from '' to '^\d{22,67}$'
-                - Modified property: productType
-                  - MaxLength changed from 27 to null
   - Modified response: default
     - Content changed
       - Modified media type: application/json
@@ -131,6 +129,9 @@ GET /contracts/{contractId}
                 - Modified property: contractedFees
                   - Items changed
                     - Properties changed
+                      - Modified property: feeAmount
+                        - Type changed from 'number' to 'string'
+                        - Nullable changed from true to false
                       - Modified property: feeCharge
                         - MaxLength changed from 10 to null
                       - Modified property: feeChargeType
@@ -143,6 +144,11 @@ GET /contracts/{contractId}
                 - Modified property: contractedFinanceCharges
                   - Items changed
                     - Properties changed
+                      - Modified property: chargeRate
+                        - Type changed from 'number' to 'string'
+                        - Format changed from '' to 'double'
+                        - MaxLength changed from 19 to 20
+                        - Pattern changed from '' to '^\d{1,15}\.\d{2,4}$'
                       - Modified property: chargeType
                         - MaxLength changed from 31 to null
                 - Modified property: dueDate
@@ -175,8 +181,6 @@ GET /contracts/{contractId}
                         - MaxLength changed from 7 to null
                 - Modified property: ipocCode
                   - Pattern changed from '' to '^\d{22,67}$'
-                - Modified property: productType
-                  - MaxLength changed from 27 to null
 GET /contracts/{contractId}/payments
 - Modified query param: page
   - Schema changed
