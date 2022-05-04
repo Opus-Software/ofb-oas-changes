@@ -10,7 +10,6 @@ GET /contracts
     - Max changed from null to 2.147483647e+09
 - Responses changed
   - New response: 422
-  - Deleted response: default
   - Modified response: 200
     - Content changed
       - Modified media type: application/json
@@ -19,15 +18,39 @@ GET /contracts
             - Modified property: data
               - Items changed
                 - Properties changed
+                  - Modified property: companyCnpj
+                    - Pattern changed from '\d{14}|^NA$' to '\d{14}$'
                   - Modified property: contractId
                     - MinLength changed from 0 to 1
                   - Modified property: ipocCode
                     - MinLength changed from 0 to 22
                     - Pattern changed from '' to '^\d{22,67}$'
+                  - Modified property: productSubType
+                    - MaxLength changed from 47 to null
+                  - Modified property: productType
+                    - MaxLength changed from 11 to null
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: companyCnpj
+                    - Pattern changed from '\d{14}|^NA$' to '\d{14}$'
+                  - Modified property: contractId
+                    - MinLength changed from 0 to 1
+                  - Modified property: ipocCode
+                    - MinLength changed from 0 to 22
+                    - Pattern changed from '' to '^\d{22,67}$'
+                  - Modified property: productSubType
+                    - MaxLength changed from 47 to null
+                  - Modified property: productType
+                    - MaxLength changed from 11 to null
 GET /contracts/{contractId}
 - Responses changed
   - New response: 422
-  - Deleted response: default
   - Modified response: 200
     - Content changed
       - Modified media type: application/json
@@ -149,6 +172,141 @@ Informação adicional específica para Modalidade de Crédito: Empréstimo-Cré
                 - Modified property: ipocCode
                   - MinLength changed from 0 to 22
                   - Pattern changed from '' to '^\d{22,67}$'
+                - Modified property: productSubType
+                  - MaxLength changed from 47 to null
+                - Modified property: productType
+                  - MaxLength changed from 11 to null
+                - Modified property: settlementDate
+                  - Description changed from 'Data de liquidação da operação.
+[Restrição] Deve aceitar NA caso não seja retornado pela instituição.
+' to 'Data de liquidação da operação.
+'
+                  - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: CET
+                  - Type changed from 'number' to 'string'
+                  - Example changed from 0.29 to '0.2900'
+                  - Nullable changed from true to false
+                  - MinLength changed from 0 to 6
+                  - MaxLength changed from 19 to 6
+                  - Pattern changed from '' to '^\d{1}\.\d{4}$'
+                - Modified property: amortizationScheduled
+                  - MaxLength changed from 23 to null
+                - Modified property: amortizationScheduledAdditionalInfo
+                  - Description changed from 'Campo obrigatório para complementar a informação relativa à amortização quando selecionada a opção OUTROS.
+[Restrição] Obrigatório para complementar a informação relativa à amortização quando selecionada a opção OUTROS, para os demais casos informar "NA".
+' to 'Campo obrigatório para complementar a informação relativa à amortização quando selecionada a opção OUTROS.
+'
+                - Modified property: cnpjConsignee
+                  - Description changed from 'CNPJ do consignante (CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica). Deve-se ter apenas os números do CNPJ, sem máscara. Informação adicional específica para Modalidade de Crédito: Empréstimo-Crédito Pessoal Consignado
+' to 'CNPJ do consignante (CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica). 
+Deve-se ter apenas os números do CNPJ, sem máscara. 
+Informação adicional específica para Modalidade de Crédito: Empréstimo-Crédito Pessoal Consignado
+'
+                  - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
+                - Modified property: contractAmount
+                  - Type changed from 'number' to 'string'
+                  - Format changed from 'double' to ''
+                  - Example changed from 100000.04 to '100000.0400'
+                  - Nullable changed from true to false
+                  - MinLength changed from 0 to 4
+                  - MaxLength changed from 20 to 21
+                - Modified property: contractNumber
+                  - MinLength changed from 0 to 1
+                  - Pattern changed from '' to '^\d{1,100}$'
+                - Modified property: contractedFees
+                  - Items changed
+                    - Properties changed
+                      - Modified property: feeAmount
+                        - Type changed from 'number' to 'string'
+                        - Example changed from 100000.04 to '100000.04'
+                        - Nullable changed from true to false
+                      - Modified property: feeCharge
+                        - MaxLength changed from 10 to null
+                      - Modified property: feeChargeType
+                        - MaxLength changed from 11 to null
+                      - Modified property: feeRate
+                        - Type changed from 'number' to 'string'
+                        - Format changed from 'double' to ''
+                        - Example changed from 0.25 to '0.2500'
+                        - Nullable changed from true to false
+                        - MinLength changed from 0 to 6
+                        - MaxLength changed from 19 to 6
+                        - Pattern changed from '' to '^\d{1}\.\d{4}$'
+                - Modified property: contractedFinanceCharges
+                  - Items changed
+                    - Required changed
+                      - Deleted required property: chargeAdditionalInfo
+                    - Properties changed
+                      - Modified property: chargeAdditionalInfo
+                        - Pattern changed from '\w*\W*$|^NA$' to '\w*\W*$'
+                      - Modified property: chargeRate
+                        - Type changed from 'number' to 'string'
+                        - Example changed from 0.07 to '0.0700'
+                        - MaxLength changed from 19 to 20
+                        - Pattern changed from '' to '^\d{1,15}\.\d{2,4}$'
+                      - Modified property: chargeType
+                        - MaxLength changed from 31 to null
+                - Modified property: dueDate
+                  - Description changed from 'Data de vencimento Final da operação. Especificação RFC-3339' to 'Data de vencimento Final da operação. Especificação RFC-3339.
+'
+                  - MinLength changed from 0 to 2
+                - Modified property: firstInstalmentDueDate
+                  - Description changed from 'Data de vencimento primeira parcela do principal' to 'Data de vencimento primeira parcela do principal.
+'
+                - Modified property: instalmentPeriodicity
+                  - MaxLength changed from 25 to null
+                - Modified property: interestRates
+                  - Description changed from '' to 'Caso o contrato não possua taxas de juros, deve ser compartilhado uma lista vazia. Caso o contrato possua uma taxa de juros com valor 0, deve ser compartilhado um objeto com o valor 0 explícito.'
+                  - Items changed
+                    - Required changed
+                      - Deleted required property: additionalInfo
+                    - Properties changed
+                      - Modified property: additionalInfo
+                        - Description changed from 'Texto com informações adicionais sobre a composição das taxas de juros pactuadas.
+[Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
+' to 'Texto com informações adicionais sobre a composição das taxas de juros pactuadas.
+[Restrição] Caso a instituição possua a informação para compartilhamento, esta deverá ser informada.
+'
+                      - Modified property: calculation
+                        - MaxLength changed from 6 to null
+                      - Modified property: interestRateType
+                        - MaxLength changed from 8 to null
+                      - Modified property: postFixedRate
+                        - Type changed from 'number' to 'string'
+                        - Example changed from 0.55 to '0.5500'
+                        - Nullable changed from true to false
+                        - MinLength changed from 0 to 6
+                        - MaxLength changed from 19 to 6
+                        - Pattern changed from '' to '^\d{1}\.\d{4}$'
+                      - Modified property: preFixedRate
+                        - Type changed from 'number' to 'string'
+                        - Example changed from 0.6 to '0.6000'
+                        - Nullable changed from true to false
+                        - MinLength changed from 0 to 6
+                        - MaxLength changed from 19 to 6
+                        - Pattern changed from '' to '^\d{1}\.\d{4}$'
+                      - Modified property: referentialRateIndexerSubType
+                        - MaxLength changed from 24 to null
+                      - Modified property: referentialRateIndexerType
+                        - MaxLength changed from 18 to null
+                      - Modified property: taxPeriodicity
+                        - MaxLength changed from 2 to null
+                      - Modified property: taxType
+                        - MaxLength changed from 7 to null
+                - Modified property: ipocCode
+                  - MinLength changed from 0 to 22
+                  - Pattern changed from '' to '^\d{22,67}$'
+                - Modified property: productSubType
+                  - MaxLength changed from 47 to null
+                - Modified property: productType
+                  - MaxLength changed from 11 to null
                 - Modified property: settlementDate
                   - Description changed from 'Data de liquidação da operação.
 [Restrição] Deve aceitar NA caso não seja retornado pela instituição.
@@ -161,7 +319,6 @@ GET /contracts/{contractId}/payments
     - Max changed from null to 2.147483647e+09
 - Responses changed
   - New response: 422
-  - Deleted response: default
   - Modified response: 200
     - Content changed
       - Modified media type: application/json
@@ -175,6 +332,10 @@ GET /contracts/{contractId}/payments
                   - Example changed from 100000.04 to '100000.0400'
                   - MinLength changed from 0 to 4
                   - MaxLength changed from 20 to 21
+                - Modified property: paidInstalments
+                  - Nullable changed from true to false
+                  - Max changed from null to 2.147483647e+09
+                  - MaxLength changed from 3 to null
                 - Modified property: releases
                   - Items changed
                     - Properties changed
@@ -204,11 +365,65 @@ GET /contracts/{contractId}/payments
                                   - MaxLength changed from 20 to 21
                                 - Modified property: feeCode
                                   - Description changed from 'Sigla identificadora da tarifa pactuada' to 'Sigla identificadora da tarifa pactuadas.
-[Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA
 '
                                 - Modified property: feeName
                                   - Description changed from 'Denominação da Tarifa pactuada' to 'Denominação da Tarifa pactuada.  
-[Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
+'
+                      - Modified property: paidAmount
+                        - Type changed from 'number' to 'string'
+                        - Format changed from 'double' to ''
+                        - Example changed from 100000.04 to '100000.0400'
+                        - MinLength changed from 0 to 4
+                        - MaxLength changed from 20 to 21
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: contractOutstandingBalance
+                  - Type changed from 'number' to 'string'
+                  - Format changed from 'double' to ''
+                  - Example changed from 100000.04 to '100000.0400'
+                  - MinLength changed from 0 to 4
+                  - MaxLength changed from 20 to 21
+                - Modified property: paidInstalments
+                  - Nullable changed from true to false
+                  - Max changed from null to 2.147483647e+09
+                  - MaxLength changed from 3 to null
+                - Modified property: releases
+                  - Items changed
+                    - Properties changed
+                      - Modified property: overParcel
+                        - Properties changed
+                          - Modified property: charges
+                            - Items changed
+                              - Properties changed
+                                - Modified property: chargeAmount
+                                  - Type changed from 'number' to 'string'
+                                  - Format changed from 'double' to ''
+                                  - Example changed from 100000.04 to '100000.0400'
+                                  - Nullable changed from true to false
+                                  - MinLength changed from 0 to 4
+                                  - MaxLength changed from 20 to 21
+                                - Modified property: chargeType
+                                  - MaxLength changed from 31 to null
+                          - Modified property: fees
+                            - Items changed
+                              - Properties changed
+                                - Modified property: feeAmount
+                                  - Type changed from 'number' to 'string'
+                                  - Format changed from 'double' to ''
+                                  - Example changed from 100000.04 to '100000.0400'
+                                  - Nullable changed from true to false
+                                  - MinLength changed from 0 to 4
+                                  - MaxLength changed from 20 to 21
+                                - Modified property: feeCode
+                                  - Description changed from 'Sigla identificadora da tarifa pactuada' to 'Sigla identificadora da tarifa pactuadas.
+'
+                                - Modified property: feeName
+                                  - Description changed from 'Denominação da Tarifa pactuada' to 'Denominação da Tarifa pactuada.  
 '
                       - Modified property: paidAmount
                         - Type changed from 'number' to 'string'
@@ -222,7 +437,6 @@ GET /contracts/{contractId}/scheduled-instalments
     - Max changed from null to 2.147483647e+09
 - Responses changed
   - New response: 422
-  - Deleted response: default
   - Modified response: 200
     - Content changed
       - Modified media type: application/json
@@ -233,21 +447,108 @@ GET /contracts/{contractId}/scheduled-instalments
                 - Deleted required property: balloonPayments
               - Properties changed
                 - Modified property: balloonPayments
+                  - Nullable changed from true to false
                   - Items changed
+                    - Required changed
+                      - Deleted required property: currency
                     - Properties changed
+                      - Deleted property: currency
                       - Modified property: amount
-                        - Type changed from 'number' to 'string'
+                        - Type changed from 'number' to 'object'
                         - Format changed from 'double' to ''
-                        - Example changed from 100000.04 to '100000.0400'
+                        - Description changed from 'Valor monetário da parcela não regular a vencer. Expresso em valor monetário com 4 casas decimais.' to 'Valor monetário da parcela não regular a vencer.'
+                        - Example changed from 100000.04 to null
+                        - AdditionalProperties changed from null to false
                         - Nullable changed from true to false
-                        - MinLength changed from 0 to 4
-                        - MaxLength changed from 20 to 21
+                        - MaxLength changed from 20 to null
+                        - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                        - Required changed
+                          - New required property: amount
+                          - New required property: currency
+                        - Properties changed
+                          - New property: amount
+                          - New property: currency
                       - Modified property: dueDate
                         - Description changed from 'Data de vencimento da parcela não regular  a vencer do contrato da modalidade de crédito consultada, conforme especificação RFC-3339. p.ex. 2014-03-19' to ''Data de vencimento da parcela não regular  a vencer do contrato da modalidade de crédito consultada, conforme especificação RFC-3339. p.ex. 2014-03-19'
-[Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
 '
                         - MinLength changed from 0 to 2
-                        - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$'
+                - Modified property: contractRemainingNumber
+                  - Nullable changed from true to false
+                  - Max changed from null to 9.99999999e+08
+                  - MaxLength changed from 6 to null
+                - Modified property: dueInstalments
+                  - Nullable changed from true to false
+                  - Max changed from null to 999
+                  - MaxLength changed from 3 to null
+                - Modified property: paidInstalments
+                  - Nullable changed from true to false
+                  - Max changed from null to 999
+                  - MaxLength changed from 3 to null
+                - Modified property: pastDueInstalments
+                  - Nullable changed from true to false
+                  - Max changed from null to 999
+                  - MaxLength changed from 3 to null
+                - Modified property: totalNumberOfInstalments
+                  - Nullable changed from true to false
+                  - Max changed from null to 9.99999999e+08
+                  - MaxLength changed from 6 to null
+                - Modified property: typeNumberOfInstalments
+                  - MaxLength changed from 15 to null
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Required changed
+                - Deleted required property: balloonPayments
+              - Properties changed
+                - Modified property: balloonPayments
+                  - Nullable changed from true to false
+                  - Items changed
+                    - Required changed
+                      - Deleted required property: currency
+                    - Properties changed
+                      - Deleted property: currency
+                      - Modified property: amount
+                        - Type changed from 'number' to 'object'
+                        - Format changed from 'double' to ''
+                        - Description changed from 'Valor monetário da parcela não regular a vencer. Expresso em valor monetário com 4 casas decimais.' to 'Valor monetário da parcela não regular a vencer.'
+                        - Example changed from 100000.04 to null
+                        - AdditionalProperties changed from null to false
+                        - Nullable changed from true to false
+                        - MaxLength changed from 20 to null
+                        - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                        - Required changed
+                          - New required property: amount
+                          - New required property: currency
+                        - Properties changed
+                          - New property: amount
+                          - New property: currency
+                      - Modified property: dueDate
+                        - Description changed from 'Data de vencimento da parcela não regular  a vencer do contrato da modalidade de crédito consultada, conforme especificação RFC-3339. p.ex. 2014-03-19' to ''Data de vencimento da parcela não regular  a vencer do contrato da modalidade de crédito consultada, conforme especificação RFC-3339. p.ex. 2014-03-19'
+'
+                        - MinLength changed from 0 to 2
+                - Modified property: contractRemainingNumber
+                  - Nullable changed from true to false
+                  - Max changed from null to 9.99999999e+08
+                  - MaxLength changed from 6 to null
+                - Modified property: dueInstalments
+                  - Nullable changed from true to false
+                  - Max changed from null to 999
+                  - MaxLength changed from 3 to null
+                - Modified property: paidInstalments
+                  - Nullable changed from true to false
+                  - Max changed from null to 999
+                  - MaxLength changed from 3 to null
+                - Modified property: pastDueInstalments
+                  - Nullable changed from true to false
+                  - Max changed from null to 999
+                  - MaxLength changed from 3 to null
+                - Modified property: totalNumberOfInstalments
+                  - Nullable changed from true to false
+                  - Max changed from null to 9.99999999e+08
+                  - MaxLength changed from 6 to null
                 - Modified property: typeNumberOfInstalments
                   - MaxLength changed from 15 to null
 GET /contracts/{contractId}/warranties
@@ -256,8 +557,26 @@ GET /contracts/{contractId}/warranties
     - Max changed from null to 2.147483647e+09
 - Responses changed
   - New response: 422
-  - Deleted response: default
   - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: warrantyAmount
+                    - Type changed from 'number' to 'string'
+                    - Format changed from 'double' to ''
+                    - Example changed from 200.0001 to '200.0001'
+                    - MinLength changed from 0 to 4
+                    - MaxLength changed from 20 to 21
+                  - Modified property: warrantySubType
+                    - New enum values: [ACORDOS_COMPENSACAO_LIQUIDACAO_OBRIGACOES PROAGRO SEM_SUB_TIPO_GARANTIA]
+                    - MaxLength changed from 96 to null
+                  - Modified property: warrantyType
+                    - MaxLength changed from 37 to null
+  - Modified response: default
     - Content changed
       - Modified media type: application/json
         - Schema changed
