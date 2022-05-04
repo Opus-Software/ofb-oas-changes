@@ -88,8 +88,6 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/OKResponseFinancingsContractList'
       security:
         - OpenId:
             - openid
@@ -131,8 +129,6 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/OKResponseFinancingsContract'
       security:
         - OpenId:
             - openid
@@ -176,8 +172,6 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/OKResponseFinancingsWarranties'
       security:
         - OpenId:
             - openid
@@ -221,8 +215,6 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/OKResponseFinancingsInstalments'
       security:
         - OpenId:
             - openid
@@ -266,8 +258,6 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/OKResponseFinancingsPayments'
       security:
         - OpenId:
             - openid
@@ -350,12 +340,6 @@ components:
         meta:
           $ref: '#/components/schemas/Meta'
       additionalProperties: false
-    CurrencyCode:
-      type: string
-      pattern: '^[A-Z]{3}$'
-      maxLength: 3
-      description: 'Moeda referente ao valor monetário, seguindo o modelo ISO-4217.'
-      example: BRL
     EnumContractFinanceChargeType:
       type: string
       description: Tipo de encargo pactuado no contrato.
@@ -523,6 +507,7 @@ components:
       description: Lista que traz as datas de vencimento e valor das parcelas não regulares  do contrato da modalidade de crédito consultada.
       required:
         - dueDate
+        - currency
         - amount
       properties:
         dueDate:
@@ -532,25 +517,22 @@ components:
           description: 'Data de vencimento da parcela não regular  a vencer do contrato da modalidade de crédito consultada, conforme especificação RFC-3339. p.ex. 2014-03-19'
           maxLength: 10
           example: '2020-01-10'
-        amount:
-          $ref: '#/components/schemas/FinancingsBalloonPaymentAmount'
-      additionalProperties: false
-    FinancingsBalloonPaymentAmount:
-      type: object
-      required:
-        - amount
-        - currency
-      description: Valor monetário da parcela não regular a vencer
-      properties:
+        currency:
+          type: string
+          description: |
+            Moeda referente ao valor monetário informado, segundo modelo ISO-4217. p.ex. 'BRL' 
+            Todos os valores monetários informados estão representados com a moeda vigente do Brasil
+          pattern: '^(\w{3}){1}$|^NA$'
+          maxLength: 3
+          example: BRL
         amount:
           description: Valor monetário da parcela não regular a vencer. Expresso em valor monetário com 4 casas decimais.
           type: string
           pattern: '^-?\d{1,15}\.\d{2,4}$'
+          nullable: true
           maxLength: 21
           minLength: 4
           example: '100000.0400'
-        currency:
-          $ref: '#/components/schemas/CurrencyCode'
       additionalProperties: false
     FinancingsChargeOverParcel:
       type: object
@@ -572,6 +554,7 @@ components:
         chargeAmount:
           description: Valor do pagamento do encargo pago fora da parcela. Expresso em valor monetário com até 4 casas decimais.
           type: string
+          nullable: true
           pattern: '^-?\d{1,15}\.\d{2,4}$'
           maxLength: 21
           minLength: 4
@@ -714,10 +697,10 @@ components:
           type: string
           format: date
           maxLength: 10
-          pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$'
+          pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
           example: '2018-02-15'
           description: |
-            Data de vencimento primeira parcela do principal. [Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
+            Data de vencimento primeira parcela do principal.
         CET:
           type: string
           maxLength: 6
@@ -821,7 +804,7 @@ components:
           pattern: '^-?\d{1,15}\.\d{2,4}$'
           maxLength: 21
           minLength: 4
-          example: '100000.0400'
+          example: 100000.04
         feeRate:
           type: string
           maxLength: 6
@@ -859,6 +842,7 @@ components:
           pattern: '^-?\d{1,15}\.\d{2,4}$'
           maxLength: 21
           minLength: 4
+          nullable: true
           example: '100000.0400'
           description: |
             Valor monetário da tarifa pactuada no contrato.
@@ -869,26 +853,23 @@ components:
       description: Conjunto de informações referentes à identificação da operação de crédito
       required:
         - chargeType
+        - chargeAdditionalInfo
       properties:
         chargeType:
           $ref: '#/components/schemas/EnumContractFinanceChargeType'
         chargeAdditionalInfo:
           type: string
-          maxLength: 50
           description: |
-            Campo de preenchimento obrigatório se selecionada a opção 'OUTROS' em Tipo de encargo pactuado no contrato.   
+            Campo de preenchimento obrigatório se selecionada a opção 'OUTROS' em Tipo de encargo pactuado no contrato.
             [Restrição] Obrigatório se selecionada a opção 'OUTROS' em Tipo de encargo pactuado no contrato.
           pattern: '[\w\W\s]*'
           example: Informações adicionais sobre encargos.
         chargeRate:
-          type: string
-          format: double
-          pattern: '^\d{1,15}.\d{4}$'
-          maxLength: 20
-          minLength: 6
+          type: number
           description: |
             Representa o valor do encargo em percentual pactuado no contrato. Exemplo: 0.0210 (=2.1%).
-          example: '0.0700'
+          maxLength: 19
+          example: 0.07
       additionalProperties: false
     FinancingsInstalments:
       type: object
@@ -914,8 +895,9 @@ components:
           example: MES
         totalNumberOfInstalments:
           type: number
+          maxLength: 6
           example: 130632
-          maximum: 999999
+          nullable: true
           description: 'Prazo Total segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.'
         typeContractRemaining:
           type: string
@@ -929,22 +911,26 @@ components:
             Tipo de prazo remanescente do contrato referente à modalidade de crédito informada.
         contractRemainingNumber:
           type: number
-          maximum: 999999
+          maxLength: 6
           description: 'Prazo Remanescente segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.'
+          nullable: true
           example: 14600
         paidInstalments:
           type: number
           description: 'Quantidade de prestações pagas. (No caso de modalidades que não possuam parcelas, o número de prestações é igual a zero)'
-          maximum: 999
+          maxLength: 3
+          nullable: true
           example: 73
         dueInstalments:
           type: number
-          maximum: 999
+          maxLength: 3
           description: 'Quantidade de prestações a vencer.(No caso de modalidades que não possuam parcelas, o número de prestações é igual a zero)'
+          nullable: true
           example: 57
         pastDueInstalments:
           type: number
-          maximum: 999
+          maxLength: 3
+          nullable: true
           description: 'Quantidade de prestações vencidas. (No caso de modalidades que não possuam parcelas, o número de prestações é igual a zero)'
           example: 73
         balloonPayments:
@@ -953,6 +939,7 @@ components:
             $ref: '#/components/schemas/FinancingsBalloonPayment'
           minItems: 0
           description: Lista que traz as datas de vencimento e valor das parcelas não regulares do contrato da modalidade de crédito consultada
+          nullable: true
       additionalProperties: false
     FinancingsListContract:
       type: object
@@ -1032,7 +1019,8 @@ components:
       properties:
         paidInstalments:
           type: number
-          maximum: 2147483647
+          maxLength: 3
+          nullable: true
           example: 73
           description: Quantidade total de parcelas pagas do contrato referente à Modalidade de Crédito informada.
         contractOutstandingBalance:
