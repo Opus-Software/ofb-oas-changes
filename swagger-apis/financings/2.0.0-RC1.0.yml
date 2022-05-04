@@ -714,10 +714,10 @@ components:
           type: string
           format: date
           maxLength: 10
-          pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+          pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$'
           example: '2018-02-15'
           description: |
-            Data de vencimento primeira parcela do principal.
+            Data de vencimento primeira parcela do principal. [Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
         CET:
           type: string
           maxLength: 6
@@ -883,8 +883,8 @@ components:
         chargeRate:
           type: string
           format: double
-          pattern: '^\d{1,15}.\d{4}$'
-          maxLength: 20
+          pattern: '^[0-1]\.\d{4}$'
+          maxLength: 6
           minLength: 6
           description: |
             Representa o valor do encargo em percentual pactuado no contrato. Exemplo: 0.0210 (=2.1%).

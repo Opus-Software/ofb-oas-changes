@@ -109,8 +109,8 @@ GET /contracts/{contractId}
                         - Format changed from '' to 'double'
                         - Example changed from 0.07 to '0.0700'
                         - MinLength changed from 0 to 6
-                        - MaxLength changed from 19 to 20
-                        - Pattern changed from '' to '^\d{1,15}.\d{4}$'
+                        - MaxLength changed from 19 to 6
+                        - Pattern changed from '' to '^[0-1]\.\d{4}$'
                       - Modified property: chargeType
                         - MaxLength changed from 31 to null
                 - Modified property: disbursementDate
@@ -127,8 +127,9 @@ GET /contracts/{contractId}
                   - Description changed from 'Data de vencimento Final da operação. Especificação RFC-3339' to 'Data de vencimento Final da operação. Especificação RFC-3339.   
 '
                 - Modified property: firstInstalmentDueDate
-                  - Description changed from 'Data de vencimento primeira parcela do principal' to 'Data de vencimento primeira parcela do principal.
+                  - Description changed from 'Data de vencimento primeira parcela do principal' to 'Data de vencimento primeira parcela do principal. [Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
 '
+                  - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$'
                 - Modified property: instalmentPeriodicity
                   - MaxLength changed from 25 to null
                 - Modified property: interestRates
@@ -236,8 +237,8 @@ Receptora deve interpretar a informação conforme orientação acima.
                         - Format changed from '' to 'double'
                         - Example changed from 0.07 to '0.0700'
                         - MinLength changed from 0 to 6
-                        - MaxLength changed from 19 to 20
-                        - Pattern changed from '' to '^\d{1,15}.\d{4}$'
+                        - MaxLength changed from 19 to 6
+                        - Pattern changed from '' to '^[0-1]\.\d{4}$'
                       - Modified property: chargeType
                         - MaxLength changed from 31 to null
                 - Modified property: disbursementDate
@@ -254,8 +255,9 @@ Receptora deve interpretar a informação conforme orientação acima.
                   - Description changed from 'Data de vencimento Final da operação. Especificação RFC-3339' to 'Data de vencimento Final da operação. Especificação RFC-3339.   
 '
                 - Modified property: firstInstalmentDueDate
-                  - Description changed from 'Data de vencimento primeira parcela do principal' to 'Data de vencimento primeira parcela do principal.
+                  - Description changed from 'Data de vencimento primeira parcela do principal' to 'Data de vencimento primeira parcela do principal. [Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
 '
+                  - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$'
                 - Modified property: instalmentPeriodicity
                   - MaxLength changed from 25 to null
                 - Modified property: interestRates
