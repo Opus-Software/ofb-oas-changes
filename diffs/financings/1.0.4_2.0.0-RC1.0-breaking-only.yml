@@ -19,6 +19,8 @@ GET /contracts
                 - Properties changed
                   - Modified property: companyCnpj
                     - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
+                  - Modified property: contractId
+                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{1,100}$'
                   - Modified property: ipocCode
                     - Pattern changed from '' to '^\d{22,67}$'
                   - Modified property: productSubType
@@ -35,6 +37,8 @@ GET /contracts
                 - Properties changed
                   - Modified property: companyCnpj
                     - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
+                  - Modified property: contractId
+                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{1,100}$'
                   - Modified property: ipocCode
                     - Pattern changed from '' to '^\d{22,67}$'
                   - Modified property: productSubType
@@ -60,7 +64,7 @@ GET /contracts/{contractId}
                   - Type changed from 'number' to 'string'
                   - Format changed from 'double' to ''
                   - Nullable changed from true to false
-                  - MaxLength changed from 20 to 21
+                  - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
                 - Modified property: contractNumber
                   - Pattern changed from '' to '^\d{1,100}$'
                 - Modified property: contractedFees
@@ -147,7 +151,7 @@ GET /contracts/{contractId}
                   - Type changed from 'number' to 'string'
                   - Format changed from 'double' to ''
                   - Nullable changed from true to false
-                  - MaxLength changed from 20 to 21
+                  - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
                 - Modified property: contractNumber
                   - Pattern changed from '' to '^\d{1,100}$'
                 - Modified property: contractedFees
@@ -232,7 +236,7 @@ GET /contracts/{contractId}/payments
                 - Modified property: contractOutstandingBalance
                   - Type changed from 'number' to 'string'
                   - Format changed from 'double' to ''
-                  - MaxLength changed from 20 to 21
+                  - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
                 - Modified property: paidInstalments
                   - Nullable changed from true to false
                   - MaxLength changed from 3 to null
@@ -248,7 +252,7 @@ GET /contracts/{contractId}/payments
                                   - Type changed from 'number' to 'string'
                                   - Format changed from 'double' to ''
                                   - Nullable changed from true to false
-                                  - MaxLength changed from 20 to 21
+                                  - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
                                 - Modified property: chargeType
                                   - MaxLength changed from 31 to null
                           - Modified property: fees
@@ -258,11 +262,11 @@ GET /contracts/{contractId}/payments
                                   - Type changed from 'number' to 'string'
                                   - Format changed from 'double' to ''
                                   - Nullable changed from true to false
-                                  - MaxLength changed from 20 to 21
+                                  - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
                       - Modified property: paidAmount
                         - Type changed from 'number' to 'string'
                         - Format changed from 'double' to ''
-                        - MaxLength changed from 20 to 21
+                        - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
   - Modified response: default
     - Content changed
       - Modified media type: application/json
@@ -273,7 +277,7 @@ GET /contracts/{contractId}/payments
                 - Modified property: contractOutstandingBalance
                   - Type changed from 'number' to 'string'
                   - Format changed from 'double' to ''
-                  - MaxLength changed from 20 to 21
+                  - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
                 - Modified property: paidInstalments
                   - Nullable changed from true to false
                   - MaxLength changed from 3 to null
@@ -289,7 +293,7 @@ GET /contracts/{contractId}/payments
                                   - Type changed from 'number' to 'string'
                                   - Format changed from 'double' to ''
                                   - Nullable changed from true to false
-                                  - MaxLength changed from 20 to 21
+                                  - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
                                 - Modified property: chargeType
                                   - MaxLength changed from 31 to null
                           - Modified property: fees
@@ -299,11 +303,11 @@ GET /contracts/{contractId}/payments
                                   - Type changed from 'number' to 'string'
                                   - Format changed from 'double' to ''
                                   - Nullable changed from true to false
-                                  - MaxLength changed from 20 to 21
+                                  - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
                       - Modified property: paidAmount
                         - Type changed from 'number' to 'string'
                         - Format changed from 'double' to ''
-                        - MaxLength changed from 20 to 21
+                        - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
 GET /contracts/{contractId}/scheduled-instalments
 - Modified query param: page
   - Schema changed
@@ -407,7 +411,7 @@ GET /contracts/{contractId}/warranties
                   - Modified property: warrantyAmount
                     - Type changed from 'number' to 'string'
                     - Format changed from 'double' to ''
-                    - MaxLength changed from 20 to 21
+                    - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
                   - Modified property: warrantySubType
                     - MaxLength changed from 96 to null
                   - Modified property: warrantyType
@@ -423,7 +427,7 @@ GET /contracts/{contractId}/warranties
                   - Modified property: warrantyAmount
                     - Type changed from 'number' to 'string'
                     - Format changed from 'double' to ''
-                    - MaxLength changed from 20 to 21
+                    - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
                   - Modified property: warrantySubType
                     - MaxLength changed from 96 to null
                   - Modified property: warrantyType
