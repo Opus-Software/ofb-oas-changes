@@ -442,28 +442,14 @@ components:
           pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
           example: '2021-05-21'
         billTotalAmount:
-          type: object
-          required:
-            - amount
-            - currency
+          type: string
+          pattern: '^-?\d{1,15}\.\d{2,4}$'
+          maxLength: 20
+          minLength: 0
           description: |
             Valor total da faturas.
             O campo deve assumir valor positivo para saldo devedor e negativo para saldo credor.
-          properties:
-            amount:
-              description: Valor total da faturas. Expresso em valor monetário com 4 casas decimais.
-              type: string
-              pattern: '^\d{1,15}\.\d{2,4}$'
-              maxLength: 20
-              minLength: 4
-              example: '100000.0400'
-            currency:
-              type: string
-              pattern: '^[A-Z]{3}$'
-              maxLength: 3
-              description: 'Moeda referente ao valor monetário, seguindo o modelo ISO-4217.'
-              example: BRL
-          additionalProperties: false
+          example: '100000.0400'
         billTotalAmountCurrency:
           type: string
           maxLength: 3
@@ -746,7 +732,7 @@ components:
         - transactionType
         - transactionalAdditionalInfo
         - paymentType
-        - feeType
+        - feeTypeAdditionalInfo
         - otherCreditsType
         - chargeIdentificator
         - chargeNumber
@@ -807,6 +793,8 @@ components:
           pattern: '^\S[\s\S]*$'
           description: |
             Campo livre, de preenchimento obrigatório quando selecionado tipo de crédito "OUTROS".
+
+            Para recebedora: Ignorar o campo preenchido conforme esse cenário.
         chargeIdentificator:
           type: string
           maxLength: 50
@@ -870,7 +858,6 @@ components:
         - EMISSAO_SEGUNDA_VIA
         - TARIFA_PAGAMENTO_CONTAS
         - SMS
-        - NAO_SE_APLICA
         - OUTRA
       example: ANUIDADE
     EnumCreditCardAccountsBillingValueType:
@@ -945,7 +932,6 @@ components:
         - CREDITO_ROTATIVO
         - PARCELAMENTO_FATURA
         - EMPRESTIMO
-        - NAO_SE_APLICA
         - OUTROS
       example: CREDITO_ROTATIVO
     EnumCreditCardAccountsPaymentMode:
