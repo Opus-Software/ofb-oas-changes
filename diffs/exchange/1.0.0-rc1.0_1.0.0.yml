@@ -5,6 +5,9 @@
 ### Modified Endpoints: 2
 -------------------------
 GET /online-rates
+- Modified query param: page
+  - Schema changed
+    - Max changed from 2.147483647e+09 to null
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -24,6 +27,8 @@ GET /online-rates
                       - Required changed
                         - Deleted required property: targetAudience
                       - Properties changed
+                        - Modified property: foreignCurrency
+                          - MaxLength changed from 3 to null
                         - Modified property: targetAudience
                           - Description changed from 'Público alvo (PESSOA_NATURAL ou PESSOA_JURIDICA).' to 'Público alvo (ou PF ou PJ).'
                           - New enum values: [PF PJ]
@@ -81,6 +86,9 @@ GET /online-rates
               - Properties changed
                 - New property: requestDateTime
 GET /vet-values
+- Modified query param: page
+  - Schema changed
+    - Max changed from 2.147483647e+09 to null
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -92,6 +100,8 @@ GET /vet-values
                 - Required changed
                   - Deleted required property: targetAudience
                 - Properties changed
+                  - Modified property: foreignCurrency
+                    - MaxLength changed from 3 to null
                   - Modified property: participant
                     - Properties changed
                       - Modified property: cnpjNumber
@@ -106,7 +116,6 @@ GET /vet-values
                       - New property: code
                       - New property: name
                       - Modified property: prices
-                        - Example changed from [map[interval:1_FAIXA operationRate:0.500000 value:0.020300] map[interval:2_FAIXA operationRate:0.100000 value:0.030600] map[interval:3_FAIXA operationRate:0.300000 value:0.034300] map[interval:4_FAIXA operationRate:0.100000 value:0.246800]] to [map[customerRate:0.500000 interval:1_FAIXA value:0.020300] map[customerRate:0.100000 interval:2_FAIXA value:0.030600] map[customerRate:0.300000 interval:3_FAIXA value:0.034300] map[customerRate:0.100000 interval:4_FAIXA value:0.246800]]
                         - Items changed
                           - Required changed
                             - New required property: customerRate

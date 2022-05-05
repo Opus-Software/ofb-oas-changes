@@ -5,6 +5,9 @@
 ### Modified Endpoints: 2
 -------------------------
 GET /risk-coverages
+- Modified query param: page
+  - Schema changed
+    - Max changed from 2.147483647e+09 to null
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -37,14 +40,18 @@ GET /risk-coverages
                             - New property: indemnityPaymentFrequencies
                             - New property: indemnityPaymentMethods
                             - New property: maximumQtyIndemnifiableInstallments
+                            - Modified property: maxValue
+                              - Properties changed
+                                - Modified property: currency
+                                  - MaxLength changed from 3 to null
+                            - Modified property: minValue
+                              - Properties changed
+                                - Modified property: currency
+                                  - MaxLength changed from 3 to null
                   - Modified property: minimumRequirement
                     - Properties changed
                       - Modified property: contractType
-                        - Description changed from 'O tipo de serviço contratado. A considerar os domínios abaixo&#58;<br><ol><li>Coletivo</li><li>Individual</li></ol>' to 'O tipo de serviço contratado. A considerar os domínios abaixo&#58;<br><ol><li>Coletivo Averbado</li><li>Coletivo Instituído</li><li>Individual</li></ol>'
-                        - New enum values: [COLETIVO_AVERBADO COLETIVO_INSTITUIDO]
-                        - Deleted enum values: [COLETIVO]
-                        - Example changed from 'COLETIVO' to 'COLETIVO_AVERBADO'
-                        - MaxLength changed from 10 to 19
+                        - MaxLength changed from null to 19
                   - Modified property: participant
                     - Properties changed
                       - Modified property: cnpjNumber
@@ -53,7 +60,7 @@ GET /risk-coverages
                     - Properties changed
                       - Modified property: updateIndexes
                         - Items changed
-                          - MaxLength changed from 5 to 9
+                          - MaxLength changed from null to 9
                   - Modified property: society
                     - Properties changed
                       - Modified property: cnpjNumber
@@ -109,6 +116,9 @@ GET /risk-coverages
               - Properties changed
                 - New property: requestDateTime
 GET /survival-coverages
+- Modified query param: page
+  - Schema changed
+    - Max changed from 2.147483647e+09 to null
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -125,6 +135,13 @@ GET /survival-coverages
                           - Properties changed
                             - Modified property: cnpjNumber
                               - Pattern changed from '^\d{14}$' to '\d{14}$'
+                            - Modified property: currency
+                              - MaxLength changed from 3 to null
+                      - Modified property: minimumPremiums
+                        - Items changed
+                          - Properties changed
+                            - Modified property: currency
+                              - MaxLength changed from 3 to null
                   - Modified property: grantPeriodBenefit
                     - Required changed
                       - New required property: biometricTable
@@ -136,6 +153,8 @@ GET /survival-coverages
                           - Properties changed
                             - Modified property: cnpjNumber
                               - Pattern changed from '^\d{14}$' to '\d{14}$'
+                            - Modified property: currency
+                              - MaxLength changed from 3 to null
                   - Modified property: participant
                     - Properties changed
                       - Modified property: cnpjNumber
