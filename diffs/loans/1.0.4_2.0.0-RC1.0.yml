@@ -57,6 +57,9 @@ GET /contracts/{contractId}
         - Schema changed
           - Properties changed
             - Modified property: data
+              - Required changed
+                - Deleted required property: dueDate
+                - Deleted required property: firstInstalmentDueDate
               - Properties changed
                 - Modified property: CET
                   - Type changed from 'number' to 'string'
@@ -86,6 +89,7 @@ Informação adicional específica para Modalidade de Crédito: Empréstimo-Cré
                   - Nullable changed from true to false
                   - MinLength changed from 0 to 4
                   - MaxLength changed from 20 to 21
+                  - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
                 - Modified property: contractNumber
                   - MinLength changed from 0 to 1
                   - Pattern changed from '' to '^\d{1,100}$'
@@ -125,10 +129,12 @@ Informação adicional específica para Modalidade de Crédito: Empréstimo-Cré
                         - MaxLength changed from 31 to null
                 - Modified property: dueDate
                   - Description changed from 'Data de vencimento Final da operação. Especificação RFC-3339' to 'Data de vencimento Final da operação. Especificação RFC-3339.
+Informação deve ser enviada caso ela exista.
 '
                   - MinLength changed from 0 to 2
                 - Modified property: firstInstalmentDueDate
                   - Description changed from 'Data de vencimento primeira parcela do principal' to 'Data de vencimento primeira parcela do principal.
+Informação deve ser enviada caso ela exista.
 '
                 - Modified property: instalmentPeriodicity
                   - MaxLength changed from 25 to null
@@ -153,15 +159,15 @@ Informação adicional específica para Modalidade de Crédito: Empréstimo-Cré
                         - Example changed from 0.55 to '0.5500'
                         - Nullable changed from true to false
                         - MinLength changed from 0 to 6
-                        - MaxLength changed from 19 to 6
-                        - Pattern changed from '' to '^\d{1}\.\d{4}$'
+                        - MaxLength changed from 19 to 8
+                        - Pattern changed from '' to '^\d{1}\.\d{4,6}$'
                       - Modified property: preFixedRate
                         - Type changed from 'number' to 'string'
                         - Example changed from 0.6 to '0.6000'
                         - Nullable changed from true to false
                         - MinLength changed from 0 to 6
-                        - MaxLength changed from 19 to 6
-                        - Pattern changed from '' to '^\d{1}\.\d{4}$'
+                        - MaxLength changed from 19 to 8
+                        - Pattern changed from '' to '^\d{1}\.\d{4,6}$'
                       - Modified property: referentialRateIndexerSubType
                         - MaxLength changed from 24 to null
                       - Modified property: referentialRateIndexerType
@@ -189,6 +195,9 @@ Informação adicional específica para Modalidade de Crédito: Empréstimo-Cré
         - Schema changed
           - Properties changed
             - Modified property: data
+              - Required changed
+                - Deleted required property: dueDate
+                - Deleted required property: firstInstalmentDueDate
               - Properties changed
                 - Modified property: CET
                   - Type changed from 'number' to 'string'
@@ -218,6 +227,7 @@ Informação adicional específica para Modalidade de Crédito: Empréstimo-Cré
                   - Nullable changed from true to false
                   - MinLength changed from 0 to 4
                   - MaxLength changed from 20 to 21
+                  - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
                 - Modified property: contractNumber
                   - MinLength changed from 0 to 1
                   - Pattern changed from '' to '^\d{1,100}$'
@@ -257,10 +267,12 @@ Informação adicional específica para Modalidade de Crédito: Empréstimo-Cré
                         - MaxLength changed from 31 to null
                 - Modified property: dueDate
                   - Description changed from 'Data de vencimento Final da operação. Especificação RFC-3339' to 'Data de vencimento Final da operação. Especificação RFC-3339.
+Informação deve ser enviada caso ela exista.
 '
                   - MinLength changed from 0 to 2
                 - Modified property: firstInstalmentDueDate
                   - Description changed from 'Data de vencimento primeira parcela do principal' to 'Data de vencimento primeira parcela do principal.
+Informação deve ser enviada caso ela exista.
 '
                 - Modified property: instalmentPeriodicity
                   - MaxLength changed from 25 to null
@@ -285,15 +297,15 @@ Informação adicional específica para Modalidade de Crédito: Empréstimo-Cré
                         - Example changed from 0.55 to '0.5500'
                         - Nullable changed from true to false
                         - MinLength changed from 0 to 6
-                        - MaxLength changed from 19 to 6
-                        - Pattern changed from '' to '^\d{1}\.\d{4}$'
+                        - MaxLength changed from 19 to 8
+                        - Pattern changed from '' to '^\d{1}\.\d{4,6}$'
                       - Modified property: preFixedRate
                         - Type changed from 'number' to 'string'
                         - Example changed from 0.6 to '0.6000'
                         - Nullable changed from true to false
                         - MinLength changed from 0 to 6
-                        - MaxLength changed from 19 to 6
-                        - Pattern changed from '' to '^\d{1}\.\d{4}$'
+                        - MaxLength changed from 19 to 8
+                        - Pattern changed from '' to '^\d{1}\.\d{4,6}$'
                       - Modified property: referentialRateIndexerSubType
                         - MaxLength changed from 24 to null
                       - Modified property: referentialRateIndexerType
@@ -334,14 +346,19 @@ GET /contracts/{contractId}/payments
                   - Example changed from 100000.04 to '100000.0400'
                   - MinLength changed from 0 to 4
                   - MaxLength changed from 20 to 21
+                  - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
                 - Modified property: paidInstalments
                   - Nullable changed from true to false
                   - Max changed from null to 2.147483647e+09
                   - MaxLength changed from 3 to null
                 - Modified property: releases
                   - Items changed
+                    - Required changed
+                      - Deleted required property: overParcel
                     - Properties changed
                       - Modified property: overParcel
+                        - Description changed from 'Objeto das tarifas e encargos que foram pagos fora da parcela.' to '[Restrição] Informação deve ser enviada caso ela exista.
+'
                         - Properties changed
                           - Modified property: charges
                             - Items changed
@@ -352,7 +369,7 @@ GET /contracts/{contractId}/payments
                                   - Example changed from 100000.04 to '100000.0400'
                                   - Nullable changed from true to false
                                   - MinLength changed from 0 to 4
-                                  - MaxLength changed from 20 to 21
+                                  - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
                                 - Modified property: chargeType
                                   - MaxLength changed from 31 to null
                           - Modified property: fees
@@ -377,6 +394,7 @@ GET /contracts/{contractId}/payments
                         - Example changed from 100000.04 to '100000.0400'
                         - MinLength changed from 0 to 4
                         - MaxLength changed from 20 to 21
+                        - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
   - Modified response: default
     - Content changed
       - Modified media type: application/json
@@ -390,14 +408,19 @@ GET /contracts/{contractId}/payments
                   - Example changed from 100000.04 to '100000.0400'
                   - MinLength changed from 0 to 4
                   - MaxLength changed from 20 to 21
+                  - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
                 - Modified property: paidInstalments
                   - Nullable changed from true to false
                   - Max changed from null to 2.147483647e+09
                   - MaxLength changed from 3 to null
                 - Modified property: releases
                   - Items changed
+                    - Required changed
+                      - Deleted required property: overParcel
                     - Properties changed
                       - Modified property: overParcel
+                        - Description changed from 'Objeto das tarifas e encargos que foram pagos fora da parcela.' to '[Restrição] Informação deve ser enviada caso ela exista.
+'
                         - Properties changed
                           - Modified property: charges
                             - Items changed
@@ -408,7 +431,7 @@ GET /contracts/{contractId}/payments
                                   - Example changed from 100000.04 to '100000.0400'
                                   - Nullable changed from true to false
                                   - MinLength changed from 0 to 4
-                                  - MaxLength changed from 20 to 21
+                                  - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
                                 - Modified property: chargeType
                                   - MaxLength changed from 31 to null
                           - Modified property: fees
@@ -433,6 +456,7 @@ GET /contracts/{contractId}/payments
                         - Example changed from 100000.04 to '100000.0400'
                         - MinLength changed from 0 to 4
                         - MaxLength changed from 20 to 21
+                        - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
 GET /contracts/{contractId}/scheduled-instalments
 - Modified query param: page
   - Schema changed
@@ -450,6 +474,7 @@ GET /contracts/{contractId}/scheduled-instalments
               - Properties changed
                 - Modified property: balloonPayments
                   - Nullable changed from true to false
+                  - MinItems changed from 0 to 1
                   - Items changed
                     - Required changed
                       - Deleted required property: currency
@@ -507,6 +532,7 @@ GET /contracts/{contractId}/scheduled-instalments
               - Properties changed
                 - Modified property: balloonPayments
                   - Nullable changed from true to false
+                  - MinItems changed from 0 to 1
                   - Items changed
                     - Required changed
                       - Deleted required property: currency
@@ -572,7 +598,7 @@ GET /contracts/{contractId}/warranties
                     - Format changed from 'double' to ''
                     - Example changed from 200.0001 to '200.0001'
                     - MinLength changed from 0 to 4
-                    - MaxLength changed from 20 to 21
+                    - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
                   - Modified property: warrantySubType
                     - New enum values: [ACORDOS_COMPENSACAO_LIQUIDACAO_OBRIGACOES PROAGRO SEM_SUB_TIPO_GARANTIA]
                     - MaxLength changed from 96 to null
@@ -591,7 +617,7 @@ GET /contracts/{contractId}/warranties
                     - Format changed from 'double' to ''
                     - Example changed from 200.0001 to '200.0001'
                     - MinLength changed from 0 to 4
-                    - MaxLength changed from 20 to 21
+                    - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
                   - Modified property: warrantySubType
                     - New enum values: [ACORDOS_COMPENSACAO_LIQUIDACAO_OBRIGACOES PROAGRO SEM_SUB_TIPO_GARANTIA]
                     - MaxLength changed from 96 to null
