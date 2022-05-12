@@ -607,7 +607,7 @@ components:
           type: number
           maximum: 9999
           example: 2010
-          description: 'Ano de referência do Patrimônio, conforme especificação RFC-3339.'
+          description: 'Ano de referência da Renda, conforme especificação RFC-3339.'
       additionalProperties: false
     CustomerEmail:
       type: object
@@ -861,7 +861,6 @@ components:
         Lista de contas depósito à vista, poupança e pagamento pré-pagas mantidas pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento
       required:
         - compeCode
-        - branchCode
         - number
         - checkDigit
         - type
@@ -878,7 +877,8 @@ components:
           maxLength: 4
           pattern: '^\d{4}$'
           description: |
-            Código da Agência detentora da conta. (Agência é a dependência destinada ao atendimento aos clientes, ao público em geral e aos associados de cooperativas de crédito, no exercício de atividades da instituição, não podendo ser móvel ou transitória)
+            Código da Agência detentora da conta. (Agência é a dependência destinada ao atendimento aos clientes, ao público em geral e aos associados de cooperativas de crédito, no exercício de atividades da instituição, não podendo ser móvel ou transitória)   
+            [Restrição] Obrigatoriamente deve ser preenchido quando o campo "type" for diferente de conta pré paga.
           example: '6272'
         number:
           type: string
@@ -1103,7 +1103,6 @@ components:
         - TRIMESTRAL
         - SEMESTRAL
         - ANUAL
-        - SEM_FREQUENCIA_RENDA_INFORMADA
         - OUTROS
       description: Traz a frequência ou período da renda informada.
     EnumMaritalStatusCode:
@@ -1117,7 +1116,7 @@ components:
         - UNIAO_ESTAVEL
         - OUTRO
         - NAO_DISPONIVEL
-      example: SOLTEIRO
+      example: OUTRO
       description: |
         Estado marital do cliente.
     EnumOccupationMainCodeType:
@@ -1154,7 +1153,6 @@ components:
       enum:
         - REPRESENTANTE_LEGAL
         - PROCURADOR
-        - NAO_POSSUI
       example: PROCURADOR
       description: |
         Tipo de representante.
@@ -1697,7 +1695,7 @@ components:
           type: string
           pattern: '[\w\W\s]*'
           maxLength: 50
-          example: Casado
+          example: Amasiado
           description: |
             Campo livre para complementar a informação relativa ao estado marital.
 
@@ -1885,8 +1883,6 @@ components:
       required:
         - updateDateTime
         - companyCnpj
-        - informedIncome
-        - informedPatrimony
         - occupationCode
         - occupationDescription
       properties:
