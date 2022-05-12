@@ -186,9 +186,11 @@ GET /accounts/{creditCardAccountId}/bills/{billId}/transactions
             - Modified property: data
               - Items changed
                 - Required changed
+                  - Deleted required property: chargeNumber
                   - Deleted required property: currency
                   - Deleted required property: feeTypeAdditionalInfo
                   - Deleted required property: otherCreditsAdditionalInfo
+                  - Deleted required property: payeeMCC
                 - Properties changed
                   - Deleted property: currency
                   - Deleted property: lineName
@@ -224,8 +226,12 @@ GET /accounts/{creditCardAccountId}/bills/{billId}/transactions
                       - New property: amount
                       - New property: currency
                   - Modified property: chargeNumber
+                    - Description changed from 'Quantidade de parcelas' to 'Quantidade de parcelas.   
+[Restrição] O campo deve ser preenchido quando houverem parcelas relacionadas a transação.
+'
+                    - Example changed from 3 to 12
                     - Nullable changed from true to false
-                    - Max changed from null to 2.147483647e+09
+                    - Max changed from null to 999
                     - MaxLength changed from 2 to null
                   - Modified property: creditDebitType
                     - MaxLength changed from 7 to null
@@ -280,9 +286,11 @@ Para recebedora: ignorar o campo preenchido quando não for uma transação do t
             - Modified property: data
               - Items changed
                 - Required changed
+                  - Deleted required property: chargeNumber
                   - Deleted required property: currency
                   - Deleted required property: feeTypeAdditionalInfo
                   - Deleted required property: otherCreditsAdditionalInfo
+                  - Deleted required property: payeeMCC
                 - Properties changed
                   - Deleted property: currency
                   - Deleted property: lineName
@@ -318,8 +326,12 @@ Para recebedora: ignorar o campo preenchido quando não for uma transação do t
                       - New property: amount
                       - New property: currency
                   - Modified property: chargeNumber
+                    - Description changed from 'Quantidade de parcelas' to 'Quantidade de parcelas.   
+[Restrição] O campo deve ser preenchido quando houverem parcelas relacionadas a transação.
+'
+                    - Example changed from 3 to 12
                     - Nullable changed from true to false
-                    - Max changed from null to 2.147483647e+09
+                    - Max changed from null to 999
                     - MaxLength changed from 2 to null
                   - Modified property: creditDebitType
                     - MaxLength changed from 7 to null
@@ -380,6 +392,9 @@ Cenário de limite com valor zerado, deve ter um registro explícito informando 
 Cenário de "cartão sem limite", isto é, cartões em que o uso do limite é ilimitado, deve ser informado em um registro explícito com isLimitFlexible como true.
 '
               - Items changed
+                - Required changed
+                  - Deleted required property: limitAmount
+                  - Deleted required property: limitAmountCurrency
                 - Properties changed
                   - Modified property: availableAmount
                     - Type changed from 'number' to 'string'
@@ -394,10 +409,19 @@ Cenário de "cartão sem limite", isto é, cartões em que o uso do limite é il
                     - MaxLength changed from 34 to null
                   - Modified property: limitAmount
                     - Type changed from 'number' to 'string'
+                    - Description changed from 'Valor total do limite informado Expresso em valor monetário com 4 casas decimais.' to 'Valor total do limite informado Expresso em valor monetário com 4 casas decimais.   
+[Restrição] O campo é opcional caso isLimitFlexible for igual a false.
+'
                     - Example changed from 100000.0001 to '100000.0001'
                     - Nullable changed from true to false
                     - MaxLength changed from 20 to 21
                   - Modified property: limitAmountCurrency
+                    - Description changed from 'Moeda referente ao limite informado, segundo modelo ISO-4217. p.ex. 'BRL.'
+Todos os limite informados estão representados com a moeda vigente do do Brasil.
+' to 'Moeda referente ao limite informado, segundo modelo ISO-4217. p.ex. 'BRL.'
+Todos os limite informados estão representados com a moeda vigente do do Brasil.   
+[Restrição] O campo é opcional caso isLimitFlexible for igual a false.
+'
                     - Pattern changed from '^(\w{3}){1}$|^NA$' to '^(\w{3}){1}$'
                   - Modified property: lineName
                     - MaxLength changed from 28 to null
@@ -421,6 +445,9 @@ Cenário de limite com valor zerado, deve ter um registro explícito informando 
 Cenário de "cartão sem limite", isto é, cartões em que o uso do limite é ilimitado, deve ser informado em um registro explícito com isLimitFlexible como true.
 '
               - Items changed
+                - Required changed
+                  - Deleted required property: limitAmount
+                  - Deleted required property: limitAmountCurrency
                 - Properties changed
                   - Modified property: availableAmount
                     - Type changed from 'number' to 'string'
@@ -435,10 +462,19 @@ Cenário de "cartão sem limite", isto é, cartões em que o uso do limite é il
                     - MaxLength changed from 34 to null
                   - Modified property: limitAmount
                     - Type changed from 'number' to 'string'
+                    - Description changed from 'Valor total do limite informado Expresso em valor monetário com 4 casas decimais.' to 'Valor total do limite informado Expresso em valor monetário com 4 casas decimais.   
+[Restrição] O campo é opcional caso isLimitFlexible for igual a false.
+'
                     - Example changed from 100000.0001 to '100000.0001'
                     - Nullable changed from true to false
                     - MaxLength changed from 20 to 21
                   - Modified property: limitAmountCurrency
+                    - Description changed from 'Moeda referente ao limite informado, segundo modelo ISO-4217. p.ex. 'BRL.'
+Todos os limite informados estão representados com a moeda vigente do do Brasil.
+' to 'Moeda referente ao limite informado, segundo modelo ISO-4217. p.ex. 'BRL.'
+Todos os limite informados estão representados com a moeda vigente do do Brasil.   
+[Restrição] O campo é opcional caso isLimitFlexible for igual a false.
+'
                     - Pattern changed from '^(\w{3}){1}$|^NA$' to '^(\w{3}){1}$'
                   - Modified property: lineName
                     - MaxLength changed from 28 to null
@@ -468,9 +504,11 @@ GET /accounts/{creditCardAccountId}/transactions
             - Modified property: data
               - Items changed
                 - Required changed
+                  - Deleted required property: chargeNumber
                   - Deleted required property: currency
                   - Deleted required property: feeTypeAdditionalInfo
                   - Deleted required property: otherCreditsAdditionalInfo
+                  - Deleted required property: payeeMCC
                 - Properties changed
                   - Deleted property: currency
                   - Deleted property: lineName
@@ -506,8 +544,12 @@ GET /accounts/{creditCardAccountId}/transactions
                       - New property: amount
                       - New property: currency
                   - Modified property: chargeNumber
+                    - Description changed from 'Quantidade de parcelas' to 'Quantidade de parcelas.   
+[Restrição] O campo deve ser preenchido quando houverem parcelas relacionadas a transação.
+'
+                    - Example changed from 3 to 12
                     - Nullable changed from true to false
-                    - Max changed from null to 2.147483647e+09
+                    - Max changed from null to 999
                     - MaxLength changed from 2 to null
                   - Modified property: creditDebitType
                     - MaxLength changed from 7 to null
@@ -562,9 +604,11 @@ Para recebedora: ignorar o campo preenchido quando não for uma transação do t
             - Modified property: data
               - Items changed
                 - Required changed
+                  - Deleted required property: chargeNumber
                   - Deleted required property: currency
                   - Deleted required property: feeTypeAdditionalInfo
                   - Deleted required property: otherCreditsAdditionalInfo
+                  - Deleted required property: payeeMCC
                 - Properties changed
                   - Deleted property: currency
                   - Deleted property: lineName
@@ -600,8 +644,12 @@ Para recebedora: ignorar o campo preenchido quando não for uma transação do t
                       - New property: amount
                       - New property: currency
                   - Modified property: chargeNumber
+                    - Description changed from 'Quantidade de parcelas' to 'Quantidade de parcelas.   
+[Restrição] O campo deve ser preenchido quando houverem parcelas relacionadas a transação.
+'
+                    - Example changed from 3 to 12
                     - Nullable changed from true to false
-                    - Max changed from null to 2.147483647e+09
+                    - Max changed from null to 999
                     - MaxLength changed from 2 to null
                   - Modified property: creditDebitType
                     - MaxLength changed from 7 to null
