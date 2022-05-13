@@ -103,20 +103,20 @@ GET /business/identifications
               - Items changed
                 - AdditionalProperties changed from null to false
                 - Required changed
+                  - New required property: companyCnpjNumbers
+                  - Deleted required property: companyCnpjNumber
                   - Deleted required property: tradeName
                 - Properties changed
+                  - New property: companyCnpjNumbers
+                  - Deleted property: companyCnpjNumber
                   - Modified property: cnpjNumber
                     - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
-                  - Modified property: companyCnpjNumber
-                    - MaxLength changed from 14 to null
-                    - Pattern changed from '\d{14}|^NA$' to ''
-                    - Items changed
-                      - Example changed from null to '50685362000135'
-                      - MaxLength changed from null to 14
-                      - Pattern changed from '' to '^\d{14}$'
                   - Modified property: contacts
                     - Properties changed
+                      - Modified property: emails
+                        - MinItems changed from 1 to 0
                       - Modified property: phones
+                        - MinItems changed from 1 to 0
                         - Items changed
                           - Required changed
                             - Deleted required property: phoneExtension
@@ -177,8 +177,8 @@ GET /business/identifications
                   - Modified property: otherDocuments
                     - Items changed
                       - Required changed
-                        - Deleted required property: country
-                        - Deleted required property: number
+                        - New required property: type
+                        - Deleted required property: expirationDate
                       - Properties changed
                         - Modified property: country
                           - Description changed from 'Pais de emissão do tipo de documento informado. Código do pais de acordo com o código “alpha3” do ISO-3166' to 'Pais de emissão do tipo de documento informado. Código do pais de acordo com o código alpha3 do ISO-3166'
@@ -190,6 +190,7 @@ GET /business/identifications
                       - Required changed
                         - Deleted required property: documentCountry
                         - Deleted required property: documentExpirationDate
+                        - Deleted required property: shareholding
                         - Deleted required property: socialName
                         - Deleted required property: startDate
                       - Properties changed
@@ -200,6 +201,10 @@ GET /business/identifications
                         - Modified property: documentExpirationDate
                           - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
                         - Modified property: shareholding
+                          - Description changed from 'Percentual de participação societária (informar com 2 casas decimais). Sócio só deve ser informado se sua participação societária for igual ou superior a 25%. p.ex: 0.25 (Este valor  representa 25%. O valor '1 'representa 100%)
+' to 'Percentual de participação societária (informar com 2 casas decimais). Sócio só deve ser informado se sua participação societária for igual ou superior a 25%. p.ex: 0.25 (Este valor  representa 25%. O valor '1 'representa 100%)   
+[Restrição] Campo obrigatório caso o type for igual a SOCIO e este tiver participação societária maior que 25%.
+'
                           - Pattern changed from '^((\d{1,9}\.\d{2}){1}|NA)$' to '^((\d{1,9}\.\d{2}){1})$'
                         - Modified property: socialName
                           - Description changed from 'Nome social da pessoa natural, se houver. (aquele pelo qual travestis e transexuais se reconhecem, bem como são identificados por sua comunidade e em seu meio social, conforme Decreto Local)' to 'Nome social da pessoa natural, se houver. (aquele pelo qual travestis e transexuais se reconhecem, bem como são identificados por sua comunidade e em seu meio social, conforme Decreto Local).   
@@ -215,20 +220,20 @@ GET /business/identifications
               - Items changed
                 - AdditionalProperties changed from null to false
                 - Required changed
+                  - New required property: companyCnpjNumbers
+                  - Deleted required property: companyCnpjNumber
                   - Deleted required property: tradeName
                 - Properties changed
+                  - New property: companyCnpjNumbers
+                  - Deleted property: companyCnpjNumber
                   - Modified property: cnpjNumber
                     - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
-                  - Modified property: companyCnpjNumber
-                    - MaxLength changed from 14 to null
-                    - Pattern changed from '\d{14}|^NA$' to ''
-                    - Items changed
-                      - Example changed from null to '50685362000135'
-                      - MaxLength changed from null to 14
-                      - Pattern changed from '' to '^\d{14}$'
                   - Modified property: contacts
                     - Properties changed
+                      - Modified property: emails
+                        - MinItems changed from 1 to 0
                       - Modified property: phones
+                        - MinItems changed from 1 to 0
                         - Items changed
                           - Required changed
                             - Deleted required property: phoneExtension
@@ -289,8 +294,8 @@ GET /business/identifications
                   - Modified property: otherDocuments
                     - Items changed
                       - Required changed
-                        - Deleted required property: country
-                        - Deleted required property: number
+                        - New required property: type
+                        - Deleted required property: expirationDate
                       - Properties changed
                         - Modified property: country
                           - Description changed from 'Pais de emissão do tipo de documento informado. Código do pais de acordo com o código “alpha3” do ISO-3166' to 'Pais de emissão do tipo de documento informado. Código do pais de acordo com o código alpha3 do ISO-3166'
@@ -302,6 +307,7 @@ GET /business/identifications
                       - Required changed
                         - Deleted required property: documentCountry
                         - Deleted required property: documentExpirationDate
+                        - Deleted required property: shareholding
                         - Deleted required property: socialName
                         - Deleted required property: startDate
                       - Properties changed
@@ -312,6 +318,10 @@ GET /business/identifications
                         - Modified property: documentExpirationDate
                           - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
                         - Modified property: shareholding
+                          - Description changed from 'Percentual de participação societária (informar com 2 casas decimais). Sócio só deve ser informado se sua participação societária for igual ou superior a 25%. p.ex: 0.25 (Este valor  representa 25%. O valor '1 'representa 100%)
+' to 'Percentual de participação societária (informar com 2 casas decimais). Sócio só deve ser informado se sua participação societária for igual ou superior a 25%. p.ex: 0.25 (Este valor  representa 25%. O valor '1 'representa 100%)   
+[Restrição] Campo obrigatório caso o type for igual a SOCIO e este tiver participação societária maior que 25%.
+'
                           - Pattern changed from '^((\d{1,9}\.\d{2}){1}|NA)$' to '^((\d{1,9}\.\d{2}){1})$'
                         - Modified property: socialName
                           - Description changed from 'Nome social da pessoa natural, se houver. (aquele pelo qual travestis e transexuais se reconhecem, bem como são identificados por sua comunidade e em seu meio social, conforme Decreto Local)' to 'Nome social da pessoa natural, se houver. (aquele pelo qual travestis e transexuais se reconhecem, bem como são identificados por sua comunidade e em seu meio social, conforme Decreto Local).   
