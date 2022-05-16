@@ -81,17 +81,18 @@ GET /business/identifications
               - Items changed
                 - AdditionalProperties changed from null to false
                 - Required changed
+                  - Deleted required property: companyCnpjNumber
                   - Deleted required property: tradeName
                 - Properties changed
+                  - Deleted property: companyCnpjNumber
                   - Modified property: cnpjNumber
                     - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
-                  - Modified property: companyCnpjNumber
-                    - MaxLength changed from 14 to null
-                    - Items changed
-                      - Pattern changed from '' to '^\d{14}$'
                   - Modified property: contacts
                     - Properties changed
+                      - Modified property: emails
+                        - MinItems changed from 1 to 0
                       - Modified property: phones
+                        - MinItems changed from 1 to 0
                         - Items changed
                           - Required changed
                             - Deleted required property: phoneExtension
@@ -129,8 +130,7 @@ GET /business/identifications
                   - Modified property: otherDocuments
                     - Items changed
                       - Required changed
-                        - Deleted required property: country
-                        - Deleted required property: number
+                        - Deleted required property: expirationDate
                       - Properties changed
                         - Modified property: country
                           - Pattern changed from '^(\w{3}){1}$|^NA$' to '^(\w{3}){1}$'
@@ -141,6 +141,7 @@ GET /business/identifications
                       - Required changed
                         - Deleted required property: documentCountry
                         - Deleted required property: documentExpirationDate
+                        - Deleted required property: shareholding
                         - Deleted required property: socialName
                         - Deleted required property: startDate
                       - Properties changed
@@ -161,17 +162,18 @@ GET /business/identifications
               - Items changed
                 - AdditionalProperties changed from null to false
                 - Required changed
+                  - Deleted required property: companyCnpjNumber
                   - Deleted required property: tradeName
                 - Properties changed
+                  - Deleted property: companyCnpjNumber
                   - Modified property: cnpjNumber
                     - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
-                  - Modified property: companyCnpjNumber
-                    - MaxLength changed from 14 to null
-                    - Items changed
-                      - Pattern changed from '' to '^\d{14}$'
                   - Modified property: contacts
                     - Properties changed
+                      - Modified property: emails
+                        - MinItems changed from 1 to 0
                       - Modified property: phones
+                        - MinItems changed from 1 to 0
                         - Items changed
                           - Required changed
                             - Deleted required property: phoneExtension
@@ -209,8 +211,7 @@ GET /business/identifications
                   - Modified property: otherDocuments
                     - Items changed
                       - Required changed
-                        - Deleted required property: country
-                        - Deleted required property: number
+                        - Deleted required property: expirationDate
                       - Properties changed
                         - Modified property: country
                           - Pattern changed from '^(\w{3}){1}$|^NA$' to '^(\w{3}){1}$'
@@ -221,6 +222,7 @@ GET /business/identifications
                       - Required changed
                         - Deleted required property: documentCountry
                         - Deleted required property: documentExpirationDate
+                        - Deleted required property: shareholding
                         - Deleted required property: socialName
                         - Deleted required property: startDate
                       - Properties changed
@@ -240,6 +242,10 @@ GET /business/qualifications
         - Schema changed
           - Properties changed
             - Modified property: data
+              - Required changed
+                - Deleted required property: economicActivities
+                - Deleted required property: informedPatrimony
+                - Deleted required property: informedRevenue
               - Properties changed
                 - Modified property: economicActivities
                   - Items changed
@@ -264,6 +270,7 @@ GET /business/qualifications
                 - Modified property: informedRevenue
                   - Required changed
                     - Deleted required property: currency
+                    - Deleted required property: frequency
                   - Properties changed
                     - Deleted property: currency
                     - Modified property: amount
@@ -272,6 +279,8 @@ GET /business/qualifications
                       - AdditionalProperties changed from null to false
                       - Nullable changed from true to false
                       - MaxLength changed from 20 to null
+                    - Modified property: frequency
+                      - Deleted enum values: [SEM_FREQUENCIA_FATURAMENTO_INFORMADO]
                     - Modified property: year
                       - Nullable changed from true to false
                       - MaxLength changed from 4 to null
@@ -281,6 +290,10 @@ GET /business/qualifications
         - Schema changed
           - Properties changed
             - Modified property: data
+              - Required changed
+                - Deleted required property: economicActivities
+                - Deleted required property: informedPatrimony
+                - Deleted required property: informedRevenue
               - Properties changed
                 - Modified property: economicActivities
                   - Items changed
@@ -305,6 +318,7 @@ GET /business/qualifications
                 - Modified property: informedRevenue
                   - Required changed
                     - Deleted required property: currency
+                    - Deleted required property: frequency
                   - Properties changed
                     - Deleted property: currency
                     - Modified property: amount
@@ -313,6 +327,8 @@ GET /business/qualifications
                       - AdditionalProperties changed from null to false
                       - Nullable changed from true to false
                       - MaxLength changed from 20 to null
+                    - Modified property: frequency
+                      - Deleted enum values: [SEM_FREQUENCIA_FATURAMENTO_INFORMADO]
                     - Modified property: year
                       - Nullable changed from true to false
                       - MaxLength changed from 4 to null
@@ -399,17 +415,13 @@ GET /personal/identifications
           - Properties changed
             - Modified property: data
               - Items changed
-                - Required changed
-                  - Deleted required property: companyCnpj
-                  - Deleted required property: filiation
                 - Properties changed
-                  - Deleted property: companyCnpj
+                  - Modified property: companyCnpj
+                    - Items changed
+                      - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
                   - Modified property: contacts
                     - Properties changed
-                      - Modified property: emails
-                        - MinItems changed from 1 to 0
                       - Modified property: phones
-                        - MinItems changed from 1 to 0
                         - Items changed
                           - Required changed
                             - Deleted required property: phoneExtension
@@ -425,7 +437,6 @@ GET /personal/identifications
                             - Modified property: type
                               - MaxLength changed from 5 to null
                       - Modified property: postalAddresses
-                        - MinItems changed from 1 to 0
                         - Items changed
                           - Required changed
                             - Deleted required property: districtName
@@ -453,17 +464,24 @@ GET /personal/identifications
                           - Pattern changed from '[\w\W\s]*' to '\w*\W*'
                         - Modified property: socialName
                           - Pattern changed from '[\w\W\s]*' to '\w*\W*'
-                        - Modified property: type
-                          - Deleted enum values: [SEM_FILIACAO]
                   - Modified property: hasBrazilianNationality
                     - Nullable changed from true to false
                   - Modified property: nationality
-                    - Type changed from 'array' to 'object'
-                    - AdditionalProperties changed from null to false
+                    - Items changed
+                      - Properties changed
+                        - Modified property: documents
+                          - Items changed
+                            - Properties changed
+                              - Modified property: country
+                                - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                              - Modified property: expirationDate
+                                - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                              - Modified property: issueDate
+                                - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                        - Modified property: otherNationalitiesInfo
+                          - Pattern changed from '' to '^\S[\s\S]*$'
                   - Modified property: otherDocuments
                     - Items changed
-                      - Required changed
-                        - Deleted required property: expirationDate
                       - Properties changed
                         - Modified property: expirationDate
                           - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
@@ -474,17 +492,13 @@ GET /personal/identifications
           - Properties changed
             - Modified property: data
               - Items changed
-                - Required changed
-                  - Deleted required property: companyCnpj
-                  - Deleted required property: filiation
                 - Properties changed
-                  - Deleted property: companyCnpj
+                  - Modified property: companyCnpj
+                    - Items changed
+                      - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
                   - Modified property: contacts
                     - Properties changed
-                      - Modified property: emails
-                        - MinItems changed from 1 to 0
                       - Modified property: phones
-                        - MinItems changed from 1 to 0
                         - Items changed
                           - Required changed
                             - Deleted required property: phoneExtension
@@ -500,7 +514,6 @@ GET /personal/identifications
                             - Modified property: type
                               - MaxLength changed from 5 to null
                       - Modified property: postalAddresses
-                        - MinItems changed from 1 to 0
                         - Items changed
                           - Required changed
                             - Deleted required property: districtName
@@ -528,17 +541,24 @@ GET /personal/identifications
                           - Pattern changed from '[\w\W\s]*' to '\w*\W*'
                         - Modified property: socialName
                           - Pattern changed from '[\w\W\s]*' to '\w*\W*'
-                        - Modified property: type
-                          - Deleted enum values: [SEM_FILIACAO]
                   - Modified property: hasBrazilianNationality
                     - Nullable changed from true to false
                   - Modified property: nationality
-                    - Type changed from 'array' to 'object'
-                    - AdditionalProperties changed from null to false
+                    - Items changed
+                      - Properties changed
+                        - Modified property: documents
+                          - Items changed
+                            - Properties changed
+                              - Modified property: country
+                                - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                              - Modified property: expirationDate
+                                - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                              - Modified property: issueDate
+                                - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                        - Modified property: otherNationalitiesInfo
+                          - Pattern changed from '' to '^\S[\s\S]*$'
                   - Modified property: otherDocuments
                     - Items changed
-                      - Required changed
-                        - Deleted required property: expirationDate
                       - Properties changed
                         - Modified property: expirationDate
                           - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
