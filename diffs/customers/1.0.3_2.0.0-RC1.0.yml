@@ -100,23 +100,24 @@ GET /business/identifications
         - Schema changed
           - Properties changed
             - Modified property: data
+              - MinItems changed from 0 to 1
               - Items changed
                 - AdditionalProperties changed from null to false
                 - Required changed
+                  - New required property: companyCnpjNumbers
+                  - Deleted required property: companyCnpjNumber
                   - Deleted required property: tradeName
                 - Properties changed
+                  - New property: companyCnpjNumbers
+                  - Deleted property: companyCnpjNumber
                   - Modified property: cnpjNumber
                     - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
-                  - Modified property: companyCnpjNumber
-                    - MaxLength changed from 14 to null
-                    - Pattern changed from '\d{14}|^NA$' to ''
-                    - Items changed
-                      - Example changed from null to '50685362000135'
-                      - MaxLength changed from null to 14
-                      - Pattern changed from '' to '^\d{14}$'
                   - Modified property: contacts
                     - Properties changed
+                      - Modified property: emails
+                        - MinItems changed from 1 to 0
                       - Modified property: phones
+                        - MinItems changed from 1 to 0
                         - Items changed
                           - Required changed
                             - Deleted required property: phoneExtension
@@ -175,10 +176,11 @@ GET /business/identifications
                               - MinLength changed from 0 to 2
                               - Pattern changed from '[\w\W\s]*' to '^\w{2}[\w\W\s]*$'
                   - Modified property: otherDocuments
+                    - MinItems changed from 1 to 0
                     - Items changed
                       - Required changed
-                        - Deleted required property: country
-                        - Deleted required property: number
+                        - New required property: type
+                        - Deleted required property: expirationDate
                       - Properties changed
                         - Modified property: country
                           - Description changed from 'Pais de emissão do tipo de documento informado. Código do pais de acordo com o código “alpha3” do ISO-3166' to 'Pais de emissão do tipo de documento informado. Código do pais de acordo com o código alpha3 do ISO-3166'
@@ -190,6 +192,7 @@ GET /business/identifications
                       - Required changed
                         - Deleted required property: documentCountry
                         - Deleted required property: documentExpirationDate
+                        - Deleted required property: shareholding
                         - Deleted required property: socialName
                         - Deleted required property: startDate
                       - Properties changed
@@ -200,6 +203,10 @@ GET /business/identifications
                         - Modified property: documentExpirationDate
                           - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
                         - Modified property: shareholding
+                          - Description changed from 'Percentual de participação societária (informar com 2 casas decimais). Sócio só deve ser informado se sua participação societária for igual ou superior a 25%. p.ex: 0.25 (Este valor  representa 25%. O valor '1 'representa 100%)
+' to 'Percentual de participação societária (informar com 2 casas decimais). Sócio só deve ser informado se sua participação societária for igual ou superior a 25%. p.ex: 0.25 (Este valor  representa 25%. O valor '1 'representa 100%)   
+[Restrição] Campo obrigatório caso o type for igual a SOCIO e este tiver participação societária maior que 25%.
+'
                           - Pattern changed from '^((\d{1,9}\.\d{2}){1}|NA)$' to '^((\d{1,9}\.\d{2}){1})$'
                         - Modified property: socialName
                           - Description changed from 'Nome social da pessoa natural, se houver. (aquele pelo qual travestis e transexuais se reconhecem, bem como são identificados por sua comunidade e em seu meio social, conforme Decreto Local)' to 'Nome social da pessoa natural, se houver. (aquele pelo qual travestis e transexuais se reconhecem, bem como são identificados por sua comunidade e em seu meio social, conforme Decreto Local).   
@@ -212,23 +219,24 @@ GET /business/identifications
         - Schema changed
           - Properties changed
             - Modified property: data
+              - MinItems changed from 0 to 1
               - Items changed
                 - AdditionalProperties changed from null to false
                 - Required changed
+                  - New required property: companyCnpjNumbers
+                  - Deleted required property: companyCnpjNumber
                   - Deleted required property: tradeName
                 - Properties changed
+                  - New property: companyCnpjNumbers
+                  - Deleted property: companyCnpjNumber
                   - Modified property: cnpjNumber
                     - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
-                  - Modified property: companyCnpjNumber
-                    - MaxLength changed from 14 to null
-                    - Pattern changed from '\d{14}|^NA$' to ''
-                    - Items changed
-                      - Example changed from null to '50685362000135'
-                      - MaxLength changed from null to 14
-                      - Pattern changed from '' to '^\d{14}$'
                   - Modified property: contacts
                     - Properties changed
+                      - Modified property: emails
+                        - MinItems changed from 1 to 0
                       - Modified property: phones
+                        - MinItems changed from 1 to 0
                         - Items changed
                           - Required changed
                             - Deleted required property: phoneExtension
@@ -287,10 +295,11 @@ GET /business/identifications
                               - MinLength changed from 0 to 2
                               - Pattern changed from '[\w\W\s]*' to '^\w{2}[\w\W\s]*$'
                   - Modified property: otherDocuments
+                    - MinItems changed from 1 to 0
                     - Items changed
                       - Required changed
-                        - Deleted required property: country
-                        - Deleted required property: number
+                        - New required property: type
+                        - Deleted required property: expirationDate
                       - Properties changed
                         - Modified property: country
                           - Description changed from 'Pais de emissão do tipo de documento informado. Código do pais de acordo com o código “alpha3” do ISO-3166' to 'Pais de emissão do tipo de documento informado. Código do pais de acordo com o código alpha3 do ISO-3166'
@@ -302,6 +311,7 @@ GET /business/identifications
                       - Required changed
                         - Deleted required property: documentCountry
                         - Deleted required property: documentExpirationDate
+                        - Deleted required property: shareholding
                         - Deleted required property: socialName
                         - Deleted required property: startDate
                       - Properties changed
@@ -312,6 +322,10 @@ GET /business/identifications
                         - Modified property: documentExpirationDate
                           - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
                         - Modified property: shareholding
+                          - Description changed from 'Percentual de participação societária (informar com 2 casas decimais). Sócio só deve ser informado se sua participação societária for igual ou superior a 25%. p.ex: 0.25 (Este valor  representa 25%. O valor '1 'representa 100%)
+' to 'Percentual de participação societária (informar com 2 casas decimais). Sócio só deve ser informado se sua participação societária for igual ou superior a 25%. p.ex: 0.25 (Este valor  representa 25%. O valor '1 'representa 100%)   
+[Restrição] Campo obrigatório caso o type for igual a SOCIO e este tiver participação societária maior que 25%.
+'
                           - Pattern changed from '^((\d{1,9}\.\d{2}){1}|NA)$' to '^((\d{1,9}\.\d{2}){1})$'
                         - Modified property: socialName
                           - Description changed from 'Nome social da pessoa natural, se houver. (aquele pelo qual travestis e transexuais se reconhecem, bem como são identificados por sua comunidade e em seu meio social, conforme Decreto Local)' to 'Nome social da pessoa natural, se houver. (aquele pelo qual travestis e transexuais se reconhecem, bem como são identificados por sua comunidade e em seu meio social, conforme Decreto Local).   
@@ -326,8 +340,13 @@ GET /business/qualifications
         - Schema changed
           - Properties changed
             - Modified property: data
+              - Required changed
+                - Deleted required property: economicActivities
+                - Deleted required property: informedPatrimony
+                - Deleted required property: informedRevenue
               - Properties changed
                 - Modified property: economicActivities
+                  - MinItems changed from 1 to 0
                   - Items changed
                     - AdditionalProperties changed from null to false
                     - Properties changed
@@ -365,6 +384,7 @@ Patrimônio é o conjunto de bens vinculado a uma pessoa ou a uma entidade.
                 - Modified property: informedRevenue
                   - Required changed
                     - Deleted required property: currency
+                    - Deleted required property: frequency
                   - Properties changed
                     - Deleted property: currency
                     - Modified property: amount
@@ -384,6 +404,8 @@ Patrimônio é o conjunto de bens vinculado a uma pessoa ou a uma entidade.
                       - Properties changed
                         - New property: amount
                         - New property: currency
+                    - Modified property: frequency
+                      - Deleted enum values: [SEM_FREQUENCIA_FATURAMENTO_INFORMADO]
                     - Modified property: frequencyAdditionalInfo
                       - Description changed from 'Texto livre para complementar informação relativa ao patrimonio. 
 [Restrição] Preencher quando frequency for igual OUTROS.
@@ -391,6 +413,7 @@ Patrimônio é o conjunto de bens vinculado a uma pessoa ou a uma entidade.
 [Restrição] Preencher quando frequency for igual OUTROS.
 '
                     - Modified property: year
+                      - Description changed from 'Ano de referência do Patrimônio, conforme especificação RFC-3339.' to 'Ano de referência da Renda, conforme especificação RFC-3339.'
                       - Nullable changed from true to false
                       - MaxLength changed from 4 to null
   - Modified response: default
@@ -399,8 +422,13 @@ Patrimônio é o conjunto de bens vinculado a uma pessoa ou a uma entidade.
         - Schema changed
           - Properties changed
             - Modified property: data
+              - Required changed
+                - Deleted required property: economicActivities
+                - Deleted required property: informedPatrimony
+                - Deleted required property: informedRevenue
               - Properties changed
                 - Modified property: economicActivities
+                  - MinItems changed from 1 to 0
                   - Items changed
                     - AdditionalProperties changed from null to false
                     - Properties changed
@@ -438,6 +466,7 @@ Patrimônio é o conjunto de bens vinculado a uma pessoa ou a uma entidade.
                 - Modified property: informedRevenue
                   - Required changed
                     - Deleted required property: currency
+                    - Deleted required property: frequency
                   - Properties changed
                     - Deleted property: currency
                     - Modified property: amount
@@ -457,6 +486,8 @@ Patrimônio é o conjunto de bens vinculado a uma pessoa ou a uma entidade.
                       - Properties changed
                         - New property: amount
                         - New property: currency
+                    - Modified property: frequency
+                      - Deleted enum values: [SEM_FREQUENCIA_FATURAMENTO_INFORMADO]
                     - Modified property: frequencyAdditionalInfo
                       - Description changed from 'Texto livre para complementar informação relativa ao patrimonio. 
 [Restrição] Preencher quando frequency for igual OUTROS.
@@ -464,6 +495,7 @@ Patrimônio é o conjunto de bens vinculado a uma pessoa ou a uma entidade.
 [Restrição] Preencher quando frequency for igual OUTROS.
 '
                     - Modified property: year
+                      - Description changed from 'Ano de referência do Patrimônio, conforme especificação RFC-3339.' to 'Ano de referência da Renda, conforme especificação RFC-3339.'
                       - Nullable changed from true to false
                       - MaxLength changed from 4 to null
 GET /personal/financial-relations
@@ -568,6 +600,7 @@ GET /personal/identifications
         - Schema changed
           - Properties changed
             - Modified property: data
+              - MinItems changed from 0 to 1
               - Items changed
                 - Required changed
                   - New required property: companiesCnpj
@@ -577,6 +610,8 @@ GET /personal/identifications
                 - Properties changed
                   - New property: companiesCnpj
                   - Deleted property: companyCnpj
+                  - Modified property: birthDate
+                    - Example changed from '2021-05-21' to '1989-03-23'
                   - Modified property: contacts
                     - Properties changed
                       - Modified property: emails
@@ -646,6 +681,7 @@ O CPF é o Cadastro de Pessoa natural. Ele é um documento feito pela Receita Fe
 '
                         - Pattern changed from '^\d{11}$|^NA$' to '^\d{11}$'
                   - Modified property: filiation
+                    - MinItems changed from 0 to 1
                     - Items changed
                       - Properties changed
                         - Modified property: civilName
@@ -683,17 +719,30 @@ bem como são identificados por sua comunidade e em seu meio social, conforme De
                     - New enum values: [NAO_DISPONIVEL]
                     - Example changed from 'SOLTEIRO' to 'OUTRO'
                   - Modified property: nationality
-                    - Type changed from 'array' to 'object'
-                    - Description changed from '' to 'Objeto que agrupa informações relativas à nacionalidade da Pessoa Natural'
-                    - AdditionalProperties changed from null to false
+                    - MinItems changed from 0 to 1
                     - Items changed
-                      - Schema deleted
-                    - Required changed
-                      - New required property: documents
-                      - New required property: otherNationalitiesInfo
-                    - Properties changed
-                      - New property: documents
-                      - New property: otherNationalitiesInfo
+                      - Properties changed
+                        - Modified property: documents
+                          - Items changed
+                            - Required changed
+                              - Deleted required property: expirationDate
+                              - Deleted required property: issueDate
+                            - Properties changed
+                              - New property: additionalInfo
+                              - Deleted property: typeAdditionalInfo
+                              - Modified property: country
+                                - Description changed from 'Nome do país' to 'Nome do país.
+'
+                                - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                              - Modified property: expirationDate
+                                - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                              - Modified property: issueDate
+                                - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                        - Modified property: otherNationalitiesInfo
+                          - Description changed from 'Campo de preenchimento obrigatório caso o cliente não possua nacionalidade brasileira. Preencher indicando todas suas demais nacionalidades utilizando o código de pais de acordo com o código “alpha3” do ISO-3166.p.ex.'CAN'
+' to 'Campo de preenchimento obrigatório caso o cliente não possua nacionalidade brasileira. Preencher indicando todas suas demais nacionalidades utilizando o código de pais de acordo com o código alpha3 do ISO-3166.p.ex.'CAN'
+'
+                          - Pattern changed from '' to '^\S[\s\S]*$'
                   - Modified property: otherDocuments
                     - Items changed
                       - Required changed
@@ -707,6 +756,7 @@ bem como são identificados por sua comunidade e em seu meio social, conforme De
         - Schema changed
           - Properties changed
             - Modified property: data
+              - MinItems changed from 0 to 1
               - Items changed
                 - Required changed
                   - New required property: companiesCnpj
@@ -716,6 +766,8 @@ bem como são identificados por sua comunidade e em seu meio social, conforme De
                 - Properties changed
                   - New property: companiesCnpj
                   - Deleted property: companyCnpj
+                  - Modified property: birthDate
+                    - Example changed from '2021-05-21' to '1989-03-23'
                   - Modified property: contacts
                     - Properties changed
                       - Modified property: emails
@@ -785,6 +837,7 @@ O CPF é o Cadastro de Pessoa natural. Ele é um documento feito pela Receita Fe
 '
                         - Pattern changed from '^\d{11}$|^NA$' to '^\d{11}$'
                   - Modified property: filiation
+                    - MinItems changed from 0 to 1
                     - Items changed
                       - Properties changed
                         - Modified property: civilName
@@ -822,17 +875,30 @@ bem como são identificados por sua comunidade e em seu meio social, conforme De
                     - New enum values: [NAO_DISPONIVEL]
                     - Example changed from 'SOLTEIRO' to 'OUTRO'
                   - Modified property: nationality
-                    - Type changed from 'array' to 'object'
-                    - Description changed from '' to 'Objeto que agrupa informações relativas à nacionalidade da Pessoa Natural'
-                    - AdditionalProperties changed from null to false
+                    - MinItems changed from 0 to 1
                     - Items changed
-                      - Schema deleted
-                    - Required changed
-                      - New required property: documents
-                      - New required property: otherNationalitiesInfo
-                    - Properties changed
-                      - New property: documents
-                      - New property: otherNationalitiesInfo
+                      - Properties changed
+                        - Modified property: documents
+                          - Items changed
+                            - Required changed
+                              - Deleted required property: expirationDate
+                              - Deleted required property: issueDate
+                            - Properties changed
+                              - New property: additionalInfo
+                              - Deleted property: typeAdditionalInfo
+                              - Modified property: country
+                                - Description changed from 'Nome do país' to 'Nome do país.
+'
+                                - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                              - Modified property: expirationDate
+                                - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                              - Modified property: issueDate
+                                - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                        - Modified property: otherNationalitiesInfo
+                          - Description changed from 'Campo de preenchimento obrigatório caso o cliente não possua nacionalidade brasileira. Preencher indicando todas suas demais nacionalidades utilizando o código de pais de acordo com o código “alpha3” do ISO-3166.p.ex.'CAN'
+' to 'Campo de preenchimento obrigatório caso o cliente não possua nacionalidade brasileira. Preencher indicando todas suas demais nacionalidades utilizando o código de pais de acordo com o código alpha3 do ISO-3166.p.ex.'CAN'
+'
+                          - Pattern changed from '' to '^\S[\s\S]*$'
                   - Modified property: otherDocuments
                     - Items changed
                       - Required changed
