@@ -67,10 +67,18 @@ GET /contracts/{contractId}
                 - Deleted property: disbursementDate
                 - Modified property: CET
                   - Type changed from 'number' to 'string'
-                  - Format changed from 'double' to ''
-                  - Example changed from 0.29 to '0.2900'
+                  - Description changed from 'CET – Custo Efetivo Total deve ser expresso na forma de taxa percentual anual e   incorpora todos os encargos e despesas incidentes nas operações de crédito (taxa de juro, mas também tarifas, tributos, seguros e outras despesas cobradas).
+O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros
+(representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)
+' to 'CET – Custo Efetivo Total deve ser expresso na forma de taxa percentual anual e incorpora todos os encargos e despesas incidentes nas operações de crédito (taxa de juro, mas também tarifas, tributos, seguros e outras despesas cobradas). 
+O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros 
+(representação de porcentagem p.ex: 0.150000. Este valor representa 15%. O valor 1 representa 100%).
+'
+                  - Example changed from 0.29 to '0.290000'
                   - Nullable changed from true to false
-                  - Pattern changed from '' to '^[0-1]\.\d{4}$'
+                  - MinLength changed from 0 to 8
+                  - MaxLength changed from 19 to 8
+                  - Pattern changed from '' to '^[01]\.\d{6}$'
                 - Modified property: amortizationScheduled
                   - MaxLength changed from 23 to null
                 - Modified property: contractAmount
@@ -85,9 +93,6 @@ GET /contracts/{contractId}
                 - Modified property: contractedFees
                   - MinItems changed from 0 to 1
                   - Items changed
-                    - Required changed
-                      - Deleted required property: feeAmount
-                      - Deleted required property: feeRate
                     - Properties changed
                       - Modified property: feeAmount
                         - Type changed from 'number' to 'string'
@@ -116,15 +121,17 @@ GET /contracts/{contractId}
                         - Pattern changed from '[\w\W\s]*' to '[\w\W\s]+'
                       - Modified property: feeRate
                         - Type changed from 'number' to 'string'
-                        - Format changed from 'double' to ''
                         - Description changed from 'Percentual que representa o valor da tarifa pactuada para o contrato. 
 [Restrição] Preenchimento obrigatório quando a forma de cobrança por Percentual.    maxLength: 19
-' to 'Percentual que representa o valor da tarifa pactuada para o contrato. 
-[Restrição] Preenchimento obrigatório quando a forma de cobrança por Percentual.
+' to 'Percentual que representa o valor da tarifa pactuada para o contrato.   
+O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.150000. Este valor representa 15%. O valor 1 representa 100%).   
+[Restrição] Preenchimento obrigatório quando a forma de cobrança for Percentual.
 '
-                        - Example changed from 50 to '0.1234'
+                        - Example changed from 50 to '0.062000'
                         - Nullable changed from true to false
-                        - Pattern changed from '' to '^\d{1}\.\d{4}$'
+                        - MinLength changed from 0 to 8
+                        - MaxLength changed from 19 to 8
+                        - Pattern changed from '' to '^[01]\.\d{6}$'
                 - Modified property: contractedFinanceCharges
                   - MinItems changed from 0 to 1
                   - Items changed
@@ -140,8 +147,17 @@ GET /contracts/{contractId}
 '
                         - MaxLength changed from null to 50
                       - Modified property: chargeRate
-                        - Max changed from null to 2.147483647e+09
-                        - MaxLength changed from 19 to null
+                        - Type changed from 'number' to 'string'
+                        - Format changed from '' to 'double'
+                        - Description changed from 'Representa o valor do encargo em percentual pactuado no contrato. Exemplo: 0.0210 (=2.1%).
+' to 'Representa o valor do encargo em percentual pactuado no contrato.   
+O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros 
+(representação de porcentagem p.ex: 0.150000. Este valor representa 15%. O valor 1 representa 100%).
+'
+                        - Example changed from 0.07 to '0.071200'
+                        - MinLength changed from 0 to 8
+                        - MaxLength changed from 19 to 8
+                        - Pattern changed from '' to '^[01]\.\d{6}$'
                       - Modified property: chargeType
                         - MaxLength changed from 31 to null
                 - Modified property: dueDate
@@ -163,34 +179,32 @@ GET /contracts/{contractId}
                         - MaxLength changed from 8 to null
                       - Modified property: postFixedRate
                         - Type changed from 'number' to 'string'
-                        - Format changed from 'double' to ''
                         - Description changed from 'Taxa pós fixada aplicada sob o contrato da modalidade crédito.
 p.ex. 0.0045 .O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros
 (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)
-' to 'Taxa pós fixada aplicada sob o contrato da modalidade crédito.
-p.ex. 0.0045. O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros
-(representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)
+' to 'Taxa pós fixada aplicada sob o contrato da modalidade crédito.   
+p.ex. 0.014500. O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.150000. 
+Este valor representa 15%. O valor 1 representa 100%).
 '
                         - Example changed from 0.55 to '0.550000'
                         - Nullable changed from true to false
-                        - MinLength changed from 0 to 6
+                        - MinLength changed from 0 to 8
                         - MaxLength changed from 19 to 8
-                        - Pattern changed from '' to '^[0-1]\.\d{4,6}$'
+                        - Pattern changed from '' to '^[01]\.\d{6}$'
                       - Modified property: preFixedRate
                         - Type changed from 'number' to 'string'
-                        - Format changed from 'double' to ''
                         - Description changed from 'Taxa pré fixada aplicada sob o contrato da modalidade crédito.
 p.ex. 0.0045. O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros
 (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)
-' to 'Taxa pré fixada aplicada sob o contrato da modalidade crédito.
-p.ex. 0.0045. O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros
-(representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)
+' to 'Taxa pré fixada aplicada sob o contrato da modalidade crédito.   
+p.ex. 0.014500. O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros(representação de porcentagem p.ex: 0.150000. 
+Este valor representa 15%. O valor 1 representa 100%).
 '
                         - Example changed from 0.6 to '0.600000'
                         - Nullable changed from true to false
-                        - MinLength changed from 0 to 6
+                        - MinLength changed from 0 to 8
                         - MaxLength changed from 19 to 8
-                        - Pattern changed from '' to '^[0-1]\.\d{4,6}$'
+                        - Pattern changed from '' to '^[01]\.\d{6}$'
                       - Modified property: referentialRateIndexerSubType
                         - MaxLength changed from 24 to null
                       - Modified property: referentialRateIndexerType
@@ -220,10 +234,18 @@ p.ex. 0.0045. O preenchimento deve respeitar as 6 casas decimais, mesmo que venh
                 - Deleted property: disbursementDate
                 - Modified property: CET
                   - Type changed from 'number' to 'string'
-                  - Format changed from 'double' to ''
-                  - Example changed from 0.29 to '0.2900'
+                  - Description changed from 'CET – Custo Efetivo Total deve ser expresso na forma de taxa percentual anual e   incorpora todos os encargos e despesas incidentes nas operações de crédito (taxa de juro, mas também tarifas, tributos, seguros e outras despesas cobradas).
+O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros
+(representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)
+' to 'CET – Custo Efetivo Total deve ser expresso na forma de taxa percentual anual e incorpora todos os encargos e despesas incidentes nas operações de crédito (taxa de juro, mas também tarifas, tributos, seguros e outras despesas cobradas). 
+O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros 
+(representação de porcentagem p.ex: 0.150000. Este valor representa 15%. O valor 1 representa 100%).
+'
+                  - Example changed from 0.29 to '0.290000'
                   - Nullable changed from true to false
-                  - Pattern changed from '' to '^[0-1]\.\d{4}$'
+                  - MinLength changed from 0 to 8
+                  - MaxLength changed from 19 to 8
+                  - Pattern changed from '' to '^[01]\.\d{6}$'
                 - Modified property: amortizationScheduled
                   - MaxLength changed from 23 to null
                 - Modified property: contractAmount
@@ -238,9 +260,6 @@ p.ex. 0.0045. O preenchimento deve respeitar as 6 casas decimais, mesmo que venh
                 - Modified property: contractedFees
                   - MinItems changed from 0 to 1
                   - Items changed
-                    - Required changed
-                      - Deleted required property: feeAmount
-                      - Deleted required property: feeRate
                     - Properties changed
                       - Modified property: feeAmount
                         - Type changed from 'number' to 'string'
@@ -269,15 +288,17 @@ p.ex. 0.0045. O preenchimento deve respeitar as 6 casas decimais, mesmo que venh
                         - Pattern changed from '[\w\W\s]*' to '[\w\W\s]+'
                       - Modified property: feeRate
                         - Type changed from 'number' to 'string'
-                        - Format changed from 'double' to ''
                         - Description changed from 'Percentual que representa o valor da tarifa pactuada para o contrato. 
 [Restrição] Preenchimento obrigatório quando a forma de cobrança por Percentual.    maxLength: 19
-' to 'Percentual que representa o valor da tarifa pactuada para o contrato. 
-[Restrição] Preenchimento obrigatório quando a forma de cobrança por Percentual.
+' to 'Percentual que representa o valor da tarifa pactuada para o contrato.   
+O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.150000. Este valor representa 15%. O valor 1 representa 100%).   
+[Restrição] Preenchimento obrigatório quando a forma de cobrança for Percentual.
 '
-                        - Example changed from 50 to '0.1234'
+                        - Example changed from 50 to '0.062000'
                         - Nullable changed from true to false
-                        - Pattern changed from '' to '^\d{1}\.\d{4}$'
+                        - MinLength changed from 0 to 8
+                        - MaxLength changed from 19 to 8
+                        - Pattern changed from '' to '^[01]\.\d{6}$'
                 - Modified property: contractedFinanceCharges
                   - MinItems changed from 0 to 1
                   - Items changed
@@ -293,8 +314,17 @@ p.ex. 0.0045. O preenchimento deve respeitar as 6 casas decimais, mesmo que venh
 '
                         - MaxLength changed from null to 50
                       - Modified property: chargeRate
-                        - Max changed from null to 2.147483647e+09
-                        - MaxLength changed from 19 to null
+                        - Type changed from 'number' to 'string'
+                        - Format changed from '' to 'double'
+                        - Description changed from 'Representa o valor do encargo em percentual pactuado no contrato. Exemplo: 0.0210 (=2.1%).
+' to 'Representa o valor do encargo em percentual pactuado no contrato.   
+O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros 
+(representação de porcentagem p.ex: 0.150000. Este valor representa 15%. O valor 1 representa 100%).
+'
+                        - Example changed from 0.07 to '0.071200'
+                        - MinLength changed from 0 to 8
+                        - MaxLength changed from 19 to 8
+                        - Pattern changed from '' to '^[01]\.\d{6}$'
                       - Modified property: chargeType
                         - MaxLength changed from 31 to null
                 - Modified property: dueDate
@@ -316,34 +346,32 @@ p.ex. 0.0045. O preenchimento deve respeitar as 6 casas decimais, mesmo que venh
                         - MaxLength changed from 8 to null
                       - Modified property: postFixedRate
                         - Type changed from 'number' to 'string'
-                        - Format changed from 'double' to ''
                         - Description changed from 'Taxa pós fixada aplicada sob o contrato da modalidade crédito.
 p.ex. 0.0045 .O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros
 (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)
-' to 'Taxa pós fixada aplicada sob o contrato da modalidade crédito.
-p.ex. 0.0045. O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros
-(representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)
+' to 'Taxa pós fixada aplicada sob o contrato da modalidade crédito.   
+p.ex. 0.014500. O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.150000. 
+Este valor representa 15%. O valor 1 representa 100%).
 '
                         - Example changed from 0.55 to '0.550000'
                         - Nullable changed from true to false
-                        - MinLength changed from 0 to 6
+                        - MinLength changed from 0 to 8
                         - MaxLength changed from 19 to 8
-                        - Pattern changed from '' to '^[0-1]\.\d{4,6}$'
+                        - Pattern changed from '' to '^[01]\.\d{6}$'
                       - Modified property: preFixedRate
                         - Type changed from 'number' to 'string'
-                        - Format changed from 'double' to ''
                         - Description changed from 'Taxa pré fixada aplicada sob o contrato da modalidade crédito.
 p.ex. 0.0045. O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros
 (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)
-' to 'Taxa pré fixada aplicada sob o contrato da modalidade crédito.
-p.ex. 0.0045. O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros
-(representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)
+' to 'Taxa pré fixada aplicada sob o contrato da modalidade crédito.   
+p.ex. 0.014500. O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros(representação de porcentagem p.ex: 0.150000. 
+Este valor representa 15%. O valor 1 representa 100%).
 '
                         - Example changed from 0.6 to '0.600000'
                         - Nullable changed from true to false
-                        - MinLength changed from 0 to 6
+                        - MinLength changed from 0 to 8
                         - MaxLength changed from 19 to 8
-                        - Pattern changed from '' to '^[0-1]\.\d{4,6}$'
+                        - Pattern changed from '' to '^[01]\.\d{6}$'
                       - Modified property: referentialRateIndexerSubType
                         - MaxLength changed from 24 to null
                       - Modified property: referentialRateIndexerType
