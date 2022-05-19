@@ -31,9 +31,24 @@ GET /accounts
                     - MaxLength changed from 24 to null
   - Modified response: default
     - Content changed
-      - Deleted media type: application/json
-    - Headers changed
-      - Deleted header: x-fapi-interaction-id
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Required changed
+                  - Deleted required property: branchCode
+                - Properties changed
+                  - Modified property: branchCode
+                    - Pattern changed from '\d{4}|^NA$' to '^\d{4}$'
+                  - Modified property: companyCnpj
+                    - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
+                  - Modified property: compeCode
+                    - Pattern changed from '\d{3}|^NA$' to '^\d{3}$'
+                  - Modified property: number
+                    - Pattern changed from '^\d{8,20}$|^NA$' to '^\d{8,20}$'
+                  - Modified property: type
+                    - MaxLength changed from 24 to null
 GET /accounts/{accountId}
 - Responses changed
   - Modified response: 200
@@ -55,9 +70,21 @@ GET /accounts/{accountId}
                   - MaxLength changed from 24 to null
   - Modified response: default
     - Content changed
-      - Deleted media type: application/json
-    - Headers changed
-      - Deleted header: x-fapi-interaction-id
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: branchCode
+                  - Pattern changed from '\d{4}|^NA$' to '^\d{4}$'
+                - Modified property: compeCode
+                  - Pattern changed from '\d{3}|^NA$' to '^\d{3}$'
+                - Modified property: number
+                  - Pattern changed from '^\d{8,20}$|^NA$' to '^\d{8,20}$'
+                - Modified property: subtype
+                  - MaxLength changed from 18 to null
+                - Modified property: type
+                  - MaxLength changed from 24 to null
 GET /accounts/{accountId}/balances
 - Responses changed
   - Modified response: 200
@@ -94,9 +121,36 @@ GET /accounts/{accountId}/balances
                   - MaxLength changed from 20 to null
   - Modified response: default
     - Content changed
-      - Deleted media type: application/json
-    - Headers changed
-      - Deleted header: x-fapi-interaction-id
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Required changed
+                - Deleted required property: automaticallyInvestedAmountCurrency
+                - Deleted required property: availableAmountCurrency
+                - Deleted required property: blockedAmountCurrency
+              - Properties changed
+                - Deleted property: automaticallyInvestedAmountCurrency
+                - Deleted property: availableAmountCurrency
+                - Deleted property: blockedAmountCurrency
+                - Modified property: automaticallyInvestedAmount
+                  - Type changed from 'number' to 'object'
+                  - Format changed from 'double' to ''
+                  - AdditionalProperties changed from null to false
+                  - Nullable changed from true to false
+                  - MaxLength changed from 20 to null
+                - Modified property: availableAmount
+                  - Type changed from 'number' to 'object'
+                  - Format changed from 'double' to ''
+                  - AdditionalProperties changed from null to false
+                  - Nullable changed from true to false
+                  - MaxLength changed from 20 to null
+                - Modified property: blockedAmount
+                  - Type changed from 'number' to 'object'
+                  - Format changed from 'double' to ''
+                  - AdditionalProperties changed from null to false
+                  - Nullable changed from true to false
+                  - MaxLength changed from 20 to null
 GET /accounts/{accountId}/overdraft-limits
 - Responses changed
   - Modified response: 200
@@ -133,9 +187,36 @@ GET /accounts/{accountId}/overdraft-limits
                   - MaxLength changed from 20 to null
   - Modified response: default
     - Content changed
-      - Deleted media type: application/json
-    - Headers changed
-      - Deleted header: x-fapi-interaction-id
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Required changed
+                - Deleted required property: overdraftContractedLimitCurrency
+                - Deleted required property: overdraftUsedLimitCurrency
+                - Deleted required property: unarrangedOverdraftAmountCurrency
+              - Properties changed
+                - Deleted property: overdraftContractedLimitCurrency
+                - Deleted property: overdraftUsedLimitCurrency
+                - Deleted property: unarrangedOverdraftAmountCurrency
+                - Modified property: overdraftContractedLimit
+                  - Type changed from 'number' to 'object'
+                  - Format changed from 'double' to ''
+                  - AdditionalProperties changed from null to false
+                  - Nullable changed from true to false
+                  - MaxLength changed from 20 to null
+                - Modified property: overdraftUsedLimit
+                  - Type changed from 'number' to 'object'
+                  - Format changed from 'double' to ''
+                  - AdditionalProperties changed from null to false
+                  - Nullable changed from true to false
+                  - MaxLength changed from 20 to null
+                - Modified property: unarrangedOverdraftAmount
+                  - Type changed from 'number' to 'object'
+                  - Format changed from 'double' to ''
+                  - AdditionalProperties changed from null to false
+                  - Nullable changed from true to false
+                  - MaxLength changed from 20 to null
 GET /accounts/{accountId}/transactions
 - Modified query param: page
   - Schema changed
@@ -179,6 +260,37 @@ GET /accounts/{accountId}/transactions
                 - Deleted property: totalRecords
   - Modified response: default
     - Content changed
-      - Deleted media type: application/json
-    - Headers changed
-      - Deleted header: x-fapi-interaction-id
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Required changed
+                  - Deleted required property: amount
+                  - Deleted required property: transactionCurrency
+                - Properties changed
+                  - Deleted property: amount
+                  - Deleted property: transactionCurrency
+                  - Modified property: completedAuthorisedPaymentType
+                    - MaxLength changed from 19 to null
+                  - Modified property: creditDebitType
+                    - MaxLength changed from 7 to null
+                  - Modified property: partieBranchCode
+                    - Pattern changed from '\d{4}|^NA$' to '^\d{4}$'
+                  - Modified property: partieCnpjCpf
+                    - Pattern changed from '^\d{11}$|^\d{14}$|^NA$' to '^\d{11}$|^\d{14}$'
+                  - Modified property: partieCompeCode
+                    - Pattern changed from '\d{3}|^NA$' to '^\d{3}$'
+                  - Modified property: partieNumber
+                    - Pattern changed from '^\d{8,20}$|^NA$' to '^\d{8,20}$'
+                  - Modified property: partiePersonType
+                    - MaxLength changed from 15 to null
+                  - Modified property: type
+                    - MaxLength changed from 31 to null
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords

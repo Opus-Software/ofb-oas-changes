@@ -89,7 +89,7 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
         default:
-          $ref: '#/components/responses/Default'
+          $ref: '#/components/responses/OKResponseInvoiceFinancingsContractList'
       security:
         - OpenId:
             - openid
@@ -132,7 +132,7 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
         default:
-          $ref: '#/components/responses/Default'
+          $ref: '#/components/responses/OKResponseInvoiceFinancingsContract'
       security:
         - OpenId:
             - openid
@@ -177,7 +177,7 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
         default:
-          $ref: '#/components/responses/Default'
+          $ref: '#/components/responses/OKResponseInvoiceFinancingsWarranties'
       security:
         - OpenId:
             - openid
@@ -222,7 +222,7 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
         default:
-          $ref: '#/components/responses/Default'
+          $ref: '#/components/responses/OKResponseInvoiceFinancingsInstalments'
       security:
         - OpenId:
             - openid
@@ -267,7 +267,7 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
         default:
-          $ref: '#/components/responses/Default'
+          $ref: '#/components/responses/OKResponseInvoiceFinancingsPayments'
       security:
         - OpenId:
             - openid
@@ -1541,12 +1541,6 @@ components:
             $ref: '#/components/schemas/ResponseError'
     Unauthorized:
       description: Cabeçalho de autenticação ausente/inválido ou token inválido
-      content:
-        application/json; charset=utf-8:
-          schema:
-            $ref: '#/components/schemas/ResponseError'
-    Default:
-      description: Erro inesperado.
       content:
         application/json; charset=utf-8:
           schema:

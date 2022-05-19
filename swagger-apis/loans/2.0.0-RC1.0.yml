@@ -89,7 +89,7 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
         default:
-          $ref: '#/components/responses/Default'
+          $ref: '#/components/responses/OKResponseLoansContractList'
       security:
         - OpenId:
             - openid
@@ -132,7 +132,7 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
         default:
-          $ref: '#/components/responses/Default'
+          $ref: '#/components/responses/OKResponseLoansContract'
       security:
         - OpenId:
             - openid
@@ -177,7 +177,7 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
         default:
-          $ref: '#/components/responses/Default'
+          $ref: '#/components/responses/OKResponseLoansWarranties'
       security:
         - OpenId:
             - openid
@@ -222,7 +222,7 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
         default:
-          $ref: '#/components/responses/Default'
+          $ref: '#/components/responses/OKResponseLoansInstalments'
       security:
         - OpenId:
             - openid
@@ -267,7 +267,7 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
         default:
-          $ref: '#/components/responses/Default'
+          $ref: '#/components/responses/OKResponseLoansPayments'
       security:
         - OpenId:
             - openid
@@ -1530,12 +1530,6 @@ components:
             $ref: '#/components/schemas/ResponseError'
     UnprocessableEntity:
       description: 'A sintaxe da requisição esta correta, mas não foi possível processar as instruções presentes.'
-      content:
-        application/json; charset=utf-8:
-          schema:
-            $ref: '#/components/schemas/ResponseError'
-    Default:
-      description: Erro inesperado.
       content:
         application/json; charset=utf-8:
           schema:

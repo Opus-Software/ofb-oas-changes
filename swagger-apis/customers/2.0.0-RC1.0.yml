@@ -88,7 +88,7 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
         default:
-          $ref: '#/components/responses/Default'
+          $ref: '#/components/responses/OKResponsePersonalCustomersIdentification'
       security:
         - OpenId:
             - openid
@@ -128,7 +128,7 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
         default:
-          $ref: '#/components/responses/Default'
+          $ref: '#/components/responses/OKResponsePersonalCustomersQualification'
       security:
         - OpenId:
             - openid
@@ -168,7 +168,7 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
         default:
-          $ref: '#/components/responses/Default'
+          $ref: '#/components/responses/OKResponsePersonalCustomersFinancialRelation'
       security:
         - OpenId:
             - openid
@@ -208,7 +208,7 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
         default:
-          $ref: '#/components/responses/Default'
+          $ref: '#/components/responses/OKResponseBusinessCustomersIdentification'
       security:
         - OpenId:
             - openid
@@ -248,7 +248,7 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
         default:
-          $ref: '#/components/responses/Default'
+          $ref: '#/components/responses/OKResponseBusinessCustomersQualification'
       security:
         - OpenId:
             - openid
@@ -288,7 +288,7 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
         default:
-          $ref: '#/components/responses/Default'
+          $ref: '#/components/responses/OKResponseBusinessCustomersFinancialRelation'
       security:
         - OpenId:
             - openid
@@ -2210,12 +2210,6 @@ components:
             $ref: '#/components/schemas/ResponseError'
     Unauthorized:
       description: Cabeçalho de autenticação ausente/inválido ou token inválido
-      content:
-        application/json; charset=utf-8:
-          schema:
-            $ref: '#/components/schemas/ResponseError'
-    Default:
-      description: Erro inesperado.
       content:
         application/json; charset=utf-8:
           schema:
