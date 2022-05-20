@@ -55,8 +55,8 @@ GET /contracts/{contractId}
                   - Description changed from '"CET – Custo Efetivo Total deve ser expresso na forma de taxa percentual anual e   incorpora todos os encargos e despesas incidentes nas operações de crédito (taxa de juro, mas também tarifas, tributos, seguros e outras despesas cobradas).
 O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros
 (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)"
-' to '"CET – Custo Efetivo Total deve ser expresso na forma de taxa percentual anual e incorpora todos os encargos e despesas incidentes nas operações de crédito (taxa de juro, mas também tarifas, tributos, seguros e outras despesas cobradas). 
-O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.150000. sEste valor representa 15%. O valor 1 representa 100%)."
+' to 'CET – Custo Efetivo Total deve ser expresso na forma de taxa percentual anual e incorpora todos os encargos e despesas incidentes nas operações de crédito (taxa de juro, mas também tarifas, tributos, seguros e outras despesas cobradas). 
+O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.150000. sEste valor representa 15%. O valor 1 representa 100%).
 '
                   - Example changed from 0.29 to '0.290000'
                   - Nullable changed from true to false
@@ -112,6 +112,12 @@ O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas
                     - Required changed
                       - Deleted required property: chargeAdditionalInfo
                     - Properties changed
+                      - Modified property: chargeAdditionalInfo
+                        - Description changed from 'Campo para informações adicionais.
+[Restrição] Obrigatório se selecionada a opção 'OUTROS' em Tipo de encargo pactuado no contrato.
+' to 'Campo para informações adicionais.
+[Restrição] Obrigatório se selecionada a opção 'OUTROS' em Tipo de encargo pactuado no contrato.
+'
                       - Modified property: chargeRate
                         - Type changed from 'number' to 'string'
                         - Format changed from '' to 'double'
@@ -120,10 +126,17 @@ O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas
 O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros(representação de porcentagem p.ex: 0.150000. Este valor representa 15%. O valor 1 representa 100%).
 '
                         - Example changed from 0.07 to '0.071200'
+                        - MinLength changed from 0 to 8
                         - MaxLength changed from 19 to 8
                         - Pattern changed from '' to '^[01]\.\d{6}$'
                       - Modified property: chargeType
                         - MaxLength changed from 31 to null
+                - Modified property: currency
+                  - Description changed from '"Moeda referente ao valor da garantia, segundo modelo ISO-4217. p.ex. 'BRL'
+Todos os valores monetários informados estão representados com a moeda vigente do Brasil"
+' to 'Moeda referente ao valor da garantia, segundo modelo ISO-4217. p.ex. 'BRL'
+Todos os valores monetários informados estão representados com a moeda vigente do Brasil
+'
                 - Modified property: dueDate
                   - Description changed from 'Data de vencimento Final da operação. Especificação RFC-3339' to 'Data de vencimento Final da operação. Especificação RFC-3339
 '
@@ -150,21 +163,21 @@ O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas
                         - Description changed from '"Taxa pós fixada aplicada sob o contrato da modalidade crédito.
 p.ex. 0.0045 .O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros
 (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)"
-' to '"Taxa pós fixada aplicada sob o contrato da modalidade crédito. p.ex. 0.014500. 
-O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.150000. Este valor representa 15%. O valor 1 representa 100%)."
+' to 'Taxa pós fixada aplicada sob o contrato da modalidade crédito. p.ex. 0.014500. 
+O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.150000. Este valor representa 15%. O valor 1 representa 100%).
 '
                         - Example changed from 0.55 to '0.550000'
-                        - MinLength changed from 0 to 6
-                        - MaxLength changed from 19 to 6
-                        - Pattern changed from '' to '^\d{1}\.\d{4}$'
+                        - MinLength changed from 0 to 8
+                        - MaxLength changed from 19 to 8
+                        - Pattern changed from '' to '^[01]\.\d{6}$'
                       - Modified property: preFixedRate
                         - Type changed from 'number' to 'string'
                         - Format changed from '' to 'double'
                         - Description changed from '"Taxa pré fixada aplicada sob o contrato da modalidade crédito.
 p.ex. 0.0045. O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros
 (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)"
-' to '"Taxa pré fixada aplicada sob o contrato da modalidade crédito. p.ex. 0.014500. 
-O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros(representação de porcentagem p.ex: 0.150000. Este valor representa 15%. O valor 1 representa 100%)."
+' to 'Taxa pré fixada aplicada sob o contrato da modalidade crédito. p.ex. 0.014500. 
+O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros(representação de porcentagem p.ex: 0.150000. Este valor representa 15%. O valor 1 representa 100%).
 '
                         - Example changed from 0.6 to '0.600000'
                         - Nullable changed from true to false
@@ -180,10 +193,39 @@ O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas
                       - Modified property: taxType
                         - MaxLength changed from 7 to null
                 - Modified property: ipocCode
+                  - Description changed from '"Número padronizado do contrato - IPOC (Identificação Padronizada da Operação de Crédito). Segundo DOC 3040, composta por:
+- **CNPJ da instituição:** 8 (oito) posições iniciais;
+- **Modalidade da operação:** 4 (quatro) posições;
+- **Tipo do cliente:** 1 (uma) posição( 1 = pessoa natural - CPF, 2= pessoa jurídica – CNPJ, 3 = pessoa física no exterior, 4 = pessoa jurídica no exterior, 5 = pessoa natural sem CPF e 6 = pessoa jurídica sem CNPJ);
+- **Código do cliente:** O número de posições varia conforme o tipo do cliente:
+  1. Para clientes pessoa física com CPF (tipo de cliente = 1), informar as 11 (onze) posições do CPF;
+  2. Para clientes pessoa jurídica com CNPJ (tipo de cliente = 2), informar as 8 (oito) posições iniciais do CNPJ;
+  3. Para os demais clientes (tipos de cliente 3, 4, 5 e 6), informar 14 (catorze) posições com complemento de zeros à esquerda se a identificação tiver tamanho inferior;
+- **Código do contrato:** 1 (uma) até 40 (quarenta) posições, sem complemento de caracteres."
+' to 'Número padronizado do contrato - IPOC (Identificação Padronizada da Operação de Crédito). Segundo DOC 3040, composta por:
+- **CNPJ da instituição:** 8 (oito) posições iniciais;
+- **Modalidade da operação:** 4 (quatro) posições;
+- **Tipo do cliente:** 1 (uma) posição( 1 = pessoa natural - CPF, 2= pessoa jurídica – CNPJ, 3 = pessoa física no exterior, 4 = pessoa jurídica no exterior, 5 = pessoa natural sem CPF e 6 = pessoa jurídica sem CNPJ);
+- **Código do cliente:** O número de posições varia conforme o tipo do cliente:
+  1. Para clientes pessoa física com CPF (tipo de cliente = 1), informar as 11 (onze) posições do CPF;
+  2. Para clientes pessoa jurídica com CNPJ (tipo de cliente = 2), informar as 8 (oito) posições iniciais do CNPJ;
+  3. Para os demais clientes (tipos de cliente 3, 4, 5 e 6), informar 14 (catorze) posições com complemento de zeros à esquerda se a identificação tiver tamanho inferior;
+- **Código do contrato:** 1 (uma) até 40 (quarenta) posições, sem complemento de caracteres.
+'
                   - MinLength changed from 0 to 22
                   - Pattern changed from '' to '^\d{22,67}$'
+                - Modified property: productName
+                  - Description changed from '"Denominação/Identificação do nome da Modalidade da Operação de Crédito divulgado ao cliente"
+' to 'Denominação/Identificação do nome da Modalidade da Operação de Crédito divulgado ao cliente
+'
                 - Modified property: productType
                   - MaxLength changed from 27 to null
+                - Modified property: settlementDate
+                  - Description changed from 'Data de liquidação da operação.
+[Restrição] Deve aceitar NA caso não seja retornado pela instituição.
+' to 'Data de liquidação da operação.
+[Restrição] Deve aceitar NA caso não seja retornado pela instituição.
+'
   - Modified response: default
     - Description changed from 'Dados do contrato de adiantamento a depositantes identificado por contractId' to 'Erro inesperado.'
     - Content changed
