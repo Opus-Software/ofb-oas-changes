@@ -49,8 +49,11 @@ GET /contracts/{contractId}
           - Properties changed
             - Modified property: data
               - Required changed
+                - Deleted required property: amortizationScheduledAdditionalInfo
+                - Deleted required property: cnpjConsignee
                 - Deleted required property: dueDate
                 - Deleted required property: firstInstalmentDueDate
+                - Deleted required property: settlementDate
               - Properties changed
                 - Modified property: CET
                   - Type changed from 'number' to 'string'
@@ -73,11 +76,12 @@ O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas
 [Restrição] Obrigatório para complementar a informação relativa à amortização quando selecionada a opção OUTROS, para os demais casos informar "NA".
 ' to 'Campo obrigatório para complementar a informação relativa à amortização quando selecionada a opção OUTROS.
 '
+                  - Example changed from 'NA' to 'Informações complementares relativa à amortização do tipo 'OUTROS''
                 - Modified property: cnpjConsignee
                   - Description changed from 'CNPJ do consignante (CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica). Deve-se ter apenas os números do CNPJ, sem máscara. Informação adicional específica para Modalidade de Crédito: Empréstimo-Crédito Pessoal Consignado
 ' to 'CNPJ do consignante (CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica). 
 Deve-se ter apenas os números do CNPJ, sem máscara. 
-Informação adicional específica para Modalidade de Crédito: Empréstimo-Crédito Pessoal Consignado
+[Restrição] Informação adicional específica para Modalidade de Crédito: Empréstimo-Crédito Pessoal Consignado.
 '
                   - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
                 - Modified property: contractAmount
@@ -101,11 +105,13 @@ Informação adicional específica para Modalidade de Crédito: Empréstimo-Cré
                       - Modified property: feeAmount
                         - Type changed from 'number' to 'string'
                         - Description changed from 'Valor monetário da tarifa pactuada no contrato. Preenchimento obrigatório quando a forma de cobrança for: Mínimo, Máximo ou Fixo.
-' to 'Valor monetário da tarifa pactuada no contrato.   
-[Restrição] Preenchimento obrigatório quando a forma de cobrança for: Mínimo, Máximo ou Fixo.
+' to 'Valor monetário da tarifa pactuada no contrato. Preenchimento obrigatório quando a forma de cobrança for: Mínimo, Máximo ou Fixo. 
+[Restrição] Preenchimento obrigatório quando a forma de cobrança for diferente de Percentual.
 '
                         - Example changed from 100000.04 to '100000.04'
                         - Nullable changed from true to false
+                        - MinLength changed from 0 to 1
+                        - MaxLength changed from 20 to 21
                       - Modified property: feeCharge
                         - MaxLength changed from 10 to null
                       - Modified property: feeChargeType
@@ -321,12 +327,16 @@ GET /contracts/{contractId}/scheduled-instalments
             - Modified property: data
               - Required changed
                 - Deleted required property: balloonPayments
+                - Deleted required property: contractRemainingNumber
+                - Deleted required property: totalNumberOfInstalments
               - Properties changed
                 - Modified property: balloonPayments
                   - Nullable changed from true to false
+                  - MinItems changed from 0 to 1
                   - Items changed
                     - Required changed
                       - Deleted required property: currency
+                      - Deleted required property: dueDate
                     - Properties changed
                       - Deleted property: currency
                       - Modified property: amount
@@ -349,6 +359,9 @@ GET /contracts/{contractId}/scheduled-instalments
 '
                         - MinLength changed from 0 to 2
                 - Modified property: contractRemainingNumber
+                  - Description changed from 'Prazo Remanescente segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.' to 'Prazo Remanescente segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.
+[Restrição] Obrigatoriamente deve ser preenchido caso o typeNumberOfInstalments seja diferente de SEM_PRAZO_REMANESCENTE.
+'
                   - Nullable changed from true to false
                   - Max changed from null to 9.99999999e+08
                   - MaxLength changed from 6 to null
@@ -365,6 +378,9 @@ GET /contracts/{contractId}/scheduled-instalments
                   - Max changed from null to 999
                   - MaxLength changed from 3 to null
                 - Modified property: totalNumberOfInstalments
+                  - Description changed from 'Prazo Total segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.' to 'Prazo Total segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.
+[Restrição] Obrigatoriamente deve ser preenchido caso o typeNumberOfInstalments seja diferente de SEM_PRAZO_TOTAL.
+'
                   - Nullable changed from true to false
                   - Max changed from null to 9.99999999e+08
                   - MaxLength changed from 6 to null
