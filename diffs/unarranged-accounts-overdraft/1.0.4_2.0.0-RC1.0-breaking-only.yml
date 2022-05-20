@@ -37,7 +37,10 @@ GET /contracts/{contractId}
           - Properties changed
             - Modified property: data
               - Required changed
+                - Deleted required property: contractAmount
+                - Deleted required property: dueDate
                 - Deleted required property: firstInstalmentDueDate
+                - Deleted required property: settlementDate
               - Properties changed
                 - Modified property: CET
                   - Type changed from 'number' to 'string'
@@ -111,6 +114,8 @@ GET /contracts/{contractId}
                   - Pattern changed from '' to '^\d{22,67}$'
                 - Modified property: productType
                   - MaxLength changed from 27 to null
+                - Modified property: settlementDate
+                  - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
   - Modified response: default
     - Content changed
       - Deleted media type: application/json
@@ -180,6 +185,7 @@ GET /contracts/{contractId}/scheduled-instalments
             - Modified property: data
               - Required changed
                 - Deleted required property: balloonPayments
+                - Deleted required property: contractRemainingNumber
               - Properties changed
                 - Modified property: balloonPayments
                   - Nullable changed from true to false

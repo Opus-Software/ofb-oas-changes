@@ -47,7 +47,10 @@ GET /contracts/{contractId}
           - Properties changed
             - Modified property: data
               - Required changed
+                - Deleted required property: contractAmount
+                - Deleted required property: dueDate
                 - Deleted required property: firstInstalmentDueDate
+                - Deleted required property: settlementDate
               - Properties changed
                 - Modified property: CET
                   - Type changed from 'number' to 'string'
@@ -224,8 +227,8 @@ O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas
                   - Description changed from 'Data de liquidação da operação.
 [Restrição] Deve aceitar NA caso não seja retornado pela instituição.
 ' to 'Data de liquidação da operação.
-[Restrição] Deve aceitar NA caso não seja retornado pela instituição.
 '
+                  - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
   - Modified response: default
     - Description changed from 'Dados do contrato de adiantamento a depositantes identificado por contractId' to 'Erro inesperado.'
     - Content changed
@@ -319,9 +322,11 @@ GET /contracts/{contractId}/scheduled-instalments
             - Modified property: data
               - Required changed
                 - Deleted required property: balloonPayments
+                - Deleted required property: contractRemainingNumber
               - Properties changed
                 - Modified property: balloonPayments
                   - Nullable changed from true to false
+                  - MinItems changed from 0 to 1
                   - Items changed
                     - Required changed
                       - Deleted required property: currency
@@ -343,6 +348,9 @@ GET /contracts/{contractId}/scheduled-instalments
                           - New property: amount
                           - New property: currency
                 - Modified property: contractRemainingNumber
+                  - Description changed from 'Prazo Remanescente segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.' to 'Prazo Remanescente segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.
+[Restrição] Obrigatoriamente deve ser preenchido caso o typeNumberOfInstalments seja diferente de SEM_PRAZO_REMANESCENTE.
+'
                   - Example changed from 14600 to 80
                   - Nullable changed from true to false
                   - Max changed from null to 999
