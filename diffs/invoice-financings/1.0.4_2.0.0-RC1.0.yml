@@ -252,14 +252,19 @@ GET /contracts/{contractId}/payments
                       - Deleted required property: overParcel
                     - Properties changed
                       - Modified property: overParcel
-                        - Description changed from 'Objeto das tarifas e encargos que foram pagos fora da parcela.' to 'Objeto das tarifas e encargos que foram pagos fora da parcela.   
-[Restrição] Informação deve ser enviada caso ela exista.
+                        - Description changed from 'Objeto das tarifas e encargos que foram pagos fora da parcela.' to 'Objeto das tarifas e encargos que foram pagos fora da parcela.
+[Restrição] Informação deve ser enviada caso ela exista, torna-se obrigatório caso haja parcelamento.
 '
                         - Properties changed
                           - Modified property: charges
-                            - MinItems changed from 0 to 1
                             - Items changed
+                              - Required changed
+                                - Deleted required property: chargeAdditionalInfo
                               - Properties changed
+                                - Modified property: chargeAdditionalInfo
+                                  - Description changed from 'Campo de preenchimento obrigatório se selecionada a opção 'OUTROS' em Tipo de encargo pago fora da parcela' to 'Campo livre para preenchimento das informações adicionais referente ao encargo.
+[Restrição] Obrigatório quando chargeType for igual 'OUTROS'.
+'
                                 - Modified property: chargeAmount
                                   - Type changed from 'number' to 'string'
                                   - Format changed from 'double' to ''
@@ -268,6 +273,7 @@ GET /contracts/{contractId}/payments
                                   - MinLength changed from 0 to 4
                                   - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
                                 - Modified property: chargeType
+                                  - Description changed from 'Tipo de encargo pago fora da parcela' to 'Tipo de encargo pactuado no contrato.'
                                   - MaxLength changed from 31 to null
                           - Modified property: fees
                             - MinItems changed from 0 to 1
@@ -284,12 +290,12 @@ GET /contracts/{contractId}/payments
                                   - MinLength changed from 0 to 4
                                   - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
                                 - Modified property: feeCode
-                                  - Description changed from 'Sigla identificadora da tarifa pactuada' to 'Sigla identificadora da tarifa pactuada
+                                  - Description changed from 'Sigla identificadora da tarifa pactuada' to 'Sigla identificadora da tarifa pactuada.
 '
                                   - MinLength changed from 0 to 2
                                   - Pattern changed from '[\w\W\s]*' to '[\w\W\s]+'
                                 - Modified property: feeName
-                                  - Description changed from 'Denominação da Tarifa pactuada' to 'Denominação da Tarifa pactuada
+                                  - Description changed from 'Denominação da Tarifa pactuada' to 'Denominação da Tarifa pactuada.
 '
                                   - MinLength changed from 0 to 2
                                   - Pattern changed from '[\w\W\s]*' to '[\w\W\s]+'
@@ -325,10 +331,10 @@ GET /contracts/{contractId}/scheduled-instalments
               - Properties changed
                 - Modified property: balloonPayments
                   - Nullable changed from true to false
+                  - MinItems changed from 0 to 1
                   - Items changed
                     - Required changed
                       - Deleted required property: currency
-                      - Deleted required property: dueDate
                     - Properties changed
                       - Deleted property: currency
                       - Modified property: amount
@@ -349,7 +355,7 @@ GET /contracts/{contractId}/scheduled-instalments
                         - MinLength changed from 0 to 2
                 - Modified property: contractRemainingNumber
                   - Description changed from 'Prazo Remanescente segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.' to 'Prazo Remanescente segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.
-[Restrição] Obrigatoriamente deve ser preenchido caso o typeNumberOfInstalments seja diferente de SEM_PRAZO_REMANESCENTE.
+[Restrição] Preenchimento obrigatório caso o campo typeContractRemaining seja diferente de SEM_PRAZO_REMANESCENTE.
 '
                   - Nullable changed from true to false
                   - Max changed from null to 999999
@@ -368,7 +374,7 @@ GET /contracts/{contractId}/scheduled-instalments
                   - MaxLength changed from 3 to null
                 - Modified property: totalNumberOfInstalments
                   - Description changed from 'Prazo Total segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.' to 'Prazo Total segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.
-[Restrição] Obrigatoriamente deve ser preenchido caso o typeNumberOfInstalments seja diferente de SEM_PRAZO_TOTAL.
+[Restrição] Preenchimento obrigatório caso o campo typeNumberOfInstalments seja diferente de SEM_PRAZO_TOTAL.
 '
                   - Nullable changed from true to false
                   - Max changed from null to 999999
