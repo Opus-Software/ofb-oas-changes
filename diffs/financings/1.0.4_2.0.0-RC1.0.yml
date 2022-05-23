@@ -48,6 +48,10 @@ GET /contracts/{contractId}
         - Schema changed
           - Properties changed
             - Modified property: data
+              - Required changed
+                - Deleted required property: CET
+                - Deleted required property: firstInstalmentDueDate
+                - Deleted required property: settlementDate
               - Properties changed
                 - Modified property: CET
                   - Type changed from 'number' to 'string'
@@ -159,12 +163,15 @@ Este valor representa 15%. O valor 1 representa 100%).
 '
                   - MinItems changed from 0 to 1
                   - Items changed
+                    - Required changed
+                      - Deleted required property: additionalInfo
+                      - Deleted required property: postFixedRate
+                      - Deleted required property: preFixedRate
                     - Properties changed
                       - Modified property: additionalInfo
                         - Description changed from 'Texto com informações adicionais sobre a composição das taxas de juros pactuadas.
 [Restrição] Caso a instituição não possua a informação para compartilhamento, informar "NA".
 ' to 'Texto com informações adicionais sobre a composição das taxas de juros pactuadas.
-[Restrição] Caso a instituição não possua a informação para compartilhamento, informar "NA".
 '
                       - Modified property: calculation
                         - MaxLength changed from 6 to null
@@ -258,12 +265,15 @@ GET /contracts/{contractId}/payments
                 - Modified property: releases
                   - MinItems changed from 0 to 1
                   - Items changed
+                    - Required changed
+                      - Deleted required property: overParcel
                     - Properties changed
                       - Modified property: overParcel
                         - Properties changed
                           - Modified property: charges
-                            - MinItems changed from 0 to 1
                             - Items changed
+                              - Required changed
+                                - Deleted required property: chargeAdditionalInfo
                               - Properties changed
                                 - Modified property: chargeAmount
                                   - Type changed from 'number' to 'string'
@@ -275,8 +285,9 @@ GET /contracts/{contractId}/payments
                                 - Modified property: chargeType
                                   - MaxLength changed from 31 to null
                           - Modified property: fees
-                            - MinItems changed from 0 to 1
                             - Items changed
+                              - Required changed
+                                - Deleted required property: feeAmount
                               - Properties changed
                                 - Modified property: feeAmount
                                   - Type changed from 'number' to 'string'
@@ -320,9 +331,12 @@ GET /contracts/{contractId}/scheduled-instalments
             - Modified property: data
               - Required changed
                 - Deleted required property: balloonPayments
+                - Deleted required property: contractRemainingNumber
+                - Deleted required property: totalNumberOfInstalments
               - Properties changed
                 - Modified property: balloonPayments
                   - Nullable changed from true to false
+                  - MinItems changed from 0 to 1
                   - Items changed
                     - Required changed
                       - Deleted required property: currency
@@ -344,6 +358,9 @@ GET /contracts/{contractId}/scheduled-instalments
                           - New property: amount
                           - New property: currency
                 - Modified property: contractRemainingNumber
+                  - Description changed from 'Prazo Remanescente segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.' to 'Prazo Remanescente segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.
+[Restrição] Preenchimento obrigatório caso o campo typeContractRemaining seja diferente de SEM_PRAZO_REMANESCENTE.
+'
                   - Nullable changed from true to false
                   - Max changed from null to 999999
                   - MaxLength changed from 6 to null
@@ -360,6 +377,9 @@ GET /contracts/{contractId}/scheduled-instalments
                   - Max changed from null to 999
                   - MaxLength changed from 3 to null
                 - Modified property: totalNumberOfInstalments
+                  - Description changed from 'Prazo Total segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.' to 'Prazo Total segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.
+[Restrição] Preenchimento obrigatório caso o campo typeNumberOfInstalments seja diferente de SEM_PRAZO_TOTAL.
+'
                   - Nullable changed from true to false
                   - Max changed from null to 999999
                   - MaxLength changed from 6 to null

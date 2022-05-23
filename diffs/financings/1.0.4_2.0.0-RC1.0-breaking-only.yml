@@ -40,6 +40,10 @@ GET /contracts/{contractId}
         - Schema changed
           - Properties changed
             - Modified property: data
+              - Required changed
+                - Deleted required property: CET
+                - Deleted required property: firstInstalmentDueDate
+                - Deleted required property: settlementDate
               - Properties changed
                 - Modified property: CET
                   - Type changed from 'number' to 'string'
@@ -95,6 +99,10 @@ GET /contracts/{contractId}
                   - MaxLength changed from 25 to null
                 - Modified property: interestRates
                   - Items changed
+                    - Required changed
+                      - Deleted required property: additionalInfo
+                      - Deleted required property: postFixedRate
+                      - Deleted required property: preFixedRate
                     - Properties changed
                       - Modified property: calculation
                         - MaxLength changed from 6 to null
@@ -152,11 +160,15 @@ GET /contracts/{contractId}/payments
                   - MaxLength changed from 3 to null
                 - Modified property: releases
                   - Items changed
+                    - Required changed
+                      - Deleted required property: overParcel
                     - Properties changed
                       - Modified property: overParcel
                         - Properties changed
                           - Modified property: charges
                             - Items changed
+                              - Required changed
+                                - Deleted required property: chargeAdditionalInfo
                               - Properties changed
                                 - Modified property: chargeAmount
                                   - Type changed from 'number' to 'string'
@@ -167,6 +179,8 @@ GET /contracts/{contractId}/payments
                                   - MaxLength changed from 31 to null
                           - Modified property: fees
                             - Items changed
+                              - Required changed
+                                - Deleted required property: feeAmount
                               - Properties changed
                                 - Modified property: feeAmount
                                   - Type changed from 'number' to 'string'
@@ -195,6 +209,8 @@ GET /contracts/{contractId}/scheduled-instalments
             - Modified property: data
               - Required changed
                 - Deleted required property: balloonPayments
+                - Deleted required property: contractRemainingNumber
+                - Deleted required property: totalNumberOfInstalments
               - Properties changed
                 - Modified property: balloonPayments
                   - Nullable changed from true to false
