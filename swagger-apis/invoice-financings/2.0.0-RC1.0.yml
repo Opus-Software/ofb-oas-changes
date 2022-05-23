@@ -332,8 +332,7 @@ components:
           type: string
           pattern: '^-?\d{1,15}\.\d{2,4}$'
           description: |
-            Valor monetário da tarifa pactuada no contrato. 
-
+            Valor monetário da tarifa pactuada no contrato. Preenchimento obrigatório quando a forma de cobrança for: Mínimo, Máximo ou Fixo.
             [Restrição] Preenchimento obrigatório quando a forma de cobrança for diferente de Percentual.
           maxLength: 21
           minLength: 1
@@ -345,8 +344,8 @@ components:
           minLength: 8
           maxLength: 8
           description: |
-            Objeto que traz o conjunto de informações necessárias para demonstrar a composição das taxas de juros remuneratórios da Modalidade de crédito.
-
+            Percentual que representa o valor da tarifa pactuada para o contrato.   
+            O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.150000. Este valor representa 15%. O valor 1 representa 100%).   
             [Restrição] Preenchimento obrigatório quando a forma de cobrança for Percentual.
           example: '0.062000'
       additionalProperties: false
@@ -584,8 +583,13 @@ components:
         - productType
         - productSubType
         - contractDate
+        - contractAmount
+        - settlementDate
+        - currency
         - instalmentPeriodicity
+        - instalmentPeriodicityAdditionalInfo
         - amortizationScheduled
+        - amortizationScheduledAdditionalInfo
         - interestRates
         - contractedFees
         - contractedFinanceCharges
@@ -684,7 +688,8 @@ components:
           maxLength: 50
           example: Informações adicionais sobre periodicidade
           description: |
-            Campo obrigatório para complementar a informação relativa à periodicidade de pagamento regular quando tiver a opção OUTROS. 
+            Campo obrigatório para complementar a informação relativa à periodicidade de pagamento regular quando tiver a opção OUTROS.
+            [Restrição] Obrigatório para complementar a informação relativa da periodicidade de pagamento regular, quando selecionada o tipo ou subtipo OUTRO.
         firstInstalmentDueDate:
           type: string
           format: date
@@ -714,25 +719,24 @@ components:
           example: NA
           description: |
             Campo obrigatório para complementar a informação relativa à amortização quando selecionada a opção OUTROS.
+            [Restrição] Obrigatório para complementar a informação relativa à amortização quando selecionada a opção OUTROS, para os demais casos informar "NA".
         interestRates:
           type: array
-          minItems: 0
-          description: |
-            Objeto que traz o conjunto de informações necessárias para demonstrar a composição das taxas de juros remuneratórios da Modalidade de crédito.
+          minItems: 1
+          description: 'Caso o contrato não possua taxas de juros, deve ser compartilhado uma lista vazia. Caso o contrato possua uma taxa de juros com valor 0, deve ser compartilhado um objeto com o valor 0 explícito.'
           items:
             $ref: '#/components/schemas/InvoiceFinancingsContractInterestRate'
         contractedFees:
           type: array
-          description: Lista que traz o conjunto de informações necessárias para demonstrar a composição das taxas de juros remuneratórios da Modalidade de crédito
           items:
             $ref: '#/components/schemas/InvoiceFinancingsContractedFee'
-          minItems: 0
+          minItems: 1
         contractedFinanceCharges:
           type: array
           description: Lista que traz os encargos pactuados no contrato
           items:
             $ref: '#/components/schemas/InvoiceFinancingsFinanceCharge'
-          minItems: 0
+          minItems: 1
       additionalProperties: false
     InvoiceFinancingsContractedWarranty:
       type: object
@@ -826,10 +830,7 @@ components:
         additionalInfo:
           type: string
           maxLength: 1200
-          description: |
-            Texto com informações adicionais sobre a composição das taxas de juros pactuadas. 
-
-            [Restrição] Caso a instituição possua a informação para compartilhamento, esta deverá ser informada.
+          description: Texto com informações adicionais sobre a composição das taxas de juros pactuadas
           pattern: '[\w\W\s]*'
           example: Informações adicionais
       additionalProperties: false
@@ -838,6 +839,7 @@ components:
       description: Conjunto de informações referentes à identificação da operação de crédito
       required:
         - chargeType
+        - chargeRate
       properties:
         chargeType:
           $ref: '#/components/schemas/EnumContractFinanceChargeType'
@@ -845,8 +847,7 @@ components:
           type: string
           maxLength: 50
           description: |
-            Campo para informações adicionais.
-
+            Campos para informações adicionais.
             [Restrição] Obrigatório se selecionada a opção 'OUTROS' em Tipo de encargo pactuado no contrato.
           pattern: '[\w\W\s]*'
           example: Informações adicionais sobre encargos
@@ -866,7 +867,6 @@ components:
       type: object
       description: Conjunto de informações relativas às parcelas não regulares do contrato da modalidade de crédito consultada
       required:
-        - dueDate
         - amount
       properties:
         dueDate:
@@ -907,7 +907,7 @@ components:
           description: |
             Prazo Total segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.
 
-            [Restrição] Preenchimento obrigatório caso o campo typeNumberOfInstalments seja diferente de SEM_PRAZO_TOTAL.
+            [Restrição] Obrigatoriamente deve ser preenchido caso o typeNumberOfInstalments seja diferente de SEM_PRAZO_TOTAL.
         typeContractRemaining:
           type: string
           enum:
@@ -924,7 +924,7 @@ components:
           description: |
             Prazo Remanescente segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.
 
-            [Restrição] Preenchimento obrigatório caso o campo typeContractRemaining seja diferente de SEM_PRAZO_REMANESCENTE.
+            [Restrição] Obrigatoriamente deve ser preenchido caso o typeNumberOfInstalments seja diferente de SEM_PRAZO_REMANESCENTE.
           example: 14600
         paidInstalments:
           type: number
@@ -945,7 +945,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/InvoiceFinancingsBalloonPayment'
-          minItems: 1
+          minItems: 0
           description: Lista que traz as datas de vencimento e valor das parcelas não regulares do contrato da modalidade de crédito consultada
       additionalProperties: false
     InvoiceFinancingsContractData:

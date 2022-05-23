@@ -51,11 +51,8 @@ GET /contracts/{contractId}
               - Required changed
                 - Deleted required property: amortizationScheduledAdditionalInfo
                 - Deleted required property: cnpjConsignee
-                - Deleted required property: contractAmount
-                - Deleted required property: currency
                 - Deleted required property: dueDate
                 - Deleted required property: firstInstalmentDueDate
-                - Deleted required property: instalmentPeriodicityAdditionalInfo
                 - Deleted required property: settlementDate
               - Properties changed
                 - Modified property: CET
@@ -99,7 +96,7 @@ Deve-se ter apenas os números do CNPJ, sem máscara.
                   - MinLength changed from 0 to 1
                   - Pattern changed from '' to '^\d{1,100}$'
                 - Modified property: contractedFees
-                  - Description changed from '' to 'Lista que traz o conjunto de informações necessárias para demonstrar a composição das taxas de juros remuneratórios da Modalidade de crédito'
+                  - MinItems changed from 0 to 1
                   - Items changed
                     - Required changed
                       - Deleted required property: feeAmount
@@ -108,7 +105,7 @@ Deve-se ter apenas os números do CNPJ, sem máscara.
                       - Modified property: feeAmount
                         - Type changed from 'number' to 'string'
                         - Description changed from 'Valor monetário da tarifa pactuada no contrato. Preenchimento obrigatório quando a forma de cobrança for: Mínimo, Máximo ou Fixo.
-' to 'Valor monetário da tarifa pactuada no contrato. 
+' to 'Valor monetário da tarifa pactuada no contrato. Preenchimento obrigatório quando a forma de cobrança for: Mínimo, Máximo ou Fixo. 
 [Restrição] Preenchimento obrigatório quando a forma de cobrança for diferente de Percentual.
 '
                         - Example changed from 100000.04 to '100000.04'
@@ -123,7 +120,8 @@ Deve-se ter apenas os números do CNPJ, sem máscara.
                         - Type changed from 'number' to 'string'
                         - Description changed from 'É o valor da tarifa em percentual pactuada no contrato. Deve-se informar 4 casas decimais, mesmo que preenchidas com zeros. Exemplo: 0.2000
 [Restrição] Preenchimento obrigatório quando a forma de cobrança for Percentual. Exemplo: 0.0150 = 1,5%.
-' to 'Objeto que traz o conjunto de informações necessárias para demonstrar a composição das taxas de juros remuneratórios da Modalidade de crédito.
+' to 'Percentual que representa o valor da tarifa pactuada para o contrato.
+O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.150000. Este valor representa 15%. O valor 1 representa 100%).
 [Restrição] Preenchimento obrigatório quando a forma de cobrança for Percentual.
 '
                         - Example changed from 0.25 to '0.062000'
@@ -132,16 +130,12 @@ Deve-se ter apenas os números do CNPJ, sem máscara.
                         - MaxLength changed from 19 to 8
                         - Pattern changed from '' to '^[01]\.\d{6}$'
                 - Modified property: contractedFinanceCharges
+                  - MinItems changed from 0 to 1
                   - Items changed
                     - Required changed
                       - Deleted required property: chargeAdditionalInfo
                     - Properties changed
                       - Modified property: chargeAdditionalInfo
-                        - Description changed from 'Campo de preenchimento obrigatório se selecionada a opção 'OUTROS' em Tipo de encargo pactuado no contrato.
-[Restrição] Obrigatório se selecionada a opção 'OUTROS' em Tipo de encargo pactuado no contrato.
-' to 'Campo para informações adicionais.
-[Restrição] Obrigatório se selecionada a opção 'OUTROS' em Tipo de encargo pactuado no contrato.
-'
                         - MaxLength changed from null to 140
                         - Pattern changed from '\w*\W*$|^NA$' to '\w*\W*$'
                       - Modified property: chargeRate
@@ -168,14 +162,9 @@ Informação deve ser enviada caso ela exista.
 '
                 - Modified property: instalmentPeriodicity
                   - MaxLength changed from 25 to null
-                - Modified property: instalmentPeriodicityAdditionalInfo
-                  - Description changed from 'Campo obrigatório para complementar a informação relativa à periodicidade de pagamento regular quando tiver a opção OUTROS.
-[Restrição] Obrigatório para complementar a informação relativa da periodicidade de pagamento regular, quando selecionada o tipo ou subtipo OUTRO.
-' to 'Campo obrigatório para complementar a informação relativa à periodicidade de pagamento regular quando tiver a opção OUTROS.
-'
                 - Modified property: interestRates
-                  - Description changed from '' to 'Objeto que traz o conjunto de informações necessárias para demonstrar a composição das taxas de juros remuneratórios da Modalidade de crédito.
-'
+                  - Description changed from '' to 'Caso o contrato não possua taxas de juros, deve ser compartilhado uma lista vazia. Caso o contrato possua uma taxa de juros com valor 0, deve ser compartilhado um objeto com o valor 0 explícito.'
+                  - MinItems changed from 0 to 1
                   - Items changed
                     - Required changed
                       - Deleted required property: additionalInfo
@@ -183,7 +172,7 @@ Informação deve ser enviada caso ela exista.
                       - Modified property: additionalInfo
                         - Description changed from 'Texto com informações adicionais sobre a composição das taxas de juros pactuadas.
 [Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
-' to 'Texto com informações adicionais sobre a composição das taxas de juros pactuadas. 
+' to 'Texto com informações adicionais sobre a composição das taxas de juros pactuadas.
 [Restrição] Caso a instituição possua a informação para compartilhamento, esta deverá ser informada.
 '
                       - Modified property: calculation
@@ -355,7 +344,6 @@ GET /contracts/{contractId}/scheduled-instalments
               - Properties changed
                 - Modified property: balloonPayments
                   - Nullable changed from true to false
-                  - MinItems changed from 0 to 1
                   - Items changed
                     - Required changed
                       - Deleted required property: currency

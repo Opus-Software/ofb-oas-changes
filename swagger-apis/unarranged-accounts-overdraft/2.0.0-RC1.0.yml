@@ -665,7 +665,6 @@ components:
         - pastDueInstalments
         - typeContractRemaining
         - typeNumberOfInstalments
-        - totalNumberOfInstalments
         - paidInstalments
       properties:
         typeNumberOfInstalments:
@@ -674,7 +673,10 @@ components:
           type: number
           maximum: 999999
           example: 130632
-          description: 'Prazo Total segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.'
+          description: |
+            Prazo Total segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.
+
+            [Restrição] Obrigatoriamente deve ser preenchido caso o typeNumberOfInstalments seja diferente de SEM_PRAZO_TOTAL.
         typeContractRemaining:
           type: string
           enum:
@@ -712,7 +714,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/UnarrangedAccountOverdraftBalloonPayment'
-          minItems: 1
+          minItems: 0
           description: Lista que traz as datas de vencimento e valor das parcelas não regulares do contrato da modalidade de crédito consultada
       additionalProperties: false
     UnarrangedAccountOverdraftPaymentsData:
@@ -846,9 +848,8 @@ components:
           pattern: '^-?\d{1,15}\.\d{2,4}$'
           maxLength: 20
           description: |
-            Valor monetário da tarifa pactuada no contrato. 
-
-            [Restrição] Preenchimento obrigatório quando a forma de cobrança for diferente de Percentual.
+            Valor monetário da tarifa pactuada no contrato.   
+            [Restrição] Preenchimento obrigatório quando a forma de cobrança for: Mínimo, Máximo ou Fixo.
           example: '100000.04'
         feeRate:
           type: string
@@ -857,9 +858,9 @@ components:
           maxLength: 8
           minLength: 8
           description: |
-            Objeto que traz o conjunto de informações necessárias para demonstrar a composição das taxas de juros remuneratórios da Modalidade de crédito.
+            Percentual que representa o valor da tarifa pactuada para o contrato.
 
-            [Restrição] Preenchimento obrigatório quando a forma de cobrança for Percentual.
+            O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.150000. Este valor representa 15%. O valor 1 representa 100%).
           example: '0.062000'
       additionalProperties: false
     UnarrangedAccountsOverdraftContractedWarranty:
@@ -895,7 +896,6 @@ components:
       type: object
       description: Lista que traz as datas de vencimento e valor das parcelas não regulares  do contrato da modalidade de crédito consultada.
       required:
-        - dueDate
         - amount
       properties:
         dueDate:
@@ -943,6 +943,7 @@ components:
         - productType
         - productSubType
         - contractDate
+        - currency
         - instalmentPeriodicity
         - instalmentPeriodicityAdditionalInfo
         - CET
@@ -1040,7 +1041,8 @@ components:
           maxLength: 50
           example: Informações adicionais sobre periodicidade
           description: |
-            Campo obrigatório para complementar a informação relativa à periodicidade de pagamento regular quando tiver a opção OUTROS. 
+            Campo obrigatório para complementar a informação relativa à periodicidade de pagamento regular quando tiver a opção OUTROS.
+            [Restrição] Obrigatório para complementar a informação relativa da periodicidade de pagamento regular, quando selecionada o tipo ou subtipo OUTRO.
         firstInstalmentDueDate:
           type: string
           format: date
@@ -1083,25 +1085,26 @@ components:
           example: NA
           description: |
             Campo obrigatório para complementar a informação relativa à amortização quando selecionada a opção OUTROS.
+            [Restrição] Obrigatório para complementar a informação relativa à amortização quando selecionada a opção OUTROS, para os demais casos informar "NA".
         interestRates:
           type: array
-          minItems: 0
+          minItems: 1
           items:
             $ref: '#/components/schemas/UnarrangedAccountOverdraftContractInterestRate'
           description: |
-            Objeto que traz o conjunto de informações necessárias para demonstrar a composição das taxas de juros remuneratórios da Modalidade de crédito.
+            Caso o contrato não possua taxas de juros, deve ser compartilhardo uma lista vazia. Caso o contrato possua uma taxa de juros com valor 0, deve ser compartilhado um objeto com o valor 0 explícito.
         contractedFees:
           type: array
           items:
             $ref: '#/components/schemas/UnarrangedAccountOverdraftContractedFee'
-          minItems: 0
-          description: Lista que traz o conjunto de informações necessárias para demonstrar a composição das taxas de juros remuneratórios da Modalidade de crédito
+          minItems: 1
+          description: Lista que traz a relação de tarifas pactuadas no contrato
         contractedFinanceCharges:
           type: array
           description: Lista que traz os encargos pactuados no contrato
           items:
             $ref: '#/components/schemas/UnarrangedAccountOverdraftFinanceCharge'
-          minItems: 0
+          minItems: 1
       additionalProperties: false
     UnarrangedAccountOverdraftContractInterestRate:
       type: object
@@ -1114,6 +1117,7 @@ components:
         - referentialRateIndexerType
         - preFixedRate
         - postFixedRate
+        - additionalInfo
       properties:
         taxType:
           $ref: '#/components/schemas/EnumContractTaxType'
@@ -1168,10 +1172,7 @@ components:
           maxLength: 1200
           pattern: '[\w\W\s]*'
           example: Informações adicionais
-          description: |
-            Texto com informações adicionais sobre a composição das taxas de juros pactuadas. 
-
-            [Restrição] Caso a instituição possua a informação para compartilhamento, esta deverá ser informada.
+          description: Texto com informações adicionais sobre a composição das taxas de juros pactuadas
       additionalProperties: false
     UnarrangedAccountOverdraftBalloonPaymentAmount:
       type: object
