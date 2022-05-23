@@ -50,9 +50,16 @@ GET /contracts/{contractId}
             - Modified property: data
               - Required changed
                 - Deleted required property: CET
+                - Deleted required property: amortizationScheduledAdditionalInfo
+                - Deleted required property: contractAmount
+                - Deleted required property: currency
+                - Deleted required property: dueDate
                 - Deleted required property: firstInstalmentDueDate
+                - Deleted required property: instalmentPeriodicityAdditionalInfo
                 - Deleted required property: settlementDate
               - Properties changed
+                - New property: disbursementDates
+                - Deleted property: disbursementDate
                 - Modified property: CET
                   - Type changed from 'number' to 'string'
                   - Format changed from '' to 'double'
@@ -69,6 +76,11 @@ O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas
                   - Pattern changed from '' to '^[01]\.\d{6}$'
                 - Modified property: amortizationScheduled
                   - MaxLength changed from 23 to null
+                - Modified property: amortizationScheduledAdditionalInfo
+                  - Description changed from 'Campo obrigatório para complementar a informação relativa à amortização quando selecionada a opção OUTROS.
+[Restrição] Obrigatório para complementar a informação relativa à amortização quando selecionada a opção OUTROS, para os demais casos informar "NA".
+' to 'Campo obrigatório para complementar a informação relativa à amortização quando selecionada a opção OUTROS.
+'
                 - Modified property: contractAmount
                   - Type changed from 'number' to 'string'
                   - Format changed from 'double' to ''
@@ -79,7 +91,8 @@ O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas
                 - Modified property: contractNumber
                   - Pattern changed from '' to '^\d{1,100}$'
                 - Modified property: contractedFees
-                  - MinItems changed from 0 to 1
+                  - Description changed from '' to 'Lista que traz o conjunto de informações necessárias para demonstrar a composição das taxas de juros remuneratórios da Modalidade de crédito
+'
                   - Items changed
                     - Required changed
                       - Deleted required property: feeAmount
@@ -89,8 +102,8 @@ O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas
                         - Type changed from 'number' to 'string'
                         - Format changed from 'double' to ''
                         - Description changed from '"Valor monetário da tarifa pactuada no contrato. Preenchimento obrigatório quando a forma de cobrança for: Mínimo, Máximo ou Fixo"
-' to 'Valor monetário da tarifa pactuada no contrato.   
-[Restrição] Preenchimento obrigatório quando a forma de cobrança for: Mínimo, Máximo ou Fixo
+' to 'Valor monetário da tarifa pactuada no contrato. 
+[Restrição] Preenchimento obrigatório quando a forma de cobrança for diferente de Percentual.
 '
                         - Example changed from 100000.04 to '100000.0400'
                         - Nullable changed from true to false
@@ -104,8 +117,7 @@ O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas
                         - Type changed from 'number' to 'string'
                         - Description changed from 'É o valor da tarifa em percentual pactuada no contrato. 
 [Restrição] Preenchimento obrigatório quando a forma de cobrança for Percentual. Exemplo: 0.0150 = 1,5%.
-' to 'Percentual que representa o valor da tarifa pactuada para o contrato.   
-O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.150000. Este valor representa 15%. O valor 1 representa 100%).   
+' to 'Objeto que traz o conjunto de informações necessárias para demonstrar a composição das taxas de juros remuneratórios da Modalidade de crédito.
 [Restrição] Preenchimento obrigatório quando a forma de cobrança for Percentual.
 '
                         - Example changed from 0.2 to '0.200000'
@@ -114,7 +126,6 @@ O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas
                         - MaxLength changed from 19 to 8
                         - Pattern changed from '' to '^[01]\.\d{6}$'
                 - Modified property: contractedFinanceCharges
-                  - MinItems changed from 0 to 1
                   - Items changed
                     - Required changed
                       - Deleted required property: chargeAdditionalInfo
@@ -122,7 +133,7 @@ O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas
                       - Modified property: chargeAdditionalInfo
                         - Description changed from 'Campo de preenchimento obrigatório se selecionada a opção 'OUTROS' em Tipo de encargo pactuado no contrato.
 [Restrição] Obrigatório se selecionada a opção 'OUTROS' em Tipo de encargo pactuado no contrato.
-' to 'Campo de preenchimento obrigatório se selecionada a opção 'OUTROS' em Tipo de encargo pactuado no contrato.   
+' to 'Campo para informações adicionais.
 [Restrição] Obrigatório se selecionada a opção 'OUTROS' em Tipo de encargo pactuado no contrato.
 '
                         - MaxLength changed from null to 50
@@ -140,16 +151,6 @@ Este valor representa 15%. O valor 1 representa 100%).
                         - Pattern changed from '' to '^[01]\.\d{6}$'
                       - Modified property: chargeType
                         - MaxLength changed from 31 to null
-                - Modified property: disbursementDate
-                  - Type changed from 'string' to 'array'
-                  - Format changed from 'date' to ''
-                  - Description changed from 'Data do Desembolso do valor contratado. Especificação RFC-3339' to 'Lista que traz as Datas de Desembolso do valor contratado.
-'
-                  - Example changed from '2018-01-15' to null
-                  - MaxLength changed from 10 to null
-                  - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$' to ''
-                  - Items changed
-                    - Schema added
                 - Modified property: dueDate
                   - Description changed from 'Data de vencimento Final da operação. Especificação RFC-3339' to 'Data de vencimento Final da operação. Especificação RFC-3339.   
 '
@@ -158,10 +159,14 @@ Este valor representa 15%. O valor 1 representa 100%).
 '
                 - Modified property: instalmentPeriodicity
                   - MaxLength changed from 25 to null
+                - Modified property: instalmentPeriodicityAdditionalInfo
+                  - Description changed from 'Campo obrigatório para complementar a informação relativa à periodicidade de pagamento regular quando tiver a opção OUTROS.
+[Restrição] Obrigatório para complementar a informação relativa da periodicidade de pagamento regular, quando selecionada o tipo ou subtipo OUTRO.
+' to 'Campo obrigatório para complementar a informação relativa à periodicidade de pagamento regular quando tiver a opção OUTROS. 
+'
                 - Modified property: interestRates
                   - Description changed from '' to 'Objeto que traz o conjunto de informações necessárias para demonstrar a composição das taxas de juros remuneratórios da Modalidade de crédito.
 '
-                  - MinItems changed from 0 to 1
                   - Items changed
                     - Required changed
                       - Deleted required property: additionalInfo
@@ -171,7 +176,8 @@ Este valor representa 15%. O valor 1 representa 100%).
                       - Modified property: additionalInfo
                         - Description changed from 'Texto com informações adicionais sobre a composição das taxas de juros pactuadas.
 [Restrição] Caso a instituição não possua a informação para compartilhamento, informar "NA".
-' to 'Texto com informações adicionais sobre a composição das taxas de juros pactuadas.
+' to 'Texto com informações adicionais sobre a composição das taxas de juros pactuadas. 
+[Restrição] Caso a instituição possua a informação para compartilhamento, esta deverá ser informada.
 '
                       - Modified property: calculation
                         - MaxLength changed from 6 to null
@@ -269,21 +275,12 @@ GET /contracts/{contractId}/payments
                       - Deleted required property: overParcel
                     - Properties changed
                       - Modified property: overParcel
-                        - Description changed from 'Objeto das tarifas e encargos que foram pagos fora da parcela.' to 'Objeto das tarifas e encargos que foram pagos fora da parcela.
-[Restrição] Informação deve ser enviada caso ela exista, torna-se obrigatório caso haja parcelamento.
-'
                         - Properties changed
                           - Modified property: charges
                             - Items changed
                               - Required changed
                                 - Deleted required property: chargeAdditionalInfo
                               - Properties changed
-                                - Modified property: chargeAdditionalInfo
-                                  - Description changed from 'Campo livre para preenchimento das informações adicionais referente ao encargo.
-[Restrição] Obrigatório quando chargeType for igual 'OUTROS'.
-' to 'Campo livre para preenchimento das informações adicionais referente ao encargo.
-[Restrição] Obrigatório quando chargeType for igual 'OUTROS'.
-'
                                 - Modified property: chargeAmount
                                   - Type changed from 'number' to 'string'
                                   - Format changed from 'double' to ''
@@ -294,25 +291,24 @@ GET /contracts/{contractId}/payments
                                 - Modified property: chargeType
                                   - MaxLength changed from 31 to null
                           - Modified property: fees
-                            - MinItems changed from 0 to 1
                             - Items changed
+                              - Required changed
+                                - Deleted required property: feeAmount
                               - Properties changed
                                 - Modified property: feeAmount
                                   - Type changed from 'number' to 'string'
                                   - Format changed from 'double' to ''
-                                  - Description changed from 'Valor monetário da tarifa pactuada no contrato.
-[Restrição] Preenchimento obrigatório quando a forma de cobrança for: Mínimo, Máximo ou Fixo
-' to 'Valor monetário da tarifa pactuada no contrato.
-'
                                   - Example changed from 100000.04 to '100000.0400'
                                   - Nullable changed from true to false
                                   - MinLength changed from 0 to 4
                                   - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
                                 - Modified property: feeCode
                                   - Description changed from 'Sigla identificadora da tarifa pactuada' to 'Sigla identificadora da tarifa pactuada.  
+[Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
 '
                                 - Modified property: feeName
                                   - Description changed from 'Denominação da Tarifa pactuada' to 'Denominação da Tarifa pactuada.
+[Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
 '
                       - Modified property: paidAmount
                         - Type changed from 'number' to 'string'

@@ -584,10 +584,7 @@ components:
         - productType
         - productSubType
         - contractDate
-        - contractAmount
-        - currency
         - instalmentPeriodicity
-        - instalmentPeriodicityAdditionalInfo
         - CET
         - amortizationScheduled
         - interestRates
@@ -684,7 +681,6 @@ components:
           example: Informações adicionais sobre periodicidade
           description: |
             Campo obrigatório para complementar a informação relativa à periodicidade de pagamento regular quando tiver a opção OUTROS.
-            [Restrição] Obrigatório para complementar a informação relativa da periodicidade de pagamento regular, quando selecionada o tipo ou subtipo OUTRO.
         firstInstalmentDueDate:
           type: string
           format: date
@@ -726,21 +722,23 @@ components:
             [Restrição] Informação adicional específica para Modalidade de Crédito: Empréstimo-Crédito Pessoal Consignado.
         interestRates:
           type: array
-          description: 'Caso o contrato não possua taxas de juros, deve ser compartilhado uma lista vazia. Caso o contrato possua uma taxa de juros com valor 0, deve ser compartilhado um objeto com o valor 0 explícito.'
+          description: |
+            Objeto que traz o conjunto de informações necessárias para demonstrar a composição das taxas de juros remuneratórios da Modalidade de crédito.
           items:
             $ref: '#/components/schemas/LoansContractInterestRate'
-          minItems: 1
+          minItems: 0
         contractedFees:
           type: array
+          description: Lista que traz o conjunto de informações necessárias para demonstrar a composição das taxas de juros remuneratórios da Modalidade de crédito
           items:
             $ref: '#/components/schemas/LoansContractedFee'
-          minItems: 1
+          minItems: 0
         contractedFinanceCharges:
           type: array
           description: Lista que traz os encargos pactuados no contrato
           items:
             $ref: '#/components/schemas/LoansFinanceCharge'
-          minItems: 1
+          minItems: 0
       additionalProperties: false
     LoansContractedFee:
       type: object
@@ -774,7 +772,7 @@ components:
           minLength: 1
           pattern: '^-?\d{1,15}\.\d{2,4}$'
           description: |
-            Valor monetário da tarifa pactuada no contrato. Preenchimento obrigatório quando a forma de cobrança for: Mínimo, Máximo ou Fixo. 
+            Valor monetário da tarifa pactuada no contrato. 
 
             [Restrição] Preenchimento obrigatório quando a forma de cobrança for diferente de Percentual.
           example: '100000.04'
@@ -785,9 +783,7 @@ components:
           maxLength: 8
           minLength: 8
           description: |
-            Percentual que representa o valor da tarifa pactuada para o contrato.
-
-            O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.150000. Este valor representa 15%. O valor 1 representa 100%).
+            Objeto que traz o conjunto de informações necessárias para demonstrar a composição das taxas de juros remuneratórios da Modalidade de crédito.
 
             [Restrição] Preenchimento obrigatório quando a forma de cobrança for Percentual.
           example: '0.062000'
@@ -853,13 +849,15 @@ components:
           pattern: '[\w\W\s]*'
           example: Informações adicionais
           description: |
-            Texto com informações adicionais sobre a composição das taxas de juros pactuadas.
+            Texto com informações adicionais sobre a composição das taxas de juros pactuadas. 
+
             [Restrição] Caso a instituição possua a informação para compartilhamento, esta deverá ser informada.
       additionalProperties: false
     LoansChargeOverParcel:
       type: object
       required:
         - chargeType
+        - chargeAdditionalInfo
         - chargeAmount
       properties:
         chargeType:
@@ -871,7 +869,6 @@ components:
           example: Informações adicionais
           description: |
             Campo livre para preenchimento das informações adicionais referente ao encargo.
-
             [Restrição] Obrigatório quando chargeType for igual 'OUTROS'.
         chargeAmount:
           description: Valor do pagamento do encargo pago fora da parcela. Expresso em valor monetário com até 4 casas decimais.
@@ -893,7 +890,8 @@ components:
           type: string
           maxLength: 140
           description: |
-            Campo de preenchimento obrigatório se selecionada a opção 'OUTROS' em Tipo de encargo pactuado no contrato.
+            Campo para informações adicionais.
+
             [Restrição] Obrigatório se selecionada a opção 'OUTROS' em Tipo de encargo pactuado no contrato.
           pattern: \w*\W*$
           example: Informações adicionais sobre encargos.
@@ -1107,11 +1105,9 @@ components:
             Valor do pagamento referente ao  contrato da modalidade de crédito consultada.
             Expresso em valor monetário com até 4 casas decimais.
         overParcel:
-          type: object
           description: |
-            Objeto das tarifas e encargos que foram pagos fora da parcela.
-
-            [Restrição] Informação deve ser enviada caso ela exista, torna-se obrigatório caso haja parcelamento.
+            [Restrição] Informação deve ser enviada caso ela exista.
+          type: object
           required:
             - fees
             - charges
@@ -1124,7 +1120,7 @@ components:
               description: 'Lista das tarifas que foram pagas fora da parcela, só para pagamento avulso.'
             charges:
               type: array
-              minItems: 0
+              minItems: 1
               items:
                 $ref: '#/components/schemas/LoansChargeOverParcel'
               description: Lista dos encargos que foram pagos fora da parcela.
@@ -1143,14 +1139,14 @@ components:
           pattern: '[\w\W\s]*'
           example: Reavaliação periódica do bem
           description: |
-            Denominação da Tarifa pactuada.
+            Denominação da Tarifa pactuada.  
         feeCode:
           type: string
           maxLength: 140
           pattern: '[\w\W\s]*'
           example: aval_bem
           description: |
-            Sigla identificadora da tarifa pactuada.
+            Sigla identificadora da tarifa pactuadas.
         feeAmount:
           type: string
           pattern: '^-?\d{1,15}\.\d{2,4}$'
@@ -1159,6 +1155,7 @@ components:
           example: '100000.0400'
           description: |
             Valor monetário da tarifa pactuada no contrato.
+            [Restrição] Preenchimento obrigatório quando a forma de cobrança for: Mínimo, Máximo ou Fixo
       additionalProperties: false
     LoansWarranties:
       type: object
