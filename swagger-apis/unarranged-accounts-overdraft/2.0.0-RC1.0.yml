@@ -666,7 +666,6 @@ components:
         - pastDueInstalments
         - typeContractRemaining
         - typeNumberOfInstalments
-        - totalNumberOfInstalments
         - paidInstalments
       properties:
         typeNumberOfInstalments:
@@ -675,7 +674,10 @@ components:
           type: number
           maximum: 999999
           example: 130632
-          description: 'Prazo Total segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.'
+          description: |
+            Prazo Total segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.
+
+            [Restrição] Obrigatoriamente deve ser preenchido caso o typeNumberOfInstalments seja diferente de SEM_PRAZO_TOTAL.
         typeContractRemaining:
           type: string
           enum:
@@ -713,7 +715,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/UnarrangedAccountOverdraftBalloonPayment'
-          minItems: 1
+          minItems: 0
           description: Lista que traz as datas de vencimento e valor das parcelas não regulares do contrato da modalidade de crédito consultada
       additionalProperties: false
     UnarrangedAccountOverdraftPaymentsData:
@@ -867,6 +869,7 @@ components:
         - currency
         - warrantyType
         - warrantySubType
+        - warrantyAmount
       properties:
         currency:
           type: string
@@ -880,9 +883,7 @@ components:
           $ref: '#/components/schemas/EnumWarrantySubType'
         warrantyAmount:
           description: |
-            Valor original da garantia. Valor monetário, expresso com até 4 casas decimais.
-
-            [Restrição] Preenchimento obrigatório se tipo de garantia selecionada for diferente de 'SEM_TIPO_GARANTIA'
+            Valor contratado da operação.
           type: string
           pattern: '^-?\d{1,15}\.\d{2,4}$'
           maxLength: 21
@@ -893,7 +894,6 @@ components:
       type: object
       description: Lista que traz as datas de vencimento e valor das parcelas não regulares  do contrato da modalidade de crédito consultada.
       required:
-        - dueDate
         - amount
       properties:
         dueDate:

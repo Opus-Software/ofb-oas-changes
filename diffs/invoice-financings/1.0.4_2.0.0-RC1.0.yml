@@ -325,10 +325,10 @@ GET /contracts/{contractId}/scheduled-instalments
               - Properties changed
                 - Modified property: balloonPayments
                   - Nullable changed from true to false
-                  - MinItems changed from 0 to 1
                   - Items changed
                     - Required changed
                       - Deleted required property: currency
+                      - Deleted required property: dueDate
                     - Properties changed
                       - Deleted property: currency
                       - Modified property: amount
@@ -349,7 +349,7 @@ GET /contracts/{contractId}/scheduled-instalments
                         - MinLength changed from 0 to 2
                 - Modified property: contractRemainingNumber
                   - Description changed from 'Prazo Remanescente segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.' to 'Prazo Remanescente segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.
-[Restrição] Preenchimento obrigatório caso o campo typeContractRemaining seja diferente de SEM_PRAZO_REMANESCENTE.
+[Restrição] Obrigatoriamente deve ser preenchido caso o typeNumberOfInstalments seja diferente de SEM_PRAZO_REMANESCENTE.
 '
                   - Nullable changed from true to false
                   - Max changed from null to 999999
@@ -368,7 +368,7 @@ GET /contracts/{contractId}/scheduled-instalments
                   - MaxLength changed from 3 to null
                 - Modified property: totalNumberOfInstalments
                   - Description changed from 'Prazo Total segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.' to 'Prazo Total segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.
-[Restrição] Preenchimento obrigatório caso o campo typeNumberOfInstalments seja diferente de SEM_PRAZO_TOTAL.
+[Restrição] Obrigatoriamente deve ser preenchido caso o typeNumberOfInstalments seja diferente de SEM_PRAZO_TOTAL.
 '
                   - Nullable changed from true to false
                   - Max changed from null to 999999
@@ -402,10 +402,6 @@ GET /contracts/{contractId}/warranties
                   - Modified property: warrantyAmount
                     - Type changed from 'number' to 'string'
                     - Format changed from 'double' to ''
-                    - Description changed from 'Valor original da garantia. Valor monetário, expresso com até 4 casas decimais.
-' to 'Valor original da garantia. Valor monetário, expresso com até 4 casas decimais.
-[Restrição] Preenchimento obrigatório se tipo de garantia selecionada for diferente de 'SEM_TIPO_GARANTIA'
-'
                     - Example changed from 100000.04 to '100000.0400'
                     - MinLength changed from 0 to 4
                     - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
