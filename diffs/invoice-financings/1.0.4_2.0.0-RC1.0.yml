@@ -47,6 +47,7 @@ GET /contracts/{contractId}
           - Properties changed
             - Modified property: data
               - Required changed
+                - Deleted required property: CET
                 - Deleted required property: dueDate
                 - Deleted required property: firstInstalmentDueDate
               - Properties changed
@@ -162,6 +163,10 @@ O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas
                   - Description changed from '' to 'Caso o contrato não possua taxas de juros, deve ser compartilhado uma lista vazia. Caso o contrato possua uma taxa de juros com valor 0, deve ser compartilhado um objeto com o valor 0 explícito.'
                   - MinItems changed from 0 to 1
                   - Items changed
+                    - Required changed
+                      - Deleted required property: additionalInfo
+                      - Deleted required property: postFixedRate
+                      - Deleted required property: preFixedRate
                     - Properties changed
                       - Modified property: calculation
                         - MaxLength changed from 6 to null
@@ -315,9 +320,12 @@ GET /contracts/{contractId}/scheduled-instalments
             - Modified property: data
               - Required changed
                 - Deleted required property: balloonPayments
+                - Deleted required property: contractRemainingNumber
+                - Deleted required property: totalNumberOfInstalments
               - Properties changed
                 - Modified property: balloonPayments
                   - Nullable changed from true to false
+                  - MinItems changed from 0 to 1
                   - Items changed
                     - Required changed
                       - Deleted required property: currency
@@ -340,6 +348,9 @@ GET /contracts/{contractId}/scheduled-instalments
                       - Modified property: dueDate
                         - MinLength changed from 0 to 2
                 - Modified property: contractRemainingNumber
+                  - Description changed from 'Prazo Remanescente segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.' to 'Prazo Remanescente segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.
+[Restrição] Preenchimento obrigatório caso o campo typeContractRemaining seja diferente de SEM_PRAZO_REMANESCENTE.
+'
                   - Nullable changed from true to false
                   - Max changed from null to 999999
                   - MaxLength changed from 6 to null
@@ -356,6 +367,9 @@ GET /contracts/{contractId}/scheduled-instalments
                   - Max changed from null to 999
                   - MaxLength changed from 3 to null
                 - Modified property: totalNumberOfInstalments
+                  - Description changed from 'Prazo Total segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.' to 'Prazo Total segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.
+[Restrição] Preenchimento obrigatório caso o campo typeNumberOfInstalments seja diferente de SEM_PRAZO_TOTAL.
+'
                   - Nullable changed from true to false
                   - Max changed from null to 999999
                   - MaxLength changed from 6 to null
