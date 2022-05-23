@@ -71,7 +71,7 @@ GET /business/identifications
               - Items changed
                 - AdditionalProperties changed from null to false
                 - Required changed
-                  - New required property: companyCnpjNumbers
+                  - New required property: companiesCnpj
                   - Deleted required property: companyCnpjNumber
                   - Deleted required property: tradeName
                 - Properties changed
@@ -478,30 +478,17 @@ bem como são identificados por sua comunidade e em seu meio social, conforme De
                     - New enum values: [NAO_DISPONIVEL]
                     - Example changed from 'SOLTEIRO' to 'OUTRO'
                   - Modified property: nationality
-                    - MinItems changed from 0 to 1
+                    - Type changed from 'array' to 'object'
+                    - Description changed from '' to 'Objeto que agrupa informações relativas à nacionalidade da Pessoa Natural'
+                    - AdditionalProperties changed from null to false
                     - Items changed
-                      - Properties changed
-                        - Modified property: documents
-                          - Items changed
-                            - Required changed
-                              - Deleted required property: expirationDate
-                              - Deleted required property: issueDate
-                            - Properties changed
-                              - New property: additionalInfo
-                              - Deleted property: typeAdditionalInfo
-                              - Modified property: country
-                                - Description changed from 'Nome do país' to 'Nome do país.
-'
-                                - Pattern changed from '[\w\W\s]*' to '\w*\W*'
-                              - Modified property: expirationDate
-                                - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
-                              - Modified property: issueDate
-                                - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
-                        - Modified property: otherNationalitiesInfo
-                          - Description changed from 'Campo de preenchimento obrigatório caso o cliente não possua nacionalidade brasileira. Preencher indicando todas suas demais nacionalidades utilizando o código de pais de acordo com o código “alpha3” do ISO-3166.p.ex.'CAN'
-' to 'Campo de preenchimento obrigatório caso o cliente não possua nacionalidade brasileira. Preencher indicando todas suas demais nacionalidades utilizando o código de pais de acordo com o código alpha3 do ISO-3166.p.ex.'CAN'
-'
-                          - Pattern changed from '' to '^\S[\s\S]*$'
+                      - Schema deleted
+                    - Required changed
+                      - New required property: documents
+                      - New required property: otherNationalitiesInfo
+                    - Properties changed
+                      - New property: documents
+                      - New property: otherNationalitiesInfo
                   - Modified property: otherDocuments
                     - Items changed
                       - Required changed
