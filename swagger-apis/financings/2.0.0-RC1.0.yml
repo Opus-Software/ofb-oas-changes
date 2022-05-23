@@ -572,7 +572,6 @@ components:
           example: Informações adicionais
           description: |
             Campo livre para preenchimento das informações adicionais referente ao encargo.
-
             [Restrição] Obrigatório quando chargeType for igual 'OUTROS'.
         chargeAmount:
           description: Valor do pagamento do encargo pago fora da parcela. Expresso em valor monetário com até 4 casas decimais.
@@ -840,7 +839,6 @@ components:
       required:
         - feeName
         - feeCode
-        - feeAmount
       properties:
         feeName:
           type: string
@@ -849,6 +847,7 @@ components:
           example: Reavaliação periódica do bem
           description: |
             Denominação da Tarifa pactuada.
+            [Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
         feeCode:
           type: string
           maxLength: 140
@@ -856,6 +855,7 @@ components:
           example: aval_bem
           description: |
             Sigla identificadora da tarifa pactuada.  
+            [Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
         feeAmount:
           type: string
           pattern: '^\d{1,15}\.\d{2,4}$'
@@ -864,6 +864,7 @@ components:
           example: '100000.0400'
           description: |
             Valor monetário da tarifa pactuada no contrato.
+            [Restrição] Preenchimento obrigatório quando a forma de cobrança for: Mínimo, Máximo ou Fixo
       additionalProperties: false
     FinancingsFinanceCharge:
       type: object
@@ -1013,17 +1014,14 @@ components:
       additionalProperties: false
     FinancingsOverParcel:
       type: object
-      description: |
-        Objeto das tarifas e encargos que foram pagos fora da parcela.
-
-        [Restrição] Informação deve ser enviada caso ela exista, torna-se obrigatório caso haja parcelamento.
+      description: Objeto das tarifas e encargos que foram pagos fora da parcela.
       required:
         - fees
         - charges
       properties:
         fees:
           type: array
-          minItems: 1
+          minItems: 0
           items:
             $ref: '#/components/schemas/FinancingsFeeOverParcel'
           description: 'Lista das tarifas que foram pagas fora da parcela, só para pagamento avulso.'
@@ -1214,6 +1212,8 @@ components:
           example: '200.0001'
           description: |
             Valor original da garantia. Valor monetário, expresso com até 4 casas decimais.
+
+            [Restrição] Preenchimento obrigatório se tipo de garantia selecionada for diferente de 'SEM_TIPO_GARANTIA'
       additionalProperties: false
     Meta:
       type: object

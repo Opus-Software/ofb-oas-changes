@@ -269,21 +269,12 @@ GET /contracts/{contractId}/payments
                       - Deleted required property: overParcel
                     - Properties changed
                       - Modified property: overParcel
-                        - Description changed from 'Objeto das tarifas e encargos que foram pagos fora da parcela.' to 'Objeto das tarifas e encargos que foram pagos fora da parcela.
-[Restrição] Informação deve ser enviada caso ela exista, torna-se obrigatório caso haja parcelamento.
-'
                         - Properties changed
                           - Modified property: charges
                             - Items changed
                               - Required changed
                                 - Deleted required property: chargeAdditionalInfo
                               - Properties changed
-                                - Modified property: chargeAdditionalInfo
-                                  - Description changed from 'Campo livre para preenchimento das informações adicionais referente ao encargo.
-[Restrição] Obrigatório quando chargeType for igual 'OUTROS'.
-' to 'Campo livre para preenchimento das informações adicionais referente ao encargo.
-[Restrição] Obrigatório quando chargeType for igual 'OUTROS'.
-'
                                 - Modified property: chargeAmount
                                   - Type changed from 'number' to 'string'
                                   - Format changed from 'double' to ''
@@ -294,25 +285,24 @@ GET /contracts/{contractId}/payments
                                 - Modified property: chargeType
                                   - MaxLength changed from 31 to null
                           - Modified property: fees
-                            - MinItems changed from 0 to 1
                             - Items changed
+                              - Required changed
+                                - Deleted required property: feeAmount
                               - Properties changed
                                 - Modified property: feeAmount
                                   - Type changed from 'number' to 'string'
                                   - Format changed from 'double' to ''
-                                  - Description changed from 'Valor monetário da tarifa pactuada no contrato.
-[Restrição] Preenchimento obrigatório quando a forma de cobrança for: Mínimo, Máximo ou Fixo
-' to 'Valor monetário da tarifa pactuada no contrato.
-'
                                   - Example changed from 100000.04 to '100000.0400'
                                   - Nullable changed from true to false
                                   - MinLength changed from 0 to 4
                                   - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
                                 - Modified property: feeCode
                                   - Description changed from 'Sigla identificadora da tarifa pactuada' to 'Sigla identificadora da tarifa pactuada.  
+[Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
 '
                                 - Modified property: feeName
                                   - Description changed from 'Denominação da Tarifa pactuada' to 'Denominação da Tarifa pactuada.
+[Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
 '
                       - Modified property: paidAmount
                         - Type changed from 'number' to 'string'
@@ -422,6 +412,10 @@ GET /contracts/{contractId}/warranties
                   - Modified property: warrantyAmount
                     - Type changed from 'number' to 'string'
                     - Format changed from 'double' to ''
+                    - Description changed from 'Valor original da garantia. Valor monetário, expresso com até 4 casas decimais.
+' to 'Valor original da garantia. Valor monetário, expresso com até 4 casas decimais.
+[Restrição] Preenchimento obrigatório se tipo de garantia selecionada for diferente de 'SEM_TIPO_GARANTIA'
+'
                     - Example changed from 200.0001 to '200.0001'
                     - MinLength changed from 0 to 4
                     - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'

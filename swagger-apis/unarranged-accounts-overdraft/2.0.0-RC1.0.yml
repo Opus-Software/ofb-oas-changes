@@ -617,7 +617,7 @@ components:
         feeCode:
           type: string
           description: |
-            Sigla identificadora da tarifa pactuada.
+            Sigla identificadora da tarifa avulsa fora da parcela.
           maxLength: 140
           pattern: '[\w\W\s]*'
           example: Saque descoberto
@@ -629,6 +629,7 @@ components:
           example: '100000.0400'
           description: |
             Valor monetário da tarifa pactuada no contrato.
+            [Restrição] Preenchimento obrigatório quando a forma de cobrança for: Mínimo, Máximo ou Fixo
       additionalProperties: false
     UnarrangedAccountOverdraftFinanceCharge:
       type: object
@@ -751,6 +752,7 @@ components:
         - paidDate
         - currency
         - paidAmount
+        - overParcel
       properties:
         paymentId:
           type: string
@@ -794,10 +796,7 @@ components:
             Expresso em valor monetário com até 4 casas decimais.
         overParcel:
           type: object
-          description: |
-            Objeto das tarifas e encargos que foram pagos fora da parcela.
-
-            [Restrição] Informação deve ser enviada caso ela exista, torna-se obrigatório caso haja parcelamento.
+          description: Objeto das tarifas e encargos que foram pagos fora da parcela.
           required:
             - fees
             - charges
@@ -810,7 +809,7 @@ components:
               description: 'Lista das tarifas que foram pagas fora da parcela, só para pagamento avulso.'
             charges:
               type: array
-              minItems: 0
+              minItems: 1
               items:
                 $ref: '#/components/schemas/UnarrangedAccountOverdraftChargeOverParcel'
               description: Lista dos encargos que foram pagos fora da parcela.
@@ -868,7 +867,6 @@ components:
         - currency
         - warrantyType
         - warrantySubType
-        - warrantyAmount
       properties:
         currency:
           type: string
@@ -882,7 +880,9 @@ components:
           $ref: '#/components/schemas/EnumWarrantySubType'
         warrantyAmount:
           description: |
-            Valor contratado da operação.
+            Valor original da garantia. Valor monetário, expresso com até 4 casas decimais.
+
+            [Restrição] Preenchimento obrigatório se tipo de garantia selecionada for diferente de 'SEM_TIPO_GARANTIA'
           type: string
           pattern: '^-?\d{1,15}\.\d{2,4}$'
           maxLength: 21
@@ -911,6 +911,7 @@ components:
       description: Lista dos encargos que foram pagos fora da parcela.
       required:
         - chargeType
+        - chargeAdditionalInfo
         - chargeAmount
       properties:
         chargeType:
@@ -922,7 +923,7 @@ components:
           example: Informações adicionais
           description: |
             Campo livre para preenchimento das informações adicionais referente ao encargo.
-            [Restrição] Obrigatório quando chargeType for igual 'OUTROS'.
+            [Restrição] Obrigatório quando chargeType for igual OUTROS.
         chargeAmount:
           description: Valor do pagamento do encargo pago fora da parcela. Expresso em valor monetário com até 4 casas decimais.
           type: string
