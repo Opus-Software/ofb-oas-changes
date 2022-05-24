@@ -419,16 +419,13 @@ GET /contracts/{contractId}/warranties
         - Schema changed
           - Properties changed
             - Modified property: data
-              - MinItems changed from 0 to 1
               - Items changed
+                - Required changed
+                  - New required property: warrantyAmount
                 - Properties changed
                   - Modified property: warrantyAmount
                     - Type changed from 'number' to 'string'
                     - Format changed from 'double' to ''
-                    - Description changed from 'Valor original da garantia. Valor monetário, expresso com até 4 casas decimais.
-' to 'Valor original da garantia. Valor monetário, expresso com até 4 casas decimais.
-[Restrição] Preenchimento obrigatório se tipo de garantia selecionada for diferente de 'SEM_TIPO_GARANTIA'
-'
                     - Example changed from 100000.04 to '100000.0400'
                     - MinLength changed from 0 to 4
                     - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
@@ -436,6 +433,7 @@ GET /contracts/{contractId}/warranties
                     - New enum values: [ACORDOS_COMPENSACAO_LIQUIDACAO_OBRIGACOES PROAGRO SEM_SUB_TIPO_GARANTIA]
                     - MaxLength changed from 96 to null
                   - Modified property: warrantyType
+                    - Deleted enum values: [SEM_TIPO_GARANTIA]
                     - MaxLength changed from 37 to null
   - Modified response: default
     - Description changed from 'Lista de garantias vinculadas ao contrato de antecipação de recebíveis identificado por contractId' to 'Erro inesperado.'
