@@ -16,6 +16,7 @@ GET /contracts
         - Schema changed
           - Properties changed
             - Modified property: data
+              - MinItems changed from 1 to 0
               - Items changed
                 - Properties changed
                   - Modified property: brandName
@@ -76,6 +77,8 @@ O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas
 [Restrição] Obrigatório para complementar a informação relativa à amortização quando selecionada a opção OUTROS, para os demais casos informar "NA".
 ' to 'Campo obrigatório para complementar a informação relativa à amortização quando selecionada a opção OUTROS.
 '
+                  - Example changed from 'NA' to 'Informações complementares relativa à amortização do tipo 'OUTROS''
+                  - MaxLength changed from 50 to 200
                 - Modified property: contractAmount
                   - Type changed from 'number' to 'string'
                   - Format changed from 'double' to ''
@@ -277,7 +280,6 @@ GET /contracts/{contractId}/payments
                   - Max changed from null to 999
                   - MaxLength changed from 3 to null
                 - Modified property: releases
-                  - MinItems changed from 0 to 1
                   - Items changed
                     - Required changed
                       - Deleted required property: overParcel
@@ -308,7 +310,6 @@ GET /contracts/{contractId}/payments
                                 - Modified property: chargeType
                                   - MaxLength changed from 31 to null
                           - Modified property: fees
-                            - MinItems changed from 0 to 1
                             - Items changed
                               - Properties changed
                                 - Modified property: feeAmount
@@ -360,6 +361,7 @@ GET /contracts/{contractId}/scheduled-instalments
               - Properties changed
                 - Modified property: balloonPayments
                   - Nullable changed from true to false
+                  - MinItems changed from 0 to 1
                   - Items changed
                     - Required changed
                       - Deleted required property: currency
@@ -431,7 +433,6 @@ GET /contracts/{contractId}/warranties
         - Schema changed
           - Properties changed
             - Modified property: data
-              - MinItems changed from 0 to 1
               - Items changed
                 - Required changed
                   - Deleted required property: warrantyAmount
