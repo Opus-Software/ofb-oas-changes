@@ -345,7 +345,8 @@ components:
           minLength: 8
           maxLength: 8
           description: |
-            Objeto que traz o conjunto de informações necessárias para demonstrar a composição das taxas de juros remuneratórios da Modalidade de crédito.
+            Percentual que representa o valor da tarifa pactuada para o contrato.   
+            O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex.: 0.150000. Este valor representa 15%. O valor 1 representa 100%).
 
             [Restrição] Preenchimento obrigatório quando a forma de cobrança for Percentual.
           example: '0.062000'
@@ -520,7 +521,6 @@ components:
       type: string
       description: 'Denominação/Identificação do tipo da garantia que avaliza a Modalidade da Operação de Crédito contratada  (Doc 3040, Anexo 12)'
       enum:
-        - SEM_TIPO_GARANTIA
         - CESSAO_DIREITOS_CREDITORIOS
         - CAUCAO
         - PENHOR
@@ -741,6 +741,7 @@ components:
         - currency
         - warrantyType
         - warrantySubType
+        - warrantyAmount
       properties:
         currency:
           type: string
@@ -755,8 +756,6 @@ components:
         warrantyAmount:
           description: |
             Valor original da garantia. Valor monetário, expresso com até 4 casas decimais.
-
-            [Restrição] Preenchimento obrigatório se tipo de garantia selecionada for diferente de 'SEM_TIPO_GARANTIA'
           type: string
           pattern: '^\d{1,15}\.\d{2,4}$'
           maxLength: 20
@@ -1337,7 +1336,7 @@ components:
       properties:
         data:
           type: array
-          minItems: 1
+          minItems: 0
           description: Conjunto de informações referentes às garantias que avalizam a operação de direitos creditórios descontados contratada
           items:
             $ref: '#/components/schemas/InvoiceFinancingsContractedWarranty'
