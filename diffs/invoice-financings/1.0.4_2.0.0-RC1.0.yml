@@ -124,8 +124,7 @@ O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas
                         - Type changed from 'number' to 'string'
                         - Description changed from 'Percentual que representa o valor da tarifa pactuada para o contrato. 
 [Restrição] Preenchimento obrigatório quando a forma de cobrança por Percentual.    maxLength: 19
-' to 'Percentual que representa o valor da tarifa pactuada para o contrato.   
-O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex.: 0.150000. Este valor representa 15%. O valor 1 representa 100%).
+' to 'Objeto que traz o conjunto de informações necessárias para demonstrar a composição das taxas de juros remuneratórios da Modalidade de crédito.
 [Restrição] Preenchimento obrigatório quando a forma de cobrança for Percentual.
 '
                         - Example changed from 50 to '0.062000'
@@ -419,16 +418,13 @@ GET /contracts/{contractId}/warranties
         - Schema changed
           - Properties changed
             - Modified property: data
-              - MinItems changed from 0 to 1
               - Items changed
+                - Required changed
+                  - New required property: warrantyAmount
                 - Properties changed
                   - Modified property: warrantyAmount
                     - Type changed from 'number' to 'string'
                     - Format changed from 'double' to ''
-                    - Description changed from 'Valor original da garantia. Valor monetário, expresso com até 4 casas decimais.
-' to 'Valor original da garantia. Valor monetário, expresso com até 4 casas decimais.
-[Restrição] Preenchimento obrigatório se tipo de garantia selecionada for diferente de 'SEM_TIPO_GARANTIA'
-'
                     - Example changed from 100000.04 to '100000.0400'
                     - MinLength changed from 0 to 4
                     - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
@@ -436,6 +432,7 @@ GET /contracts/{contractId}/warranties
                     - New enum values: [ACORDOS_COMPENSACAO_LIQUIDACAO_OBRIGACOES PROAGRO SEM_SUB_TIPO_GARANTIA]
                     - MaxLength changed from 96 to null
                   - Modified property: warrantyType
+                    - Deleted enum values: [SEM_TIPO_GARANTIA]
                     - MaxLength changed from 37 to null
   - Modified response: default
     - Description changed from 'Lista de garantias vinculadas ao contrato de antecipação de recebíveis identificado por contractId' to 'Erro inesperado.'
