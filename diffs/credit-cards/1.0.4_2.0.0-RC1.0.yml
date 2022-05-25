@@ -288,6 +288,7 @@ O campo deve assumir valor positivo para saldo devedor e negativo para saldo cre
                       - Properties changed
                         - Modified property: amount
                           - Type changed from 'number' to 'string'
+                          - Example changed from 100000.04 to '100000.0400'
                         - Modified property: type
                           - MaxLength changed from 44 to null
                   - Modified property: payments
@@ -412,6 +413,11 @@ GET /accounts/{creditCardAccountId}/bills/{billId}/transactions
 - Modified query param: page
   - Schema changed
     - Max changed from null to 2.147483647e+09
+- Modified query param: payeeMCC
+  - Schema changed
+    - Format changed from '' to 'int32'
+    - Max changed from null to 9999
+    - MaxLength changed from 4 to null
 - Modified query param: transactionType
   - Schema changed
     - MaxLength changed from 36 to null
@@ -793,6 +799,11 @@ GET /accounts/{creditCardAccountId}/transactions
 - Modified query param: page
   - Schema changed
     - Max changed from null to 2.147483647e+09
+- Modified query param: payeeMCC
+  - Schema changed
+    - Format changed from '' to 'int32'
+    - Max changed from null to 9999
+    - MaxLength changed from 4 to null
 - Modified query param: transactionType
   - Schema changed
     - MaxLength changed from 36 to null
