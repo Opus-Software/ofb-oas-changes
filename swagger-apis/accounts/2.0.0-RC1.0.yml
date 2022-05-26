@@ -338,12 +338,11 @@ components:
       properties:
         amount:
           type: string
-          format: double
           pattern: '^\d{1,15}\.\d{2,4}$'
-          maxLength: 20
-          minLength: 4
-          example: '1000.0400'
           description: Valor relacionado ao objeto.
+          maxLength: 20
+          minLength: 0
+          example: '100000.0400'
         currency:
           type: string
           pattern: '^[A-Z]{3}$'
@@ -361,12 +360,11 @@ components:
       properties:
         amount:
           type: string
-          format: double
           pattern: '^\d{1,15}\.\d{2,4}$'
-          maxLength: 20
-          minLength: 4
-          example: '1000.0400'
           description: Valor relacionado ao objeto.
+          maxLength: 20
+          minLength: 0
+          example: '100000.0400'
         currency:
           type: string
           pattern: '^[A-Z]{3}$'
@@ -383,12 +381,11 @@ components:
       properties:
         amount:
           type: string
-          format: double
           pattern: '^\d{1,15}\.\d{2,4}$'
-          maxLength: 20
-          minLength: 4
-          example: '1000.0400'
           description: Valor relacionado ao objeto.
+          maxLength: 20
+          minLength: 0
+          example: '100000.0400'
         currency:
           type: string
           pattern: '^[A-Z]{3}$'
@@ -405,12 +402,11 @@ components:
       properties:
         amount:
           type: string
-          format: double
           pattern: '^\d{1,15}\.\d{2,4}$'
-          maxLength: 20
-          minLength: 4
-          example: '1000.0400'
           description: Valor relacionado ao objeto.
+          maxLength: 20
+          minLength: 0
+          example: '100000.0400'
         currency:
           type: string
           pattern: '^[A-Z]{3}$'
@@ -427,12 +423,11 @@ components:
       properties:
         amount:
           type: string
-          format: double
           pattern: '^\d{1,15}\.\d{2,4}$'
-          maxLength: 20
-          minLength: 4
-          example: '1000.0400'
           description: Valor relacionado ao objeto.
+          maxLength: 20
+          minLength: 0
+          example: '100000.0400'
         currency:
           type: string
           pattern: '^[A-Z]{3}$'
@@ -448,12 +443,11 @@ components:
       properties:
         amount:
           type: string
-          format: double
           pattern: '^\d{1,15}\.\d{2,4}$'
-          maxLength: 20
-          minLength: 4
-          example: '1000.0400'
           description: Valor relacionado ao objeto.
+          maxLength: 20
+          minLength: 0
+          example: '100000.0400'
         currency:
           type: string
           pattern: '^[A-Z]{3}$'
@@ -532,8 +526,9 @@ components:
         accountId:
           type: string
           description: 'Identifica de forma única  a conta do cliente, mantendo as regras de imutabilidade dentro da instituição transmissora.'
-          pattern: '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
+          pattern: '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
           maxLength: 100
+          minLength: 1
           example: '92792126019929279212650822221989319252576'
       additionalProperties: false
     AccountIdentificationData:
@@ -625,7 +620,8 @@ components:
           type: string
           description: Código ou identificador único prestado pela instituição que mantém a conta para representar a transação individual.
           maxLength: 100
-          pattern: '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
+          minLength: 1
+          pattern: '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
           example: TXpRMU9UQTROMWhZV2xSU1FUazJSMDl
         completedAuthorisedPaymentType:
           $ref: '#/components/schemas/EnumCompletedAuthorisedPaymentIndicator'
@@ -693,12 +689,11 @@ components:
       properties:
         amount:
           type: string
-          format: double
           pattern: '^\d{1,15}\.\d{2,4}$'
-          maxLength: 20
-          minLength: 4
-          example: '1000.0400'
           description: Valor relacionado ao objeto.
+          maxLength: 20
+          minLength: 0
+          example: '100000.0400'
         currency:
           type: string
           pattern: '^[A-Z]{3}$'
