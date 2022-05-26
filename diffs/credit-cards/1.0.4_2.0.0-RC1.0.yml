@@ -267,7 +267,8 @@ GET /accounts/{creditCardAccountId}/bills
                 - Properties changed
                   - Modified property: billMinimumAmount
                     - Type changed from 'number' to 'string'
-                    - Example changed from 1000.04 to '1000.0400'
+                    - Example changed from 1000.04 to '100000.0400'
+                    - MinLength changed from 0 to 4
                     - MaxLength changed from 19 to 21
                   - Modified property: billTotalAmount
                     - Type changed from 'number' to 'object'
@@ -292,6 +293,8 @@ O campo deve assumir valor positivo para saldo devedor e negativo para saldo cre
                           - Type changed from 'number' to 'string'
                           - Example changed from 100000.04 to '100000.0400'
                           - Nullable changed from true to false
+                          - MinLength changed from 0 to 4
+                          - MaxLength changed from 20 to 21
                         - Modified property: type
                           - MaxLength changed from 44 to null
                   - Modified property: payments
@@ -660,8 +663,9 @@ Cenário de "cartão sem limite", isto é, cartões em que o uso do limite é il
                 - Properties changed
                   - Modified property: availableAmount
                     - Type changed from 'number' to 'string'
-                    - Example changed from 2499.95 to '2499.9500'
+                    - Example changed from 2499.95 to '100000.0001'
                     - Nullable changed from true to false
+                    - MinLength changed from 0 to 4
                     - MaxLength changed from 20 to 21
                   - Modified property: availableAmountCurrency
                     - Pattern changed from '^(\w{3}){1}$|^NA$' to '^(\w{3}){1}$'
@@ -676,6 +680,7 @@ Cenário de "cartão sem limite", isto é, cartões em que o uso do limite é il
 '
                     - Example changed from 100000.0001 to '100000.0001'
                     - Nullable changed from true to false
+                    - MinLength changed from 0 to 4
                     - MaxLength changed from 20 to 21
                   - Modified property: limitAmountCurrency
                     - Description changed from 'Moeda referente ao limite informado, segundo modelo ISO-4217. p.ex. 'BRL.'
@@ -691,8 +696,9 @@ Todos os limite informados estão representados com a moeda vigente do do Brasil
                     - MaxLength changed from null to 50
                   - Modified property: usedAmount
                     - Type changed from 'number' to 'string'
-                    - Example changed from 7500.05 to '7500.0500'
+                    - Example changed from 7500.05 to '100000.0001'
                     - Nullable changed from true to false
+                    - MinLength changed from 0 to 4
                     - MaxLength changed from 20 to 21
                   - Modified property: usedAmountCurrency
                     - Pattern changed from '^(\w{3}){1}$|^NA$' to '^(\w{3}){1}$'
