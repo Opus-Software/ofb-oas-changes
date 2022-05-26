@@ -126,7 +126,8 @@ Deve-se ter apenas os números do CNPJ, sem máscara.
                         - Type changed from 'number' to 'string'
                         - Description changed from 'É o valor da tarifa em percentual pactuada no contrato. Deve-se informar 4 casas decimais, mesmo que preenchidas com zeros. Exemplo: 0.2000
 [Restrição] Preenchimento obrigatório quando a forma de cobrança for Percentual. Exemplo: 0.0150 = 1,5%.
-' to 'Objeto que traz o conjunto de informações necessárias para demonstrar a composição das taxas de juros remuneratórios da Modalidade de crédito.
+' to 'Percentual que representa o valor da tarifa pactuada para o contrato.   
+O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex.: 0.150000. Este valor representa 15%. O valor 1 representa 100%).
 [Restrição] Preenchimento obrigatório quando a forma de cobrança for Percentual.
 '
                         - Example changed from 0.25 to '0.062000'
@@ -432,6 +433,8 @@ GET /contracts/{contractId}/warranties
           - Properties changed
             - Modified property: data
               - Items changed
+                - Required changed
+                  - New required property: warrantyAmount
                 - Properties changed
                   - Modified property: warrantyAmount
                     - Type changed from 'number' to 'string'
@@ -439,7 +442,6 @@ GET /contracts/{contractId}/warranties
                     - Description changed from 'Valor original da garantia. Valor monetário, expresso com até 4 casas decimais.
 [Restrição] Preenchimento obrigatório se tipo de garantia selecionada for diferente de 'SEM_TIPO_GARANTIA'
 ' to 'Valor original da garantia. Valor monetário, expresso com até 4 casas decimais.
-[Restrição] Preenchimento obrigatório se tipo de garantia selecionada for diferente de 'SEM_TIPO_GARANTIA'
 '
                     - Example changed from 200.0001 to '200.0001'
                     - MinLength changed from 0 to 4
