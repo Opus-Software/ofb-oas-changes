@@ -84,8 +84,7 @@ O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas
                   - MaxLength changed from 50 to 200
                 - Modified property: contractAmount
                   - Type changed from 'number' to 'string'
-                  - Format changed from 'double' to ''
-                  - Example changed from 100000.04 to '100000.0400'
+                  - Example changed from 100000.04 to '1000.0400'
                   - Nullable changed from true to false
                   - MinLength changed from 0 to 4
                   - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
@@ -105,10 +104,9 @@ O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas
 ' to 'Valor monetário da tarifa pactuada no contrato. 
 [Restrição] Preenchimento obrigatório quando a forma de cobrança for diferente de Percentual.
 '
-                        - Example changed from 100000.04 to '100000.0400'
+                        - Example changed from 100000.04 to '1000.0400'
                         - Nullable changed from true to false
                         - MinLength changed from 0 to 4
-                        - MaxLength changed from 20 to 21
                         - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
                       - Modified property: feeCharge
                         - MaxLength changed from 10 to null
@@ -163,8 +161,7 @@ Este valor representa 15%. O valor 1 representa 100%).
                 - Modified property: instalmentPeriodicityAdditionalInfo
                   - Description changed from 'Campo obrigatório para complementar a informação relativa à periodicidade de pagamento regular quando tiver a opção OUTROS.
 [Restrição] Obrigatório para complementar a informação relativa da periodicidade de pagamento regular, quando selecionada o tipo ou subtipo OUTRO.
-' to 'Campo para complementar a informação relativa à periodicidade de pagamento regular. 
-[Restrição] Obrigatório quando o campo instalmentPeriodicity for igual a OUTROS.
+' to 'Campo obrigatório para complementar a informação relativa à periodicidade de pagamento regular quando tiver a opção OUTROS. 
 '
                 - Modified property: interestRates
                   - Description changed from '' to 'Objeto que traz o conjunto de informações necessárias para demonstrar a composição das taxas de juros remuneratórios da Modalidade de crédito.
@@ -262,8 +259,7 @@ GET /contracts/{contractId}/payments
               - Properties changed
                 - Modified property: contractOutstandingBalance
                   - Type changed from 'number' to 'string'
-                  - Format changed from 'double' to ''
-                  - Example changed from 100000.04 to '100000.0400'
+                  - Example changed from 100000.04 to '1000.0400'
                   - MinLength changed from 0 to 4
                   - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
                 - Modified property: paidInstalments
@@ -275,9 +271,6 @@ GET /contracts/{contractId}/payments
                     - Required changed
                       - Deleted required property: overParcel
                     - Properties changed
-                      - Modified property: instalmentId
-                        - MinLength changed from 0 to 1
-                        - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
                       - Modified property: overParcel
                         - Description changed from 'Objeto das tarifas e encargos que foram pagos fora da parcela.' to 'Objeto das tarifas e encargos que foram pagos fora da parcela.
 [Restrição] Informação deve ser enviada caso ela exista, torna-se obrigatório caso haja parcelamento.
@@ -296,8 +289,7 @@ GET /contracts/{contractId}/payments
 '
                                 - Modified property: chargeAmount
                                   - Type changed from 'number' to 'string'
-                                  - Format changed from 'double' to ''
-                                  - Example changed from 100000.04 to '100000.0400'
+                                  - Example changed from 100000.04 to '1000.0400'
                                   - Nullable changed from true to false
                                   - MinLength changed from 0 to 4
                                   - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
@@ -308,12 +300,11 @@ GET /contracts/{contractId}/payments
                               - Properties changed
                                 - Modified property: feeAmount
                                   - Type changed from 'number' to 'string'
-                                  - Format changed from 'double' to ''
                                   - Description changed from 'Valor monetário da tarifa pactuada no contrato.
 [Restrição] Preenchimento obrigatório quando a forma de cobrança for: Mínimo, Máximo ou Fixo
 ' to 'Valor monetário da tarifa pactuada no contrato.
 '
-                                  - Example changed from 100000.04 to '100000.0400'
+                                  - Example changed from 100000.04 to '1000.0400'
                                   - Nullable changed from true to false
                                   - MinLength changed from 0 to 4
                                   - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
@@ -325,13 +316,9 @@ GET /contracts/{contractId}/payments
 '
                       - Modified property: paidAmount
                         - Type changed from 'number' to 'string'
-                        - Format changed from 'double' to ''
-                        - Example changed from 100000.04 to '100000.0400'
+                        - Example changed from 100000.04 to '1000.0400'
                         - MinLength changed from 0 to 4
                         - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
-                      - Modified property: paymentId
-                        - MinLength changed from 0 to 1
-                        - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
   - Modified response: default
     - Description changed from 'Dados de pagamentos do contrato de financiamento identificado por contractId' to 'Erro inesperado.'
     - Content changed
@@ -435,8 +422,7 @@ GET /contracts/{contractId}/warranties
                 - Properties changed
                   - Modified property: warrantyAmount
                     - Type changed from 'number' to 'string'
-                    - Format changed from 'double' to ''
-                    - Example changed from 200.0001 to '200.0001'
+                    - Example changed from 200.0001 to '1000.0400'
                     - MinLength changed from 0 to 4
                     - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
                   - Modified property: warrantySubType

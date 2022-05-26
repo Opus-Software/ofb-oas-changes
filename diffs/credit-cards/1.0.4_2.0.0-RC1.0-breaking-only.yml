@@ -19,8 +19,6 @@ GET /accounts
                 - Properties changed
                   - Modified property: companyCnpj
                     - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
-                  - Modified property: creditCardAccountId
-                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
                   - Modified property: creditCardNetwork
                     - MaxLength changed from 17 to null
                   - Modified property: productType
@@ -137,11 +135,6 @@ GET /accounts/{creditCardAccountId}
               - Properties changed
                 - Modified property: creditCardNetwork
                   - MaxLength changed from 17 to null
-                - Modified property: paymentMethod
-                  - Items changed
-                    - Properties changed
-                      - Modified property: identificationNumber
-                        - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
                 - Modified property: productType
                   - MaxLength changed from 26 to null
   - Modified response: 400
@@ -260,8 +253,6 @@ GET /accounts/{creditCardAccountId}/bills
                 - Required changed
                   - Deleted required property: payments
                 - Properties changed
-                  - Modified property: billId
-                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
                   - Modified property: billMinimumAmount
                     - Type changed from 'number' to 'string'
                     - MaxLength changed from 19 to 21
@@ -276,7 +267,6 @@ GET /accounts/{creditCardAccountId}/bills
                         - Modified property: amount
                           - Type changed from 'number' to 'string'
                           - Nullable changed from true to false
-                          - MaxLength changed from 20 to 21
                         - Modified property: type
                           - MaxLength changed from 44 to null
                   - Modified property: payments
@@ -421,8 +411,6 @@ GET /accounts/{creditCardAccountId}/bills/{billId}/transactions
                     - AdditionalProperties changed from null to false
                     - Nullable changed from true to false
                     - MaxLength changed from 20 to null
-                  - Modified property: billId
-                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
                   - Modified property: billPostDate
                     - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
                   - Modified property: brazilianAmount
@@ -440,8 +428,6 @@ GET /accounts/{creditCardAccountId}/bills/{billId}/transactions
                     - MaxLength changed from 29 to null
                   - Modified property: feeTypeAdditionalInfo
                     - Pattern changed from '' to '^\S[\s\S]*$'
-                  - Modified property: identificationNumber
-                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
                   - Modified property: otherCreditsAdditionalInfo
                     - Pattern changed from '' to '^\S[\s\S]*$'
                   - Modified property: otherCreditsType
@@ -453,8 +439,6 @@ GET /accounts/{creditCardAccountId}/bills/{billId}/transactions
                     - MaxLength changed from 7 to null
                   - Modified property: transactionDate
                     - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
-                  - Modified property: transactionId
-                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
                   - Modified property: transactionType
                     - MaxLength changed from 36 to null
                   - Modified property: transactionalAdditionalInfo
@@ -590,8 +574,6 @@ GET /accounts/{creditCardAccountId}/limits
                     - MaxLength changed from 11 to null
                   - Modified property: creditLineLimitType
                     - MaxLength changed from 34 to null
-                  - Modified property: identificationNumber
-                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
                   - Modified property: limitAmount
                     - Type changed from 'number' to 'string'
                     - Nullable changed from true to false
@@ -738,8 +720,6 @@ GET /accounts/{creditCardAccountId}/transactions
                     - AdditionalProperties changed from null to false
                     - Nullable changed from true to false
                     - MaxLength changed from 20 to null
-                  - Modified property: billId
-                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
                   - Modified property: billPostDate
                     - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
                   - Modified property: brazilianAmount
@@ -757,8 +737,6 @@ GET /accounts/{creditCardAccountId}/transactions
                     - MaxLength changed from 29 to null
                   - Modified property: feeTypeAdditionalInfo
                     - Pattern changed from '' to '^\S[\s\S]*$'
-                  - Modified property: identificationNumber
-                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
                   - Modified property: otherCreditsAdditionalInfo
                     - Pattern changed from '' to '^\S[\s\S]*$'
                   - Modified property: otherCreditsType
@@ -770,8 +748,6 @@ GET /accounts/{creditCardAccountId}/transactions
                     - MaxLength changed from 7 to null
                   - Modified property: transactionDate
                     - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
-                  - Modified property: transactionId
-                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
                   - Modified property: transactionType
                     - MaxLength changed from 36 to null
                   - Modified property: transactionalAdditionalInfo
