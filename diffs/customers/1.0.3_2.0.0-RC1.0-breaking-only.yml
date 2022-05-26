@@ -58,6 +58,8 @@ GET /business/identifications
                   - Deleted required property: tradeName
                 - Properties changed
                   - Deleted property: companyCnpjNumber
+                  - Modified property: businessId
+                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
                   - Modified property: cnpjNumber
                     - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
                   - Modified property: contacts
@@ -312,6 +314,8 @@ GET /personal/identifications
                       - Properties changed
                         - Modified property: expirationDate
                           - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                  - Modified property: personalId
+                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
   - Modified response: default
     - Content changed
       - Deleted media type: application/json

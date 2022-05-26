@@ -723,10 +723,9 @@ components:
           example: '60500998000135'
           description: |
             CNPJ do consignante (CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica). 
-
             Deve-se ter apenas os números do CNPJ, sem máscara. 
 
-            [Restrição] Informação adicional específica para quando o productSubType for igual a CREDITO_PESSOAL_COM_CONSIGNACAO
+            [Restrição] Informação adicional específica para Modalidade de Crédito: Empréstimo-Crédito Pessoal Consignado.
         interestRates:
           type: array
           description: |
@@ -995,7 +994,7 @@ components:
       properties:
         contractId:
           type: string
-          pattern: '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
+          pattern: '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
           maxLength: 100
           minLength: 1
           example: '92792126019929279212650822221989319252576'
@@ -1074,7 +1073,7 @@ components:
           type: string
           maxLength: 100
           example: XlthLXpBLVowLTldW2EtekEtWjAtOVwtXXswLDk5fSQ
-          pattern: '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
+          pattern: '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
           description: Identificador de pagamento de responsabilidade de cada Instituição transmissora.
         isOverParcelPayment:
           type: boolean
@@ -1083,7 +1082,7 @@ components:
         instalmentId:
           type: string
           maxLength: 100
-          pattern: '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
+          pattern: '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
           example: WGx0aExYcEJMVm93TFRsZFcyRXRla0V0V2pBdE9Wd3RYWH
           description: 'Identificador de parcela, de responsabilidade de cada Instituição transmissora.'
         paidDate:

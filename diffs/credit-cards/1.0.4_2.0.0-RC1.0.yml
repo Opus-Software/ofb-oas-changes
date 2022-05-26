@@ -23,6 +23,8 @@ GET /accounts
                     - Description changed from 'Nome da Marca reportada pelo participante do Open Banking. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes' to 'Nome da Marca reportada pelo participante no Open Finance. Recomenda-se utilizar, sempre que possível, o mesmo nome de marca atribuído no campo do diretório Customer Friendly Server Name (Authorisation Server).'
                   - Modified property: companyCnpj
                     - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
+                  - Modified property: creditCardAccountId
+                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
                   - Modified property: creditCardNetwork
                     - MaxLength changed from 17 to null
                   - Modified property: productType
@@ -144,6 +146,11 @@ GET /accounts/{creditCardAccountId}
                   - MaxLength changed from 17 to null
                 - Modified property: networkAdditionalInfo
                   - Example changed from 'NA' to 'AURA CARD'
+                - Modified property: paymentMethod
+                  - Items changed
+                    - Properties changed
+                      - Modified property: identificationNumber
+                        - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
                 - Modified property: productType
                   - MaxLength changed from 26 to null
   - Modified response: 400
@@ -265,10 +272,11 @@ GET /accounts/{creditCardAccountId}/bills
                 - Required changed
                   - Deleted required property: payments
                 - Properties changed
+                  - Modified property: billId
+                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
                   - Modified property: billMinimumAmount
                     - Type changed from 'number' to 'string'
-                    - Example changed from 1000.04 to '100000.0400'
-                    - MinLength changed from 0 to 4
+                    - Example changed from 1000.04 to '1000.0400'
                     - MaxLength changed from 19 to 21
                   - Modified property: billTotalAmount
                     - Type changed from 'number' to 'object'
@@ -293,8 +301,6 @@ O campo deve assumir valor positivo para saldo devedor e negativo para saldo cre
                           - Type changed from 'number' to 'string'
                           - Example changed from 100000.04 to '100000.0400'
                           - Nullable changed from true to false
-                          - MinLength changed from 0 to 4
-                          - MaxLength changed from 20 to 21
                         - Modified property: type
                           - MaxLength changed from 44 to null
                   - Modified property: payments
@@ -461,6 +467,8 @@ GET /accounts/{creditCardAccountId}/bills/{billId}/transactions
                     - Properties changed
                       - New property: amount
                       - New property: currency
+                  - Modified property: billId
+                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
                   - Modified property: billPostDate
                     - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
                   - Modified property: brazilianAmount
@@ -500,6 +508,8 @@ Para recebedora: ignorar o campo preenchido conforme esse cenário.
                     - MaxLength changed from 29 to null
                   - Modified property: feeTypeAdditionalInfo
                     - Pattern changed from '' to '^\S[\s\S]*$'
+                  - Modified property: identificationNumber
+                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
                   - Modified property: otherCreditsAdditionalInfo
                     - Description changed from 'Campo livre, de preenchimento obrigatório quando selecionado tipo de crédito "OUTROS"' to 'Campo livre para preenchimento de dados adicionais de outros tipos de crédito contratados no cartão.
 [Restrição] Preenchimento obrigatório quando selecionado no campo outros tipos de crédito "OUTROS".
@@ -526,6 +536,8 @@ Para recebedora: ignorar o campo preenchido quando não for uma transação do t
                     - MaxLength changed from 7 to null
                   - Modified property: transactionDate
                     - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                  - Modified property: transactionId
+                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
                   - Modified property: transactionType
                     - MaxLength changed from 36 to null
                   - Modified property: transactionalAdditionalInfo
@@ -663,9 +675,8 @@ Cenário de "cartão sem limite", isto é, cartões em que o uso do limite é il
                 - Properties changed
                   - Modified property: availableAmount
                     - Type changed from 'number' to 'string'
-                    - Example changed from 2499.95 to '100000.0001'
+                    - Example changed from 2499.95 to '2499.9500'
                     - Nullable changed from true to false
-                    - MinLength changed from 0 to 4
                     - MaxLength changed from 20 to 21
                   - Modified property: availableAmountCurrency
                     - Pattern changed from '^(\w{3}){1}$|^NA$' to '^(\w{3}){1}$'
@@ -673,6 +684,8 @@ Cenário de "cartão sem limite", isto é, cartões em que o uso do limite é il
                     - MaxLength changed from 11 to null
                   - Modified property: creditLineLimitType
                     - MaxLength changed from 34 to null
+                  - Modified property: identificationNumber
+                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
                   - Modified property: limitAmount
                     - Type changed from 'number' to 'string'
                     - Description changed from 'Valor total do limite informado Expresso em valor monetário com 4 casas decimais.' to 'Valor total do limite informado Expresso em valor monetário com 4 casas decimais.   
@@ -680,7 +693,6 @@ Cenário de "cartão sem limite", isto é, cartões em que o uso do limite é il
 '
                     - Example changed from 100000.0001 to '100000.0001'
                     - Nullable changed from true to false
-                    - MinLength changed from 0 to 4
                     - MaxLength changed from 20 to 21
                   - Modified property: limitAmountCurrency
                     - Description changed from 'Moeda referente ao limite informado, segundo modelo ISO-4217. p.ex. 'BRL.'
@@ -696,9 +708,8 @@ Todos os limite informados estão representados com a moeda vigente do do Brasil
                     - MaxLength changed from null to 50
                   - Modified property: usedAmount
                     - Type changed from 'number' to 'string'
-                    - Example changed from 7500.05 to '100000.0001'
+                    - Example changed from 7500.05 to '7500.0500'
                     - Nullable changed from true to false
-                    - MinLength changed from 0 to 4
                     - MaxLength changed from 20 to 21
                   - Modified property: usedAmountCurrency
                     - Pattern changed from '^(\w{3}){1}$|^NA$' to '^(\w{3}){1}$'
@@ -851,6 +862,8 @@ GET /accounts/{creditCardAccountId}/transactions
                     - Properties changed
                       - New property: amount
                       - New property: currency
+                  - Modified property: billId
+                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
                   - Modified property: billPostDate
                     - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
                   - Modified property: brazilianAmount
@@ -890,6 +903,8 @@ Para recebedora: ignorar o campo preenchido conforme esse cenário.
                     - MaxLength changed from 29 to null
                   - Modified property: feeTypeAdditionalInfo
                     - Pattern changed from '' to '^\S[\s\S]*$'
+                  - Modified property: identificationNumber
+                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
                   - Modified property: otherCreditsAdditionalInfo
                     - Description changed from 'Campo livre, de preenchimento obrigatório quando selecionado tipo de crédito "OUTROS"' to 'Campo livre para preenchimento de dados adicionais de outros tipos de crédito contratados no cartão.
 [Restrição] Preenchimento obrigatório quando selecionado no campo outros tipos de crédito "OUTROS".
@@ -916,6 +931,8 @@ Para recebedora: ignorar o campo preenchido quando não for uma transação do t
                     - MaxLength changed from 7 to null
                   - Modified property: transactionDate
                     - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                  - Modified property: transactionId
+                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
                   - Modified property: transactionType
                     - MaxLength changed from 36 to null
                   - Modified property: transactionalAdditionalInfo

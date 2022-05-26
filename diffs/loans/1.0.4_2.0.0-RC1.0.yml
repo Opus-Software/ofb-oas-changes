@@ -24,6 +24,7 @@ GET /contracts
                     - Pattern changed from '\d{14}|^NA$' to '\d{14}$'
                   - Modified property: contractId
                     - MinLength changed from 0 to 1
+                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
                   - Modified property: ipocCode
                     - MinLength changed from 0 to 22
                     - Pattern changed from '' to '^\d{22,67}$'
@@ -86,7 +87,7 @@ O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas
                   - Description changed from 'CNPJ do consignante (CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica). Deve-se ter apenas os números do CNPJ, sem máscara. Informação adicional específica para Modalidade de Crédito: Empréstimo-Crédito Pessoal Consignado
 ' to 'CNPJ do consignante (CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica). 
 Deve-se ter apenas os números do CNPJ, sem máscara. 
-[Restrição] Informação adicional específica para quando o productSubType for igual a CREDITO_PESSOAL_COM_CONSIGNACAO
+[Restrição] Informação adicional específica para Modalidade de Crédito: Empréstimo-Crédito Pessoal Consignado.
 '
                   - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
                 - Modified property: contractAmount
@@ -277,6 +278,8 @@ GET /contracts/{contractId}/payments
                     - Required changed
                       - Deleted required property: overParcel
                     - Properties changed
+                      - Modified property: instalmentId
+                        - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
                       - Modified property: overParcel
                         - Description changed from 'Objeto das tarifas e encargos que foram pagos fora da parcela.' to 'Objeto das tarifas e encargos que foram pagos fora da parcela.
 [Restrição] Informação deve ser enviada caso ela exista, torna-se obrigatório caso haja parcelamento.
@@ -329,6 +332,8 @@ GET /contracts/{contractId}/payments
                         - MinLength changed from 0 to 4
                         - MaxLength changed from 20 to 21
                         - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
+                      - Modified property: paymentId
+                        - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
   - Modified response: default
     - Description changed from 'Dados de pagamentos do contrato de empréstimo identificado por contractId' to 'Erro inesperado.'
     - Content changed
