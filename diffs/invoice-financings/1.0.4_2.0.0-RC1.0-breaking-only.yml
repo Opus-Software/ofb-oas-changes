@@ -17,6 +17,8 @@ GET /contracts
             - Modified property: data
               - Items changed
                 - Properties changed
+                  - Modified property: companyCnpj
+                    - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
                   - Modified property: ipocCode
                     - Pattern changed from '' to '^\d{22,67}$'
                   - Modified property: productSubType
@@ -130,6 +132,8 @@ GET /contracts/{contractId}
                   - MaxLength changed from 39 to null
                 - Modified property: productType
                   - MaxLength changed from 32 to null
+                - Modified property: settlementDate
+                  - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
   - Modified response: default
     - Content changed
       - Deleted media type: application/json

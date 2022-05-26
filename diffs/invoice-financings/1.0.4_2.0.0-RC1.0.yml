@@ -20,6 +20,8 @@ GET /contracts
                 - Properties changed
                   - Modified property: brandName
                     - Description changed from 'Nome da Marca reportada pelo participante do Open Banking. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes' to 'Nome da Marca reportada pelo participante no Open Finance. Recomenda-se utilizar, sempre que possível, o mesmo nome de marca atribuído no campo do diretório Customer Friendly Server Name (Authorisation Server).'
+                  - Modified property: companyCnpj
+                    - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
                   - Modified property: contractId
                     - MinLength changed from 0 to 1
                   - Modified property: ipocCode
@@ -232,6 +234,12 @@ Este valor representa 15%. O valor 1 representa 100%).
                   - MaxLength changed from 39 to null
                 - Modified property: productType
                   - MaxLength changed from 32 to null
+                - Modified property: settlementDate
+                  - Description changed from 'Data de liquidação da operação.
+[Restrição] Deve aceitar NA caso não seja retornado pela instituição.
+' to 'Data de liquidação da operação.
+'
+                  - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
   - Modified response: default
     - Description changed from 'Dados do contrato de antecipação de recebíveis identificado por contractId' to 'Erro inesperado.'
     - Content changed
