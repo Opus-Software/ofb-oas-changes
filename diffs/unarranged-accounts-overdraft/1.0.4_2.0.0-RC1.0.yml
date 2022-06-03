@@ -14,10 +14,12 @@ GET /contracts
     - Content changed
       - Modified media type: application/json
         - Schema changed
+          - AdditionalProperties changed from false to true
           - Properties changed
             - Modified property: data
               - MinItems changed from 1 to 0
               - Items changed
+                - AdditionalProperties changed from false to true
                 - Properties changed
                   - Modified property: brandName
                     - Description changed from 'Nome da Marca reportada pelo participante do Open Banking. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes' to 'Nome da Marca reportada pelo participante no Open Finance. Recomenda-se utilizar, sempre que possível, o mesmo nome de marca atribuído no campo do diretório Customer Friendly Server Name (Authorisation Server).
@@ -46,8 +48,10 @@ GET /contracts/{contractId}
     - Content changed
       - Modified media type: application/json
         - Schema changed
+          - AdditionalProperties changed from false to true
           - Properties changed
             - Modified property: data
+              - AdditionalProperties changed from false to true
               - Required changed
                 - Deleted required property: contractAmount
                 - Deleted required property: currency
@@ -93,6 +97,7 @@ O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas
                 - Modified property: contractedFees
                   - Description changed from 'Lista que traz a relação de tarifas pactuadas no contrato' to 'Lista que traz o conjunto de informações necessárias para demonstrar a composição das taxas de juros remuneratórios da Modalidade de crédito'
                   - Items changed
+                    - AdditionalProperties changed from false to true
                     - Required changed
                       - Deleted required property: feeAmount
                       - Deleted required property: feeRate
@@ -125,6 +130,7 @@ O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas
                         - Pattern changed from '' to '^[01]\.\d{6}$'
                 - Modified property: contractedFinanceCharges
                   - Items changed
+                    - AdditionalProperties changed from false to true
                     - Required changed
                       - Deleted required property: chargeAdditionalInfo
                     - Properties changed
@@ -172,6 +178,7 @@ Todos os valores monetários informados estão representados com a moeda vigente
                   - Description changed from '' to 'Objeto que traz o conjunto de informações necessárias para demonstrar a composição das taxas de juros remuneratórios da Modalidade de crédito.
 '
                   - Items changed
+                    - AdditionalProperties changed from false to true
                     - Required changed
                       - Deleted required property: additionalInfo
                     - Properties changed
@@ -269,8 +276,10 @@ GET /contracts/{contractId}/payments
     - Content changed
       - Modified media type: application/json
         - Schema changed
+          - AdditionalProperties changed from false to true
           - Properties changed
             - Modified property: data
+              - AdditionalProperties changed from false to true
               - Properties changed
                 - Modified property: contractOutstandingBalance
                   - Type changed from 'number' to 'string'
@@ -284,6 +293,7 @@ GET /contracts/{contractId}/payments
                   - MaxLength changed from 3 to null
                 - Modified property: releases
                   - Items changed
+                    - AdditionalProperties changed from false to true
                     - Required changed
                       - Deleted required property: overParcel
                     - Properties changed
@@ -294,9 +304,11 @@ GET /contracts/{contractId}/payments
                         - Description changed from 'Objeto das tarifas e encargos que foram pagos fora da parcela.' to 'Objeto das tarifas e encargos que foram pagos fora da parcela.
 [Restrição] Informação deve ser enviada caso ela exista, torna-se obrigatório caso haja parcelamento.
 '
+                        - AdditionalProperties changed from false to true
                         - Properties changed
                           - Modified property: charges
                             - Items changed
+                              - AdditionalProperties changed from false to true
                               - Required changed
                                 - Deleted required property: chargeAdditionalInfo
                               - Properties changed
@@ -317,6 +329,7 @@ GET /contracts/{contractId}/payments
                                   - MaxLength changed from 31 to null
                           - Modified property: fees
                             - Items changed
+                              - AdditionalProperties changed from false to true
                               - Properties changed
                                 - Modified property: feeAmount
                                   - Type changed from 'number' to 'string'
@@ -361,8 +374,10 @@ GET /contracts/{contractId}/scheduled-instalments
     - Content changed
       - Modified media type: application/json
         - Schema changed
+          - AdditionalProperties changed from false to true
           - Properties changed
             - Modified property: data
+              - AdditionalProperties changed from false to true
               - Required changed
                 - Deleted required property: balloonPayments
                 - Deleted required property: contractRemainingNumber
@@ -372,6 +387,7 @@ GET /contracts/{contractId}/scheduled-instalments
                   - Nullable changed from true to false
                   - MinItems changed from 0 to 1
                   - Items changed
+                    - AdditionalProperties changed from false to true
                     - Required changed
                       - Deleted required property: currency
                       - Deleted required property: dueDate
@@ -382,7 +398,7 @@ GET /contracts/{contractId}/scheduled-instalments
                         - Format changed from 'double' to ''
                         - Description changed from 'Valor monetário da parcela não regular a vencer. Expresso em valor monetário com 4 casas decimais.' to 'Valor monetário da parcela não regular a vencer.'
                         - Example changed from 100000.04 to null
-                        - AdditionalProperties changed from null to false
+                        - AdditionalProperties changed from null to true
                         - Nullable changed from true to false
                         - MaxLength changed from 20 to null
                         - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
@@ -440,9 +456,11 @@ GET /contracts/{contractId}/warranties
     - Content changed
       - Modified media type: application/json
         - Schema changed
+          - AdditionalProperties changed from false to true
           - Properties changed
             - Modified property: data
               - Items changed
+                - AdditionalProperties changed from false to true
                 - Properties changed
                   - Modified property: warrantyAmount
                     - Type changed from 'number' to 'string'
