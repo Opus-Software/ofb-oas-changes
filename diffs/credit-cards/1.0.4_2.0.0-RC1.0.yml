@@ -15,9 +15,11 @@ GET /accounts
     - Content changed
       - Modified media type: application/json
         - Schema changed
+          - AdditionalProperties changed from false to true
           - Properties changed
             - Modified property: data
               - Items changed
+                - AdditionalProperties changed from false to true
                 - Properties changed
                   - Modified property: brandName
                     - Description changed from 'Nome da Marca reportada pelo participante do Open Banking. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes' to 'Nome da Marca reportada pelo participante no Open Finance. Recomenda-se utilizar, sempre que possível, o mesmo nome de marca atribuído no campo do diretório Customer Friendly Server Name (Authorisation Server).'
@@ -140,8 +142,10 @@ GET /accounts/{creditCardAccountId}
     - Content changed
       - Modified media type: application/json
         - Schema changed
+          - AdditionalProperties changed from false to true
           - Properties changed
             - Modified property: data
+              - AdditionalProperties changed from false to true
               - Properties changed
                 - Modified property: creditCardNetwork
                   - MaxLength changed from 17 to null
@@ -149,6 +153,7 @@ GET /accounts/{creditCardAccountId}
                   - Example changed from 'NA' to 'AURA CARD'
                 - Modified property: paymentMethod
                   - Items changed
+                    - AdditionalProperties changed from false to true
                     - Properties changed
                       - Modified property: identificationNumber
                         - MinLength changed from 0 to 1
@@ -268,9 +273,11 @@ GET /accounts/{creditCardAccountId}/bills
     - Content changed
       - Modified media type: application/json
         - Schema changed
+          - AdditionalProperties changed from false to true
           - Properties changed
             - Modified property: data
               - Items changed
+                - AdditionalProperties changed from false to true
                 - Required changed
                   - Deleted required property: payments
                 - Properties changed
@@ -289,7 +296,7 @@ GET /accounts/{creditCardAccountId}/bills
 O campo deve assumir valor positivo para saldo devedor e negativo para saldo credor.
 '
                     - Example changed from 100000.04 to null
-                    - AdditionalProperties changed from null to false
+                    - AdditionalProperties changed from null to true
                     - MaxLength changed from 20 to null
                     - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
                     - Required changed
@@ -300,6 +307,7 @@ O campo deve assumir valor positivo para saldo devedor e negativo para saldo cre
                       - New property: currency
                   - Modified property: financeCharges
                     - Items changed
+                      - AdditionalProperties changed from false to true
                       - Properties changed
                         - Modified property: amount
                           - Type changed from 'number' to 'string'
@@ -311,6 +319,7 @@ O campo deve assumir valor positivo para saldo devedor e negativo para saldo cre
                           - MaxLength changed from 44 to null
                   - Modified property: payments
                     - Items changed
+                      - AdditionalProperties changed from false to true
                       - Properties changed
                         - Modified property: amount
                           - Type changed from 'number' to 'string'
@@ -446,9 +455,11 @@ GET /accounts/{creditCardAccountId}/bills/{billId}/transactions
     - Content changed
       - Modified media type: application/json
         - Schema changed
+          - AdditionalProperties changed from false to true
           - Properties changed
             - Modified property: data
               - Items changed
+                - AdditionalProperties changed from false to true
                 - Required changed
                   - Deleted required property: chargeNumber
                   - Deleted required property: currency
@@ -464,7 +475,7 @@ GET /accounts/{creditCardAccountId}/bills/{billId}/transactions
                     - Format changed from 'double' to ''
                     - Description changed from 'Valor da transação efetuada no exterior e convertida em moeda nacional com 4 casas decimais. Expresso em valor monetário com 4 casas decimais' to 'Valor da transação. Expresso em valor monetário com 4 casas decimais. Se a transação foi realizada em moeda estrangeira, deve ser preenchido com o valor original da transação, sem convertê-lo.'
                     - Example changed from 100000.04 to null
-                    - AdditionalProperties changed from null to false
+                    - AdditionalProperties changed from null to true
                     - Nullable changed from true to false
                     - MaxLength changed from 20 to null
                     - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
@@ -483,7 +494,7 @@ GET /accounts/{creditCardAccountId}/bills/{billId}/transactions
                     - Type changed from 'number' to 'object'
                     - Format changed from 'double' to ''
                     - Example changed from 100000.04 to null
-                    - AdditionalProperties changed from null to false
+                    - AdditionalProperties changed from null to true
                     - Nullable changed from true to false
                     - MaxLength changed from 20 to null
                     - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
@@ -672,6 +683,7 @@ GET /accounts/{creditCardAccountId}/limits
     - Content changed
       - Modified media type: application/json
         - Schema changed
+          - AdditionalProperties changed from false to true
           - Properties changed
             - Modified property: data
               - Description changed from '' to '[Restrição] A lista vazia deve ser interpretada como a ausência da informação.
@@ -679,6 +691,7 @@ Cenário de limite com valor zerado, deve ter um registro explícito informando 
 Cenário de "cartão sem limite", isto é, cartões em que o uso do limite é ilimitado, deve ser informado em um registro explícito com isLimitFlexible como true.
 '
               - Items changed
+                - AdditionalProperties changed from false to true
                 - Required changed
                   - Deleted required property: limitAmount
                   - Deleted required property: limitAmountCurrency
@@ -848,9 +861,11 @@ GET /accounts/{creditCardAccountId}/transactions
     - Content changed
       - Modified media type: application/json
         - Schema changed
+          - AdditionalProperties changed from false to true
           - Properties changed
             - Modified property: data
               - Items changed
+                - AdditionalProperties changed from false to true
                 - Required changed
                   - Deleted required property: chargeNumber
                   - Deleted required property: currency
@@ -866,7 +881,7 @@ GET /accounts/{creditCardAccountId}/transactions
                     - Format changed from 'double' to ''
                     - Description changed from 'Valor da transação efetuada no exterior e convertida em moeda nacional com 4 casas decimais. Expresso em valor monetário com 4 casas decimais' to 'Valor da transação. Expresso em valor monetário com 4 casas decimais. Se a transação foi realizada em moeda estrangeira, deve ser preenchido com o valor original da transação, sem convertê-lo.'
                     - Example changed from 100000.04 to null
-                    - AdditionalProperties changed from null to false
+                    - AdditionalProperties changed from null to true
                     - Nullable changed from true to false
                     - MaxLength changed from 20 to null
                     - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
@@ -885,7 +900,7 @@ GET /accounts/{creditCardAccountId}/transactions
                     - Type changed from 'number' to 'object'
                     - Format changed from 'double' to ''
                     - Example changed from 100000.04 to null
-                    - AdditionalProperties changed from null to false
+                    - AdditionalProperties changed from null to true
                     - Nullable changed from true to false
                     - MaxLength changed from 20 to null
                     - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
