@@ -283,6 +283,8 @@ GET /accounts/{creditCardAccountId}/bills
             - Modified property: data
               - Items changed
                 - AdditionalProperties changed from false to true
+                - Required changed
+                  - Deleted required property: payments
                 - Properties changed
                   - Modified property: billId
                     - MinLength changed from 0 to 1
@@ -711,6 +713,10 @@ Cenário de "cartão sem limite", isto é, cartões em que o uso do limite é il
                   - Modified property: availableAmountCurrency
                     - Pattern changed from '^(\w{3}){1}$|^NA$' to '^(\w{3}){1}$'
                   - Modified property: consolidationType
+                    - Description changed from 'Indicador que permite informar se o valor do limite é consolidado ou individual.' to 'Indicador que permite informar se o valor do limite é consolidado ou individual.
+CONSOLIDADO: utilizado quando o limite da conta cartão é compartilhado entre todos os métodos de pagamento (paymentMethod) atrelados a conta.
+INDIVIDUAL: Utilizado quando cada método de pagamento (paymentMethod) possui seu limite segregado.
+'
                     - MaxLength changed from 11 to null
                   - Modified property: creditLineLimitType
                     - MaxLength changed from 34 to null
