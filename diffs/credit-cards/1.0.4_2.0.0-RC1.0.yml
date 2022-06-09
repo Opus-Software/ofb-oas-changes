@@ -269,6 +269,10 @@ GET /accounts/{creditCardAccountId}
     - Headers changed
       - Deleted header: x-fapi-interaction-id
 GET /accounts/{creditCardAccountId}/bills
+- Description changed from 'Método para obter a lista de faturas da conta de pagamento pós-paga identificada por creditCardAccountId mantida pelo cliente na instituição transmissora.' to 'Método para obter a lista de faturas da conta de pagamento pós-paga identificada por creditCardAccountId mantida pelo cliente na instituição transmissora.\
+Só deve ser informada uma fatura já fechada.\
+Qualquer pagamento deve ser contado para a última fatura fechada.
+'
 - New query param: pagination-key
 - Modified query param: page
   - Schema changed
@@ -353,18 +357,6 @@ O campo não pode assumir valor negativo por se tratar de um pagamento.
                         - Modified property: paymentMode
                           - MaxLength changed from 21 to null
                         - Modified property: valueType
-                          - Description changed from 'Traz os tipos dos valores relativos aos pagamentos da fatura da conta de pagamento pós-paga: (Vide Enum)
- - Valor de pagamento da fatura com parcelamento
- - Valor pagamento da fatura realizado
- - Outro Valor pago na fatura
-' to 'Traz os tipos dos valores relativos aos pagamentos da fatura da conta de pagamento pós-paga: (Vide Enum)
- - Valor de pagamento da fatura com parcelamento
- - Valor pagamento da fatura realizado
- - Outro Valor pago na fatura
- VALOR_PAGAMENTO_FATURA_PARCELADO: Quando o pagamento corresponde ao fato gerador para abertura do plano de parcelamento da fatura
- VALOR_PAGAMENTO_FATURA_REALIZADO: Quando o pagamento corresponde ao valor total da fatura
- OUTRO_VALOR_PAGO_FATURA: Demais casos
-'
                           - MaxLength changed from 32 to null
   - Modified response: 400
     - Content changed
