@@ -258,14 +258,17 @@ GET /accounts/{creditCardAccountId}/bills
             - Modified property: data
               - Items changed
                 - Required changed
+                  - Deleted required property: billMinimumAmountCurrency
                   - Deleted required property: billTotalAmountCurrency
                 - Properties changed
+                  - Deleted property: billMinimumAmountCurrency
                   - Deleted property: billTotalAmountCurrency
                   - Modified property: billId
                     - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
                   - Modified property: billMinimumAmount
-                    - Type changed from 'number' to 'string'
-                    - MaxLength changed from 19 to 21
+                    - Type changed from 'number' to 'object'
+                    - Format changed from 'double' to ''
+                    - MaxLength changed from 19 to null
                   - Modified property: billTotalAmount
                     - Type changed from 'number' to 'object'
                     - Format changed from 'double' to ''

@@ -269,10 +269,6 @@ GET /accounts/{creditCardAccountId}
     - Headers changed
       - Deleted header: x-fapi-interaction-id
 GET /accounts/{creditCardAccountId}/bills
-- Description changed from 'Método para obter a lista de faturas da conta de pagamento pós-paga identificada por creditCardAccountId mantida pelo cliente na instituição transmissora.' to 'Método para obter a lista de faturas da conta de pagamento pós-paga identificada por creditCardAccountId mantida pelo cliente na instituição transmissora.\
-Só deve ser informada uma fatura já fechada.\
-Qualquer pagamento deve ser contado para a última fatura fechada.
-'
 - New query param: pagination-key
 - Modified query param: page
   - Schema changed
@@ -290,17 +286,29 @@ Qualquer pagamento deve ser contado para a última fatura fechada.
               - Items changed
                 - AdditionalProperties changed from false to true
                 - Required changed
+                  - Deleted required property: billMinimumAmountCurrency
                   - Deleted required property: billTotalAmountCurrency
                 - Properties changed
+                  - Deleted property: billMinimumAmountCurrency
                   - Deleted property: billTotalAmountCurrency
                   - Modified property: billId
                     - MinLength changed from 0 to 1
                     - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
                   - Modified property: billMinimumAmount
-                    - Type changed from 'number' to 'string'
-                    - Example changed from 1000.04 to '100000.0400'
-                    - MinLength changed from 0 to 4
-                    - MaxLength changed from 19 to 21
+                    - Type changed from 'number' to 'object'
+                    - Format changed from 'double' to ''
+                    - Description changed from 'Valor do pagamento minimo da fatura' to 'Valor do pagamento minimo da fatura
+'
+                    - Example changed from 1000.04 to null
+                    - AdditionalProperties changed from null to true
+                    - MaxLength changed from 19 to null
+                    - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                    - Required changed
+                      - New required property: amount
+                      - New required property: currency
+                    - Properties changed
+                      - New property: amount
+                      - New property: currency
                   - Modified property: billTotalAmount
                     - Type changed from 'number' to 'object'
                     - Format changed from 'double' to ''
