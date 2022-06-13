@@ -16,17 +16,7 @@ info:
     Os dados serão devolvidos na consulta desde que o `consentId` relacionado corresponda a um consentimento válido e com o status `AUTHORISED`.\
     É também necessário que o recurso em questão (conta, contrato, etc) esteja disponível na instituição transmissora (ou seja, sem boqueios de qualquer natureza e com todas as autorizações/consentimentos já autorizados).\
     Além disso as `permissions` necessárias deverão ter sido solicitadas quando da criação do consentimento relacionado (`consentId`).\
-    Relacionamos a seguir as `permissions` necessárias para a consulta de dados em cada `endpoint` da presente API.\
-    ### `/accounts/{creditCardAccountId}/bills`
-      - description:
-        - Só deve ser informada uma fatura já fechada.
-        - Qualquer pagamento deve ser contado para a última fatura fechada.
-    ### `/accounts/{creditCardAccountId}/bills/{billId}/transactions`
-      - description:
-        - A lista a retornar se refere a transações após base 2/clearing/conciliado
-    ### `/accounts/{creditCardAccountId}/transactions`
-      - description:
-        - A lista a retornar se refere a transações após base 2/clearing/conciliado
+    Relacionamos a seguir as `permissions` necessárias para a consulta de dados em cada `endpoint` da presente API.
 
     ## Permissions necessárias para a API Credit-cards-accounts
 
@@ -41,7 +31,7 @@ info:
     ### `/accounts/{creditCardAccountId}/bills`
       - permissions:
         - GET: **CREDIT_CARDS_ACCOUNTS_BILLS_READ**
-    ### `/accounts/{creditCardAccountId}/bills/{billId}/transactions`
+    ### `/accounts/{creditCardAccountId}/{billId}/transactions`
       - permissions:
         - GET: **CREDIT_CARDS_ACCOUNTS_BILLS_TRANSACTIONS_READ**
     ### `/accounts/{creditCardAccountId}/limits`
@@ -167,10 +157,7 @@ paths:
       tags:
         - Credit Card
       summary: Obtém a lista de faturas da conta identificada por creditCardAccountId.
-      description: |
-        Método para obter a lista de faturas da conta de pagamento pós-paga identificada por creditCardAccountId mantida pelo cliente na instituição transmissora.\
-        Só deve ser informada uma fatura já fechada.\
-        Qualquer pagamento deve ser contado para a última fatura fechada.
+      description: Método para obter a lista de faturas da conta de pagamento pós-paga identificada por creditCardAccountId mantida pelo cliente na instituição transmissora.
       operationId: creditCardsGetAccountsCreditCardAccountIdBills
       parameters:
         - $ref: '#/components/parameters/Authorization'
@@ -221,9 +208,7 @@ paths:
         - Credit Card
       summary: Obtém a lista de transações da conta identificada por creditCardAccountId e billId.
       operationId: creditCardsGetAccountsCreditCardAccountIdBillsBillIdTransactions
-      description: |
-        Método para obter a lista de transações da conta de pagamento pós-paga identificada por creditCardAccountId e billId mantida pelo cliente na instituição transmissora. 
-        A lista a retornar se refere a transações após base 2/clearing/conciliado
+      description: Método para obter a lista de transações da conta de pagamento pós-paga identificada por creditCardAccountId e billId mantida pelo cliente na instituição transmissora.
       parameters:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/xFapiAuthDate'
@@ -321,9 +306,7 @@ paths:
         - Credit Card
       summary: Obtém a lista de transações da conta identificada por creditCardAccountId.
       operationId: creditCardsGetAccountsCreditCardAccountIdTransactions
-      description: |-
-        Método para obter a lista de transações da conta de pagamento pós-paga identificada por creditCardAccountId mantida pelo cliente na instituição transmissora.
-        A lista a retornar se refere a transações após base 2/clearing/conciliado
+      description: Método para obter a lista de transações da conta de pagamento pós-paga identificada por creditCardAccountId mantida pelo cliente na instituição transmissora.
       parameters:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/xFapiAuthDate'
@@ -501,8 +484,6 @@ components:
           example: AURA CARD
         paymentMethod:
           type: array
-          description: |
-            Listagem dos cartões (ex.: virtual/adicional/titular) associados a conta cartão consentida, conforme disponíveis ao usuário nos canais proprietários.
           items:
             $ref: '#/components/schemas/CreditCardsAccountPaymentMethod'
           minItems: 1
@@ -514,10 +495,11 @@ components:
         - billId
         - dueDate
         - billTotalAmount
+        - billTotalAmountCurrency
         - billMinimumAmount
+        - billMinimumAmountCurrency
         - isInstalment
         - financeCharges
-        - payments
       properties:
         billId:
           description: Informação que identifica a fatura
@@ -535,8 +517,26 @@ components:
           example: '2021-05-21'
         billTotalAmount:
           $ref: '#/components/schemas/CreditCardsBillTotalAmount'
+        billTotalAmountCurrency:
+          type: string
+          maxLength: 3
+          pattern: '^(\w{3}){1}$'
+          description: 'Moeda referente ao valor de pagamento total da fatura, segundo modelo ISO-4217. p.ex. ''BRL'' Todos os valores informados estão representados com a moeda vigente do Brasil'
+          example: BRL
         billMinimumAmount:
-          $ref: '#/components/schemas/CreditCardAccountsBillMinimumAmount'
+          type: string
+          format: double
+          pattern: '^-?\d{1,15}\.\d{2,4}$'
+          maxLength: 21
+          minLength: 4
+          example: '100000.0400'
+          description: Valor do pagamento minimo da fatura
+        billMinimumAmountCurrency:
+          type: string
+          maxLength: 3
+          pattern: '^(\w{3}){1}$'
+          description: 'Moeda referente ao valor de pagamento minimo da fatura, segundo modelo ISO-4217. p.ex. ''BRL'' Todos os valores informados estão representados com a moeda vigente do Brasil'
+          example: BRL
         isInstalment:
           type: boolean
           description: Indica se a fatura permite parcelamento (true) ou não (false).
@@ -819,29 +819,6 @@ components:
           description: 'Moeda referente ao valor monetário, seguindo o modelo ISO-4217.'
           example: BRL
       additionalProperties: true
-    CreditCardAccountsBillMinimumAmount:
-      type: object
-      required:
-        - amount
-        - currency
-      description: |
-        Valor do pagamento minimo da fatura
-      properties:
-        amount:
-          type: string
-          format: double
-          pattern: '^\d{1,15}\.\d{2,4}$'
-          maxLength: 20
-          minLength: 4
-          example: '1000.0400'
-          description: Valor do pagamento minimo da fatura
-        currency:
-          type: string
-          pattern: '^[A-Z]{3}$'
-          maxLength: 3
-          description: 'Moeda referente ao valor monetário, seguindo o modelo ISO-4217.'
-          example: BRL
-      additionalProperties: true
     CreditCardAccountsTransaction:
       type: object
       description: Lista que traz os valores relativos aos saldos do Limite de crédito total da conta de pagamento pós-paga
@@ -983,24 +960,13 @@ components:
          - Valor de pagamento da fatura com parcelamento
          - Valor pagamento da fatura realizado
          - Outro Valor pago na fatura
-
-         VALOR_PAGAMENTO_FATURA_PARCELADO: Quando o pagamento corresponde ao fato gerador para abertura do plano de parcelamento da fatura
-
-         VALOR_PAGAMENTO_FATURA_REALIZADO: Quando o pagamento corresponde ao valor total da fatura
-
-         OUTRO_VALOR_PAGO_FATURA: Demais casos
       enum:
         - VALOR_PAGAMENTO_FATURA_PARCELADO
         - VALOR_PAGAMENTO_FATURA_REALIZADO
         - OUTRO_VALOR_PAGO_FATURA
     EnumCreditCardAccountsConsolidationType:
       type: string
-      description: |
-        Indicador que permite informar se o valor do limite é consolidado ou individual.
-
-        CONSOLIDADO: utilizado quando o limite da conta cartão é compartilhado entre todos os métodos de pagamento (paymentMethod) atrelados a conta.
-
-        INDIVIDUAL: Utilizado quando cada método de pagamento (paymentMethod) possui seu limite segregado.
+      description: Indicador que permite informar se o valor do limite é consolidado ou individual.
       enum:
         - CONSOLIDADO
         - INDIVIDUAL
@@ -1025,12 +991,7 @@ components:
         - OUTROS
     EnumCreditCardAccountsLineLimitType:
       type: string
-      description: |
-        Indicador do tipo de limite
-
-        LIMITE_CREDITO_TOTAL: Limite de crédito total aplicado a conta cartão.
-
-        LIMITE_CREDITO_MODALIDADE_OPERACAO: Limite de crédito por modalidade desse conta cartão (observar lineName e listar os aplicáveis da instituição).
+      description: Indicador do tipo de limite
       enum:
         - LIMITE_CREDITO_TOTAL
         - LIMITE_CREDITO_MODALIDADE_OPERACAO
@@ -1250,7 +1211,6 @@ components:
       properties:
         data:
           type: array
-          minItems: 0
           items:
             $ref: '#/components/schemas/CreditCardAccountsBillsData'
         links:
@@ -1287,7 +1247,6 @@ components:
             Cenário de limite com valor zerado, deve ter um registro explícito informando o valor como zero.
 
             Cenário de "cartão sem limite", isto é, cartões em que o uso do limite é ilimitado, deve ser informado em um registro explícito com isLimitFlexible como true.
-          minItems: 0
           items:
             $ref: '#/components/schemas/CreditCardAccountsLimitsData'
         links:
@@ -1304,7 +1263,6 @@ components:
       properties:
         data:
           type: array
-          minItems: 0
           items:
             $ref: '#/components/schemas/CreditCardAccountsTransaction'
         links:

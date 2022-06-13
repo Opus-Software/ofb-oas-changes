@@ -73,7 +73,6 @@ paths:
         - $ref: '#/components/parameters/page'
         - $ref: '#/components/parameters/pageSize'
         - $ref: '#/components/parameters/accountType'
-        - $ref: '#/components/parameters/pagination-key'
       responses:
         '200':
           $ref: '#/components/responses/OKResponseAccountList'
@@ -214,7 +213,6 @@ paths:
         - $ref: '#/components/parameters/fromBookingDate'
         - $ref: '#/components/parameters/toBookingDate'
         - $ref: '#/components/parameters/creditDebitIndicator'
-        - $ref: '#/components/parameters/pagination-key'
       responses:
         '200':
           $ref: '#/components/responses/OKResponseAccountTransactions'
@@ -265,7 +263,6 @@ paths:
         - $ref: '#/components/parameters/fromBookingDateMaxLimited'
         - $ref: '#/components/parameters/toBookingDateMaxLimited'
         - $ref: '#/components/parameters/creditDebitIndicator'
-        - $ref: '#/components/parameters/pagination-key'
       responses:
         '200':
           $ref: '#/components/responses/OKResponseAccountTransactions'
@@ -464,8 +461,8 @@ components:
         amount:
           type: string
           format: double
-          pattern: '^-?\d{1,15}\.\d{2,4}$'
-          maxLength: 21
+          pattern: '^\d{1,15}\.\d{2,4}$'
+          maxLength: 20
           minLength: 4
           example: '1000.0400'
           description: Valor relacionado ao objeto.
@@ -558,6 +555,7 @@ components:
         Conjunto dos atributos que caracterizam as Contas de: depósito à vista, poupança e de pagamento pré-paga
       required:
         - compeCode
+        - branchCode
         - number
         - checkDigit
         - type
@@ -629,6 +627,12 @@ components:
         - type
         - transactionAmount
         - transactionDate
+        - partieCnpjCpf
+        - partiePersonType
+        - partieCompeCode
+        - partieBranchCode
+        - partieNumber
+        - partieCheckDigit
       properties:
         transactionId:
           type: string
@@ -919,10 +923,10 @@ components:
       properties:
         data:
           type: array
-          description: 'Lista de contas depósito à vista, poupança e pagamento pré-pagas mantidas pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento'
           items:
             $ref: '#/components/schemas/AccountData'
           minItems: 0
+          description: 'Lista de contas depósito à vista, poupança e pagamento pré-pagas mantidas pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento'
         links:
           $ref: '#/components/schemas/Links'
         meta:
@@ -979,11 +983,11 @@ components:
       properties:
         data:
           type: array
-          description: |
-            Lista dos lançamentos referentes às transações realizadas e de lançamentos futuros para as contas de: depósito à vista, poupança e de pagamento pré-paga
-          minItems: 0
           items:
             $ref: '#/components/schemas/AccountTransactionsData'
+          minItems: 0
+          description: |
+            Lista dos lançamentos referentes às transações realizadas e de lançamentos futuros para as contas de: depósito à vista, poupança e de pagamento pré-paga
         links:
           $ref: '#/components/schemas/TransactionsLinks'
         meta:
@@ -1098,14 +1102,6 @@ components:
         maxLength: 10
         format: date
         example: '2021-05-21'
-    pagination-key:
-      name: pagination-key
-      in: query
-      description: 'Identificador de rechamada, utilizado para evitar a contagem de chamadas ao endpoint durante a paginação.'
-      schema:
-        type: string
-        maxLength: 2048
-        pattern: '[\w\W\s]*'
     page:
       name: page
       in: query
