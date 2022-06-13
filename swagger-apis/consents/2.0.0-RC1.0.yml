@@ -405,17 +405,18 @@ components:
       example: CONSENT_EXPIRED
     RejectedReason:
       type: object
-      description: Define a razão pela qual o consentimento foi rejeitado.
+      description: Objeto a ser retornado caso o consentimento seja rejeitado.
       properties:
-        code:
+        rejectedBy:
+          $ref: '#/components/schemas/EnumRejectedBy'
+        reasonCode:
           $ref: '#/components/schemas/EnumReasonCode'
-        additionalInformation:
+        reasonAdditionalInfo:
           type: string
           description: Contém informações adicionais a critério da transmissora.
           maxLength: 140
           pattern: '[\w\W\s]*'
-          example: Tempo de confirmação da múltipla alçada excedido.
-      additionalProperties: true
+          example: Consentimento de dupla alçada sem uma das aprovações.
     ResponseConsent:
       type: object
       required:
@@ -618,21 +619,12 @@ components:
               format: date-time
               example: '2021-05-21T08:30:00Z'
               maxLength: 20
-            rejection:
-              type: object
-              description: Objeto a ser retornado caso o consentimento seja rejeitado.
-              properties:
-                rejectedBy:
-                  $ref: '#/components/schemas/EnumRejectedBy'
-                reason:
-                  $ref: '#/components/schemas/RejectedReason'
-              additionalProperties: true
-          additionalProperties: true
+            rejectedReason:
+              $ref: '#/components/schemas/RejectedReason'
         links:
           $ref: '#/components/schemas/Links'
         meta:
           $ref: '#/components/schemas/Meta'
-      additionalProperties: true
     ResponseError:
       type: object
       required:

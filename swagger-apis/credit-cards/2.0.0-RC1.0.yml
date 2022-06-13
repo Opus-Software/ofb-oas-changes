@@ -21,9 +21,6 @@ info:
       - description:
         - Só deve ser informada uma fatura já fechada.
         - Qualquer pagamento deve ser contado para a última fatura fechada.
-    ### `/accounts/{creditCardAccountId}/bills/{billId}/transactions`
-      - description:
-        - A lista a retornar se refere a transações após base 2/clearing/conciliado
     ### `/accounts/{creditCardAccountId}/transactions`
       - description:
         - A lista a retornar se refere a transações após base 2/clearing/conciliado
@@ -41,7 +38,7 @@ info:
     ### `/accounts/{creditCardAccountId}/bills`
       - permissions:
         - GET: **CREDIT_CARDS_ACCOUNTS_BILLS_READ**
-    ### `/accounts/{creditCardAccountId}/bills/{billId}/transactions`
+    ### `/accounts/{creditCardAccountId}/{billId}/transactions`
       - permissions:
         - GET: **CREDIT_CARDS_ACCOUNTS_BILLS_TRANSACTIONS_READ**
     ### `/accounts/{creditCardAccountId}/limits`
@@ -221,9 +218,7 @@ paths:
         - Credit Card
       summary: Obtém a lista de transações da conta identificada por creditCardAccountId e billId.
       operationId: creditCardsGetAccountsCreditCardAccountIdBillsBillIdTransactions
-      description: |
-        Método para obter a lista de transações da conta de pagamento pós-paga identificada por creditCardAccountId e billId mantida pelo cliente na instituição transmissora. 
-        A lista a retornar se refere a transações após base 2/clearing/conciliado
+      description: Método para obter a lista de transações da conta de pagamento pós-paga identificada por creditCardAccountId e billId mantida pelo cliente na instituição transmissora.
       parameters:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/xFapiAuthDate'
@@ -1245,7 +1240,6 @@ components:
       properties:
         data:
           type: array
-          minItems: 0
           items:
             $ref: '#/components/schemas/CreditCardAccountsBillsData'
         links:
@@ -1282,7 +1276,6 @@ components:
             Cenário de limite com valor zerado, deve ter um registro explícito informando o valor como zero.
 
             Cenário de "cartão sem limite", isto é, cartões em que o uso do limite é ilimitado, deve ser informado em um registro explícito com isLimitFlexible como true.
-          minItems: 0
           items:
             $ref: '#/components/schemas/CreditCardAccountsLimitsData'
         links:
@@ -1299,7 +1292,6 @@ components:
       properties:
         data:
           type: array
-          minItems: 0
           items:
             $ref: '#/components/schemas/CreditCardAccountsTransaction'
         links:
