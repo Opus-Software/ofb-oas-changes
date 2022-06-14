@@ -352,9 +352,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/BusinessAccount'
-          minItems: 1
+          minItems: 0
           description: |
             Lista de contas depósito à vista, poupança e pagamento pré-pagas mantidas pelo cliente na instituição transmissora.    
+      additionalProperties: true
     BusinessIdentificationData:
       type: object
       description: Conjunto de informações relativas a Identificação ou seja a ação e o efeito de identificar de forma única a pessoa jurídica através de seus dados cadastrais
@@ -368,6 +369,7 @@ components:
         - incorporationDate
         - parties
         - contacts
+      additionalProperties: true
       properties:
         updateDateTime:
           type: string
@@ -480,6 +482,7 @@ components:
           description: |
             Nome social da pessoa natural, se houver. Aquele pelo qual travestis e transexuais se reconhecem, 
             bem como são identificados por sua comunidade e em seu meio social, conforme Decreto Local.
+      additionalProperties: true
     BusinessQualificationData:
       type: object
       description: 'Objeto que reúne as informações relativas ao processo de qualificação. Considera-se qualificação as informações que permitam as instituições apreciar, avaliar, caracterizar e classificar o cliente com a finalidade de conhecer o seu perfil de risco e sua capacidade econômico-financeira'
@@ -503,6 +506,7 @@ components:
           $ref: '#/components/schemas/InformedRevenue'
         informedPatrimony:
           $ref: '#/components/schemas/BusinessInformedPatrimony'
+      additionalProperties: true
     BusinessOtherDocument:
       type: object
       required:
@@ -535,6 +539,7 @@ components:
           pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
           example: '2021-05-21'
           description: 'Data vigência do tipo de  documento informado, conforme especificação RFC-3339.'
+      additionalProperties: true
     BusinessContacts:
       type: object
       description: Conjunto de informações referentes às formas para contatar o cliente.
@@ -561,6 +566,7 @@ components:
             $ref: '#/components/schemas/CustomerEmail'
           minItems: 0
           description: Lista e-mails de contato
+      additionalProperties: true
     PersonalContacts:
       type: object
       description: Conjunto de informações referentes às formas para contatar o cliente.
@@ -587,6 +593,7 @@ components:
             $ref: '#/components/schemas/CustomerEmail'
           minItems: 0
           description: Lista e-mails de contato
+      additionalProperties: true
     BusinessInformedPatrimony:
       type: object
       required:
@@ -602,6 +609,7 @@ components:
           pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
           example: '2021-05-21'
           description: 'Data de referência do Patrimônio, conforme especificação RFC-3339.'
+      additionalProperties: true
     PersonalInformedPatrimony:
       type: object
       required:
@@ -615,6 +623,7 @@ components:
           maximum: 9999
           example: 2010
           description: 'Ano de referência da Renda, conforme especificação RFC-3339.'
+      additionalProperties: true
     CustomerEmail:
       type: object
       required:
@@ -631,6 +640,7 @@ components:
           maxLength: 320
           pattern: '[\w\W\s]*'
           example: karinafernandes-81@br.inter.net
+      additionalProperties: true
     CustomerPhone:
       type: object
       required:
@@ -672,6 +682,7 @@ components:
           pattern: '^\d{1,5}$'
           description: Número do ramal. De preenchimento obrigatório se fizer parte da identificação do número do telefone informado
           example: '932'
+      additionalProperties: true
     BusinessPostalAddress:
       type: object
       required:
@@ -742,6 +753,7 @@ components:
           description: Código do pais de acordo com o código alpha3 do ISO-3166
         geographicCoordinates:
           $ref: '#/components/schemas/GeographicCoordinates'
+      additionalProperties: true
     PersonalPostalAddress:
       type: object
       required:
@@ -812,6 +824,7 @@ components:
           description: Código do país de acordo com o código alpha3 do ISO-3166.
         geographicCoordinates:
           $ref: '#/components/schemas/GeographicCoordinates'
+      additionalProperties: true
     BusinessAccount:
       type: object
       required:
@@ -850,6 +863,7 @@ components:
           example: '4'
         type:
           $ref: '#/components/schemas/EnumAccountTypeCustomers'
+      additionalProperties: true
     PersonalAccount:
       type: object
       description: |
@@ -905,11 +919,13 @@ components:
             Conta conjunta solidária - é a modalidade cujos titulares podem realizar movimentações de forma isolada, isto é, sem que seja necessária a autorização dos demais titulares.
             SEM_SUB_TIPO_CONTA - para reporte nos dados de identificação quando o cliente não possuir conta na instituição transmissora.
           example: INDIVIDUAL
+      additionalProperties: true
     EconomicActivity:
       type: object
       required:
         - code
         - isMain
+      additionalProperties: true
       properties:
         code:
           type: string
@@ -1219,6 +1235,7 @@ components:
           maximum: 9999
           example: 2010
           description: 'Ano de referência da Renda, conforme especificação RFC-3339.'
+      additionalProperties: true
     InformedRevenueAmount:
       type: object
       required:
@@ -1241,6 +1258,7 @@ components:
           maxLength: 3
           description: 'Moeda referente ao valor monetário, seguindo o modelo ISO-4217.'
           example: BRL
+      additionalProperties: true
     InformedIncome:
       type: object
       required:
@@ -1259,6 +1277,7 @@ components:
           pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
           example: '2021-05-21'
           description: 'Data da renda, conforme especificação RFC-3339.'
+      additionalProperties: true
     InformedIncomeAmount:
       type: object
       required:
@@ -1283,6 +1302,7 @@ components:
           maxLength: 3
           description: 'Moeda referente ao valor monetário, seguindo o modelo ISO-4217.'
           example: BRL
+      additionalProperties: true
     InformedPatrimonyAmount:
       type: object
       required:
@@ -1305,6 +1325,7 @@ components:
           maxLength: 3
           description: 'Moeda referente ao valor monetário, seguindo o modelo ISO-4217.'
           example: BRL
+      additionalProperties: true
     Links:
       type: object
       description: Referências para outros recusos da API requisitada.
@@ -1346,6 +1367,7 @@ components:
           description: URI da última página dessa lista de resultados. Restrição - Obrigatório quando não for a última página da resposta
           example: 'https://api.banco.com.br/open-banking/api/v1/resource'
           pattern: '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+      additionalProperties: false
     Meta:
       type: object
       description: Meta informações referente à API requisitada.
@@ -1370,6 +1392,7 @@ components:
           maxLength: 20
           format: date-time
           example: '2021-05-21T08:30:00Z'
+      additionalProperties: false
     Nationality:
       type: object
       description: Objeto que agrupa informações relativas à nacionalidade da Pessoa Natural
@@ -1391,6 +1414,7 @@ components:
           items:
             $ref: '#/components/schemas/NationalityOtherDocument'
           description: Lista que traz relação de documentos complementares de pessoas com nacionalidade diferente de brasileira
+      additionalProperties: true
     NationalityOtherDocument:
       type: object
       required:
@@ -1436,6 +1460,7 @@ components:
           pattern: '[\w\W\s]*'
           description: Campo livre de preenchimento quando necessário.
           example: Informações adicionais.
+      additionalProperties: true
     PartiesParticipation:
       type: object
       description: |
@@ -1443,8 +1468,6 @@ components:
       required:
         - type
         - personType
-        - civilName
-        - companyName
         - documentType
         - documentNumber
       properties:
@@ -1468,7 +1491,10 @@ components:
           maxLength: 70
           pattern: '[\w\W\s]*'
           example: Juan Kaique Cláudio Fernandes
-          description: 'Nome civil completo da pessoa natural (Direito fundamental da pessoa, o nome civil é aquele atribuído à pessoa natural desde o registro de seu nascimento, com o qual será identificada por toda a sua vida, bem como após a sua morte)'
+          description: |
+            Nome civil completo da pessoa natural (Direito fundamental da pessoa, o nome civil é aquele atribuído à pessoa natural desde o registro de seu nascimento, com o qual será identificada por toda a sua vida, bem como após a sua morte)
+
+            [Restrição] O campo civilName deve ser obrigatoriamente preenchido quando personType for PESSOA_NATURAL.
         socialName:
           type: string
           maxLength: 70
@@ -1481,7 +1507,10 @@ components:
           maxLength: 70
           pattern: '[\w\W\s]*'
           example: Luiza e Benjamin Assessoria Jurídica Ltda
-          description: Razão social da empresa consultada é o termo registrado sob o qual uma pessoa jurídica (PJ) se individualiza e exerce suas atividades. Também pode ser chamada por denominação social ou firma empresarial
+          description: |
+            Razão social da empresa consultada é o termo registrado sob o qual uma pessoa jurídica (PJ) se individualiza e exerce suas atividades. Também pode ser chamada por denominação social ou firma empresarial
+
+            [Restrição] o campo companyName deve ser obrigatoriamente preenchido quando personType for PESSOA_JURIDICA.
         tradeName:
           type: string
           maxLength: 70
@@ -1541,6 +1570,7 @@ components:
           pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
           example: '2021-05-21'
           description: 'Data de emissão do documento, conforme especificação RFC-3339.'
+      additionalProperties: true
     PersonalDocument:
       type: object
       description: Objeto agrupador de informações relativas a Documentos da pessoa natural
@@ -1561,6 +1591,7 @@ components:
             [Restrição] Campo de preenchimento obrigatório quando o campo documentType for CPF ou AMBOS.
         passport:
           $ref: '#/components/schemas/PersonalPassport'
+      additionalProperties: true
     PersonalFinancialRelationData:
       type: object
       description: 'Objeto que reúne as informações relativas ao relacionamento do cliente junto à Instituição. Considera-se relacionamento as informações que permitam conhecer desde quando a pessoa consultada é cliente da instituição, bem como um indicador dos produtos e serviços que ela consome atualmente e seus representantes'
@@ -1614,6 +1645,7 @@ components:
           minItems: 1
           description: |
             Lista de contas depósito à vista, poupança e pagamento pré-pagas mantidas pelo cliente na instituição transmissora.
+      additionalProperties: true
     PersonalIdentificationData:
       type: object
       description: Conjunto de informações relativas a Identificação ou seja a ação e o efeito de identificar de forma única a pessoa natural através de seus dados cadastrais.
@@ -1739,8 +1771,10 @@ components:
                   Nome social da pessoa natural, se houver. 
                   (aquele pelo qual travestis e transexuais se reconhecem, 
                   bem como são identificados por sua comunidade e em seu meio social, conforme Decreto Local).
+            additionalProperties: true
         contacts:
           $ref: '#/components/schemas/PersonalContacts'
+      additionalProperties: true
     PersonalOtherDocument:
       type: object
       required:
@@ -1783,6 +1817,7 @@ components:
           pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
           example: '2021-05-21'
           description: 'Data de validade do documento informado, conforme especificação RFC-3339.'
+      additionalProperties: true
     PersonalProcurator:
       type: object
       required:
@@ -1810,6 +1845,7 @@ components:
           pattern: '[\w\W\s]*'
           example: Carlos
           description: 'Nome social da pessoa natural, se houver. (aquele pelo qual travestis e transexuais se reconhecem, bem como são identificados por sua comunidade e em seu meio social, conforme Decreto Nº 51.180, de 14 de janeiro de 2010)'
+      additionalProperties: true
     PersonalPassport:
       type: object
       description: |
@@ -1852,6 +1888,7 @@ components:
           example: '2021-05-21'
           description: |
             Data de emissão do passaporte, conforme especificação RFC-3339.
+      additionalProperties: true
     PersonalQualificationData:
       type: object
       description: 'Conjunto de informações relativas ao processo de qualificação. Considera-se qualificação as informações que permitam as instituições apreciar, avaliar, caracterizar e classificar o cliente com a finalidade de conhecer o seu perfil de risco e sua capacidade econômico-financeira'
@@ -1888,6 +1925,7 @@ components:
           $ref: '#/components/schemas/InformedIncome'
         informedPatrimony:
           $ref: '#/components/schemas/PersonalInformedPatrimony'
+      additionalProperties: true
     ResponseBusinessCustomersFinancialRelation:
       type: object
       required:
@@ -1901,12 +1939,14 @@ components:
           $ref: '#/components/schemas/Links'
         meta:
           $ref: '#/components/schemas/Meta'
+      additionalProperties: true
     ResponseBusinessCustomersIdentification:
       type: object
       required:
         - data
         - links
         - meta
+      additionalProperties: true
       properties:
         data:
           type: array
@@ -1930,6 +1970,7 @@ components:
           $ref: '#/components/schemas/Links'
         meta:
           $ref: '#/components/schemas/Meta'
+      additionalProperties: true
     ResponseError:
       type: object
       required:
@@ -1961,8 +2002,10 @@ components:
                 type: string
                 pattern: '[\w\W\s]*'
                 maxLength: 2048
+            additionalProperties: false
         meta:
           $ref: '#/components/schemas/Meta'
+      additionalProperties: false
     ResponsePersonalCustomersFinancialRelation:
       type: object
       required:
@@ -1976,6 +2019,7 @@ components:
           $ref: '#/components/schemas/Links'
         meta:
           $ref: '#/components/schemas/Meta'
+      additionalProperties: true
     ResponsePersonalCustomersIdentification:
       type: object
       required:
@@ -1992,6 +2036,7 @@ components:
           $ref: '#/components/schemas/Links'
         meta:
           $ref: '#/components/schemas/Meta'
+      additionalProperties: true
     ResponsePersonalCustomersQualification:
       type: object
       required:
@@ -2005,6 +2050,7 @@ components:
           $ref: '#/components/schemas/Links'
         meta:
           $ref: '#/components/schemas/Meta'
+      additionalProperties: true
     XFapiInteractionId:
       type: string
       pattern: '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
@@ -2147,98 +2193,21 @@ components:
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: '#/components/responses/Default/content/application~1json%3B%20charset%3Dutf-8/schema'
+            $ref: '#/components/schemas/ResponseError'
     Forbidden:
       description: O token tem escopo incorreto ou uma política de segurança foi violada
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: '#/components/responses/Default/content/application~1json%3B%20charset%3Dutf-8/schema'
+            $ref: '#/components/schemas/ResponseError'
     InternalServerError:
       description: Ocorreu um erro no gateway da API ou no microsserviço
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: '#/components/responses/Default/content/application~1json%3B%20charset%3Dutf-8/schema'
+            $ref: '#/components/schemas/ResponseError'
     Locked:
       description: Locked
-      content:
-        application/json; charset=utf-8:
-          schema:
-            type: object
-            required:
-              - errors
-            properties:
-              errors:
-                type: array
-                minItems: 1
-                maxItems: 13
-                items:
-                  type: object
-                  required:
-                    - code
-                    - title
-                    - detail
-                  properties:
-                    code:
-                      description: Código de erro específico do endpoint
-                      type: string
-                      pattern: '[\w\W\s]*'
-                      maxLength: 255
-                    title:
-                      description: Título legível por humanos deste erro específico
-                      type: string
-                      pattern: '[\w\W\s]*'
-                      maxLength: 255
-                    detail:
-                      description: Descrição legível por humanos deste erro específico
-                      type: string
-                      pattern: '[\w\W\s]*'
-                      maxLength: 2048
-              meta:
-                type: object
-                description: Meta informações referente à API requisitada.
-                required:
-                  - requestDateTime
-                properties:
-                  requestDateTime:
-                    description: 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.'
-                    type: string
-                    maxLength: 20
-                    format: date-time
-                    example: '2021-05-21T08:30:00Z'
-    MethodNotAllowed:
-      description: O consumidor tentou acessar o recurso com um método não suportado
-      content:
-        application/json; charset=utf-8:
-          schema:
-            $ref: '#/components/responses/Default/content/application~1json%3B%20charset%3Dutf-8/schema'
-    NotAcceptable:
-      description: A solicitação continha um cabeçalho Accept diferente dos tipos de mídia permitidos ou um conjunto de caracteres diferente de UTF-8
-      content:
-        application/json; charset=utf-8:
-          schema:
-            $ref: '#/components/responses/Default/content/application~1json%3B%20charset%3Dutf-8/schema'
-    NotFound:
-      description: O recurso solicitado não existe ou não foi implementado
-      content:
-        application/json; charset=utf-8:
-          schema:
-            $ref: '#/components/responses/Default/content/application~1json%3B%20charset%3Dutf-8/schema'
-    TooManyRequests:
-      description: 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido'
-      content:
-        application/json; charset=utf-8:
-          schema:
-            $ref: '#/components/responses/Default/content/application~1json%3B%20charset%3Dutf-8/schema'
-    Unauthorized:
-      description: Cabeçalho de autenticação ausente/inválido ou token inválido
-      content:
-        application/json; charset=utf-8:
-          schema:
-            $ref: '#/components/responses/Default/content/application~1json%3B%20charset%3Dutf-8/schema'
-    Default:
-      description: Erro inesperado.
       content:
         application/json; charset=utf-8:
           schema:
@@ -2277,20 +2246,8 @@ components:
                 type: object
                 description: Meta informações referente à API requisitada.
                 required:
-                  - totalRecords
-                  - totalPages
                   - requestDateTime
                 properties:
-                  totalRecords:
-                    type: integer
-                    format: int32
-                    description: Número total de registros no resultado
-                    example: 1
-                  totalPages:
-                    type: integer
-                    format: int32
-                    description: Número total de páginas no resultado
-                    example: 1
                   requestDateTime:
                     description: 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.'
                     type: string
@@ -2299,3 +2256,39 @@ components:
                     example: '2021-05-21T08:30:00Z'
                 additionalProperties: false
             additionalProperties: false
+    MethodNotAllowed:
+      description: O consumidor tentou acessar o recurso com um método não suportado
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/ResponseError'
+    NotAcceptable:
+      description: A solicitação continha um cabeçalho Accept diferente dos tipos de mídia permitidos ou um conjunto de caracteres diferente de UTF-8
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/ResponseError'
+    NotFound:
+      description: O recurso solicitado não existe ou não foi implementado
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/ResponseError'
+    TooManyRequests:
+      description: 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido'
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/ResponseError'
+    Unauthorized:
+      description: Cabeçalho de autenticação ausente/inválido ou token inválido
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/ResponseError'
+    Default:
+      description: Erro inesperado.
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/ResponseError'
