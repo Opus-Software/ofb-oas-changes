@@ -91,6 +91,8 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
+        '529':
+          $ref: '#/components/responses/SiteIsOverloaded'
         default:
           $ref: '#/components/responses/Default'
       security:
@@ -136,6 +138,8 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
+        '529':
+          $ref: '#/components/responses/SiteIsOverloaded'
         default:
           $ref: '#/components/responses/Default'
       security:
@@ -184,6 +188,8 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
+        '529':
+          $ref: '#/components/responses/SiteIsOverloaded'
         default:
           $ref: '#/components/responses/Default'
       security:
@@ -232,6 +238,8 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
+        '529':
+          $ref: '#/components/responses/SiteIsOverloaded'
         default:
           $ref: '#/components/responses/Default'
       security:
@@ -280,6 +288,8 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
+        '529':
+          $ref: '#/components/responses/SiteIsOverloaded'
         default:
           $ref: '#/components/responses/Default'
       security:
@@ -306,7 +316,6 @@ components:
           $ref: '#/components/schemas/Links'
         meta:
           $ref: '#/components/schemas/Meta'
-      additionalProperties: true
     ResponseFinancingsContract:
       type: object
       required:
@@ -320,7 +329,6 @@ components:
           $ref: '#/components/schemas/Links'
         meta:
           $ref: '#/components/schemas/Meta'
-      additionalProperties: true
     ResponseFinancingsInstalments:
       type: object
       required:
@@ -334,7 +342,6 @@ components:
           $ref: '#/components/schemas/Links'
         meta:
           $ref: '#/components/schemas/Meta'
-      additionalProperties: true
     ResponseFinancingsPayments:
       type: object
       required:
@@ -348,7 +355,6 @@ components:
           $ref: '#/components/schemas/Links'
         meta:
           $ref: '#/components/schemas/Meta'
-      additionalProperties: true
     ResponseFinancingsWarranties:
       type: object
       required:
@@ -365,7 +371,6 @@ components:
           $ref: '#/components/schemas/Links'
         meta:
           $ref: '#/components/schemas/Meta'
-      additionalProperties: true
     EnumContractFinanceChargeType:
       type: string
       description: Tipo de encargo pactuado no contrato.
@@ -528,7 +533,6 @@ components:
             Texto com informações adicionais sobre a composição das taxas de juros pactuadas. 
 
             [Restrição] Caso a instituição possua a informação para compartilhamento, esta deverá ser informada.
-      additionalProperties: true
     FinancingsBalloonPayment:
       type: object
       description: Lista que traz as datas de vencimento e valor das parcelas não regulares  do contrato da modalidade de crédito consultada.
@@ -544,7 +548,6 @@ components:
           example: '2020-01-10'
         amount:
           $ref: '#/components/schemas/FinancingsBalloonPaymentAmount'
-      additionalProperties: true
     FinancingsBalloonPaymentAmount:
       type: object
       required:
@@ -566,7 +569,6 @@ components:
           maxLength: 3
           description: 'Moeda referente ao valor monetário, seguindo o modelo ISO-4217.'
           example: BRL
-      additionalProperties: true
     FinancingsChargeOverParcel:
       type: object
       required:
@@ -592,7 +594,6 @@ components:
             Campo livre para preenchimento das informações adicionais referente ao encargo.
 
             [Restrição] Obrigatório quando chargeType for igual 'OUTROS'.
-      additionalProperties: true
     FinancingsContract:
       type: object
       description: Conjunto de informações referentes à identificação da operação de crédito de financiamentos
@@ -782,7 +783,6 @@ components:
           description: Lista que traz os encargos pactuados no contrato
           items:
             $ref: '#/components/schemas/FinancingsFinanceCharge'
-      additionalProperties: true
     FinancingsContractFee:
       type: object
       description: Objeto que traz o conjunto de informações necessárias para demonstrar a composição das taxas de juros remuneratórios da Modalidade de crédito
@@ -847,7 +847,6 @@ components:
 
             [Restrição] Preenchimento obrigatório quando a forma de cobrança for Percentual.
           example: '0.200000'
-      additionalProperties: true
     FinancingsFeeOverParcel:
       type: object
       required:
@@ -878,7 +877,6 @@ components:
           example: '1000.0400'
           description: |
             Valor monetário da tarifa pactuada no contrato.
-      additionalProperties: true
     FinancingsFinanceCharge:
       type: object
       description: Conjunto de informações referentes à identificação da operação de crédito
@@ -907,7 +905,6 @@ components:
             O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros(representação de porcentagem p.ex: 0.150000. 
             Este valor representa 15%. O valor 1 representa 100%).
           example: '0.071200'
-      additionalProperties: true
     FinancingsInstalments:
       type: object
       description: Conjunto de informações referentes às parcelas / prestações da operação de crédito de financiamentos contratada
@@ -975,7 +972,6 @@ components:
             $ref: '#/components/schemas/FinancingsBalloonPayment'
           minItems: 1
           description: Lista que traz as datas de vencimento e valor das parcelas não regulares do contrato da modalidade de crédito consultada
-      additionalProperties: true
     FinancingsListContract:
       type: object
       description: Conjunto de informações  de contratos de financiamento mantidos pelo cliente na instituição transmissora e para os quais ele tenha fornecido consentimento
@@ -1025,7 +1021,6 @@ components:
               2. Para clientes pessoa jurídica com CNPJ (tipo de cliente = 2), informar as 8 (oito) posições iniciais do CNPJ;
               3. Para os demais clientes (tipos de cliente 3, 4, 5 e 6), informar 14 (catorze) posições com complemento de zeros à esquerda se a identificação tiver tamanho inferior;
             - **Código do contrato:** 1 (uma) até 40 (quarenta) posições, sem complemento de caracteres.
-      additionalProperties: true
     FinancingsOverParcel:
       type: object
       description: |
@@ -1048,7 +1043,6 @@ components:
           items:
             $ref: '#/components/schemas/FinancingsChargeOverParcel'
           description: Lista dos encargos que foram pagos fora da parcela.
-      additionalProperties: true
     FinancingsPayments:
       type: object
       description: Conjunto de informações referentes aos pagamentos realizados de uma operação de crédito de adiantamento a depositantes
@@ -1076,7 +1070,6 @@ components:
           description: Lista dos pagamentos realizados no período
           items:
             $ref: '#/components/schemas/FinancingsReleases'
-      additionalProperties: true
     FinancingsReleases:
       type: object
       description: Lista dos pagamentos realizados no período
@@ -1132,7 +1125,6 @@ components:
             Expresso em valor monetário com até 4 casas decimais.
         overParcel:
           $ref: '#/components/schemas/FinancingsOverParcel'
-      additionalProperties: true
     FinancingsWarranties:
       type: object
       description: Conjunto de informações referentes à identificação da operação de crédito de financiamento.
@@ -1234,7 +1226,6 @@ components:
           example: '1000.0400'
           description: |
             Valor original da garantia. Valor monetário, expresso com até 4 casas decimais.
-      additionalProperties: true
     Meta:
       type: object
       description: Meta informações referente à API requisitada.
@@ -1247,7 +1238,6 @@ components:
           maxLength: 20
           format: date-time
           example: '2021-05-21T08:30:00Z'
-      additionalProperties: false
     Links:
       type: object
       description: Referências para outros recusos da API requisitada.
@@ -1289,7 +1279,6 @@ components:
           description: URI da última página dessa lista de resultados. Restrição - Obrigatório quando não for a última página da resposta
           example: 'https://api.banco.com.br/open-banking/api/v1/resource'
           pattern: '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
-      additionalProperties: false
     ResponseError:
       type: object
       required:
@@ -1321,10 +1310,8 @@ components:
                 type: string
                 pattern: '[\w\W\s]*'
                 maxLength: 2048
-            additionalProperties: false
         meta:
           $ref: '#/components/schemas/Meta'
-      additionalProperties: false
     XFapiInteractionId:
       type: string
       pattern: '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
@@ -1547,3 +1534,62 @@ components:
         application/json; charset=utf-8:
           schema:
             $ref: '#/components/schemas/ResponseError'
+    SiteIsOverloaded:
+      description: 'O site está sobrecarregado e a operação foi recusada, pois foi atingido o limite máximo de TPS global, neste momento.'
+      content:
+        application/json; charset=utf-8:
+          schema:
+            type: object
+            required:
+              - errors
+            properties:
+              errors:
+                type: array
+                minItems: 1
+                maxItems: 13
+                items:
+                  type: object
+                  required:
+                    - code
+                    - title
+                    - detail
+                  properties:
+                    code:
+                      description: Código de erro específico do endpoint
+                      type: string
+                      pattern: '[\w\W\s]*'
+                      maxLength: 255
+                    title:
+                      description: Título legível por humanos deste erro específico
+                      type: string
+                      pattern: '[\w\W\s]*'
+                      maxLength: 255
+                    detail:
+                      description: Descrição legível por humanos deste erro específico
+                      type: string
+                      pattern: '[\w\W\s]*'
+                      maxLength: 2048
+              meta:
+                type: object
+                description: Meta informações referente à API requisitada.
+                required:
+                  - totalRecords
+                  - totalPages
+                  - requestDateTime
+                properties:
+                  totalRecords:
+                    type: integer
+                    format: int32
+                    description: Número total de registros no resultado
+                    example: 1
+                  totalPages:
+                    type: integer
+                    format: int32
+                    description: Número total de páginas no resultado
+                    example: 1
+                  requestDateTime:
+                    description: 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.'
+                    type: string
+                    maxLength: 20
+                    format: date-time
+                    example: '2021-05-21T08:30:00Z'
