@@ -346,7 +346,7 @@ components:
   schemas:
     AccountBalancesDataAutomaticallyInvestedAmount:
       type: object
-      description: Saldo disponível com aplicação automática - corresponde a soma do saldo disponível acrescido do valor obtido a partir da aplicação automática. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.
+      description: Saldo disponível com aplicação automática - corresponde a soma do saldo disponível acrescido do valor obtido a partir da aplicação automática Expresso em valor monetário com 4 casas decimais.
       required:
         - amount
         - currency
@@ -430,7 +430,7 @@ components:
           example: BRL
     AccountBalancesDataBlockedAmount:
       type: object
-      description: 'Saldo bloqueado, não disponível para utilização imediata, por motivo de bloqueio apresentado para o cliente nos canais eletrônicos. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.'
+      description: 'Saldo bloqueado, não disponível para utilização imediata, por motivo de bloqueio apresentado para o cliente nos canais eletrônicos Expresso em valor monetário com 4 casas decimais.'
       required:
         - amount
         - currency
@@ -451,7 +451,7 @@ components:
           example: BRL
     AccountBalancesDataAvailableAmount:
       type: object
-      description: 'Saldo disponível para utilização imediata. No caso de conta de depósito a vista, sem considerar cheque especial e investimentos atrelados a conta. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.'
+      description: 'Saldo disponível para utilização imediata. No caso de conta de depósito a vista, sem considerar cheque especial e investimentos atrelados a conta. Expresso em valor monetário com 4 casas decimais.'
       required:
         - amount
         - currency
@@ -521,7 +521,7 @@ components:
           description: |
             Código da Agência detentora da conta. (Agência é a dependência destinada ao atendimento aos clientes, ao público em geral e aos associados de cooperativas de crédito, no exercício de atividades da instituição, não podendo ser móvel ou transitória)
 
-            [Restrição] Obrigatoriamente deve ser preenchido quando o campo "type" for diferente de CONTA_PAGAMENTO_PRE_PAGA.
+            [Restrição] Obrigatoriamente deve ser preenchido quando o campo "type" for diferente de conta pré paga.
           pattern: '^\d{4}$'
           maxLength: 4
           example: '6272'
@@ -687,7 +687,7 @@ components:
           example: '4'
     AccountTransactionsDataAmount:
       type: object
-      description: Valor da transação. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.
+      description: Valor da transação. Expressa em valor monetário com 4 casas decimais.
       required:
         - amount
         - currency
@@ -906,9 +906,9 @@ components:
         data:
           type: array
           description: 'Lista de contas depósito à vista, poupança e pagamento pré-pagas mantidas pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento'
-          minItems: 0
           items:
             $ref: '#/components/schemas/AccountData'
+          minItems: 0
         links:
           $ref: '#/components/schemas/Links'
         meta:
