@@ -7,20 +7,18 @@
 GET /business/financial-relations
 - Responses changed
   - New response: 423
-  - New response: 529
   - Modified response: 200
     - Content changed
       - Modified media type: application/json
         - Schema changed
-          - AdditionalProperties changed from false to null
+          - AdditionalProperties changed from false to true
           - Properties changed
             - Modified property: data
-              - AdditionalProperties changed from false to null
+              - AdditionalProperties changed from false to true
               - Properties changed
                 - Modified property: accounts
-                  - MinItems changed from 1 to 0
                   - Items changed
-                    - AdditionalProperties changed from false to null
+                    - AdditionalProperties changed from false to true
                     - Required changed
                       - Deleted required property: branchCode
                     - Properties changed
@@ -37,7 +35,7 @@ GET /business/financial-relations
                 - Modified property: procurators
                   - MinItems changed from 1 to 0
                   - Items changed
-                    - AdditionalProperties changed from false to null
+                    - AdditionalProperties changed from false to true
                     - Required changed
                       - Deleted required property: socialName
                     - Properties changed
@@ -59,10 +57,6 @@ bem como são identificados por sua comunidade e em seu meio social, conforme De
                 - Modified property: updateDateTime
                   - Description changed from 'Data e hora da atualização do bloco de Relacionamento, conforme especificação RFC-3339, formato UTC.' to 'Data e hora da atualização dos campos \<_endpoint_\>, conforme especificação RFC-3339, formato UTC. Quando não existente uma data vinculada especificamente ao bloco, assumir a data e hora de atualização do cadastro como um todo.
 '
-            - Modified property: links
-              - AdditionalProperties changed from false to null
-            - Modified property: meta
-              - AdditionalProperties changed from false to null
   - Modified response: default
     - Description changed from 'Dados sobre relacionamento pessoa jurídica' to 'Erro inesperado.'
     - Content changed
@@ -74,16 +68,16 @@ GET /business/identifications
 - New query param: pagination-key
 - Responses changed
   - New response: 423
-  - New response: 529
   - Modified response: 200
     - Content changed
       - Modified media type: application/json
         - Schema changed
-          - AdditionalProperties changed from false to null
+          - AdditionalProperties changed from false to true
           - Properties changed
             - Modified property: data
               - MinItems changed from 0 to 1
               - Items changed
+                - AdditionalProperties changed from null to true
                 - Required changed
                   - New required property: companiesCnpj
                   - Deleted required property: companyCnpjNumber
@@ -101,16 +95,16 @@ GET /business/identifications
                   - Modified property: cnpjNumber
                     - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
                   - Modified property: contacts
-                    - AdditionalProperties changed from false to null
+                    - AdditionalProperties changed from false to true
                     - Properties changed
                       - Modified property: emails
                         - MinItems changed from 1 to 0
                         - Items changed
-                          - AdditionalProperties changed from false to null
+                          - AdditionalProperties changed from false to true
                       - Modified property: phones
                         - MinItems changed from 1 to 0
                         - Items changed
-                          - AdditionalProperties changed from false to null
+                          - AdditionalProperties changed from false to true
                           - Required changed
                             - Deleted required property: phoneExtension
                           - Properties changed
@@ -126,7 +120,7 @@ GET /business/identifications
                               - MaxLength changed from 5 to null
                       - Modified property: postalAddresses
                         - Items changed
-                          - AdditionalProperties changed from false to null
+                          - AdditionalProperties changed from false to true
                           - Required changed
                             - New required property: countryCode
                             - Deleted required property: address
@@ -171,7 +165,7 @@ GET /business/identifications
                   - Modified property: otherDocuments
                     - MinItems changed from 1 to 0
                     - Items changed
-                      - AdditionalProperties changed from false to null
+                      - AdditionalProperties changed from false to true
                       - Required changed
                         - New required property: type
                         - Deleted required property: expirationDate
@@ -183,24 +177,14 @@ GET /business/identifications
                           - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
                   - Modified property: parties
                     - Items changed
-                      - AdditionalProperties changed from false to null
+                      - AdditionalProperties changed from false to true
                       - Required changed
-                        - Deleted required property: civilName
-                        - Deleted required property: companyName
                         - Deleted required property: documentCountry
                         - Deleted required property: documentExpirationDate
                         - Deleted required property: shareholding
                         - Deleted required property: socialName
                         - Deleted required property: startDate
                       - Properties changed
-                        - Modified property: civilName
-                          - Description changed from 'Nome civil completo da pessoa natural (Direito fundamental da pessoa, o nome civil é aquele atribuído à pessoa natural desde o registro de seu nascimento, com o qual será identificada por toda a sua vida, bem como após a sua morte)' to 'Nome civil completo da pessoa natural (Direito fundamental da pessoa, o nome civil é aquele atribuído à pessoa natural desde o registro de seu nascimento, com o qual será identificada por toda a sua vida, bem como após a sua morte)
-[Restrição] O campo civilName deve ser obrigatoriamente preenchido quando personType for PESSOA_NATURAL.
-'
-                        - Modified property: companyName
-                          - Description changed from 'Razão social da empresa consultada é o termo registrado sob o qual uma pessoa jurídica (PJ) se individualiza e exerce suas atividades. Também pode ser chamada por denominação social ou firma empresarial' to 'Razão social da empresa consultada é o termo registrado sob o qual uma pessoa jurídica (PJ) se individualiza e exerce suas atividades. Também pode ser chamada por denominação social ou firma empresarial
-[Restrição] o campo companyName deve ser obrigatoriamente preenchido quando personType for PESSOA_JURIDICA.
-'
                         - Modified property: documentCountry
                           - Description changed from 'País de emissão do documento. Código do pais de acordo com o código alpha3 do ISO-3166.' to 'País de emissão do documento. Código do pais de acordo com o código alpha3 do ISO-3166.
 '
@@ -225,10 +209,6 @@ GET /business/identifications
                   - Modified property: updateDateTime
                     - Description changed from 'Data e hora da atualização do bloco, conforme especificação RFC-3339' to 'Data e hora da atualização dos campos \<_endpoint_\>, conforme especificação RFC-3339, formato UTC. Quando não existente uma data vinculada especificamente ao bloco, assumir a data e hora de atualização do cadastro como um todo.
 '
-            - Modified property: links
-              - AdditionalProperties changed from false to null
-            - Modified property: meta
-              - AdditionalProperties changed from false to null
   - Modified response: default
     - Description changed from 'Dados sobre identificação pessoa jurídica' to 'Erro inesperado.'
     - Content changed
@@ -239,15 +219,14 @@ GET /business/identifications
 GET /business/qualifications
 - Responses changed
   - New response: 423
-  - New response: 529
   - Modified response: 200
     - Content changed
       - Modified media type: application/json
         - Schema changed
-          - AdditionalProperties changed from false to null
+          - AdditionalProperties changed from false to true
           - Properties changed
             - Modified property: data
-              - AdditionalProperties changed from false to null
+              - AdditionalProperties changed from false to true
               - Required changed
                 - Deleted required property: economicActivities
                 - Deleted required property: informedPatrimony
@@ -256,6 +235,7 @@ GET /business/qualifications
                 - Modified property: economicActivities
                   - MinItems changed from 1 to 0
                   - Items changed
+                    - AdditionalProperties changed from null to true
                     - Properties changed
                       - Modified property: code
                         - Type changed from 'number' to 'string'
@@ -265,7 +245,7 @@ GET /business/qualifications
                       - Modified property: isMain
                         - Description changed from 'Indica se é o ramo principal de atividade da empresa quando true e se é o ramo secundário quando false.' to 'Indica se é o ramo principal de atividade da empresa quando true e se é o ramo secundário quando false. [Restrição] Somente uma ocorrência relativa ao código da atividade econômica principal deve trazer o valor true.'
                 - Modified property: informedPatrimony
-                  - AdditionalProperties changed from false to null
+                  - AdditionalProperties changed from false to true
                   - Required changed
                     - Deleted required property: currency
                   - Properties changed
@@ -277,6 +257,7 @@ GET /business/qualifications
 Patrimônio é o conjunto de bens vinculado a uma pessoa ou a uma entidade.
 ' to 'Valor do patrimônio informado'
                       - Example changed from 100000.04 to null
+                      - AdditionalProperties changed from null to true
                       - Nullable changed from true to false
                       - MaxLength changed from 20 to null
                       - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
@@ -289,7 +270,7 @@ Patrimônio é o conjunto de bens vinculado a uma pessoa ou a uma entidade.
                     - Modified property: date
                       - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
                 - Modified property: informedRevenue
-                  - AdditionalProperties changed from false to null
+                  - AdditionalProperties changed from false to true
                   - Required changed
                     - Deleted required property: currency
                     - Deleted required property: frequency
@@ -302,6 +283,7 @@ Patrimônio é o conjunto de bens vinculado a uma pessoa ou a uma entidade.
 Patrimônio é o conjunto de bens vinculado a uma pessoa ou a uma entidade.
 ' to 'Valor do patrimônio informado'
                       - Example changed from 100000.04 to null
+                      - AdditionalProperties changed from null to true
                       - Nullable changed from true to false
                       - MaxLength changed from 20 to null
                       - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
@@ -326,10 +308,6 @@ Patrimônio é o conjunto de bens vinculado a uma pessoa ou a uma entidade.
                 - Modified property: updateDateTime
                   - Description changed from 'Data e hora da atualização do bloco, conforme especificação RFC-3339' to 'Data e hora da atualização dos campos \<_endpoint_\>, conforme especificação RFC-3339, formato UTC. Quando não existente uma data vinculada especificamente ao bloco, assumir a data e hora de atualização do cadastro como um todo.
 '
-            - Modified property: links
-              - AdditionalProperties changed from false to null
-            - Modified property: meta
-              - AdditionalProperties changed from false to null
   - Modified response: default
     - Description changed from 'Dados sobre qualificação pessoa jurídica' to 'Erro inesperado.'
     - Content changed
@@ -340,17 +318,15 @@ Patrimônio é o conjunto de bens vinculado a uma pessoa ou a uma entidade.
 GET /personal/financial-relations
 - Responses changed
   - New response: 423
-  - New response: 529
   - Modified response: 200
     - Content changed
       - Modified media type: application/json
         - Schema changed
-          - AdditionalProperties changed from false to null
+          - AdditionalProperties changed from false to true
           - Properties changed
             - Modified property: data
-              - AdditionalProperties changed from false to null
+              - AdditionalProperties changed from false to true
               - Required changed
-                - Deleted required property: accounts
                 - Deleted required property: procurators
               - Properties changed
                 - Modified property: accounts
@@ -358,7 +334,7 @@ GET /personal/financial-relations
 ' to 'Lista de contas depósito à vista, poupança e pagamento pré-pagas mantidas pelo cliente na instituição transmissora.
 '
                   - Items changed
-                    - AdditionalProperties changed from false to null
+                    - AdditionalProperties changed from false to true
                     - Required changed
                       - Deleted required property: branchCode
                     - Properties changed
@@ -378,7 +354,7 @@ GET /personal/financial-relations
 '
                   - MinItems changed from 1 to 0
                   - Items changed
-                    - AdditionalProperties changed from false to null
+                    - AdditionalProperties changed from false to true
                     - Required changed
                       - Deleted required property: socialName
                     - Properties changed
@@ -395,10 +371,6 @@ GET /personal/financial-relations
                 - Modified property: updateDateTime
                   - Description changed from 'Data e hora da atualização do bloco de Relacionamento, conforme especificação RFC-3339, formato UTC.' to 'Data e hora da atualização dos campos \<_endpoint_\>, conforme especificação RFC-3339, formato UTC. Quando não existente uma data vinculada especificamente ao bloco, assumir a data e hora de atualização do cadastro como um todo.
 '
-            - Modified property: links
-              - AdditionalProperties changed from false to null
-            - Modified property: meta
-              - AdditionalProperties changed from false to null
   - Modified response: default
     - Description changed from 'Dados sobre relacionamento da pessoa física' to 'Erro inesperado.'
     - Content changed
@@ -410,17 +382,16 @@ GET /personal/identifications
 - New query param: pagination-key
 - Responses changed
   - New response: 423
-  - New response: 529
   - Modified response: 200
     - Content changed
       - Modified media type: application/json
         - Schema changed
-          - AdditionalProperties changed from false to null
+          - AdditionalProperties changed from false to true
           - Properties changed
             - Modified property: data
               - MinItems changed from 0 to 1
               - Items changed
-                - AdditionalProperties changed from false to null
+                - AdditionalProperties changed from false to true
                 - Required changed
                   - Deleted required property: companyCnpj
                   - Deleted required property: filiation
@@ -433,16 +404,16 @@ GET /personal/identifications
                   - Modified property: brandName
                     - Description changed from 'Nome da Marca reportada pelo participante do Open Banking. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes' to 'Nome da Marca reportada pelo participante no Open Finance. Recomenda-se utilizar, sempre que possível, o mesmo nome de marca atribuído no campo do diretório Customer Friendly Server Name (Authorisation Server).'
                   - Modified property: contacts
-                    - AdditionalProperties changed from false to null
+                    - AdditionalProperties changed from false to true
                     - Properties changed
                       - Modified property: emails
                         - MinItems changed from 1 to 0
                         - Items changed
-                          - AdditionalProperties changed from false to null
+                          - AdditionalProperties changed from false to true
                       - Modified property: phones
                         - MinItems changed from 1 to 0
                         - Items changed
-                          - AdditionalProperties changed from false to null
+                          - AdditionalProperties changed from false to true
                           - Required changed
                             - Deleted required property: phoneExtension
                           - Properties changed
@@ -459,7 +430,7 @@ GET /personal/identifications
                       - Modified property: postalAddresses
                         - MinItems changed from 1 to 0
                         - Items changed
-                          - AdditionalProperties changed from false to null
+                          - AdditionalProperties changed from false to true
                           - Required changed
                             - Deleted required property: districtName
                           - Properties changed
@@ -485,7 +456,7 @@ GET /personal/identifications
                             - Modified property: postCode
                               - Pattern changed from '\d{8}|^NA$' to '^\d{8}$'
                   - Modified property: documents
-                    - AdditionalProperties changed from false to null
+                    - AdditionalProperties changed from false to true
                     - Required changed
                       - New required property: documentType
                       - Deleted required property: cpfNumber
@@ -509,7 +480,7 @@ O CPF é o Cadastro de Pessoa natural. Ele é um documento feito pela Receita Fe
                   - Modified property: filiation
                     - MinItems changed from 0 to 1
                     - Items changed
-                      - AdditionalProperties changed from false to null
+                      - AdditionalProperties changed from false to true
                       - Properties changed
                         - Modified property: civilName
                           - Description changed from 'Nome civil completo da pessoa relativa à filiação.
@@ -548,6 +519,7 @@ bem como são identificados por sua comunidade e em seu meio social, conforme De
                   - Modified property: nationality
                     - Type changed from 'array' to 'object'
                     - Description changed from '' to 'Objeto que agrupa informações relativas à nacionalidade da Pessoa Natural'
+                    - AdditionalProperties changed from null to true
                     - Items changed
                       - Schema deleted
                     - Required changed
@@ -558,7 +530,7 @@ bem como são identificados por sua comunidade e em seu meio social, conforme De
                       - New property: otherNationalitiesInfo
                   - Modified property: otherDocuments
                     - Items changed
-                      - AdditionalProperties changed from false to null
+                      - AdditionalProperties changed from false to true
                       - Required changed
                         - Deleted required property: expirationDate
                         - Deleted required property: typeAdditionalInfo
@@ -571,10 +543,6 @@ bem como são identificados por sua comunidade e em seu meio social, conforme De
                   - Modified property: updateDateTime
                     - Description changed from '' to 'Data e hora da atualização dos campos \<_endpoint_\>, conforme especificação RFC-3339, formato UTC. Quando não existente uma data vinculada especificamente ao bloco, assumir a data e hora de atualização do cadastro como um todo.
 '
-            - Modified property: links
-              - AdditionalProperties changed from false to null
-            - Modified property: meta
-              - AdditionalProperties changed from false to null
   - Modified response: default
     - Description changed from 'Dados sobre identificação pessoa física.' to 'Erro inesperado.'
     - Content changed
@@ -585,15 +553,14 @@ bem como são identificados por sua comunidade e em seu meio social, conforme De
 GET /personal/qualifications
 - Responses changed
   - New response: 423
-  - New response: 529
   - Modified response: 200
     - Content changed
       - Modified media type: application/json
         - Schema changed
-          - AdditionalProperties changed from false to null
+          - AdditionalProperties changed from false to true
           - Properties changed
             - Modified property: data
-              - AdditionalProperties changed from false to null
+              - AdditionalProperties changed from false to true
               - Required changed
                 - Deleted required property: informedIncome
                 - Deleted required property: informedPatrimony
@@ -603,7 +570,7 @@ GET /personal/qualifications
                 - Modified property: companyCnpj
                   - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
                 - Modified property: informedIncome
-                  - AdditionalProperties changed from false to null
+                  - AdditionalProperties changed from false to true
                   - Required changed
                     - Deleted required property: currency
                   - Properties changed
@@ -617,6 +584,7 @@ Fazem parte da primeira a remuneração do trabalho assalariado (salários e ord
 Fonte: Banco Central do Brasil – Departamento Econômico
 ' to 'Valor total da renda informada'
                       - Example changed from 100000.04 to null
+                      - AdditionalProperties changed from null to true
                       - Nullable changed from true to false
                       - MaxLength changed from 20 to null
                       - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
@@ -631,7 +599,7 @@ Fonte: Banco Central do Brasil – Departamento Econômico
                     - Modified property: frequency
                       - Deleted enum values: [SEM_FREQUENCIA_RENDA_INFORMADA]
                 - Modified property: informedPatrimony
-                  - AdditionalProperties changed from false to null
+                  - AdditionalProperties changed from false to true
                   - Required changed
                     - Deleted required property: currency
                   - Properties changed
@@ -643,6 +611,7 @@ Fonte: Banco Central do Brasil – Departamento Econômico
 Patrimônio é o conjunto de bens vinculado a uma pessoa ou a uma entidade.
 ' to 'Valor do patrimônio informado'
                       - Example changed from 100000.04 to null
+                      - AdditionalProperties changed from null to true
                       - Nullable changed from true to false
                       - MaxLength changed from 20 to null
                       - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
@@ -663,10 +632,6 @@ Se selecionada *occupationCode* "OUTRO", informar o descritivo da ocupação qua
                 - Modified property: updateDateTime
                   - Description changed from 'Data e hora da atualização do bloco, conforme especificação RFC-3339' to 'Data e hora da atualização dos campos \<_endpoint_\>, conforme especificação RFC-3339, formato UTC. Quando não existente uma data vinculada especificamente ao bloco, assumir a data e hora de atualização do cadastro como um todo.
 '
-            - Modified property: links
-              - AdditionalProperties changed from false to null
-            - Modified property: meta
-              - AdditionalProperties changed from false to null
   - Modified response: default
     - Description changed from 'Dados sobre qualificação da pessoa física' to 'Erro inesperado.'
     - Content changed
