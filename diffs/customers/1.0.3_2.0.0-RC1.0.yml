@@ -777,7 +777,10 @@ GET /personal/identifications
                 - Required changed
                   - Deleted required property: companyCnpj
                   - Deleted required property: filiation
+                  - Deleted required property: maritalStatusCode
                   - Deleted required property: nationality
+                  - Deleted required property: otherDocuments
+                  - Deleted required property: socialName
                 - Properties changed
                   - New property: companiesCnpj
                   - Deleted property: companyCnpj
@@ -873,7 +876,7 @@ com o qual será identificada por toda a sua vida, bem como após a sua morte)
 (Direito fundamental da pessoa, o nome civil é aquele atribuído à pessoa natural desde o registro de seu nascimento, 
 com o qual será identificada por toda a sua vida, bem como após a sua morte).
 '
-                          - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                          - Pattern changed from '[\w\W\s]*' to '^[\w\W]*$'
                         - Modified property: socialName
                           - Description changed from 'Nome social da pessoa natural, se houver. 
 (aquele pelo qual travestis e transexuais se reconhecem, 
@@ -883,7 +886,7 @@ bem como são identificados por sua comunidade e em seu meio social, conforme De
 bem como são identificados por sua comunidade e em seu meio social, conforme Decreto Local).
 '
                           - Example changed from 'NA' to null
-                          - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                          - Pattern changed from '[\w\W\s]*' to '^[\w\W]*$'
                         - Modified property: type
                           - Deleted enum values: [SEM_FILIACAO]
                   - Modified property: hasBrazilianNationality
@@ -897,7 +900,6 @@ bem como são identificados por sua comunidade e em seu meio social, conforme De
                     - Description changed from 'Estado marital do cliente. 
 ' to 'Estado marital do cliente.
 '
-                    - New enum values: [NAO_DISPONIVEL]
                     - Example changed from 'SOLTEIRO' to 'OUTRO'
                   - Modified property: nationality
                     - Type changed from 'array' to 'object'
@@ -919,9 +921,13 @@ bem como são identificados por sua comunidade e em seu meio social, conforme De
                       - Properties changed
                         - Modified property: expirationDate
                           - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                        - Modified property: number
+                          - MaxLength changed from 11 to 40
                   - Modified property: personalId
                     - MinLength changed from 0 to 1
                     - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
+                  - Modified property: sex
+                    - Deleted enum values: [NAO_DISPONIVEL]
                   - Modified property: updateDateTime
                     - Description changed from '' to 'Data e hora da atualização dos campos \<_endpoint_\>, conforme especificação RFC-3339, formato UTC. Quando não existente uma data vinculada especificamente ao bloco, assumir a data e hora de atualização do cadastro como um todo.
 '

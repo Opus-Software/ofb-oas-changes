@@ -247,7 +247,10 @@ GET /personal/identifications
                 - Required changed
                   - Deleted required property: companyCnpj
                   - Deleted required property: filiation
+                  - Deleted required property: maritalStatusCode
                   - Deleted required property: nationality
+                  - Deleted required property: otherDocuments
+                  - Deleted required property: socialName
                 - Properties changed
                   - Deleted property: companyCnpj
                   - Modified property: contacts
@@ -296,9 +299,9 @@ GET /personal/identifications
                     - Items changed
                       - Properties changed
                         - Modified property: civilName
-                          - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                          - Pattern changed from '[\w\W\s]*' to '^[\w\W]*$'
                         - Modified property: socialName
-                          - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                          - Pattern changed from '[\w\W\s]*' to '^[\w\W]*$'
                         - Modified property: type
                           - Deleted enum values: [SEM_FILIACAO]
                   - Modified property: hasBrazilianNationality
@@ -313,8 +316,12 @@ GET /personal/identifications
                       - Properties changed
                         - Modified property: expirationDate
                           - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                        - Modified property: number
+                          - MaxLength changed from 11 to 40
                   - Modified property: personalId
                     - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
+                  - Modified property: sex
+                    - Deleted enum values: [NAO_DISPONIVEL]
   - Modified response: default
     - Content changed
       - Deleted media type: application/json
