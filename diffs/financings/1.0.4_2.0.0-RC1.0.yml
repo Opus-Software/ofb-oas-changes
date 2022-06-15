@@ -12,15 +12,16 @@ GET /contracts
 - Responses changed
   - New response: 422
   - New response: 423
+  - New response: 529
   - Modified response: 200
     - Content changed
       - Modified media type: application/json
         - Schema changed
-          - AdditionalProperties changed from false to true
+          - AdditionalProperties changed from false to null
           - Properties changed
             - Modified property: data
               - Items changed
-                - AdditionalProperties changed from false to true
+                - AdditionalProperties changed from false to null
                 - Properties changed
                   - Modified property: brandName
                     - Description changed from 'Nome da Marca reportada pelo participante do Open Banking. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes' to 'Nome da Marca reportada pelo participante no Open Finance. Recomenda-se utilizar, sempre que possível, o mesmo nome de marca atribuído no campo do diretório Customer Friendly Server Name (Authorisation Server).'
@@ -35,7 +36,10 @@ GET /contracts
                     - MaxLength changed from 37 to null
                   - Modified property: productType
                     - MaxLength changed from 27 to null
+            - Modified property: links
+              - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -46,8 +50,13 @@ GET /contracts
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -58,8 +67,13 @@ GET /contracts
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -70,8 +84,13 @@ GET /contracts
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -82,8 +101,13 @@ GET /contracts
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -94,8 +118,13 @@ GET /contracts
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -106,8 +135,13 @@ GET /contracts
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -118,8 +152,13 @@ GET /contracts
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -130,8 +169,13 @@ GET /contracts
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -149,14 +193,15 @@ GET /contracts/{contractId}
 - Responses changed
   - New response: 422
   - New response: 423
+  - New response: 529
   - Modified response: 200
     - Content changed
       - Modified media type: application/json
         - Schema changed
-          - AdditionalProperties changed from false to true
+          - AdditionalProperties changed from false to null
           - Properties changed
             - Modified property: data
-              - AdditionalProperties changed from false to true
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: CET
                 - Deleted required property: amortizationScheduledAdditionalInfo
@@ -195,6 +240,7 @@ O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas
                   - MaxLength changed from 50 to 200
                 - Modified property: contractAmount
                   - Type changed from 'number' to 'string'
+                  - Description changed from 'Valor contratado da operação. Expresso em valor monetário com até 4 casas decimais' to 'Valor contratado da operação. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.'
                   - Example changed from 100000.04 to '1000.0400'
                   - Nullable changed from true to false
                   - MinLength changed from 0 to 4
@@ -205,7 +251,7 @@ O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas
                   - Description changed from '' to 'Lista que traz o conjunto de informações necessárias para demonstrar a composição das taxas de juros remuneratórios da Modalidade de crédito
 '
                   - Items changed
-                    - AdditionalProperties changed from false to true
+                    - AdditionalProperties changed from false to null
                     - Required changed
                       - Deleted required property: feeAmount
                       - Deleted required property: feeRate
@@ -238,7 +284,7 @@ O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas
                         - Pattern changed from '' to '^[01]\.\d{6}$'
                 - Modified property: contractedFinanceCharges
                   - Items changed
-                    - AdditionalProperties changed from false to true
+                    - AdditionalProperties changed from false to null
                     - Required changed
                       - Deleted required property: chargeAdditionalInfo
                     - Properties changed
@@ -281,7 +327,7 @@ Este valor representa 15%. O valor 1 representa 100%).
                   - Description changed from '' to 'Objeto que traz o conjunto de informações necessárias para demonstrar a composição das taxas de juros remuneratórios da Modalidade de crédito.
 '
                   - Items changed
-                    - AdditionalProperties changed from false to true
+                    - AdditionalProperties changed from false to null
                     - Required changed
                       - Deleted required property: additionalInfo
                       - Deleted required property: postFixedRate
@@ -352,7 +398,10 @@ O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas
 ' to 'Data de liquidação da operação.
 '
                   - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+            - Modified property: links
+              - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -363,8 +412,13 @@ O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -375,8 +429,13 @@ O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -387,8 +446,13 @@ O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -399,8 +463,13 @@ O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -411,8 +480,13 @@ O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -423,8 +497,13 @@ O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -435,8 +514,13 @@ O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -447,8 +531,13 @@ O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -470,14 +559,15 @@ GET /contracts/{contractId}/payments
 - Responses changed
   - New response: 422
   - New response: 423
+  - New response: 529
   - Modified response: 200
     - Content changed
       - Modified media type: application/json
         - Schema changed
-          - AdditionalProperties changed from false to true
+          - AdditionalProperties changed from false to null
           - Properties changed
             - Modified property: data
-              - AdditionalProperties changed from false to true
+              - AdditionalProperties changed from false to null
               - Properties changed
                 - Modified property: contractOutstandingBalance
                   - Type changed from 'number' to 'string'
@@ -490,7 +580,7 @@ GET /contracts/{contractId}/payments
                   - MaxLength changed from 3 to null
                 - Modified property: releases
                   - Items changed
-                    - AdditionalProperties changed from false to true
+                    - AdditionalProperties changed from false to null
                     - Required changed
                       - Deleted required property: overParcel
                     - Properties changed
@@ -501,11 +591,11 @@ GET /contracts/{contractId}/payments
                         - Description changed from 'Objeto das tarifas e encargos que foram pagos fora da parcela.' to 'Objeto das tarifas e encargos que foram pagos fora da parcela.
 [Restrição] Informação deve ser enviada caso ela exista, torna-se obrigatório caso haja parcelamento.
 '
-                        - AdditionalProperties changed from false to true
+                        - AdditionalProperties changed from false to null
                         - Properties changed
                           - Modified property: charges
                             - Items changed
-                              - AdditionalProperties changed from false to true
+                              - AdditionalProperties changed from false to null
                               - Required changed
                                 - Deleted required property: chargeAdditionalInfo
                               - Properties changed
@@ -517,6 +607,7 @@ GET /contracts/{contractId}/payments
 '
                                 - Modified property: chargeAmount
                                   - Type changed from 'number' to 'string'
+                                  - Description changed from 'Valor do pagamento do encargo pago fora da parcela. Expresso em valor monetário com até 4 casas decimais.' to 'Valor do pagamento do encargo pago fora da parcela. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.'
                                   - Example changed from 100000.04 to '1000.0400'
                                   - Nullable changed from true to false
                                   - MinLength changed from 0 to 4
@@ -525,7 +616,7 @@ GET /contracts/{contractId}/payments
                                   - MaxLength changed from 31 to null
                           - Modified property: fees
                             - Items changed
-                              - AdditionalProperties changed from false to true
+                              - AdditionalProperties changed from false to null
                               - Properties changed
                                 - Modified property: feeAmount
                                   - Type changed from 'number' to 'string'
@@ -545,13 +636,21 @@ GET /contracts/{contractId}/payments
 '
                       - Modified property: paidAmount
                         - Type changed from 'number' to 'string'
+                        - Description changed from 'Valor do pagamento referente ao  contrato da modalidade de crédito consultada.
+Expresso em valor monetário com até 4 casas decimais.
+' to 'Valor do pagamento referente ao  contrato da modalidade de crédito consultada.
+Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.
+'
                         - Example changed from 100000.04 to '1000.0400'
                         - MinLength changed from 0 to 4
                         - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
                       - Modified property: paymentId
                         - MinLength changed from 0 to 1
                         - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
+            - Modified property: links
+              - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -562,8 +661,13 @@ GET /contracts/{contractId}/payments
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -574,8 +678,13 @@ GET /contracts/{contractId}/payments
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -586,8 +695,13 @@ GET /contracts/{contractId}/payments
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -598,8 +712,13 @@ GET /contracts/{contractId}/payments
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -610,8 +729,13 @@ GET /contracts/{contractId}/payments
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -622,8 +746,13 @@ GET /contracts/{contractId}/payments
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -634,8 +763,13 @@ GET /contracts/{contractId}/payments
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -646,8 +780,13 @@ GET /contracts/{contractId}/payments
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -669,14 +808,15 @@ GET /contracts/{contractId}/scheduled-instalments
 - Responses changed
   - New response: 422
   - New response: 423
+  - New response: 529
   - Modified response: 200
     - Content changed
       - Modified media type: application/json
         - Schema changed
-          - AdditionalProperties changed from false to true
+          - AdditionalProperties changed from false to null
           - Properties changed
             - Modified property: data
-              - AdditionalProperties changed from false to true
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: balloonPayments
                 - Deleted required property: contractRemainingNumber
@@ -686,7 +826,7 @@ GET /contracts/{contractId}/scheduled-instalments
                   - Nullable changed from true to false
                   - MinItems changed from 0 to 1
                   - Items changed
-                    - AdditionalProperties changed from false to true
+                    - AdditionalProperties changed from false to null
                     - Required changed
                       - Deleted required property: currency
                       - Deleted required property: dueDate
@@ -697,7 +837,6 @@ GET /contracts/{contractId}/scheduled-instalments
                         - Format changed from 'double' to ''
                         - Description changed from 'Valor monetário da parcela não regular a vencer. Expresso em valor monetário com 4 casas decimais.' to 'Valor monetário da parcela não regular a vencer'
                         - Example changed from 100000.04 to null
-                        - AdditionalProperties changed from null to true
                         - Nullable changed from true to false
                         - MaxLength changed from 20 to null
                         - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
@@ -737,7 +876,10 @@ GET /contracts/{contractId}/scheduled-instalments
                   - MaxLength changed from 22 to null
                 - Modified property: typeNumberOfInstalments
                   - MaxLength changed from 15 to null
+            - Modified property: links
+              - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -748,8 +890,13 @@ GET /contracts/{contractId}/scheduled-instalments
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -760,8 +907,13 @@ GET /contracts/{contractId}/scheduled-instalments
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -772,8 +924,13 @@ GET /contracts/{contractId}/scheduled-instalments
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -784,8 +941,13 @@ GET /contracts/{contractId}/scheduled-instalments
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -796,8 +958,13 @@ GET /contracts/{contractId}/scheduled-instalments
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -808,8 +975,13 @@ GET /contracts/{contractId}/scheduled-instalments
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -820,8 +992,13 @@ GET /contracts/{contractId}/scheduled-instalments
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -832,8 +1009,13 @@ GET /contracts/{contractId}/scheduled-instalments
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -855,20 +1037,24 @@ GET /contracts/{contractId}/warranties
 - Responses changed
   - New response: 422
   - New response: 423
+  - New response: 529
   - Modified response: 200
     - Content changed
       - Modified media type: application/json
         - Schema changed
-          - AdditionalProperties changed from false to true
+          - AdditionalProperties changed from false to null
           - Properties changed
             - Modified property: data
               - Items changed
-                - AdditionalProperties changed from false to true
+                - AdditionalProperties changed from false to null
                 - Required changed
                   - New required property: warrantyAmount
                 - Properties changed
                   - Modified property: warrantyAmount
                     - Type changed from 'number' to 'string'
+                    - Description changed from 'Valor original da garantia. Valor monetário, expresso com até 4 casas decimais.
+' to 'Valor original da garantia. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.
+'
                     - Example changed from 200.0001 to '1000.0400'
                     - MinLength changed from 0 to 4
                     - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
@@ -878,7 +1064,10 @@ GET /contracts/{contractId}/warranties
                   - Modified property: warrantyType
                     - Deleted enum values: [SEM_TIPO_GARANTIA]
                     - MaxLength changed from 37 to null
+            - Modified property: links
+              - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -889,8 +1078,13 @@ GET /contracts/{contractId}/warranties
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -901,8 +1095,13 @@ GET /contracts/{contractId}/warranties
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -913,8 +1112,13 @@ GET /contracts/{contractId}/warranties
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -925,8 +1129,13 @@ GET /contracts/{contractId}/warranties
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -937,8 +1146,13 @@ GET /contracts/{contractId}/warranties
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -949,8 +1163,13 @@ GET /contracts/{contractId}/warranties
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -961,8 +1180,13 @@ GET /contracts/{contractId}/warranties
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
@@ -973,8 +1197,13 @@ GET /contracts/{contractId}/warranties
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
             - Modified property: meta
+              - AdditionalProperties changed from false to null
               - Required changed
                 - Deleted required property: totalPages
                 - Deleted required property: totalRecords
