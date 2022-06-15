@@ -613,6 +613,10 @@ GET /accounts/{creditCardAccountId}/bills/{billId}/transactions
 A lista a retornar se refere a transações após base 2/clearing/conciliado
 '
 - New query param: pagination-key
+- Modified query param: fromTransactionDate
+  - Description changed from 'Data inicial de filtragem.' to 'Data inicial de filtragem.
+[Restrição] Deve obrigatoriamente ser enviado caso o campo toTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
+'
 - Modified query param: page
   - Schema changed
     - Max changed from null to 2.147483647e+09
@@ -621,6 +625,10 @@ A lista a retornar se refere a transações após base 2/clearing/conciliado
     - Format changed from '' to 'int32'
     - Max changed from null to 9999
     - MaxLength changed from 4 to null
+- Modified query param: toTransactionDate
+  - Description changed from 'Data final de filtragem.' to 'Data final de filtragem.
+[Restrição] Deve obrigatoriamente ser enviado caso o campo fromTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
+'
 - Modified query param: transactionType
   - Schema changed
     - MaxLength changed from 36 to null
@@ -1132,6 +1140,10 @@ GET /accounts/{creditCardAccountId}/transactions
 - Description changed from 'Método para obter a lista de transações da conta de pagamento pós-paga identificada por creditCardAccountId mantida pelo cliente na instituição transmissora.' to 'Método para obter a lista de transações da conta de pagamento pós-paga identificada por creditCardAccountId mantida pelo cliente na instituição transmissora.
 A lista a retornar se refere a transações após base 2/clearing/conciliado'
 - New query param: pagination-key
+- Modified query param: fromTransactionDate
+  - Description changed from 'Data inicial de filtragem.' to 'Data inicial de filtragem.
+[Restrição] Deve obrigatoriamente ser enviado caso o campo toTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
+'
 - Modified query param: page
   - Schema changed
     - Max changed from null to 2.147483647e+09
@@ -1140,6 +1152,10 @@ A lista a retornar se refere a transações após base 2/clearing/conciliado'
     - Format changed from '' to 'int32'
     - Max changed from null to 9999
     - MaxLength changed from 4 to null
+- Modified query param: toTransactionDate
+  - Description changed from 'Data final de filtragem.' to 'Data final de filtragem.
+[Restrição] Deve obrigatoriamente ser enviado caso o campo fromTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
+'
 - Modified query param: transactionType
   - Schema changed
     - MaxLength changed from 36 to null
