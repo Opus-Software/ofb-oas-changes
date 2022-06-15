@@ -238,6 +238,7 @@ O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas
                 - Modified property: contractAmount
                   - Type changed from 'number' to 'string'
                   - Format changed from 'double' to ''
+                  - Description changed from 'Valor contratado da operação. Expresso em valor monetário com até 4 casas decimais' to 'Valor contratado da operação. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.'
                   - Example changed from 100000.04 to '100000.0400'
                   - Nullable changed from true to false
                   - MinLength changed from 0 to 4
@@ -621,6 +622,7 @@ GET /contracts/{contractId}/payments
                                 - Modified property: chargeAmount
                                   - Type changed from 'number' to 'string'
                                   - Format changed from 'double' to ''
+                                  - Description changed from 'Valor do pagamento do encargo pago fora da parcela. Expresso em valor monetário com até 4 casas decimais.' to 'Valor do pagamento do encargo pago fora da parcela. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.'
                                   - Example changed from 100000.04 to '100000.0400'
                                   - Nullable changed from true to false
                                   - MinLength changed from 0 to 4
@@ -651,6 +653,11 @@ GET /contracts/{contractId}/payments
                       - Modified property: paidAmount
                         - Type changed from 'number' to 'string'
                         - Format changed from 'double' to ''
+                        - Description changed from 'Valor do pagamento referente ao  contrato da modalidade de crédito consultada.
+Expresso em valor monetário com até 4 casas decimais.
+' to 'Valor do pagamento referente ao  contrato da modalidade de crédito consultada.
+Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.
+'
                         - Example changed from 100000.04 to '100000.0400'
                         - MinLength changed from 0 to 4
                         - MaxLength changed from 20 to 21
@@ -845,7 +852,7 @@ GET /contracts/{contractId}/scheduled-instalments
                       - Modified property: amount
                         - Type changed from 'number' to 'object'
                         - Format changed from 'double' to ''
-                        - Description changed from 'Valor monetário da parcela não regular a vencer. Expresso em valor monetário com 4 casas decimais.' to 'Valor monetário da parcela não regular a vencer.'
+                        - Description changed from 'Valor monetário da parcela não regular a vencer. Expresso em valor monetário com 4 casas decimais.' to 'Valor monetário da parcela não regular a vencer. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.'
                         - Example changed from 100000.04 to null
                         - Nullable changed from true to false
                         - MaxLength changed from 20 to null
@@ -1062,6 +1069,9 @@ GET /contracts/{contractId}/warranties
                   - Modified property: warrantyAmount
                     - Type changed from 'number' to 'string'
                     - Format changed from 'double' to ''
+                    - Description changed from 'Valor original da garantia. Valor monetário, expresso com até 4 casas decimais.
+' to 'Valor original da garantia. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.
+'
                     - Example changed from 100000.04 to '100000.0400'
                     - MinLength changed from 0 to 4
                     - MaxLength changed from 20 to 21
