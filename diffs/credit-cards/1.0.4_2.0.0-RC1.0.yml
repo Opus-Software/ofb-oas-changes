@@ -924,13 +924,14 @@ Cenário de "cartão sem limite", isto é, cartões em que o uso do limite é il
                 - AdditionalProperties changed from false to null
                 - Required changed
                   - Deleted required property: availableAmount
+                  - Deleted required property: availableAmountCurrency
                   - Deleted required property: limitAmount
                   - Deleted required property: limitAmountCurrency
                 - Properties changed
                   - Modified property: availableAmount
                     - Type changed from 'number' to 'string'
                     - Description changed from 'Valor disponível do limite informado Expresso em valor monetário com 4 casas decimais.' to 'Valor disponível do limite informado expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.
-[Restrição] O campo é opcional caso isLimitFlexible for igual a false (availableAmount e availableAmountCurrency)
+[Restrição] O campo é obrigatório caso isLimitFlexible for igual a false.
 '
                     - Example changed from 2499.95 to '100000.0001'
                     - Nullable changed from true to false
@@ -941,7 +942,7 @@ Cenário de "cartão sem limite", isto é, cartões em que o uso do limite é il
 Todos os saldos informados estão representados com a moeda vigente do Brasil.
 ' to 'Moeda referente ao limite informado, segundo modelo ISO-4217. p.ex. 'BRL.'
 Todos os saldos informados estão representados com a moeda vigente do Brasil.
-[Restrição] O campo é opcional caso isLimitFlexible for igual a false (availableAmount e availableAmountCurrency)
+[Restrição] O campo é obrigatório caso isLimitFlexible for igual a false.
 '
                     - Pattern changed from '^(\w{3}){1}$|^NA$' to '^(\w{3}){1}$'
                   - Modified property: consolidationType
