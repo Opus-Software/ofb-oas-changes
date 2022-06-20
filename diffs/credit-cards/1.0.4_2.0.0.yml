@@ -1,0 +1,1447 @@
+﻿### New Endpoints: 1
+--------------------
+GET /accounts/{creditCardAccountId}/transactions-current  
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 6
+-------------------------
+GET /accounts
+- New query param: pagination-key
+- Modified query param: page
+  - Schema changed
+    - Max changed from null to 2.147483647e+09
+- Responses changed
+  - New response: 422
+  - New response: 423
+  - New response: 529
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - AdditionalProperties changed from false to null
+                - Properties changed
+                  - Modified property: brandName
+                    - Description changed from 'Nome da Marca reportada pelo participante do Open Banking. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes' to 'Nome da Marca reportada pelo participante no Open Finance. Recomenda-se utilizar, sempre que possível, o mesmo nome de marca atribuído no campo do diretório Customer Friendly Server Name (Authorisation Server).'
+                  - Modified property: companyCnpj
+                    - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
+                  - Modified property: creditCardAccountId
+                    - MinLength changed from 0 to 1
+                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{0,99}$'
+                  - Modified property: creditCardNetwork
+                    - MaxLength changed from 17 to null
+                  - Modified property: networkAdditionalInfo
+                    - Example changed from 'NA' to 'AURA CARD'
+                  - Modified property: productType
+                    - MaxLength changed from 26 to null
+            - Modified property: links
+              - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: default
+    - Description changed from 'Conjunto de informações das Contas de pagamento pós paga' to 'Erro inesperado.'
+    - Content changed
+      - New media type: application/json; charset=utf-8
+      - Deleted media type: application/json
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+GET /accounts/{creditCardAccountId}
+- Responses changed
+  - New response: 422
+  - New response: 423
+  - New response: 529
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: data
+              - AdditionalProperties changed from false to null
+              - Properties changed
+                - Modified property: creditCardNetwork
+                  - MaxLength changed from 17 to null
+                - Modified property: networkAdditionalInfo
+                  - Example changed from 'NA' to 'AURA CARD'
+                - Modified property: paymentMethod
+                  - Description changed from '' to 'Listagem dos cartões (ex.: virtual/adicional/titular) associados a conta cartão consentida, conforme disponíveis ao usuário nos canais proprietários.
+'
+                  - Items changed
+                    - AdditionalProperties changed from false to null
+                    - Properties changed
+                      - Modified property: identificationNumber
+                        - MinLength changed from 0 to 1
+                        - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{0,99}$'
+                - Modified property: productType
+                  - MaxLength changed from 26 to null
+            - Modified property: links
+              - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: default
+    - Description changed from 'Dados de identificação da conta identificada por creditCardAccountId obtidos com sucesso.' to 'Erro inesperado.'
+    - Content changed
+      - New media type: application/json; charset=utf-8
+      - Deleted media type: application/json
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+GET /accounts/{creditCardAccountId}/bills
+- Description changed from 'Método para obter a lista de faturas da conta de pagamento pós-paga identificada por creditCardAccountId mantida pelo cliente na instituição transmissora.' to 'Método para obter a lista de faturas da conta de pagamento pós-paga identificada por creditCardAccountId mantida pelo cliente na instituição transmissora.\
+Só deve ser informada uma fatura já fechada.\
+Qualquer pagamento deve ser contado para a última fatura fechada.
+'
+- New query param: pagination-key
+- Modified query param: page
+  - Schema changed
+    - Max changed from null to 2.147483647e+09
+- Responses changed
+  - New response: 422
+  - New response: 423
+  - New response: 529
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - AdditionalProperties changed from false to null
+                - Required changed
+                  - Deleted required property: billMinimumAmountCurrency
+                  - Deleted required property: billTotalAmountCurrency
+                  - Deleted required property: financeCharges
+                - Properties changed
+                  - Deleted property: billMinimumAmountCurrency
+                  - Deleted property: billTotalAmountCurrency
+                  - Modified property: billId
+                    - MinLength changed from 0 to 1
+                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{0,99}$'
+                  - Modified property: billMinimumAmount
+                    - Type changed from 'number' to 'object'
+                    - Format changed from 'double' to ''
+                    - Description changed from 'Valor do pagamento minimo da fatura' to 'Valor do pagamento minimo da fatura
+'
+                    - Example changed from 1000.04 to null
+                    - MaxLength changed from 19 to null
+                    - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                    - Required changed
+                      - New required property: amount
+                      - New required property: currency
+                    - Properties changed
+                      - New property: amount
+                      - New property: currency
+                  - Modified property: billTotalAmount
+                    - Type changed from 'number' to 'object'
+                    - Format changed from 'double' to ''
+                    - Description changed from 'Valor total da fatura' to 'Valor total da faturas.
+O campo deve assumir valor positivo para saldo devedor e negativo para saldo credor.
+'
+                    - Example changed from 100000.04 to null
+                    - MaxLength changed from 20 to null
+                    - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                    - Required changed
+                      - New required property: amount
+                      - New required property: currency
+                    - Properties changed
+                      - New property: amount
+                      - New property: currency
+                  - Modified property: financeCharges
+                    - Items changed
+                      - AdditionalProperties changed from false to null
+                      - Properties changed
+                        - Modified property: amount
+                          - Type changed from 'number' to 'string'
+                          - Description changed from 'Valor cobrado pelo encargo. Expresso em valor monetário com 4 casas decimais' to 'Valor cobrado pelo encargo. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.'
+                          - Example changed from 100000.04 to '100000.0400'
+                          - Nullable changed from true to false
+                          - MinLength changed from 0 to 4
+                          - MaxLength changed from 20 to 21
+                          - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
+                        - Modified property: type
+                          - Deleted enum values: [SEM_ENCARGO]
+                          - MaxLength changed from 44 to null
+                  - Modified property: payments
+                    - Items changed
+                      - AdditionalProperties changed from false to null
+                      - Properties changed
+                        - Modified property: amount
+                          - Type changed from 'number' to 'string'
+                          - Description changed from 'Valor pagamento segundo o valueType.  Expresso em valor monetário com 4 casas decimais' to 'Valor pagamento segundo o valueType.  
+Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.   
+O campo não pode assumir valor negativo por se tratar de um pagamento.
+'
+                          - Example changed from 100000.04 to '1000.0400'
+                          - MinLength changed from 0 to 4
+                          - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
+                        - Modified property: paymentMode
+                          - MaxLength changed from 21 to null
+                        - Modified property: valueType
+                          - Description changed from 'Traz os tipos dos valores relativos aos pagamentos da fatura da conta de pagamento pós-paga: (Vide Enum)
+ - Valor de pagamento da fatura com parcelamento
+ - Valor pagamento da fatura realizado
+ - Outro Valor pago na fatura
+' to 'Traz os tipos dos valores relativos aos pagamentos da fatura da conta de pagamento pós-paga: (Vide Enum)
+ - Valor de pagamento da fatura com parcelamento
+ - Valor pagamento da fatura realizado
+ - Outro Valor pago na fatura
+ VALOR_PAGAMENTO_FATURA_PARCELADO: Quando o pagamento corresponde ao fato gerador para abertura do plano de parcelamento da fatura
+ VALOR_PAGAMENTO_FATURA_REALIZADO: Quando o pagamento corresponde ao valor total da fatura
+ OUTRO_VALOR_PAGO_FATURA: Demais casos
+'
+                          - MaxLength changed from 32 to null
+            - Modified property: links
+              - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: default
+    - Description changed from 'Dados referentes à lista de faturas da conta identificada por creditCardAccountId obtidos com sucesso.' to 'Erro inesperado.'
+    - Content changed
+      - New media type: application/json; charset=utf-8
+      - Deleted media type: application/json
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+GET /accounts/{creditCardAccountId}/bills/{billId}/transactions
+- Description changed from 'Método para obter a lista de transações da conta de pagamento pós-paga identificada por creditCardAccountId e billId mantida pelo cliente na instituição transmissora.' to 'Método para obter a lista de transações da conta de pagamento pós-paga identificada por creditCardAccountId e billId mantida pelo cliente na instituição transmissora. 
+A lista a retornar se refere a transações após base 2/clearing/conciliado
+'
+- New query param: pagination-key
+- Modified query param: fromTransactionDate
+  - Description changed from 'Data inicial de filtragem.' to 'Data inicial de filtragem.
+[Restrição] Deve obrigatoriamente ser enviado caso o campo toTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
+'
+- Modified query param: page
+  - Schema changed
+    - Max changed from null to 2.147483647e+09
+- Modified query param: payeeMCC
+  - Schema changed
+    - Format changed from '' to 'int32'
+    - Max changed from null to 9999
+    - MaxLength changed from 4 to null
+- Modified query param: toTransactionDate
+  - Description changed from 'Data final de filtragem.' to 'Data final de filtragem.
+[Restrição] Deve obrigatoriamente ser enviado caso o campo fromTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
+'
+- Modified query param: transactionType
+  - Schema changed
+    - MaxLength changed from 36 to null
+- Responses changed
+  - New response: 422
+  - New response: 423
+  - New response: 529
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - AdditionalProperties changed from false to null
+                - Required changed
+                  - Deleted required property: chargeNumber
+                  - Deleted required property: currency
+                  - Deleted required property: feeType
+                  - Deleted required property: feeTypeAdditionalInfo
+                  - Deleted required property: otherCreditsAdditionalInfo
+                  - Deleted required property: otherCreditsType
+                  - Deleted required property: payeeMCC
+                  - Deleted required property: transactionalAdditionalInfo
+                - Properties changed
+                  - Deleted property: currency
+                  - Deleted property: lineName
+                  - Modified property: amount
+                    - Type changed from 'number' to 'object'
+                    - Format changed from 'double' to ''
+                    - Description changed from 'Valor da transação efetuada no exterior e convertida em moeda nacional com 4 casas decimais. Expresso em valor monetário com 4 casas decimais' to 'Valor da transação. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais. Se a transação foi realizada em moeda estrangeira, deve ser preenchido com o valor original da transação, sem convertê-lo.'
+                    - Example changed from 100000.04 to null
+                    - Nullable changed from true to false
+                    - MaxLength changed from 20 to null
+                    - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                    - Required changed
+                      - New required property: amount
+                      - New required property: currency
+                    - Properties changed
+                      - New property: amount
+                      - New property: currency
+                  - Modified property: billId
+                    - MinLength changed from 0 to 1
+                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{0,99}$'
+                  - Modified property: billPostDate
+                    - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                  - Modified property: brazilianAmount
+                    - Type changed from 'number' to 'object'
+                    - Format changed from 'double' to ''
+                    - Description changed from 'Valor da transação expresso em valor monetário com 4 casas decimais, em moeda corrente do Brasil' to 'Valor da transação expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais, em moeda corrente do Brasil'
+                    - Example changed from 100000.04 to null
+                    - Nullable changed from true to false
+                    - MaxLength changed from 20 to null
+                    - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                    - Required changed
+                      - New required property: amount
+                      - New required property: currency
+                    - Properties changed
+                      - New property: amount
+                      - New property: currency
+                  - Modified property: chargeNumber
+                    - Description changed from 'Quantidade de parcelas' to 'Quantidade de parcelas.   
+[Restrição] O campo deve ser preenchido quando houverem parcelas relacionadas a transação.
+'
+                    - Example changed from 3 to 12
+                    - Nullable changed from true to false
+                    - Max changed from null to 999
+                    - MaxLength changed from 2 to null
+                  - Modified property: creditDebitType
+                    - MaxLength changed from 7 to null
+                  - Modified property: feeType
+                    - Description changed from 'Traz os tipos de Tarifas: (Vide Enum)
+Anuidade, Saque com cartão no Brasil, Saque com cartão no exterior, Avaliação emergencial de crédito, Emissão segunda via, Tarifa pagamento de contas, SMS, OUTRA.
+[Restrição] Preenchimento obrigatório se Tipo de Transação selecionada for 'TARIFA'
+' to 'Traz os tipos de Tarifas: (Vide Enum)
+Anuidade, Saque com cartão no Brasil, Saque com cartão no exterior, Avaliação emergencial de crédito, Emissão segunda via, Tarifa pagamento de contas, SMS, OUTRA.   
+Para transmissora: quando não for do tipo TARIFA, preenche com OUTRA.
+Para recebedora: ignorar o campo preenchido conforme esse cenário.
+[Restrição] Preenchimento obrigatório se Tipo de Transação selecionada for 'TARIFA'.
+'
+                    - MaxLength changed from 29 to null
+                  - Modified property: feeTypeAdditionalInfo
+                    - Pattern changed from '' to '^\S[\s\S]*$'
+                  - Modified property: identificationNumber
+                    - MinLength changed from 0 to 1
+                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{0,99}$'
+                  - Modified property: otherCreditsAdditionalInfo
+                    - Description changed from 'Campo livre, de preenchimento obrigatório quando selecionado tipo de crédito "OUTROS"' to 'Campo livre para preenchimento de dados adicionais de outros tipos de crédito contratados no cartão.
+[Restrição] Preenchimento obrigatório quando selecionado no campo outros tipos de crédito "OUTROS".
+'
+                    - Pattern changed from '' to '^\S[\s\S]*$'
+                  - Modified property: otherCreditsType
+                    - Description changed from 'Traz outros tipos de crédito contratados no cartão.
+[Restrição] Preenchimento obrigatório se o tipo transação selecionado for 'OPERACOES_CREDITO_CONTRATADAS_CARTAO'
+' to 'Traz outros tipos de crédito contratados no cartão.   
+[Restrição] Preenchimento obrigatório se o tipo transação selecionado for 'OPERACOES_CREDITO_CONTRATADAS_CARTAO'.
+Para transmissora: Quando não for do tipo OPERACOES_CREDITO_CONTRATADAS_CARTAO, preencher com OUTROS.
+Para recebedora: Ignorar o campo preenchido conforme esse cenário.
+'
+                    - MaxLength changed from 19 to null
+                  - Modified property: payeeMCC
+                    - Nullable changed from true to false
+                    - Max changed from null to 2.147483647e+09
+                    - MaxLength changed from 4 to null
+                  - Modified property: paymentType
+                    - Description changed from 'Traz os tipos de pagamento. Preenchimento obrigatório se selecionado tipo de transação PAGAMENTO.' to 'Traz os tipos de pagamento. Preenchimento obrigatório se selecionado tipo de transação PAGAMENTO.
+Para transmissora: preencher com qualquer opção.
+Para recebedora: ignorar o campo preenchido quando não for uma transação do tipo pagamento.
+'
+                    - MaxLength changed from 7 to null
+                  - Modified property: transactionDate
+                    - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                  - Modified property: transactionId
+                    - MinLength changed from 0 to 1
+                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{0,99}$'
+                  - Modified property: transactionType
+                    - MaxLength changed from 36 to null
+                  - Modified property: transactionalAdditionalInfo
+                    - Pattern changed from '' to '^\S[\s\S]*$'
+            - Modified property: links
+              - AdditionalProperties changed from false to null
+              - Properties changed
+                - Deleted property: last
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: default
+    - Description changed from 'Dados das lista de transações da conta identificada obtidos com sucesso.' to 'Erro inesperado.'
+    - Content changed
+      - New media type: application/json; charset=utf-8
+      - Deleted media type: application/json
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+GET /accounts/{creditCardAccountId}/limits
+- Responses changed
+  - New response: 422
+  - New response: 423
+  - New response: 529
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: data
+              - Description changed from '' to '[Restrição] A lista vazia deve ser interpretada como a ausência da informação.
+Cenário de limite com valor zerado, deve ter um registro explícito informando o valor como zero.
+Cenário de "cartão sem limite", isto é, cartões em que o uso do limite é ilimitado, deve ser informado em um registro explícito com isLimitFlexible como true.
+'
+              - Items changed
+                - AdditionalProperties changed from false to null
+                - Required changed
+                  - Deleted required property: availableAmount
+                  - Deleted required property: availableAmountCurrency
+                  - Deleted required property: limitAmount
+                  - Deleted required property: limitAmountCurrency
+                - Properties changed
+                  - Deleted property: availableAmountCurrency
+                  - Deleted property: limitAmountCurrency
+                  - Deleted property: usedAmountCurrency
+                  - Modified property: availableAmount
+                    - Type changed from 'number' to 'object'
+                    - Format changed from 'double' to ''
+                    - Description changed from 'Valor disponível do limite informado Expresso em valor monetário com 4 casas decimais.' to 'Valor disponível do limite informado   
+'
+                    - Example changed from 2499.95 to null
+                    - Nullable changed from true to false
+                    - MaxLength changed from 20 to null
+                    - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                    - Required changed
+                      - New required property: amount
+                      - New required property: currency
+                    - Properties changed
+                      - New property: amount
+                      - New property: currency
+                  - Modified property: consolidationType
+                    - Description changed from 'Indicador que permite informar se o valor do limite é consolidado ou individual.' to 'Indicador que permite informar se o valor do limite é consolidado ou individual.
+CONSOLIDADO: utilizado quando o limite da conta cartão é compartilhado entre todos os métodos de pagamento (paymentMethod) atrelados a conta.
+INDIVIDUAL: Utilizado quando cada método de pagamento (paymentMethod) possui seu limite segregado.
+'
+                    - MaxLength changed from 11 to null
+                  - Modified property: creditLineLimitType
+                    - Description changed from 'Indicador do tipo de limite' to 'Indicador do tipo de limite
+LIMITE_CREDITO_TOTAL: Limite de crédito total aplicado a conta cartão.
+LIMITE_CREDITO_MODALIDADE_OPERACAO: Limite de crédito por modalidade desse conta cartão (observar lineName e listar os aplicáveis da instituição).
+'
+                    - MaxLength changed from 34 to null
+                  - Modified property: identificationNumber
+                    - MinLength changed from 0 to 1
+                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{0,99}$'
+                  - Modified property: limitAmount
+                    - Type changed from 'number' to 'object'
+                    - Format changed from 'double' to ''
+                    - Description changed from 'Valor total do limite informado Expresso em valor monetário com 4 casas decimais.' to 'Valor total do limite informado.   
+'
+                    - Example changed from 100000.0001 to null
+                    - Nullable changed from true to false
+                    - MaxLength changed from 20 to null
+                    - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                    - Required changed
+                      - New required property: amount
+                      - New required property: currency
+                    - Properties changed
+                      - New property: amount
+                      - New property: currency
+                  - Modified property: lineName
+                    - MaxLength changed from 28 to null
+                  - Modified property: lineNameAdditionalInfo
+                    - MaxLength changed from null to 50
+                  - Modified property: usedAmount
+                    - Type changed from 'number' to 'object'
+                    - Format changed from 'double' to ''
+                    - Description changed from 'Valor utilizado do limite informado Expresso em valor monetário com 4 casas decimais.' to 'Valor utilizado do limite informado'
+                    - Example changed from 7500.05 to null
+                    - Nullable changed from true to false
+                    - MaxLength changed from 20 to null
+                    - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                    - Required changed
+                      - New required property: amount
+                      - New required property: currency
+                    - Properties changed
+                      - New property: amount
+                      - New property: currency
+            - Modified property: links
+              - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: default
+    - Description changed from 'Dados dos limites da conta identificada por creditCardAccountId obtidos com sucesso.' to 'Erro inesperado.'
+    - Content changed
+      - New media type: application/json; charset=utf-8
+      - Deleted media type: application/json
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+GET /accounts/{creditCardAccountId}/transactions
+- Description changed from 'Método para obter a lista de transações da conta de pagamento pós-paga identificada por creditCardAccountId mantida pelo cliente na instituição transmissora.' to 'Método para obter a lista de transações da conta de pagamento pós-paga identificada por creditCardAccountId mantida pelo cliente na instituição transmissora.
+A lista a retornar se refere a transações após base 2/clearing/conciliado'
+- New query param: pagination-key
+- Modified query param: fromTransactionDate
+  - Description changed from 'Data inicial de filtragem.' to 'Data inicial de filtragem.
+[Restrição] Deve obrigatoriamente ser enviado caso o campo toTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
+'
+- Modified query param: page
+  - Schema changed
+    - Max changed from null to 2.147483647e+09
+- Modified query param: payeeMCC
+  - Schema changed
+    - Format changed from '' to 'int32'
+    - Max changed from null to 9999
+    - MaxLength changed from 4 to null
+- Modified query param: toTransactionDate
+  - Description changed from 'Data final de filtragem.' to 'Data final de filtragem.
+[Restrição] Deve obrigatoriamente ser enviado caso o campo fromTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
+'
+- Modified query param: transactionType
+  - Schema changed
+    - MaxLength changed from 36 to null
+- Responses changed
+  - New response: 422
+  - New response: 423
+  - New response: 529
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - AdditionalProperties changed from false to null
+                - Required changed
+                  - Deleted required property: chargeNumber
+                  - Deleted required property: currency
+                  - Deleted required property: feeType
+                  - Deleted required property: feeTypeAdditionalInfo
+                  - Deleted required property: otherCreditsAdditionalInfo
+                  - Deleted required property: otherCreditsType
+                  - Deleted required property: payeeMCC
+                  - Deleted required property: transactionalAdditionalInfo
+                - Properties changed
+                  - Deleted property: currency
+                  - Deleted property: lineName
+                  - Modified property: amount
+                    - Type changed from 'number' to 'object'
+                    - Format changed from 'double' to ''
+                    - Description changed from 'Valor da transação efetuada no exterior e convertida em moeda nacional com 4 casas decimais. Expresso em valor monetário com 4 casas decimais' to 'Valor da transação. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais. Se a transação foi realizada em moeda estrangeira, deve ser preenchido com o valor original da transação, sem convertê-lo.'
+                    - Example changed from 100000.04 to null
+                    - Nullable changed from true to false
+                    - MaxLength changed from 20 to null
+                    - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                    - Required changed
+                      - New required property: amount
+                      - New required property: currency
+                    - Properties changed
+                      - New property: amount
+                      - New property: currency
+                  - Modified property: billId
+                    - MinLength changed from 0 to 1
+                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{0,99}$'
+                  - Modified property: billPostDate
+                    - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                  - Modified property: brazilianAmount
+                    - Type changed from 'number' to 'object'
+                    - Format changed from 'double' to ''
+                    - Description changed from 'Valor da transação expresso em valor monetário com 4 casas decimais, em moeda corrente do Brasil' to 'Valor da transação expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais, em moeda corrente do Brasil'
+                    - Example changed from 100000.04 to null
+                    - Nullable changed from true to false
+                    - MaxLength changed from 20 to null
+                    - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                    - Required changed
+                      - New required property: amount
+                      - New required property: currency
+                    - Properties changed
+                      - New property: amount
+                      - New property: currency
+                  - Modified property: chargeNumber
+                    - Description changed from 'Quantidade de parcelas' to 'Quantidade de parcelas.   
+[Restrição] O campo deve ser preenchido quando houverem parcelas relacionadas a transação.
+'
+                    - Example changed from 3 to 12
+                    - Nullable changed from true to false
+                    - Max changed from null to 999
+                    - MaxLength changed from 2 to null
+                  - Modified property: creditDebitType
+                    - MaxLength changed from 7 to null
+                  - Modified property: feeType
+                    - Description changed from 'Traz os tipos de Tarifas: (Vide Enum)
+Anuidade, Saque com cartão no Brasil, Saque com cartão no exterior, Avaliação emergencial de crédito, Emissão segunda via, Tarifa pagamento de contas, SMS, OUTRA.
+[Restrição] Preenchimento obrigatório se Tipo de Transação selecionada for 'TARIFA'
+' to 'Traz os tipos de Tarifas: (Vide Enum)
+Anuidade, Saque com cartão no Brasil, Saque com cartão no exterior, Avaliação emergencial de crédito, Emissão segunda via, Tarifa pagamento de contas, SMS, OUTRA.   
+Para transmissora: quando não for do tipo TARIFA, preenche com OUTRA.
+Para recebedora: ignorar o campo preenchido conforme esse cenário.
+[Restrição] Preenchimento obrigatório se Tipo de Transação selecionada for 'TARIFA'.
+'
+                    - MaxLength changed from 29 to null
+                  - Modified property: feeTypeAdditionalInfo
+                    - Pattern changed from '' to '^\S[\s\S]*$'
+                  - Modified property: identificationNumber
+                    - MinLength changed from 0 to 1
+                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{0,99}$'
+                  - Modified property: otherCreditsAdditionalInfo
+                    - Description changed from 'Campo livre, de preenchimento obrigatório quando selecionado tipo de crédito "OUTROS"' to 'Campo livre para preenchimento de dados adicionais de outros tipos de crédito contratados no cartão.
+[Restrição] Preenchimento obrigatório quando selecionado no campo outros tipos de crédito "OUTROS".
+'
+                    - Pattern changed from '' to '^\S[\s\S]*$'
+                  - Modified property: otherCreditsType
+                    - Description changed from 'Traz outros tipos de crédito contratados no cartão.
+[Restrição] Preenchimento obrigatório se o tipo transação selecionado for 'OPERACOES_CREDITO_CONTRATADAS_CARTAO'
+' to 'Traz outros tipos de crédito contratados no cartão.   
+[Restrição] Preenchimento obrigatório se o tipo transação selecionado for 'OPERACOES_CREDITO_CONTRATADAS_CARTAO'.
+Para transmissora: Quando não for do tipo OPERACOES_CREDITO_CONTRATADAS_CARTAO, preencher com OUTROS.
+Para recebedora: Ignorar o campo preenchido conforme esse cenário.
+'
+                    - MaxLength changed from 19 to null
+                  - Modified property: payeeMCC
+                    - Nullable changed from true to false
+                    - Max changed from null to 2.147483647e+09
+                    - MaxLength changed from 4 to null
+                  - Modified property: paymentType
+                    - Description changed from 'Traz os tipos de pagamento. Preenchimento obrigatório se selecionado tipo de transação PAGAMENTO.' to 'Traz os tipos de pagamento. Preenchimento obrigatório se selecionado tipo de transação PAGAMENTO.
+Para transmissora: preencher com qualquer opção.
+Para recebedora: ignorar o campo preenchido quando não for uma transação do tipo pagamento.
+'
+                    - MaxLength changed from 7 to null
+                  - Modified property: transactionDate
+                    - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                  - Modified property: transactionId
+                    - MinLength changed from 0 to 1
+                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{0,99}$'
+                  - Modified property: transactionType
+                    - MaxLength changed from 36 to null
+                  - Modified property: transactionalAdditionalInfo
+                    - Pattern changed from '' to '^\S[\s\S]*$'
+            - Modified property: links
+              - AdditionalProperties changed from false to null
+              - Properties changed
+                - Deleted property: last
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: default
+    - Description changed from 'Dados das lista de transações da conta identificada obtidos com sucesso.' to 'Erro inesperado.'
+    - Content changed
+      - New media type: application/json; charset=utf-8
+      - Deleted media type: application/json
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+Servers changed
+- New server: https://api.banco.com.br/open-banking/credit-cards-accounts/v2
+- New server: https://apih.banco.com.br/open-banking/credit-cards-accounts/v2
+- Deleted server: https://api.banco.com.br/open-banking/credit-cards-accounts/v1
+- Deleted server: https://apih.banco.com.br/open-banking/credit-cards-accounts/v1
