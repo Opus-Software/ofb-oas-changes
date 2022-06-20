@@ -20,7 +20,7 @@ GET /contracts
                   - Modified property: companyCnpj
                     - Pattern changed from '\d{14}|^NA$' to '\d{14}$'
                   - Modified property: contractId
-                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{0,99}$'
+                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
                   - Modified property: ipocCode
                     - Pattern changed from '' to '^\d{22,67}$'
                   - Modified property: productSubType
@@ -169,7 +169,7 @@ GET /contracts/{contractId}
                   - Nullable changed from true to false
                   - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
                 - Modified property: contractNumber
-                  - Pattern changed from '' to '^\d{0,99}$'
+                  - Pattern changed from '' to '^\d{1,100}$'
                 - Modified property: contractedFees
                   - Items changed
                     - Required changed
@@ -370,7 +370,7 @@ GET /contracts/{contractId}/payments
                       - Deleted required property: overParcel
                     - Properties changed
                       - Modified property: instalmentId
-                        - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{0,99}$'
+                        - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
                       - Modified property: overParcel
                         - Properties changed
                           - Modified property: charges
@@ -396,7 +396,7 @@ GET /contracts/{contractId}/payments
                         - Type changed from 'number' to 'string'
                         - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
                       - Modified property: paymentId
-                        - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{0,99}$'
+                        - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
             - Modified property: meta
               - Required changed
                 - Deleted required property: totalPages
