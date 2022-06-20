@@ -33,6 +33,8 @@ GET /accounts
                     - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{0,99}$'
                   - Modified property: creditCardNetwork
                     - MaxLength changed from 17 to null
+                  - Modified property: networkAdditionalInfo
+                    - Example changed from 'NA' to 'AURA CARD'
                   - Modified property: productType
                     - MaxLength changed from 26 to null
             - Modified property: links
@@ -430,7 +432,9 @@ O campo deve assumir valor positivo para saldo devedor e negativo para saldo cre
                           - Nullable changed from true to false
                           - MinLength changed from 0 to 4
                           - MaxLength changed from 20 to 21
+                          - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
                         - Modified property: type
+                          - Deleted enum values: [SEM_ENCARGO]
                           - MaxLength changed from 44 to null
                   - Modified property: payments
                     - Items changed
@@ -928,23 +932,24 @@ Cenário de "cartão sem limite", isto é, cartões em que o uso do limite é il
                   - Deleted required property: limitAmount
                   - Deleted required property: limitAmountCurrency
                 - Properties changed
+                  - Deleted property: availableAmountCurrency
+                  - Deleted property: limitAmountCurrency
+                  - Deleted property: usedAmountCurrency
                   - Modified property: availableAmount
-                    - Type changed from 'number' to 'string'
-                    - Description changed from 'Valor disponível do limite informado Expresso em valor monetário com 4 casas decimais.' to 'Valor disponível do limite informado expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.
-[Restrição] O campo é obrigatório caso isLimitFlexible for igual a false.
+                    - Type changed from 'number' to 'object'
+                    - Format changed from 'double' to ''
+                    - Description changed from 'Valor disponível do limite informado Expresso em valor monetário com 4 casas decimais.' to 'Valor disponível do limite informado   
 '
-                    - Example changed from 2499.95 to '100000.0001'
+                    - Example changed from 2499.95 to null
                     - Nullable changed from true to false
-                    - MinLength changed from 0 to 4
-                    - MaxLength changed from 20 to 21
-                  - Modified property: availableAmountCurrency
-                    - Description changed from 'Moeda referente ao limite informado, segundo modelo ISO-4217. p.ex. 'BRL.'
-Todos os saldos informados estão representados com a moeda vigente do Brasil.
-' to 'Moeda referente ao limite informado, segundo modelo ISO-4217. p.ex. 'BRL.'
-Todos os saldos informados estão representados com a moeda vigente do Brasil.
-[Restrição] O campo é obrigatório caso isLimitFlexible for igual a false.
-'
-                    - Pattern changed from '^(\w{3}){1}$|^NA$' to '^(\w{3}){1}$'
+                    - MaxLength changed from 20 to null
+                    - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                    - Required changed
+                      - New required property: amount
+                      - New required property: currency
+                    - Properties changed
+                      - New property: amount
+                      - New property: currency
                   - Modified property: consolidationType
                     - Description changed from 'Indicador que permite informar se o valor do limite é consolidado ou individual.' to 'Indicador que permite informar se o valor do limite é consolidado ou individual.
 CONSOLIDADO: utilizado quando o limite da conta cartão é compartilhado entre todos os métodos de pagamento (paymentMethod) atrelados a conta.
@@ -961,35 +966,38 @@ LIMITE_CREDITO_MODALIDADE_OPERACAO: Limite de crédito por modalidade desse cont
                     - MinLength changed from 0 to 1
                     - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{0,99}$'
                   - Modified property: limitAmount
-                    - Type changed from 'number' to 'string'
-                    - Description changed from 'Valor total do limite informado Expresso em valor monetário com 4 casas decimais.' to 'Valor total do limite informado Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.   
-[Restrição] O campo é opcional caso isLimitFlexible for igual a false.
+                    - Type changed from 'number' to 'object'
+                    - Format changed from 'double' to ''
+                    - Description changed from 'Valor total do limite informado Expresso em valor monetário com 4 casas decimais.' to 'Valor total do limite informado.   
 '
-                    - Example changed from 100000.0001 to '100000.0001'
+                    - Example changed from 100000.0001 to null
                     - Nullable changed from true to false
-                    - MinLength changed from 0 to 4
-                    - MaxLength changed from 20 to 21
-                  - Modified property: limitAmountCurrency
-                    - Description changed from 'Moeda referente ao limite informado, segundo modelo ISO-4217. p.ex. 'BRL.'
-Todos os limite informados estão representados com a moeda vigente do do Brasil.
-' to 'Moeda referente ao limite informado, segundo modelo ISO-4217. p.ex. 'BRL.'
-Todos os limite informados estão representados com a moeda vigente do do Brasil.   
-[Restrição] O campo é opcional caso isLimitFlexible for igual a false.
-'
-                    - Pattern changed from '^(\w{3}){1}$|^NA$' to '^(\w{3}){1}$'
+                    - MaxLength changed from 20 to null
+                    - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                    - Required changed
+                      - New required property: amount
+                      - New required property: currency
+                    - Properties changed
+                      - New property: amount
+                      - New property: currency
                   - Modified property: lineName
                     - MaxLength changed from 28 to null
                   - Modified property: lineNameAdditionalInfo
                     - MaxLength changed from null to 50
                   - Modified property: usedAmount
-                    - Type changed from 'number' to 'string'
-                    - Description changed from 'Valor utilizado do limite informado Expresso em valor monetário com 4 casas decimais.' to 'Valor utilizado do limite informado expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.'
-                    - Example changed from 7500.05 to '100000.0001'
+                    - Type changed from 'number' to 'object'
+                    - Format changed from 'double' to ''
+                    - Description changed from 'Valor utilizado do limite informado Expresso em valor monetário com 4 casas decimais.' to 'Valor utilizado do limite informado'
+                    - Example changed from 7500.05 to null
                     - Nullable changed from true to false
-                    - MinLength changed from 0 to 4
-                    - MaxLength changed from 20 to 21
-                  - Modified property: usedAmountCurrency
-                    - Pattern changed from '^(\w{3}){1}$|^NA$' to '^(\w{3}){1}$'
+                    - MaxLength changed from 20 to null
+                    - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                    - Required changed
+                      - New required property: amount
+                      - New required property: currency
+                    - Properties changed
+                      - New property: amount
+                      - New property: currency
             - Modified property: links
               - AdditionalProperties changed from false to null
             - Modified property: meta

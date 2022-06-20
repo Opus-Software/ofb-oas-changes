@@ -281,7 +281,9 @@ GET /accounts/{creditCardAccountId}/bills
                           - Type changed from 'number' to 'string'
                           - Nullable changed from true to false
                           - MaxLength changed from 20 to 21
+                          - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
                         - Modified property: type
+                          - Deleted enum values: [SEM_ENCARGO]
                           - MaxLength changed from 44 to null
                   - Modified property: payments
                     - Items changed
@@ -586,12 +588,14 @@ GET /accounts/{creditCardAccountId}/limits
                   - Deleted required property: limitAmount
                   - Deleted required property: limitAmountCurrency
                 - Properties changed
+                  - Deleted property: availableAmountCurrency
+                  - Deleted property: limitAmountCurrency
+                  - Deleted property: usedAmountCurrency
                   - Modified property: availableAmount
-                    - Type changed from 'number' to 'string'
+                    - Type changed from 'number' to 'object'
+                    - Format changed from 'double' to ''
                     - Nullable changed from true to false
-                    - MaxLength changed from 20 to 21
-                  - Modified property: availableAmountCurrency
-                    - Pattern changed from '^(\w{3}){1}$|^NA$' to '^(\w{3}){1}$'
+                    - MaxLength changed from 20 to null
                   - Modified property: consolidationType
                     - MaxLength changed from 11 to null
                   - Modified property: creditLineLimitType
@@ -599,19 +603,17 @@ GET /accounts/{creditCardAccountId}/limits
                   - Modified property: identificationNumber
                     - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{0,99}$'
                   - Modified property: limitAmount
-                    - Type changed from 'number' to 'string'
+                    - Type changed from 'number' to 'object'
+                    - Format changed from 'double' to ''
                     - Nullable changed from true to false
-                    - MaxLength changed from 20 to 21
-                  - Modified property: limitAmountCurrency
-                    - Pattern changed from '^(\w{3}){1}$|^NA$' to '^(\w{3}){1}$'
+                    - MaxLength changed from 20 to null
                   - Modified property: lineName
                     - MaxLength changed from 28 to null
                   - Modified property: usedAmount
-                    - Type changed from 'number' to 'string'
+                    - Type changed from 'number' to 'object'
+                    - Format changed from 'double' to ''
                     - Nullable changed from true to false
-                    - MaxLength changed from 20 to 21
-                  - Modified property: usedAmountCurrency
-                    - Pattern changed from '^(\w{3}){1}$|^NA$' to '^(\w{3}){1}$'
+                    - MaxLength changed from 20 to null
   - Modified response: 400
     - Content changed
       - Modified media type: application/json; charset=utf-8
