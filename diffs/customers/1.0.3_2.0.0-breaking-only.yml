@@ -321,7 +321,22 @@ GET /personal/identifications
                   - Modified property: hasBrazilianNationality
                     - Nullable changed from true to false
                   - Modified property: nationality
-                    - Type changed from 'array' to 'object'
+                    - Items changed
+                      - Properties changed
+                        - Modified property: documents
+                          - Items changed
+                            - Required changed
+                              - Deleted required property: expirationDate
+                              - Deleted required property: issueDate
+                            - Properties changed
+                              - Modified property: country
+                                - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                              - Modified property: expirationDate
+                                - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                              - Modified property: issueDate
+                                - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                        - Modified property: otherNationalitiesInfo
+                          - Pattern changed from '' to '^\S[\s\S]*$'
                   - Modified property: otherDocuments
                     - Items changed
                       - Required changed
