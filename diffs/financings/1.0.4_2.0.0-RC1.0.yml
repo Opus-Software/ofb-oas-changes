@@ -27,8 +27,6 @@ GET /contracts
                     - Description changed from 'Nome da Marca reportada pelo participante do Open Banking. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes' to 'Nome da Marca reportada pelo participante no Open Finance. Recomenda-se utilizar, sempre que possível, o mesmo nome de marca atribuído no campo do diretório Customer Friendly Server Name (Authorisation Server).'
                   - Modified property: companyCnpj
                     - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
-                  - Modified property: contractId
-                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{1,100}$'
                   - Modified property: ipocCode
                     - MinLength changed from 0 to 22
                     - Pattern changed from '' to '^\d{22,67}$'
@@ -246,7 +244,7 @@ O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas
                   - MinLength changed from 0 to 4
                   - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
                 - Modified property: contractNumber
-                  - Pattern changed from '' to '^\d{1,100}$'
+                  - Pattern changed from '' to '^\d{0,99}$'
                 - Modified property: contractedFees
                   - Description changed from '' to 'Lista que traz o conjunto de informações necessárias para demonstrar a composição das taxas de juros remuneratórios da Modalidade de crédito
 '
@@ -591,7 +589,7 @@ GET /contracts/{contractId}/payments
                     - Properties changed
                       - Modified property: instalmentId
                         - MinLength changed from 0 to 1
-                        - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
+                        - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{0,99}$'
                       - Modified property: overParcel
                         - Description changed from 'Objeto das tarifas e encargos que foram pagos fora da parcela.' to 'Objeto das tarifas e encargos que foram pagos fora da parcela.
 [Restrição] Informação deve ser enviada caso ela exista, torna-se obrigatório caso haja parcelamento.
@@ -651,7 +649,7 @@ Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimai
                         - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
                       - Modified property: paymentId
                         - MinLength changed from 0 to 1
-                        - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{1,100}$'
+                        - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{0,99}$'
             - Modified property: links
               - AdditionalProperties changed from false to null
             - Modified property: meta
