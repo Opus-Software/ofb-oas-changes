@@ -2,7 +2,33 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 1
+### Modified Endpoints: 2
 -------------------------
+GET /accounts/{creditCardAccountId}/limits
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: availableAmount
+                    - Required changed
+                      - Deleted required property: amount
+                      - Deleted required property: currency
+                    - Properties changed
+                      - Modified property: amount
+                        - Description changed from 'Valor disponível do limite informado expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.' to 'Valor disponível do limite informado expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.
+[Restrição] O campo é obrigatório caso isLimitFlexible for igual a false.
+'
+                      - Modified property: currency
+                        - Description changed from 'Moeda referente ao limite informado, segundo modelo ISO-4217. p.ex. 'BRL.'
+Todos os saldos informados estão representados com a moeda vigente do Brasil. 
+' to 'Moeda referente ao limite informado, segundo modelo ISO-4217. p.ex. 'BRL.'
+Todos os saldos informados estão representados com a moeda vigente do Brasil.  
+[Restrição] O campo é obrigatório caso isLimitFlexible for igual a false.
+'
 GET /accounts/{creditCardAccountId}/transactions-current
 - Description changed from 'Método para obter a lista de transações da conta de pagamento pós-paga identificada por creditCardAccountId mantida pelo cliente na instituição transmissora.' to 'Método para obter a lista de transações recentes (últimos 7 dias) da conta de pagamento pós-paga identificada por creditCardAccountId mantida pelo cliente na instituição transmissora.'
