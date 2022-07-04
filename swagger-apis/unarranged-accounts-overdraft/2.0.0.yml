@@ -740,6 +740,7 @@ components:
       type: object
       description: Conjunto de informações referentes aos pagamentos realizados de uma operação de crédito de adiantamento a depositantes
       required:
+        - paidInstalments
         - contractOutstandingBalance
         - releases
       properties:
@@ -885,8 +886,10 @@ components:
       type: object
       description: Conjunto de informações referentes às garantias que avalizam a operação de crédito contratada
       required:
+        - currency
         - warrantyType
         - warrantySubType
+        - warrantyAmount
       properties:
         currency:
           type: string
