@@ -169,6 +169,17 @@ GET /contracts/{contractId}
       - Modified media type: application/json
         - Schema changed
           - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: contractedFees
+                  - Items changed
+                    - Properties changed
+                      - Modified property: feeRate
+                        - Description changed from 'Objeto que traz o conjunto de informações necessárias para demonstrar a composição das taxas de juros remuneratórios da Modalidade de crédito.
+[Restrição] Preenchimento obrigatório quando a forma de cobrança for Percentual.
+' to 'É o valor da tarifa em percentual pactuada no contrato.
+[Restrição] Preenchimento obrigatório quando a forma de cobrança for Percentual.
+'
             - Modified property: meta
               - Required changed
                 - New required property: totalPages
@@ -330,6 +341,16 @@ GET /contracts/{contractId}/payments
             - Modified property: data
               - Required changed
                 - Deleted required property: paidInstalments
+              - Properties changed
+                - Modified property: releases
+                  - Items changed
+                    - Properties changed
+                      - Modified property: overParcel
+                        - Description changed from 'Objeto das tarifas e encargos que foram pagos fora da parcela.
+[Restrição] Informação deve ser enviada caso ela exista, torna-se obrigatório caso haja parcelamento.
+' to 'Objeto das tarifas e encargos que foram pagos fora da parcela.
+[Restrição] Informação deve ser enviada caso ela exista.
+'
             - Modified property: meta
               - Required changed
                 - New required property: totalPages
@@ -488,6 +509,18 @@ GET /contracts/{contractId}/scheduled-instalments
       - Modified media type: application/json
         - Schema changed
           - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: balloonPayments
+                  - Items changed
+                    - Required changed
+                      - New required property: dueDate
+                - Modified property: contractRemainingNumber
+                  - Description changed from 'Prazo Remanescente segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.
+[Restrição] Obrigatoriamente deve ser preenchido caso o typeNumberOfInstalments seja diferente de SEM_PRAZO_REMANESCENTE.
+' to 'Prazo Remanescente segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.
+[Restrição] Obrigatoriamente deve ser preenchido caso o typeContractRemaining seja diferente de SEM_PRAZO_REMANESCENTE.
+'
             - Modified property: meta
               - Required changed
                 - New required property: totalPages

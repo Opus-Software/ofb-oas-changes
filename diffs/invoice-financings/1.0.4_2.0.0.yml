@@ -229,7 +229,7 @@ O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas
                         - Type changed from 'number' to 'string'
                         - Description changed from 'Percentual que representa o valor da tarifa pactuada para o contrato. 
 [Restrição] Preenchimento obrigatório quando a forma de cobrança por Percentual.    maxLength: 19
-' to 'Objeto que traz o conjunto de informações necessárias para demonstrar a composição das taxas de juros remuneratórios da Modalidade de crédito.
+' to 'É o valor da tarifa em percentual pactuada no contrato.
 [Restrição] Preenchimento obrigatório quando a forma de cobrança for Percentual.
 '
                         - Example changed from 50 to '0.062000'
@@ -480,7 +480,7 @@ GET /contracts/{contractId}/payments
                     - Properties changed
                       - Modified property: overParcel
                         - Description changed from 'Objeto das tarifas e encargos que foram pagos fora da parcela.' to 'Objeto das tarifas e encargos que foram pagos fora da parcela.
-[Restrição] Informação deve ser enviada caso ela exista, torna-se obrigatório caso haja parcelamento.
+[Restrição] Informação deve ser enviada caso ela exista.
 '
                         - AdditionalProperties changed from false to null
                         - Properties changed
@@ -666,7 +666,6 @@ GET /contracts/{contractId}/scheduled-instalments
                     - AdditionalProperties changed from false to null
                     - Required changed
                       - Deleted required property: currency
-                      - Deleted required property: dueDate
                     - Properties changed
                       - Deleted property: currency
                       - Modified property: amount
@@ -687,7 +686,7 @@ GET /contracts/{contractId}/scheduled-instalments
                         - MinLength changed from 0 to 2
                 - Modified property: contractRemainingNumber
                   - Description changed from 'Prazo Remanescente segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.' to 'Prazo Remanescente segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.
-[Restrição] Obrigatoriamente deve ser preenchido caso o typeNumberOfInstalments seja diferente de SEM_PRAZO_REMANESCENTE.
+[Restrição] Obrigatoriamente deve ser preenchido caso o typeContractRemaining seja diferente de SEM_PRAZO_REMANESCENTE.
 '
                   - Nullable changed from true to false
                   - Max changed from null to 999999
