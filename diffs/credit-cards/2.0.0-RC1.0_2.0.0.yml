@@ -2,7 +2,7 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 6
+### Modified Endpoints: 7
 -------------------------
 GET /accounts
 - Responses changed
@@ -449,6 +449,12 @@ GET /accounts/{creditCardAccountId}/bills/{billId}/transactions
       - Modified media type: application/json
         - Schema changed
           - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: brazilianAmount
+                    - Description changed from 'Valor da transação expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais, em moeda corrente do Brasil' to 'Valor da transação expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais, em moeda corrente do Brasil. Deve ser o valor de amount convertido para BRL (em caso de compra internacional) ou o mesmo valor de amount (em caso de compra nacional).
+'
             - Modified property: links
               - Properties changed
                 - New property: last
@@ -778,5 +784,30 @@ Todos os saldos informados estão representados com a moeda vigente do Brasil.
               - Properties changed
                 - New property: totalPages
                 - New property: totalRecords
+GET /accounts/{creditCardAccountId}/transactions
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: brazilianAmount
+                    - Description changed from 'Valor da transação expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais, em moeda corrente do Brasil' to 'Valor da transação expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais, em moeda corrente do Brasil. Deve ser o valor de amount convertido para BRL (em caso de compra internacional) ou o mesmo valor de amount (em caso de compra nacional).
+'
 GET /accounts/{creditCardAccountId}/transactions-current
 - Description changed from 'Método para obter a lista de transações da conta de pagamento pós-paga identificada por creditCardAccountId mantida pelo cliente na instituição transmissora.' to 'Método para obter a lista de transações recentes (últimos 7 dias) da conta de pagamento pós-paga identificada por creditCardAccountId mantida pelo cliente na instituição transmissora.'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: brazilianAmount
+                    - Description changed from 'Valor da transação expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais, em moeda corrente do Brasil' to 'Valor da transação expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais, em moeda corrente do Brasil. Deve ser o valor de amount convertido para BRL (em caso de compra internacional) ou o mesmo valor de amount (em caso de compra nacional).
+'
