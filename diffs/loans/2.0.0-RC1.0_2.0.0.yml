@@ -185,7 +185,11 @@ GET /contracts/{contractId}
               - Required changed
                 - Deleted required property: CET
               - Properties changed
+                - Modified property: CET
+                  - MaxLength changed from 8 to 9
+                  - Pattern changed from '^[01]\.\d{6}$' to '^\d{1,2}\.\d{6}$'
                 - Modified property: contractedFees
+                  - Description changed from 'Lista que traz o conjunto de informações necessárias para demonstrar a composição das taxas de juros remuneratórios da Modalidade de crédito' to 'Lista que traz as informações das tarifas pactuadas no contrato.'
                   - Items changed
                     - Properties changed
                       - Modified property: feeRate
@@ -204,6 +208,14 @@ GET /contracts/{contractId}
 ' to 'Objeto que traz o conjunto de informações necessárias para demonstrar a composição das taxas de juros remuneratórios da Modalidade de crédito.  
 Caso o contrato não possua taxas de juros, deve ser compartilhada uma lista vazia. Caso o contrato possua uma taxa de juros com valor 0, deve ser compartilhado um objeto com o valor 0 de forma explícita.
 '
+                  - Items changed
+                    - Properties changed
+                      - Modified property: postFixedRate
+                        - MaxLength changed from 8 to 9
+                        - Pattern changed from '^[01]\.\d{6}$' to '^\d{1,2}\.\d{6}$'
+                      - Modified property: preFixedRate
+                        - MaxLength changed from 8 to 9
+                        - Pattern changed from '^[01]\.\d{6}$' to '^\d{1,2}\.\d{6}$'
             - Modified property: links
               - Properties changed
                 - Modified property: first
@@ -380,7 +392,13 @@ GET /contracts/{contractId}/payments
               - Properties changed
                 - Modified property: releases
                   - Items changed
+                    - Required changed
+                      - Deleted required property: instalmentId
                     - Properties changed
+                      - Modified property: instalmentId
+                        - Description changed from 'Identificador de parcela, de responsabilidade de cada Instituição transmissora.' to 'Identificador de parcela, de responsabilidade de cada Instituição transmissora.  
+[Restrição] Informação de envio obrigatório quando isOverParcelPayment tiver o valor FALSE.
+'
                       - Modified property: overParcel
                         - Description changed from 'Objeto das tarifas e encargos que foram pagos fora da parcela.
 [Restrição] Informação deve ser enviada caso ela exista, torna-se obrigatório caso haja parcelamento.

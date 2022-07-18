@@ -67,7 +67,7 @@ GET /contracts/{contractId}
                   - Type changed from 'number' to 'string'
                   - Format changed from '' to 'double'
                   - Nullable changed from true to false
-                  - Pattern changed from '' to '^[01]\.\d{6}$'
+                  - Pattern changed from '' to '^\d{1,2}\.\d{6}$'
                 - Modified property: amortizationScheduled
                   - MaxLength changed from 23 to null
                 - Modified property: amortizationScheduledAdditionalInfo
@@ -126,12 +126,12 @@ GET /contracts/{contractId}
                         - Type changed from 'number' to 'string'
                         - Format changed from '' to 'double'
                         - Nullable changed from true to false
-                        - Pattern changed from '' to '^[01]\.\d{6}$'
+                        - Pattern changed from '' to '^\d{1,2}\.\d{6}$'
                       - Modified property: preFixedRate
                         - Type changed from 'number' to 'string'
                         - Format changed from '' to 'double'
                         - Nullable changed from true to false
-                        - Pattern changed from '' to '^[01]\.\d{6}$'
+                        - Pattern changed from '' to '^\d{1,2}\.\d{6}$'
                       - Modified property: referentialRateIndexerSubType
                         - MaxLength changed from 24 to null
                       - Modified property: referentialRateIndexerType
@@ -188,6 +188,7 @@ GET /contracts/{contractId}/payments
                 - Modified property: releases
                   - Items changed
                     - Required changed
+                      - Deleted required property: instalmentId
                       - Deleted required property: overParcel
                     - Properties changed
                       - Modified property: instalmentId
