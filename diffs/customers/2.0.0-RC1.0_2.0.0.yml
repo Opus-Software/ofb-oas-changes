@@ -67,6 +67,13 @@ GET /business/identifications
                           - Properties changed
                             - Modified property: areaCode
                               - Deleted enum values: [NA]
+                      - Modified property: postalAddresses
+                        - Items changed
+                          - Properties changed
+                            - Modified property: country
+                              - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                            - Modified property: districtName
+                              - Pattern changed from '\w*\W*' to '[\w\W\s]*'
                   - Modified property: otherDocuments
                     - MinItems changed from 0 to 1
                   - Modified property: parties
@@ -78,6 +85,8 @@ GET /business/identifications
 ' to 'Nome civil completo da pessoa natural (Direito fundamental da pessoa, o nome civil é aquele atribuído à pessoa natural desde o registro de seu nascimento, com o qual será identificada por toda a sua vida, bem como após a sua morte)
 [Restrição] O campo civilName deve ser obrigatoriamente preenchido quando personType for PESSOA_JURIDICA.
 '
+                        - Modified property: documentCountry
+                          - Pattern changed from '[\w*\W*]' to '[\w\W\s]*'
             - Modified property: links
               - Properties changed
                 - Modified property: first
