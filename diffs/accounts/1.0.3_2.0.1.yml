@@ -1,0 +1,883 @@
+﻿### New Endpoints: 1
+--------------------
+GET /accounts/{accountId}/transactions-current  
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 5
+-------------------------
+GET /accounts
+- New query param: pagination-key
+- Modified query param: accountType
+  - Schema changed
+    - MaxLength changed from 24 to null
+- Modified query param: page
+  - Schema changed
+    - Max changed from null to 2.147483647e+09
+- Responses changed
+  - New response: 422
+  - New response: 423
+  - New response: 504
+  - New response: 529
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - AdditionalProperties changed from false to null
+                - Required changed
+                  - Deleted required property: branchCode
+                - Properties changed
+                  - Modified property: accountId
+                    - MinLength changed from 0 to 1
+                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{0,99}$'
+                  - Modified property: branchCode
+                    - Description changed from 'Código da Agência detentora da conta. (Agência é a dependência destinada ao atendimento aos clientes, ao público em geral e aos associados de cooperativas de crédito, no exercício de atividades da instituição, não podendo ser móvel ou transitória)' to 'Código da Agência detentora da conta. (Agência é a dependência destinada ao atendimento aos clientes, ao público em geral e aos associados de cooperativas de crédito, no exercício de atividades da instituição, não podendo ser móvel ou transitória)
+[Restrição] Obrigatoriamente deve ser preenchido quando o campo "type" for diferente de CONTA_PAGAMENTO_PRE_PAGA.
+'
+                    - Pattern changed from '\d{4}|^NA$' to '^\d{4}$'
+                  - Modified property: brandName
+                    - Description changed from 'Nome da Marca reportada pelo participante do Open Banking. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes.' to 'Nome da Marca reportada pelo participante no Open Finance. Recomenda-se utilizar, sempre que possível, o mesmo nome de marca atribuído no campo do diretório Customer Friendly Server Name (Authorisation Server).'
+                  - Modified property: companyCnpj
+                    - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
+                  - Modified property: compeCode
+                    - Pattern changed from '\d{3}|^NA$' to '^\d{3}$'
+                  - Modified property: number
+                    - Pattern changed from '^\d{8,20}$|^NA$' to '^\d{8,20}$'
+                  - Modified property: type
+                    - MaxLength changed from 24 to null
+            - Modified property: links
+              - AdditionalProperties changed from false to null
+              - Properties changed
+                - Modified property: first
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: default
+    - Description changed from 'Dados de identificação das contas obtidos com sucesso.' to 'Erro inesperado.'
+    - Content changed
+      - New media type: application/json; charset=utf-8
+      - Deleted media type: application/json
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+GET /accounts/{accountId}
+- Responses changed
+  - New response: 422
+  - New response: 423
+  - New response: 504
+  - New response: 529
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: data
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: branchCode
+              - Properties changed
+                - Modified property: branchCode
+                  - Description changed from 'Código da Agência detentora da conta. (Agência é a dependência destinada ao atendimento aos clientes, ao público em geral e aos associados de cooperativas de crédito, no exercício de atividades da instituição, não podendo ser móvel ou transitória)
+' to 'Código da Agência detentora da conta. (Agência é a dependência destinada ao atendimento aos clientes, ao público em geral e aos associados de cooperativas de crédito, no exercício de atividades da instituição, não podendo ser móvel ou transitória)
+[Restrição] Obrigatoriamente deve ser preenchido quando o campo "type" for diferente de conta pré-paga.
+'
+                  - Pattern changed from '\d{4}|^NA$' to '^\d{4}$'
+                - Modified property: compeCode
+                  - Pattern changed from '\d{3}|^NA$' to '^\d{3}$'
+                - Modified property: number
+                  - Pattern changed from '^\d{8,20}$|^NA$' to '^\d{8,20}$'
+                - Modified property: subtype
+                  - MaxLength changed from 18 to null
+                - Modified property: type
+                  - MaxLength changed from 24 to null
+            - Modified property: links
+              - AdditionalProperties changed from false to null
+              - Properties changed
+                - Modified property: first
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: default
+    - Description changed from 'Dados de identificação da conta identificada por accountId obtidos com sucesso.' to 'Erro inesperado.'
+    - Content changed
+      - New media type: application/json; charset=utf-8
+      - Deleted media type: application/json
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+GET /accounts/{accountId}/balances
+- Responses changed
+  - New response: 422
+  - New response: 423
+  - New response: 504
+  - New response: 529
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: data
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: automaticallyInvestedAmountCurrency
+                - Deleted required property: availableAmountCurrency
+                - Deleted required property: blockedAmountCurrency
+              - Properties changed
+                - Deleted property: automaticallyInvestedAmountCurrency
+                - Deleted property: availableAmountCurrency
+                - Deleted property: blockedAmountCurrency
+                - Modified property: automaticallyInvestedAmount
+                  - Type changed from 'number' to 'object'
+                  - Format changed from 'double' to ''
+                  - Description changed from 'Saldo disponível com aplicação automática - corresponde a soma do saldo disponível acrescido do valor obtido a partir da aplicação automática Expresso em valor monetário com 4 casas decimais.' to 'Saldo disponível com aplicação automática - corresponde a soma do saldo disponível acrescido do valor obtido a partir da aplicação automática. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.'
+                  - Example changed from 100000.04 to null
+                  - Nullable changed from true to false
+                  - MaxLength changed from 20 to null
+                  - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                  - Required changed
+                    - New required property: amount
+                    - New required property: currency
+                  - Properties changed
+                    - New property: amount
+                    - New property: currency
+                - Modified property: availableAmount
+                  - Type changed from 'number' to 'object'
+                  - Format changed from 'double' to ''
+                  - Description changed from 'Saldo disponível para utilização imediata. No caso de conta de depósito a vista, sem considerar cheque especial e investimentos atrelados a conta. Admite saldo negativo. Expresso em valor monetário com 4 casas decimais.' to 'Saldo disponível para utilização imediata. No caso de conta de depósito a vista, sem considerar cheque especial e investimentos atrelados a conta. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.'
+                  - Example changed from 100000.04 to null
+                  - Nullable changed from true to false
+                  - MaxLength changed from 20 to null
+                  - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                  - Required changed
+                    - New required property: amount
+                    - New required property: currency
+                  - Properties changed
+                    - New property: amount
+                    - New property: currency
+                - Modified property: blockedAmount
+                  - Type changed from 'number' to 'object'
+                  - Format changed from 'double' to ''
+                  - Description changed from 'Saldo bloqueado, não disponível para utilização imediata, por motivo de bloqueio apresentado para o cliente nos canais eletrônicos Expresso em valor monetário com 4 casas decimais.' to 'Saldo bloqueado, não disponível para utilização imediata, por motivo de bloqueio apresentado para o cliente nos canais eletrônicos. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.'
+                  - Example changed from 99.9999 to null
+                  - Nullable changed from true to false
+                  - MaxLength changed from 20 to null
+                  - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                  - Required changed
+                    - New required property: amount
+                    - New required property: currency
+                  - Properties changed
+                    - New property: amount
+                    - New property: currency
+            - Modified property: links
+              - AdditionalProperties changed from false to null
+              - Properties changed
+                - Modified property: first
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: default
+    - Description changed from 'Dados relativos aos saldos da conta identificada por accountId obtidos com sucesso.' to 'Erro inesperado.'
+    - Content changed
+      - New media type: application/json; charset=utf-8
+      - Deleted media type: application/json
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+GET /accounts/{accountId}/overdraft-limits
+- Responses changed
+  - New response: 422
+  - New response: 423
+  - New response: 504
+  - New response: 529
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: data
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: overdraftContractedLimit
+                - Deleted required property: overdraftContractedLimitCurrency
+                - Deleted required property: overdraftUsedLimit
+                - Deleted required property: overdraftUsedLimitCurrency
+                - Deleted required property: unarrangedOverdraftAmount
+                - Deleted required property: unarrangedOverdraftAmountCurrency
+              - Properties changed
+                - Deleted property: overdraftContractedLimitCurrency
+                - Deleted property: overdraftUsedLimitCurrency
+                - Deleted property: unarrangedOverdraftAmountCurrency
+                - Modified property: overdraftContractedLimit
+                  - Type changed from 'number' to 'object'
+                  - Format changed from 'double' to ''
+                  - Example changed from 99.9999 to null
+                  - Nullable changed from true to false
+                  - MaxLength changed from 20 to null
+                  - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                  - Required changed
+                    - New required property: amount
+                    - New required property: currency
+                  - Properties changed
+                    - New property: amount
+                    - New property: currency
+                - Modified property: overdraftUsedLimit
+                  - Type changed from 'number' to 'object'
+                  - Format changed from 'double' to ''
+                  - Example changed from 10000.9999 to null
+                  - Nullable changed from true to false
+                  - MaxLength changed from 20 to null
+                  - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                  - Required changed
+                    - New required property: amount
+                    - New required property: currency
+                  - Properties changed
+                    - New property: amount
+                    - New property: currency
+                - Modified property: unarrangedOverdraftAmount
+                  - Type changed from 'number' to 'object'
+                  - Format changed from 'double' to ''
+                  - Example changed from 99.9999 to null
+                  - Nullable changed from true to false
+                  - MaxLength changed from 20 to null
+                  - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                  - Required changed
+                    - New required property: amount
+                    - New required property: currency
+                  - Properties changed
+                    - New property: amount
+                    - New property: currency
+            - Modified property: links
+              - AdditionalProperties changed from false to null
+              - Properties changed
+                - Modified property: first
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: default
+    - Description changed from 'Dados de limites da conta identificada por accountId obtidos com sucesso.' to 'Erro inesperado.'
+    - Content changed
+      - New media type: application/json; charset=utf-8
+      - Deleted media type: application/json
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+GET /accounts/{accountId}/transactions
+- New query param: pagination-key
+- Modified query param: creditDebitIndicator
+  - Schema changed
+    - MaxLength changed from 7 to null
+- Modified query param: page
+  - Schema changed
+    - Max changed from null to 2.147483647e+09
+- Responses changed
+  - New response: 422
+  - New response: 423
+  - New response: 504
+  - New response: 529
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - AdditionalProperties changed from false to null
+                - Required changed
+                  - New required property: transactionAmount
+                  - Deleted required property: amount
+                  - Deleted required property: partieBranchCode
+                  - Deleted required property: partieCheckDigit
+                  - Deleted required property: partieCnpjCpf
+                  - Deleted required property: partieCompeCode
+                  - Deleted required property: partieNumber
+                  - Deleted required property: partiePersonType
+                  - Deleted required property: transactionCurrency
+                - Properties changed
+                  - New property: transactionAmount
+                  - Deleted property: amount
+                  - Deleted property: transactionCurrency
+                  - Modified property: completedAuthorisedPaymentType
+                    - MaxLength changed from 19 to null
+                  - Modified property: creditDebitType
+                    - MaxLength changed from 7 to null
+                  - Modified property: partieBranchCode
+                    - Pattern changed from '\d{4}|^NA$' to '^\d{4}$'
+                  - Modified property: partieCnpjCpf
+                    - Pattern changed from '^\d{11}$|^\d{14}$|^NA$' to '^\d{11}$|^\d{14}$'
+                  - Modified property: partieCompeCode
+                    - Pattern changed from '\d{3}|^NA$' to '^\d{3}$'
+                  - Modified property: partieNumber
+                    - Pattern changed from '^\d{8,20}$|^NA$' to '^\d{8,20}$'
+                  - Modified property: partiePersonType
+                    - Description changed from 'Identificação do Tipo de Pessoa da pessoa envolvida na transação.
+Pessoa Natural - Informar CPF no campo “payerCnpjCpf”
+Pessoa Jurídica - Informar CNPJ no campo “payerCnpjCpf”
+' to 'Identificação do Tipo de Pessoa da pessoa envolvida na transação.   
+Pessoa Natural - Informar CPF no campo “payerCnpjCpf”.   
+Pessoa Jurídica - Informar CNPJ no campo “payerCnpjCpf”.
+'
+                    - MaxLength changed from 15 to null
+                  - Modified property: transactionId
+                    - MinLength changed from 0 to 1
+                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{0,99}$'
+                  - Modified property: type
+                    - Description changed from 'Tipo de Transação
+' to 'O campo deve classificar a transação em um dos tipos descritos. O transmissor deve classificar as transações disponíveis associando-a a um dos itens do Enum listado neste campo. 
+A opção OUTROS só deve ser utilizada para os casos em que de fato a transação compartilhada não possa ser classificada como um dos itens deste Enum.
+'
+                    - MaxLength changed from 31 to null
+            - Modified property: links
+              - AdditionalProperties changed from false to null
+              - Properties changed
+                - Deleted property: last
+                - Modified property: first
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: default
+    - Description changed from 'Dados da lista de transações da conta identificada por accountId obtidos com sucesso.' to 'Erro inesperado.'
+    - Content changed
+      - New media type: application/json; charset=utf-8
+      - Deleted media type: application/json
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+Servers changed
+- New server: https://api.banco.com.br/open-banking/accounts/v2
+- New server: https://apih.banco.com.br/open-banking/accounts/v2
+- Deleted server: https://api.banco.com.br/open-banking/accounts/v1
+- Deleted server: https://apih.banco.com.br/open-banking/accounts/v1

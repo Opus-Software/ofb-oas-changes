@@ -1,0 +1,339 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 5
+-------------------------
+GET /contracts
+- Modified query param: page
+  - Schema changed
+    - Max changed from null to 2.147483647e+09
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: companyCnpj
+                    - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
+                  - Modified property: contractId
+                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{0,99}$'
+                  - Modified property: ipocCode
+                    - Pattern changed from '' to '^\d{22,67}$'
+                  - Modified property: productSubType
+                    - MaxLength changed from 39 to null
+                  - Modified property: productType
+                    - MaxLength changed from 32 to null
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+  - Modified response: default
+    - Content changed
+      - Deleted media type: application/json
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+GET /contracts/{contractId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Required changed
+                - Deleted required property: CET
+                - Deleted required property: amortizationScheduledAdditionalInfo
+                - Deleted required property: contractAmount
+                - Deleted required property: currency
+                - Deleted required property: dueDate
+                - Deleted required property: firstInstalmentDueDate
+                - Deleted required property: instalmentPeriodicityAdditionalInfo
+                - Deleted required property: settlementDate
+              - Properties changed
+                - Modified property: CET
+                  - Type changed from 'number' to 'string'
+                  - Nullable changed from true to false
+                  - Pattern changed from '' to '^\d{1,2}\.\d{6}$'
+                - Modified property: amortizationScheduled
+                  - MaxLength changed from 23 to null
+                - Modified property: amortizationScheduledAdditionalInfo
+                  - MaxLength changed from 50 to 200
+                - Modified property: contractAmount
+                  - Type changed from 'number' to 'string'
+                  - Nullable changed from true to false
+                  - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
+                - Modified property: contractNumber
+                  - Pattern changed from '' to '^\d{1,100}$'
+                - Modified property: contractedFees
+                  - Items changed
+                    - Required changed
+                      - Deleted required property: feeAmount
+                      - Deleted required property: feeRate
+                    - Properties changed
+                      - Modified property: feeAmount
+                        - Type changed from 'number' to 'string'
+                        - Nullable changed from true to false
+                        - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
+                      - Modified property: feeCharge
+                        - MaxLength changed from 10 to null
+                      - Modified property: feeChargeType
+                        - MaxLength changed from 11 to null
+                      - Modified property: feeCode
+                        - Pattern changed from '[\w\W\s]*' to '[\w\W\s]+'
+                      - Modified property: feeName
+                        - Pattern changed from '[\w\W\s]*' to '[\w\W\s]+'
+                      - Modified property: feeRate
+                        - Type changed from 'number' to 'string'
+                        - Nullable changed from true to false
+                        - Pattern changed from '' to '^[01]\.\d{6}$'
+                - Modified property: contractedFinanceCharges
+                  - Items changed
+                    - Required changed
+                      - Deleted required property: chargeAdditionalInfo
+                    - Properties changed
+                      - Modified property: chargeRate
+                        - Type changed from 'number' to 'string'
+                        - Format changed from '' to 'double'
+                        - Pattern changed from '' to '^[01]\.\d{6}$'
+                      - Modified property: chargeType
+                        - MaxLength changed from 31 to null
+                - Modified property: instalmentPeriodicity
+                  - MaxLength changed from 25 to null
+                - Modified property: interestRates
+                  - Items changed
+                    - Required changed
+                      - Deleted required property: additionalInfo
+                      - Deleted required property: postFixedRate
+                      - Deleted required property: preFixedRate
+                    - Properties changed
+                      - Modified property: calculation
+                        - MaxLength changed from 6 to null
+                      - Modified property: interestRateType
+                        - MaxLength changed from 8 to null
+                      - Modified property: postFixedRate
+                        - Type changed from 'number' to 'string'
+                        - Nullable changed from true to false
+                        - Pattern changed from '' to '^\d{1,2}\.\d{6}$'
+                      - Modified property: preFixedRate
+                        - Type changed from 'number' to 'string'
+                        - Nullable changed from true to false
+                        - Pattern changed from '' to '^\d{1,2}\.\d{6}$'
+                      - Modified property: referentialRateIndexerSubType
+                        - MaxLength changed from 24 to null
+                      - Modified property: referentialRateIndexerType
+                        - MaxLength changed from 18 to null
+                      - Modified property: taxPeriodicity
+                        - MaxLength changed from 2 to null
+                      - Modified property: taxType
+                        - MaxLength changed from 7 to null
+                - Modified property: ipocCode
+                  - Pattern changed from '' to '^\d{22,67}$'
+                - Modified property: productSubType
+                  - MaxLength changed from 39 to null
+                - Modified property: productType
+                  - MaxLength changed from 32 to null
+                - Modified property: settlementDate
+                  - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+  - Modified response: default
+    - Content changed
+      - Deleted media type: application/json
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+GET /contracts/{contractId}/payments
+- Modified query param: page
+  - Schema changed
+    - Max changed from null to 2.147483647e+09
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Required changed
+                - Deleted required property: paidInstalments
+              - Properties changed
+                - Modified property: contractOutstandingBalance
+                  - Type changed from 'number' to 'string'
+                  - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
+                - Modified property: paidInstalments
+                  - Nullable changed from true to false
+                  - MaxLength changed from 3 to null
+                - Modified property: releases
+                  - Items changed
+                    - Required changed
+                      - Deleted required property: instalmentId
+                      - Deleted required property: overParcel
+                    - Properties changed
+                      - Modified property: overParcel
+                        - Properties changed
+                          - Modified property: charges
+                            - Items changed
+                              - Required changed
+                                - Deleted required property: chargeAdditionalInfo
+                              - Properties changed
+                                - Modified property: chargeAmount
+                                  - Type changed from 'number' to 'string'
+                                  - Nullable changed from true to false
+                                  - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
+                                - Modified property: chargeType
+                                  - MaxLength changed from 31 to null
+                          - Modified property: fees
+                            - Items changed
+                              - Properties changed
+                                - Modified property: feeAmount
+                                  - Type changed from 'number' to 'string'
+                                  - Nullable changed from true to false
+                                  - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
+                                - Modified property: feeCode
+                                  - Pattern changed from '[\w\W\s]*' to '[\w\W\s]+'
+                                - Modified property: feeName
+                                  - Pattern changed from '[\w\W\s]*' to '[\w\W\s]+'
+                      - Modified property: paidAmount
+                        - Type changed from 'number' to 'string'
+                        - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+  - Modified response: default
+    - Content changed
+      - Deleted media type: application/json
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+GET /contracts/{contractId}/scheduled-instalments
+- Modified query param: page
+  - Schema changed
+    - Max changed from null to 2.147483647e+09
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Required changed
+                - Deleted required property: balloonPayments
+                - Deleted required property: contractRemainingNumber
+                - Deleted required property: totalNumberOfInstalments
+              - Properties changed
+                - Modified property: balloonPayments
+                  - Nullable changed from true to false
+                  - Items changed
+                    - Required changed
+                      - Deleted required property: currency
+                    - Properties changed
+                      - Deleted property: currency
+                      - Modified property: amount
+                        - Type changed from 'number' to 'object'
+                        - Format changed from 'double' to ''
+                        - Nullable changed from true to false
+                        - MaxLength changed from 20 to null
+                - Modified property: contractRemainingNumber
+                  - Nullable changed from true to false
+                  - MaxLength changed from 6 to null
+                - Modified property: dueInstalments
+                  - Nullable changed from true to false
+                  - MaxLength changed from 3 to null
+                - Modified property: paidInstalments
+                  - Nullable changed from true to false
+                  - MaxLength changed from 3 to null
+                - Modified property: pastDueInstalments
+                  - Nullable changed from true to false
+                  - MaxLength changed from 3 to null
+                - Modified property: totalNumberOfInstalments
+                  - Nullable changed from true to false
+                  - MaxLength changed from 6 to null
+                - Modified property: typeContractRemaining
+                  - MaxLength changed from 22 to null
+                - Modified property: typeNumberOfInstalments
+                  - MaxLength changed from 15 to null
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+  - Modified response: default
+    - Content changed
+      - Deleted media type: application/json
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+GET /contracts/{contractId}/warranties
+- Modified query param: page
+  - Schema changed
+    - Max changed from null to 2.147483647e+09
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Required changed
+                  - Deleted required property: currency
+                - Properties changed
+                  - Modified property: warrantyAmount
+                    - Type changed from 'number' to 'string'
+                    - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
+                  - Modified property: warrantySubType
+                    - MaxLength changed from 96 to null
+                  - Modified property: warrantyType
+                    - Deleted enum values: [SEM_TIPO_GARANTIA]
+                    - MaxLength changed from 37 to null
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+  - Modified response: default
+    - Content changed
+      - Deleted media type: application/json
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id

@@ -1,0 +1,1020 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 5
+-------------------------
+GET /contracts
+- New query param: pagination-key
+- Modified query param: page
+  - Schema changed
+    - Max changed from null to 2.147483647e+09
+- Responses changed
+  - New response: 422
+  - New response: 423
+  - New response: 504
+  - New response: 529
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - AdditionalProperties changed from false to null
+                - Properties changed
+                  - Modified property: brandName
+                    - Description changed from 'Nome da Marca reportada pelo participante do Open Banking. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes' to 'Nome da Marca reportada pelo participante no Open Finance. Recomenda-se utilizar, sempre que possível, o mesmo nome de marca atribuído no campo do diretório Customer Friendly Server Name (Authorisation Server).'
+                  - Modified property: companyCnpj
+                    - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
+                  - Modified property: contractId
+                    - MinLength changed from 0 to 1
+                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{0,99}$'
+                  - Modified property: ipocCode
+                    - MinLength changed from 0 to 22
+                    - Pattern changed from '' to '^\d{22,67}$'
+                  - Modified property: productSubType
+                    - MaxLength changed from 39 to null
+                  - Modified property: productType
+                    - MaxLength changed from 32 to null
+            - Modified property: links
+              - AdditionalProperties changed from false to null
+              - Properties changed
+                - Modified property: first
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: default
+    - Description changed from 'Lista de contratos obtida com sucesso.' to 'Erro inesperado.'
+    - Content changed
+      - New media type: application/json; charset=utf-8
+      - Deleted media type: application/json
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+GET /contracts/{contractId}
+- Responses changed
+  - New response: 422
+  - New response: 423
+  - New response: 504
+  - New response: 529
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: data
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: CET
+                - Deleted required property: amortizationScheduledAdditionalInfo
+                - Deleted required property: contractAmount
+                - Deleted required property: currency
+                - Deleted required property: dueDate
+                - Deleted required property: firstInstalmentDueDate
+                - Deleted required property: instalmentPeriodicityAdditionalInfo
+                - Deleted required property: settlementDate
+              - Properties changed
+                - New property: disbursementDates
+                - Deleted property: disbursementDate
+                - Modified property: CET
+                  - Type changed from 'number' to 'string'
+                  - Description changed from 'CET – Custo Efetivo Total deve ser expresso na forma de taxa percentual anual e   incorpora todos os encargos e despesas incidentes nas operações de crédito (taxa de juro, mas também tarifas, tributos, seguros e outras despesas cobradas).
+O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros
+(representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)
+' to 'CET – Custo Efetivo Total deve ser expresso na forma de taxa percentual anual e incorpora todos os encargos e despesas incidentes nas operações de crédito (taxa de juro, mas também tarifas, tributos, seguros e outras despesas cobradas). 
+O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros 
+(representação de porcentagem p.ex: 0.150000. Este valor representa 15%. O valor 1 representa 100%).
+'
+                  - Example changed from 0.29 to '0.290000'
+                  - Nullable changed from true to false
+                  - MinLength changed from 0 to 8
+                  - MaxLength changed from 19 to 9
+                  - Pattern changed from '' to '^\d{1,2}\.\d{6}$'
+                - Modified property: amortizationScheduled
+                  - MaxLength changed from 23 to null
+                - Modified property: amortizationScheduledAdditionalInfo
+                  - Description changed from 'Campo obrigatório para complementar a informação relativa à amortização quando selecionada a opção OUTROS.
+[Restrição] Obrigatório para complementar a informação relativa à amortização quando selecionada a opção OUTROS, para os demais casos informar "NA".
+' to 'Campo obrigatório para complementar a informação relativa à amortização quando selecionada a opção OUTROS.
+'
+                  - Example changed from 'NA' to 'Informações complementares relativa à amortização do tipo 'OUTROS''
+                  - MaxLength changed from 50 to 200
+                - Modified property: contractAmount
+                  - Type changed from 'number' to 'string'
+                  - Description changed from 'Valor contratado da operação. Expresso em valor monetário com até 4 casas decimais' to 'Valor contratado da operação. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.'
+                  - Example changed from 100000.04 to '1000.0400'
+                  - Nullable changed from true to false
+                  - MinLength changed from 0 to 4
+                  - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
+                - Modified property: contractNumber
+                  - Pattern changed from '' to '^\d{1,100}$'
+                - Modified property: contractedFees
+                  - Description changed from '' to 'Lista que traz as informações das tarifas pactuadas no contrato.'
+                  - Items changed
+                    - AdditionalProperties changed from false to null
+                    - Required changed
+                      - Deleted required property: feeAmount
+                      - Deleted required property: feeRate
+                    - Properties changed
+                      - Modified property: feeAmount
+                        - Type changed from 'number' to 'string'
+                        - Description changed from 'Valor monetário da tarifa pactuada no contrato. Preenchimento obrigatório quando a forma de cobrança for: Mínimo, Máximo ou Fixo.
+' to 'Valor monetário da tarifa pactuada no contrato. 
+[Restrição] Preenchimento obrigatório quando a forma de cobrança for diferente de Percentual.
+'
+                        - Example changed from 100000.04 to '1000.0400'
+                        - Nullable changed from true to false
+                        - MinLength changed from 0 to 4
+                        - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
+                      - Modified property: feeCharge
+                        - MaxLength changed from 10 to null
+                      - Modified property: feeChargeType
+                        - MaxLength changed from 11 to null
+                      - Modified property: feeCode
+                        - Description changed from 'Sigla identificadora da tarifa pactuada' to 'Sigla identificadora da tarifa pactuada
+'
+                        - MinLength changed from 0 to 2
+                        - Pattern changed from '[\w\W\s]*' to '[\w\W\s]+'
+                      - Modified property: feeName
+                        - Description changed from 'Denominação da Tarifa pactuada' to 'Denominação da Tarifa pactuada
+'
+                        - MinLength changed from 0 to 2
+                        - Pattern changed from '[\w\W\s]*' to '[\w\W\s]+'
+                      - Modified property: feeRate
+                        - Type changed from 'number' to 'string'
+                        - Description changed from 'Percentual que representa o valor da tarifa pactuada para o contrato. 
+[Restrição] Preenchimento obrigatório quando a forma de cobrança por Percentual.    maxLength: 19
+' to 'É o valor da tarifa em percentual pactuada no contrato.
+[Restrição] Preenchimento obrigatório quando a forma de cobrança for Percentual.
+'
+                        - Example changed from 50 to '0.062000'
+                        - Nullable changed from true to false
+                        - MinLength changed from 0 to 8
+                        - MaxLength changed from 19 to 8
+                        - Pattern changed from '' to '^[01]\.\d{6}$'
+                - Modified property: contractedFinanceCharges
+                  - Items changed
+                    - AdditionalProperties changed from false to null
+                    - Required changed
+                      - Deleted required property: chargeAdditionalInfo
+                    - Properties changed
+                      - Modified property: chargeAdditionalInfo
+                        - Description changed from 'Campos para informações adicionais.
+[Restrição] Obrigatório se selecionada a opção 'OUTROS' em Tipo de encargo pactuado no contrato. Pode ser retornado NA caso a Instituição não possua essa informação.
+' to 'Campo para informações adicionais.
+[Restrição] Obrigatório se selecionada a opção 'OUTROS' em Tipo de encargo pactuado no contrato.
+'
+                        - MaxLength changed from null to 50
+                      - Modified property: chargeRate
+                        - Type changed from 'number' to 'string'
+                        - Format changed from '' to 'double'
+                        - Description changed from 'Representa o valor do encargo em percentual pactuado no contrato. Exemplo: 0.0210 (=2.1%).
+' to 'Representa o valor do encargo em percentual pactuado no contrato.   
+O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros 
+(representação de porcentagem p.ex: 0.150000. Este valor representa 15%. O valor 1 representa 100%).
+'
+                        - Example changed from 0.07 to '0.071200'
+                        - MinLength changed from 0 to 8
+                        - MaxLength changed from 19 to 8
+                        - Pattern changed from '' to '^[01]\.\d{6}$'
+                      - Modified property: chargeType
+                        - MaxLength changed from 31 to null
+                - Modified property: dueDate
+                  - MinLength changed from 0 to 2
+                - Modified property: firstInstalmentDueDate
+                  - Description changed from 'Data de vencimento primeira parcela do principal' to 'Data de vencimento primeira parcela do principal.
+'
+                  - MinLength changed from 0 to 2
+                - Modified property: instalmentPeriodicity
+                  - MaxLength changed from 25 to null
+                - Modified property: instalmentPeriodicityAdditionalInfo
+                  - Description changed from 'Campo obrigatório para complementar a informação relativa à periodicidade de pagamento regular quando tiver a opção OUTROS.
+[Restrição] Obrigatório para complementar a informação relativa da periodicidade de pagamento regular, quando selecionada o tipo ou subtipo OUTRO.
+' to 'Campo obrigatório para complementar a informação relativa à periodicidade de pagamento regular quando tiver a opção OUTROS. 
+'
+                - Modified property: interestRates
+                  - Description changed from '' to 'Objeto que traz o conjunto de informações necessárias para demonstrar a composição das taxas de juros remuneratórios da Modalidade de crédito.  
+Caso o contrato não possua taxas de juros, deve ser compartilhada uma lista vazia. Caso o contrato possua uma taxa de juros com valor 0, deve ser compartilhado um objeto com o valor 0 de forma explícita.
+'
+                  - Items changed
+                    - AdditionalProperties changed from false to null
+                    - Required changed
+                      - Deleted required property: additionalInfo
+                      - Deleted required property: postFixedRate
+                      - Deleted required property: preFixedRate
+                    - Properties changed
+                      - Modified property: additionalInfo
+                        - Description changed from 'Texto com informações adicionais sobre a composição das taxas de juros pactuadas' to 'Texto com informações adicionais sobre a composição das taxas de juros pactuadas. 
+[Restrição] Caso a instituição possua a informação para compartilhamento, esta deverá ser informada.
+'
+                      - Modified property: calculation
+                        - MaxLength changed from 6 to null
+                      - Modified property: interestRateType
+                        - MaxLength changed from 8 to null
+                      - Modified property: postFixedRate
+                        - Type changed from 'number' to 'string'
+                        - Description changed from 'Taxa pós fixada aplicada sob o contrato da modalidade crédito.
+p.ex. 0.0045 .O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros
+(representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)
+' to 'Taxa pós fixada aplicada sob o contrato da modalidade crédito.   
+p.ex. 0.014500. O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.150000. 
+Este valor representa 15%. O valor 1 representa 100%).
+'
+                        - Example changed from 0.55 to '0.550000'
+                        - Nullable changed from true to false
+                        - MinLength changed from 0 to 8
+                        - MaxLength changed from 19 to 9
+                        - Pattern changed from '' to '^\d{1,2}\.\d{6}$'
+                      - Modified property: preFixedRate
+                        - Type changed from 'number' to 'string'
+                        - Description changed from 'Taxa pré fixada aplicada sob o contrato da modalidade crédito.
+p.ex. 0.0045. O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros
+(representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)
+' to 'Taxa pré fixada aplicada sob o contrato da modalidade crédito.   
+p.ex. 0.014500. O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros(representação de porcentagem p.ex: 0.150000. 
+Este valor representa 15%. O valor 1 representa 100%).
+'
+                        - Example changed from 0.6 to '0.600000'
+                        - Nullable changed from true to false
+                        - MinLength changed from 0 to 8
+                        - MaxLength changed from 19 to 9
+                        - Pattern changed from '' to '^\d{1,2}\.\d{6}$'
+                      - Modified property: referentialRateIndexerSubType
+                        - MaxLength changed from 24 to null
+                      - Modified property: referentialRateIndexerType
+                        - MaxLength changed from 18 to null
+                      - Modified property: taxPeriodicity
+                        - MaxLength changed from 2 to null
+                      - Modified property: taxType
+                        - MaxLength changed from 7 to null
+                - Modified property: ipocCode
+                  - MinLength changed from 0 to 22
+                  - Pattern changed from '' to '^\d{22,67}$'
+                - Modified property: productSubType
+                  - MaxLength changed from 39 to null
+                - Modified property: productType
+                  - MaxLength changed from 32 to null
+                - Modified property: settlementDate
+                  - Description changed from 'Data de liquidação da operação.
+[Restrição] Deve aceitar NA caso não seja retornado pela instituição.
+' to 'Data de liquidação da operação.
+'
+                  - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+            - Modified property: links
+              - AdditionalProperties changed from false to null
+              - Properties changed
+                - Modified property: first
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: default
+    - Description changed from 'Dados do contrato de antecipação de recebíveis identificado por contractId' to 'Erro inesperado.'
+    - Content changed
+      - New media type: application/json; charset=utf-8
+      - Deleted media type: application/json
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+GET /contracts/{contractId}/payments
+- New query param: pagination-key
+- Modified query param: page
+  - Schema changed
+    - Max changed from null to 2.147483647e+09
+- Responses changed
+  - New response: 422
+  - New response: 423
+  - New response: 504
+  - New response: 529
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: data
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: paidInstalments
+              - Properties changed
+                - Modified property: contractOutstandingBalance
+                  - Type changed from 'number' to 'string'
+                  - Example changed from 100000.04 to '1000.0400'
+                  - MinLength changed from 0 to 4
+                  - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
+                - Modified property: paidInstalments
+                  - Nullable changed from true to false
+                  - Max changed from null to 999
+                  - MaxLength changed from 3 to null
+                - Modified property: releases
+                  - Items changed
+                    - AdditionalProperties changed from false to null
+                    - Required changed
+                      - Deleted required property: instalmentId
+                      - Deleted required property: overParcel
+                    - Properties changed
+                      - Modified property: instalmentId
+                        - Description changed from 'Identificador de parcela, de responsabilidade de cada Instituição transmissora.' to 'Identificador de parcela, de responsabilidade de cada Instituição transmissora.  
+[Restrição] Informação de envio obrigatório quando isOverParcelPayment tiver o valor FALSE.
+'
+                      - Modified property: overParcel
+                        - Description changed from 'Objeto das tarifas e encargos que foram pagos fora da parcela.' to 'Objeto das tarifas e encargos que foram pagos fora da parcela.
+[Restrição] Informação deve ser enviada caso ela exista.
+'
+                        - AdditionalProperties changed from false to null
+                        - Properties changed
+                          - Modified property: charges
+                            - Items changed
+                              - AdditionalProperties changed from false to null
+                              - Required changed
+                                - Deleted required property: chargeAdditionalInfo
+                              - Properties changed
+                                - Modified property: chargeAdditionalInfo
+                                  - Description changed from 'Campo de preenchimento obrigatório se selecionada a opção 'OUTROS' em Tipo de encargo pago fora da parcela' to 'Campo livre para preenchimento das informações adicionais referente ao encargo.
+[Restrição] Obrigatório quando chargeType for igual 'OUTROS'.
+'
+                                - Modified property: chargeAmount
+                                  - Type changed from 'number' to 'string'
+                                  - Description changed from 'Valor do pagamento do encargo pago fora da parcela. Expresso em valor monetário com até 4 casas decimais.' to 'Valor do pagamento do encargo pago fora da parcela. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.'
+                                  - Example changed from 100000.04 to '1000.0400'
+                                  - Nullable changed from true to false
+                                  - MinLength changed from 0 to 4
+                                  - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
+                                - Modified property: chargeType
+                                  - Description changed from 'Tipo de encargo pago fora da parcela' to 'Tipo de encargo pactuado no contrato.'
+                                  - MaxLength changed from 31 to null
+                          - Modified property: fees
+                            - Items changed
+                              - AdditionalProperties changed from false to null
+                              - Properties changed
+                                - Modified property: feeAmount
+                                  - Type changed from 'number' to 'string'
+                                  - Description changed from 'Valor monetário da tarifa pactuada no contrato. Preenchimento obrigatório quando a forma de cobrança for: Mínimo, Máximo ou Fixo
+' to 'Valor monetário da tarifa pactuada no contrato.
+Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.
+'
+                                  - Example changed from 100000.04 to '1000.0400'
+                                  - Nullable changed from true to false
+                                  - MinLength changed from 0 to 4
+                                  - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
+                                - Modified property: feeCode
+                                  - Description changed from 'Sigla identificadora da tarifa pactuada' to 'Sigla identificadora da tarifa pactuada.
+'
+                                  - MinLength changed from 0 to 2
+                                  - Pattern changed from '[\w\W\s]*' to '[\w\W\s]+'
+                                - Modified property: feeName
+                                  - Description changed from 'Denominação da Tarifa pactuada' to 'Denominação da Tarifa pactuada.
+'
+                                  - MinLength changed from 0 to 2
+                                  - Pattern changed from '[\w\W\s]*' to '[\w\W\s]+'
+                      - Modified property: paidAmount
+                        - Type changed from 'number' to 'string'
+                        - Description changed from 'Valor do pagamento referente ao  contrato da modalidade de crédito consultada.
+Expresso em valor monetário com até 4 casas decimais.
+' to 'Valor do pagamento referente ao  contrato da modalidade de crédito consultada.
+Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.
+'
+                        - Example changed from 100000.04 to '1000.0400'
+                        - MinLength changed from 0 to 4
+                        - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
+            - Modified property: links
+              - AdditionalProperties changed from false to null
+              - Properties changed
+                - Modified property: first
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: default
+    - Description changed from 'Dados de pagamentos do contrato de antecipação de recebíveis identificado por contractId' to 'Erro inesperado.'
+    - Content changed
+      - New media type: application/json; charset=utf-8
+      - Deleted media type: application/json
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+GET /contracts/{contractId}/scheduled-instalments
+- New query param: pagination-key
+- Modified query param: page
+  - Schema changed
+    - Max changed from null to 2.147483647e+09
+- Responses changed
+  - New response: 422
+  - New response: 423
+  - New response: 504
+  - New response: 529
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: data
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: balloonPayments
+                - Deleted required property: contractRemainingNumber
+                - Deleted required property: totalNumberOfInstalments
+              - Properties changed
+                - Modified property: balloonPayments
+                  - Nullable changed from true to false
+                  - MinItems changed from 0 to 1
+                  - Items changed
+                    - AdditionalProperties changed from false to null
+                    - Required changed
+                      - Deleted required property: currency
+                    - Properties changed
+                      - Deleted property: currency
+                      - Modified property: amount
+                        - Type changed from 'number' to 'object'
+                        - Format changed from 'double' to ''
+                        - Description changed from 'Valor monetário da parcela não regular a vencer.  Expresso em valor monetário com 4 casas decimais.' to 'Valor monetário da parcela não regular a vencer. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.'
+                        - Example changed from 100000.04 to null
+                        - Nullable changed from true to false
+                        - MaxLength changed from 20 to null
+                        - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                        - Required changed
+                          - New required property: amount
+                          - New required property: currency
+                        - Properties changed
+                          - New property: amount
+                          - New property: currency
+                      - Modified property: dueDate
+                        - MinLength changed from 0 to 2
+                - Modified property: contractRemainingNumber
+                  - Description changed from 'Prazo Remanescente segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.' to 'Prazo Remanescente segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.
+[Restrição] Obrigatoriamente deve ser preenchido caso o typeContractRemaining seja diferente de SEM_PRAZO_REMANESCENTE.
+'
+                  - Nullable changed from true to false
+                  - Max changed from null to 999999
+                  - MaxLength changed from 6 to null
+                - Modified property: dueInstalments
+                  - Nullable changed from true to false
+                  - Max changed from null to 999
+                  - MaxLength changed from 3 to null
+                - Modified property: paidInstalments
+                  - Nullable changed from true to false
+                  - Max changed from null to 999
+                  - MaxLength changed from 3 to null
+                - Modified property: pastDueInstalments
+                  - Nullable changed from true to false
+                  - Max changed from null to 999
+                  - MaxLength changed from 3 to null
+                - Modified property: totalNumberOfInstalments
+                  - Description changed from 'Prazo Total segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.' to 'Prazo Total segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.
+[Restrição] Obrigatoriamente deve ser preenchido caso o typeNumberOfInstalments seja diferente de SEM_PRAZO_TOTAL.
+'
+                  - Nullable changed from true to false
+                  - Max changed from null to 999999
+                  - MaxLength changed from 6 to null
+                - Modified property: typeContractRemaining
+                  - MaxLength changed from 22 to null
+                - Modified property: typeNumberOfInstalments
+                  - MaxLength changed from 15 to null
+            - Modified property: links
+              - AdditionalProperties changed from false to null
+              - Properties changed
+                - Modified property: first
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: default
+    - Description changed from 'Dados do cronograma de parcelas do contrato de antecipação de recebíveis identificado por contractId' to 'Erro inesperado.'
+    - Content changed
+      - New media type: application/json; charset=utf-8
+      - Deleted media type: application/json
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+GET /contracts/{contractId}/warranties
+- New query param: pagination-key
+- Modified query param: page
+  - Schema changed
+    - Max changed from null to 2.147483647e+09
+- Responses changed
+  - New response: 422
+  - New response: 423
+  - New response: 504
+  - New response: 529
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - AdditionalProperties changed from false to null
+                - Required changed
+                  - Deleted required property: currency
+                - Properties changed
+                  - Modified property: warrantyAmount
+                    - Type changed from 'number' to 'string'
+                    - Description changed from 'Valor original da garantia. Valor monetário, expresso com até 4 casas decimais.
+' to 'Valor original da garantia. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.
+'
+                    - Example changed from 100000.04 to '1000.0400'
+                    - MinLength changed from 0 to 4
+                    - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^\d{1,15}\.\d{2,4}$'
+                  - Modified property: warrantySubType
+                    - New enum values: [ACORDOS_COMPENSACAO_LIQUIDACAO_OBRIGACOES PROAGRO SEM_SUB_TIPO_GARANTIA]
+                    - MaxLength changed from 96 to null
+                  - Modified property: warrantyType
+                    - Deleted enum values: [SEM_TIPO_GARANTIA]
+                    - MaxLength changed from 37 to null
+            - Modified property: links
+              - AdditionalProperties changed from false to null
+              - Properties changed
+                - Modified property: first
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: default
+    - Description changed from 'Lista de garantias vinculadas ao contrato de antecipação de recebíveis identificado por contractId' to 'Erro inesperado.'
+    - Content changed
+      - New media type: application/json; charset=utf-8
+      - Deleted media type: application/json
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+Servers changed
+- New server: https://api.banco.com.br/open-banking/invoice-financings/v2
+- New server: https://apih.banco.com.br/open-banking/invoice-financings/v2
+- Deleted server: https://api.banco.com.br/open-banking/invoice-financings/v1
+- Deleted server: https://apih.banco.com.br/open-banking/invoice-financings/v1

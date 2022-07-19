@@ -1,0 +1,1368 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 6
+-------------------------
+GET /business/financial-relations
+- Responses changed
+  - New response: 423
+  - New response: 504
+  - New response: 529
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: data
+              - AdditionalProperties changed from false to null
+              - Properties changed
+                - Modified property: accounts
+                  - MinItems changed from 1 to 0
+                  - Items changed
+                    - AdditionalProperties changed from false to null
+                    - Required changed
+                      - Deleted required property: branchCode
+                    - Properties changed
+                      - Modified property: branchCode
+                        - Description changed from 'Código da Agência detentora da conta. (Agência é a dependência destinada ao atendimento aos clientes, ao público em geral e aos associados de cooperativas de crédito, no exercício de atividades da instituição, não podendo ser móvel ou transitória)
+' to 'Código da Agência detentora da conta. (Agência é a dependência destinada ao atendimento aos clientes, ao público em geral e aos associados de cooperativas de crédito, no exercício de atividades da instituição, não podendo ser móvel ou transitória)   
+[Restrição] Obrigatoriamente deve ser preenchido quando o campo "type" for diferente de conta pré paga.
+'
+                        - Pattern changed from '\d{4}|^NA$' to '^\d{4}$'
+                      - Modified property: compeCode
+                        - Pattern changed from '\d{3}|^NA$' to '^\d{3}$'
+                      - Modified property: number
+                        - Pattern changed from '^\d{8,20}$|^NA$' to '^\d{8,20}$'
+                      - Modified property: type
+                        - Description changed from 'Tipos de contas. Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas, conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica. Vide Enum
+Conta de depósito à vista ou Conta corrente - é o tipo mais comum. Nela, o dinheiro fica à sua disposição para ser sacado a qualquer momento. Essa conta não gera rendimentos para o depositante
+Conta poupança - foi criada para estimular as pessoas a pouparem. O dinheiro que ficar na conta por trinta dias passa a gerar rendimentos, com isenção de imposto de renda para quem declara. Ou seja, o dinheiro “cresce” (rende) enquanto ficar guardado na conta. Cada depósito terá rendimentos de mês em mês, sempre no dia do mês em que o dinheiro tiver sido depositado
+Conta de pagamento pré-paga: segundo CIRCULAR Nº 3.680, BCB de  2013, é a 'destinada à execução de transações de pagamento em moeda eletrônica realizadas com base em fundos denominados em reais previamente aportados'.
+SEM_TIPO_CONTA - para reporte nos dados de identificação quando o cliente não possuir conta na instituição transmissora.
+' to 'Tipos de contas. Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas, conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica. Vide Enum:
+Conta de depósito à vista ou Conta corrente - é o tipo mais comum. Nela, o dinheiro fica à sua disposição para ser sacado a qualquer momento. Essa conta não gera rendimentos para o depositante.
+Conta poupança - foi criada para estimular as pessoas a pouparem. O dinheiro que ficar na conta por trinta dias passa a gerar rendimentos, com isenção de imposto de renda para quem declara. Ou seja, o dinheiro “cresce” (rende) enquanto ficar guardado na conta. Cada depósito terá rendimentos de mês em mês, sempre no dia do mês em que o dinheiro tiver sido depositado.
+Conta de pagamento pré-paga - segundo CIRCULAR Nº 3.680, BCB de  2013, é a 'destinada à execução de transações de pagamento em moeda eletrônica realizadas com base em fundos denominados em reais previamente aportados'.
+'
+                        - Deleted enum values: [SEM_TIPO_CONTA]
+                - Modified property: procurators
+                  - MinItems changed from 1 to 0
+                  - Items changed
+                    - AdditionalProperties changed from false to null
+                    - Required changed
+                      - Deleted required property: socialName
+                    - Properties changed
+                      - Modified property: cnpjCpfNumber
+                        - Pattern changed from '^\d{11}$|^\d{14}$|^NA$' to '^\d{11}$|^\d{14}$'
+                      - Modified property: socialName
+                        - Description changed from 'Nome social da pessoa natural, se houver. Aquele pelo qual travestis e transexuais se reconhecem, 
+bem como são identificados por sua comunidade e em seu meio social, conforme Decreto Local.
+[Restrição] Preenchimento obrigatório quando o sócio for uma pessoa natural.
+' to 'Nome social da pessoa natural, se houver. Aquele pelo qual travestis e transexuais se reconhecem, 
+bem como são identificados por sua comunidade e em seu meio social, conforme Decreto Local.
+'
+                      - Modified property: type
+                        - Deleted enum values: [NAO_POSSUI]
+                        - MaxLength changed from 19 to null
+                - Modified property: productsServicesType
+                  - Items changed
+                    - MaxLength changed from 24 to null
+                - Modified property: updateDateTime
+                  - Description changed from 'Data e hora da atualização do bloco de Relacionamento, conforme especificação RFC-3339, formato UTC.' to 'Data e hora da atualização dos campos \<_endpoint_\>, conforme especificação RFC-3339, formato UTC. Quando não existente uma data vinculada especificamente ao bloco, assumir a data e hora de atualização do cadastro como um todo.
+'
+            - Modified property: links
+              - AdditionalProperties changed from false to null
+              - Properties changed
+                - Modified property: first
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: default
+    - Description changed from 'Dados sobre relacionamento pessoa jurídica' to 'Erro inesperado.'
+    - Content changed
+      - New media type: application/json; charset=utf-8
+      - Deleted media type: application/json
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+GET /business/identifications
+- New query param: page
+- New query param: page-size
+- New query param: pagination-key
+- Responses changed
+  - New response: 422
+  - New response: 423
+  - New response: 504
+  - New response: 529
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: data
+              - MinItems changed from 0 to 1
+              - Items changed
+                - Required changed
+                  - New required property: companiesCnpj
+                  - Deleted required property: companyCnpjNumber
+                  - Deleted required property: tradeName
+                - Properties changed
+                  - New property: companiesCnpj
+                  - Deleted property: companyCnpjNumber
+                  - Modified property: brandName
+                    - Description changed from 'Nome da Marca reportada pelo participante do Open Banking. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes
+' to 'Nome da Marca reportada pelo participante no Open Finance. Recomenda-se utilizar, sempre que possível, o mesmo nome de marca atribuído no campo do diretório Customer Friendly Server Name (Authorisation Server).
+'
+                  - Modified property: businessId
+                    - MinLength changed from 0 to 1
+                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{0,99}$'
+                  - Modified property: cnpjNumber
+                    - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
+                  - Modified property: contacts
+                    - AdditionalProperties changed from false to null
+                    - Properties changed
+                      - Modified property: emails
+                        - MinItems changed from 1 to 0
+                        - Items changed
+                          - AdditionalProperties changed from false to null
+                      - Modified property: phones
+                        - MinItems changed from 1 to 0
+                        - Items changed
+                          - AdditionalProperties changed from false to null
+                          - Required changed
+                            - Deleted required property: countryCallingCode
+                            - Deleted required property: phoneExtension
+                          - Properties changed
+                            - Modified property: areaCode
+                              - Deleted enum values: [NA]
+                              - MaxLength changed from 2 to null
+                            - Modified property: countryCallingCode
+                              - Description changed from 'Número de DDI (Discagem Direta Internacional) para telefone de acesso ao Cliente - se houver' to 'Número de DDI (Discagem Direta Internacional) para telefone de acesso ao Cliente - se houver
+[Restrição] O preenchimento é obrigatório quando for diferente de 55. 
+'
+                              - Pattern changed from '^\d{2,4}$|^NA$' to '^\d{1,4}$'
+                            - Modified property: number
+                              - Pattern changed from '^([0-9]{8,11})|^NA$' to '^([0-9]{8,11})$'
+                            - Modified property: phoneExtension
+                              - Pattern changed from '^\d{1,5}$|^NA$' to '^\d{1,5}$'
+                            - Modified property: type
+                              - MaxLength changed from 5 to null
+                      - Modified property: postalAddresses
+                        - Items changed
+                          - AdditionalProperties changed from false to null
+                          - Required changed
+                            - New required property: countryCode
+                            - Deleted required property: address
+                            - Deleted required property: countrySubDivision
+                            - Deleted required property: districtName
+                            - Deleted required property: postCode
+                          - Properties changed
+                            - Modified property: address
+                              - Description changed from 'Corresponde ao endereço comercial do cliente' to 'Corresponde ao endereço comercial do cliente.
+'
+                              - MinLength changed from 0 to 2
+                              - Pattern changed from '[\w\W\s]*' to '^\w{2}[\w\W\s]*$'
+                            - Modified property: countryCode
+                              - Description changed from 'Código do pais de acordo com o código “alpha3” do ISO-3166' to 'Código do pais de acordo com o código alpha3 do ISO-3166'
+                              - Pattern changed from '' to '^([A-Z]{3})$'
+                            - Modified property: countrySubDivision
+                              - Deleted enum values: [NA]
+                            - Modified property: districtName
+                              - Description changed from 'Bairro é uma comunidade ou região localizada em uma cidade ou município de acordo com as suas subdivisões geográficas.' to 'Bairro é uma comunidade ou região localizada em uma cidade ou município de acordo com as suas subdivisões geográficas. Preenchimento obrigatório, se houver.
+'
+                            - Modified property: geographicCoordinates
+                              - AdditionalProperties changed from false to null
+                              - Required changed
+                                - New required property: latitude
+                                - New required property: longitude
+                              - Properties changed
+                                - Modified property: latitude
+                                  - Description changed from 'Informação da Latitude referente a geolocalização informada. Entre -90 e 90.p.ex. '-90.8365180'. (2 casas antes da vírgula, 11 posições) 
+' to 'Informação da Latitude referente a geolocalização informada. Entre -90 e 90.p.ex. '-23.5475000'. (2 casas antes da vírgula, 11 posições)
+'
+                                  - Example changed from '-90.8365180' to '-23.5475000'
+                                - Modified property: longitude
+                                  - Description changed from 'Informação da Longitude referente a geolocalização informada. Entre -180 e 180. p.ex '-180.836519.' (3 casas antes da vírgula, 11 posições) 
+' to 'Informação da Longitude referente a geolocalização informada. Entre -180 e 180. p.ex '-46.6361100'. (3 casas antes da vírgula, 11 posições)
+'
+                                  - Example changed from '-180.836519' to '-46.6361100'
+                            - Modified property: postCode
+                              - Pattern changed from '\d{8}|^NA$' to '^\d{8}$'
+                            - Modified property: townName
+                              - Description changed from 'Localidade: O nome da localidade corresponde à designação da cidade ou município no qual o endereço está localizado.
+' to 'Localidade: O nome da localidade corresponde à designação da cidade ou município no qual o endereço está localizado.  
+'
+                              - MinLength changed from 0 to 2
+                              - Pattern changed from '[\w\W\s]*' to '^\w{2}[\w\W\s]*$'
+                  - Modified property: otherDocuments
+                    - Items changed
+                      - AdditionalProperties changed from false to null
+                      - Required changed
+                        - New required property: type
+                        - Deleted required property: expirationDate
+                      - Properties changed
+                        - Modified property: country
+                          - Description changed from 'Pais de emissão do tipo de documento informado. Código do pais de acordo com o código “alpha3” do ISO-3166' to 'Pais de emissão do tipo de documento informado. Código do pais de acordo com o código alpha3 do ISO-3166'
+                          - Pattern changed from '^(\w{3}){1}$|^NA$' to '^(\w{3}){1}$'
+                        - Modified property: expirationDate
+                          - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                  - Modified property: parties
+                    - Items changed
+                      - AdditionalProperties changed from false to null
+                      - Required changed
+                        - Deleted required property: civilName
+                        - Deleted required property: companyName
+                        - Deleted required property: documentCountry
+                        - Deleted required property: documentExpirationDate
+                        - Deleted required property: shareholding
+                        - Deleted required property: socialName
+                        - Deleted required property: startDate
+                      - Properties changed
+                        - Modified property: civilName
+                          - Description changed from 'Nome civil completo da pessoa natural (Direito fundamental da pessoa, o nome civil é aquele atribuído à pessoa natural desde o registro de seu nascimento, com o qual será identificada por toda a sua vida, bem como após a sua morte)' to 'Nome civil completo da pessoa natural (Direito fundamental da pessoa, o nome civil é aquele atribuído à pessoa natural desde o registro de seu nascimento, com o qual será identificada por toda a sua vida, bem como após a sua morte)
+[Restrição] O campo civilName deve ser obrigatoriamente preenchido quando personType for PESSOA_JURIDICA.
+'
+                        - Modified property: companyName
+                          - Description changed from 'Razão social da empresa consultada é o termo registrado sob o qual uma pessoa jurídica (PJ) se individualiza e exerce suas atividades. Também pode ser chamada por denominação social ou firma empresarial' to 'Razão social da empresa consultada é o termo registrado sob o qual uma pessoa jurídica (PJ) se individualiza e exerce suas atividades. Também pode ser chamada por denominação social ou firma empresarial
+[Restrição] o campo companyName deve ser obrigatoriamente preenchido quando personType for PESSOA_JURIDICA.
+'
+                        - Modified property: documentCountry
+                          - Description changed from 'País de emissão do documento. Código do pais de acordo com o código alpha3 do ISO-3166.' to 'País de emissão do documento. Código do pais de acordo com o código alpha3 do ISO-3166.
+'
+                          - Pattern changed from '' to '[\w\W\s]*'
+                        - Modified property: documentExpirationDate
+                          - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                        - Modified property: shareholding
+                          - Format changed from '' to 'double'
+                          - Description changed from 'Percentual de participação societária (informar com 2 casas decimais). Sócio só deve ser informado se sua participação societária for igual ou superior a 25%. p.ex: 0.25 (Este valor  representa 25%. O valor '1 'representa 100%)
+' to 'Percentual de participação societária (informar com 6 casas decimais). O Sócio só deve ser informado se sua participação societária for igual ou superior a 25%. p.ex: 0.250000 (Este valor  representa 25%. O valor '1 'representa 100%).
+[Restrição]: Campo obrigatório caso o type for igual a SOCIO e este tiver participação societária maior que 25%.
+'
+                          - Example changed from '0.51' to '0.510000'
+                          - MinLength changed from 0 to 8
+                          - MaxLength changed from 4 to 8
+                          - Pattern changed from '^((\d{1,9}\.\d{2}){1}|NA)$' to '^[01]\.\d{6}$'
+                        - Modified property: socialName
+                          - Description changed from 'Nome social da pessoa natural, se houver. (aquele pelo qual travestis e transexuais se reconhecem, bem como são identificados por sua comunidade e em seu meio social, conforme Decreto Local)' to 'Nome social da pessoa natural, se houver. (aquele pelo qual travestis e transexuais se reconhecem, bem como são identificados por sua comunidade e em seu meio social, conforme Decreto Local).   
+'
+                        - Modified property: type
+                          - MaxLength changed from 13 to null
+                  - Modified property: updateDateTime
+                    - Description changed from 'Data e hora da atualização do bloco, conforme especificação RFC-3339' to 'Data e hora da atualização dos campos \<_endpoint_\>, conforme especificação RFC-3339, formato UTC. Quando não existente uma data vinculada especificamente ao bloco, assumir a data e hora de atualização do cadastro como um todo.
+'
+            - Modified property: links
+              - AdditionalProperties changed from false to null
+              - Properties changed
+                - Modified property: first
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: default
+    - Description changed from 'Dados sobre identificação pessoa jurídica' to 'Erro inesperado.'
+    - Content changed
+      - New media type: application/json; charset=utf-8
+      - Deleted media type: application/json
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+GET /business/qualifications
+- Responses changed
+  - New response: 423
+  - New response: 504
+  - New response: 529
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: data
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: economicActivities
+                - Deleted required property: informedPatrimony
+                - Deleted required property: informedRevenue
+              - Properties changed
+                - Modified property: economicActivities
+                  - MinItems changed from 1 to 0
+                  - Items changed
+                    - Properties changed
+                      - Modified property: code
+                        - Type changed from 'number' to 'string'
+                        - Example changed from 8.599604e+06 to '8599604'
+                        - MinLength changed from 0 to 2
+                        - Pattern changed from '^\d{7}$|^NA$' to '^\d{7}$'
+                      - Modified property: isMain
+                        - Description changed from 'Indica se é o ramo principal de atividade da empresa quando true e se é o ramo secundário quando false.' to 'Indica se é o ramo principal de atividade da empresa quando true e se é o ramo secundário quando false. [Restrição] Somente uma ocorrência relativa ao código da atividade econômica principal deve trazer o valor true.'
+                - Modified property: informedPatrimony
+                  - AdditionalProperties changed from false to null
+                  - Required changed
+                    - Deleted required property: currency
+                  - Properties changed
+                    - Deleted property: currency
+                    - Modified property: amount
+                      - Type changed from 'number' to 'object'
+                      - Format changed from 'double' to ''
+                      - Description changed from 'Valor do patrimônio informado. Expresso em valor monetário com 4 casas decimais.
+Patrimônio é o conjunto de bens vinculado a uma pessoa ou a uma entidade.
+' to 'Valor do patrimônio informado'
+                      - Example changed from 100000.04 to null
+                      - Nullable changed from true to false
+                      - MaxLength changed from 20 to null
+                      - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                      - Required changed
+                        - New required property: amount
+                        - New required property: currency
+                      - Properties changed
+                        - New property: amount
+                        - New property: currency
+                    - Modified property: date
+                      - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                - Modified property: informedRevenue
+                  - AdditionalProperties changed from false to null
+                  - Required changed
+                    - Deleted required property: currency
+                    - Deleted required property: frequency
+                  - Properties changed
+                    - Deleted property: currency
+                    - Modified property: amount
+                      - Type changed from 'number' to 'object'
+                      - Format changed from 'double' to ''
+                      - Description changed from 'Valor do patrimônio informado. Expresso em valor monetário com 4 casas decimais.
+Patrimônio é o conjunto de bens vinculado a uma pessoa ou a uma entidade.
+' to 'Valor do patrimônio informado'
+                      - Example changed from 100000.04 to null
+                      - Nullable changed from true to false
+                      - MaxLength changed from 20 to null
+                      - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                      - Required changed
+                        - New required property: amount
+                        - New required property: currency
+                      - Properties changed
+                        - New property: amount
+                        - New property: currency
+                    - Modified property: frequency
+                      - Deleted enum values: [SEM_FREQUENCIA_FATURAMENTO_INFORMADO]
+                    - Modified property: frequencyAdditionalInfo
+                      - Description changed from 'Texto livre para complementar informação relativa ao patrimonio. 
+[Restrição] Preencher quando frequency for igual OUTROS.
+' to 'Texto livre para complementar informação relativa ao patrimonio.
+[Restrição] Preencher quando frequency for igual OUTROS.
+'
+                    - Modified property: year
+                      - Description changed from 'Ano de referência do Patrimônio, conforme especificação RFC-3339.' to 'Ano de referência da Renda, conforme especificação RFC-3339.'
+                      - Nullable changed from true to false
+                      - MaxLength changed from 4 to null
+                - Modified property: updateDateTime
+                  - Description changed from 'Data e hora da atualização do bloco, conforme especificação RFC-3339' to 'Data e hora da atualização dos campos \<_endpoint_\>, conforme especificação RFC-3339, formato UTC. Quando não existente uma data vinculada especificamente ao bloco, assumir a data e hora de atualização do cadastro como um todo.
+'
+            - Modified property: links
+              - AdditionalProperties changed from false to null
+              - Properties changed
+                - Modified property: first
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: default
+    - Description changed from 'Dados sobre qualificação pessoa jurídica' to 'Erro inesperado.'
+    - Content changed
+      - New media type: application/json; charset=utf-8
+      - Deleted media type: application/json
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+GET /personal/financial-relations
+- Responses changed
+  - New response: 423
+  - New response: 504
+  - New response: 529
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: data
+              - AdditionalProperties changed from false to null
+              - Properties changed
+                - Modified property: accounts
+                  - Description changed from 'Lista de contas depósito à vista, poupança e pagamento pré-pagas mantidas pelo cliente na instituição transmissora.    
+' to 'Lista de contas depósito à vista, poupança e pagamento pré-pagas mantidas pelo cliente na instituição transmissora.
+'
+                  - MinItems changed from 1 to 0
+                  - Items changed
+                    - AdditionalProperties changed from false to null
+                    - Required changed
+                      - Deleted required property: branchCode
+                    - Properties changed
+                      - Modified property: branchCode
+                        - Description changed from 'Código da Agência detentora da conta. (Agência é a dependência destinada ao atendimento aos clientes, ao público em geral e aos associados de cooperativas de crédito, no exercício de atividades da instituição, não podendo ser móvel ou transitória)
+' to 'Código da Agência detentora da conta. (Agência é a dependência destinada ao atendimento aos clientes, ao público em geral e aos associados de cooperativas de crédito, no exercício de atividades da instituição, não podendo ser móvel ou transitória)   
+[Restrição] Obrigatoriamente deve ser preenchido quando o campo "type" for diferente de conta pré paga.
+'
+                        - Pattern changed from '\d{4}|^NA$' to '^\d{4}$'
+                      - Modified property: compeCode
+                        - Pattern changed from '\d{3}|^NA$' to '^\d{3}$'
+                      - Modified property: number
+                        - Pattern changed from '^\d{8,20}$|^NA$' to '^\d{8,20}$'
+                      - Modified property: subtype
+                        - Description changed from 'Subtipo de conta (vide Enum): 
+Conta individual - possui um único titular
+Conta conjunta simples - onde as movimentações financeiras só podem serem realizadas mediante autorização de TODOS os correntistas da conta.
+Conta conjunta solidária - é a modalidade cujos titulares podem realizar movimentações de forma isolada, isto é, sem que seja necessária a autorização dos demais titulares.
+SEM_SUB_TIPO_CONTA - para reporte nos dados de identificação quando o cliente não possuir conta na instituição transmissora.
+' to 'Subtipo de conta (vide Enum): 
+Conta individual - possui um único titular
+Conta conjunta simples - onde as movimentações financeiras só podem serem realizadas mediante autorização de TODOS os correntistas da conta.
+Conta conjunta solidária - é a modalidade cujos titulares podem realizar movimentações de forma isolada, isto é, sem que seja necessária a autorização dos demais titulares.
+'
+                        - Deleted enum values: [SEM_SUB_TIPO_CONTA]
+                      - Modified property: type
+                        - Description changed from 'Tipos de contas. Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas, conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica. Vide Enum
+Conta de depósito à vista ou Conta corrente - é o tipo mais comum. Nela, o dinheiro fica à sua disposição para ser sacado a qualquer momento. Essa conta não gera rendimentos para o depositante
+Conta poupança - foi criada para estimular as pessoas a pouparem. O dinheiro que ficar na conta por trinta dias passa a gerar rendimentos, com isenção de imposto de renda para quem declara. Ou seja, o dinheiro “cresce” (rende) enquanto ficar guardado na conta. Cada depósito terá rendimentos de mês em mês, sempre no dia do mês em que o dinheiro tiver sido depositado
+Conta de pagamento pré-paga: segundo CIRCULAR Nº 3.680, BCB de  2013, é a 'destinada à execução de transações de pagamento em moeda eletrônica realizadas com base em fundos denominados em reais previamente aportados'.
+SEM_TIPO_CONTA - para reporte nos dados de identificação quando o cliente não possuir conta na instituição transmissora.
+' to 'Tipos de contas. Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas, conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica. Vide Enum:
+Conta de depósito à vista ou Conta corrente - é o tipo mais comum. Nela, o dinheiro fica à sua disposição para ser sacado a qualquer momento. Essa conta não gera rendimentos para o depositante.
+Conta poupança - foi criada para estimular as pessoas a pouparem. O dinheiro que ficar na conta por trinta dias passa a gerar rendimentos, com isenção de imposto de renda para quem declara. Ou seja, o dinheiro “cresce” (rende) enquanto ficar guardado na conta. Cada depósito terá rendimentos de mês em mês, sempre no dia do mês em que o dinheiro tiver sido depositado.
+Conta de pagamento pré-paga - segundo CIRCULAR Nº 3.680, BCB de  2013, é a 'destinada à execução de transações de pagamento em moeda eletrônica realizadas com base em fundos denominados em reais previamente aportados'.
+'
+                        - Deleted enum values: [SEM_TIPO_CONTA]
+                - Modified property: procurators
+                  - Description changed from 'Lista dos representantes. De preenchimento obrigatório se houver representante.' to 'Lista dos representantes. 
+[Restrição] De preenchimento obrigatório se houver representante.
+'
+                  - MinItems changed from 1 to 0
+                  - Items changed
+                    - AdditionalProperties changed from false to null
+                    - Required changed
+                      - Deleted required property: socialName
+                    - Properties changed
+                      - Modified property: cpfNumber
+                        - Pattern changed from '^\d{11}$|^NA$' to '^\d{11}$'
+                      - Modified property: type
+                        - Deleted enum values: [NAO_APLICA]
+                        - MaxLength changed from 19 to null
+                - Modified property: productsServicesType
+                  - Items changed
+                    - MaxLength changed from 24 to null
+                - Modified property: productsServicesTypeAdditionalInfo
+                  - Pattern changed from '[\w\W\s]*' to '^[\w\W]*$'
+                - Modified property: updateDateTime
+                  - Description changed from 'Data e hora da atualização do bloco de Relacionamento, conforme especificação RFC-3339, formato UTC.' to 'Data e hora da atualização dos campos \<_endpoint_\>, conforme especificação RFC-3339, formato UTC. Quando não existente uma data vinculada especificamente ao bloco, assumir a data e hora de atualização do cadastro como um todo.
+'
+            - Modified property: links
+              - AdditionalProperties changed from false to null
+              - Properties changed
+                - Modified property: first
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: default
+    - Description changed from 'Dados sobre relacionamento da pessoa física' to 'Erro inesperado.'
+    - Content changed
+      - New media type: application/json; charset=utf-8
+      - Deleted media type: application/json
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+GET /personal/identifications
+- New query param: page
+- New query param: page-size
+- New query param: pagination-key
+- Responses changed
+  - New response: 422
+  - New response: 423
+  - New response: 504
+  - New response: 529
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: data
+              - MinItems changed from 0 to 1
+              - Items changed
+                - AdditionalProperties changed from false to null
+                - Required changed
+                  - New required property: companiesCnpj
+                  - Deleted required property: companyCnpj
+                  - Deleted required property: filiation
+                  - Deleted required property: maritalStatusCode
+                  - Deleted required property: nationality
+                  - Deleted required property: otherDocuments
+                  - Deleted required property: sex
+                  - Deleted required property: socialName
+                - Properties changed
+                  - New property: companiesCnpj
+                  - Deleted property: companyCnpj
+                  - Modified property: birthDate
+                    - Example changed from '2021-05-21' to '1989-03-23'
+                  - Modified property: brandName
+                    - Description changed from 'Nome da Marca reportada pelo participante do Open Banking. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes' to 'Nome da Marca reportada pelo participante no Open Finance. Recomenda-se utilizar, sempre que possível, o mesmo nome de marca atribuído no campo do diretório Customer Friendly Server Name (Authorisation Server).'
+                  - Modified property: civilName
+                    - Pattern changed from '[\w\W\s]*' to '^[\w\W]*$'
+                  - Modified property: contacts
+                    - AdditionalProperties changed from false to null
+                    - Properties changed
+                      - Modified property: emails
+                        - MinItems changed from 1 to 0
+                        - Items changed
+                          - AdditionalProperties changed from false to null
+                      - Modified property: phones
+                        - MinItems changed from 1 to 0
+                        - Items changed
+                          - AdditionalProperties changed from false to null
+                          - Required changed
+                            - Deleted required property: countryCallingCode
+                            - Deleted required property: phoneExtension
+                          - Properties changed
+                            - Modified property: areaCode
+                              - Deleted enum values: [NA]
+                              - MaxLength changed from 2 to null
+                            - Modified property: countryCallingCode
+                              - Description changed from 'Número de DDI (Discagem Direta Internacional) para telefone de acesso ao Cliente - se houver' to 'Número de DDI (Discagem Direta Internacional) para telefone de acesso ao Cliente - se houver
+[Restrição] O preenchimento é obrigatório quando for diferente de 55. 
+'
+                              - Pattern changed from '^\d{2,4}$|^NA$' to '^\d{1,4}$'
+                            - Modified property: number
+                              - Pattern changed from '^([0-9]{8,11})|^NA$' to '^([0-9]{8,11})$'
+                            - Modified property: phoneExtension
+                              - Pattern changed from '^\d{1,5}$|^NA$' to '^\d{1,5}$'
+                            - Modified property: type
+                              - MaxLength changed from 5 to null
+                      - Modified property: postalAddresses
+                        - MinItems changed from 1 to 0
+                        - Items changed
+                          - AdditionalProperties changed from false to null
+                          - Required changed
+                            - Deleted required property: countrySubDivision
+                            - Deleted required property: districtName
+                          - Properties changed
+                            - Modified property: countryCode
+                              - Description changed from 'Código do pais de acordo com o código “alpha3” do ISO-3166.' to 'Código do país de acordo com o código alpha3 do ISO-3166.'
+                              - Pattern changed from '' to '^([A-Z]{3})$'
+                            - Modified property: countrySubDivision
+                              - Deleted enum values: [NA]
+                            - Modified property: districtName
+                              - Description changed from 'Bairro é uma comunidade ou região localizada em uma cidade ou município de acordo com as suas subdivisões geográficas.' to 'Bairro é uma comunidade ou região localizada em uma cidade ou município de acordo com as suas subdivisões geográficas.
+[Restrição] De preenchimento obrigatório, se houver.
+'
+                            - Modified property: geographicCoordinates
+                              - AdditionalProperties changed from false to null
+                              - Required changed
+                                - New required property: latitude
+                                - New required property: longitude
+                              - Properties changed
+                                - Modified property: latitude
+                                  - Description changed from 'Informação da Latitude referente a geolocalização informada. Entre -90 e 90.p.ex. '-90.8365180'. (2 casas antes da vírgula, 11 posições) 
+' to 'Informação da Latitude referente a geolocalização informada. Entre -90 e 90.p.ex. '-23.5475000'. (2 casas antes da vírgula, 11 posições)
+'
+                                  - Example changed from '-90.8365180' to '-23.5475000'
+                                - Modified property: longitude
+                                  - Description changed from 'Informação da Longitude referente a geolocalização informada. Entre -180 e 180. p.ex '-180.836519.' (3 casas antes da vírgula, 11 posições) 
+' to 'Informação da Longitude referente a geolocalização informada. Entre -180 e 180. p.ex '-46.6361100'. (3 casas antes da vírgula, 11 posições)
+'
+                                  - Example changed from '-180.836519' to '-46.6361100'
+                            - Modified property: postCode
+                              - Pattern changed from '\d{8}|^NA$' to '^\d{8}$'
+                  - Modified property: documents
+                    - AdditionalProperties changed from false to null
+                    - Required changed
+                      - Deleted required property: cpfNumber
+                      - Deleted required property: passportCountry
+                      - Deleted required property: passportExpirationDate
+                      - Deleted required property: passportNumber
+                    - Properties changed
+                      - New property: passport
+                      - Deleted property: passportCountry
+                      - Deleted property: passportExpirationDate
+                      - Deleted property: passportIssueDate
+                      - Deleted property: passportNumber
+                      - Modified property: cpfNumber
+                        - Description changed from 'Número completo do CPF. Atributo que corresponde às informações mínimas exigidas pela Regulamentação em vigor. O CPF é o Cadastro de Pessoa natural.  Ele é um documento feito pela Receita Federal e serve para identificar os contribuintes. O CPF é uma numeração com 11 dígitos, que só mudam por decisão judicial. O documento é emitido pela receita federal' to 'Número completo do CPF. 
+Atributo que corresponde às informações mínimas exigidas pela Regulamentação em vigor. 
+O CPF é o Cadastro de Pessoa natural. Ele é um documento feito pela Receita Federal e serve para identificar os contribuintes. O CPF é uma numeração com 11 dígitos, que só mudam por decisão judicial. O documento é emitido pela receita federal.
+[Restrição] Preenchimento obrigatório quando não for informado o passport.
+'
+                        - Pattern changed from '^\d{11}$|^NA$' to '^\d{11}$'
+                  - Modified property: filiation
+                    - MinItems changed from 0 to 1
+                    - Items changed
+                      - AdditionalProperties changed from false to null
+                      - Properties changed
+                        - Modified property: civilName
+                          - Description changed from 'Nome civil completo da pessoa relativa à filiação.
+(Direito fundamental da pessoa, o nome civil é aquele atribuído à pessoa natural desde o registro de seu nascimento, 
+com o qual será identificada por toda a sua vida, bem como após a sua morte)
+' to 'Nome civil completo da pessoa relativa à filiação.
+(Direito fundamental da pessoa, o nome civil é aquele atribuído à pessoa natural desde o registro de seu nascimento, 
+com o qual será identificada por toda a sua vida, bem como após a sua morte).
+'
+                          - Pattern changed from '[\w\W\s]*' to '^[\w\W]*$'
+                        - Modified property: socialName
+                          - Description changed from 'Nome social da pessoa natural, se houver. 
+(aquele pelo qual travestis e transexuais se reconhecem, 
+bem como são identificados por sua comunidade e em seu meio social, conforme Decreto Local)
+' to 'Nome social da pessoa natural, se houver. 
+(aquele pelo qual travestis e transexuais se reconhecem, 
+bem como são identificados por sua comunidade e em seu meio social, conforme Decreto Local).
+'
+                          - Example changed from 'NA' to null
+                          - Pattern changed from '[\w\W\s]*' to '^[\w\W]*$'
+                        - Modified property: type
+                          - Deleted enum values: [SEM_FILIACAO]
+                  - Modified property: hasBrazilianNationality
+                    - Nullable changed from true to false
+                  - Modified property: maritalStatusAdditionalInfo
+                    - Description changed from 'Campo livre para complementar a informação relativa ao estado marital, quando selecionada a opção 'OUTROS'' to 'Campo livre para complementar a informação relativa ao estado marital.
+[Restrição] Preenchimento obrigatório quando selecionado o tipo 'OUTRO'.
+'
+                    - Example changed from 'Casado' to 'Amasiado'
+                  - Modified property: maritalStatusCode
+                    - Description changed from 'Estado marital do cliente. 
+' to 'Estado marital do cliente.
+'
+                    - Example changed from 'SOLTEIRO' to 'OUTRO'
+                  - Modified property: nationality
+                    - MinItems changed from 0 to 1
+                    - Items changed
+                      - AdditionalProperties changed from false to null
+                      - Properties changed
+                        - Modified property: documents
+                          - Items changed
+                            - AdditionalProperties changed from false to null
+                            - Required changed
+                              - Deleted required property: expirationDate
+                              - Deleted required property: issueDate
+                            - Properties changed
+                              - New property: additionalInfo
+                              - Deleted property: typeAdditionalInfo
+                              - Modified property: country
+                                - Description changed from 'Nome do país' to 'Nome do país.
+'
+                              - Modified property: expirationDate
+                                - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                              - Modified property: issueDate
+                                - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                        - Modified property: otherNationalitiesInfo
+                          - Description changed from 'Campo de preenchimento obrigatório caso o cliente não possua nacionalidade brasileira. Preencher indicando todas suas demais nacionalidades utilizando o código de pais de acordo com o código “alpha3” do ISO-3166.p.ex.'CAN'
+' to 'Campo de preenchimento obrigatório caso o cliente não possua nacionalidade brasileira. Preencher indicando todas suas demais nacionalidades utilizando o código de pais de acordo com o código alpha3 do ISO-3166.p.ex.'CAN'
+'
+                          - Pattern changed from '' to '^\S[\s\S]*$'
+                  - Modified property: otherDocuments
+                    - Items changed
+                      - AdditionalProperties changed from false to null
+                      - Required changed
+                        - Deleted required property: checkDigit
+                        - Deleted required property: expirationDate
+                        - Deleted required property: typeAdditionalInfo
+                      - Properties changed
+                        - Modified property: expirationDate
+                          - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                        - Modified property: number
+                          - MaxLength changed from 11 to 40
+                        - Modified property: type
+                          - Deleted enum values: [SEM_OUTROS_DOCUMENTOS]
+                        - Modified property: typeAdditionalInfo
+                          - Example changed from 'NA' to 'CREA-RJ'
+                  - Modified property: personalId
+                    - MinLength changed from 0 to 1
+                    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9-]{0,99}$'
+                  - Modified property: sex
+                    - Deleted enum values: [NAO_DISPONIVEL]
+                  - Modified property: updateDateTime
+                    - Description changed from '' to 'Data e hora da atualização dos campos \<_endpoint_\>, conforme especificação RFC-3339, formato UTC. Quando não existente uma data vinculada especificamente ao bloco, assumir a data e hora de atualização do cadastro como um todo.
+'
+            - Modified property: links
+              - AdditionalProperties changed from false to null
+              - Properties changed
+                - Modified property: first
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: default
+    - Description changed from 'Dados sobre identificação pessoa física.' to 'Erro inesperado.'
+    - Content changed
+      - New media type: application/json; charset=utf-8
+      - Deleted media type: application/json
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+GET /personal/qualifications
+- Responses changed
+  - New response: 423
+  - New response: 504
+  - New response: 529
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: data
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: informedIncome
+                - Deleted required property: informedPatrimony
+                - Deleted required property: occupationCode
+                - Deleted required property: occupationDescription
+              - Properties changed
+                - Modified property: companyCnpj
+                  - Pattern changed from '\d{14}|^NA$' to '^\d{14}$'
+                - Modified property: informedIncome
+                  - AdditionalProperties changed from false to null
+                  - Required changed
+                    - Deleted required property: currency
+                  - Properties changed
+                    - Deleted property: currency
+                    - Modified property: amount
+                      - Type changed from 'number' to 'object'
+                      - Format changed from 'double' to ''
+                      - Description changed from 'Valor total da renda informada. Expresso em valor monetário com 4 casas decimais. 
+Renda primária indica os montantes a pagar ou a receber em troca do uso temporário de recursos financeiros, trabalho ou ativos não financeiros não produzidos, a saber, remuneração de trabalhadores, renda de investimentos e demais rendas primárias.
+Fazem parte da primeira a remuneração do trabalho assalariado (salários e ordenados); da segunda, renda de investimento direto, renda de investimento em carteira, renda de outros investimentos e renda de ativos de reserva; e da terceira, tributos sobre a produção e importação, subsídios e aluguéis.
+Fonte: Banco Central do Brasil – Departamento Econômico
+' to 'Valor total da renda informada'
+                      - Example changed from 100000.04 to null
+                      - Nullable changed from true to false
+                      - MaxLength changed from 20 to null
+                      - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                      - Required changed
+                        - New required property: amount
+                        - New required property: currency
+                      - Properties changed
+                        - New property: amount
+                        - New property: currency
+                    - Modified property: date
+                      - Pattern changed from '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                    - Modified property: frequency
+                      - Deleted enum values: [SEM_FREQUENCIA_RENDA_INFORMADA]
+                - Modified property: informedPatrimony
+                  - AdditionalProperties changed from false to null
+                  - Required changed
+                    - Deleted required property: currency
+                  - Properties changed
+                    - Deleted property: currency
+                    - Modified property: amount
+                      - Type changed from 'number' to 'object'
+                      - Format changed from 'double' to ''
+                      - Description changed from 'Valor do patrimônio informado. Expresso em valor monetário com 4 casas decimais.
+Patrimônio é o conjunto de bens vinculado a uma pessoa ou a uma entidade.
+' to 'Valor do patrimônio informado'
+                      - Example changed from 100000.04 to null
+                      - Nullable changed from true to false
+                      - MaxLength changed from 20 to null
+                      - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to ''
+                      - Required changed
+                        - New required property: amount
+                        - New required property: currency
+                      - Properties changed
+                        - New property: amount
+                        - New property: currency
+                    - Modified property: year
+                      - Description changed from 'Ano de referência do Patrimônio, conforme especificação RFC-3339.' to 'Ano de referência da Renda, conforme especificação RFC-3339.'
+                      - Nullable changed from true to false
+                      - MaxLength changed from 4 to null
+                - Modified property: occupationDescription
+                  - Description changed from 'Campo livre, de preenchimento obrigatório. Traz o código da ocupação ou o descritivo da ocupação, se selecionada a opção 'OUTRO'' to 'Campo livre, de preenchimento obrigatório. Se selecionada a opção *occupationCode* "RECEITA_FEDERAL" ou "CBO", informar o código desta lista padronizada.   
+Se selecionada *occupationCode* "OUTRO", informar o descritivo da ocupação quando a IF não segue a lista padronizada da Receita Federal e nem da CBO.
+'
+                - Modified property: updateDateTime
+                  - Description changed from 'Data e hora da atualização do bloco, conforme especificação RFC-3339' to 'Data e hora da atualização dos campos \<_endpoint_\>, conforme especificação RFC-3339, formato UTC. Quando não existente uma data vinculada especificamente ao bloco, assumir a data e hora de atualização do cadastro como um todo.
+'
+            - Modified property: links
+              - AdditionalProperties changed from false to null
+              - Properties changed
+                - Modified property: first
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - AdditionalProperties changed from false to null
+  - Modified response: default
+    - Description changed from 'Dados sobre qualificação da pessoa física' to 'Erro inesperado.'
+    - Content changed
+      - New media type: application/json; charset=utf-8
+      - Deleted media type: application/json
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+Servers changed
+- New server: https://api.banco.com.br/open-banking/customers/v2
+- New server: https://apih.banco.com.br/open-banking/customers/v2
+- Deleted server: https://api.banco.com.br/open-banking/customers/v1
+- Deleted server: https://apih.banco.com.br/open-banking/customers/v1
