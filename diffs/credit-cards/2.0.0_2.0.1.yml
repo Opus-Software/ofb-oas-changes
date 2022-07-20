@@ -518,12 +518,38 @@ GET /accounts/{creditCardAccountId}/bills/{billId}/transactions
           - Properties changed
             - Modified property: data
               - Items changed
+                - Required changed
+                  - Deleted required property: paymentType
                 - Properties changed
                   - Modified property: amount
                     - Description changed from 'Valor da transação. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais. Se a transação foi realizada em moeda estrangeira, deve ser preenchido com o valor original da transação, sem convertê-lo.' to 'Valor original da transação. Expresso em valor monetário com no mínimo 2 casas decimais e no máximo 4 casas decimais. Deve ser sempre preenchido com o valor original da transação independente da nacionalidade, sem convertê-lo.
 '
                   - Modified property: brazilianAmount
                     - Description changed from 'Valor da transação expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais, em moeda corrente do Brasil' to 'Valor da transação expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais, em moeda corrente do Brasil. Deve ser o valor de amount convertido para BRL (em caso de compra internacional) ou o mesmo valor de amount (em caso de compra nacional).
+'
+                  - Modified property: feeType
+                    - Description changed from 'Traz os tipos de Tarifas: (Vide Enum)
+Anuidade, Saque com cartão no Brasil, Saque com cartão no exterior, Avaliação emergencial de crédito, Emissão segunda via, Tarifa pagamento de contas, SMS, OUTRA.   
+Para transmissora: quando não for do tipo TARIFA, preenche com OUTRA.
+Para recebedora: ignorar o campo preenchido conforme esse cenário.
+[Restrição] Preenchimento obrigatório se Tipo de Transação selecionada for 'TARIFA'.
+' to 'Traz os tipos de Tarifas: (Vide Enum) Anuidade, Saque com cartão no Brasil, Saque com cartão no exterior, Avaliação emergencial de crédito, Emissão segunda via, Tarifa pagamento de contas, SMS, OUTRA.
+[Restrição] Preenchimento obrigatório se Tipo de Transação selecionada for 'TARIFA'.
+'
+                  - Modified property: otherCreditsType
+                    - Description changed from 'Traz outros tipos de crédito contratados no cartão.   
+[Restrição] Preenchimento obrigatório se o tipo transação selecionado for 'OPERACOES_CREDITO_CONTRATADAS_CARTAO'.
+Para transmissora: Quando não for do tipo OPERACOES_CREDITO_CONTRATADAS_CARTAO, preencher com OUTROS.
+Para recebedora: Ignorar o campo preenchido conforme esse cenário.
+' to 'Traz outros tipos de crédito contratados no cartão.
+[Restrição] Preenchimento obrigatório se o tipo transação selecionado for 'OPERACOES_CREDITO_CONTRATADAS_CARTAO'.
+'
+                  - Modified property: paymentType
+                    - Description changed from 'Traz os tipos de pagamento. Preenchimento obrigatório se selecionado tipo de transação PAGAMENTO.
+Para transmissora: preencher com qualquer opção.
+Para recebedora: ignorar o campo preenchido quando não for uma transação do tipo pagamento.
+' to 'Traz os tipos de pagamento.
+[Restrição] Preenchimento obrigatório se Tipo de Transação selecionada for 'PAGAMENTO'.
 '
             - Modified property: links
               - Properties changed
@@ -881,12 +907,38 @@ GET /accounts/{creditCardAccountId}/transactions
           - Properties changed
             - Modified property: data
               - Items changed
+                - Required changed
+                  - Deleted required property: paymentType
                 - Properties changed
                   - Modified property: amount
                     - Description changed from 'Valor da transação. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais. Se a transação foi realizada em moeda estrangeira, deve ser preenchido com o valor original da transação, sem convertê-lo.' to 'Valor original da transação. Expresso em valor monetário com no mínimo 2 casas decimais e no máximo 4 casas decimais. Deve ser sempre preenchido com o valor original da transação independente da nacionalidade, sem convertê-lo.
 '
                   - Modified property: brazilianAmount
                     - Description changed from 'Valor da transação expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais, em moeda corrente do Brasil' to 'Valor da transação expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais, em moeda corrente do Brasil. Deve ser o valor de amount convertido para BRL (em caso de compra internacional) ou o mesmo valor de amount (em caso de compra nacional).
+'
+                  - Modified property: feeType
+                    - Description changed from 'Traz os tipos de Tarifas: (Vide Enum)
+Anuidade, Saque com cartão no Brasil, Saque com cartão no exterior, Avaliação emergencial de crédito, Emissão segunda via, Tarifa pagamento de contas, SMS, OUTRA.   
+Para transmissora: quando não for do tipo TARIFA, preenche com OUTRA.
+Para recebedora: ignorar o campo preenchido conforme esse cenário.
+[Restrição] Preenchimento obrigatório se Tipo de Transação selecionada for 'TARIFA'.
+' to 'Traz os tipos de Tarifas: (Vide Enum) Anuidade, Saque com cartão no Brasil, Saque com cartão no exterior, Avaliação emergencial de crédito, Emissão segunda via, Tarifa pagamento de contas, SMS, OUTRA.
+[Restrição] Preenchimento obrigatório se Tipo de Transação selecionada for 'TARIFA'.
+'
+                  - Modified property: otherCreditsType
+                    - Description changed from 'Traz outros tipos de crédito contratados no cartão.   
+[Restrição] Preenchimento obrigatório se o tipo transação selecionado for 'OPERACOES_CREDITO_CONTRATADAS_CARTAO'.
+Para transmissora: Quando não for do tipo OPERACOES_CREDITO_CONTRATADAS_CARTAO, preencher com OUTROS.
+Para recebedora: Ignorar o campo preenchido conforme esse cenário.
+' to 'Traz outros tipos de crédito contratados no cartão.
+[Restrição] Preenchimento obrigatório se o tipo transação selecionado for 'OPERACOES_CREDITO_CONTRATADAS_CARTAO'.
+'
+                  - Modified property: paymentType
+                    - Description changed from 'Traz os tipos de pagamento. Preenchimento obrigatório se selecionado tipo de transação PAGAMENTO.
+Para transmissora: preencher com qualquer opção.
+Para recebedora: ignorar o campo preenchido quando não for uma transação do tipo pagamento.
+' to 'Traz os tipos de pagamento.
+[Restrição] Preenchimento obrigatório se Tipo de Transação selecionada for 'PAGAMENTO'.
 '
             - Modified property: links
               - Properties changed
@@ -908,12 +960,38 @@ GET /accounts/{creditCardAccountId}/transactions-current
           - Properties changed
             - Modified property: data
               - Items changed
+                - Required changed
+                  - Deleted required property: paymentType
                 - Properties changed
                   - Modified property: amount
                     - Description changed from 'Valor da transação. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais. Se a transação foi realizada em moeda estrangeira, deve ser preenchido com o valor original da transação, sem convertê-lo.' to 'Valor original da transação. Expresso em valor monetário com no mínimo 2 casas decimais e no máximo 4 casas decimais. Deve ser sempre preenchido com o valor original da transação independente da nacionalidade, sem convertê-lo.
 '
                   - Modified property: brazilianAmount
                     - Description changed from 'Valor da transação expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais, em moeda corrente do Brasil' to 'Valor da transação expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais, em moeda corrente do Brasil. Deve ser o valor de amount convertido para BRL (em caso de compra internacional) ou o mesmo valor de amount (em caso de compra nacional).
+'
+                  - Modified property: feeType
+                    - Description changed from 'Traz os tipos de Tarifas: (Vide Enum)
+Anuidade, Saque com cartão no Brasil, Saque com cartão no exterior, Avaliação emergencial de crédito, Emissão segunda via, Tarifa pagamento de contas, SMS, OUTRA.   
+Para transmissora: quando não for do tipo TARIFA, preenche com OUTRA.
+Para recebedora: ignorar o campo preenchido conforme esse cenário.
+[Restrição] Preenchimento obrigatório se Tipo de Transação selecionada for 'TARIFA'.
+' to 'Traz os tipos de Tarifas: (Vide Enum) Anuidade, Saque com cartão no Brasil, Saque com cartão no exterior, Avaliação emergencial de crédito, Emissão segunda via, Tarifa pagamento de contas, SMS, OUTRA.
+[Restrição] Preenchimento obrigatório se Tipo de Transação selecionada for 'TARIFA'.
+'
+                  - Modified property: otherCreditsType
+                    - Description changed from 'Traz outros tipos de crédito contratados no cartão.   
+[Restrição] Preenchimento obrigatório se o tipo transação selecionado for 'OPERACOES_CREDITO_CONTRATADAS_CARTAO'.
+Para transmissora: Quando não for do tipo OPERACOES_CREDITO_CONTRATADAS_CARTAO, preencher com OUTROS.
+Para recebedora: Ignorar o campo preenchido conforme esse cenário.
+' to 'Traz outros tipos de crédito contratados no cartão.
+[Restrição] Preenchimento obrigatório se o tipo transação selecionado for 'OPERACOES_CREDITO_CONTRATADAS_CARTAO'.
+'
+                  - Modified property: paymentType
+                    - Description changed from 'Traz os tipos de pagamento. Preenchimento obrigatório se selecionado tipo de transação PAGAMENTO.
+Para transmissora: preencher com qualquer opção.
+Para recebedora: ignorar o campo preenchido quando não for uma transação do tipo pagamento.
+' to 'Traz os tipos de pagamento.
+[Restrição] Preenchimento obrigatório se Tipo de Transação selecionada for 'PAGAMENTO'.
 '
             - Modified property: links
               - Properties changed
