@@ -296,6 +296,32 @@ RJCT (REJECTED) - Instrução de pagamento rejeitada.
 • PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento.
 '
                     - New enum values: [PARAMETRO_NAO_INFORMADO PARAMETRO_INVALIDO]
+                  - Modified property: detail
+                    - Description changed from 'Descrição específica do erro de acordo com o código reportado:
+• SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento.
+• BENEFICIARIO_INCOMPATIVEL: O beneficiário informado no consentimento não é o mesmo do esperado pelo DICT.
+• VALOR_INCOMPATIVEL: O valor informado no consentimento não é o mesmo valor do informado no payload de pagamento.
+• VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente.
+• VALOR_INVALIDO: O valor enviado não é válido para o QR Code informado.
+• COBRANCA_INVALIDA: Validação de expiração, validação de vencimento ou Status Válido.
+• CONSENTIMENTO_INVALIDO: Consentimento inválido (status diferente de "AUTHORISED" ou está expirado).
+• JANELA_OPER_INVALIDA: Requisição está fora da janela de funcionamento.
+• NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta.
+• PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento.
+' to 'Descrição específica do erro de acordo com o código reportado:
+• SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento.
+• BENEFICIARIO_INCOMPATIVEL: O beneficiário informado no consentimento não é o mesmo do esperado pelo DICT.
+• VALOR_INCOMPATIVEL: O valor informado no consentimento não é o mesmo valor do informado no payload de pagamento.
+• VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente.
+• VALOR_INVALIDO: O valor enviado não é válido para o QR Code informado.
+• COBRANCA_INVALIDA: Validação de expiração, validação de vencimento ou Status Válido.
+• CONSENTIMENTO_INVALIDO: Consentimento inválido (status diferente de "AUTHORISED" ou está expirado).
+• JANELA_OPER_INVALIDA: Requisição está fora da janela de funcionamento.
+• PARAMETRO_NAO_INFORMADO: endToEndId
+• PARAMETRO_INVALIDO: endToEndId
+• NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta.
+• PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento.
+'
 GET /pix/payments/{paymentId}
 - Responses changed
   - Modified response: 200
