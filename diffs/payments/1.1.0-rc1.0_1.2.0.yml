@@ -261,6 +261,40 @@ Em caso insucesso:
 RJCT (REJECTED) - Instrução de pagamento rejeitada.
 '
                   - Deleted enum values: [SASP SASC]
+  - Modified response: 422
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: title
+                    - Description changed from 'Título específico do erro reportado, de acordo com o código enviado:
+• SALDO_INSUFICIENTE: Saldo insuficiente.
+• BENEFICIARIO_INCOMPATIVEL: Beneficiário incompatível.
+• VALOR_INCOMPATIVEL: Valor da transação incompatível.
+• VALOR_ACIMA_LIMITE: Acima do limite estabelecido.
+• VALOR_INVALIDO: Valor inválido.
+• COBRANCA_INVALIDA: Cobrança inválida.
+• CONSENTIMENTO_INVALIDO: Consentimento inválido.
+• JANELA_OPER_INVALIDA: Janela de operação inválida.
+• NAO_INFORMADO: Não informado.
+• PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO: divergência entre pagamento e consentimento.
+' to 'Título específico do erro reportado, de acordo com o código enviado:
+• SALDO_INSUFICIENTE: Saldo insuficiente.
+• BENEFICIARIO_INCOMPATIVEL: Beneficiário incompatível.
+• VALOR_INCOMPATIVEL: Valor da transação incompatível.
+• VALOR_ACIMA_LIMITE: Acima do limite estabelecido.
+• VALOR_INVALIDO: Valor inválido.
+• COBRANCA_INVALIDA: Cobrança inválida.
+• CONSENTIMENTO_INVALIDO: Consentimento inválido.
+• JANELA_OPER_INVALIDA: Janela de operação inválida.
+• PARAMETRO_NAO_INFORMADO: Parâmetro obrigatório não informado
+• PARAMETRO_INVALIDO: Parâmetro com valor inválido
+• NAO_INFORMADO: Não informado.
+• PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO: divergência entre pagamento e consentimento.
+'
 GET /pix/payments/{paymentId}
 - Responses changed
   - Modified response: 200
