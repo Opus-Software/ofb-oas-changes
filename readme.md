@@ -25,6 +25,7 @@
 | participants | [1.0.0](swagger-apis/participants/1.0.0.yml) |  |  |  |
 | payments | [1.0.1](swagger-apis/payments/1.0.1.yml) | [1.1.0-rc1.0](swagger-apis/payments/1.1.0-rc1.0.yml) | [YAML](diffs/payments/1.0.1_1.1.0-rc1.0-breaking-only.yml) | [YAML](diffs/payments/1.0.1_1.1.0-rc1.0.yml) |
 |  | [1.1.0-rc1.0](swagger-apis/payments/1.1.0-rc1.0.yml) | [1.2.0](swagger-apis/payments/1.2.0.yml) | [YAML](diffs/payments/1.1.0-rc1.0_1.2.0-breaking-only.yml) | [YAML](diffs/payments/1.1.0-rc1.0_1.2.0.yml) |
+|  | [1.2.0](swagger-apis/payments/1.2.0.yml) | [2.0.0](swagger-apis/payments/2.0.0.yml) | [YAML](diffs/payments/1.2.0_2.0.0-breaking-only.yml) | [YAML](diffs/payments/1.2.0_2.0.0.yml) |
 | pension | [1.0.0](swagger-apis/pension/1.0.0.yml) |  |  |  |
 | products-services | [1.0.2](swagger-apis/products-services/1.0.2.yml) | [2.0.0](swagger-apis/products-services/2.0.0.yml) | [YAML](diffs/products-services/1.0.2_2.0.0-breaking-only.yml) | [YAML](diffs/products-services/1.0.2_2.0.0.yml) |
 |  | [2.0.0](swagger-apis/products-services/2.0.0.yml) | [3.0.0](swagger-apis/products-services/3.0.0.yml) | [YAML](diffs/products-services/2.0.0_3.0.0-breaking-only.yml) | [YAML](diffs/products-services/2.0.0_3.0.0.yml) |
@@ -141,6 +142,7 @@
 |  | [1.0.1-rc1.2](swagger-apis/payments/1.0.1-rc1.2.yml) | [1.0.1](swagger-apis/payments/1.0.1.yml) | [YAML](diffs/payments/1.0.1-rc1.2_1.0.1.yml) |
 |  | [1.0.1](swagger-apis/payments/1.0.1.yml) | [1.1.0-rc1.0](swagger-apis/payments/1.1.0-rc1.0.yml) | [YAML](diffs/payments/1.0.1_1.1.0-rc1.0.yml) |
 |  | [1.1.0-rc1.0](swagger-apis/payments/1.1.0-rc1.0.yml) | [1.2.0](swagger-apis/payments/1.2.0.yml) | [YAML](diffs/payments/1.1.0-rc1.0_1.2.0.yml) |
+|  | [1.2.0](swagger-apis/payments/1.2.0.yml) | [2.0.0](swagger-apis/payments/2.0.0.yml) | [YAML](diffs/payments/1.2.0_2.0.0.yml) |
 | pension | [1.0.0-rc1.0](swagger-apis/pension/1.0.0-rc1.0.yml) | [1.0.0](swagger-apis/pension/1.0.0.yml) | [YAML](diffs/pension/1.0.0-rc1.0_1.0.0.yml) |
 | products-services | [1.0.0-rc5.1](swagger-apis/products-services/1.0.0-rc5.1.yml) | [1.0.0-rc5.2](swagger-apis/products-services/1.0.0-rc5.2.yml) | [YAML](diffs/products-services/1.0.0-rc5.1_1.0.0-rc5.2.yml) |
 |  | [1.0.0-rc5.2](swagger-apis/products-services/1.0.0-rc5.2.yml) | [1.0.0-rc5](swagger-apis/products-services/1.0.0-rc5.yml) | [YAML](diffs/products-services/1.0.0-rc5.2_1.0.0-rc5.yml) |
