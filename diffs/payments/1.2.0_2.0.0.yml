@@ -30,8 +30,6 @@ Este campo faz referência ao campo CodMun do arranjo Pix.
           - Properties changed
             - Modified property: data
               - Properties changed
-                - Modified property: consentId
-                  - Pattern changed from '^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$' to '^urn:[a-zA-Z0-9][a-zA-Z0-9\-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$'
                 - Modified property: payment
                   - Properties changed
                     - Modified property: ibgeTownCode
@@ -42,26 +40,177 @@ Este campo faz referência ao campo CodMun do arranjo Pix.
 ' to 'O campo ibgetowncode no arranjo PIX, tem o mesmo comportamento que o campo codMun descrito no item 1.6.6 do manual do PIX, conforme segue:
 1. Caso a informação referente ao município não seja enviada; o PSP do recebedor assumirá que não existem feriados estaduais e municipais no período em questão;
 '
-            - Modified property: links
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informação referente a API requisitada.'
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
               - Properties changed
-                - Modified property: self
-                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
-  - Modified response: 422
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 400
     - Content changed
-      - Modified media type: application/jwt
+      - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
             - Modified property: errors
               - Items changed
-                - Properties changed
-                  - Modified property: detail
-                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
-                  - Modified property: title
-                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 415
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
 GET /consents/{consentId}
-- Modified path param: consentId
-  - Schema changed
-    - Pattern changed from '^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$' to '^urn:[a-zA-Z0-9][a-zA-Z0-9\-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$'
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -70,8 +219,6 @@ GET /consents/{consentId}
           - Properties changed
             - Modified property: data
               - Properties changed
-                - Modified property: consentId
-                  - Pattern changed from '^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$' to '^urn:[a-zA-Z0-9][a-zA-Z0-9\-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$'
                 - Modified property: payment
                   - Properties changed
                     - Modified property: ibgeTownCode
@@ -82,10 +229,158 @@ Este campo faz referência ao campo CodMun do arranjo Pix.
 ' to 'O campo ibgetowncode no arranjo PIX, tem o mesmo comportamento que o campo codMun descrito no item 1.6.6 do manual do PIX, conforme segue:
 1. Caso a informação referente ao município não seja enviada; o PSP do recebedor assumirá que não existem feriados estaduais e municipais no período em questão;
 '
-            - Modified property: links
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informação referente a API requisitada.'
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
               - Properties changed
-                - Modified property: self
-                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
 POST /pix/payments
 - Request body changed
   - Content changed
@@ -107,7 +402,6 @@ Este campo faz referência ao campo CodMun do arranjo Pix.
 '
               - Modified property: transactionIdentification
                 - MaxLength changed from 25 to 35
-                - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9]{0,24}$' to '^[a-zA-Z0-9]{1,35}$'
 - Responses changed
   - Modified response: 201
     - Content changed
@@ -119,8 +413,6 @@ Este campo faz referência ao campo CodMun do arranjo Pix.
                 - New required property: debtorAccount
               - Properties changed
                 - New property: debtorAccount
-                - Modified property: consentId
-                  - Pattern changed from '^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$' to '^urn:[a-zA-Z0-9][a-zA-Z0-9\-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$'
                 - Modified property: ibgeTownCode
                   - Description changed from 'Traz o código da cidade segundo o IBGE (Instituto Brasileiro de Geografia e Estatística).
 Para o preenchimento deste campo, o Iniciador de Pagamentos deve seguir a orientação do arranjo da forma de pagamento.
@@ -131,23 +423,176 @@ Este campo faz referência ao campo CodMun do arranjo Pix.
 '
                 - Modified property: transactionIdentification
                   - MaxLength changed from 25 to 35
-                  - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9]{0,24}$' to '^[a-zA-Z0-9]{1,35}$'
-            - Modified property: links
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informação referente a API requisitada.'
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
               - Properties changed
-                - Modified property: self
-                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
-  - Modified response: 422
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 400
     - Content changed
-      - Modified media type: application/jwt
+      - Modified media type: application/json; charset=utf-8
         - Schema changed
+          - AdditionalProperties changed from false to null
           - Properties changed
             - Modified property: errors
               - Items changed
-                - Properties changed
-                  - Modified property: detail
-                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
-                  - Modified property: title
-                    - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 415
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
 GET /pix/payments/{paymentId}
 - Responses changed
   - Modified response: 200
@@ -160,8 +605,6 @@ GET /pix/payments/{paymentId}
                 - New required property: debtorAccount
               - Properties changed
                 - New property: debtorAccount
-                - Modified property: consentId
-                  - Pattern changed from '^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$' to '^urn:[a-zA-Z0-9][a-zA-Z0-9\-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$'
                 - Modified property: ibgeTownCode
                   - Description changed from 'Traz o código da cidade segundo o IBGE (Instituto Brasileiro de Geografia e Estatística).
 Para o preenchimento deste campo, o Iniciador de Pagamentos deve seguir a orientação do arranjo da forma de pagamento.
@@ -172,8 +615,155 @@ Este campo faz referência ao campo CodMun do arranjo Pix.
 '
                 - Modified property: transactionIdentification
                   - MaxLength changed from 25 to 35
-                  - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9]{0,24}$' to '^[a-zA-Z0-9]{1,35}$'
-            - Modified property: links
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informação referente a API requisitada.'
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
               - Properties changed
-                - Modified property: self
-                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - AdditionalProperties changed from false to null
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - AdditionalProperties changed from false to null
+            - Modified property: meta
+              - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informações referente à API requisitada.'
+              - AdditionalProperties changed from false to null
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
