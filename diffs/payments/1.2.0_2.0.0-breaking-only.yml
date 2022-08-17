@@ -122,6 +122,16 @@ POST /consents
                     - Pattern changed from '\w*\W*' to '[\w\W\s]*'
                   - Modified property: title
                     - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+        - Examples changed
+          - Modified example: Forma de pagamento inválida
+            - Value changed from map[errors:[map[code:FORMA_PGTO_INVALIDA detail:Meio de pagamento inválido. title:Forma de pagamento inválida.]] meta:map[requestDateTime:2021-05-21T08:30:00Z totalPages:1 totalRecords:1]] to map[errors:[map[code:FORMA_PGTO_INVALIDA detail:Meio de pagamento inválido. title:Forma de pagamento inválida.]] meta:map[requestDateTime:2021-05-21T08:30:00Z]]
   - Modified response: 429
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -424,6 +434,16 @@ POST /pix/payments
                     - Pattern changed from '\w*\W*' to '[\w\W\s]*'
                   - Modified property: title
                     - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+        - Examples changed
+          - Modified example: Saldo insuficiente
+            - Value changed from map[errors:[map[code:SALDO_INSUFICIENTE detail:A conta selecionada não possui saldo suficiente para realizar o pagamento. title:Saldo insuficiente.]] meta:map[requestDateTime:2021-05-21T08:30:00Z totalPages:1 totalRecords:1]] to map[errors:[map[code:SALDO_INSUFICIENTE detail:A conta selecionada não possui saldo suficiente para realizar o pagamento. title:Saldo insuficiente.]] meta:map[requestDateTime:2021-05-21T08:30:00Z]]
   - Modified response: 429
     - Content changed
       - Modified media type: application/json; charset=utf-8
