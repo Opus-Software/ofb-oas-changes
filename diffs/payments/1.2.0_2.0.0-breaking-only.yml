@@ -168,6 +168,9 @@ POST /consents
               - Properties changed
                 - Deleted property: totalPages
                 - Deleted property: totalRecords
+- Security changed
+  - New security requirements: OAuth2ClientCredentials
+  - Deleted security requirements: OAuth2ClientCredentials AND OpenId
 GET /consents/{consentId}
 - Modified path param: consentId
   - Schema changed
@@ -477,6 +480,9 @@ POST /pix/payments
               - Properties changed
                 - Deleted property: totalPages
                 - Deleted property: totalRecords
+- Security changed
+  - Modified security requirements: OAuth2AuthorizationCode
+    - Scheme OAuth2AuthorizationCode Added scopes: [openid]
 GET /pix/payments/{paymentId}
 - Responses changed
   - Modified response: 200
@@ -610,3 +616,6 @@ GET /pix/payments/{paymentId}
               - Properties changed
                 - Deleted property: totalPages
                 - Deleted property: totalRecords
+- Security changed
+  - Modified security requirements: OAuth2AuthorizationCode
+    - Scheme OAuth2AuthorizationCode Added scopes: [openid]
