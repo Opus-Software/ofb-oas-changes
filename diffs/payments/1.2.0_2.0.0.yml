@@ -591,12 +591,31 @@ A detentora de conta deve validar se a condicionalidade e o formato do campo for
               - AdditionalProperties changed from false to null
               - Required changed
                 - New required property: debtorAccount
+                - New required property: endToEndId
               - Properties changed
                 - New property: debtorAccount
                 - Modified property: consentId
                   - Pattern changed from '^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$' to '^urn:[a-zA-Z0-9][a-zA-Z0-9\-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$'
                 - Modified property: creditorAccount
                   - AdditionalProperties changed from false to null
+                - Modified property: endToEndId
+                  - Description changed from 'Deve ser preenchido no formato padrão ExxxxxxxxyyyyMMddHHmmkkkkkkkkkkk (32 caracteres; “case sensitive”, isso é, diferencia letras maiúsculas e minúsculas), sendo:
+• “E” – fixo (1 caractere);  
+• xxxxxxxx – identificação do agente que gerou o ´EndToEndId´, podendo ser: o ISPB do participante direto ou o ISPB do participante indireto (8 caracteres numéricos [0-9]);  
+• yyyyMMddHHmm – data, hora e minuto (12 caracteres), seguindo o horário UTC, da submissão da ordem de pagamento, caso a liquidação seja prioritária, ou prevista para o envio da ordem ao sistema de liquidação, caso seja realizado um agendamento. Para ordens prioritárias e não prioritárias, aceita-se o preenchimento, pelo agente que gerou o ´EndToEndId´, com uma tolerância máxima de 12 horas, para o futuro e para o passado, em relação ao horário efetivo de processamento da ordem pelo SPI;  
+• kkkkkkkkkkk – sequencial criado pelo agente que gerou o ´EndToEndId´ (11 caracteres alfanuméricos [a-z/A-Z/0-9]). Deve ser único dentro de cada “yyyyMMddHHmm”.  
+Admite-se que o ´EndToEndId´ seja gerado pelo participante direto, pelo participante indireto ou pelo iniciador de pagamento.  
+Ele deve ser único, não podendo ser repetido em qualquer outra operação enviada ao SPI.  
+[Restrição] O ´EndToEndId´ deve ser informado obrigatoriamente caso o status do pagamento seja ACCEPTED_SETTLEMENT_COMPLETED.
+' to 'Deve ser preenchido no formato padrão ExxxxxxxxyyyyMMddHHmmkkkkkkkkkkk (32 caracteres; “case sensitive”, isso é, diferencia letras maiúsculas e minúsculas), sendo:
+• “E” – fixo (1 caractere);  
+• xxxxxxxx – identificação do agente que gerou o ´EndToEndId´, podendo ser: o ISPB do participante direto ou o ISPB do participante indireto (8 caracteres numéricos [0-9]);  
+• yyyyMMddHHmm – data, hora e minuto (12 caracteres), seguindo o horário UTC, da submissão da ordem de pagamento, caso a liquidação seja prioritária, ou prevista para o envio da ordem ao sistema de liquidação, caso seja realizado um agendamento. Para ordens prioritárias e não prioritárias, aceita-se o preenchimento, pelo agente que gerou o ´EndToEndId´, com uma tolerância máxima de 12 horas, para o futuro e para o passado, em relação ao horário efetivo de processamento da ordem pelo SPI;  
+• kkkkkkkkkkk – sequencial criado pelo agente que gerou o ´EndToEndId´ (11 caracteres alfanuméricos [a-z/A-Z/0-9]). Deve ser único dentro de cada “yyyyMMddHHmm”.  
+Admite-se que o ´EndToEndId´ seja gerado pelo participante direto, pelo participante indireto ou pelo iniciador de pagamento.  
+Ele deve ser único, não podendo ser repetido em qualquer outra operação enviada ao SPI.  
+Preenchimento obrigatório com o valor informado pela iniciadora na requisição POST /pix/payments.
+'
                 - Modified property: ibgeTownCode
                   - Description changed from 'Traz o código da cidade segundo o IBGE (Instituto Brasileiro de Geografia e Estatística).
 Para o preenchimento deste campo, o Iniciador de Pagamentos deve seguir a orientação do arranjo da forma de pagamento.
@@ -863,12 +882,31 @@ GET /pix/payments/{paymentId}
               - AdditionalProperties changed from false to null
               - Required changed
                 - New required property: debtorAccount
+                - New required property: endToEndId
               - Properties changed
                 - New property: debtorAccount
                 - Modified property: consentId
                   - Pattern changed from '^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$' to '^urn:[a-zA-Z0-9][a-zA-Z0-9\-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$'
                 - Modified property: creditorAccount
                   - AdditionalProperties changed from false to null
+                - Modified property: endToEndId
+                  - Description changed from 'Deve ser preenchido no formato padrão ExxxxxxxxyyyyMMddHHmmkkkkkkkkkkk (32 caracteres; “case sensitive”, isso é, diferencia letras maiúsculas e minúsculas), sendo:
+• “E” – fixo (1 caractere);  
+• xxxxxxxx – identificação do agente que gerou o ´EndToEndId´, podendo ser: o ISPB do participante direto ou o ISPB do participante indireto (8 caracteres numéricos [0-9]);  
+• yyyyMMddHHmm – data, hora e minuto (12 caracteres), seguindo o horário UTC, da submissão da ordem de pagamento, caso a liquidação seja prioritária, ou prevista para o envio da ordem ao sistema de liquidação, caso seja realizado um agendamento. Para ordens prioritárias e não prioritárias, aceita-se o preenchimento, pelo agente que gerou o ´EndToEndId´, com uma tolerância máxima de 12 horas, para o futuro e para o passado, em relação ao horário efetivo de processamento da ordem pelo SPI;  
+• kkkkkkkkkkk – sequencial criado pelo agente que gerou o ´EndToEndId´ (11 caracteres alfanuméricos [a-z/A-Z/0-9]). Deve ser único dentro de cada “yyyyMMddHHmm”.  
+Admite-se que o ´EndToEndId´ seja gerado pelo participante direto, pelo participante indireto ou pelo iniciador de pagamento.  
+Ele deve ser único, não podendo ser repetido em qualquer outra operação enviada ao SPI.  
+[Restrição] O ´EndToEndId´ deve ser informado obrigatoriamente caso o status do pagamento seja ACCEPTED_SETTLEMENT_COMPLETED.
+' to 'Deve ser preenchido no formato padrão ExxxxxxxxyyyyMMddHHmmkkkkkkkkkkk (32 caracteres; “case sensitive”, isso é, diferencia letras maiúsculas e minúsculas), sendo:
+• “E” – fixo (1 caractere);  
+• xxxxxxxx – identificação do agente que gerou o ´EndToEndId´, podendo ser: o ISPB do participante direto ou o ISPB do participante indireto (8 caracteres numéricos [0-9]);  
+• yyyyMMddHHmm – data, hora e minuto (12 caracteres), seguindo o horário UTC, da submissão da ordem de pagamento, caso a liquidação seja prioritária, ou prevista para o envio da ordem ao sistema de liquidação, caso seja realizado um agendamento. Para ordens prioritárias e não prioritárias, aceita-se o preenchimento, pelo agente que gerou o ´EndToEndId´, com uma tolerância máxima de 12 horas, para o futuro e para o passado, em relação ao horário efetivo de processamento da ordem pelo SPI;  
+• kkkkkkkkkkk – sequencial criado pelo agente que gerou o ´EndToEndId´ (11 caracteres alfanuméricos [a-z/A-Z/0-9]). Deve ser único dentro de cada “yyyyMMddHHmm”.  
+Admite-se que o ´EndToEndId´ seja gerado pelo participante direto, pelo participante indireto ou pelo iniciador de pagamento.  
+Ele deve ser único, não podendo ser repetido em qualquer outra operação enviada ao SPI.  
+Preenchimento obrigatório com o valor informado pela iniciadora na requisição POST /pix/payments.
+'
                 - Modified property: ibgeTownCode
                   - Description changed from 'Traz o código da cidade segundo o IBGE (Instituto Brasileiro de Geografia e Estatística).
 Para o preenchimento deste campo, o Iniciador de Pagamentos deve seguir a orientação do arranjo da forma de pagamento.
