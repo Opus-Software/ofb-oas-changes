@@ -566,6 +566,12 @@ Este campo faz referência ao campo CodMun do arranjo Pix.
 '
               - Modified property: payment
                 - AdditionalProperties changed from false to null
+                - Properties changed
+                  - Modified property: amount
+                    - Description changed from 'Valor da transação com 2 casas decimais.
+' to 'Valor da transação com 2 casas decimais. O valor deve ser o mesmo enviado no consentimento. Caso seja preenchido com valor divergente, deve ser retornado um erro HTTP Status 422 com code xxx (a ser definido em proposta complementar).  
+Para QR Code estático com valor pré-determinado no QR Code ou para QR Code dinâmico com indicação de que o valor não pode ser alterado: O campo amount deve ser preenchido com o valor estabelecido no QR Code. Caso seja preenchido com valor divergente do QR Code, deve ser retornado um erro HTTP Status 422 com code xxx (a ser definido em proposta complementar).
+'
               - Modified property: transactionIdentification
                 - Description changed from 'Trata-se de um identificador de transação que deve ser retransmitido intacto pelo PSP do pagador ao gerar a ordem de pagamento. Essa informação permitirá ao recebedor identificar e correlacionar a transferência, quando recebida, com a apresentação das instruções ao pagador.
 Os caracteres permitidos no contexto do Pix para o campo txid (EMV 62-05) são:
@@ -1090,6 +1096,12 @@ Este campo faz referência ao campo CodMun do arranjo Pix.
 '
                 - Modified property: payment
                   - AdditionalProperties changed from false to null
+                  - Properties changed
+                    - Modified property: amount
+                      - Description changed from 'Valor da transação com 2 casas decimais.
+' to 'Valor da transação com 2 casas decimais. O valor deve ser o mesmo enviado no consentimento. Caso seja preenchido com valor divergente, deve ser retornado um erro HTTP Status 422 com code xxx (a ser definido em proposta complementar).  
+Para QR Code estático com valor pré-determinado no QR Code ou para QR Code dinâmico com indicação de que o valor não pode ser alterado: O campo amount deve ser preenchido com o valor estabelecido no QR Code. Caso seja preenchido com valor divergente do QR Code, deve ser retornado um erro HTTP Status 422 com code xxx (a ser definido em proposta complementar).
+'
                 - Modified property: rejectionReason
                   - Type changed from 'string' to 'object'
                   - Description changed from 'Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.  
