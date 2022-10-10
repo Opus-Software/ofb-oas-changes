@@ -93,8 +93,6 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-        '529':
-          $ref: '#/components/responses/SiteIsOverloaded'
         default:
           description: Erro inesperado.
           content:
@@ -137,8 +135,6 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-        '529':
-          $ref: '#/components/responses/SiteIsOverloaded'
         default:
           description: Erro inesperado.
           content:
@@ -192,8 +188,6 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-        '529':
-          $ref: '#/components/responses/SiteIsOverloaded'
         default:
           description: Erro inesperado.
           content:
@@ -238,8 +232,6 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-        '529':
-          $ref: '#/components/responses/SiteIsOverloaded'
         default:
           description: Erro inesperado.
           content:
@@ -1039,7 +1031,8 @@ components:
           pattern: '^((\d{1,16}\.\d{2}))$'
           example: '100000.12'
           description: |
-            Valor da transação com 2 casas decimais.
+            Valor da transação com 2 casas decimais. O valor deve ser o mesmo enviado no consentimento. Caso seja preenchido com valor divergente, deve ser retornado um erro HTTP Status 422 com code xxx (a ser definido em proposta complementar).  
+            Para QR Code estático com valor pré-determinado no QR Code ou para QR Code dinâmico com indicação de que o valor não pode ser alterado: O campo amount deve ser preenchido com o valor estabelecido no QR Code. Caso seja preenchido com valor divergente do QR Code, deve ser retornado um erro HTTP Status 422 com code xxx (a ser definido em proposta complementar).
         currency:
           type: string
           maxLength: 3
@@ -1778,12 +1771,6 @@ components:
             Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
           schema:
             $ref: '#/components/schemas/XFapiInteractionId'
-    SiteIsOverloaded:
-      description: 'O site está sobrecarregado e a operação foi recusada, pois foi atingido o limite máximo de TPS global, neste momento.'
-      content:
-        application/json; charset=utf-8:
-          schema:
-            $ref: '#/components/schemas/ResponseError'
     TooManyRequests:
       description: 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido'
       content:
