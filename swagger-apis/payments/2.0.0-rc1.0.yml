@@ -582,7 +582,7 @@ components:
         issuer:
           type: string
           maxLength: 4
-          pattern: '^[0-9]{1,4}$'
+          pattern: '^\d{4}$'
           example: '1774'
           description: |
             Código da Agência emissora da conta sem dígito.  
@@ -593,7 +593,7 @@ components:
           type: string
           minLength: 3
           maxLength: 20
-          pattern: '^[0-9]{1,20}$'
+          pattern: '^\d{3,20}$'
           example: '1234567890'
           description: |
             Deve ser preenchido com o número da conta do usuário recebedor, com dígito verificador (se este existir),  
@@ -1623,8 +1623,11 @@ components:
               pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
               example: '2021-01-01'
               description: |
-                Define a data alvo da liquidação do pagamento. O fuso horário de Brasilia deve ser utilizado para criação e racionalização sobre os dados deste campo.  
-                OBS:Esse campo deverá sempre ser no mínimo D+1 corrido, ou seja, a data imediatamente posterior em relação a data do consentimento considerando o fuso horário de Brasília e deverá ser no máximo um ano corrido a partir da data do consentimento considerando o fuso horário de Brasília.
+                Define a data alvo da liquidação do pagamento. 
+
+                O fuso horário de Brasília deve ser utilizado para criação e racionalização sobre os dados deste campo.
+
+                Observação: Esse campo deverá sempre ser no mínimo D+1 corrido, ou seja, a data imediatamente posterior em relação a data do consentimento considerando o fuso horário de Brasília e deverá ser no máximo um ano corrido D+365 corridos a partir da data do consentimento considerando o fuso horário de Brasília
     XFapiInteractionId:
       type: string
       pattern: '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
