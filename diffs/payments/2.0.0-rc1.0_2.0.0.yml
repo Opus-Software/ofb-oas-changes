@@ -2,7 +2,7 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 2
+### Modified Endpoints: 4
 -------------------------
 POST /consents
 - Request body changed
@@ -12,11 +12,29 @@ POST /consents
         - Properties changed
           - Modified property: data
             - Properties changed
+              - Modified property: creditor
+                - Properties changed
+                  - Modified property: name
+                    - Pattern changed from '^([A-Za-zÀ-ÖØ-öø-ÿ' -]+)$' to '[\w\W\s]*'
+              - Modified property: debtorAccount
+                - Properties changed
+                  - Modified property: issuer
+                    - Pattern changed from '^[0-9]{1,4}$' to '^\d{4}$'
+                  - Modified property: number
+                    - Pattern changed from '^[0-9]{1,20}$' to '^\d{3,20}$'
               - Modified property: payment
                 - Properties changed
                   - Deleted property: schedule
                   - Modified property: date
                     - Description changed from 'Mutuamente exclusivo com o objeto schedule. Este campo é obrigatório no caso de pagamento único. Neste caso, o objeto schedule não deve ser informado.' to 'Data do pagamento observando o horário de Brasília e horário de verão quando houver.'
+                  - Modified property: details
+                    - Properties changed
+                      - Modified property: creditorAccount
+                        - Properties changed
+                          - Modified property: issuer
+                            - Pattern changed from '^[0-9]{1,4}$' to '^\d{4}$'
+                          - Modified property: number
+                            - Pattern changed from '^[0-9]{1,20}$' to '^\d{3,20}$'
 - Responses changed
   - Modified response: 201
     - Content changed
@@ -25,11 +43,29 @@ POST /consents
           - Properties changed
             - Modified property: data
               - Properties changed
+                - Modified property: creditor
+                  - Properties changed
+                    - Modified property: name
+                      - Pattern changed from '^([A-Za-zÀ-ÖØ-öø-ÿ' -]+)$' to '[\w\W\s]*'
+                - Modified property: debtorAccount
+                  - Properties changed
+                    - Modified property: issuer
+                      - Pattern changed from '^[0-9]{1,4}$' to '^\d{4}$'
+                    - Modified property: number
+                      - Pattern changed from '^[0-9]{1,20}$' to '^\d{3,20}$'
                 - Modified property: payment
                   - Properties changed
                     - Deleted property: schedule
                     - Modified property: date
                       - Description changed from 'Mutuamente exclusivo com o objeto schedule. Este campo é obrigatório no caso de pagamento único. Neste caso, o objeto schedule não deve ser informado.' to 'Data do pagamento observando o horário de Brasília e horário de verão quando houver.'
+                    - Modified property: details
+                      - Properties changed
+                        - Modified property: creditorAccount
+                          - Properties changed
+                            - Modified property: issuer
+                              - Pattern changed from '^[0-9]{1,4}$' to '^\d{4}$'
+                            - Modified property: number
+                              - Pattern changed from '^[0-9]{1,20}$' to '^\d{3,20}$'
 GET /consents/{consentId}
 - Responses changed
   - Modified response: 200
@@ -39,11 +75,84 @@ GET /consents/{consentId}
           - Properties changed
             - Modified property: data
               - Properties changed
+                - Modified property: creditor
+                  - Properties changed
+                    - Modified property: name
+                      - Pattern changed from '^([A-Za-zÀ-ÖØ-öø-ÿ' -]+)$' to '[\w\W\s]*'
+                - Modified property: debtorAccount
+                  - Properties changed
+                    - Modified property: issuer
+                      - Pattern changed from '^[0-9]{1,4}$' to '^\d{4}$'
+                    - Modified property: number
+                      - Pattern changed from '^[0-9]{1,20}$' to '^\d{3,20}$'
                 - Modified property: payment
                   - Properties changed
                     - Deleted property: schedule
                     - Modified property: date
                       - Description changed from 'Mutuamente exclusivo com o objeto schedule. Este campo é obrigatório no caso de pagamento único. Neste caso, o objeto schedule não deve ser informado.' to 'Data do pagamento observando o horário de Brasília e horário de verão quando houver.'
+                    - Modified property: details
+                      - Properties changed
+                        - Modified property: creditorAccount
+                          - Properties changed
+                            - Modified property: issuer
+                              - Pattern changed from '^[0-9]{1,4}$' to '^\d{4}$'
+                            - Modified property: number
+                              - Pattern changed from '^[0-9]{1,20}$' to '^\d{3,20}$'
+POST /pix/payments
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: creditorAccount
+                - Properties changed
+                  - Modified property: issuer
+                    - Pattern changed from '^[0-9]{1,4}$' to '^\d{4}$'
+                  - Modified property: number
+                    - Pattern changed from '^[0-9]{1,20}$' to '^\d{3,20}$'
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: creditorAccount
+                  - Properties changed
+                    - Modified property: issuer
+                      - Pattern changed from '^[0-9]{1,4}$' to '^\d{4}$'
+                    - Modified property: number
+                      - Pattern changed from '^[0-9]{1,20}$' to '^\d{3,20}$'
+                - Modified property: debtorAccount
+                  - Properties changed
+                    - Modified property: issuer
+                      - Pattern changed from '^[0-9]{1,4}$' to '^\d{4}$'
+                    - Modified property: number
+                      - Pattern changed from '^[0-9]{1,20}$' to '^\d{3,20}$'
+GET /pix/payments/{paymentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: creditorAccount
+                  - Properties changed
+                    - Modified property: issuer
+                      - Pattern changed from '^[0-9]{1,4}$' to '^\d{4}$'
+                    - Modified property: number
+                      - Pattern changed from '^[0-9]{1,20}$' to '^\d{3,20}$'
+                - Modified property: debtorAccount
+                  - Properties changed
+                    - Modified property: issuer
+                      - Pattern changed from '^[0-9]{1,4}$' to '^\d{4}$'
+                    - Modified property: number
+                      - Pattern changed from '^[0-9]{1,20}$' to '^\d{3,20}$'
 Servers changed
 - New server: https://api.banco.com.br/open-banking/payments/v1
 - New server: https://apih.banco.com.br/open-banking/payments/v1
