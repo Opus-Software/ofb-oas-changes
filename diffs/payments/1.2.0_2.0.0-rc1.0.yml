@@ -33,8 +33,10 @@ POST /consents
                   - Modified property: accountType
                     - MaxLength changed from 4 to null
                   - Modified property: issuer
+                    - MinLength changed from 0 to 1
                     - Pattern changed from '^\d{4}$' to '^[0-9]{1,4}$'
                   - Modified property: number
+                    - MinLength changed from 3 to 1
                     - Pattern changed from '^\d{3,20}$' to '^[0-9]{1,20}$'
               - Modified property: loggedUser
                 - AdditionalProperties changed from false to null
@@ -43,15 +45,10 @@ POST /consents
                     - AdditionalProperties changed from false to null
               - Modified property: payment
                 - AdditionalProperties changed from false to null
-                - Required changed
-                  - Deleted required property: date
                 - Properties changed
                   - New property: schedule
                   - Modified property: date
-                    - Description changed from 'Data do pagamento, conforme especificação RFC-3339.' to '[Restrição] Mutuamente excludente com o objeto schedule. 
-Este campo é obrigatório no caso de pagamento único. 
-Neste caso, o objeto schedule não deve ser informado.
-'
+                    - Description changed from 'Data do pagamento, conforme especificação RFC-3339.' to 'Mutuamente exclusivo com o objeto schedule. Este campo é obrigatório no caso de pagamento único. Neste caso, o objeto schedule não deve ser informado.'
                   - Modified property: details
                     - AdditionalProperties changed from false to null
                     - Properties changed
@@ -61,8 +58,10 @@ Neste caso, o objeto schedule não deve ser informado.
                           - Modified property: accountType
                             - MaxLength changed from 4 to null
                           - Modified property: issuer
+                            - MinLength changed from 0 to 1
                             - Pattern changed from '^\d{4}$' to '^[0-9]{1,4}$'
                           - Modified property: number
+                            - MinLength changed from 3 to 1
                             - Pattern changed from '^\d{3,20}$' to '^[0-9]{1,20}$'
                       - Modified property: localInstrument
                         - MaxLength changed from 4 to null
@@ -108,8 +107,10 @@ Este campo faz referência ao campo CodMun do arranjo Pix.
                     - Modified property: accountType
                       - MaxLength changed from 4 to null
                     - Modified property: issuer
+                      - MinLength changed from 0 to 1
                       - Pattern changed from '^\d{4}$' to '^[0-9]{1,4}$'
                     - Modified property: number
+                      - MinLength changed from 3 to 1
                       - Pattern changed from '^\d{3,20}$' to '^[0-9]{1,20}$'
                 - Modified property: loggedUser
                   - AdditionalProperties changed from false to null
@@ -118,8 +119,6 @@ Este campo faz referência ao campo CodMun do arranjo Pix.
                       - AdditionalProperties changed from false to null
                 - Modified property: payment
                   - AdditionalProperties changed from false to null
-                  - Required changed
-                    - Deleted required property: date
                   - Properties changed
                     - New property: schedule
                     - Modified property: amount
@@ -129,10 +128,7 @@ Para QR Code estático com valor pré-determinado no QR Code ou para QR Code din
 Caso seja preenchido com valor divergente do QR Code, deve ser retornado um erro HTTP Status 422 com code xxx (a ser definido em proposta complementar).
 '
                     - Modified property: date
-                      - Description changed from 'Data do pagamento, conforme especificação RFC-3339.' to '[Restrição] Mutuamente excludente com o objeto schedule. 
-Este campo é obrigatório no caso de pagamento único. 
-Neste caso, o objeto schedule não deve ser informado.
-'
+                      - Description changed from 'Data do pagamento, conforme especificação RFC-3339.' to 'Mutuamente exclusivo com o objeto schedule. Este campo é obrigatório no caso de pagamento único. Neste caso, o objeto schedule não deve ser informado.'
                     - Modified property: details
                       - AdditionalProperties changed from false to null
                       - Properties changed
@@ -142,8 +138,10 @@ Neste caso, o objeto schedule não deve ser informado.
                             - Modified property: accountType
                               - MaxLength changed from 4 to null
                             - Modified property: issuer
+                              - MinLength changed from 0 to 1
                               - Pattern changed from '^\d{4}$' to '^[0-9]{1,4}$'
                             - Modified property: number
+                              - MinLength changed from 3 to 1
                               - Pattern changed from '^\d{3,20}$' to '^[0-9]{1,20}$'
                         - Modified property: localInstrument
                           - MaxLength changed from 4 to null
@@ -466,8 +464,10 @@ GET /consents/{consentId}
                     - Modified property: accountType
                       - MaxLength changed from 4 to null
                     - Modified property: issuer
+                      - MinLength changed from 0 to 1
                       - Pattern changed from '^\d{4}$' to '^[0-9]{1,4}$'
                     - Modified property: number
+                      - MinLength changed from 3 to 1
                       - Pattern changed from '^\d{3,20}$' to '^[0-9]{1,20}$'
                 - Modified property: loggedUser
                   - AdditionalProperties changed from false to null
@@ -494,8 +494,10 @@ Neste caso, o objeto schedule não deve ser informado.
                             - Modified property: accountType
                               - MaxLength changed from 4 to null
                             - Modified property: issuer
+                              - MinLength changed from 0 to 1
                               - Pattern changed from '^\d{4}$' to '^[0-9]{1,4}$'
                             - Modified property: number
+                              - MinLength changed from 3 to 1
                               - Pattern changed from '^\d{3,20}$' to '^[0-9]{1,20}$'
                         - Modified property: localInstrument
                           - MaxLength changed from 4 to null
@@ -702,8 +704,10 @@ POST /pix/payments
                   - Modified property: accountType
                     - MaxLength changed from 4 to null
                   - Modified property: issuer
+                    - MinLength changed from 0 to 1
                     - Pattern changed from '^\d{4}$' to '^[0-9]{1,4}$'
                   - Modified property: number
+                    - MinLength changed from 3 to 1
                     - Pattern changed from '^\d{3,20}$' to '^[0-9]{1,20}$'
               - Modified property: endToEndId
                 - Description changed from 'Deve ser preenchido no formato padrão ExxxxxxxxyyyyMMddHHmmkkkkkkkkkkk (32 caracteres; “case sensitive”, isso é, diferencia letras maiúsculas e minúsculas), sendo:
@@ -790,8 +794,10 @@ A detentora de conta deve validar se a condicionalidade e o formato do campo for
                     - Modified property: accountType
                       - MaxLength changed from 4 to null
                     - Modified property: issuer
+                      - MinLength changed from 0 to 1
                       - Pattern changed from '^\d{4}$' to '^[0-9]{1,4}$'
                     - Modified property: number
+                      - MinLength changed from 3 to 1
                       - Pattern changed from '^\d{3,20}$' to '^[0-9]{1,20}$'
                 - Modified property: endToEndId
                   - Description changed from 'Deve ser preenchido no formato padrão ExxxxxxxxyyyyMMddHHmmkkkkkkkkkkk (32 caracteres; “case sensitive”, isso é, diferencia letras maiúsculas e minúsculas), sendo:
@@ -1269,8 +1275,10 @@ GET /pix/payments/{paymentId}
                     - Modified property: accountType
                       - MaxLength changed from 4 to null
                     - Modified property: issuer
+                      - MinLength changed from 0 to 1
                       - Pattern changed from '^\d{4}$' to '^[0-9]{1,4}$'
                     - Modified property: number
+                      - MinLength changed from 3 to 1
                       - Pattern changed from '^\d{3,20}$' to '^[0-9]{1,20}$'
                 - Modified property: endToEndId
                   - Description changed from 'Deve ser preenchido no formato padrão ExxxxxxxxyyyyMMddHHmmkkkkkkkkkkk (32 caracteres; “case sensitive”, isso é, diferencia letras maiúsculas e minúsculas), sendo:

@@ -556,6 +556,7 @@ components:
               description: Objeto contendo dados de pagamento para consentimento.
               required:
                 - type
+                - date
                 - currency
                 - amount
                 - details
@@ -563,20 +564,14 @@ components:
                 type:
                   $ref: '#/components/schemas/EnumPaymentType'
                 schedule:
-                  oneOf:
-                    - $ref: '#/components/schemas/Schedule'
+                  $ref: '#/components/schemas/Schedule'
                 date:
                   type: string
                   format: date
                   maxLength: 10
                   pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
                   example: '2021-01-01'
-                  description: |
-                    [Restrição] Mutuamente excludente com o objeto schedule. 
-
-                    Este campo é obrigatório no caso de pagamento único. 
-
-                    Neste caso, o objeto schedule não deve ser informado.
+                  description: 'Mutuamente exclusivo com o objeto schedule. Este campo é obrigatório no caso de pagamento único. Neste caso, o objeto schedule não deve ser informado.'
                 currency:
                   type: string
                   maxLength: 3
@@ -726,6 +721,7 @@ components:
             Deve ser preenchido com o ISPB (Identificador do Sistema de Pagamentos Brasileiros) do participante do SPI (Sistema de pagamentos instantâneos) somente com números.
         issuer:
           type: string
+          minLength: 1
           maxLength: 4
           pattern: '^[0-9]{1,4}$'
           example: '1774'
@@ -736,7 +732,7 @@ components:
             [Restrição] Preenchimento obrigatório para os seguintes tipos de conta: CACC (CONTA_DEPOSITO_A_VISTA), SVGS (CONTA_POUPANCA) e SLRY (CONTA_SALARIO).
         number:
           type: string
-          minLength: 3
+          minLength: 1
           maxLength: 20
           pattern: '^[0-9]{1,20}$'
           example: '1234567890'
@@ -765,6 +761,7 @@ components:
             Deve ser preenchido com o ISPB (Identificador do Sistema de Pagamentos Brasileiros) do participante do SPI (Sistema de pagamentos instantâneos) somente com números.
         issuer:
           type: string
+          minLength: 1
           maxLength: 4
           pattern: '^[0-9]{1,4}$'
           example: '1774'
@@ -775,7 +772,7 @@ components:
             [Restrição] Preenchimento obrigatório para os seguintes tipos de conta: CACC (CONTA_DEPOSITO_A_VISTA), SVGS (CONTA_POUPANCA) e SLRY (CONTA_SALARIO).
         number:
           type: string
-          minLength: 3
+          minLength: 1
           maxLength: 20
           pattern: '^[0-9]{1,20}$'
           example: '1234567890'
@@ -1419,6 +1416,7 @@ components:
               description: Objeto contendo dados de pagamento para consentimento.
               required:
                 - type
+                - date
                 - currency
                 - amount
                 - details
@@ -1426,20 +1424,14 @@ components:
                 type:
                   $ref: '#/components/schemas/EnumPaymentType'
                 schedule:
-                  oneOf:
-                    - $ref: '#/components/schemas/Schedule'
+                  $ref: '#/components/schemas/Schedule'
                 date:
                   type: string
                   format: date
                   maxLength: 10
                   pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
                   example: '2021-01-01'
-                  description: |
-                    [Restrição] Mutuamente excludente com o objeto schedule. 
-
-                    Este campo é obrigatório no caso de pagamento único. 
-
-                    Neste caso, o objeto schedule não deve ser informado.
+                  description: 'Mutuamente exclusivo com o objeto schedule. Este campo é obrigatório no caso de pagamento único. Neste caso, o objeto schedule não deve ser informado.'
                 currency:
                   type: string
                   maxLength: 3
@@ -1769,11 +1761,7 @@ components:
     Schedule:
       type: object
       description: |
-        [Restrição] Mutuamente excludente com o campo date. 
-
-        Este campo é obrigatório no caso de agendamento. 
-
-        Neste caso, o campo date não deve ser informado.
+        Mutuamente excludente com o campo date. Este campo é obrigatório no caso de agendamento. Neste caso, o campo date não deve ser informado.
       required:
         - single
       properties:
