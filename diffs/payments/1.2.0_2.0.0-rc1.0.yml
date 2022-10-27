@@ -43,10 +43,15 @@ POST /consents
                     - AdditionalProperties changed from false to null
               - Modified property: payment
                 - AdditionalProperties changed from false to null
+                - Required changed
+                  - Deleted required property: date
                 - Properties changed
                   - New property: schedule
                   - Modified property: date
-                    - Description changed from 'Data do pagamento, conforme especificação RFC-3339.' to 'Mutuamente exclusivo com o objeto schedule. Este campo é obrigatório no caso de pagamento único. Neste caso, o objeto schedule não deve ser informado.'
+                    - Description changed from 'Data do pagamento, conforme especificação RFC-3339.' to '[Restrição] Mutuamente excludente com o objeto schedule. 
+Este campo é obrigatório no caso de pagamento único. 
+Neste caso, o objeto schedule não deve ser informado.
+'
                   - Modified property: details
                     - AdditionalProperties changed from false to null
                     - Properties changed
@@ -113,6 +118,8 @@ Este campo faz referência ao campo CodMun do arranjo Pix.
                       - AdditionalProperties changed from false to null
                 - Modified property: payment
                   - AdditionalProperties changed from false to null
+                  - Required changed
+                    - Deleted required property: date
                   - Properties changed
                     - New property: schedule
                     - Modified property: amount
@@ -122,7 +129,10 @@ Para QR Code estático com valor pré-determinado no QR Code ou para QR Code din
 Caso seja preenchido com valor divergente do QR Code, deve ser retornado um erro HTTP Status 422 com code xxx (a ser definido em proposta complementar).
 '
                     - Modified property: date
-                      - Description changed from 'Data do pagamento, conforme especificação RFC-3339.' to 'Mutuamente exclusivo com o objeto schedule. Este campo é obrigatório no caso de pagamento único. Neste caso, o objeto schedule não deve ser informado.'
+                      - Description changed from 'Data do pagamento, conforme especificação RFC-3339.' to '[Restrição] Mutuamente excludente com o objeto schedule. 
+Este campo é obrigatório no caso de pagamento único. 
+Neste caso, o objeto schedule não deve ser informado.
+'
                     - Modified property: details
                       - AdditionalProperties changed from false to null
                       - Properties changed
