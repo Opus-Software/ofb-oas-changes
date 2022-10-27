@@ -25,9 +25,13 @@ POST /consents
                   - Modified property: name
                     - MaxLength changed from 140 to 120
                     - Pattern changed from '[\w\W\s]*' to '^([A-Za-zÀ-ÖØ-öø-ÿ' -]+)$'
+                  - Modified property: personType
+                    - MaxLength changed from 15 to null
               - Modified property: debtorAccount
                 - AdditionalProperties changed from false to null
                 - Properties changed
+                  - Modified property: accountType
+                    - MaxLength changed from 4 to null
                   - Modified property: issuer
                     - Pattern changed from '^\d{4}$' to '^[0-9]{1,4}$'
                   - Modified property: number
@@ -49,10 +53,14 @@ POST /consents
                       - Modified property: creditorAccount
                         - AdditionalProperties changed from false to null
                         - Properties changed
+                          - Modified property: accountType
+                            - MaxLength changed from 4 to null
                           - Modified property: issuer
                             - Pattern changed from '^\d{4}$' to '^[0-9]{1,4}$'
                           - Modified property: number
                             - Pattern changed from '^\d{3,20}$' to '^[0-9]{1,20}$'
+                      - Modified property: localInstrument
+                        - MaxLength changed from 4 to null
                   - Modified property: ibgeTownCode
                     - Description changed from 'Traz o código da cidade segundo o IBGE (Instituto Brasileiro de Geografia e Estatística).
 Para o preenchimento deste campo, o Iniciador de Pagamentos deve seguir a orientação do arranjo da forma de pagamento.
@@ -61,6 +69,8 @@ Este campo faz referência ao campo CodMun do arranjo Pix.
 ' to 'O campo ibgetowncode no arranjo PIX, tem o mesmo comportamento que o campo codMun descrito no item 1.6.6 do manual do PIX, conforme segue:
 1. Caso a informação referente ao município não seja enviada; o PSP do recebedor assumirá que não existem feriados estaduais e municipais no período em questão;
 '
+                  - Modified property: type
+                    - MaxLength changed from 3 to null
 - Responses changed
   - New response: 529
   - Modified response: 201
@@ -85,9 +95,13 @@ Este campo faz referência ao campo CodMun do arranjo Pix.
                     - Modified property: name
                       - MaxLength changed from 140 to 120
                       - Pattern changed from '[\w\W\s]*' to '^([A-Za-zÀ-ÖØ-öø-ÿ' -]+)$'
+                    - Modified property: personType
+                      - MaxLength changed from 15 to null
                 - Modified property: debtorAccount
                   - AdditionalProperties changed from false to null
                   - Properties changed
+                    - Modified property: accountType
+                      - MaxLength changed from 4 to null
                     - Modified property: issuer
                       - Pattern changed from '^\d{4}$' to '^[0-9]{1,4}$'
                     - Modified property: number
@@ -115,10 +129,14 @@ Caso seja preenchido com valor divergente do QR Code, deve ser retornado um erro
                         - Modified property: creditorAccount
                           - AdditionalProperties changed from false to null
                           - Properties changed
+                            - Modified property: accountType
+                              - MaxLength changed from 4 to null
                             - Modified property: issuer
                               - Pattern changed from '^\d{4}$' to '^[0-9]{1,4}$'
                             - Modified property: number
                               - Pattern changed from '^\d{3,20}$' to '^[0-9]{1,20}$'
+                        - Modified property: localInstrument
+                          - MaxLength changed from 4 to null
                     - Modified property: ibgeTownCode
                       - Description changed from 'Traz o código da cidade segundo o IBGE (Instituto Brasileiro de Geografia e Estatística).
 Para o preenchimento deste campo, o Iniciador de Pagamentos deve seguir a orientação do arranjo da forma de pagamento.
@@ -127,6 +145,10 @@ Este campo faz referência ao campo CodMun do arranjo Pix.
 ' to 'O campo ibgetowncode no arranjo PIX, tem o mesmo comportamento que o campo codMun descrito no item 1.6.6 do manual do PIX, conforme segue:
 1. Caso a informação referente ao município não seja enviada; o PSP do recebedor assumirá que não existem feriados estaduais e municipais no período em questão;
 '
+                    - Modified property: type
+                      - MaxLength changed from 3 to null
+                - Modified property: status
+                  - MaxLength changed from 22 to null
             - Modified property: links
               - AdditionalProperties changed from false to null
               - Properties changed
@@ -295,6 +317,7 @@ Este campo faz referência ao campo CodMun do arranjo Pix.
                     - New enum values: [FORMA_PAGAMENTO_INVALIDA DATA_PAGAMENTO_INVALIDA PARAMETRO_NAO_INFORMADO PARAMETRO_INVALIDO ERRO_IDEMPOTENCIA]
                     - Deleted enum values: [FORMA_PGTO_INVALIDA DATA_PGTO_INVALIDA]
                     - Example changed from 'FORMA_PGTO_INVALIDA' to 'FORMA_PAGAMENTO_INVALIDA'
+                    - MaxLength changed from 21 to null
                   - Modified property: detail
                     - Description changed from 'Descrição específica do erro de acordo com o código reportado:  
 • FORMA_PGTO_INVALIDA – Meio de pagamento inválido.  
@@ -425,9 +448,13 @@ GET /consents/{consentId}
                     - Modified property: name
                       - MaxLength changed from 140 to 120
                       - Pattern changed from '[\w\W\s]*' to '^([A-Za-zÀ-ÖØ-öø-ÿ' -]+)$'
+                    - Modified property: personType
+                      - MaxLength changed from 15 to null
                 - Modified property: debtorAccount
                   - AdditionalProperties changed from false to null
                   - Properties changed
+                    - Modified property: accountType
+                      - MaxLength changed from 4 to null
                     - Modified property: issuer
                       - Pattern changed from '^\d{4}$' to '^[0-9]{1,4}$'
                     - Modified property: number
@@ -439,25 +466,23 @@ GET /consents/{consentId}
                       - AdditionalProperties changed from false to null
                 - Modified property: payment
                   - AdditionalProperties changed from false to null
-                  - Required changed
-                    - Deleted required property: date
                   - Properties changed
-                    - New property: schedule
                     - Modified property: date
-                      - Description changed from 'Data do pagamento, conforme especificação RFC-3339.' to '[Restrição] Mutuamente excludente com o objeto schedule. 
-Este campo é obrigatório no caso de pagamento único. 
-Neste caso, o objeto schedule não deve ser informado.
-'
+                      - Description changed from 'Data do pagamento, conforme especificação RFC-3339.' to 'Data do pagamento observando o horário de Brasília e horário de verão quando houver.'
                     - Modified property: details
                       - AdditionalProperties changed from false to null
                       - Properties changed
                         - Modified property: creditorAccount
                           - AdditionalProperties changed from false to null
                           - Properties changed
+                            - Modified property: accountType
+                              - MaxLength changed from 4 to null
                             - Modified property: issuer
                               - Pattern changed from '^\d{4}$' to '^[0-9]{1,4}$'
                             - Modified property: number
                               - Pattern changed from '^\d{3,20}$' to '^[0-9]{1,20}$'
+                        - Modified property: localInstrument
+                          - MaxLength changed from 4 to null
                     - Modified property: ibgeTownCode
                       - Description changed from 'Traz o código da cidade segundo o IBGE (Instituto Brasileiro de Geografia e Estatística).
 Para o preenchimento deste campo, o Iniciador de Pagamentos deve seguir a orientação do arranjo da forma de pagamento.
@@ -466,6 +491,10 @@ Este campo faz referência ao campo CodMun do arranjo Pix.
 ' to 'O campo ibgetowncode no arranjo PIX, tem o mesmo comportamento que o campo codMun descrito no item 1.6.6 do manual do PIX, conforme segue:
 1. Caso a informação referente ao município não seja enviada; o PSP do recebedor assumirá que não existem feriados estaduais e municipais no período em questão;
 '
+                    - Modified property: type
+                      - MaxLength changed from 3 to null
+                - Modified property: status
+                  - MaxLength changed from 22 to null
             - Modified property: links
               - AdditionalProperties changed from false to null
               - Properties changed
@@ -654,6 +683,8 @@ POST /pix/payments
               - Modified property: creditorAccount
                 - AdditionalProperties changed from false to null
                 - Properties changed
+                  - Modified property: accountType
+                    - MaxLength changed from 4 to null
                   - Modified property: issuer
                     - Pattern changed from '^\d{4}$' to '^[0-9]{1,4}$'
                   - Modified property: number
@@ -685,6 +716,8 @@ Este campo faz referência ao campo CodMun do arranjo Pix.
 ' to 'O campo ibgetowncode no arranjo PIX, tem o mesmo comportamento que o campo codMun descrito no item 1.6.6 do manual do PIX, conforme segue:
 1. Caso a informação referente ao município não seja enviada; o PSP do recebedor assumirá que não existem feriados estaduais e municipais no período em questão;
 '
+              - Modified property: localInstrument
+                - MaxLength changed from 4 to null
               - Modified property: payment
                 - AdditionalProperties changed from false to null
                 - Properties changed
@@ -738,6 +771,8 @@ A detentora de conta deve validar se a condicionalidade e o formato do campo for
                 - Modified property: creditorAccount
                   - AdditionalProperties changed from false to null
                   - Properties changed
+                    - Modified property: accountType
+                      - MaxLength changed from 4 to null
                     - Modified property: issuer
                       - Pattern changed from '^\d{4}$' to '^[0-9]{1,4}$'
                     - Modified property: number
@@ -762,6 +797,8 @@ Este campo faz referência ao campo CodMun do arranjo Pix.
 ' to 'O campo ibgetowncode no arranjo PIX, tem o mesmo comportamento que o campo codMun descrito no item 1.6.6 do manual do PIX, conforme segue:
 1. Caso a informação referente ao município não seja enviada; o PSP do recebedor assumirá que não existem feriados estaduais e municipais no período em questão;
 '
+                - Modified property: localInstrument
+                  - MaxLength changed from 4 to null
                 - Modified property: payment
                   - AdditionalProperties changed from false to null
                   - Properties changed
@@ -1056,6 +1093,7 @@ A detentora de conta deve validar se a condicionalidade do campo foi atendida pe
 '
                     - New enum values: [PAGAMENTO_DIVERGENTE_CONSENTIMENTO DETALHE_PAGAMENTO_INVALIDO PAGAMENTO_RECUSADO_DETENTORA PAGAMENTO_RECUSADO_SPI ERRO_IDEMPOTENCIA]
                     - Deleted enum values: [PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO]
+                    - MaxLength changed from 25 to null
                   - Modified property: detail
                     - Description changed from 'Descrição específica do erro de acordo com o código reportado:
 • SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento.
@@ -1212,6 +1250,8 @@ GET /pix/payments/{paymentId}
                 - Modified property: creditorAccount
                   - AdditionalProperties changed from false to null
                   - Properties changed
+                    - Modified property: accountType
+                      - MaxLength changed from 4 to null
                     - Modified property: issuer
                       - Pattern changed from '^\d{4}$' to '^[0-9]{1,4}$'
                     - Modified property: number
@@ -1236,6 +1276,8 @@ Este campo faz referência ao campo CodMun do arranjo Pix.
 ' to 'O campo ibgetowncode no arranjo PIX, tem o mesmo comportamento que o campo codMun descrito no item 1.6.6 do manual do PIX, conforme segue:
 1. Caso a informação referente ao município não seja enviada; o PSP do recebedor assumirá que não existem feriados estaduais e municipais no período em questão;
 '
+                - Modified property: localInstrument
+                  - MaxLength changed from 4 to null
                 - Modified property: payment
                   - AdditionalProperties changed from false to null
                   - Properties changed

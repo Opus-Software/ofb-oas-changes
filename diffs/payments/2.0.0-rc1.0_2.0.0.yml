@@ -17,8 +17,12 @@ POST /consents
                   - Modified property: name
                     - MaxLength changed from 120 to 140
                     - Pattern changed from '^([A-Za-zÀ-ÖØ-öø-ÿ' -]+)$' to '[\w\W\s]*'
+                  - Modified property: personType
+                    - MaxLength changed from null to 15
               - Modified property: debtorAccount
                 - Properties changed
+                  - Modified property: accountType
+                    - MaxLength changed from null to 4
                   - Modified property: issuer
                     - Pattern changed from '^[0-9]{1,4}$' to '^\d{4}$'
                   - Modified property: number
@@ -32,10 +36,16 @@ POST /consents
                     - Properties changed
                       - Modified property: creditorAccount
                         - Properties changed
+                          - Modified property: accountType
+                            - MaxLength changed from null to 4
                           - Modified property: issuer
                             - Pattern changed from '^[0-9]{1,4}$' to '^\d{4}$'
                           - Modified property: number
                             - Pattern changed from '^[0-9]{1,20}$' to '^\d{3,20}$'
+                      - Modified property: localInstrument
+                        - MaxLength changed from null to 4
+                  - Modified property: type
+                    - MaxLength changed from null to 3
 - Responses changed
   - Modified response: 201
     - Content changed
@@ -49,8 +59,12 @@ POST /consents
                     - Modified property: name
                       - MaxLength changed from 120 to 140
                       - Pattern changed from '^([A-Za-zÀ-ÖØ-öø-ÿ' -]+)$' to '[\w\W\s]*'
+                    - Modified property: personType
+                      - MaxLength changed from null to 15
                 - Modified property: debtorAccount
                   - Properties changed
+                    - Modified property: accountType
+                      - MaxLength changed from null to 4
                     - Modified property: issuer
                       - Pattern changed from '^[0-9]{1,4}$' to '^\d{4}$'
                     - Modified property: number
@@ -64,10 +78,18 @@ POST /consents
                       - Properties changed
                         - Modified property: creditorAccount
                           - Properties changed
+                            - Modified property: accountType
+                              - MaxLength changed from null to 4
                             - Modified property: issuer
                               - Pattern changed from '^[0-9]{1,4}$' to '^\d{4}$'
                             - Modified property: number
                               - Pattern changed from '^[0-9]{1,20}$' to '^\d{3,20}$'
+                        - Modified property: localInstrument
+                          - MaxLength changed from null to 4
+                    - Modified property: type
+                      - MaxLength changed from null to 3
+                - Modified property: status
+                  - MaxLength changed from null to 22
   - Modified response: 422
     - Content changed
       - Modified media type: application/jwt
@@ -94,6 +116,7 @@ POST /consents
                     - New enum values: [FORMA_PGTO_INVALIDA DATA_PGTO_INVALIDA]
                     - Deleted enum values: [FORMA_PAGAMENTO_INVALIDA DATA_PAGAMENTO_INVALIDA PARAMETRO_NAO_INFORMADO PARAMETRO_INVALIDO ERRO_IDEMPOTENCIA]
                     - Example changed from 'FORMA_PAGAMENTO_INVALIDA' to 'FORMA_PGTO_INVALIDA'
+                    - MaxLength changed from null to 21
                   - Modified property: detail
                     - Description changed from 'Descrição específica do erro de acordo com o código reportado:  
 • FORMA_PAGAMENTO_INVALIDA: Forma de pagamento [Modalidade] não suportada.  
@@ -142,30 +165,34 @@ GET /consents/{consentId}
                     - Modified property: name
                       - MaxLength changed from 120 to 140
                       - Pattern changed from '^([A-Za-zÀ-ÖØ-öø-ÿ' -]+)$' to '[\w\W\s]*'
+                    - Modified property: personType
+                      - MaxLength changed from null to 15
                 - Modified property: debtorAccount
                   - Properties changed
+                    - Modified property: accountType
+                      - MaxLength changed from null to 4
                     - Modified property: issuer
                       - Pattern changed from '^[0-9]{1,4}$' to '^\d{4}$'
                     - Modified property: number
                       - Pattern changed from '^[0-9]{1,20}$' to '^\d{3,20}$'
                 - Modified property: payment
-                  - Required changed
-                    - New required property: date
                   - Properties changed
-                    - Deleted property: schedule
-                    - Modified property: date
-                      - Description changed from '[Restrição] Mutuamente excludente com o objeto schedule. 
-Este campo é obrigatório no caso de pagamento único. 
-Neste caso, o objeto schedule não deve ser informado.
-' to 'Data do pagamento observando o horário de Brasília e horário de verão quando houver.'
                     - Modified property: details
                       - Properties changed
                         - Modified property: creditorAccount
                           - Properties changed
+                            - Modified property: accountType
+                              - MaxLength changed from null to 4
                             - Modified property: issuer
                               - Pattern changed from '^[0-9]{1,4}$' to '^\d{4}$'
                             - Modified property: number
                               - Pattern changed from '^[0-9]{1,20}$' to '^\d{3,20}$'
+                        - Modified property: localInstrument
+                          - MaxLength changed from null to 4
+                    - Modified property: type
+                      - MaxLength changed from null to 3
+                - Modified property: status
+                  - MaxLength changed from null to 22
 POST /pix/payments
 - Request body changed
   - Content changed
@@ -176,6 +203,8 @@ POST /pix/payments
             - Properties changed
               - Modified property: creditorAccount
                 - Properties changed
+                  - Modified property: accountType
+                    - MaxLength changed from null to 4
                   - Modified property: issuer
                     - Pattern changed from '^[0-9]{1,4}$' to '^\d{4}$'
                   - Modified property: number
@@ -199,6 +228,8 @@ Admite-se que o ´EndToEndId´ seja gerado pelo participante direto, pelo partic
   
 Ele deve ser único, não podendo ser repetido em qualquer outra operação enviada ao SPI.  
 '
+              - Modified property: localInstrument
+                - MaxLength changed from null to 4
 - Responses changed
   - Modified response: 201
     - Content changed
@@ -209,16 +240,22 @@ Ele deve ser único, não podendo ser repetido em qualquer outra operação envi
               - Properties changed
                 - Modified property: creditorAccount
                   - Properties changed
+                    - Modified property: accountType
+                      - MaxLength changed from null to 4
                     - Modified property: issuer
                       - Pattern changed from '^[0-9]{1,4}$' to '^\d{4}$'
                     - Modified property: number
                       - Pattern changed from '^[0-9]{1,20}$' to '^\d{3,20}$'
                 - Modified property: debtorAccount
                   - Properties changed
+                    - Modified property: accountType
+                      - MaxLength changed from null to 4
                     - Modified property: issuer
                       - Pattern changed from '^[0-9]{1,4}$' to '^\d{4}$'
                     - Modified property: number
                       - Pattern changed from '^[0-9]{1,20}$' to '^\d{3,20}$'
+                - Modified property: localInstrument
+                  - MaxLength changed from null to 4
                 - Modified property: rejectionReason
                   - Required changed
                     - New required property: status
@@ -267,6 +304,7 @@ Ele deve ser único, não podendo ser repetido em qualquer outra operação envi
 '
                     - New enum values: [PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO DETALHE_PGTO_INVALIDO]
                     - Deleted enum values: [PAGAMENTO_DIVERGENTE_CONSENTIMENTO DETALHE_PAGAMENTO_INVALIDO PAGAMENTO_RECUSADO_DETENTORA PAGAMENTO_RECUSADO_SPI ERRO_IDEMPOTENCIA]
+                    - MaxLength changed from null to 25
                   - Modified property: detail
                     - Description changed from 'Descrição específica do erro de acordo com o código reportado:
 • SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento.
@@ -344,16 +382,22 @@ GET /pix/payments/{paymentId}
               - Properties changed
                 - Modified property: creditorAccount
                   - Properties changed
+                    - Modified property: accountType
+                      - MaxLength changed from null to 4
                     - Modified property: issuer
                       - Pattern changed from '^[0-9]{1,4}$' to '^\d{4}$'
                     - Modified property: number
                       - Pattern changed from '^[0-9]{1,20}$' to '^\d{3,20}$'
                 - Modified property: debtorAccount
                   - Properties changed
+                    - Modified property: accountType
+                      - MaxLength changed from null to 4
                     - Modified property: issuer
                       - Pattern changed from '^[0-9]{1,4}$' to '^\d{4}$'
                     - Modified property: number
                       - Pattern changed from '^[0-9]{1,20}$' to '^\d{3,20}$'
+                - Modified property: localInstrument
+                  - MaxLength changed from null to 4
                 - Modified property: rejectionReason
                   - Required changed
                     - New required property: status
