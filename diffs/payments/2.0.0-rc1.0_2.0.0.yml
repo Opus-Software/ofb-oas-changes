@@ -35,6 +35,12 @@ POST /consents
                   - New required property: date
                 - Properties changed
                   - Deleted property: schedule
+                  - Modified property: amount
+                    - Description changed from 'Valor da transação com 2 casas decimais. O valor deve ser o mesmo enviado no consentimento. 
+Para QR Code estático com valor pré-determinado no QR Code ou para QR Code dinâmico com indicação de que o valor não pode ser alterado: O campo amount deve ser preenchido com o valor estabelecido no QR Code. 
+Caso seja preenchido com valor divergente do QR Code, deve ser retornado um erro HTTP Status 422.
+' to 'Valor da transação com 2 casas decimais.
+'
                   - Modified property: date
                     - Description changed from '[Restrição] Mutuamente excludente com o objeto schedule. 
 Este campo é obrigatório no caso de pagamento único. 
@@ -86,6 +92,14 @@ Neste caso, o objeto schedule não deve ser informado.
                     - New required property: date
                   - Properties changed
                     - Deleted property: schedule
+                    - Modified property: amount
+                      - Description changed from 'Valor da transação com 2 casas decimais. O valor deve ser o mesmo enviado no consentimento. 
+Para QR Code estático com valor pré-determinado no QR Code ou para QR Code dinâmico com indicação de que o valor não pode ser alterado: O campo amount deve ser preenchido com o valor estabelecido no QR Code. 
+Caso seja preenchido com valor divergente do QR Code, deve ser retornado um erro HTTP Status 422.
+' to 'Valor da transação com 2 casas decimais.
+Para QR Code estático com valor pré-determinado no QR Code ou para QR Code dinâmico com indicação de que o valor não pode ser alterado: O campo amount deve ser preenchido com o valor estabelecido no QR Code. 
+Caso seja preenchido com valor divergente do QR Code, deve ser retornado um erro HTTP Status 422 com code xxx (a ser definido em proposta complementar).
+'
                     - Modified property: date
                       - Description changed from '[Restrição] Mutuamente excludente com o objeto schedule. 
 Este campo é obrigatório no caso de pagamento único. 
@@ -263,6 +277,15 @@ Ele deve ser único, não podendo ser repetido em qualquer outra operação envi
 '
               - Modified property: localInstrument
                 - MaxLength changed from null to 4
+              - Modified property: payment
+                - Properties changed
+                  - Modified property: amount
+                    - Description changed from 'Valor da transação com 2 casas decimais. O valor deve ser o mesmo enviado no consentimento. 
+Para QR Code estático com valor pré-determinado no QR Code ou para QR Code dinâmico com indicação de que o valor não pode ser alterado: O campo amount deve ser preenchido com o valor estabelecido no QR Code. 
+Caso seja preenchido com valor divergente do QR Code, deve ser retornado um erro HTTP Status 422.
+' to 'Valor da transação com 2 casas decimais. O valor deve ser o mesmo enviado no consentimento. Caso seja preenchido com valor divergente, deve ser retornado um erro HTTP Status 422 com code xxx (a ser definido em proposta complementar).  
+Para QR Code estático com valor pré-determinado no QR Code ou para QR Code dinâmico com indicação de que o valor não pode ser alterado: O campo amount deve ser preenchido com o valor estabelecido no QR Code. Caso seja preenchido com valor divergente do QR Code, deve ser retornado um erro HTTP Status 422 com code xxx (a ser definido em proposta complementar).
+'
 - Responses changed
   - Modified response: 201
     - Content changed
@@ -293,6 +316,18 @@ Ele deve ser único, não podendo ser repetido em qualquer outra operação envi
                       - Pattern changed from '^[0-9]{1,20}$' to '^\d{3,20}$'
                 - Modified property: localInstrument
                   - MaxLength changed from null to 4
+                - Modified property: payment
+                  - Properties changed
+                    - Modified property: amount
+                      - Description changed from 'Valor da transação com 2 casas decimais. O valor deve ser o mesmo enviado no consentimento. 
+Para QR Code estático com valor pré-determinado no QR Code ou para QR Code dinâmico com indicação de que o valor não pode ser alterado: O campo amount deve ser preenchido com o valor estabelecido no QR Code. 
+Caso seja preenchido com valor divergente do QR Code, deve ser retornado um erro HTTP Status 422.
+' to 'Valor da transação com 2 casas decimais. O valor deve ser o mesmo enviado no consentimento. 
+Caso seja preenchido com valor divergente, deve ser retornado um erro HTTP Status 422 com code xxx (a ser definido em proposta complementar).   
+Para QR Code estático com valor pré-determinado no QR Code ou para QR Code dinâmico com indicação de que o valor não pode ser alterado: 
+O campo amount deve ser preenchido com o valor estabelecido no QR Code. 
+Caso seja preenchido com valor divergente do QR Code, deve ser retornado um erro HTTP Status 422 com code xxx (a ser definido em proposta complementar).
+'
                 - Modified property: rejectionReason
                   - Required changed
                     - New required property: status
@@ -440,6 +475,15 @@ GET /pix/payments/{paymentId}
                       - Pattern changed from '^[0-9]{1,20}$' to '^\d{3,20}$'
                 - Modified property: localInstrument
                   - MaxLength changed from null to 4
+                - Modified property: payment
+                  - Properties changed
+                    - Modified property: amount
+                      - Description changed from 'Valor da transação com 2 casas decimais. O valor deve ser o mesmo enviado no consentimento. 
+Para QR Code estático com valor pré-determinado no QR Code ou para QR Code dinâmico com indicação de que o valor não pode ser alterado: O campo amount deve ser preenchido com o valor estabelecido no QR Code. 
+Caso seja preenchido com valor divergente do QR Code, deve ser retornado um erro HTTP Status 422.
+' to 'Valor da transação com 2 casas decimais. O valor deve ser o mesmo enviado no consentimento. Caso seja preenchido com valor divergente, deve ser retornado um erro HTTP Status 422 com code xxx (a ser definido em proposta complementar).  
+Para QR Code estático com valor pré-determinado no QR Code ou para QR Code dinâmico com indicação de que o valor não pode ser alterado: O campo amount deve ser preenchido com o valor estabelecido no QR Code. Caso seja preenchido com valor divergente do QR Code, deve ser retornado um erro HTTP Status 422 com code xxx (a ser definido em proposta complementar).
+'
                 - Modified property: rejectionReason
                   - Required changed
                     - New required property: status
