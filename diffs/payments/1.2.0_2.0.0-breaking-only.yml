@@ -5,6 +5,36 @@
 ### Modified Endpoints: 4
 -------------------------
 POST /consents
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: creditor
+                - Properties changed
+                  - Modified property: name
+                    - MaxLength changed from 140 to 120
+                    - Pattern changed from '[\w\W\s]*' to '^([A-Za-zÀ-ÖØ-öø-ÿ' -]+)$'
+              - Modified property: debtorAccount
+                - Properties changed
+                  - Modified property: issuer
+                    - MinLength changed from 0 to 1
+                    - Pattern changed from '^\d{4}$' to '^[0-9]{1,4}$'
+                  - Modified property: number
+                    - Pattern changed from '^\d{3,20}$' to '^[0-9]{1,20}$'
+              - Modified property: payment
+                - Properties changed
+                  - Modified property: details
+                    - Properties changed
+                      - Modified property: creditorAccount
+                        - Properties changed
+                          - Modified property: issuer
+                            - MinLength changed from 0 to 1
+                            - Pattern changed from '^\d{4}$' to '^[0-9]{1,4}$'
+                          - Modified property: number
+                            - Pattern changed from '^\d{3,20}$' to '^[0-9]{1,20}$'
 - Responses changed
   - Modified response: 201
     - Content changed
@@ -15,6 +45,42 @@ POST /consents
               - Properties changed
                 - Modified property: consentId
                   - Pattern changed from '^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$' to '^urn:[a-zA-Z0-9][a-zA-Z0-9\-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$'
+                - Modified property: creditor
+                  - Properties changed
+                    - Modified property: name
+                      - Pattern changed from '[\w\W\s]*' to '^([A-Za-zÀ-ÖØ-öø-ÿ' -]+)$'
+                    - Modified property: personType
+                      - MaxLength changed from 15 to null
+                - Modified property: debtorAccount
+                  - Properties changed
+                    - Modified property: accountType
+                      - MaxLength changed from 4 to null
+                    - Modified property: issuer
+                      - Pattern changed from '^\d{4}$' to '^[0-9]{1,4}$'
+                    - Modified property: number
+                      - MinLength changed from 3 to 1
+                      - Pattern changed from '^\d{3,20}$' to '^[0-9]{1,20}$'
+                - Modified property: payment
+                  - Required changed
+                    - Deleted required property: date
+                  - Properties changed
+                    - Modified property: details
+                      - Properties changed
+                        - Modified property: creditorAccount
+                          - Properties changed
+                            - Modified property: accountType
+                              - MaxLength changed from 4 to null
+                            - Modified property: issuer
+                              - Pattern changed from '^\d{4}$' to '^[0-9]{1,4}$'
+                            - Modified property: number
+                              - MinLength changed from 3 to 1
+                              - Pattern changed from '^\d{3,20}$' to '^[0-9]{1,20}$'
+                        - Modified property: localInstrument
+                          - MaxLength changed from 4 to null
+                    - Modified property: type
+                      - MaxLength changed from 3 to null
+                - Modified property: status
+                  - MaxLength changed from 22 to null
             - Modified property: links
               - Properties changed
                 - Modified property: self
@@ -118,6 +184,9 @@ POST /consents
             - Modified property: errors
               - Items changed
                 - Properties changed
+                  - Modified property: code
+                    - Deleted enum values: [FORMA_PGTO_INVALIDA DATA_PGTO_INVALIDA]
+                    - MaxLength changed from 21 to null
                   - Modified property: detail
                     - Pattern changed from '\w*\W*' to '[\w\W\s]*'
                   - Modified property: title
@@ -131,7 +200,7 @@ POST /consents
                 - Deleted property: totalRecords
         - Examples changed
           - Modified example: Forma de pagamento inválida
-            - Value changed from map[errors:[map[code:FORMA_PGTO_INVALIDA detail:Meio de pagamento inválido. title:Forma de pagamento inválida.]] meta:map[requestDateTime:2021-05-21T08:30:00Z totalPages:1 totalRecords:1]] to map[errors:[map[code:FORMA_PGTO_INVALIDA detail:Meio de pagamento inválido. title:Forma de pagamento inválida.]] meta:map[requestDateTime:2021-05-21T08:30:00Z]]
+            - Value changed from map[errors:[map[code:FORMA_PGTO_INVALIDA detail:Meio de pagamento inválido. title:Forma de pagamento inválida.]] meta:map[requestDateTime:2021-05-21T08:30:00Z totalPages:1 totalRecords:1]] to map[errors:[map[code:FORMA_PAGAMENTO_INVALIDA detail:Forma de pagamento [Modalidade] não suportada. title:Forma de pagamento inválida.]] meta:map[requestDateTime:2021-05-21T08:30:00Z]]
   - Modified response: 429
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -185,6 +254,42 @@ GET /consents/{consentId}
               - Properties changed
                 - Modified property: consentId
                   - Pattern changed from '^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$' to '^urn:[a-zA-Z0-9][a-zA-Z0-9\-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$'
+                - Modified property: creditor
+                  - Properties changed
+                    - Modified property: name
+                      - Pattern changed from '[\w\W\s]*' to '^([A-Za-zÀ-ÖØ-öø-ÿ' -]+)$'
+                    - Modified property: personType
+                      - MaxLength changed from 15 to null
+                - Modified property: debtorAccount
+                  - Properties changed
+                    - Modified property: accountType
+                      - MaxLength changed from 4 to null
+                    - Modified property: issuer
+                      - Pattern changed from '^\d{4}$' to '^[0-9]{1,4}$'
+                    - Modified property: number
+                      - MinLength changed from 3 to 1
+                      - Pattern changed from '^\d{3,20}$' to '^[0-9]{1,20}$'
+                - Modified property: payment
+                  - Required changed
+                    - Deleted required property: date
+                  - Properties changed
+                    - Modified property: details
+                      - Properties changed
+                        - Modified property: creditorAccount
+                          - Properties changed
+                            - Modified property: accountType
+                              - MaxLength changed from 4 to null
+                            - Modified property: issuer
+                              - Pattern changed from '^\d{4}$' to '^[0-9]{1,4}$'
+                            - Modified property: number
+                              - MinLength changed from 3 to 1
+                              - Pattern changed from '^\d{3,20}$' to '^[0-9]{1,20}$'
+                        - Modified property: localInstrument
+                          - MaxLength changed from 4 to null
+                    - Modified property: type
+                      - MaxLength changed from 3 to null
+                - Modified property: status
+                  - MaxLength changed from 22 to null
             - Modified property: links
               - Properties changed
                 - Modified property: self
@@ -312,6 +417,13 @@ POST /pix/payments
         - Properties changed
           - Modified property: data
             - Properties changed
+              - Modified property: creditorAccount
+                - Properties changed
+                  - Modified property: issuer
+                    - MinLength changed from 0 to 1
+                    - Pattern changed from '^\d{4}$' to '^[0-9]{1,4}$'
+                  - Modified property: number
+                    - Pattern changed from '^\d{3,20}$' to '^[0-9]{1,20}$'
               - Modified property: transactionIdentification
                 - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9]{0,24}$' to '^[a-zA-Z0-9]{1,35}$'
 - Responses changed
@@ -324,6 +436,17 @@ POST /pix/payments
               - Properties changed
                 - Modified property: consentId
                   - Pattern changed from '^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$' to '^urn:[a-zA-Z0-9][a-zA-Z0-9\-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$'
+                - Modified property: creditorAccount
+                  - Properties changed
+                    - Modified property: accountType
+                      - MaxLength changed from 4 to null
+                    - Modified property: issuer
+                      - Pattern changed from '^\d{4}$' to '^[0-9]{1,4}$'
+                    - Modified property: number
+                      - MinLength changed from 3 to 1
+                      - Pattern changed from '^\d{3,20}$' to '^[0-9]{1,20}$'
+                - Modified property: localInstrument
+                  - MaxLength changed from 4 to null
                 - Modified property: rejectionReason
                   - Type changed from 'string' to 'object'
                   - Deleted enum values: [ABORTED_SETTLEMENT_TIMEOUT ERROR_CREDITOR_AGENT TIMEOUT_DEBTOR_AGENT INVALID_CREDITOR_ACCOUNT_NUMBER BLOCKED_ACCOUNT CLOSED_CREDITOR_ACCOUNT_NUMBER INVALID_CREDITOR_ACCOUNTTYPE TRANSACTION_NOT_SUPPORTED NOT_ALLOWED_BOOK_TRANSFER FORBIDDEN_RETURN_PAYMENT INCORRECT_AGENT ZERO_AMOUNT NOT_ALLOWED_AMOUNT INSUFFICIENT_FUNDS WRONG_AMOUNT INVALID_AMOUNT INVALID_NUMBER_OF_TRANSACTIONS INCONSISTENT_WITH_END_CUSTOMER INVALID_IDENTIFICATION_CODE INVALID_CREDITOR_IDENTIFICATION_CODE CREDITOR_IDENTIFIER_INCORRECT ELEMENT_CONTENT_FORMALLY_INCORRECT ORDER_REJECTED NOT_ALLOWED_PAYMENT NOT_ALLOWED_ACCOUNT USER_NOT_YET_ACTIVATED INVALID_CREATION_DATE INVALID_CUT_OFF_DATE SETTLEMENT_FAILED INVALID_PURPOSE INVALID_END_TO_END_ID INVALID_DEBTOR_CLEARING_SYSTEM_MEMBER_IDENTIFIER INVALID_CREDITOR_CLEARING_SYSTEM_MEMBER_IDENTIFIER REGULATORY_REASON SPECIFIC_SERVICE_OFFERED_BY_CREDITOR_AGENT INVALID_BILL OPERATION_WINDOW INCOMPATIBLE_DATE MISMATCH_AMOUNT OVER_LIMIT INVALID_CONSENT DENIED_MULTIPLE_AUTHORISATIONS EXPIRED_MULTIPLE_AUTHORISATIONS EXPIRED_BILL]
@@ -437,6 +560,9 @@ POST /pix/payments
             - Modified property: errors
               - Items changed
                 - Properties changed
+                  - Modified property: code
+                    - Deleted enum values: [PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO]
+                    - MaxLength changed from 25 to null
                   - Modified property: detail
                     - Pattern changed from '\w*\W*' to '[\w\W\s]*'
                   - Modified property: title
@@ -501,6 +627,17 @@ GET /pix/payments/{paymentId}
               - Properties changed
                 - Modified property: consentId
                   - Pattern changed from '^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$' to '^urn:[a-zA-Z0-9][a-zA-Z0-9\-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$'
+                - Modified property: creditorAccount
+                  - Properties changed
+                    - Modified property: accountType
+                      - MaxLength changed from 4 to null
+                    - Modified property: issuer
+                      - Pattern changed from '^\d{4}$' to '^[0-9]{1,4}$'
+                    - Modified property: number
+                      - MinLength changed from 3 to 1
+                      - Pattern changed from '^\d{3,20}$' to '^[0-9]{1,20}$'
+                - Modified property: localInstrument
+                  - MaxLength changed from 4 to null
                 - Modified property: rejectionReason
                   - Type changed from 'string' to 'object'
                   - Deleted enum values: [ABORTED_SETTLEMENT_TIMEOUT ERROR_CREDITOR_AGENT TIMEOUT_DEBTOR_AGENT INVALID_CREDITOR_ACCOUNT_NUMBER BLOCKED_ACCOUNT CLOSED_CREDITOR_ACCOUNT_NUMBER INVALID_CREDITOR_ACCOUNTTYPE TRANSACTION_NOT_SUPPORTED NOT_ALLOWED_BOOK_TRANSFER FORBIDDEN_RETURN_PAYMENT INCORRECT_AGENT ZERO_AMOUNT NOT_ALLOWED_AMOUNT INSUFFICIENT_FUNDS WRONG_AMOUNT INVALID_AMOUNT INVALID_NUMBER_OF_TRANSACTIONS INCONSISTENT_WITH_END_CUSTOMER INVALID_IDENTIFICATION_CODE INVALID_CREDITOR_IDENTIFICATION_CODE CREDITOR_IDENTIFIER_INCORRECT ELEMENT_CONTENT_FORMALLY_INCORRECT ORDER_REJECTED NOT_ALLOWED_PAYMENT NOT_ALLOWED_ACCOUNT USER_NOT_YET_ACTIVATED INVALID_CREATION_DATE INVALID_CUT_OFF_DATE SETTLEMENT_FAILED INVALID_PURPOSE INVALID_END_TO_END_ID INVALID_DEBTOR_CLEARING_SYSTEM_MEMBER_IDENTIFIER INVALID_CREDITOR_CLEARING_SYSTEM_MEMBER_IDENTIFIER REGULATORY_REASON SPECIFIC_SERVICE_OFFERED_BY_CREDITOR_AGENT INVALID_BILL OPERATION_WINDOW INCOMPATIBLE_DATE MISMATCH_AMOUNT OVER_LIMIT INVALID_CONSENT DENIED_MULTIPLE_AUTHORISATIONS EXPIRED_MULTIPLE_AUTHORISATIONS EXPIRED_BILL]

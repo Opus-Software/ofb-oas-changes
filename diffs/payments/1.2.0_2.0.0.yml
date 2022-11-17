@@ -1,5 +1,6 @@
-﻿### New Endpoints: None
------------------------
+﻿### New Endpoints: 1
+--------------------
+PATCH /pix/payments/{paymentId}  
 ### Deleted Endpoints: None
 ---------------------------
 ### Modified Endpoints: 4
@@ -21,8 +22,23 @@ POST /consents
                     - AdditionalProperties changed from false to null
               - Modified property: creditor
                 - AdditionalProperties changed from false to null
+                - Properties changed
+                  - Modified property: name
+                    - MaxLength changed from 140 to 120
+                    - Pattern changed from '[\w\W\s]*' to '^([A-Za-zÀ-ÖØ-öø-ÿ' -]+)$'
+                  - Modified property: personType
+                    - MaxLength changed from 15 to null
               - Modified property: debtorAccount
                 - AdditionalProperties changed from false to null
+                - Properties changed
+                  - Modified property: accountType
+                    - MaxLength changed from 4 to null
+                  - Modified property: issuer
+                    - MinLength changed from 0 to 1
+                    - Pattern changed from '^\d{4}$' to '^[0-9]{1,4}$'
+                  - Modified property: number
+                    - MinLength changed from 3 to 1
+                    - Pattern changed from '^\d{3,20}$' to '^[0-9]{1,20}$'
               - Modified property: loggedUser
                 - AdditionalProperties changed from false to null
                 - Properties changed
@@ -30,14 +46,37 @@ POST /consents
                     - AdditionalProperties changed from false to null
               - Modified property: payment
                 - AdditionalProperties changed from false to null
+                - Required changed
+                  - Deleted required property: date
                 - Properties changed
+                  - New property: schedule
+                  - Modified property: amount
+                    - Description changed from 'Valor da transação com 2 casas decimais.
+' to 'Valor da transação com 2 casas decimais. O valor deve ser o mesmo enviado no consentimento. 
+Para QR Code estático com valor pré-determinado no QR Code ou para QR Code dinâmico com indicação de que o valor não pode ser alterado: O campo amount deve ser preenchido com o valor estabelecido no QR Code. 
+Caso seja preenchido com valor divergente do QR Code, deve ser retornado um erro HTTP Status 422.
+'
                   - Modified property: date
-                    - Description changed from 'Data do pagamento, conforme especificação RFC-3339.' to 'Data do pagamento observando o horário de Brasília e horário de verão quando houver.'
+                    - Description changed from 'Data do pagamento, conforme especificação RFC-3339.' to '[Restrição] Mutuamente excludente com o objeto schedule. 
+Este campo é obrigatório no caso de pagamento único. 
+Neste caso, o objeto schedule não deve ser informado.
+'
                   - Modified property: details
                     - AdditionalProperties changed from false to null
                     - Properties changed
                       - Modified property: creditorAccount
                         - AdditionalProperties changed from false to null
+                        - Properties changed
+                          - Modified property: accountType
+                            - MaxLength changed from 4 to null
+                          - Modified property: issuer
+                            - MinLength changed from 0 to 1
+                            - Pattern changed from '^\d{4}$' to '^[0-9]{1,4}$'
+                          - Modified property: number
+                            - MinLength changed from 3 to 1
+                            - Pattern changed from '^\d{3,20}$' to '^[0-9]{1,20}$'
+                      - Modified property: localInstrument
+                        - MaxLength changed from 4 to null
                   - Modified property: ibgeTownCode
                     - Description changed from 'Traz o código da cidade segundo o IBGE (Instituto Brasileiro de Geografia e Estatística).
 Para o preenchimento deste campo, o Iniciador de Pagamentos deve seguir a orientação do arranjo da forma de pagamento.
@@ -46,6 +85,8 @@ Este campo faz referência ao campo CodMun do arranjo Pix.
 ' to 'O campo ibgetowncode no arranjo PIX, tem o mesmo comportamento que o campo codMun descrito no item 1.6.6 do manual do PIX, conforme segue:
 1. Caso a informação referente ao município não seja enviada; o PSP do recebedor assumirá que não existem feriados estaduais e municipais no período em questão;
 '
+                  - Modified property: type
+                    - MaxLength changed from 3 to null
 - Responses changed
   - New response: 529
   - Modified response: 201
@@ -66,8 +107,23 @@ Este campo faz referência ao campo CodMun do arranjo Pix.
                   - Pattern changed from '^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$' to '^urn:[a-zA-Z0-9][a-zA-Z0-9\-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$'
                 - Modified property: creditor
                   - AdditionalProperties changed from false to null
+                  - Properties changed
+                    - Modified property: name
+                      - MaxLength changed from 140 to 120
+                      - Pattern changed from '[\w\W\s]*' to '^([A-Za-zÀ-ÖØ-öø-ÿ' -]+)$'
+                    - Modified property: personType
+                      - MaxLength changed from 15 to null
                 - Modified property: debtorAccount
                   - AdditionalProperties changed from false to null
+                  - Properties changed
+                    - Modified property: accountType
+                      - MaxLength changed from 4 to null
+                    - Modified property: issuer
+                      - MinLength changed from 0 to 1
+                      - Pattern changed from '^\d{4}$' to '^[0-9]{1,4}$'
+                    - Modified property: number
+                      - MinLength changed from 3 to 1
+                      - Pattern changed from '^\d{3,20}$' to '^[0-9]{1,20}$'
                 - Modified property: loggedUser
                   - AdditionalProperties changed from false to null
                   - Properties changed
@@ -75,20 +131,37 @@ Este campo faz referência ao campo CodMun do arranjo Pix.
                       - AdditionalProperties changed from false to null
                 - Modified property: payment
                   - AdditionalProperties changed from false to null
+                  - Required changed
+                    - Deleted required property: date
                   - Properties changed
+                    - New property: schedule
                     - Modified property: amount
                       - Description changed from 'Valor da transação com 2 casas decimais.
-' to 'Valor da transação com 2 casas decimais.
+' to 'Valor da transação com 2 casas decimais. O valor deve ser o mesmo enviado no consentimento. 
 Para QR Code estático com valor pré-determinado no QR Code ou para QR Code dinâmico com indicação de que o valor não pode ser alterado: O campo amount deve ser preenchido com o valor estabelecido no QR Code. 
-Caso seja preenchido com valor divergente do QR Code, deve ser retornado um erro HTTP Status 422 com code xxx (a ser definido em proposta complementar).
+Caso seja preenchido com valor divergente do QR Code, deve ser retornado um erro HTTP Status 422.
 '
                     - Modified property: date
-                      - Description changed from 'Data do pagamento, conforme especificação RFC-3339.' to 'Data do pagamento observando o horário de Brasília e horário de verão quando houver.'
+                      - Description changed from 'Data do pagamento, conforme especificação RFC-3339.' to '[Restrição] Mutuamente excludente com o objeto schedule. 
+Este campo é obrigatório no caso de pagamento único. 
+Neste caso, o objeto schedule não deve ser informado.
+'
                     - Modified property: details
                       - AdditionalProperties changed from false to null
                       - Properties changed
                         - Modified property: creditorAccount
                           - AdditionalProperties changed from false to null
+                          - Properties changed
+                            - Modified property: accountType
+                              - MaxLength changed from 4 to null
+                            - Modified property: issuer
+                              - MinLength changed from 0 to 1
+                              - Pattern changed from '^\d{4}$' to '^[0-9]{1,4}$'
+                            - Modified property: number
+                              - MinLength changed from 3 to 1
+                              - Pattern changed from '^\d{3,20}$' to '^[0-9]{1,20}$'
+                        - Modified property: localInstrument
+                          - MaxLength changed from 4 to null
                     - Modified property: ibgeTownCode
                       - Description changed from 'Traz o código da cidade segundo o IBGE (Instituto Brasileiro de Geografia e Estatística).
 Para o preenchimento deste campo, o Iniciador de Pagamentos deve seguir a orientação do arranjo da forma de pagamento.
@@ -97,6 +170,10 @@ Este campo faz referência ao campo CodMun do arranjo Pix.
 ' to 'O campo ibgetowncode no arranjo PIX, tem o mesmo comportamento que o campo codMun descrito no item 1.6.6 do manual do PIX, conforme segue:
 1. Caso a informação referente ao município não seja enviada; o PSP do recebedor assumirá que não existem feriados estaduais e municipais no período em questão;
 '
+                    - Modified property: type
+                      - MaxLength changed from 3 to null
+                - Modified property: status
+                  - MaxLength changed from 22 to null
             - Modified property: links
               - AdditionalProperties changed from false to null
               - Properties changed
@@ -247,9 +324,57 @@ Este campo faz referência ao campo CodMun do arranjo Pix.
               - Items changed
                 - AdditionalProperties changed from false to null
                 - Properties changed
+                  - Modified property: code
+                    - Description changed from 'Códigos de erros previstos na criação de consentimento para a iniciação de pagamentos:  
+• FORMA_PGTO_INVALIDA: Forma de pagamento inválida.  
+• DATA_PGTO_INVALIDA: Data de pagamento inválida.  
+• DETALHE_PGTO_INVALIDO: Detalhe do pagamento inválido.  
+• NAO_INFORMADO: Não informado.   
+' to 'Códigos de erros previstos na criação de consentimento para a iniciação de pagamentos:  
+• FORMA_PAGAMENTO_INVALIDA: Forma de pagamento inválida.  
+• DATA_PAGAMENTO_INVALIDA: Data de pagamento inválida.  
+• DETALHE_PAGAMENTO_INVALIDO: Detalhe do pagamento inválido.  
+• PARAMETRO_NAO_INFORMADO: Parâmetro não informado.  
+• PARAMETRO_INVALIDO: Parâmetro inválido.  
+• ERRO_IDEMPOTENCIA: Erro idempotência.  
+• NAO_INFORMADO: Não informado.   
+'
+                    - New enum values: [FORMA_PAGAMENTO_INVALIDA DATA_PAGAMENTO_INVALIDA PARAMETRO_NAO_INFORMADO PARAMETRO_INVALIDO ERRO_IDEMPOTENCIA]
+                    - Deleted enum values: [FORMA_PGTO_INVALIDA DATA_PGTO_INVALIDA]
+                    - Example changed from 'FORMA_PGTO_INVALIDA' to 'FORMA_PAGAMENTO_INVALIDA'
+                    - MaxLength changed from 21 to null
                   - Modified property: detail
+                    - Description changed from 'Descrição específica do erro de acordo com o código reportado:  
+• FORMA_PGTO_INVALIDA – Meio de pagamento inválido.  
+• DATA_PGTO_INVALIDA – Data de pagamento inválida no contexto, por exemplo, data no passado. Para pagamentos únicos deve ser informada a data atual, do dia corrente.  
+• DETALHE_PGTO_INVALIDO: O campo [nome_campo] não atende os requisitos de preenchimento.  
+• NAO_INFORMADO – Não reportado/identificado pela instituição detentora de conta.  
+' to 'Descrição específica do erro de acordo com o código reportado:  
+• FORMA_PAGAMENTO_INVALIDA: Forma de pagamento [Modalidade] não suportada.  
+• DATA_PAGAMENTO_INVALIDA: Data de pagamento inválida para a forma de pagamento selecionada.  
+• DETALHE_PAGAMENTO_INVALIDO: Parâmetro [nome_campo] não obedece às regras de negócio.  
+• PARAMETRO_NAO_INFORMADO: Parâmetro [nome_campo] obrigatório não informado.  
+• PARAMETRO_INVALIDO: Parâmetro [nome_campo] não obedece as regras de formatação esperadas.  
+• ERRO_IDEMPOTENCIA: Conteúdo da mensagem (claim data) diverge do conteúdo associado a esta chave de idempotência (x-idempotency-key).  
+• NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta.  
+'
+                    - Example changed from 'Meio de pagamento inválido.' to 'Forma de pagamento [Modalidade] não suportada.'
                     - Pattern changed from '\w*\W*' to '[\w\W\s]*'
                   - Modified property: title
+                    - Description changed from 'Título específico do erro reportado, de acordo com o código enviado:  
+• FORMA_PGTO_INVALIDA: Forma de pagamento inválida.  
+• DATA_PGTO_INVALIDA: Data de pagamento inválida. 
+• DETALHE_PGTO_INVALIDO: Detalhe do pagamento inválido.
+• NAO_INFORMADO: Não informado.    
+' to 'Título específico do erro reportado, de acordo com o código enviado:  
+• FORMA_PAGAMENTO_INVALIDA: Forma de pagamento inválida.  
+• DATA_PAGAMENTO_INVALIDA: Data de pagamento inválida.  
+• DETALHE_PAGAMENTO_INVALIDO: Detalhe do pagamento inválido.  
+• PARAMETRO_NAO_INFORMADO: Parâmetro não informado.  
+• PARAMETRO_INVALIDO: Parâmetro inválido.  
+• ERRO_IDEMPOTENCIA: Erro idempotência.  
+• NAO_INFORMADO: Não informado.    
+'
                     - Pattern changed from '\w*\W*' to '[\w\W\s]*'
             - Modified property: meta
               - Description changed from 'Meta informações referente a API requisitada.' to 'Meta informação referente a API requisitada.'
@@ -262,7 +387,7 @@ Este campo faz referência ao campo CodMun do arranjo Pix.
                 - Deleted property: totalRecords
         - Examples changed
           - Modified example: Forma de pagamento inválida
-            - Value changed from map[errors:[map[code:FORMA_PGTO_INVALIDA detail:Meio de pagamento inválido. title:Forma de pagamento inválida.]] meta:map[requestDateTime:2021-05-21T08:30:00Z totalPages:1 totalRecords:1]] to map[errors:[map[code:FORMA_PGTO_INVALIDA detail:Meio de pagamento inválido. title:Forma de pagamento inválida.]] meta:map[requestDateTime:2021-05-21T08:30:00Z]]
+            - Value changed from map[errors:[map[code:FORMA_PGTO_INVALIDA detail:Meio de pagamento inválido. title:Forma de pagamento inválida.]] meta:map[requestDateTime:2021-05-21T08:30:00Z totalPages:1 totalRecords:1]] to map[errors:[map[code:FORMA_PAGAMENTO_INVALIDA detail:Forma de pagamento [Modalidade] não suportada. title:Forma de pagamento inválida.]] meta:map[requestDateTime:2021-05-21T08:30:00Z]]
   - Modified response: 429
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -344,8 +469,23 @@ GET /consents/{consentId}
                   - Pattern changed from '^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$' to '^urn:[a-zA-Z0-9][a-zA-Z0-9\-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$'
                 - Modified property: creditor
                   - AdditionalProperties changed from false to null
+                  - Properties changed
+                    - Modified property: name
+                      - MaxLength changed from 140 to 120
+                      - Pattern changed from '[\w\W\s]*' to '^([A-Za-zÀ-ÖØ-öø-ÿ' -]+)$'
+                    - Modified property: personType
+                      - MaxLength changed from 15 to null
                 - Modified property: debtorAccount
                   - AdditionalProperties changed from false to null
+                  - Properties changed
+                    - Modified property: accountType
+                      - MaxLength changed from 4 to null
+                    - Modified property: issuer
+                      - MinLength changed from 0 to 1
+                      - Pattern changed from '^\d{4}$' to '^[0-9]{1,4}$'
+                    - Modified property: number
+                      - MinLength changed from 3 to 1
+                      - Pattern changed from '^\d{3,20}$' to '^[0-9]{1,20}$'
                 - Modified property: loggedUser
                   - AdditionalProperties changed from false to null
                   - Properties changed
@@ -353,14 +493,31 @@ GET /consents/{consentId}
                       - AdditionalProperties changed from false to null
                 - Modified property: payment
                   - AdditionalProperties changed from false to null
+                  - Required changed
+                    - Deleted required property: date
                   - Properties changed
+                    - New property: schedule
                     - Modified property: date
-                      - Description changed from 'Data do pagamento, conforme especificação RFC-3339.' to 'Data do pagamento observando o horário de Brasília e horário de verão quando houver.'
+                      - Description changed from 'Data do pagamento, conforme especificação RFC-3339.' to '[Restrição] Mutuamente excludente com o objeto schedule. 
+Este campo é obrigatório no caso de pagamento único. 
+Neste caso, o objeto schedule não deve ser informado.
+'
                     - Modified property: details
                       - AdditionalProperties changed from false to null
                       - Properties changed
                         - Modified property: creditorAccount
                           - AdditionalProperties changed from false to null
+                          - Properties changed
+                            - Modified property: accountType
+                              - MaxLength changed from 4 to null
+                            - Modified property: issuer
+                              - MinLength changed from 0 to 1
+                              - Pattern changed from '^\d{4}$' to '^[0-9]{1,4}$'
+                            - Modified property: number
+                              - MinLength changed from 3 to 1
+                              - Pattern changed from '^\d{3,20}$' to '^[0-9]{1,20}$'
+                        - Modified property: localInstrument
+                          - MaxLength changed from 4 to null
                     - Modified property: ibgeTownCode
                       - Description changed from 'Traz o código da cidade segundo o IBGE (Instituto Brasileiro de Geografia e Estatística).
 Para o preenchimento deste campo, o Iniciador de Pagamentos deve seguir a orientação do arranjo da forma de pagamento.
@@ -369,6 +526,10 @@ Este campo faz referência ao campo CodMun do arranjo Pix.
 ' to 'O campo ibgetowncode no arranjo PIX, tem o mesmo comportamento que o campo codMun descrito no item 1.6.6 do manual do PIX, conforme segue:
 1. Caso a informação referente ao município não seja enviada; o PSP do recebedor assumirá que não existem feriados estaduais e municipais no período em questão;
 '
+                    - Modified property: type
+                      - MaxLength changed from 3 to null
+                - Modified property: status
+                  - MaxLength changed from 22 to null
             - Modified property: links
               - AdditionalProperties changed from false to null
               - Properties changed
@@ -556,6 +717,34 @@ POST /pix/payments
             - Properties changed
               - Modified property: creditorAccount
                 - AdditionalProperties changed from false to null
+                - Properties changed
+                  - Modified property: accountType
+                    - MaxLength changed from 4 to null
+                  - Modified property: issuer
+                    - MinLength changed from 0 to 1
+                    - Pattern changed from '^\d{4}$' to '^[0-9]{1,4}$'
+                  - Modified property: number
+                    - MinLength changed from 3 to 1
+                    - Pattern changed from '^\d{3,20}$' to '^[0-9]{1,20}$'
+              - Modified property: endToEndId
+                - Description changed from 'Deve ser preenchido no formato padrão ExxxxxxxxyyyyMMddHHmmkkkkkkkkkkk (32 caracteres; “case sensitive”, isso é, diferencia letras maiúsculas e minúsculas), sendo:
+• “E” – fixo (1 caractere);  
+• xxxxxxxx – identificação do agente que gerou o ´EndToEndId´, podendo ser: o ISPB do participante direto ou o ISPB do participante indireto (8 caracteres numéricos [0-9]);  
+• yyyyMMddHHmm – data, hora e minuto (12 caracteres), seguindo o horário UTC, da submissão da ordem de pagamento, caso a liquidação seja prioritária, ou prevista para o envio da ordem ao sistema de liquidação, caso seja realizado um agendamento. Para ordens prioritárias e não prioritárias, aceita-se o preenchimento, pelo agente que gerou o ´EndToEndId´, com uma tolerância máxima de 12 horas, para o futuro e para o passado, em relação ao horário efetivo de processamento da ordem pelo SPI;  
+• kkkkkkkkkkk – sequencial criado pelo agente que gerou o ´EndToEndId´ (11 caracteres alfanuméricos [a-z/A-Z/0-9]). Deve ser único dentro de cada “yyyyMMddHHmm”.  
+Admite-se que o ´EndToEndId´ seja gerado pelo participante direto, pelo participante indireto ou pelo iniciador de pagamento.
+  
+Ele deve ser único, não podendo ser repetido em qualquer outra operação enviada ao SPI.  
+' to 'Deve ser preenchido no formato padrão ExxxxxxxxyyyyMMddHHmmkkkkkkkkkkk (32 caracteres; “case sensitive”, isso é, diferencia letras maiúsculas e minúsculas), sendo:
+• “E” – fixo (1 caractere);  
+• xxxxxxxx – identificação do agente que gerou o ´EndToEndId´, podendo ser: o ISPB do participante direto ou o ISPB do participante indireto (8 caracteres numéricos [0-9]);  
+• yyyyMMddHHmm – data, hora e minuto (12 caracteres), seguindo o horário UTC, da submissão da ordem de pagamento, caso a liquidação seja prioritária, ou prevista para o envio da ordem ao sistema de liquidação, caso seja realizado um agendamento. Para ordens prioritárias e não prioritárias, aceita-se o preenchimento, pelo agente que gerou o ´EndToEndId´, com uma tolerância máxima de 12 horas, para o futuro e para o passado, em relação ao horário efetivo de processamento da ordem pelo SPI;  
+• kkkkkkkkkkk – sequencial criado pelo agente que gerou o ´EndToEndId´ (11 caracteres alfanuméricos [a-z/A-Z/0-9]). Deve ser único dentro de cada “yyyyMMddHHmm”.  
+Admite-se que o ´EndToEndId´ seja gerado pelo participante direto, pelo participante indireto ou pelo iniciador de pagamento.
+  
+Ele deve ser único, não podendo ser repetido em qualquer outra operação enviada ao SPI.
+No caso de Pix agendamento, a iniciadora deverá, no que tange a composição do endToEndId, utilizar a data para a qual o Pix está sendo agendado e horário fixo 15:00 UTC, que dará para a detentora a janela de efetivação de 00:00 e 23:59 do horário de Brasília.  
+'
               - Modified property: ibgeTownCode
                 - Description changed from 'Traz o código da cidade segundo o IBGE (Instituto Brasileiro de Geografia e Estatística).
 Para o preenchimento deste campo, o Iniciador de Pagamentos deve seguir a orientação do arranjo da forma de pagamento.
@@ -564,13 +753,16 @@ Este campo faz referência ao campo CodMun do arranjo Pix.
 ' to 'O campo ibgetowncode no arranjo PIX, tem o mesmo comportamento que o campo codMun descrito no item 1.6.6 do manual do PIX, conforme segue:
 1. Caso a informação referente ao município não seja enviada; o PSP do recebedor assumirá que não existem feriados estaduais e municipais no período em questão;
 '
+              - Modified property: localInstrument
+                - MaxLength changed from 4 to null
               - Modified property: payment
                 - AdditionalProperties changed from false to null
                 - Properties changed
                   - Modified property: amount
                     - Description changed from 'Valor da transação com 2 casas decimais.
-' to 'Valor da transação com 2 casas decimais. O valor deve ser o mesmo enviado no consentimento. Caso seja preenchido com valor divergente, deve ser retornado um erro HTTP Status 422 com code xxx (a ser definido em proposta complementar).  
-Para QR Code estático com valor pré-determinado no QR Code ou para QR Code dinâmico com indicação de que o valor não pode ser alterado: O campo amount deve ser preenchido com o valor estabelecido no QR Code. Caso seja preenchido com valor divergente do QR Code, deve ser retornado um erro HTTP Status 422 com code xxx (a ser definido em proposta complementar).
+' to 'Valor da transação com 2 casas decimais. O valor deve ser o mesmo enviado no consentimento. 
+Para QR Code estático com valor pré-determinado no QR Code ou para QR Code dinâmico com indicação de que o valor não pode ser alterado: O campo amount deve ser preenchido com o valor estabelecido no QR Code. 
+Caso seja preenchido com valor divergente do QR Code, deve ser retornado um erro HTTP Status 422.
 '
               - Modified property: transactionIdentification
                 - Description changed from 'Trata-se de um identificador de transação que deve ser retransmitido intacto pelo PSP do pagador ao gerar a ordem de pagamento. Essa informação permitirá ao recebedor identificar e correlacionar a transferência, quando recebida, com a apresentação das instruções ao pagador.
@@ -616,6 +808,15 @@ A detentora de conta deve validar se a condicionalidade e o formato do campo for
                   - Pattern changed from '^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$' to '^urn:[a-zA-Z0-9][a-zA-Z0-9\-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$'
                 - Modified property: creditorAccount
                   - AdditionalProperties changed from false to null
+                  - Properties changed
+                    - Modified property: accountType
+                      - MaxLength changed from 4 to null
+                    - Modified property: issuer
+                      - MinLength changed from 0 to 1
+                      - Pattern changed from '^\d{4}$' to '^[0-9]{1,4}$'
+                    - Modified property: number
+                      - MinLength changed from 3 to 1
+                      - Pattern changed from '^\d{3,20}$' to '^[0-9]{1,20}$'
                 - Modified property: endToEndId
                   - Description changed from 'Deve ser preenchido no formato padrão ExxxxxxxxyyyyMMddHHmmkkkkkkkkkkk (32 caracteres; “case sensitive”, isso é, diferencia letras maiúsculas e minúsculas), sendo:
 • “E” – fixo (1 caractere);  
@@ -636,16 +837,16 @@ Este campo faz referência ao campo CodMun do arranjo Pix.
 ' to 'O campo ibgetowncode no arranjo PIX, tem o mesmo comportamento que o campo codMun descrito no item 1.6.6 do manual do PIX, conforme segue:
 1. Caso a informação referente ao município não seja enviada; o PSP do recebedor assumirá que não existem feriados estaduais e municipais no período em questão;
 '
+                - Modified property: localInstrument
+                  - MaxLength changed from 4 to null
                 - Modified property: payment
                   - AdditionalProperties changed from false to null
                   - Properties changed
                     - Modified property: amount
                       - Description changed from 'Valor da transação com 2 casas decimais.
 ' to 'Valor da transação com 2 casas decimais. O valor deve ser o mesmo enviado no consentimento. 
-Caso seja preenchido com valor divergente, deve ser retornado um erro HTTP Status 422 com code xxx (a ser definido em proposta complementar).   
-Para QR Code estático com valor pré-determinado no QR Code ou para QR Code dinâmico com indicação de que o valor não pode ser alterado: 
-O campo amount deve ser preenchido com o valor estabelecido no QR Code. 
-Caso seja preenchido com valor divergente do QR Code, deve ser retornado um erro HTTP Status 422 com code xxx (a ser definido em proposta complementar).
+Para QR Code estático com valor pré-determinado no QR Code ou para QR Code dinâmico com indicação de que o valor não pode ser alterado: O campo amount deve ser preenchido com o valor estabelecido no QR Code. 
+Caso seja preenchido com valor divergente do QR Code, deve ser retornado um erro HTTP Status 422.
 '
                 - Modified property: rejectionReason
                   - Type changed from 'string' to 'object'
@@ -701,7 +902,8 @@ EXPIRED_BILL - O QR Code não é mais válido (OB06).
                   - Example changed from 'USER_NOT_YET_ACTIVATED' to null
                   - MaxLength changed from 50 to null
                   - Required changed
-                    - New required property: status
+                    - New required property: code
+                    - New required property: detail
                   - Properties changed
                     - New property: code
                     - New property: detail
@@ -910,21 +1112,26 @@ A detentora de conta deve validar se a condicionalidade do campo foi atendida pe
 • NAO_INFORMADO – Não informada pela detentora de conta.
 • PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento.
 ' to 'Códigos de erros previstos na criação da iniciação de pagamento:
-• SALDO_INSUFICIENTE – Esta conta não possui saldo suficiente para realizar o pagamento.
-• BENEFICIARIO_INCOMPATIVEL – O beneficiário informado no consentimento não é o mesmo do esperado pelo DICT.
-• VALOR_INCOMPATIVEL – O valor informado no consentimento não é o mesmo valor do informado no payload de pagamento.
-• VALOR_ACIMA_LIMITE – O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente.
-• VALOR_INVALIDO – O valor enviado não é válido para o QR Code informado.
-• COBRANCA_INVALIDA – Validação de expiração, validação de vencimento, Status Válido.
-• CONSENTIMENTO_INVALIDO – Consentimento inválido (status não é "authorised" ou está expirado).
-• JANELA_OPER_INVALIDA – Requisição está fora da janela de funcionamento.
+• SALDO_INSUFICIENTE: Esta conta não possui saldo suficiente para realizar o pagamento.
+• BENEFICIARIO_INCOMPATIVEL: O beneficiário informado no consentimento não é o mesmo do esperado pelo DICT.
+• VALOR_INCOMPATIVEL: O valor informado no consentimento não é o mesmo valor do informado no payload de pagamento.
+• VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente.
+• VALOR_INVALIDO: O valor enviado não é válido para o QR Code informado.
+• COBRANCA_INVALIDA: Validação de expiração, validação de vencimento, Status Válido.
+• CONSENTIMENTO_INVALIDO: Consentimento inválido (status não é "authorised" ou está expirado).
+• JANELA_OPER_INVALIDA: Requisição está fora da janela de funcionamento.
 • PARAMETRO_NAO_INFORMADO: Parâmetro não informado.  
 • PARAMETRO_INVALIDO: Parâmetro inválido.
-• NAO_INFORMADO – Não informada pela detentora de conta.
-• PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento.
-• DETALHE_PGTO_INVALIDO: Parâmetro [nome_campo] diverge do cadastrado no DICT.
+• NAO_INFORMADO: Não informada pela detentora de conta.
+• PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento.
+• DETALHE_PAGAMENTO_INVALIDO: Detalhe do pagamento inválido.
+• PAGAMENTO_RECUSADO_DETENTORA: Pagamento recusado pela detentora de conta.
+• PAGAMENTO_RECUSADO_SPI: Pagamento recusado no Sistema de Pagamentos Instantâneos (SPI).
+• ERRO_IDEMPOTENCIA: Erro idempotência.
 '
-                    - New enum values: [DETALHE_PGTO_INVALIDO]
+                    - New enum values: [PAGAMENTO_DIVERGENTE_CONSENTIMENTO DETALHE_PAGAMENTO_INVALIDO PAGAMENTO_RECUSADO_DETENTORA PAGAMENTO_RECUSADO_SPI ERRO_IDEMPOTENCIA]
+                    - Deleted enum values: [PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO]
+                    - MaxLength changed from 25 to null
                   - Modified property: detail
                     - Description changed from 'Descrição específica do erro de acordo com o código reportado:
 • SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento.
@@ -951,8 +1158,11 @@ A detentora de conta deve validar se a condicionalidade do campo foi atendida pe
 • PARAMETRO_NAO_INFORMADO: endToEndId
 • PARAMETRO_INVALIDO: endToEndId
 • NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta.
-• PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento.
-• DETALHE_PGTO_INVALIDO: Parâmetro [nome_campo] diverge do cadastrado no DICT.
+• PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento.
+• DETALHE_PAGAMENTO_INVALIDO: Parâmetro [nome_campo] não obedece às regras de negócio.
+• PAGAMENTO_RECUSADO_DETENTORA: [descrição do motivo de recusa].
+• PAGAMENTO_RECUSADO_SPI: [código de erro conforme tabela de domínios reason PACS.002].
+• ERRO_IDEMPOTENCIA: Conteúdo da mensagem (claim data) diverge do conteúdo associado a esta chave de idempotência (x-idempotency-key).
 '
                     - Pattern changed from '\w*\W*' to '[\w\W\s]*'
                   - Modified property: title
@@ -978,11 +1188,14 @@ A detentora de conta deve validar se a condicionalidade do campo foi atendida pe
 • COBRANCA_INVALIDA: Cobrança inválida.
 • CONSENTIMENTO_INVALIDO: Consentimento inválido.
 • JANELA_OPER_INVALIDA: Janela de operação inválida.
-• PARAMETRO_NAO_INFORMADO: Parâmetro obrigatório não informado
-• PARAMETRO_INVALIDO: Parâmetro com valor inválido
+• PARAMETRO_NAO_INFORMADO: Parâmetro obrigatório não informado.
+• PARAMETRO_INVALIDO: Parâmetro com valor inválido.
 • NAO_INFORMADO: Não informado.
-• PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO: divergência entre pagamento e consentimento.
-• DETALHE_PGTO_INVALIDO: Detalhe do pagamento inválido.
+• PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Divergência entre pagamento e consentimento.
+• DETALHE_PAGAMENTO_INVALIDO: Detalhe do pagamento inválido.
+• PAGAMENTO_RECUSADO_DETENTORA: Pagamento recusado pela detentora de conta.
+• PAGAMENTO_RECUSADO_SPI: Pagamento recusado no Sistema de Pagamentos Instantâneos (SPI).
+• ERRO_IDEMPOTENCIA: Erro idempotência.
 '
                     - Pattern changed from '\w*\W*' to '[\w\W\s]*'
             - Modified property: meta
@@ -1069,11 +1282,21 @@ GET /pix/payments/{paymentId}
                 - New required property: debtorAccount
                 - New required property: endToEndId
               - Properties changed
+                - New property: cancellation
                 - New property: debtorAccount
                 - Modified property: consentId
                   - Pattern changed from '^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$' to '^urn:[a-zA-Z0-9][a-zA-Z0-9\-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$'
                 - Modified property: creditorAccount
                   - AdditionalProperties changed from false to null
+                  - Properties changed
+                    - Modified property: accountType
+                      - MaxLength changed from 4 to null
+                    - Modified property: issuer
+                      - MinLength changed from 0 to 1
+                      - Pattern changed from '^\d{4}$' to '^[0-9]{1,4}$'
+                    - Modified property: number
+                      - MinLength changed from 3 to 1
+                      - Pattern changed from '^\d{3,20}$' to '^[0-9]{1,20}$'
                 - Modified property: endToEndId
                   - Description changed from 'Deve ser preenchido no formato padrão ExxxxxxxxyyyyMMddHHmmkkkkkkkkkkk (32 caracteres; “case sensitive”, isso é, diferencia letras maiúsculas e minúsculas), sendo:
 • “E” – fixo (1 caractere);  
@@ -1094,13 +1317,16 @@ Este campo faz referência ao campo CodMun do arranjo Pix.
 ' to 'O campo ibgetowncode no arranjo PIX, tem o mesmo comportamento que o campo codMun descrito no item 1.6.6 do manual do PIX, conforme segue:
 1. Caso a informação referente ao município não seja enviada; o PSP do recebedor assumirá que não existem feriados estaduais e municipais no período em questão;
 '
+                - Modified property: localInstrument
+                  - MaxLength changed from 4 to null
                 - Modified property: payment
                   - AdditionalProperties changed from false to null
                   - Properties changed
                     - Modified property: amount
                       - Description changed from 'Valor da transação com 2 casas decimais.
-' to 'Valor da transação com 2 casas decimais. O valor deve ser o mesmo enviado no consentimento. Caso seja preenchido com valor divergente, deve ser retornado um erro HTTP Status 422 com code xxx (a ser definido em proposta complementar).  
-Para QR Code estático com valor pré-determinado no QR Code ou para QR Code dinâmico com indicação de que o valor não pode ser alterado: O campo amount deve ser preenchido com o valor estabelecido no QR Code. Caso seja preenchido com valor divergente do QR Code, deve ser retornado um erro HTTP Status 422 com code xxx (a ser definido em proposta complementar).
+' to 'Valor da transação com 2 casas decimais. O valor deve ser o mesmo enviado no consentimento. 
+Para QR Code estático com valor pré-determinado no QR Code ou para QR Code dinâmico com indicação de que o valor não pode ser alterado: O campo amount deve ser preenchido com o valor estabelecido no QR Code. 
+Caso seja preenchido com valor divergente do QR Code, deve ser retornado um erro HTTP Status 422.
 '
                 - Modified property: rejectionReason
                   - Type changed from 'string' to 'object'
@@ -1156,7 +1382,8 @@ EXPIRED_BILL - O QR Code não é mais válido (OB06).
                   - Example changed from 'USER_NOT_YET_ACTIVATED' to null
                   - MaxLength changed from 50 to null
                   - Required changed
-                    - New required property: status
+                    - New required property: code
+                    - New required property: detail
                   - Properties changed
                     - New property: code
                     - New property: detail
@@ -1379,3 +1606,8 @@ A detentora de conta deve validar se a condicionalidade do campo foi atendida pe
 - Security changed
   - Modified security requirements: OAuth2AuthorizationCode
     - Scheme OAuth2AuthorizationCode Added scopes: [openid]
+Servers changed
+- New server: https://api.banco.com.br/open-banking/payments/v2
+- New server: https://apih.banco.com.br/open-banking/payments/v2
+- Deleted server: https://api.banco.com.br/open-banking/payments/v1
+- Deleted server: https://apih.banco.com.br/open-banking/payments/v1
