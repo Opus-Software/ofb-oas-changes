@@ -1,0 +1,188 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 2
+-------------------------
+GET /online-rates
+- Modified query param: page
+  - Schema changed
+    - Max changed from 2.147483647e+09 to null
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: participant
+                    - Description changed from 'Conjunto de informações relativas ao participante do produto de Open Finance' to 'Conjunto de informações relativas ao participante do produto de open banking'
+                    - Properties changed
+                      - Modified property: brand
+                        - Description changed from 'Nome da marca reportada pelo participante do Open Finance. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes.' to 'Nome da marca reportada pelo participante do Open Banking. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes.'
+                      - Modified property: cnpjNumber
+                        - Pattern changed from '^\d{14}$' to '\d{14}$'
+                      - Modified property: name
+                        - Description changed from 'Nome do participante do Open Finance.' to 'Nome do participante do Open Banking.'
+                  - Modified property: timestamp
+                    - Description changed from 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.' to 'Timestamp do momento da consulta'
+                    - MaxLength changed from 20 to null
+                  - Modified property: values
+                    - Example changed from [map[deliveryForeignCurrency:ESPECIE foreignCurrency:USD targetAudience:PESSOA_NATURAL transactionCategory:COMERCIO_EXTERIOR transactionType:COMPRA value:5.5023] map[deliveryForeignCurrency:CARTAO_PRE_PAGO foreignCurrency:EUR targetAudience:PESSOA_JURIDICA transactionCategory:TRANSPORTE transactionType:VENDA value:2.7045]] to [map[deliveryForeignCurrency:ESPECIE foreignCurrency:USD targetAudience:PF transactionCategory:COMERCIO_EXTERIOR transactionType:COMPRA value:5.5023] map[deliveryForeignCurrency:CARTAO_PRE_PAGO foreignCurrency:EUR targetAudience:PJ transactionCategory:TRANSPORTE transactionType:VENDA value:2.7045]]
+                    - Items changed
+                      - Required changed
+                        - Deleted required property: targetAudience
+                      - Properties changed
+                        - Modified property: foreignCurrency
+                          - MaxLength changed from 3 to null
+                        - Modified property: targetAudience
+                          - Description changed from 'Público alvo (PESSOA_NATURAL ou PESSOA_JURIDICA).' to 'Público alvo (ou PF ou PJ).'
+                          - New enum values: [PF PJ]
+                          - Deleted enum values: [PESSOA_NATURAL PESSOA_JURIDICA]
+                          - Example changed from 'PESSOA_JURIDICA' to 'PF'
+                          - MaxLength changed from 15 to 2
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
+GET /vet-values
+- Modified query param: page
+  - Schema changed
+    - Max changed from 2.147483647e+09 to null
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Required changed
+                  - Deleted required property: targetAudience
+                - Properties changed
+                  - Modified property: foreignCurrency
+                    - MaxLength changed from 3 to null
+                  - Modified property: participant
+                    - Description changed from 'Conjunto de informações relativas ao participante do produto de Open Finance' to 'Conjunto de informações relativas ao participante do produto de open banking'
+                    - Properties changed
+                      - Modified property: brand
+                        - Description changed from 'Nome da marca reportada pelo participante do Open Finance. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes.' to 'Nome da marca reportada pelo participante do Open Banking. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes.'
+                      - Modified property: cnpjNumber
+                        - Pattern changed from '^\d{14}$' to '\d{14}$'
+                      - Modified property: name
+                        - Description changed from 'Nome do participante do Open Finance.' to 'Nome do participante do Open Banking.'
+                  - Modified property: vetAmount
+                    - Required changed
+                      - New required property: chargingTriggerInfo
+                      - New required property: code
+                      - New required property: name
+                    - Properties changed
+                      - New property: chargingTriggerInfo
+                      - New property: code
+                      - New property: name
+                      - Modified property: prices
+                        - Items changed
+                          - Required changed
+                            - New required property: customerRate
+                            - Deleted required property: operationRate
+                          - Properties changed
+                            - New property: customerRate
+                            - Deleted property: operationRate
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime

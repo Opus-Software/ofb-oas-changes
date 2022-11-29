@@ -1,0 +1,225 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 2
+-------------------------
+GET /risk-coverages
+- Modified query param: page
+  - Schema changed
+    - Max changed from 2.147483647e+09 to null
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - New property: allowPortability
+                  - New property: benefitRecalculation
+                  - New property: category
+                  - New property: globalCapital
+                  - New property: indemnityPaymentIncomes
+                  - New property: portabilityGraceTime
+                  - New property: premiumPayment
+                  - New property: terms
+                  - Modified property: coverages
+                    - Items changed
+                      - Properties changed
+                        - Modified property: attributes
+                          - Properties changed
+                            - New property: allowApartPurchase
+                            - New property: deductible
+                            - New property: deductibleDays
+                            - New property: differentiatedDeductible
+                            - New property: differentiatedDeductibleDays
+                            - New property: differentiatedGracePeriod
+                            - New property: gracePeriod
+                            - New property: indemnityPaymentFrequencies
+                            - New property: indemnityPaymentMethods
+                            - New property: maximumQtyIndemnifiableInstallments
+                            - Modified property: maxValue
+                              - Properties changed
+                                - Modified property: currency
+                                  - MaxLength changed from 3 to null
+                            - Modified property: minValue
+                              - Properties changed
+                                - Modified property: currency
+                                  - MaxLength changed from 3 to null
+                  - Modified property: minimumRequirement
+                    - Properties changed
+                      - Modified property: contractType
+                        - MaxLength changed from null to 19
+                  - Modified property: participant
+                    - Description changed from 'Conjunto de informações relativas ao participante do produto de Open Finance' to 'Conjunto de informações relativas ao participante do produto de open banking'
+                    - Properties changed
+                      - Modified property: brand
+                        - Description changed from 'Nome da marca reportada pelo participante do Open Finance. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes.' to 'Nome da marca reportada pelo participante do Open Banking. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes.'
+                      - Modified property: cnpjNumber
+                        - Pattern changed from '^\d{14}$' to '\d{14}$'
+                      - Modified property: name
+                        - Description changed from 'Nome do participante do Open Finance.' to 'Nome do participante do Open Banking.'
+                  - Modified property: pmbacRemuneration
+                    - Properties changed
+                      - Modified property: updateIndexes
+                        - Items changed
+                          - MaxLength changed from null to 9
+                  - Modified property: society
+                    - Properties changed
+                      - Modified property: cnpjNumber
+                        - Pattern changed from '^\d{14}$' to '\d{14}$'
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
+GET /survival-coverages
+- Modified query param: page
+  - Schema changed
+    - Max changed from 2.147483647e+09 to null
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: defferalPeriod
+                    - Properties changed
+                      - Modified property: investmentFunds
+                        - Items changed
+                          - Properties changed
+                            - Modified property: cnpjNumber
+                              - Pattern changed from '^\d{14}$' to '\d{14}$'
+                            - Modified property: currency
+                              - MaxLength changed from 3 to null
+                      - Modified property: minimumPremiums
+                        - Items changed
+                          - Properties changed
+                            - Modified property: currency
+                              - MaxLength changed from 3 to null
+                  - Modified property: grantPeriodBenefit
+                    - Required changed
+                      - New required property: biometricTable
+                    - Properties changed
+                      - Modified property: biometricTable
+                        - MinItems changed from 0 to 1
+                      - Modified property: investmentFunds
+                        - Items changed
+                          - Properties changed
+                            - Modified property: cnpjNumber
+                              - Pattern changed from '^\d{14}$' to '\d{14}$'
+                            - Modified property: currency
+                              - MaxLength changed from 3 to null
+                  - Modified property: participant
+                    - Description changed from 'Conjunto de informações relativas ao participante do produto de Open Finance' to 'Conjunto de informações relativas ao participante do produto de open banking'
+                    - Properties changed
+                      - Modified property: brand
+                        - Description changed from 'Nome da marca reportada pelo participante do Open Finance. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes.' to 'Nome da marca reportada pelo participante do Open Banking. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes.'
+                      - Modified property: cnpjNumber
+                        - Pattern changed from '^\d{14}$' to '\d{14}$'
+                      - Modified property: name
+                        - Description changed from 'Nome do participante do Open Finance.' to 'Nome do participante do Open Banking.'
+                  - Modified property: society
+                    - Properties changed
+                      - Modified property: cnpjNumber
+                        - Pattern changed from '^\d{14}$' to '\d{14}$'
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: requestDateTime
+              - Properties changed
+                - New property: requestDateTime
