@@ -119,6 +119,10 @@ GET /vet-values
                         - Pattern changed from '^\d{14}$' to '\d{14}$'
                       - Modified property: name
                         - Description changed from 'Nome do participante do Open Finance.' to 'Nome do participante do Open Banking.'
+                  - Modified property: rangeTransactionCategory
+                    - Description changed from 'Faixa de valor da operação (equivalente em USD), conforme Instrução
+Normativa BCB 184, de 12 Novembro de 2021.
+' to 'A classificação conforme a circular BCB nº 4015.'
                   - Modified property: vetAmount
                     - Required changed
                       - New required property: chargingTriggerInfo
@@ -130,12 +134,9 @@ GET /vet-values
                       - New property: name
                       - Modified property: prices
                         - Items changed
-                          - Required changed
-                            - New required property: customerRate
-                            - Deleted required property: operationRate
                           - Properties changed
-                            - New property: customerRate
-                            - Deleted property: operationRate
+                            - Modified property: customerRate
+                              - Description changed from 'Percentual de clientes na faixa.' to 'Percentual de clientes.'
   - Modified response: 400
     - Content changed
       - Modified media type: application/json; charset=utf-8
