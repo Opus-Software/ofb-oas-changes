@@ -17,6 +17,12 @@ GET /online-rates
                   - Modified property: timestamp
                     - Description changed from 'Timestamp do momento da consulta' to 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.'
                     - MaxLength changed from null to 20
+                  - Modified property: values
+                    - Items changed
+                      - Properties changed
+                        - Modified property: targetAudience
+                          - Description changed from 'Público alvo (PESSOA_NATURAL ou PESSOA_JURIDICA).' to 'Público alvo. Em casos em que a instituição não possua taxas de câmbio diferenciadas para pessoa natural e jurídica utilizar a opção:PESSOA_NATURAL_JURIDICA.'
+                          - New enum values: [PESSOA_NATURAL_JURIDICA]
 GET /vet-values
 - Responses changed
   - Modified response: 200
@@ -31,6 +37,14 @@ GET /vet-values
                     - Description changed from 'A classificação conforme a circular BCB nº 4015.' to 'Faixa de valor da operação (equivalente em USD), conforme Instrução
 Normativa BCB 184, de 12 Novembro de 2021.
 '
+                  - Modified property: targetAudience
+                    - Description changed from 'A considerar os domínios abaixo:
+  1. Pessoa Natural
+  2. Pessoa Jurídica
+  3. Ambas (Pessoa Natural e Jurídica)
+' to 'Público alvo. Em casos em que a instituição não possua taxas de câmbio diferenciadas para pessoa natural e jurídica utilizar a opção:PESSOA_NATURAL_JURIDICA.'
+                    - Example changed from 'PESSOA_NATURAL' to 'PESSOA_JURIDICA'
+                    - MaxLength changed from 23 to 15
                   - Modified property: vetAmount
                     - Properties changed
                       - Modified property: prices

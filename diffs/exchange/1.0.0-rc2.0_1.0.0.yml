@@ -38,9 +38,9 @@ GET /online-rates
                         - Modified property: foreignCurrency
                           - MaxLength changed from 3 to null
                         - Modified property: targetAudience
-                          - Description changed from 'Público alvo (PESSOA_NATURAL ou PESSOA_JURIDICA).' to 'Público alvo (ou PF ou PJ).'
+                          - Description changed from 'Público alvo. Em casos em que a instituição não possua taxas de câmbio diferenciadas para pessoa natural e jurídica utilizar a opção:PESSOA_NATURAL_JURIDICA.' to 'Público alvo (ou PF ou PJ).'
                           - New enum values: [PF PJ]
-                          - Deleted enum values: [PESSOA_NATURAL PESSOA_JURIDICA]
+                          - Deleted enum values: [PESSOA_NATURAL PESSOA_JURIDICA PESSOA_NATURAL_JURIDICA]
                           - Example changed from 'PESSOA_JURIDICA' to 'PF'
                           - MaxLength changed from 15 to 2
   - Modified response: 400
@@ -123,6 +123,14 @@ GET /vet-values
                     - Description changed from 'Faixa de valor da operação (equivalente em USD), conforme Instrução
 Normativa BCB 184, de 12 Novembro de 2021.
 ' to 'A classificação conforme a circular BCB nº 4015.'
+                  - Modified property: targetAudience
+                    - Description changed from 'Público alvo. Em casos em que a instituição não possua taxas de câmbio diferenciadas para pessoa natural e jurídica utilizar a opção:PESSOA_NATURAL_JURIDICA.' to 'A considerar os domínios abaixo:
+  1. Pessoa Natural
+  2. Pessoa Jurídica
+  3. Ambas (Pessoa Natural e Jurídica)
+'
+                    - Example changed from 'PESSOA_JURIDICA' to 'PESSOA_NATURAL'
+                    - MaxLength changed from 15 to 23
                   - Modified property: vetAmount
                     - Required changed
                       - New required property: chargingTriggerInfo
