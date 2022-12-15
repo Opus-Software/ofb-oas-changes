@@ -225,7 +225,7 @@ components:
         rangeTransactionCategory:
           $ref: '#/components/schemas/EnumExchangeRangeTransactionCategory'
         targetAudience:
-          $ref: '#/components/schemas/EnumDistinctTargetAudienceExchange'
+          $ref: '#/components/schemas/EnumTargetAudience'
         vetAmount:
           type: object
           description: Distribuição por frequência.
@@ -242,7 +242,7 @@ components:
                 required:
                   - interval
                   - value
-                  - customerRate
+                  - operationRate
                 properties:
                   interval:
                     $ref: '#/components/schemas/VetValueFrequencyDistributionPrice/properties/interval'
@@ -252,9 +252,9 @@ components:
                     example: '0.020300'
                     maxLength: 8
                     pattern: '^\d{1}\.\d{1,6}$'
-                  customerRate:
+                  operationRate:
                     type: string
-                    description: Percentual de clientes na faixa.
+                    description: Percentual de operação.
                     example: '0.500000'
                     maxLength: 8
                     pattern: '^\d{1}\.\d{1,6}$'
@@ -312,7 +312,7 @@ components:
         transactionCategory:
           $ref: '#/components/schemas/EnumExchangeTransactionCategory'
         targetAudience:
-          $ref: '#/components/schemas/EnumDistinctTargetAudienceExchange'
+          $ref: '#/components/schemas/EnumDistinctTargetAudience'
         value:
           type: string
           maxLength: 7
@@ -361,10 +361,7 @@ components:
       example: CARTAO_PRE_PAGO
     EnumExchangeRangeTransactionCategory:
       type: string
-      description: |
-        Faixa de valor da operação (equivalente em USD), conforme Instrução
-
-        Normativa BCB 184, de 12 Novembro de 2021.
+      description: A classificação conforme a circular BCB nº 4015.
       maxLength: 17
       enum:
         - '0,01_200'
@@ -432,14 +429,13 @@ components:
           pattern: '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
           example: 'https://empresaa1.com/companies'
       additionalProperties: false
-    EnumDistinctTargetAudienceExchange:
+    EnumDistinctTargetAudience:
       type: string
-      description: 'Público alvo. Em casos em que a instituição não possua taxas de câmbio diferenciadas para pessoa natural e jurídica utilizar a opção:PESSOA_NATURAL_JURIDICA.'
+      description: Público alvo (PESSOA_NATURAL ou PESSOA_JURIDICA).
       maxLength: 15
       enum:
         - PESSOA_NATURAL
         - PESSOA_JURIDICA
-        - PESSOA_NATURAL_JURIDICA
       example: PESSOA_JURIDICA
     EnumTargetAudience:
       type: string
