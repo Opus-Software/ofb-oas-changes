@@ -35,6 +35,7 @@ GET /online-rates
                       - Required changed
                         - Deleted required property: targetAudience
                       - Properties changed
+                        - Deleted property: valueUpdateDateTime
                         - Modified property: foreignCurrency
                           - MaxLength changed from 3 to null
                         - Modified property: targetAudience
@@ -42,7 +43,7 @@ GET /online-rates
                           - New enum values: [PF PJ]
                           - Deleted enum values: [PESSOA_NATURAL PESSOA_JURIDICA PESSOA_NATURAL_JURIDICA]
                           - Example changed from 'PESSOA_JURIDICA' to 'PF'
-                          - MaxLength changed from null to 2
+                          - MaxLength changed from 15 to 2
   - Modified response: 400
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -94,7 +95,6 @@ GET /online-rates
               - Properties changed
                 - New property: requestDateTime
 GET /vet-values
-- Description changed from 'Método para disponibilizar os VETs praticados pela instituição nas operações de câmbio, agrupados por tipo de operação (compra ou venda), moeda, forma de entrega, faixas de valores e público-alvo (pessoa física, pessoa jurídica ou ambos).' to 'Método para disponibilizar o valor VET.<br>O retorno, embora não especificado, deve abranger a classificação do tipo de operação, conforme a circular BCB n&#186; 3690 de 16/12/2013 com os seguintes items&#58;<br><ol><li>Comércio exterior</li><li>Transporte</li><li>Seguros</li><li>Viagens internacionais</li><li>Transferências unilaterais</li><li>Serviços diversos</li><li>Rendas de capitais</li><li>Capitais brasileiros</li><li>Capitais estrangeiros</li><li>Prestação de serviço de pagamento ou transferência internacional - EFX</li></ol>'
 - Modified query param: page
   - Schema changed
     - Max changed from 2.147483647e+09 to null
@@ -131,7 +131,7 @@ Normativa BCB 184, de 12 Novembro de 2021.
   3. Ambas (Pessoa Natural e Jurídica)
 '
                     - Example changed from 'PESSOA_JURIDICA' to 'PESSOA_NATURAL'
-                    - MaxLength changed from null to 23
+                    - MaxLength changed from 15 to 23
                   - Modified property: vetAmount
                     - Required changed
                       - New required property: chargingTriggerInfo

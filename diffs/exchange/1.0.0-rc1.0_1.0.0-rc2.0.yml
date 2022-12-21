@@ -20,12 +20,11 @@ GET /online-rates
                   - Modified property: values
                     - Items changed
                       - Properties changed
+                        - New property: valueUpdateDateTime
                         - Modified property: targetAudience
                           - Description changed from 'Público alvo (PESSOA_NATURAL ou PESSOA_JURIDICA).' to 'Público alvo. Em casos em que a instituição não possua taxas de câmbio diferenciadas para pessoa natural e jurídica utilizar a opção:PESSOA_NATURAL_JURIDICA.'
                           - New enum values: [PESSOA_NATURAL_JURIDICA]
-                          - MaxLength changed from 15 to null
 GET /vet-values
-- Description changed from 'Método para disponibilizar o valor VET.<br>O retorno, embora não especificado, deve abranger a classificação do tipo de operação, conforme a circular BCB n&#186; 3690 de 16/12/2013 com os seguintes items&#58;<br><ol><li>Comércio exterior</li><li>Transporte</li><li>Seguros</li><li>Viagens internacionais</li><li>Transferências unilaterais</li><li>Serviços diversos</li><li>Rendas de capitais</li><li>Capitais brasileiros</li><li>Capitais estrangeiros</li><li>Prestação de serviço de pagamento ou transferência internacional - EFX</li></ol>' to 'Método para disponibilizar os VETs praticados pela instituição nas operações de câmbio, agrupados por tipo de operação (compra ou venda), moeda, forma de entrega, faixas de valores e público-alvo (pessoa física, pessoa jurídica ou ambos).'
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -46,7 +45,7 @@ Normativa BCB 184, de 12 Novembro de 2021.
   3. Ambas (Pessoa Natural e Jurídica)
 ' to 'Público alvo. Em casos em que a instituição não possua taxas de câmbio diferenciadas para pessoa natural e jurídica utilizar a opção:PESSOA_NATURAL_JURIDICA.'
                     - Example changed from 'PESSOA_NATURAL' to 'PESSOA_JURIDICA'
-                    - MaxLength changed from 23 to null
+                    - MaxLength changed from 23 to 15
                   - Modified property: vetAmount
                     - Properties changed
                       - Modified property: prices
