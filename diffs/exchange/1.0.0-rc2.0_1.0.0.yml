@@ -5,6 +5,8 @@
 ### Modified Endpoints: 2
 -------------------------
 GET /online-rates
+- Description changed from 'As instituições autorizadas a operar em câmbio que disponibilizam em seus canais digitais a possibilidade de contratação ou a informação de taxa de câmbio devem retornar as condições no momento da consulta, sendo admitida uma defasagem máxima de atualização de 5 minutos em relação a seus canais digitais.
+Já as demais instituições participantes do Open Finance autorizadas a operar em câmbio podem adotar as janelas de consulta da PTAX como frequência mínima de atualização das informações retornadas neste serviço.' to 'Método para disponibilizar a taxa online.'
 - Modified query param: page
   - Schema changed
     - Max changed from 2.147483647e+09 to null
@@ -34,9 +36,7 @@ GET /online-rates
                     - Items changed
                       - Required changed
                         - Deleted required property: targetAudience
-                        - Deleted required property: valueUpdateDateTime
                       - Properties changed
-                        - Deleted property: valueUpdateDateTime
                         - Modified property: foreignCurrency
                           - MaxLength changed from 3 to null
                         - Modified property: targetAudience
@@ -44,7 +44,7 @@ GET /online-rates
                           - New enum values: [PF PJ]
                           - Deleted enum values: [PESSOA_NATURAL PESSOA_JURIDICA PESSOA_NATURAL_JURIDICA]
                           - Example changed from 'PESSOA_JURIDICA' to 'PF'
-                          - MaxLength changed from 15 to 2
+                          - MaxLength changed from null to 2
   - Modified response: 400
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -96,6 +96,7 @@ GET /online-rates
               - Properties changed
                 - New property: requestDateTime
 GET /vet-values
+- Description changed from 'Método para disponibilizar os VETs praticados pela instituição nas operações de câmbio, agrupados por tipo de operação (compra ou venda), moeda, forma de entrega, faixas de valores e público-alvo (pessoa física, pessoa jurídica ou ambos).' to 'Método para disponibilizar o valor VET.<br>O retorno, embora não especificado, deve abranger a classificação do tipo de operação, conforme a circular BCB n&#186; 3690 de 16/12/2013 com os seguintes items&#58;<br><ol><li>Comércio exterior</li><li>Transporte</li><li>Seguros</li><li>Viagens internacionais</li><li>Transferências unilaterais</li><li>Serviços diversos</li><li>Rendas de capitais</li><li>Capitais brasileiros</li><li>Capitais estrangeiros</li><li>Prestação de serviço de pagamento ou transferência internacional - EFX</li></ol>'
 - Modified query param: page
   - Schema changed
     - Max changed from 2.147483647e+09 to null
@@ -132,7 +133,7 @@ Normativa BCB 184, de 12 Novembro de 2021.
   3. Ambas (Pessoa Natural e Jurídica)
 '
                     - Example changed from 'PESSOA_JURIDICA' to 'PESSOA_NATURAL'
-                    - MaxLength changed from 15 to 23
+                    - MaxLength changed from null to 23
                   - Modified property: vetAmount
                     - Required changed
                       - New required property: chargingTriggerInfo
