@@ -2,7 +2,7 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 4
+### Modified Endpoints: 5
 -------------------------
 GET /bank-fixed-incomes
 - Responses changed
@@ -38,6 +38,24 @@ GET /credit-fixed-incomes
                     - Properties changed
                       - Modified property: prices
                         - Example changed from [map[customerRate:0.500000 interval:1_FAIXA value:0.020300] map[customerRate:0.100000 interval:2_FAIXA value:0.030600] map[customerRate:0.300000 interval:3_FAIXA value:0.034300] map[customerRate:0.100000 interval:4_FAIXA value:0.246800]] to [map[interval:1_FAIXA operationRate:0.500000 value:0.020300] map[interval:2_FAIXA operationRate:0.100000 value:0.030600] map[interval:3_FAIXA operationRate:0.300000 value:0.034300] map[interval:4_FAIXA operationRate:0.100000 value:0.246800]]
+GET /funds
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: generalConditions
+                    - Properties changed
+                      - Modified property: redemption
+                        - Properties changed
+                          - Modified property: paymentDays
+                            - Description changed from 'Prazo em dias do efetivo pagamento, pelo fundo, do valor líquido devido ao cotista que efetuou pedido de resgate.' to 'Prazo máximo em dias do efetivo pagamento, pelo fundo, do valor líquido devido ao cotista que efetuou pedido de resgate.'
+                          - Modified property: quotationDays
+                            - Description changed from 'Prazo em dias indicada no regulamento do fundo para a conversão das cotas em dinheiro.' to 'Prazo máximo em dias indicado no regulamento do fundo para a conversão das cotas em dinheiro.'
 GET /treasure-titles
 - Responses changed
   - Modified response: 200
