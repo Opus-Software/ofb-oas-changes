@@ -32,6 +32,13 @@ GET /bank-fixed-incomes
                         - Description changed from 'Índice utilizado como referência para a correção da rentabilidade e/ou rendimentos do ativo (p.ex. CDI).<br><br>Pré-fixado, em linha com padronização da B3&#58;<br><br><ol><li>CDI</li><li>DI</li><li>TR</li><li>IPCA</li><li>IGP-M</li><li>IGP-DI</li><li>INPC</li><li>BCP</li><li>TLC</li><li>Selic</li><li>PRE_FIXADO</li><li>Outros</li></ol>' to 'Índice utilizado como referência para a correção da rentabilidade e/ou rendimentos do ativo (p.ex. CDI).<br><br>Pré-fixado, em linha com padronização da B3&#58;<br><br><ol><li>CDI</li><li>DI</li><li>TR</li><li>IPCA</li><li>IGP-M</li><li>IGP-DI</li><li>INPC</li><li>BCP</li><li>TLC</li><li>Selic</li><li>Outros</li></ol>'
                         - Deleted enum values: [PRE_FIXADO]
                         - MaxLength changed from null to 6
+                      - Modified property: indexerAdditionalInfo
+                        - Description changed from 'Campo livre para preenchimento das informações adicionais referente ao encargo.
+[Restrição] Obrigatório quando Indexador for igual 'OUTROS'.
+' to 'Campo a ser preenchido pelas participantes quando houver ‘Outros’ no campo ‘Indexador’.'
+                        - Example changed from 'Informações adicionais' to 'Dólar'
+                        - MaxLength changed from 140 to 50
+                        - Pattern changed from '[\w\W\s]' to ''
                       - Modified property: issueRemunerationRate
                         - AdditionalProperties changed from false to null
                         - Properties changed
@@ -45,6 +52,8 @@ GET /bank-fixed-incomes
                               - Properties changed
                                 - New property: customerRate
                                 - Deleted property: operationRate
+                                - Modified property: interval
+                                  - MaxLength changed from null to 7
                   - Modified property: investmentConditions
                     - Required changed
                       - New required property: maximumExpirationTerm
@@ -63,15 +72,18 @@ GET /bank-fixed-incomes
                       - Modified property: redemptionTerm
                         - New enum values: [DIARIA_APOS_PRAZO_CARENCIA]
                         - Deleted enum values: [DIARIA_PRAZO_CARENCIA]
+                        - MaxLength changed from null to 29
                   - Modified property: participant
                     - Description changed from 'Conjunto de informações relativas ao participante do produto de Open Finance' to 'Conjunto de informações relativas ao participante do produto de open banking'
                     - Properties changed
                       - Modified property: brand
                         - Description changed from 'Nome da marca reportada pelo participante do Open Finance. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes.' to 'Nome da marca reportada pelo participante do Open Banking. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes.'
+                        - Pattern changed from '[\w\W\s]*' to ''
                       - Modified property: cnpjNumber
                         - Pattern changed from '^\d{14}$' to '\d{14}$'
                       - Modified property: name
                         - Description changed from 'Nome do participante do Open Finance.' to 'Nome do participante do Open Banking.'
+                        - Pattern changed from '[\w\W\s]*' to ''
   - Modified response: 400
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -181,10 +193,12 @@ GET /credit-fixed-incomes
                     - Properties changed
                       - Modified property: brand
                         - Description changed from 'Nome da marca reportada pelo participante do Open Finance. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes.' to 'Nome da marca reportada pelo participante do Open Banking. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes.'
+                        - Pattern changed from '[\w\W\s]*' to ''
                       - Modified property: cnpjNumber
                         - Pattern changed from '^\d{14}$' to '\d{14}$'
                       - Modified property: name
                         - Description changed from 'Nome do participante do Open Finance.' to 'Nome do participante do Open Banking.'
+                        - Pattern changed from '[\w\W\s]*' to ''
   - Modified response: 400
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -527,10 +541,6 @@ GET /variable-incomes
                           - Properties changed
                             - New property: customerRate
                             - Deleted property: operationRate
-                            - Modified property: interval
-                              - MaxLength changed from null to 7
-                  - Modified property: investmentType
-                    - MaxLength changed from null to 16
                   - Modified property: loadingRate
                     - AdditionalProperties changed from false to null
                     - Properties changed
@@ -544,8 +554,6 @@ GET /variable-incomes
                           - Properties changed
                             - New property: customerRate
                             - Deleted property: operationRate
-                            - Modified property: interval
-                              - MaxLength changed from null to 7
                   - Modified property: participant
                     - Description changed from 'Conjunto de informações relativas ao participante do produto de Open Finance' to 'Conjunto de informações relativas ao participante do produto de open banking'
                     - Properties changed
