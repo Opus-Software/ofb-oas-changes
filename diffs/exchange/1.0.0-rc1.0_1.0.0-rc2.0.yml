@@ -26,14 +26,12 @@ Já as demais instituições participantes do Open Finance autorizadas a operar 
                         - New required property: valueUpdateDateTime
                       - Properties changed
                         - New property: valueUpdateDateTime
-                        - Modified property: deliveryForeignCurrency
-                          - MaxLength changed from 21 to null
                         - Modified property: targetAudience
                           - Description changed from 'Público alvo (PESSOA_NATURAL ou PESSOA_JURIDICA).' to 'Público alvo. Em casos em que a instituição não possua taxas de câmbio diferenciadas para pessoa natural e jurídica utilizar a opção:PESSOA_NATURAL_JURIDICA.'
                           - New enum values: [PESSOA_NATURAL_JURIDICA]
                           - MaxLength changed from 15 to null
-                        - Modified property: transactionType
-                          - MaxLength changed from 6 to null
+                        - Modified property: value
+                          - MinLength changed from 0 to 3
 GET /vet-values
 - Description changed from 'Método para disponibilizar o valor VET.<br>O retorno, embora não especificado, deve abranger a classificação do tipo de operação, conforme a circular BCB n&#186; 3690 de 16/12/2013 com os seguintes items&#58;<br><ol><li>Comércio exterior</li><li>Transporte</li><li>Seguros</li><li>Viagens internacionais</li><li>Transferências unilaterais</li><li>Serviços diversos</li><li>Rendas de capitais</li><li>Capitais brasileiros</li><li>Capitais estrangeiros</li><li>Prestação de serviço de pagamento ou transferência internacional - EFX</li></ol>' to 'Método para disponibilizar os VETs praticados pela instituição nas operações de câmbio, agrupados por tipo de operação (compra ou venda), moeda, forma de entrega, faixas de valores e público-alvo (pessoa física, pessoa jurídica ou ambos).'
 - Responses changed
@@ -45,8 +43,6 @@ GET /vet-values
             - Modified property: data
               - Items changed
                 - Properties changed
-                  - Modified property: deliveryForeignCurrency
-                    - MaxLength changed from 21 to null
                   - Modified property: rangeTransactionCategory
                     - Description changed from 'A classificação conforme a circular BCB nº 4015.' to 'Faixa de valor da operação (equivalente em USD), conforme Instrução
 Normativa BCB 184, de 12 Novembro de 2021.
@@ -59,15 +55,11 @@ Normativa BCB 184, de 12 Novembro de 2021.
 ' to 'Público alvo. Em casos em que a instituição não possua taxas de câmbio diferenciadas para pessoa natural e jurídica utilizar a opção:PESSOA_NATURAL_JURIDICA.'
                     - Example changed from 'PESSOA_NATURAL' to 'PESSOA_JURIDICA'
                     - MaxLength changed from 23 to null
-                  - Modified property: transactionType
-                    - MaxLength changed from 6 to null
                   - Modified property: vetAmount
                     - Properties changed
                       - Modified property: prices
                         - Example changed from [map[customerRate:0.500000 interval:1_FAIXA value:0.020300] map[customerRate:0.100000 interval:2_FAIXA value:0.030600] map[customerRate:0.300000 interval:3_FAIXA value:0.034300] map[customerRate:0.100000 interval:4_FAIXA value:0.246800]] to [map[interval:1_FAIXA operationRate:0.500000 value:0.020300] map[interval:2_FAIXA operationRate:0.100000 value:0.030600] map[interval:3_FAIXA operationRate:0.300000 value:0.034300] map[interval:4_FAIXA operationRate:0.100000 value:0.246800]]
                         - Items changed
                           - Properties changed
-                            - Modified property: interval
-                              - MaxLength changed from 7 to null
                             - Modified property: operationRate
                               - Description changed from 'Percentual de operação.' to 'Percentual de Operação.'

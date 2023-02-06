@@ -39,8 +39,6 @@ Já as demais instituições participantes do Open Finance autorizadas a operar 
                         - Deleted required property: valueUpdateDateTime
                       - Properties changed
                         - Deleted property: valueUpdateDateTime
-                        - Modified property: deliveryForeignCurrency
-                          - MaxLength changed from null to 21
                         - Modified property: foreignCurrency
                           - MaxLength changed from 3 to null
                         - Modified property: targetAudience
@@ -49,8 +47,8 @@ Já as demais instituições participantes do Open Finance autorizadas a operar 
                           - Deleted enum values: [PESSOA_NATURAL PESSOA_JURIDICA PESSOA_NATURAL_JURIDICA]
                           - Example changed from 'PESSOA_JURIDICA' to 'PF'
                           - MaxLength changed from null to 2
-                        - Modified property: transactionType
-                          - MaxLength changed from null to 6
+                        - Modified property: value
+                          - MinLength changed from 3 to 0
   - Modified response: 400
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -117,8 +115,6 @@ GET /vet-values
                 - Required changed
                   - Deleted required property: targetAudience
                 - Properties changed
-                  - Modified property: deliveryForeignCurrency
-                    - MaxLength changed from null to 21
                   - Modified property: foreignCurrency
                     - MaxLength changed from 3 to null
                   - Modified property: participant
@@ -142,8 +138,6 @@ Normativa BCB 184, de 12 Novembro de 2021.
 '
                     - Example changed from 'PESSOA_JURIDICA' to 'PESSOA_NATURAL'
                     - MaxLength changed from null to 23
-                  - Modified property: transactionType
-                    - MaxLength changed from null to 6
                   - Modified property: vetAmount
                     - Required changed
                       - New required property: chargingTriggerInfo
@@ -162,8 +156,6 @@ Normativa BCB 184, de 12 Novembro de 2021.
                           - Properties changed
                             - New property: customerRate
                             - Deleted property: operationRate
-                            - Modified property: interval
-                              - MaxLength changed from null to 7
   - Modified response: 400
     - Content changed
       - Modified media type: application/json; charset=utf-8
