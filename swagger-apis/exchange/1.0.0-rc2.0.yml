@@ -176,9 +176,10 @@ components:
         - disclaimer
       properties:
         participant:
-          $ref: '#/components/schemas/Participant'
+          $ref: '#/components/schemas/ExchangeParticipant'
         values:
           type: array
+          minItems: 0
           items:
             $ref: '#/components/schemas/OnlineRate'
           example:
@@ -224,7 +225,7 @@ components:
         transactionType:
           $ref: '#/components/schemas/EnumExchangeTransactionType'
         foreignCurrency:
-          $ref: '#/components/schemas/OnlineRate/properties/foreignCurrency'
+          $ref: '#/components/schemas/CurrencyCode'
         deliveryForeignCurrency:
           $ref: '#/components/schemas/EnumExchangeDeliveryForeignCurrency'
         rangeTransactionCategory:
@@ -232,66 +233,70 @@ components:
         targetAudience:
           $ref: '#/components/schemas/EnumDistinctTargetAudienceExchange'
         vetAmount:
-          type: object
-          description: Distribuição por frequência.
-          required:
-            - prices
-            - minimum
-            - maximum
-          properties:
-            prices:
-              type: array
-              description: Distribuição dos preços.
-              items:
-                type: object
-                required:
-                  - interval
-                  - value
-                  - operationRate
-                properties:
-                  interval:
-                    $ref: '#/components/schemas/VetValueFrequencyDistributionPrice/properties/interval'
-                  value:
-                    type: string
-                    description: Mediana.
-                    example: '0.020300'
-                    maxLength: 8
-                    pattern: '^\d{1}\.\d{1,6}$'
-                  operationRate:
-                    type: string
-                    description: Percentual de Operação.
-                    example: '0.500000'
-                    maxLength: 8
-                    pattern: '^\d{1}\.\d{1,6}$'
-                additionalProperties: false
-              minItems: 4
-              maxItems: 4
-              example:
-                - interval: 1_FAIXA
-                  value: '0.020300'
-                  operationRate: '0.500000'
-                - interval: 2_FAIXA
-                  value: '0.030600'
-                  operationRate: '0.100000'
-                - interval: 3_FAIXA
-                  value: '0.034300'
-                  operationRate: '0.300000'
-                - interval: 4_FAIXA
-                  value: '0.246800'
-                  operationRate: '0.100000'
-            minimum:
-              type: string
-              description: Valor mínimo.
-              maxLength: 8
-              pattern: '^\d{1}\.\d{1,6}$'
-              example: '0.010000'
-            maximum:
-              type: string
-              description: Valor máximo.
-              maxLength: 8
-              pattern: '^\d{1}\.\d{1,6}$'
-              example: '0.300000'
-          additionalProperties: false
+          $ref: '#/components/schemas/ExchangeNoIdentificationFrequencyDistribution'
+      additionalProperties: false
+    ExchangeNoIdentificationFrequencyDistribution:
+      type: object
+      description: Distribuição por frequência.
+      required:
+        - prices
+        - minimum
+        - maximum
+      properties:
+        prices:
+          type: array
+          description: Distribuição dos preços.
+          items:
+            $ref: '#/components/schemas/ExchangeFrequencyDistributionPrice'
+          minItems: 4
+          maxItems: 4
+          example:
+            - interval: 1_FAIXA
+              value: '0.020300'
+              operationRate: '0.500000'
+            - interval: 2_FAIXA
+              value: '0.030600'
+              operationRate: '0.100000'
+            - interval: 3_FAIXA
+              value: '0.034300'
+              operationRate: '0.300000'
+            - interval: 4_FAIXA
+              value: '0.246800'
+              operationRate: '0.100000'
+        minimum:
+          type: string
+          description: Valor mínimo.
+          maxLength: 8
+          pattern: '^\d{1}\.\d{1,6}$'
+          example: '0.010000'
+        maximum:
+          type: string
+          description: Valor máximo.
+          maxLength: 8
+          pattern: '^\d{1}\.\d{1,6}$'
+          example: '0.300000'
+      additionalProperties: false
+    ExchangeFrequencyDistributionPrice:
+      type: object
+      required:
+        - interval
+        - value
+        - operationRate
+      properties:
+        interval:
+          $ref: '#/components/schemas/EnumInterval'
+        value:
+          type: string
+          description: Mediana.
+          example: '0.020300'
+          maxLength: 8
+          pattern: '^\d{1}\.\d{1,6}$'
+        operationRate:
+          type: string
+          description: Percentual de Operação.
+          example: '0.500000'
+          maxLength: 8
+          pattern: '^\d{1}\.\d{1,6}$'
       additionalProperties: false
     OnlineRate:
       type: object
@@ -306,11 +311,7 @@ components:
         - valueUpdateDateTime
       properties:
         foreignCurrency:
-          type: string
-          pattern: '^[A-Z]{3}$'
-          maxLength: 3
-          description: 'Moeda referente ao valor monetário, seguindo o modelo ISO-4217.'
-          example: BRL
+          $ref: '#/components/schemas/CurrencyCode'
         deliveryForeignCurrency:
           $ref: '#/components/schemas/EnumExchangeDeliveryForeignCurrency'
         transactionType:
@@ -322,6 +323,7 @@ components:
         value:
           type: string
           maxLength: 7
+          minLength: 3
           pattern: '^\d{1}\.\d{1,5}$'
           example: '5.5023'
           description: Valor da operação.
@@ -365,7 +367,6 @@ components:
     EnumExchangeDeliveryForeignCurrency:
       type: string
       description: 'A classificação da forma de operação, conforme a circular BCB nº 3690 de 16/12/2013. (Vide Enum)<br><ul><li>ESPECIE</li><li>CARTAO_PRE_PAGO</li><li>TELETRANSMISSAO_SWIFT</li></ul>'
-      maxLength: 21
       enum:
         - ESPECIE
         - CARTAO_PRE_PAGO
@@ -390,7 +391,6 @@ components:
     EnumExchangeTransactionCategory:
       type: string
       description: 'A classificação do tipo de operação, conforme a circular BCB nº 3690 de 16/12/2013.'
-      maxLength: 68
       enum:
         - COMERCIO_EXTERIOR
         - TRANSPORTE
@@ -410,7 +410,6 @@ components:
         spot,  que se liquidam em até dois dias (não aplica-se a operações futuras. (Vide Enum)
         - Compra
         - Venda
-      maxLength: 6
       enum:
         - COMPRA
         - VENDA
@@ -452,6 +451,15 @@ components:
         - PESSOA_JURIDICA
         - PESSOA_NATURAL_JURIDICA
       example: PESSOA_JURIDICA
+    EnumInterval:
+      type: string
+      description: Faixas de frequência
+      enum:
+        - 1_FAIXA
+        - 2_FAIXA
+        - 3_FAIXA
+        - 4_FAIXA
+      example: 1_FAIXA
     EnumTargetAudience:
       type: string
       description: |
@@ -466,6 +474,44 @@ components:
         - PESSOA_JURIDICA
         - PESSOA_NATURAL_JURIDICA
       example: PESSOA_NATURAL
+    CnpjNumber:
+      type: string
+      description: 'O CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica. Deve-se ter apenas os números do CNPJ, sem máscara.'
+      maxLength: 14
+      pattern: '^\d{14}$'
+      example: '13456789000112'
+    ExchangeParticipant:
+      type: object
+      description: Conjunto de informações relativas ao participante do produto de Open Finance
+      required:
+        - brand
+        - name
+        - cnpjNumber
+      properties:
+        brand:
+          type: string
+          description: 'Nome da marca reportada pelo participante do Open Finance. O conceito a que se refere a ''marca'' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes.'
+          maxLength: 80
+          example: Organização
+        name:
+          type: string
+          description: Nome do participante do Open Finance.
+          maxLength: 80
+          example: Organização A1
+        cnpjNumber:
+          $ref: '#/components/schemas/CnpjNumber'
+        urlComplementaryList:
+          type: string
+          maxLength: 1024
+          pattern: '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+          example: 'https://empresaa1.com/companies'
+      additionalProperties: false
+    CurrencyCode:
+      type: string
+      pattern: '^[A-Z]{3}$'
+      maxLength: 3
+      description: 'Moeda referente ao valor monetário, seguindo o modelo ISO-4217.'
+      example: BRL
   parameters:
     page:
       name: page
