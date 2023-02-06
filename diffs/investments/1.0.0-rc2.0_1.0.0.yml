@@ -157,6 +157,10 @@ GET /credit-fixed-incomes
                           - Properties changed
                             - New property: customerRate
                             - Deleted property: operationRate
+                            - Modified property: interval
+                              - MaxLength changed from null to 7
+                  - Modified property: investmentType
+                    - MaxLength changed from null to 11
                   - Modified property: loadingRate
                     - AdditionalProperties changed from false to null
                     - Properties changed
@@ -170,6 +174,8 @@ GET /credit-fixed-incomes
                           - Properties changed
                             - New property: customerRate
                             - Deleted property: operationRate
+                            - Modified property: interval
+                              - MaxLength changed from null to 7
                   - Modified property: participant
                     - Description changed from 'Conjunto de informações relativas ao participante do produto de Open Finance' to 'Conjunto de informações relativas ao participante do produto de open banking'
                     - Properties changed
@@ -262,16 +268,12 @@ GET /funds
 – Multimercado
 – Cambial
 ' to 'Conforme classificação ANBIMA, que segue a deliberação 77 da ANBIMA.<br><ol><li>Renda Fixa</li><li>Ações</li><li>Multimercado</li><li>Cambial</li></ol><br><br> [https://www.anbima.com.br/data/files/5A/44/2C/B7/8411B510CD3B4DA568A80AC2/DeliberacaoN77-Diretriz-de-Classificacao-de-Fundos.pdf](https://www.anbima.com.br/data/files/5A/44/2C/B7/8411B510CD3B4DA568A80AC2/DeliberacaoN77-Diretriz-de-Classificacao-de-Fundos.pdf)'
-                    - MaxLength changed from null to 12
                   - Modified property: fees
                     - Required changed
                       - Deleted required property: maxAdminFee
                     - Properties changed
                       - Modified property: performanceFee
                         - AdditionalProperties changed from false to null
-                        - Properties changed
-                          - Modified property: method
-                            - MaxLength changed from null to 7
                   - Modified property: fundManager
                     - Type changed from 'object' to ''
                     - AdditionalProperties changed from false to null
@@ -287,10 +289,6 @@ GET /funds
                         - Properties changed
                           - Modified property: quotationDays
                             - Description changed from 'Prazo em dias indicado no regulamento do fundo para a conversão do dinheiro em cotas do fundo.' to 'Indica se o fundo estabelece um período em que o investidor não pode resgatar os recursos aplicados no fundo. Caso ocorra resgate antes do período, o investidor perderá a rentabilidade do período.'
-                          - Modified property: quotationTerm
-                            - MaxLength changed from null to 13
-                      - Modified property: fundQuotaType
-                        - MaxLength changed from null to 18
                       - Modified property: minimumAmount
                         - AdditionalProperties changed from false to null
                         - Properties changed
@@ -305,12 +303,8 @@ GET /funds
                             - Min changed from null to 0
                           - Modified property: paymentDays
                             - Description changed from 'Prazo máximo em dias do efetivo pagamento, pelo fundo, do valor líquido devido ao cotista que efetuou pedido de resgate.' to 'Prazo em dias do efetivo pagamento, pelo fundo, do valor líquido devido ao cotista que efetuou pedido de resgate.'
-                          - Modified property: paymentTerm
-                            - MaxLength changed from null to 13
                           - Modified property: quotationDays
                             - Description changed from 'Prazo máximo em dias indicado no regulamento do fundo para a conversão das cotas em dinheiro.' to 'Prazo em dias indicada no regulamento do fundo para a conversão das cotas em dinheiro.'
-                          - Modified property: quotationTerm
-                            - MaxLength changed from null to 13
                   - Modified property: participant
                     - Description changed from 'Conjunto de informações relativas ao participante do produto de Open Finance' to 'Conjunto de informações relativas ao participante do produto de open banking'
                     - Properties changed
@@ -320,8 +314,6 @@ GET /funds
                         - Pattern changed from '^\d{14}$' to '\d{14}$'
                       - Modified property: name
                         - Description changed from 'Nome do participante do Open Finance.' to 'Nome do participante do Open Banking.'
-                  - Modified property: taxation
-                    - MaxLength changed from null to 11
   - Modified response: 400
     - Content changed
       - Modified media type: application/json; charset=utf-8
