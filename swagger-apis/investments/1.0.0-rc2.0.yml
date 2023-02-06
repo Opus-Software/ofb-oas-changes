@@ -511,37 +511,10 @@ components:
         - fees
       properties:
         participant:
-          type: object
-          description: Conjunto de informações relativas ao participante do produto de Open Finance
-          required:
-            - brand
-            - name
-            - cnpjNumber
-          properties:
-            brand:
-              type: string
-              description: 'Nome da marca reportada pelo participante do Open Finance. O conceito a que se refere a ''marca'' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes.'
-              pattern: '[\w\W\s]*'
-              maxLength: 80
-              example: Organização
-            name:
-              type: string
-              description: Nome do participante do Open Finance.
-              pattern: '[\w\W\s]*'
-              maxLength: 80
-              example: Organização A1
-            cnpjNumber:
-              $ref: '#/components/schemas/Participant/properties/cnpjNumber'
-            urlComplementaryList:
-              type: string
-              maxLength: 1024
-              pattern: '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
-              example: 'https://empresaa1.com/companies'
-          additionalProperties: false
+          $ref: '#/components/schemas/Participant'
         name:
           type: string
           description: Nome oficial do fundo de investimento.
-          pattern: '[\w\W\s]*'
           maxLength: 250
           example: FUNDO DE INVESTIMENTO EM COTAS DE FUNDOS DE INVESTIMENTO
         cnpjNumber:
@@ -579,7 +552,6 @@ components:
           type: string
           description: Razão social da pessoa jurídica autorizada pela CVM para o exercício de administrador de carteiras de valores mobiliários e responsável pela administração do fundo.
           maxLength: 100
-          pattern: '[\w\W\s]*'
           example: ADM OPEN FINANCE DTVM S.A.
         cnpjNumber:
           type: string
@@ -598,7 +570,6 @@ components:
           type: string
           description: Pessoa natural ou jurídica responsável pela gestão profissional dos ativos da carteira de valores mobiliários autorizado pela CVM.
           maxLength: 100
-          pattern: '[\w\W\s]*'
           example: GESTOR OPEN FINANCE DTVM S.A.
         cnpjNumber:
           type: string
@@ -725,7 +696,33 @@ components:
         - participant
       properties:
         participant:
-          $ref: '#/components/schemas/Participant'
+          type: object
+          description: Conjunto de informações relativas ao participante do produto de Open Finance
+          required:
+            - brand
+            - name
+            - cnpjNumber
+          properties:
+            brand:
+              type: string
+              description: 'Nome da marca reportada pelo participante do Open Finance. O conceito a que se refere a ''marca'' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes.'
+              maxLength: 80
+              pattern: '[\w\W\s]*'
+              example: Organização
+            name:
+              type: string
+              description: Nome do participante do Open Finance.
+              maxLength: 80
+              pattern: '[\w\W\s]*'
+              example: Organização A1
+            cnpjNumber:
+              $ref: '#/components/schemas/Participant/properties/cnpjNumber'
+            urlComplementaryList:
+              type: string
+              maxLength: 1024
+              pattern: '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+              example: 'https://empresaa1.com/companies'
+          additionalProperties: false
         investmentType:
           $ref: '#/components/schemas/EnumInvestmentsTreasureInvestmentType'
         custodyFee:
@@ -834,6 +831,7 @@ components:
     EnumInvestmentsFundFeesPerformanceFeeMethod:
       type: string
       description: Metodologia do campo para taxa de performance.<br><ol><li>Passivo</li><li>Ativo</li><li>Ajuste</li></ol>
+      maxLength: 7
       enum:
         - PASSIVO
         - ATIVO
@@ -842,6 +840,7 @@ components:
     EnumInvestmentsFundGeneralConditionsFundQuotaType:
       type: string
       description: Referente a incidência de tributos sobre o produto de investimento&#58;<br><br><ol><li>Cota de abertura</li><li>Cota de fechamento</li></ol>
+      maxLength: 18
       enum:
         - COTA_ABERTURA
         - COTA_FECHAMENTO
@@ -849,6 +848,7 @@ components:
     EnumInvestmentsFundGeneralConditionsTermType:
       type: string
       description: Período em dias corridos ou dias úteis do prazo de cotização.<br><br><ol><li>Dias corridos</li><li>Dias úteis</li></ol>
+      maxLength: 13
       enum:
         - DIAS_CORRIDOS
         - DIAS_UTEIS
@@ -865,6 +865,7 @@ components:
         – Multimercado
 
         – Cambial
+      maxLength: 12
       enum:
         - RENDA_FIXA
         - ACOES
@@ -874,6 +875,7 @@ components:
     EnumInvestmentsFundTaxation:
       type: string
       description: 'Indica o tipo de tributação, podendo ser&#58;<br><ol><li>Curto prazo</li><li>Longo prazo</li><li>Variável</li></ol>'
+      maxLength: 11
       enum:
         - CURTO_PRAZO
         - LONGO_PRAZO
