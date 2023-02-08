@@ -18,7 +18,26 @@ Já as demais instituições participantes do Open Finance autorizadas a operar 
           - Properties changed
             - Modified property: data
               - Items changed
+                - Required changed
+                  - New required property: timestamp
+                  - New required property: values
+                  - Deleted required property: deliveryForeignCurrency
+                  - Deleted required property: foreignCurrency
+                  - Deleted required property: targetAudience
+                  - Deleted required property: transactionCategory
+                  - Deleted required property: transactionType
+                  - Deleted required property: value
+                  - Deleted required property: valueUpdateDateTime
                 - Properties changed
+                  - New property: timestamp
+                  - New property: values
+                  - Deleted property: deliveryForeignCurrency
+                  - Deleted property: foreignCurrency
+                  - Deleted property: targetAudience
+                  - Deleted property: transactionCategory
+                  - Deleted property: transactionType
+                  - Deleted property: value
+                  - Deleted property: valueUpdateDateTime
                   - Modified property: participant
                     - Description changed from 'Conjunto de informações relativas ao participante do produto de Open Finance' to 'Conjunto de informações relativas ao participante do produto de open banking'
                     - Properties changed
@@ -31,34 +50,6 @@ Já as demais instituições participantes do Open Finance autorizadas a operar 
                       - Modified property: name
                         - Description changed from 'Nome do participante do Open Finance.' to 'Nome do participante do Open Banking.'
                         - Pattern changed from '[\w\W\s]*' to ''
-                  - Modified property: timestamp
-                    - Description changed from 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.' to 'Timestamp do momento da consulta'
-                    - MaxLength changed from 20 to null
-                    - Pattern changed from '(^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$)' to ''
-                  - Modified property: values
-                    - Example changed from [map[deliveryForeignCurrency:ESPECIE foreignCurrency:USD targetAudience:PESSOA_NATURAL transactionCategory:COMERCIO_EXTERIOR transactionType:COMPRA value:5.5023 valueUpdateDateTime:2017-07-21T17:32:28Z] map[deliveryForeignCurrency:CARTAO_PRE_PAGO foreignCurrency:EUR targetAudience:PESSOA_JURIDICA transactionCategory:TRANSPORTE transactionType:VENDA value:2.7045 valueUpdateDateTime:2017-07-21T17:32:28Z]] to [map[deliveryForeignCurrency:ESPECIE foreignCurrency:USD targetAudience:PF transactionCategory:COMERCIO_EXTERIOR transactionType:COMPRA value:5.5023] map[deliveryForeignCurrency:CARTAO_PRE_PAGO foreignCurrency:EUR targetAudience:PJ transactionCategory:TRANSPORTE transactionType:VENDA value:2.7045]]
-                    - Items changed
-                      - Required changed
-                        - Deleted required property: targetAudience
-                        - Deleted required property: valueUpdateDateTime
-                      - Properties changed
-                        - Deleted property: valueUpdateDateTime
-                        - Modified property: deliveryForeignCurrency
-                          - MaxLength changed from null to 21
-                        - Modified property: foreignCurrency
-                          - MaxLength changed from 3 to null
-                        - Modified property: targetAudience
-                          - Description changed from 'Público alvo. Em casos em que a instituição não possua taxas de câmbio diferenciadas para pessoa natural e jurídica utilizar a opção:PESSOA_NATURAL_JURIDICA.' to 'Público alvo (ou PF ou PJ).'
-                          - New enum values: [PF PJ]
-                          - Deleted enum values: [PESSOA_NATURAL PESSOA_JURIDICA PESSOA_NATURAL_JURIDICA]
-                          - Example changed from 'PESSOA_JURIDICA' to 'PF'
-                          - MaxLength changed from null to 2
-                        - Modified property: transactionCategory
-                          - MaxLength changed from null to 68
-                        - Modified property: transactionType
-                          - MaxLength changed from null to 6
-                        - Modified property: value
-                          - MinLength changed from 3 to 0
   - Modified response: 400
     - Content changed
       - Modified media type: application/json; charset=utf-8
