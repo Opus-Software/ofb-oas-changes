@@ -15,27 +15,7 @@ Já as demais instituições participantes do Open Finance autorizadas a operar 
           - Properties changed
             - Modified property: data
               - Items changed
-                - Example changed from null to map[deliveryForeignCurrency:TELETRANSMISSAO_SWIFT disclaimer:Informamos que esta taxa é estimada e exclusiva para fins de Open Finance,  não sendo válida para a contratação de operações de câmbio. Para obter a taxa para fechamento do câmbio, pedimos consultar os canais disponíveis para contratação. foreignCurrency:USD participant:map[brand:Organização cnpjNumber:13456789000112 name:Organização A1 urlComplementaryList:https://empresaa1.com/companies] targetAudience:PESSOA_NATURAL transactionCategory:COMERCIO_EXTERIOR transactionType:COMPRA value:5.5023 valueUpdateDateTime:2017-07-21T17:32:28Z]
-                - Required changed
-                  - New required property: deliveryForeignCurrency
-                  - New required property: foreignCurrency
-                  - New required property: targetAudience
-                  - New required property: transactionCategory
-                  - New required property: transactionType
-                  - New required property: value
-                  - New required property: valueUpdateDateTime
-                  - Deleted required property: timestamp
-                  - Deleted required property: values
                 - Properties changed
-                  - New property: deliveryForeignCurrency
-                  - New property: foreignCurrency
-                  - New property: targetAudience
-                  - New property: transactionCategory
-                  - New property: transactionType
-                  - New property: value
-                  - New property: valueUpdateDateTime
-                  - Deleted property: timestamp
-                  - Deleted property: values
                   - Modified property: participant
                     - Properties changed
                       - Modified property: brand
@@ -44,6 +24,29 @@ Já as demais instituições participantes do Open Finance autorizadas a operar 
                         - MaxLength changed from null to 14
                       - Modified property: name
                         - Pattern changed from '' to '[\w\W\s]*'
+                  - Modified property: timestamp
+                    - Description changed from 'Timestamp do momento da consulta' to 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.'
+                    - MaxLength changed from null to 20
+                    - Pattern changed from '' to '(^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$)'
+                  - Modified property: values
+                    - Example changed from [map[deliveryForeignCurrency:ESPECIE foreignCurrency:USD targetAudience:PESSOA_NATURAL transactionCategory:COMERCIO_EXTERIOR transactionType:COMPRA value:5.5023] map[deliveryForeignCurrency:CARTAO_PRE_PAGO foreignCurrency:EUR targetAudience:PESSOA_JURIDICA transactionCategory:TRANSPORTE transactionType:VENDA value:2.7045]] to [map[deliveryForeignCurrency:ESPECIE foreignCurrency:USD targetAudience:PESSOA_NATURAL transactionCategory:COMERCIO_EXTERIOR transactionType:COMPRA value:5.5023 valueUpdateDateTime:2017-07-21T17:32:28Z] map[deliveryForeignCurrency:CARTAO_PRE_PAGO foreignCurrency:EUR targetAudience:PESSOA_JURIDICA transactionCategory:TRANSPORTE transactionType:VENDA value:2.7045 valueUpdateDateTime:2017-07-21T17:32:28Z]]
+                    - Items changed
+                      - Required changed
+                        - New required property: valueUpdateDateTime
+                      - Properties changed
+                        - New property: valueUpdateDateTime
+                        - Modified property: deliveryForeignCurrency
+                          - MaxLength changed from 21 to null
+                        - Modified property: targetAudience
+                          - Description changed from 'Público alvo (PESSOA_NATURAL ou PESSOA_JURIDICA).' to 'Público alvo. Em casos em que a instituição não possua taxas de câmbio diferenciadas para pessoa natural e jurídica utilizar a opção:PESSOA_NATURAL_JURIDICA.'
+                          - New enum values: [PESSOA_NATURAL_JURIDICA]
+                          - MaxLength changed from 15 to null
+                        - Modified property: transactionCategory
+                          - MaxLength changed from 68 to null
+                        - Modified property: transactionType
+                          - MaxLength changed from 6 to null
+                        - Modified property: value
+                          - MinLength changed from 0 to 3
 GET /vet-values
 - Description changed from 'Método para disponibilizar o valor VET.<br>O retorno, embora não especificado, deve abranger a classificação do tipo de operação, conforme a circular BCB n&#186; 3690 de 16/12/2013 com os seguintes items&#58;<br><ol><li>Comércio exterior</li><li>Transporte</li><li>Seguros</li><li>Viagens internacionais</li><li>Transferências unilaterais</li><li>Serviços diversos</li><li>Rendas de capitais</li><li>Capitais brasileiros</li><li>Capitais estrangeiros</li><li>Prestação de serviço de pagamento ou transferência internacional - EFX</li></ol>' to 'Método para disponibilizar os VETs praticados pela instituição nas operações de câmbio, agrupados por tipo de operação (compra ou venda), moeda, forma de entrega, faixas de valores e público-alvo (pessoa física, pessoa jurídica ou ambos).'
 - Responses changed
