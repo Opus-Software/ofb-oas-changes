@@ -1,1 +1,92 @@
-﻿failed to load revision spec from "/data/1.0.0-rc2.0.yml" with map key "ExchangeParticipant" not found
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 2
+-------------------------
+GET /online-rates
+- Description changed from 'Método para disponibilizar a taxa online.' to 'As instituições autorizadas a operar em câmbio que disponibilizam em seus canais digitais a possibilidade de contratação ou a informação de taxa de câmbio devem retornar as condições no momento da consulta, sendo admitida uma defasagem máxima de atualização de 5 minutos em relação a seus canais digitais.
+Já as demais instituições participantes do Open Finance autorizadas a operar em câmbio podem adotar as janelas de consulta da PTAX como frequência mínima de atualização das informações retornadas neste serviço.'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Example changed from null to map[deliveryForeignCurrency:TELETRANSMISSAO_SWIFT disclaimer:Informamos que esta taxa é estimada e exclusiva para fins de Open Finance,  não sendo válida para a contratação de operações de câmbio. Para obter a taxa para fechamento do câmbio, pedimos consultar os canais disponíveis para contratação. foreignCurrency:USD participant:map[brand:Organização cnpjNumber:13456789000112 name:Organização A1 urlComplementaryList:https://empresaa1.com/companies] targetAudience:PESSOA_NATURAL transactionCategory:COMERCIO_EXTERIOR transactionType:COMPRA value:5.5023 valueUpdateDateTime:2017-07-21T17:32:28Z]
+                - Required changed
+                  - New required property: deliveryForeignCurrency
+                  - New required property: foreignCurrency
+                  - New required property: targetAudience
+                  - New required property: transactionCategory
+                  - New required property: transactionType
+                  - New required property: value
+                  - New required property: valueUpdateDateTime
+                  - Deleted required property: timestamp
+                  - Deleted required property: values
+                - Properties changed
+                  - New property: deliveryForeignCurrency
+                  - New property: foreignCurrency
+                  - New property: targetAudience
+                  - New property: transactionCategory
+                  - New property: transactionType
+                  - New property: value
+                  - New property: valueUpdateDateTime
+                  - Deleted property: timestamp
+                  - Deleted property: values
+                  - Modified property: participant
+                    - Properties changed
+                      - Modified property: brand
+                        - Pattern changed from '' to '[\w\W\s]*'
+                      - Modified property: cnpjNumber
+                        - MaxLength changed from null to 14
+                      - Modified property: name
+                        - Pattern changed from '' to '[\w\W\s]*'
+GET /vet-values
+- Description changed from 'Método para disponibilizar o valor VET.<br>O retorno, embora não especificado, deve abranger a classificação do tipo de operação, conforme a circular BCB n&#186; 3690 de 16/12/2013 com os seguintes items&#58;<br><ol><li>Comércio exterior</li><li>Transporte</li><li>Seguros</li><li>Viagens internacionais</li><li>Transferências unilaterais</li><li>Serviços diversos</li><li>Rendas de capitais</li><li>Capitais brasileiros</li><li>Capitais estrangeiros</li><li>Prestação de serviço de pagamento ou transferência internacional - EFX</li></ol>' to 'Método para disponibilizar os VETs praticados pela instituição nas operações de câmbio, agrupados por tipo de operação (compra ou venda), moeda, forma de entrega, faixas de valores e público-alvo (pessoa física, pessoa jurídica ou ambos).'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: deliveryForeignCurrency
+                    - MaxLength changed from 21 to null
+                  - Modified property: participant
+                    - Properties changed
+                      - Modified property: brand
+                        - Pattern changed from '' to '[\w\W\s]*'
+                      - Modified property: cnpjNumber
+                        - MaxLength changed from null to 14
+                      - Modified property: name
+                        - Pattern changed from '' to '[\w\W\s]*'
+                  - Modified property: rangeTransactionCategory
+                    - Description changed from 'A classificação conforme a circular BCB nº 4015.' to 'Faixa de valor da operação (equivalente em USD), conforme Instrução
+Normativa BCB 184, de 12 Novembro de 2021.
+'
+                    - MaxLength changed from 17 to null
+                  - Modified property: targetAudience
+                    - Description changed from 'A considerar os domínios abaixo:
+  1. Pessoa Natural
+  2. Pessoa Jurídica
+  3. Ambas (Pessoa Natural e Jurídica)
+' to 'Público alvo. Em casos em que a instituição não possua taxas de câmbio diferenciadas para pessoa natural e jurídica utilizar a opção:PESSOA_NATURAL_JURIDICA.'
+                    - Example changed from 'PESSOA_NATURAL' to 'PESSOA_JURIDICA'
+                    - MaxLength changed from 23 to null
+                  - Modified property: transactionType
+                    - MaxLength changed from 6 to null
+                  - Modified property: vetAmount
+                    - Properties changed
+                      - Modified property: prices
+                        - Example changed from [map[customerRate:0.500000 interval:1_FAIXA value:0.020300] map[customerRate:0.100000 interval:2_FAIXA value:0.030600] map[customerRate:0.300000 interval:3_FAIXA value:0.034300] map[customerRate:0.100000 interval:4_FAIXA value:0.246800]] to [map[interval:1_FAIXA operationRate:0.500000 value:0.020300] map[interval:2_FAIXA operationRate:0.100000 value:0.030600] map[interval:3_FAIXA operationRate:0.300000 value:0.034300] map[interval:4_FAIXA operationRate:0.100000 value:0.246800]]
+                        - Items changed
+                          - Properties changed
+                            - Modified property: interval
+                              - MaxLength changed from 7 to null
+                            - Modified property: operationRate
+                              - Description changed from 'Percentual de operação.' to 'Percentual de Operação.'
