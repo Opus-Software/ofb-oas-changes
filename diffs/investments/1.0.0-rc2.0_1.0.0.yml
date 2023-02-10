@@ -54,6 +54,9 @@ GET /bank-fixed-incomes
                                 - Deleted property: operationRate
                                 - Modified property: interval
                                   - MaxLength changed from null to 7
+                                - Modified property: value
+                                  - MinLength changed from 8 to 0
+                                  - Pattern changed from '^\d{1}\.\d{6}$' to '^\d{1}\.\d{1,6}$'
                   - Modified property: investmentConditions
                     - Required changed
                       - New required property: maximumExpirationTerm
@@ -85,12 +88,6 @@ GET /bank-fixed-incomes
                       - Modified property: name
                         - Description changed from 'Nome do participante do Open Finance.' to 'Nome do participante do Open Banking.'
                         - Pattern changed from '[\w\W\s]*' to ''
-                      - Modified property: urlComplementaryList
-                        - Description changed from '- 'name' com o valor contido no campo ‘LegalEntityName’ conforme cadastro no diretório;
-- 'cnpjNumber' com o valor contido no campo CNPJ (‘RegistrationNumber’) correspondente a esta instituição;
-- Ambos do tipo string;
-- Ambos obrigatórios.
-' to ''
   - Modified response: 400
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -166,6 +163,12 @@ GET /credit-fixed-incomes
                   - Modified property: custodyFee
                     - AdditionalProperties changed from false to null
                     - Properties changed
+                      - Modified property: maximum
+                        - MinLength changed from 8 to 0
+                        - Pattern changed from '^\d{1}\.\d{6}$' to '^\d{1}\.\d{1,6}$'
+                      - Modified property: minimum
+                        - MinLength changed from 8 to 0
+                        - Pattern changed from '^\d{1}\.\d{6}$' to '^\d{1}\.\d{1,6}$'
                       - Modified property: prices
                         - Example changed from [map[interval:1_FAIXA operationRate:0.500000 value:0.020300] map[interval:2_FAIXA operationRate:0.100000 value:0.030600] map[interval:3_FAIXA operationRate:0.300000 value:0.034300] map[interval:4_FAIXA operationRate:0.100000 value:0.246800]] to [map[customerRate:0.500000 interval:1_FAIXA value:0.020300] map[customerRate:0.100000 interval:2_FAIXA value:0.030600] map[customerRate:0.300000 interval:3_FAIXA value:0.034300] map[customerRate:0.100000 interval:4_FAIXA value:0.246800]]
                         - Items changed
@@ -178,11 +181,20 @@ GET /credit-fixed-incomes
                             - Deleted property: operationRate
                             - Modified property: interval
                               - MaxLength changed from null to 7
+                            - Modified property: value
+                              - MinLength changed from 8 to 0
+                              - Pattern changed from '^\d{1}\.\d{6}$' to '^\d{1}\.\d{1,6}$'
                   - Modified property: investmentType
                     - MaxLength changed from null to 11
                   - Modified property: loadingRate
                     - AdditionalProperties changed from false to null
                     - Properties changed
+                      - Modified property: maximum
+                        - MinLength changed from 8 to 0
+                        - Pattern changed from '^\d{1}\.\d{6}$' to '^\d{1}\.\d{1,6}$'
+                      - Modified property: minimum
+                        - MinLength changed from 8 to 0
+                        - Pattern changed from '^\d{1}\.\d{6}$' to '^\d{1}\.\d{1,6}$'
                       - Modified property: prices
                         - Example changed from [map[interval:1_FAIXA operationRate:0.500000 value:0.020300] map[interval:2_FAIXA operationRate:0.100000 value:0.030600] map[interval:3_FAIXA operationRate:0.300000 value:0.034300] map[interval:4_FAIXA operationRate:0.100000 value:0.246800]] to [map[customerRate:0.500000 interval:1_FAIXA value:0.020300] map[customerRate:0.100000 interval:2_FAIXA value:0.030600] map[customerRate:0.300000 interval:3_FAIXA value:0.034300] map[customerRate:0.100000 interval:4_FAIXA value:0.246800]]
                         - Items changed
@@ -195,6 +207,9 @@ GET /credit-fixed-incomes
                             - Deleted property: operationRate
                             - Modified property: interval
                               - MaxLength changed from null to 7
+                            - Modified property: value
+                              - MinLength changed from 8 to 0
+                              - Pattern changed from '^\d{1}\.\d{6}$' to '^\d{1}\.\d{1,6}$'
                   - Modified property: participant
                     - Description changed from 'Conjunto de informações relativas ao participante do produto de Open Finance' to 'Conjunto de informações relativas ao participante do produto de open banking'
                     - Properties changed
@@ -207,12 +222,6 @@ GET /credit-fixed-incomes
                       - Modified property: name
                         - Description changed from 'Nome do participante do Open Finance.' to 'Nome do participante do Open Banking.'
                         - Pattern changed from '[\w\W\s]*' to ''
-                      - Modified property: urlComplementaryList
-                        - Description changed from '- 'name' com o valor contido no campo ‘LegalEntityName’ conforme cadastro no diretório;
-- 'cnpjNumber' com o valor contido no campo CNPJ (‘RegistrationNumber’) correspondente a esta instituição;
-- Ambos do tipo string;
-- Ambos obrigatórios.
-' to ''
   - Modified response: 400
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -366,12 +375,6 @@ GET /funds
                       - Modified property: name
                         - Description changed from 'Nome do participante do Open Finance.' to 'Nome do participante do Open Banking.'
                         - Pattern changed from '[\w\W\s]*' to ''
-                      - Modified property: urlComplementaryList
-                        - Description changed from '- 'name' com o valor contido no campo ‘LegalEntityName’ conforme cadastro no diretório;
-- 'cnpjNumber' com o valor contido no campo CNPJ (‘RegistrationNumber’) correspondente a esta instituição;
-- Ambos do tipo string;
-- Ambos obrigatórios.
-' to ''
                   - Modified property: taxation
                     - MaxLength changed from null to 11
   - Modified response: 400
@@ -459,6 +462,9 @@ GET /treasure-titles
                             - Deleted property: operationRate
                             - Modified property: interval
                               - MaxLength changed from null to 7
+                            - Modified property: value
+                              - MinLength changed from 8 to 0
+                              - Pattern changed from '^\d{1}\.\d{6}$' to '^\d{1}\.\d{1,6}$'
                   - Modified property: investmentType
                     - MaxLength changed from null to 14
                   - Modified property: loadingRate
@@ -476,6 +482,9 @@ GET /treasure-titles
                             - Deleted property: operationRate
                             - Modified property: interval
                               - MaxLength changed from null to 7
+                            - Modified property: value
+                              - MinLength changed from 8 to 0
+                              - Pattern changed from '^\d{1}\.\d{6}$' to '^\d{1}\.\d{1,6}$'
                   - Modified property: participant
                     - Description changed from 'Conjunto de informações relativas ao participante do produto de Open Finance' to 'Conjunto de informações relativas ao participante do produto de open banking'
                     - Properties changed
@@ -488,12 +497,6 @@ GET /treasure-titles
                       - Modified property: name
                         - Description changed from 'Nome do participante do Open Finance.' to 'Nome do participante do Open Banking.'
                         - Pattern changed from '[\w\W\s]*' to ''
-                      - Modified property: urlComplementaryList
-                        - Description changed from '- 'name' com o valor contido no campo ‘LegalEntityName’ conforme cadastro no diretório;
-- 'cnpjNumber' com o valor contido no campo CNPJ (‘RegistrationNumber’) correspondente a esta instituição;
-- Ambos do tipo string;
-- Ambos obrigatórios.
-' to ''
   - Modified response: 400
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -570,6 +573,12 @@ GET /variable-incomes
                   - Modified property: custodyFee
                     - AdditionalProperties changed from false to null
                     - Properties changed
+                      - Modified property: maximum
+                        - MinLength changed from 8 to 0
+                        - Pattern changed from '^\d{1}\.\d{6}$' to '^\d{1}\.\d{1,6}$'
+                      - Modified property: minimum
+                        - MinLength changed from 8 to 0
+                        - Pattern changed from '^\d{1}\.\d{6}$' to '^\d{1}\.\d{1,6}$'
                       - Modified property: prices
                         - Example changed from [map[interval:1_FAIXA operationRate:0.500000 value:0.020300] map[interval:2_FAIXA operationRate:0.100000 value:0.030600] map[interval:3_FAIXA operationRate:0.300000 value:0.034300] map[interval:4_FAIXA operationRate:0.100000 value:0.246800]] to [map[customerRate:0.500000 interval:1_FAIXA value:0.020300] map[customerRate:0.100000 interval:2_FAIXA value:0.030600] map[customerRate:0.300000 interval:3_FAIXA value:0.034300] map[customerRate:0.100000 interval:4_FAIXA value:0.246800]]
                         - Items changed
@@ -582,11 +591,20 @@ GET /variable-incomes
                             - Deleted property: operationRate
                             - Modified property: interval
                               - MaxLength changed from null to 7
+                            - Modified property: value
+                              - MinLength changed from 8 to 0
+                              - Pattern changed from '^\d{1}\.\d{6}$' to '^\d{1}\.\d{1,6}$'
                   - Modified property: investmentType
                     - MaxLength changed from null to 16
                   - Modified property: loadingRate
                     - AdditionalProperties changed from false to null
                     - Properties changed
+                      - Modified property: maximum
+                        - MinLength changed from 8 to 0
+                        - Pattern changed from '^\d{1}\.\d{6}$' to '^\d{1}\.\d{1,6}$'
+                      - Modified property: minimum
+                        - MinLength changed from 8 to 0
+                        - Pattern changed from '^\d{1}\.\d{6}$' to '^\d{1}\.\d{1,6}$'
                       - Modified property: prices
                         - Example changed from [map[interval:1_FAIXA operationRate:0.500000 value:0.020300] map[interval:2_FAIXA operationRate:0.100000 value:0.030600] map[interval:3_FAIXA operationRate:0.300000 value:0.034300] map[interval:4_FAIXA operationRate:0.100000 value:0.246800]] to [map[customerRate:0.500000 interval:1_FAIXA value:0.020300] map[customerRate:0.100000 interval:2_FAIXA value:0.030600] map[customerRate:0.300000 interval:3_FAIXA value:0.034300] map[customerRate:0.100000 interval:4_FAIXA value:0.246800]]
                         - Items changed
@@ -599,6 +617,9 @@ GET /variable-incomes
                             - Deleted property: operationRate
                             - Modified property: interval
                               - MaxLength changed from null to 7
+                            - Modified property: value
+                              - MinLength changed from 8 to 0
+                              - Pattern changed from '^\d{1}\.\d{6}$' to '^\d{1}\.\d{1,6}$'
                   - Modified property: participant
                     - Description changed from 'Conjunto de informações relativas ao participante do produto de Open Finance' to 'Conjunto de informações relativas ao participante do produto de open banking'
                     - Properties changed
@@ -611,12 +632,6 @@ GET /variable-incomes
                       - Modified property: name
                         - Description changed from 'Nome do participante do Open Finance.' to 'Nome do participante do Open Banking.'
                         - Pattern changed from '[\w\W\s]*' to ''
-                      - Modified property: urlComplementaryList
-                        - Description changed from '- 'name' com o valor contido no campo ‘LegalEntityName’ conforme cadastro no diretório;
-- 'cnpjNumber' com o valor contido no campo CNPJ (‘RegistrationNumber’) correspondente a esta instituição;
-- Ambos do tipo string;
-- Ambos obrigatórios.
-' to ''
             - Modified property: meta
               - Properties changed
                 - Modified property: totalRecords
