@@ -157,6 +157,12 @@ Normativa BCB 184, de 12 Novembro de 2021.
                       - New property: chargingTriggerInfo
                       - New property: code
                       - New property: name
+                      - Modified property: maximum
+                        - MinLength changed from 8 to 0
+                        - Pattern changed from '^\d{1}\.\d{6}$' to '^\d{1}\.\d{1,6}$'
+                      - Modified property: minimum
+                        - MinLength changed from 8 to 0
+                        - Pattern changed from '^\d{1}\.\d{6}$' to '^\d{1}\.\d{1,6}$'
                       - Modified property: prices
                         - Example changed from [map[interval:1_FAIXA operationRate:0.500000 value:0.020300] map[interval:2_FAIXA operationRate:0.100000 value:0.030600] map[interval:3_FAIXA operationRate:0.300000 value:0.034300] map[interval:4_FAIXA operationRate:0.100000 value:0.246800]] to [map[customerRate:0.500000 interval:1_FAIXA value:0.020300] map[customerRate:0.100000 interval:2_FAIXA value:0.030600] map[customerRate:0.300000 interval:3_FAIXA value:0.034300] map[customerRate:0.100000 interval:4_FAIXA value:0.246800]]
                         - Items changed
@@ -168,6 +174,9 @@ Normativa BCB 184, de 12 Novembro de 2021.
                             - Deleted property: operationRate
                             - Modified property: interval
                               - MaxLength changed from null to 7
+                            - Modified property: value
+                              - MinLength changed from 8 to 0
+                              - Pattern changed from '^\d{1}\.\d{6}$' to '^\d{1}\.\d{1,6}$'
   - Modified response: 400
     - Content changed
       - Modified media type: application/json; charset=utf-8
