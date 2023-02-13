@@ -221,15 +221,17 @@ components:
           $ref: '#/components/schemas/EnumAcquiringServicesInterval'
         value:
           type: string
-          example: '0.0203'
-          maxLength: 6
-          pattern: '^\d{1}\.\d{1,4}$'
-          description: Mediana referente a cada intervalo.
+          example: '0.019800'
+          minLength: 8
+          maxLength: 8
+          pattern: '^\d{1}\.\d{6}$'
+          description: Mediana referente a taxa de desconto de débito ou crédito a cada intervalo.
         customerRate:
           type: string
           example: '0.5000'
-          maxLength: 6
-          pattern: '^\d{1}\.\d{1,4}$'
+          minLength: 8
+          maxLength: 8
+          pattern: '^\d{1}\.\d{6}$'
           description: Percentual de cliente em cada intervalo.
       additionalProperties: false
     AcquiringServicesContractData:
@@ -258,16 +260,16 @@ components:
             $ref: '#/components/schemas/Price'
           example:
             - interval: 1_FAIXA
-              value: '0.0203'
+              value: '0.020300'
               customerRate: '0.5000'
             - interval: 2_FAIXA
-              value: '0.0306'
+              value: '0.030600'
               customerRate: '0.1000'
             - interval: 3_FAIXA
-              value: '0.0343'
+              value: '0.034300'
               customerRate: '0.3000'
             - interval: 4_FAIXA
-              value: '0.2468'
+              value: '0.246800'
               customerRate: '0.1000'
         chargingTriggerInfo:
           type: string
@@ -275,19 +277,19 @@ components:
           maxLength: 200
           example: Recebimento através de transação de cartão.
           description: |
-            "Descrição do Fator gerador de cobrança que incide sobre o serviço de credenciamento."
+            Descrição do Fator gerador de cobrança que incide sobre o serviço de credenciamento.
         minimum:
           type: string
-          minLength: 1
-          maxLength: 999999
-          pattern: '^\d{1}\.\d{1,4}$'
+          minLength: 8
+          maxLength: 8
+          pattern: '^\d{1}\.\d{6}$'
           description: Valor mínimo
           example: '2.0'
         maximum:
           type: string
-          minLength: 1
-          maxLength: 999999
-          pattern: '^\d{1}\.\d{1,4}$'
+          minLength: 8
+          maxLength: 8
+          pattern: '^\d{1}\.\d{6}$'
           description: Valor máximo
           example: '5.0'
       additionalProperties: false
