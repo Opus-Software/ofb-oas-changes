@@ -121,10 +121,12 @@ GET /identify-product/{investmentId}
               - Items changed
                 - Required changed
                   - New required property: debtorCnpjnNumber
-                  - Deleted required property: debtorCnpjNumber
                 - Properties changed
                   - New property: debtorCnpjnNumber
+                  - New property: indexer
+                  - New property: indexerAdditionalInfo
                   - Deleted property: debtorCnpjNumber
+                  - Deleted property: taxExemptProduct
                   - Modified property: clearingCode
                     - Pattern changed from '[\w\W-]*' to ' [\w\W-]*'
                   - Modified property: gracePeriodDate
@@ -132,6 +134,11 @@ GET /identify-product/{investmentId}
                   - Modified property: isinCode
                     - Description changed from 'Código ISIN da emissão, Código ISIN do produto, Código da emissora (campo opcional): código universal que identifica cada valor mobiliário ou instrumento financeiro, conforme Norma ISO 6166.
 ' to 'Código ISIN da emissão, Código ISIN do produto, Código da emissora (campo opcional) código universal que identifica cada valor mobiliário ou instrumento financeiro, conforme Norma ISO 6166;'
+                  - Modified property: remuneration
+                    - Properties changed
+                      - Modified property: ratePeriodicity
+                        - New enum values: [DIÁRIO]
+                        - Deleted enum values: [DIARIO]
 GET /list-products
 - Description changed from 'Obtém a lista de operações de Renda Fixa Crédito mantidas pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento.' to 'Método para obter a lista de Fundos de Investimentos'
 - Responses changed
