@@ -64,11 +64,12 @@ GET /credit-fixed-incomes/{investmentId}/balances
                 - Modified property: updatedUnitPrice
                   - Properties changed
                     - Modified property: amount
-                      - Example changed from '-1000.0400' to '1000.0400'
                       - MaxLength changed from 23 to 25
-                      - Pattern changed from '^-?\d{1,15}\.\d{2,6}$' to '^-?\d{1,15}\.\d{2,8}$'
+                      - Pattern changed from '^-?\d{1,15}\.\d{2,6}$ ' to '^-?\d{1,15}\.\d{2,8}$'
                     - Modified property: quantity
+                      - MinLength changed from 1 to 4
                       - MaxLength changed from 15 to 24
+                      - Pattern changed from '^\d{1,15}\' to '^\d{1,15}\.\d{2,8}$'
 GET /credit-fixed-incomes/{investmentId}/transactions
 - Description changed from 'Obtém as movimentações da operação de Renda Fixa Crédito identificada por investmentId.' to 'Método para obter a lista de informações de produtos de Renda Variável (Ações e Fundos de Índices)'
 - Responses changed
@@ -104,15 +105,14 @@ GET /credit-fixed-incomes/{investmentId}/transactions
                       - MaxLength changed from 21 to 20
                       - Pattern changed from '^-?\d{1,15}\.\d{2,4}$' to '^-?\d{1,15}\.\d{2,8}$'
                 - Modified property: transactionType
-                  - Deleted enum values: [COMPRA VENDA CANCELAMENTO VENCIMENTO PAGAMENTO_JUROS AMORTIZACAO PREMIO TRANSFERENCIA_TITULARIDADE TRANSFERENCIA_CUSTODIA MULTA MORA OUTROS]
-                  - Example changed from 'MORA' to 'Aplicação'
+                  - Deleted enum values: [Compra venda cancelamento vencimento pagamento de juros amortização prêmio transferência de titularidade transferência de custódia multa mora outros]
                 - Modified property: transactionUnitePrice
                   - Properties changed
                     - Modified property: amount
                       - Example changed from '1000.04' to '1000.0400'
                       - MaxLength changed from 21 to 20
                 - Modified property: type
-                  - Deleted enum values: [ENTRADA SAIDA]
+                  - Deleted enum values: [ENTRADA SAÍDA]
 GET /identify-product/{investmentId}
 - Description changed from 'Obtém os dados da operação de Renda Fixa Crédito identificada por investmentId.' to 'Método para obter a lista de produtos de Renda Fixa Bancária (CDB, RDB, LCI e LCA)'
 - Responses changed
@@ -125,30 +125,17 @@ GET /identify-product/{investmentId}
               - Items changed
                 - Required changed
                   - New required property: debtorCnpjnNumber
+                  - Deleted required property: debtorCnpjNumber
                 - Properties changed
                   - New property: debtorCnpjnNumber
-                  - New property: indexer
-                  - New property: indexerAdditionalInfo
                   - Deleted property: debtorCnpjNumber
-                  - Deleted property: taxExemptProduct
                   - Modified property: clearingCode
                     - Pattern changed from '[\w\W-]*' to ' [\w\W-]*'
-                  - Modified property: debtorName
-                    - Description changed from 'Nome do devedor (condicional para CRI e CRA)
-[Restrição] Campo de preenchimento obrigatório pelas participantes quando o tipo do investimento for igual a "CRI" ou "CRA".
-' to 'Nome da Marca reportada pelo participante no Open Finance. Recomenda-se utilizar, sempre que possível, o mesmo nome de marca atribuído no campo do diretório Customer Friendly Server Name (Authorisation Server).  
-[Restrição] Campo de preenchimento obrigatório pelas participantes quando o tipo do investimento for igual a "CRI" ou "CRA".
-'
                   - Modified property: gracePeriodDate
                     - MaxLength changed from 10 to 11
                   - Modified property: isinCode
                     - Description changed from 'Código ISIN da emissão, Código ISIN do produto, Código da emissora (campo opcional): código universal que identifica cada valor mobiliário ou instrumento financeiro, conforme Norma ISO 6166.
 ' to 'Código ISIN da emissão, Código ISIN do produto, Código da emissora (campo opcional) código universal que identifica cada valor mobiliário ou instrumento financeiro, conforme Norma ISO 6166;'
-                  - Modified property: remuneration
-                    - Properties changed
-                      - Modified property: ratePeriodicity
-                        - New enum values: [DIÁRIO]
-                        - Deleted enum values: [DIARIO]
 GET /list-products
 - Description changed from 'Obtém a lista de operações de Renda Fixa Crédito mantidas pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento.' to 'Método para obter a lista de Fundos de Investimentos'
 - Responses changed

@@ -394,6 +394,7 @@ components:
       required:
         - issuerInstitutionCnpjNumber
         - investmentType
+        - debtorCnpjNumber
         - indexer
         - remuneration
         - issueUnitPrice
@@ -430,13 +431,19 @@ components:
         debtorName:
           type: string
           description: |
-            Nome do devedor (condicional para CRI e CRA)
+            Nome da Marca reportada pelo participante no Open Finance. Recomenda-se utilizar, sempre que possível, o mesmo nome de marca atribuído no campo do diretório Customer Friendly Server Name (Authorisation Server).  
             [Restrição] Campo de preenchimento obrigatório pelas participantes quando o tipo do investimento for igual a "CRI" ou "CRA".
           pattern: '[\w\W\s]*'
           maxLength: 50
           example: Roberto Marino
-        taxExemptProduct:
-          $ref: '#/components/schemas/EnumTaxExemptProduct'
+        indexer:
+          $ref: '#/components/schemas/EnumIndexer'
+        indexerAdditionalInfo:
+          type: string
+          description: Informações adicionais do indexador
+          pattern: '[\w\W\s]*'
+          maxLength: 50
+          example: Dólar
         remuneration:
           $ref: '#/components/schemas/Remuneration'
         issueUnitPrice:
@@ -641,7 +648,7 @@ components:
       enum:
         - MENSAL
         - ANUAL
-        - DIARIO
+        - DIÁRIO
         - SEMESTRAL
       example: MENSAL
     EnumRateType:
@@ -924,19 +931,19 @@ components:
       type: string
       description: 'Aplicação, resgate, cancelamento, vencimento, pagamento de juros/amortização, transferência de titularidade, transferência de custódia e outros.'
       enum:
-        - COMPRA
-        - VENDA
-        - CANCELAMENTO
-        - VENCIMENTO
-        - PAGAMENTO_JUROS
-        - AMORTIZACAO
-        - PREMIO
-        - TRANSFERENCIA_TITULARIDADE
-        - TRANSFERENCIA_CUSTODIA
-        - MULTA
-        - MORA
-        - OUTROS
-      example: MORA
+        - Compra
+        - venda
+        - cancelamento
+        - vencimento
+        - pagamento de juros
+        - amortização
+        - prêmio
+        - transferência de titularidade
+        - transferência de custódia
+        - multa
+        - mora
+        - outros
+      example: Aplicação
     TransactionUnitePrice:
       type: object
       description: 'Preço unitário bruto negociado na transação '
@@ -956,7 +963,7 @@ components:
       description: 'Tipo de movimentação na visão de investimento (Nos casos de motivo da movimentação  "pagamento de juros", "amortização", "prêmio", "multa" e "mora", fica convencionado que será considerado que o tipo de movimento será saída).'
       enum:
         - ENTRADA
-        - SAIDA
+        - SAÍDA
       example: ENTRADA
     TypeAdditionalInfo:
       type: string
@@ -976,10 +983,10 @@ components:
         amount:
           type: string
           format: double
-          pattern: '^-?\d{1,15}\.\d{2,6}$'
+          pattern: '^-?\d{1,15}\.\d{2,6}$ '
           maxLength: 23
           minLength: 4
-          example: '-1000.0400'
+          example: '1000.0400'
           description: Valor relacionado ao objeto.
         currency:
           $ref: '#/components/schemas/Currency'
@@ -1002,10 +1009,10 @@ components:
         amount:
           type: string
           format: double
-          pattern: '^-?\d{1,15}\.\d{2,6}$'
+          pattern: '^-?\d{1,15}\.\d{2,6}$ '
           maxLength: 23
           minLength: 4
-          example: '-1000.0400'
+          example: '1000.0400'
           description: Valor relacionado ao objeto.
         currency:
           $ref: '#/components/schemas/Currency'
@@ -1014,8 +1021,8 @@ components:
           format: double
           description: 'quantidade de títulos detidos na data da posição do cliente '
           maxLength: 15
-          minLength: 4
-          pattern: '^\d{1,15}\.\d{2,8}$'
+          minLength: 1
+          pattern: '^\d{1,15}\'
           example: '15.00'
     VoucherPaymentIndicator:
       type: string
