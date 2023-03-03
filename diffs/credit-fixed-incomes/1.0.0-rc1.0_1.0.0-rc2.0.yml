@@ -2,8 +2,30 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 1
+### Modified Endpoints: 2
 -------------------------
+GET /identify-product/{investmentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Required changed
+                  - New required property: debtorCnpjnNumber
+                  - Deleted required property: debtorCnpjNumber
+                - Properties changed
+                  - New property: debtorCnpjnNumber
+                  - Deleted property: debtorCnpjNumber
+                  - Modified property: clearingCode
+                    - Pattern changed from '[\w\W-]*' to ' [\w\W-]*'
+                  - Modified property: gracePeriodDate
+                    - MaxLength changed from 10 to 11
+                  - Modified property: isinCode
+                    - Description changed from 'Código ISIN da emissão, Código ISIN do produto, Código da emissora (campo opcional): código universal que identifica cada valor mobiliário ou instrumento financeiro, conforme Norma ISO 6166.
+' to 'Código ISIN da emissão, Código ISIN do produto, Código da emissora (campo opcional) código universal que identifica cada valor mobiliário ou instrumento financeiro, conforme Norma ISO 6166;'
 GET /list-products
 - Responses changed
   - Modified response: 200
