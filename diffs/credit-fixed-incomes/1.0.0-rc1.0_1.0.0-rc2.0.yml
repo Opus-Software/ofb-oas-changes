@@ -66,8 +66,6 @@ GET /credit-fixed-incomes/{investmentId}/balances
                     - Modified property: amount
                       - MaxLength changed from 23 to 25
                       - Pattern changed from '^-?\d{1,15}\.\d{2,6}$ ' to '^-?\d{1,15}\.\d{2,8}$'
-                    - Modified property: quantity
-                      - MaxLength changed from 15 to 24
 GET /credit-fixed-incomes/{investmentId}/transactions
 - Description changed from 'Obtém as movimentações da operação de Renda Fixa Crédito identificada por investmentId.' to 'Método para obter a lista de informações de produtos de Renda Variável (Ações e Fundos de Índices)'
 - Responses changed
@@ -131,6 +129,12 @@ GET /identify-product/{investmentId}
                   - Deleted property: taxExemptProduct
                   - Modified property: clearingCode
                     - Pattern changed from '[\w\W-]*' to ' [\w\W-]*'
+                  - Modified property: debtorName
+                    - Description changed from 'Nome do devedor (condicional para CRI e CRA)
+[Restrição] Campo de preenchimento obrigatório pelas participantes quando o tipo do investimento for igual a "CRI" ou "CRA".
+' to 'Nome da Marca reportada pelo participante no Open Finance. Recomenda-se utilizar, sempre que possível, o mesmo nome de marca atribuído no campo do diretório Customer Friendly Server Name (Authorisation Server).  
+[Restrição] Campo de preenchimento obrigatório pelas participantes quando o tipo do investimento for igual a "CRI" ou "CRA".
+'
                   - Modified property: gracePeriodDate
                     - MaxLength changed from 10 to 11
                   - Modified property: isinCode
