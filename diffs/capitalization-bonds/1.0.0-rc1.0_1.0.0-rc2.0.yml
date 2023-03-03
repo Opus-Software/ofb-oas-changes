@@ -1,1 +1,52 @@
-﻿No endpoint changes
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 1
+-------------------------
+GET /bonds
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: capitalizationPeriod
+                    - Properties changed
+                      - Modified property: earlyRedemptions
+                        - Items changed
+                          - Properties changed
+                            - Modified property: rate
+                              - Type changed from 'string' to 'number'
+                              - Format changed from '' to 'double'
+                              - Example changed from null to 10.000001
+                              - MaxLength changed from 8 to 9
+                              - Pattern changed from '^\d{1}\.\d{6}$' to ''
+                      - Modified property: interestRate
+                        - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.[\d]{6}$'
+                      - Modified property: redemptionPercentageEndTerm
+                        - MaxLength changed from 8 to 7
+                        - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{5}$'
+                  - Modified property: draws
+                    - Items changed
+                      - Properties changed
+                        - Modified property: minimumContemplationProbability
+                          - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                  - Modified property: finalRedemptionRate
+                    - MaxLength changed from 8 to 4
+                    - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-9]\.\d{2}$'
+                  - Modified property: quotas
+                    - Items changed
+                      - Properties changed
+                        - Modified property: capitalizationQuota
+                          - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                        - Modified property: chargingQuota
+                          - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                        - Modified property: raffleQuota
+                          - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                  - Modified property: redemptionPercentageEndTerm
+                    - MaxLength changed from 8 to 7
+                    - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{5}$'
