@@ -394,7 +394,6 @@ components:
       required:
         - issuerInstitutionCnpjNumber
         - investmentType
-        - debtorCnpjNumber
         - indexer
         - remuneration
         - issueUnitPrice
@@ -436,14 +435,8 @@ components:
           pattern: '[\w\W\s]*'
           maxLength: 50
           example: Roberto Marino
-        indexer:
-          $ref: '#/components/schemas/EnumIndexer'
-        indexerAdditionalInfo:
-          type: string
-          description: Informações adicionais do indexador
-          pattern: '[\w\W\s]*'
-          maxLength: 50
-          example: Dólar
+        taxExemptProduct:
+          $ref: '#/components/schemas/EnumTaxExemptProduct'
         remuneration:
           $ref: '#/components/schemas/Remuneration'
         issueUnitPrice:
@@ -648,7 +641,7 @@ components:
       enum:
         - MENSAL
         - ANUAL
-        - DIÁRIO
+        - DIARIO
         - SEMESTRAL
       example: MENSAL
     EnumRateType:
@@ -930,19 +923,6 @@ components:
     TransactionType:
       type: string
       description: 'Aplicação, resgate, cancelamento, vencimento, pagamento de juros/amortização, transferência de titularidade, transferência de custódia e outros.'
-      enum:
-        - Compra
-        - venda
-        - cancelamento
-        - vencimento
-        - pagamento de juros
-        - amortização
-        - prêmio
-        - transferência de titularidade
-        - transferência de custódia
-        - multa
-        - mora
-        - outros
       example: Aplicação
     TransactionUnitePrice:
       type: object
@@ -961,9 +941,6 @@ components:
     Type:
       type: string
       description: 'Tipo de movimentação na visão de investimento (Nos casos de motivo da movimentação  "pagamento de juros", "amortização", "prêmio", "multa" e "mora", fica convencionado que será considerado que o tipo de movimento será saída).'
-      enum:
-        - ENTRADA
-        - SAÍDA
       example: ENTRADA
     TypeAdditionalInfo:
       type: string
