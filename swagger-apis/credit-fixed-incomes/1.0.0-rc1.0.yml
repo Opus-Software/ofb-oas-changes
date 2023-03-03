@@ -394,7 +394,6 @@ components:
       required:
         - issuerInstitutionCnpjNumber
         - investmentType
-        - debtorCnpjNumber
         - indexer
         - remuneration
         - issueUnitPrice
@@ -431,19 +430,13 @@ components:
         debtorName:
           type: string
           description: |
-            Nome da Marca reportada pelo participante no Open Finance. Recomenda-se utilizar, sempre que possível, o mesmo nome de marca atribuído no campo do diretório Customer Friendly Server Name (Authorisation Server).  
+            Nome do devedor (condicional para CRI e CRA)
             [Restrição] Campo de preenchimento obrigatório pelas participantes quando o tipo do investimento for igual a "CRI" ou "CRA".
           pattern: '[\w\W\s]*'
           maxLength: 50
           example: Roberto Marino
-        indexer:
-          $ref: '#/components/schemas/EnumIndexer'
-        indexerAdditionalInfo:
-          type: string
-          description: Informações adicionais do indexador
-          pattern: '[\w\W\s]*'
-          maxLength: 50
-          example: Dólar
+        taxExemptProduct:
+          $ref: '#/components/schemas/EnumTaxExemptProduct'
         remuneration:
           $ref: '#/components/schemas/Remuneration'
         issueUnitPrice:
@@ -648,7 +641,7 @@ components:
       enum:
         - MENSAL
         - ANUAL
-        - DIÁRIO
+        - DIARIO
         - SEMESTRAL
       example: MENSAL
     EnumRateType:
@@ -1022,7 +1015,7 @@ components:
           description: 'quantidade de títulos detidos na data da posição do cliente '
           maxLength: 15
           minLength: 4
-          pattern: '^\d{1,15}\'
+          pattern: '^\d{1,15}\.\d{2,8}$'
           example: '15.00'
     VoucherPaymentIndicator:
       type: string
