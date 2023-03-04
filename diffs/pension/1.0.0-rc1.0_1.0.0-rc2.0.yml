@@ -2,7 +2,7 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 1
+### Modified Endpoints: 2
 -------------------------
 GET /risk-coverages
 - Responses changed
@@ -13,5 +13,63 @@ GET /risk-coverages
           - Properties changed
             - Modified property: data
               - Items changed
-                - Required changed
-                  - New required property: benefitRecalculation
+                - Properties changed
+                  - Modified property: pmbacRemuneration
+                    - Properties changed
+                      - Modified property: interestRate
+                        - MinLength changed from 8 to 0
+                        - MaxLength changed from 8 to null
+                        - Pattern changed from '^\d{1}\.\d{6}$' to '^\d{1,16}\.\d{4}$'
+                  - Modified property: reclaim
+                    - Properties changed
+                      - Modified property: table
+                        - Items changed
+                          - Properties changed
+                            - Modified property: percentage
+                              - MinLength changed from 8 to 0
+                              - MaxLength changed from 8 to 6
+                              - Pattern changed from '^\d{1}\.\d{6}$' to '^\d\.\d{4}$'
+GET /survival-coverages
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: defferalPeriod
+                    - Properties changed
+                      - Modified property: interestRate
+                        - MinLength changed from 8 to 0
+                        - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                      - Modified property: investmentFunds
+                        - Items changed
+                          - Properties changed
+                            - Modified property: maximumAdministrationFee
+                              - MinLength changed from 8 to 0
+                              - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                            - Modified property: maximumPerformanceFee
+                              - MinLength changed from 8 to 0
+                              - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                      - Modified property: reversalFinancialResults
+                        - MinLength changed from 8 to 0
+                        - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                  - Modified property: grantPeriodBenefit
+                    - Properties changed
+                      - Modified property: interestRate
+                        - MinLength changed from 8 to 0
+                        - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                      - Modified property: investmentFunds
+                        - Items changed
+                          - Properties changed
+                            - Modified property: maximumAdministrationFee
+                              - MinLength changed from 8 to 0
+                              - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                            - Modified property: maximumPerformanceFee
+                              - MinLength changed from 8 to 0
+                              - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                      - Modified property: reversalFinancialResults
+                        - MinLength changed from 8 to 0
+                        - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
