@@ -309,7 +309,7 @@ components:
           description: |
             Lista com as informações do(s) Fundo(s) de Investimento(s) disponíveis para o período de diferimento/acumulação, contemplando:
               - Taxa Máxima de Administração - em %
-          example: '0.201000'
+          example: '0.019800'
           maxLength: 8
         typePerformanceFee:
           type: string
@@ -329,7 +329,7 @@ components:
             Lista com as informações do(s) Fundo(s) de Investimento(s) disponíveis para o período de diferimento/acumulação, contemplando: 
               - Taxa Máxima de Performance - em %
           maxLength: 8
-          example: '0.201000'
+          example: '0.019800'
         eligibilityRule:
           type: boolean
           description: |
@@ -409,7 +409,7 @@ components:
           maxLength: 8
           pattern: '^[0-1]\.\d{6}$'
           description: Taxa de juros mensal garantida que remunera o plano durante a fase de diferimento/acumulação.
-          example: '0.251231'
+          example: '0.019800'
         updateIndex:
           $ref: '#/components/schemas/UpdateIndex'
         otherMinimumPerformanceGarantees:
@@ -422,7 +422,7 @@ components:
           maxLength: 8
           pattern: '^[0-1]\.\d{6}$'
           description: Percentual de reversão de excedente financeiro na concessão. Em %.
-          example: '0.051230'
+          example: '0.019800'
         minimumPremiums:
           type: array
           items:
@@ -563,13 +563,13 @@ components:
           pattern: '^[0-1]\.\d{6}$'
           maxLength: 8
           description: Percentual mínimo de carregamento cobrada quando do pagamento do prêmio/ contribuição. Em %.
-          example: '0.000000'
+          example: '0.019800'
         maxValue:
           type: string
           pattern: '^[0-1]\.\d{6}$'
           maxLength: 8
           description: Percentual máximo de carregamento cobrada quando do pagamento do prêmio/ contribuição. Em %.
-          example: '0.100000'
+          example: '0.019800'
       additionalProperties: false
     SurvivalPensionLoadingLate:
       type: object
@@ -583,13 +583,13 @@ components:
           pattern: '^[0-1]\.\d{6}$'
           maxLength: 8
           description: Percentual mínimo de taxa de carregamento cobrado quando da efetivação de resgate ou portabilidade.
-          example: '0.000000'
+          example: '0.019800'
         maxValue:
           type: string
           pattern: '^[0-1]\.\d{6}$'
           maxLength: 8
           description: Percentual máximo de taxa de carregamento cobrado quando da efetivação de resgate ou portabilidade.
-          example: '0.100000'
+          example: '0.019800'
       additionalProperties: false
     SurvivalPensionMinimumPremium:
       type: object
@@ -916,11 +916,7 @@ components:
         - detail
       properties:
         susepProcessNumber:
-          type: string
-          description: 'Sequência numérica utilizada para consulta dos processos eletrônicos na SUSEP, com caracteres especiais, conforme campo de consulta no site da SUSEP (XXXXX.XXXXXX/XXXX-XX)<br>Observação&#58; Mascaras da SUSEP – Serão permitidos todas as máscaras de Produtos. Limitar pelos códigos das Máscaras.'
-          maxLength: 20
-          pattern: '^\d{5}\.\d{6}\/\d{4}-\d{2}$|^\d{2}\.\d{6}\/\d{2}-\d{2}$|^\d{3}-\d{5}\/\d{2}$|^\d{5}\.\d{6}\/\d{2}-\d{2}$'
-          example: 15414.622222/2222-22
+          $ref: '#/components/schemas/SusepProcessNumber'
         detail:
           type: string
           description: 'Representam as Condições Gerais, Condições Especiais e Condições ou Cláusulas Particulares de um mesmo produto. (Circular SUSEP 321/06). Campo aberto (possibilidade de incluir URL)'
@@ -1023,7 +1019,7 @@ components:
           pattern: '^\d\.\d{4}$'
           description: Percentual de faixa de resgate.
           maxLength: 6
-          example: '0.5000'
+          example: '0.019800'
       additionalProperties: false
     InsurancePensionEnumPmbacRemuneration:
       type: object
@@ -1032,7 +1028,7 @@ components:
           type: string
           pattern: '^\d{1,16}\.\d{4}$'
           description: Taxa de juros para capitalização da PMBaC
-          example: '14.2521'
+          example: '0.019800'
         updateIndexes:
           type: array
           items:
