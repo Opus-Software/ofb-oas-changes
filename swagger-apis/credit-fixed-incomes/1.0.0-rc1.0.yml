@@ -18,21 +18,21 @@ servers:
   - url: 'https://apih.banco.com.br/open-banking/opendata-investments/v1'
     description: Servidor de Homologação
 tags:
-  - name: Product List
-    description: Obtém a lista de operações de Renda Fixa Crédito mantidas pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento.
-  - name: Product Identification
-    description: Obtém os dados da operação de Renda Fixa Crédito identificada por investmentId.
-  - name: Balances
-    description: Obtém a posição da operação de Renda Fixa Crédito identificada por investmentId.
-  - name: Transactions
-    description: Obtém as movimentações da operação de Renda Fixa Crédito identificada por investmentId.
+  - name: Listagem de produto
+    description: Método para obter a lista de Fundos de Investimentos
+  - name: Identificação do produto
+    description: 'Método para obter a lista de produtos de Renda Fixa Bancária (CDB, RDB, LCI e LCA)'
+  - name: Posição do cliente
+    description: 'Método para obter a lista de produtos de Renda Fixa Crédito (Debênture, CRI e CRA)'
+  - name: Movimentação do cliente
+    description: Método para obter a lista de informações de produtos de Renda Variável (Ações e Fundos de Índices)
 paths:
   /investments:
     get:
       tags:
-        - Product List
-      summary: Obtém a lista de operações de Renda Fixa Crédito mantidas pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento.
-      operationId: creditFixedIncomesProductList
+        - Listagem de produto
+      summary: Conjunto de informações dos Fundos de Investimentos
+      operationId: creditFixedLista
       description: Obtém a lista de operações de Renda Fixa Crédito mantidas pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento.
       parameters:
         - $ref: '#/components/parameters/Authorization'
@@ -81,9 +81,9 @@ paths:
   '/investments/{investmentId}':
     get:
       tags:
-        - Product Identification
-      summary: Obtém os dados da operação de Renda Fixa Crédito identificada por investmentId.
-      operationId: creditFixedIncomesProductIdentification
+        - Identificação do produto
+      summary: 'Conjunto de informações de produtos de Renda Fixa Bancária (CDB, RDB, LCI e LCA)'
+      operationId: creditFixedIdentificacao
       description: Obtém os dados da operação de Renda Fixa Crédito identificada por investmentId.
       parameters:
         - $ref: '#/components/parameters/InvestmentId'
@@ -130,9 +130,9 @@ paths:
   '/investments/{investmentId}/balances':
     get:
       tags:
-        - Balances
-      summary: Obtém a posição da operação de Renda Fixa Crédito identificada por investmentId.
-      operationId: creditFixedIncomesBalances
+        - Posição do cliente
+      summary: 'Conjunto de informações de produtos de Renda Fixa Crédito (Debênture, CRI e CRA)'
+      operationId: creditFixedPosition
       description: Obtém a posição da operação de Renda Fixa Crédito identificada por investmentId.
       parameters:
         - $ref: '#/components/parameters/InvestmentId'
@@ -179,9 +179,9 @@ paths:
   '/investments/{investmentId}/transactions':
     get:
       tags:
-        - Transactions
-      summary: Obtém as movimentações da operação de Renda Fixa Crédito identificada por investmentId.
-      operationId: creditFixedIncomesTransactions
+        - Movimentação do cliente
+      summary: Conjunto de informações de produtos de Renda Variável (Ações e Fundos de Índices)
+      operationId: creditFixedMovement
       description: Obtém as movimentações da operação de Renda Fixa Crédito identificada por investmentId.
       parameters:
         - $ref: '#/components/parameters/InvestmentId'
@@ -394,6 +394,7 @@ components:
       required:
         - issuerInstitutionCnpjNumber
         - investmentType
+        - indexer
         - remuneration
         - issueUnitPrice
         - issueDate
@@ -921,7 +922,7 @@ components:
       example: '42.25'
     TransactionType:
       type: string
-      description: 'Compra, venda, cancelamento, vencimento, pagamento de juros, amortização, prêmio, transferência de titularidade, transferência de custódia, multa, mora e outros'
+      description: 'Aplicação, resgate, cancelamento, vencimento, pagamento de juros/amortização, transferência de titularidade, transferência de custódia e outros.'
       enum:
         - COMPRA
         - VENDA
@@ -935,7 +936,7 @@ components:
         - MULTA
         - MORA
         - OUTROS
-      example: COMPRA
+      example: APLICACAO
     TransactionUnitePrice:
       type: object
       description: 'Preço unitário bruto negociado na transação '
@@ -1014,7 +1015,7 @@ components:
           description: 'quantidade de títulos detidos na data da posição do cliente '
           maxLength: 15
           minLength: 1
-          pattern: '^-?\d{1,15}\.\d{2,8}$'
+          pattern: '^\d{1,15}\'
           example: '15.00'
     VoucherPaymentIndicator:
       type: string
@@ -1152,7 +1153,6 @@ components:
         type: string
         pattern: '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
         maxLength: 100
-        example: '92792126019929200000000000000000000000000'
     Authorization:
       name: Authorization
       in: header
