@@ -1,60 +1,14 @@
-﻿### New Endpoints: 2
+﻿### New Endpoints: 4
 --------------------
 GET /credit-fixed-incomes/{investmentId}/balances  
 GET /credit-fixed-incomes/{investmentId}/transactions  
-### Deleted Endpoints: 2
+GET /identify-product/{investmentId}  
+GET /list-products  
+### Deleted Endpoints: 4
 ------------------------
-GET /{investmentId}/balances  
-GET /{investmentId}/transactions  
-### Modified Endpoints: 2
--------------------------
-GET /identify-product/{investmentId}
-- Description changed from 'Obtém os dados da operação de Renda Fixa Crédito identificada por investmentId.' to 'Método para obter a lista de produtos de Renda Fixa Bancária (CDB, RDB, LCI e LCA)'
-- Responses changed
-  - Modified response: 200
-    - Content changed
-      - Modified media type: application/json
-        - Schema changed
-          - Properties changed
-            - Modified property: data
-              - Items changed
-                - Required changed
-                  - New required property: debtorCnpjnNumber
-                - Properties changed
-                  - New property: debtorCnpjnNumber
-                  - New property: indexer
-                  - New property: indexerAdditionalInfo
-                  - Deleted property: debtorCnpjNumber
-                  - Deleted property: taxExemptProduct
-                  - Modified property: clearingCode
-                    - Pattern changed from '[\w\W-]*' to ' [\w\W-]*'
-                  - Modified property: debtorName
-                    - Description changed from 'Nome do devedor (condicional para CRI e CRA)
-[Restrição] Campo de preenchimento obrigatório pelas participantes quando o tipo do investimento for igual a "CRI" ou "CRA".
-' to 'Nome da Marca reportada pelo participante no Open Finance. Recomenda-se utilizar, sempre que possível, o mesmo nome de marca atribuído no campo do diretório Customer Friendly Server Name (Authorisation Server).  
-[Restrição] Campo de preenchimento obrigatório pelas participantes quando o tipo do investimento for igual a "CRI" ou "CRA".
-'
-                  - Modified property: gracePeriodDate
-                    - MaxLength changed from 10 to 11
-                  - Modified property: isinCode
-                    - Description changed from 'Código ISIN da emissão, Código ISIN do produto, Código da emissora (campo opcional): código universal que identifica cada valor mobiliário ou instrumento financeiro, conforme Norma ISO 6166.
-' to 'Código ISIN da emissão, Código ISIN do produto, Código da emissora (campo opcional) código universal que identifica cada valor mobiliário ou instrumento financeiro, conforme Norma ISO 6166;'
-                  - Modified property: remuneration
-                    - Properties changed
-                      - Modified property: ratePeriodicity
-                        - New enum values: [DIÁRIO]
-                        - Deleted enum values: [DIARIO]
-GET /list-products
-- Description changed from 'Obtém a lista de operações de Renda Fixa Crédito mantidas pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento.' to 'Método para obter a lista de Fundos de Investimentos'
-- Responses changed
-  - Modified response: 200
-    - Content changed
-      - Modified media type: application/json
-        - Schema changed
-          - Properties changed
-            - Modified property: data
-              - Items changed
-                - Description changed from 'Lista de títulos de renda fixa crédito mantidos pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento' to ''
-                - Properties changed
-                  - Modified property: investmentId
-                    - Description changed from 'Identifica de forma única  o relacionamento do cliente com o produto, mantendo as regras de imutabilidade dentro da instituição transmissora.' to 'Código universal que identifica cada valor mobiliário ou instrumento financeiro, conforme Norma ISO 6166.<br><br>DEFINIÇÃO&#58;O ISIN (International Securities Identification Number) é um código que identifica um valor mobiliário, conforme a norma ISO 6166.<br>ESTRUTURA<br>O ISIN é um código alfanumérico que possui 12 caracteres com a seguinte estrutura&#58;<ul><li>um prefixo, composto de 2 caracteres alfa, que identifica o código do país (Norma ISO 3166);</li><li>o número básico, composto de 9 caracteres alfabéticos ou numéricos em sua extensão;</li><li>um dígito numérico de controle.</li></ul>'
+GET /investments  
+GET /investments/{investmentId}  
+GET /investments/{investmentId}/balances  
+GET /investments/{investmentId}/transactions  
+### Modified Endpoints: None
+----------------------------
