@@ -22,21 +22,21 @@ servers:
   - url: 'https://apih.banco.com.br/open-banking/opendata-bank-fixed-incomes/v1'
     description: Servidor de Homologação
 tags:
-  - name: List Products
+  - name: Product List
     description: Obtém a lista de operações de Renda Fixa Bancária mantidas pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento.
-  - name: Identify Product
+  - name: Product Identification
     description: Obtém os dados da operação de Renda Fixa Bancária identificada por investmentId.
   - name: Balances
     description: Obtém a posição da operação de Renda Fixa Bancária identificada por investmentId.
   - name: Transactions
     description: Obtém as movimentações da operação de Renda Fixa Bancária identificada por investmentId.
 paths:
-  /:
+  /investments:
     get:
       tags:
-        - List Products
+        - Product List
       summary: Obtém a lista de operações de Renda Fixa Bancária mantidas pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento.
-      operationId: bankFixedIncomesListProduct
+      operationId: bankFixedIncomesProductList
       description: Obtém a lista de operações de Renda Fixa Bancária mantidas pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento.
       parameters:
         - $ref: '#/components/parameters/Authorization'
@@ -82,12 +82,12 @@ paths:
           OAuth2Security:
             - 'consent:consentId'
             - bank_fixed_incomes
-  '/{investmentId}':
+  '/investments/{investmentId}':
     get:
       tags:
-        - Identify Product
+        - Product Identification
       summary: Obtém os dados da operação de Renda Fixa Bancária identificada por investmentId.
-      operationId: bankFixedIncomesIdentifyProduct
+      operationId: bankFixedIncomesProductIdentification
       description: Obtém os dados da operação de Renda Fixa Bancária identificada por investmentId.
       parameters:
         - $ref: '#/components/parameters/InvestmentId'
@@ -131,7 +131,7 @@ paths:
           OAuth2Security:
             - 'consent:consentId'
             - bank_fixed_incomes
-  '/{investmentId}/balances':
+  '/investments/{investmentId}/balances':
     get:
       tags:
         - Balances
@@ -187,12 +187,12 @@ paths:
           OAuth2Security:
             - 'consent:consentId'
             - bank_fixed_incomes
-  '/{investmentId}/transactions':
+  '/investments/{investmentId}/transactions':
     get:
       tags:
         - Transactions
       summary: Obtém as movimentações da operação de Renda Fixa Bancária identificada por investmentId.
-      operationId: bankFixedIncomesProductMovement
+      operationId: bankFixedIncomesTransactions
       description: Obtém as movimentações da operação de Renda Fixa Bancária identificada por investmentId.
       parameters:
         - $ref: '#/components/parameters/InvestmentId'
@@ -777,7 +777,7 @@ components:
       description: 'Tipo de movimentação na visão de investimento (entrada ou saída) . (Nos casos de motivo de pagamento  "pagamento de juros" e "amortização", fica convencionado que será considerado que o tipo de movimento será saída).'
       enum:
         - ENTRADA
-        - SAÍDA
+        - SAIDA
       example: ENTRADA
     EnumBankFixedIncomeTransactionType:
       type: string
