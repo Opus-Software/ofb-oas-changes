@@ -16,6 +16,10 @@ GET /risk-coverages
           - Properties changed
             - Modified property: data
               - Items changed
+                - Required changed
+                  - New required property: benefitRecalculation
+                  - New required property: premiumPayment
+                  - New required property: terms
                 - Properties changed
                   - New property: allowPortability
                   - New property: benefitRecalculation
@@ -29,6 +33,8 @@ GET /risk-coverages
                     - Items changed
                       - Properties changed
                         - Modified property: attributes
+                          - Required changed
+                            - New required property: gracePeriod
                           - Properties changed
                             - New property: allowApartPurchase
                             - New property: deductible
@@ -63,13 +69,34 @@ GET /risk-coverages
                         - Description changed from 'Nome do participante do Open Finance.' to 'Nome do participante do Open Banking.'
                   - Modified property: pmbacRemuneration
                     - Properties changed
+                      - Modified property: interestRate
+                        - Example changed from '0.019800' to '14.2521'
+                        - MinLength changed from 8 to 0
+                        - MaxLength changed from 8 to null
+                        - Pattern changed from '^\d{1}\.\d{6}$' to '^\d{1,16}\.\d{4}$'
                       - Modified property: updateIndexes
                         - Items changed
                           - MaxLength changed from null to 9
+                  - Modified property: reclaim
+                    - Properties changed
+                      - Modified property: table
+                        - Items changed
+                          - Properties changed
+                            - Modified property: percentage
+                              - Example changed from '0.019800' to '0.5000'
+                              - MinLength changed from 8 to 0
+                              - MaxLength changed from 8 to 6
+                              - Pattern changed from '^\d{1}\.\d{6}$' to '^\d\.\d{4}$'
                   - Modified property: society
                     - Properties changed
                       - Modified property: cnpjNumber
                         - Pattern changed from '^\d{14}$' to '\d{14}$'
+                  - Modified property: termsAndConditions
+                    - Items changed
+                      - Properties changed
+                        - Modified property: susepProcessNumber
+                          - MinLength changed from 12 to 0
+                          - Pattern changed from '^\d{5}\.\d{6}\/\d{4}-\d{2}$|^\d{2}\.\d{6}\/\d{2}-\d{2}$|^\d{3}-\d{5}\/\d{2}$|^\d{5}\.\d{6}\/\d{2}-\d{2}$' to '^\d{5}\.\d{6}/\d{4}-\d{2}$'
   - Modified response: 400
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -133,8 +160,34 @@ GET /survival-coverages
             - Modified property: data
               - Items changed
                 - Properties changed
+                  - Modified property: costs
+                    - Properties changed
+                      - Modified property: loadingAntecipated
+                        - Properties changed
+                          - Modified property: maxValue
+                            - Example changed from '0.019800' to '0.100000'
+                            - MinLength changed from 8 to 0
+                            - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                          - Modified property: minValue
+                            - Example changed from '0.019800' to '0.000000'
+                            - MinLength changed from 8 to 0
+                            - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                      - Modified property: loadingLate
+                        - Properties changed
+                          - Modified property: maxValue
+                            - Example changed from '0.019800' to '0.100000'
+                            - MinLength changed from 8 to 0
+                            - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                          - Modified property: minValue
+                            - Example changed from '0.019800' to '0.000000'
+                            - MinLength changed from 8 to 0
+                            - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
                   - Modified property: defferalPeriod
                     - Properties changed
+                      - Modified property: interestRate
+                        - Example changed from '0.019800' to '0.251231'
+                        - MinLength changed from 8 to 0
+                        - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
                       - Modified property: investmentFunds
                         - Items changed
                           - Properties changed
@@ -142,17 +195,33 @@ GET /survival-coverages
                               - Pattern changed from '^\d{14}$' to '\d{14}$'
                             - Modified property: currency
                               - MaxLength changed from 3 to null
+                            - Modified property: maximumAdministrationFee
+                              - Example changed from '0.019800' to '0.201000'
+                              - MinLength changed from 8 to 0
+                              - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                            - Modified property: maximumPerformanceFee
+                              - Example changed from '0.019800' to '0.201000'
+                              - MinLength changed from 8 to 0
+                              - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
                       - Modified property: minimumPremiums
                         - Items changed
                           - Properties changed
                             - Modified property: currency
                               - MaxLength changed from 3 to null
+                      - Modified property: reversalFinancialResults
+                        - Example changed from '0.019800' to '0.051230'
+                        - MinLength changed from 8 to 0
+                        - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
                   - Modified property: grantPeriodBenefit
                     - Required changed
                       - New required property: biometricTable
                     - Properties changed
                       - Modified property: biometricTable
                         - MinItems changed from 0 to 1
+                      - Modified property: interestRate
+                        - Example changed from '0.019800' to '0.225222'
+                        - MinLength changed from 8 to 0
+                        - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
                       - Modified property: investmentFunds
                         - Items changed
                           - Properties changed
@@ -160,6 +229,18 @@ GET /survival-coverages
                               - Pattern changed from '^\d{14}$' to '\d{14}$'
                             - Modified property: currency
                               - MaxLength changed from 3 to null
+                            - Modified property: maximumAdministrationFee
+                              - Example changed from '0.019800' to '0.201000'
+                              - MinLength changed from 8 to 0
+                              - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                            - Modified property: maximumPerformanceFee
+                              - Example changed from '0.019800' to '0.201000'
+                              - MinLength changed from 8 to 0
+                              - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                      - Modified property: reversalFinancialResults
+                        - Example changed from '0.019800' to '1.252111'
+                        - MinLength changed from 8 to 0
+                        - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
                   - Modified property: participant
                     - Description changed from 'Conjunto de informações relativas ao participante do produto de Open Finance' to 'Conjunto de informações relativas ao participante do produto de open banking'
                     - Properties changed
@@ -173,6 +254,12 @@ GET /survival-coverages
                     - Properties changed
                       - Modified property: cnpjNumber
                         - Pattern changed from '^\d{14}$' to '\d{14}$'
+                  - Modified property: termsAndConditions
+                    - Items changed
+                      - Properties changed
+                        - Modified property: susepProcessNumber
+                          - MinLength changed from 12 to 0
+                          - Pattern changed from '^\d{5}\.\d{6}\/\d{4}-\d{2}$|^\d{2}\.\d{6}\/\d{2}-\d{2}$|^\d{3}-\d{5}\/\d{2}$|^\d{5}\.\d{6}\/\d{2}-\d{2}$' to '^\d{5}\.\d{6}/\d{4}-\d{2}$'
   - Modified response: 400
     - Content changed
       - Modified media type: application/json; charset=utf-8

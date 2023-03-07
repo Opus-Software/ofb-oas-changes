@@ -14,30 +14,39 @@ GET /risk-coverages
             - Modified property: data
               - Items changed
                 - Required changed
-                  - New required property: benefitRecalculation
+                  - Deleted required property: benefitRecalculation
+                  - Deleted required property: premiumPayment
+                  - Deleted required property: terms
                 - Properties changed
+                  - Modified property: coverages
+                    - Items changed
+                      - Properties changed
+                        - Modified property: attributes
+                          - Required changed
+                            - Deleted required property: gracePeriod
                   - Modified property: pmbacRemuneration
                     - Properties changed
                       - Modified property: interestRate
-                        - Example changed from '0.019800' to '14.2521'
-                        - MinLength changed from 8 to 0
-                        - MaxLength changed from 8 to null
-                        - Pattern changed from '^\d{1}\.\d{6}$' to '^\d{1,16}\.\d{4}$'
+                        - Example changed from '14.2521' to '0.019800'
+                        - MinLength changed from 0 to 8
+                        - MaxLength changed from null to 8
+                        - Pattern changed from '^\d{1,16}\.\d{4}$' to '^\d{1}\.\d{6}$'
                   - Modified property: reclaim
                     - Properties changed
                       - Modified property: table
                         - Items changed
                           - Properties changed
                             - Modified property: percentage
-                              - Example changed from '0.019800' to '0.5000'
-                              - MinLength changed from 8 to 0
-                              - MaxLength changed from 8 to 6
-                              - Pattern changed from '^\d{1}\.\d{6}$' to '^\d\.\d{4}$'
+                              - Example changed from '0.5000' to '0.019800'
+                              - MinLength changed from 0 to 8
+                              - MaxLength changed from 6 to 8
+                              - Pattern changed from '^\d\.\d{4}$' to '^\d{1}\.\d{6}$'
                   - Modified property: termsAndConditions
                     - Items changed
                       - Properties changed
                         - Modified property: susepProcessNumber
-                          - Pattern changed from '^\d{5}\.\d{6}\/\d{4}-\d{2}$|^\d{2}\.\d{6}\/\d{2}-\d{2}$|^\d{3}-\d{5}\/\d{2}$|^\d{5}\.\d{6}\/\d{2}-\d{2}$' to '^\d{5}\.\d{6}/\d{4}-\d{2}$'
+                          - MinLength changed from 0 to 12
+                          - Pattern changed from '^\d{5}\.\d{6}/\d{4}-\d{2}$' to '^\d{5}\.\d{6}\/\d{4}-\d{2}$|^\d{2}\.\d{6}\/\d{2}-\d{2}$|^\d{3}-\d{5}\/\d{2}$|^\d{5}\.\d{6}\/\d{2}-\d{2}$'
 GET /survival-coverages
 - Responses changed
   - Modified response: 200
@@ -53,67 +62,68 @@ GET /survival-coverages
                       - Modified property: loadingAntecipated
                         - Properties changed
                           - Modified property: maxValue
-                            - Example changed from '0.019800' to '0.100000'
-                            - MinLength changed from 8 to 0
-                            - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                            - Example changed from '0.100000' to '0.019800'
+                            - MinLength changed from 0 to 8
+                            - Pattern changed from '^[0-1]\.\d{6}$' to '^\d{1}\.\d{6}$'
                           - Modified property: minValue
-                            - Example changed from '0.019800' to '0.000000'
-                            - MinLength changed from 8 to 0
-                            - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                            - Example changed from '0.000000' to '0.019800'
+                            - MinLength changed from 0 to 8
+                            - Pattern changed from '^[0-1]\.\d{6}$' to '^\d{1}\.\d{6}$'
                       - Modified property: loadingLate
                         - Properties changed
                           - Modified property: maxValue
-                            - Example changed from '0.019800' to '0.100000'
-                            - MinLength changed from 8 to 0
-                            - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                            - Example changed from '0.100000' to '0.019800'
+                            - MinLength changed from 0 to 8
+                            - Pattern changed from '^[0-1]\.\d{6}$' to '^\d{1}\.\d{6}$'
                           - Modified property: minValue
-                            - Example changed from '0.019800' to '0.000000'
-                            - MinLength changed from 8 to 0
-                            - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                            - Example changed from '0.000000' to '0.019800'
+                            - MinLength changed from 0 to 8
+                            - Pattern changed from '^[0-1]\.\d{6}$' to '^\d{1}\.\d{6}$'
                   - Modified property: defferalPeriod
                     - Properties changed
                       - Modified property: interestRate
-                        - Example changed from '0.019800' to '0.251231'
-                        - MinLength changed from 8 to 0
-                        - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                        - Example changed from '0.251231' to '0.019800'
+                        - MinLength changed from 0 to 8
+                        - Pattern changed from '^[0-1]\.\d{6}$' to '^\d{1}\.\d{6}$'
                       - Modified property: investmentFunds
                         - Items changed
                           - Properties changed
                             - Modified property: maximumAdministrationFee
-                              - Example changed from '0.019800' to '0.201000'
-                              - MinLength changed from 8 to 0
-                              - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                              - Example changed from '0.201000' to '0.019800'
+                              - MinLength changed from 0 to 8
+                              - Pattern changed from '^[0-1]\.\d{6}$' to '^\d{1}\.\d{6}$'
                             - Modified property: maximumPerformanceFee
-                              - Example changed from '0.019800' to '0.201000'
-                              - MinLength changed from 8 to 0
-                              - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                              - Example changed from '0.201000' to '0.019800'
+                              - MinLength changed from 0 to 8
+                              - Pattern changed from '^[0-1]\.\d{6}$' to '^\d{1}\.\d{6}$'
                       - Modified property: reversalFinancialResults
-                        - Example changed from '0.019800' to '0.051230'
-                        - MinLength changed from 8 to 0
-                        - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                        - Example changed from '0.051230' to '0.019800'
+                        - MinLength changed from 0 to 8
+                        - Pattern changed from '^[0-1]\.\d{6}$' to '^\d{1}\.\d{6}$'
                   - Modified property: grantPeriodBenefit
                     - Properties changed
                       - Modified property: interestRate
-                        - Example changed from '0.019800' to '0.225222'
-                        - MinLength changed from 8 to 0
-                        - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                        - Example changed from '0.225222' to '0.019800'
+                        - MinLength changed from 0 to 8
+                        - Pattern changed from '^[0-1]\.\d{6}$' to '^\d{1}\.\d{6}$'
                       - Modified property: investmentFunds
                         - Items changed
                           - Properties changed
                             - Modified property: maximumAdministrationFee
-                              - Example changed from '0.019800' to '0.201000'
-                              - MinLength changed from 8 to 0
-                              - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                              - Example changed from '0.201000' to '0.019800'
+                              - MinLength changed from 0 to 8
+                              - Pattern changed from '^[0-1]\.\d{6}$' to '^\d{1}\.\d{6}$'
                             - Modified property: maximumPerformanceFee
-                              - Example changed from '0.019800' to '0.201000'
-                              - MinLength changed from 8 to 0
-                              - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                              - Example changed from '0.201000' to '0.019800'
+                              - MinLength changed from 0 to 8
+                              - Pattern changed from '^[0-1]\.\d{6}$' to '^\d{1}\.\d{6}$'
                       - Modified property: reversalFinancialResults
-                        - Example changed from '0.019800' to '1.252111'
-                        - MinLength changed from 8 to 0
-                        - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                        - Example changed from '1.252111' to '0.019800'
+                        - MinLength changed from 0 to 8
+                        - Pattern changed from '^[0-1]\.\d{6}$' to '^\d{1}\.\d{6}$'
                   - Modified property: termsAndConditions
                     - Items changed
                       - Properties changed
                         - Modified property: susepProcessNumber
-                          - Pattern changed from '^\d{5}\.\d{6}\/\d{4}-\d{2}$|^\d{2}\.\d{6}\/\d{2}-\d{2}$|^\d{3}-\d{5}\/\d{2}$|^\d{5}\.\d{6}\/\d{2}-\d{2}$' to '^\d{5}\.\d{6}/\d{4}-\d{2}$'
+                          - MinLength changed from 0 to 12
+                          - Pattern changed from '^\d{5}\.\d{6}/\d{4}-\d{2}$' to '^\d{5}\.\d{6}\/\d{4}-\d{2}$|^\d{2}\.\d{6}\/\d{2}-\d{2}$|^\d{3}-\d{5}\/\d{2}$|^\d{5}\.\d{6}\/\d{2}-\d{2}$'
