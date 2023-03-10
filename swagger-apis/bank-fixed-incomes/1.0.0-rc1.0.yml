@@ -4,10 +4,11 @@ info:
   description: |
     API de informações de operações de Renda Fixa Bancária Open Finance Brasil (Fase 4).  
     API que retorna informações de operações de investimento do tipo Renda Fixa Bancária 
-    (CDB/RDB, LCI e LCA) mantidas nas instituições transmissoras por seus clientes,  
-    incluindo dados como denominação do produto, rentabilidade, quantidade, prazos,  
-    saldos em posição do cliente e movimentações financeiras. Não possui segregação entre  
-    pessoa natural e pessoa jurídica. Requer consentimento do cliente para todos os endpoints.
+    (CDB/RDB, LCI e LCA) mantidas nas instituições transmissoras por seus clientes, 
+    incluindo dados como denominação do produto, rentabilidade, quantidade, prazos, 
+    saldos em posição do cliente e movimentações financeiras. Não possui segregação entre 
+    pessoa natural e pessoa jurídica. Requer consentimento do cliente para todos os endpoints.  
+    A exposição se dará por cada operação de renda fixa contratada pelo cliente.
   version: 1.0.0-rc1.0
   license:
     name: Apache 2.0
@@ -22,21 +23,21 @@ servers:
   - url: 'https://apih.banco.com.br/open-banking/opendata-bank-fixed-incomes/v1'
     description: Servidor de Homologação
 tags:
-  - name: Product List
+  - name: List Products
     description: Obtém a lista de operações de Renda Fixa Bancária mantidas pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento.
-  - name: Product Identification
+  - name: Identify Product
     description: Obtém os dados da operação de Renda Fixa Bancária identificada por investmentId.
   - name: Balances
     description: Obtém a posição da operação de Renda Fixa Bancária identificada por investmentId.
   - name: Transactions
     description: Obtém as movimentações da operação de Renda Fixa Bancária identificada por investmentId.
 paths:
-  /investments:
+  /:
     get:
       tags:
-        - Product List
+        - List Products
       summary: Obtém a lista de operações de Renda Fixa Bancária mantidas pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento.
-      operationId: banktFixedIncomesGetInvestments
+      operationId: bankFixedIncomesListProduct
       description: Obtém a lista de operações de Renda Fixa Bancária mantidas pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento.
       parameters:
         - $ref: '#/components/parameters/Authorization'
@@ -81,13 +82,13 @@ paths:
             - openid
           OAuth2Security:
             - 'consent:consentId'
-            - bank_fixed_incomes
+            - bank-fixed-incomes
   '/investments/{investmentId}':
     get:
       tags:
-        - Product Identification
+        - Identify Product
       summary: Obtém os dados da operação de Renda Fixa Bancária identificada por investmentId.
-      operationId: banktFixedIncomesGetInvestmentsInvestmentId
+      operationId: bankFixedIncomesIdentifyProduct
       description: Obtém os dados da operação de Renda Fixa Bancária identificada por investmentId.
       parameters:
         - $ref: '#/components/parameters/InvestmentId'
@@ -130,13 +131,13 @@ paths:
             - openid
           OAuth2Security:
             - 'consent:consentId'
-            - bank_fixed_incomes
+            - bank-fixed-incomes
   '/investments/{investmentId}/balances':
     get:
       tags:
         - Balances
       summary: Obtém a posição da operação de Renda Fixa Bancária identificada por investmentId.
-      operationId: banktFixedIncomesGetInvestmentsInvestmentIdBalances
+      operationId: bankFixedIncomesBalances
       description: Obtém a posição da operação de Renda Fixa Bancária identificada por investmentId.
       parameters:
         - name: investmentId
@@ -144,9 +145,8 @@ paths:
           description: 'Identifica de forma única  o relacionamento do cliente com o produto, mantendo as regras de imutabilidade dentro da instituição transmissora.'
           required: true
           schema:
-            type: string
-            pattern: '^[a-zA-Z0-9][a-zA-Z0-9-]{0,99}$'
-            example: '92792126019929200000000000000000000000000'
+            type: integer
+            format: int64
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/xFapiAuthDate'
         - $ref: '#/components/parameters/xFapiCustomerIpAddress'
@@ -186,13 +186,13 @@ paths:
             - openid
           OAuth2Security:
             - 'consent:consentId'
-            - bank_fixed_incomes
+            - bank-fixed-incomes
   '/investments/{investmentId}/transactions':
     get:
       tags:
         - Transactions
       summary: Obtém as movimentações da operação de Renda Fixa Bancária identificada por investmentId.
-      operationId: banktFixedIncomesGetInvestmentsInvestmentIdTransactions
+      operationId: bankFixedIncomesProductMovement
       description: Obtém as movimentações da operação de Renda Fixa Bancária identificada por investmentId.
       parameters:
         - $ref: '#/components/parameters/InvestmentId'
@@ -238,110 +238,9 @@ paths:
             - openid
           OAuth2Security:
             - 'consent:consentId'
-            - bank_fixed_incomes
+            - bank-fixed-incomes
 components:
   schemas:
-    LockedWithAdditionalProperties:
-      type: object
-      required:
-        - errors
-      properties:
-        errors:
-          type: array
-          minItems: 1
-          maxItems: 13
-          items:
-            type: object
-            required:
-              - code
-              - title
-              - detail
-            properties:
-              code:
-                description: Código de erro específico do endpoint
-                type: string
-                pattern: '[\w\W\s]*'
-                maxLength: 255
-              title:
-                description: Título legível por humanos deste erro específico
-                type: string
-                pattern: '[\w\W\s]*'
-                maxLength: 255
-              detail:
-                description: Descrição legível por humanos deste erro específico
-                type: string
-                pattern: '[\w\W\s]*'
-                maxLength: 2048
-            additionalProperties: false
-        meta:
-          type: object
-          description: Meta informações referente a API requisitada.
-          required:
-            - totalRecords
-            - totalPages
-            - requestDateTime
-          properties:
-            totalRecords:
-              type: integer
-              format: int32
-              description: Número total de registros no resultado
-              example: 1
-            totalPages:
-              type: integer
-              format: int32
-              description: Número total de páginas no resultado
-              example: 1
-            requestDateTime:
-              description: 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.'
-              type: string
-              maxLength: 20
-              format: date-time
-              example: '2021-05-21T08:30:00Z'
-          additionalProperties: false
-      additionalProperties: false
-    ResponseError:
-      type: object
-      required:
-        - errors
-      properties:
-        errors:
-          type: array
-          minItems: 1
-          maxItems: 13
-          items:
-            type: object
-            required:
-              - code
-              - title
-              - detail
-            properties:
-              code:
-                description: Código de erro específico do endpoint
-                type: string
-                pattern: '[\w\W\s]*'
-                maxLength: 255
-              title:
-                description: Título legível por humanos deste erro específico
-                type: string
-                pattern: '[\w\W\s]*'
-                maxLength: 255
-              detail:
-                description: Descrição legível por humanos deste erro específico
-                type: string
-                pattern: '[\w\W\s]*'
-                maxLength: 2048
-        meta:
-          type: object
-          description: Meta informações referente à API requisitada.
-          required:
-            - requestDateTime
-          properties:
-            requestDateTime:
-              description: 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.'
-              type: string
-              maxLength: 20
-              format: date-time
-              example: '2021-05-21T08:30:00Z'
     ResponseBankFixedIncomeListProduct:
       type: object
       required:
@@ -425,7 +324,8 @@ components:
           properties:
             amount:
               type: string
-              maxLength: 23
+              format: double
+              maxLength: 25
               pattern: '^-?\d{1,15}\.\d{2,8}$'
               example: '1000.000004'
               description: Valor relacionado ao objeto.
@@ -451,7 +351,6 @@ components:
           type: string
           maxLength: 30
           pattern: '[\w\W-]*'
-          example: CDB421GPXXX
           description: Código de registro do ativo na clearing.
         purchaseDate:
           type: string
@@ -472,7 +371,7 @@ components:
       additionalProperties: false
     EnumInvestmentType:
       type: string
-      description: 'Especificação do ativo em questão (CDB/RDB, LCI ou LCA)'
+      description: 'Especificação do ativo em questão (CDB, RDB, LCI ou LCA)'
       enum:
         - CDB
         - RDB
@@ -498,7 +397,7 @@ components:
       example: CDI
     Remuneration:
       type: object
-      description: Distribuição por frequência.
+      description: Objeto para detalhamento de remuneração do titulo.
       required:
         - rateType
         - ratePeriodicity
@@ -507,7 +406,8 @@ components:
       properties:
         preFixedRate:
           type: string
-          pattern: '^\d{1}\.\d{1,6}$'
+          format: double
+          pattern: '^\d{1}\.\d{6}$'
           maxLength: 8
           minLength: 8
           example: '0.300000'
@@ -516,10 +416,11 @@ components:
 
             O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros(representação de porcentagem p.ex: 0.150000. Este valor representa 15%. O valor 1 representa 100%).  
 
-            [Restrição] Campo de preenchimento obrigatório pelas  participantes quando houver 'PRE_FIXADO' no campo 'Indexador'.
+            [Restrição] Campo de preenchimento obrigatório pelas  participantes quando houver 'PRE_FIXADO' no campo 'indexer'.
         postFixedIndexerPercentage:
           type: string
-          pattern: '^\d{1}\.\d{1,6}$'
+          format: double
+          pattern: '^\d{1}\.\d{6}$'
           maxLength: 8
           minLength: 8
           example: '1.100000'
@@ -528,7 +429,7 @@ components:
 
             O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros(representação de porcentagem p.ex: 0.150000. Este valor representa 15%. O valor 1 representa 100%).
 
-            [Restrição] Campo de preenchimento obrigatório pelas  participantes quando o campo 'Indexador' for preenchido de forma diferente de 'PRE_FIXADO'.
+            [Restrição] Campo de preenchimento obrigatório pelas  participantes quando o campo 'indexer' for preenchido de forma diferente de 'PRE_FIXADO'.
         rateType:
           $ref: '#/components/schemas/EnumRateType'
         ratePeriodicity:
@@ -542,7 +443,7 @@ components:
           description: |
             Informações adicionais do indexador
 
-            [Restrição] Campo de preenchimento obrigatório pelas participantes quando houver 'Outros' no campo 'Indexador'.
+            [Restrição] Campo de preenchimento obrigatório pelas participantes quando houver 'Outros' no campo 'indexer'.
           maxLength: 50
           example: Dólar
           pattern: '[\w\W\s]*'
@@ -562,7 +463,7 @@ components:
       enum:
         - MENSAL
         - ANUAL
-        - DIÁRIO
+        - DIARIO
         - SEMESTRAL
       example: MENSAL
     EnumCalculation:
@@ -672,13 +573,15 @@ components:
           properties:
             amount:
               type: string
+              format: double
               maxLength: 25
               pattern: '^-?\d{1,15}\.\d{2,8}$'
-              example: '1000.000004'
+              example: '1000.04'
             currency:
               $ref: '#/components/schemas/CurrencyCode'
         transactionQuantity:
           type: string
+          format: double
           maxLength: 24
           pattern: '^\d{1,15}\.\d{2,8}$'
           example: '42.25'
@@ -692,9 +595,10 @@ components:
           properties:
             amount:
               type: string
+              format: double
               maxLength: 21
               pattern: '^-?\d{1,15}\.\d{2,4}$'
-              example: '1000.0004'
+              example: '1000.04'
             currency:
               $ref: '#/components/schemas/CurrencyCode'
         incomeTax:
@@ -709,9 +613,10 @@ components:
           properties:
             amount:
               type: string
+              format: double
               maxLength: 21
               pattern: '^-?\d{1,15}\.\d{2,4}$'
-              example: '1000.0004'
+              example: '1000.04'
             currency:
               $ref: '#/components/schemas/CurrencyCode'
         financialTransactionTax:
@@ -726,9 +631,11 @@ components:
           properties:
             amount:
               type: string
+              format: double
               maxLength: 21
               pattern: '^-?\d{1,15}\.\d{2,4}$'
-              example: '1000.0004'
+              example: '1000.04'
+              description: Valor relacionado ao objeto.
             currency:
               $ref: '#/components/schemas/CurrencyCode'
         transactionNetValue:
@@ -740,13 +647,16 @@ components:
           properties:
             amount:
               type: string
+              format: double
               maxLength: 21
               pattern: '^-?\d{1,15}\.\d{2,4}$'
-              example: '1000.0004'
+              example: '1000.04'
+              description: Valor relacionado ao objeto.
             currency:
               $ref: '#/components/schemas/CurrencyCode'
-        TransactionRate:
+        remunerationTransactionRate:
           type: string
+          format: double
           maxLength: 8
           minLength: 3
           pattern: '^\d{1}\.\d{1,6}$'
@@ -755,14 +665,15 @@ components:
             Taxa de remuneração da transação.
 
             [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'tipo da movimentação' for preenchido com o valor  'ENTRADA'.
-        IndexerPercentage:
+        indexerPercentage:
           type: string
+          format: double
           maxLength: 8
           minLength: 3
           pattern: '^\d{1}\.\d{1,6}$'
           example: '1.100000'
           description: |
-            Percentual máximo do indexador na transação acordado com o cliente na contratação.
+            Percentual máximo do indexador acordado com o cliente na contratação.
 
             [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'tipo da movimentação' for preenchido com o valor  'ENTRADA'.
         transactionId:
@@ -777,7 +688,7 @@ components:
       description: 'Tipo de movimentação na visão de investimento (entrada ou saída) . (Nos casos de motivo de pagamento  "pagamento de juros" e "amortização", fica convencionado que será considerado que o tipo de movimento será saída).'
       enum:
         - ENTRADA
-        - SAIDA
+        - SAÍDA
       example: ENTRADA
     EnumBankFixedIncomeTransactionType:
       type: string
@@ -807,9 +718,10 @@ components:
     BalanceAmount:
       description: Valor relacionado ao objeto.
       type: string
-      maxLength: 23
-      pattern: '^-?\d{1,15}\.\d{2,6}$'
-      example: '1000.000004'
+      format: double
+      maxLength: 21
+      pattern: '^-?\d{1,15}\.\d{2,4}$'
+      example: '1000.0004'
     ResponseBankFixedIncomeBalances:
       type: object
       required:
@@ -821,7 +733,7 @@ components:
           type: object
           description: Lista de títulos de renda fixa bancária mantidos pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento
           required:
-            - referenceDateTime
+            - referenceDate
             - updatedUnitPrice
             - grossAmount
             - netAmount
@@ -834,30 +746,32 @@ components:
               type: string
               format: date-time
               description: 'data e hora da última posição consolidada disponível a que se referem os dados transacionais do cliente disponíveis nos canais eletrônicos; Na representação data deve se considerar os minutos e segundos como zero (00:00:00Z).'
-              pattern: '(^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$)'
+              pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
               example: '2022-07-21T17:32:00Z'
               maxLength: 20
+            quantity:
+              type: string
+              format: double
+              description: Quantidade de títulos detidos na data da posição do cliente
+              maxLength: 24
+              pattern: '^\d{1,15}\.\d{2,8}$'
+              example: '1000.0004'
             updatedUnitPrice:
               type: object
               required:
                 - amount
                 - currency
-              description: 'Número completo do CNPJ da instituição responsável pelo Cadastro - o CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica. Deve-se ter apenas os números do CNPJ, sem máscara.'
+              description: Valor bruto unitário atualizado na data de referência.
               properties:
                 amount:
                   description: Valor relacionado ao objeto.
                   type: string
+                  format: double
                   maxLength: 25
                   pattern: '^-?\d{1,15}\.\d{2,8}$'
                   example: '1000.000004'
                 currency:
                   $ref: '#/components/schemas/BalanceCurrency'
-                quantity:
-                  type: string
-                  description: Quantidade de títulos detidos na data da posição do cliente
-                  maxLength: 24
-                  pattern: '^\d{1,15}\.\d{2,8}$'
-                  example: '15.00'
             grossAmount:
               description: Valor do investimento que se refere a quantidade multiplicado pelo PU atualizado na data de referência;
               type: object
@@ -896,7 +810,7 @@ components:
               required:
                 - amount
                 - currency
-              description: Valor do imposto considerando a alíquota vigente na data de referência.
+              description: Valor do imposto (IOF) considerando a alíquota vigente na data de referência.
               properties:
                 amount:
                   $ref: '#/components/schemas/BalanceAmount'
@@ -923,6 +837,7 @@ components:
                 amount:
                   description: Valor relacionado ao objeto.
                   type: string
+                  format: double
                   maxLength: 25
                   pattern: '^-?\d{1,15}\.\d{2,8}$'
                   example: '1000.000004'
@@ -930,22 +845,24 @@ components:
                   $ref: '#/components/schemas/BalanceCurrency'
             preFixedRate:
               type: string
+              format: double
               description: |
                 Taxa de remuneração acordada com o cliente na contratação. Em casos de produtos progressivos, considerar taxa vigente.  p.ex. 0.014500.
                 O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros(representação de porcentagem p.ex: 0.150000. Este valor representa 15%. O valor 1 representa 100%).
 
-                [Restrição] Campo de preenchimento obrigatório pelas  participantes quando houver 'PRE_FIXADO' no campo 'Indexador'.
+                [Restrição] Campo de preenchimento obrigatório pelas  participantes quando houver 'PRE_FIXADO' no campo 'indexer'.
               pattern: '^\d{1}\.\d{6}$'
               maxLength: 8
               minLength: 8
               example: '0.300000'
             postFixedIndexerPercentage:
               type: string
+              format: double
               description: |
                 Percentual do indexador acordado com o  cliente na contratação. Em casos de produtos progressivos, considerar taxa vigente.  p.ex. 0.014500.
                 O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros(representação de porcentagem p.ex: 0.150000. Este valor representa 15%. O valor 1 representa 100%).
 
-                [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'Indexador' for preenchido de forma diferente de 'PRE_FIXADO'.
+                [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'indexer' for preenchido de forma diferente de 'PRE_FIXADO'.
               pattern: '^\d{1}\.\d{6}$'
               maxLength: 8
               minLength: 8
@@ -978,7 +895,6 @@ components:
         type: string
         pattern: '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
         maxLength: 100
-        example: '92792126019929200000000000000000000000000'
     Authorization:
       name: Authorization
       in: header
@@ -1049,8 +965,8 @@ components:
     xFapiInteractionId:
       name: x-fapi-interaction-id
       in: header
-      description: 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.'
-      required: false
+      description: Campo de envio obrigatório pela receptora (client) e o seu valor deve ser reproduzido pela transmissora (server) na resposta. Deve ser um UUID RFC4122 usado como um ID de correlação.
+      required: true
       schema:
         type: string
         pattern: '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
@@ -1112,148 +1028,245 @@ components:
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: '#/components/schemas/ResponseError'
+            $ref: '#/components/responses/Locked/content/application~1json%3B%20charset%3Dutf-8/schema'
     Forbidden:
       description: O token tem escopo incorreto ou uma política de segurança foi violada
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: '#/components/schemas/ResponseError'
+            $ref: '#/components/responses/Locked/content/application~1json%3B%20charset%3Dutf-8/schema'
     GatewayTimeout:
       description: GATEWAY TIMEOUT - A requisição não foi atendida dentro do tempo limite estabelecido
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: '#/components/schemas/ResponseError'
+            $ref: '#/components/responses/Locked/content/application~1json%3B%20charset%3Dutf-8/schema'
     InternalServerError:
       description: Ocorreu um erro no gateway da API ou no microsserviço
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: '#/components/schemas/ResponseError'
+            $ref: '#/components/responses/Locked/content/application~1json%3B%20charset%3Dutf-8/schema'
     Locked:
       description: Locked
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: '#/components/schemas/ResponseError'
+            type: object
+            required:
+              - errors
+            properties:
+              errors:
+                type: array
+                minItems: 1
+                maxItems: 13
+                items:
+                  type: object
+                  required:
+                    - code
+                    - title
+                    - detail
+                  properties:
+                    code:
+                      description: Código de erro específico do endpoint
+                      type: string
+                      pattern: '[\w\W\s]*'
+                      maxLength: 255
+                    title:
+                      description: Título legível por humanos deste erro específico
+                      type: string
+                      pattern: '[\w\W\s]*'
+                      maxLength: 255
+                    detail:
+                      description: Descrição legível por humanos deste erro específico
+                      type: string
+                      pattern: '[\w\W\s]*'
+                      maxLength: 2048
+              meta:
+                type: object
+                description: Meta informações referente à API requisitada.
+                required:
+                  - requestDateTime
+                properties:
+                  requestDateTime:
+                    description: 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.'
+                    type: string
+                    maxLength: 20
+                    format: date-time
+                    example: '2021-05-21T08:30:00Z'
     MethodNotAllowed:
       description: O consumidor tentou acessar o recurso com um método não suportado
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: '#/components/schemas/ResponseError'
+            $ref: '#/components/responses/Locked/content/application~1json%3B%20charset%3Dutf-8/schema'
     NotAcceptable:
       description: A solicitação continha um cabeçalho Accept diferente dos tipos de mídia permitidos ou um conjunto de caracteres diferente de UTF-8
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: '#/components/schemas/ResponseError'
+            $ref: '#/components/responses/Locked/content/application~1json%3B%20charset%3Dutf-8/schema'
     NotFound:
       description: O recurso solicitado não existe ou não foi implementado
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: '#/components/schemas/ResponseError'
+            $ref: '#/components/responses/Locked/content/application~1json%3B%20charset%3Dutf-8/schema'
     TooManyRequests:
       description: 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido'
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: '#/components/schemas/ResponseError'
+            $ref: '#/components/responses/Locked/content/application~1json%3B%20charset%3Dutf-8/schema'
     Unauthorized:
       description: Cabeçalho de autenticação ausente/inválido ou token inválido
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: '#/components/schemas/ResponseError'
+            $ref: '#/components/responses/Locked/content/application~1json%3B%20charset%3Dutf-8/schema'
     UnprocessableEntity:
       description: 'A sintaxe da requisição esta correta, mas não foi possível processar as instruções presentes.'
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: '#/components/schemas/ResponseError'
+            $ref: '#/components/responses/Locked/content/application~1json%3B%20charset%3Dutf-8/schema'
     SiteIsOverloaded:
       description: 'O site está sobrecarregado e a operação foi recusada, pois foi atingido o limite máximo de TPS global, neste momento.'
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: '#/components/schemas/ResponseError'
+            $ref: '#/components/responses/Locked/content/application~1json%3B%20charset%3Dutf-8/schema'
     BadRequestWithAdditionalProperties:
       description: 'A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.'
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: '#/components/schemas/LockedWithAdditionalProperties'
+            $ref: '#/components/responses/LockedWithAdditionalProperties/content/application~1json%3B%20charset%3Dutf-8/schema'
     ForbiddenWithAdditionalProperties:
       description: O token tem escopo incorreto ou uma política de segurança foi violada
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: '#/components/schemas/LockedWithAdditionalProperties'
+            $ref: '#/components/responses/LockedWithAdditionalProperties/content/application~1json%3B%20charset%3Dutf-8/schema'
     GatewayTimeoutWithAdditionalProperties:
       description: GATEWAY TIMEOUT - A requisição não foi atendida dentro do tempo limite estabelecido
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: '#/components/schemas/LockedWithAdditionalProperties'
+            $ref: '#/components/responses/LockedWithAdditionalProperties/content/application~1json%3B%20charset%3Dutf-8/schema'
     InternalServerErrorWithAdditionalProperties:
       description: Ocorreu um erro no gateway da API ou no microsserviço
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: '#/components/schemas/LockedWithAdditionalProperties'
+            $ref: '#/components/responses/LockedWithAdditionalProperties/content/application~1json%3B%20charset%3Dutf-8/schema'
     LockedWithAdditionalProperties:
       description: Locked
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: '#/components/schemas/LockedWithAdditionalProperties'
+            type: object
+            required:
+              - errors
+            properties:
+              errors:
+                type: array
+                minItems: 1
+                maxItems: 13
+                items:
+                  type: object
+                  required:
+                    - code
+                    - title
+                    - detail
+                  properties:
+                    code:
+                      description: Código de erro específico do endpoint
+                      type: string
+                      pattern: '[\w\W\s]*'
+                      maxLength: 255
+                    title:
+                      description: Título legível por humanos deste erro específico
+                      type: string
+                      pattern: '[\w\W\s]*'
+                      maxLength: 255
+                    detail:
+                      description: Descrição legível por humanos deste erro específico
+                      type: string
+                      pattern: '[\w\W\s]*'
+                      maxLength: 2048
+                  additionalProperties: false
+              meta:
+                type: object
+                description: Meta informações referente a API requisitada.
+                required:
+                  - totalRecords
+                  - totalPages
+                  - requestDateTime
+                properties:
+                  totalRecords:
+                    type: integer
+                    format: int32
+                    description: Número total de registros no resultado
+                    example: 1
+                  totalPages:
+                    type: integer
+                    format: int32
+                    description: Número total de páginas no resultado
+                    example: 1
+                  requestDateTime:
+                    description: 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.'
+                    type: string
+                    maxLength: 20
+                    format: date-time
+                    example: '2021-05-21T08:30:00Z'
+                additionalProperties: false
+            additionalProperties: false
     MethodNotAllowedWithAdditionalProperties:
       description: O consumidor tentou acessar o recurso com um método não suportado
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: '#/components/schemas/LockedWithAdditionalProperties'
+            $ref: '#/components/responses/LockedWithAdditionalProperties/content/application~1json%3B%20charset%3Dutf-8/schema'
     NotAcceptableWithAdditionalProperties:
       description: A solicitação continha um cabeçalho Accept diferente dos tipos de mídia permitidos ou um conjunto de caracteres diferente de UTF-8
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: '#/components/schemas/LockedWithAdditionalProperties'
+            $ref: '#/components/responses/LockedWithAdditionalProperties/content/application~1json%3B%20charset%3Dutf-8/schema'
     NotFoundWithAdditionalProperties:
       description: O recurso solicitado não existe ou não foi implementado
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: '#/components/schemas/LockedWithAdditionalProperties'
+            $ref: '#/components/responses/LockedWithAdditionalProperties/content/application~1json%3B%20charset%3Dutf-8/schema'
     TooManyRequestsWithAdditionalProperties:
       description: 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido'
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: '#/components/schemas/LockedWithAdditionalProperties'
+            $ref: '#/components/responses/LockedWithAdditionalProperties/content/application~1json%3B%20charset%3Dutf-8/schema'
     UnauthorizedWithAdditionalProperties:
       description: Cabeçalho de autenticação ausente/inválido ou token inválido
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: '#/components/schemas/LockedWithAdditionalProperties'
+            $ref: '#/components/responses/LockedWithAdditionalProperties/content/application~1json%3B%20charset%3Dutf-8/schema'
     UnprocessableEntityWithAdditionalProperties:
       description: 'A sintaxe da requisição esta correta, mas não foi possível processar as instruções presentes.'
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: '#/components/schemas/LockedWithAdditionalProperties'
+            $ref: '#/components/responses/LockedWithAdditionalProperties/content/application~1json%3B%20charset%3Dutf-8/schema'
     DefaultWithAdditionalProperties:
       description: Erro inesperado.
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: '#/components/schemas/LockedWithAdditionalProperties'
+            $ref: '#/components/responses/LockedWithAdditionalProperties/content/application~1json%3B%20charset%3Dutf-8/schema'
     SiteIsOverloadedWithAdditionalProperties:
       description: 'O site está sobrecarregado e a operação foi recusada, pois foi atingido o limite máximo de TPS global, neste momento.'
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: '#/components/schemas/LockedWithAdditionalProperties'
+            $ref: '#/components/responses/LockedWithAdditionalProperties/content/application~1json%3B%20charset%3Dutf-8/schema'
