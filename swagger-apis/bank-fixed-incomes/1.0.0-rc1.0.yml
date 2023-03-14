@@ -439,10 +439,10 @@ components:
                 amount:
                   description: Valor relacionado ao objeto.
                   type: string
-                  format: double
                   maxLength: 25
                   pattern: '^-?\d{1,15}\.\d{2,8}$'
                   example: '1000.000004'
+                  format: double
                 currency:
                   $ref: '#/components/schemas/BalanceCurrency'
             grossAmount:
@@ -881,8 +881,7 @@ components:
         incomeTax:
           type: object
           description: |
-            Valor do imposto de renda recolhido na transação.
-
+            Valor do imposto de renda recolhido na transação.  
             [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'tipo da movimentação' for preenchido com o valor  'SAIDA'.
           required:
             - amount
@@ -899,8 +898,7 @@ components:
         financialTransactionTax:
           type: object
           description: |
-            Valor do IOF recolhido na transação.
-
+            Valor do IOF recolhido na transação.  
             [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'tipo da movimentação' for preenchido com o valor  'SAIDA'.
           required:
             - amount
@@ -1093,7 +1091,7 @@ components:
     xFapiInteractionId:
       name: x-fapi-interaction-id
       in: header
-      description: Um UUID RFC4122 usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser "espelhado" pela transmissora (server) no cabeçalho de resposta.
+      description: Campo de envio obrigatório pela receptora (client) e o seu valor deve ser reproduzido pela transmissora (server) na resposta. Deve ser um UUID RFC4122 usado como um ID de correlação.
       required: true
       schema:
         type: string
