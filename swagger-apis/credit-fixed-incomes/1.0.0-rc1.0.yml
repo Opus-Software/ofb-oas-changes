@@ -32,8 +32,8 @@ paths:
       tags:
         - Product List
       summary: Obtém a lista de operações de Renda Fixa Crédito mantidas pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento.
-      operationId: creditFixedIncomesGetInvestments
-      description: Obtém a lista de operações de Renda Fixa Crédito mantidas pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento.        -
+      operationId: creditFixedIncomesProductList
+      description: Obtém a lista de operações de Renda Fixa Crédito mantidas pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento.
       parameters:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/xFapiAuthDate'
@@ -375,7 +375,7 @@ components:
             incomeTax:
               type: object
               description: |
-                Valor do imposto de renda recolhido na transação.               
+                Valor do imposto de renda recolhido na transação.
                 [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'type' for preenchido com o valor 'SAIDA'.
               required:
                 - amount
@@ -394,8 +394,8 @@ components:
             financialTransactionTax:
               type: object
               description: |
-                Valor do IOF recolhido na transação.                  
-                [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'type' for preenchido com o valor 'SAIDA'. 
+                Valor do IOF recolhido na transação.
+                [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'type' for preenchido com o valor 'SAIDA'.
               required:
                 - amount
                 - currency
@@ -487,7 +487,7 @@ components:
         debtorName:
           type: string
           description: |
-            Nome do devedor (condicional para CRI e CRA)  
+            Nome do devedor (condicional para CRI e CRA)
             [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'investmentType' for igual a "CRI" ou "CRA".
           pattern: '[\w\W\s]*'
           maxLength: 70
@@ -749,7 +749,7 @@ components:
           $ref: '#/components/schemas/Currency'
     GrossAmount:
       type: object
-      description: valor do investimento que se refere a quantidade x PU atualizado na data de referência
+      description: valor do investimento que se refere a quantidade x PU atualizado na data de referência;
       required:
         - amount
         - currency
@@ -927,22 +927,18 @@ components:
       type: string
       description: |
         Taxa de remuneração acordada com o cliente na contratação  
-        [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'type' for preenchido com o valor 'ENTRADA'.
+        [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'tipo da movimentação' for preenchido com o valor 'ENTRADA'.
       maxLength: 8
       pattern: '^\d{1}\.\d{6}$'
       example: '0.300000'
     TransactionDate:
       type: string
-      format: date
       description: Data da movimentação
       maxLength: 10
       pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
       example: '2018-02-15'
     TransactionGrossValue:
       type: object
-      required:
-        - amount
-        - currency
       description: 'Valor bruto da transação (Preço unitário da movimentação x Quantidade) '
       properties:
         amount:
@@ -958,7 +954,7 @@ components:
     TransactionId:
       type: string
       description: |
-        Código ou identificador único prestado pela instituição para individualizar o movimento.  
+        Código ou identificador único prestado pela instituição para individualizar o movimento
         [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'type' for preenchido com o valor 'ENTRADA'.
       maxLength: 100
       pattern: '^[a-zA-Z0-9][a-zA-Z0-9-]{0,99}$'
@@ -980,7 +976,7 @@ components:
     TransactionQuantity:
       type: string
       description: Quantidade de títulos envolvidos na movimentação
-      maxLength: 25
+      maxLength: 24
       pattern: '^\d{1,15}\.\d{2,8}$'
       example: '42.25'
     TransactionType:
@@ -1091,7 +1087,6 @@ components:
           4. Anual
           5. Irregular
           6. Outros
-            
         [Restrição] Campo de preenchimento obrigatório pelos participantes quando houver 'SIM' no campo indicativo de pagamento de cupom 'voucherPaymentIndicator'.
       enum:
         - MENSAL
@@ -1242,7 +1237,7 @@ components:
     xFapiInteractionId:
       name: x-fapi-interaction-id
       in: header
-      description: Um UUID RFC4122 usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser "espelhado" pela transmissora (server) no cabeçalho de resposta.
+      description: Campo de envio obrigatório pela receptora (client) e o seu valor deve ser reproduzido pela transmissora (server) na resposta.
       required: true
       schema:
         type: string
