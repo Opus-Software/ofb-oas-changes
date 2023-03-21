@@ -249,8 +249,8 @@ paths:
         - $ref: '#/components/parameters/page'
         - $ref: '#/components/parameters/pageSize'
         - $ref: '#/components/parameters/pagination-key'
-        - $ref: '#/components/parameters/fromTransactionDateCurrent'
-        - $ref: '#/components/parameters/toTransactionDateCurrent'
+        - $ref: '#/components/parameters/fromTransactionDate'
+        - $ref: '#/components/parameters/toTransactionDate'
       responses:
         '200':
           $ref: '#/components/responses/ResponseCreditFixedIncomesTransactionsCurrent'
@@ -297,7 +297,6 @@ components:
       properties:
         data:
           type: array
-          minItems: 0
           items:
             $ref: '#/components/schemas/CreditFixedList'
         links:
@@ -390,7 +389,6 @@ components:
       properties:
         data:
           type: array
-          minItems: 0
           items:
             $ref: '#/components/schemas/CreditFixedIncomesTransactions'
         links:
@@ -406,7 +404,6 @@ components:
       properties:
         data:
           type: array
-          minItems: 0
           items:
             type: object
             required:
@@ -1184,7 +1181,7 @@ components:
     TransactionQuantity:
       type: string
       description: Quantidade de títulos envolvidos na movimentação
-      maxLength: 25
+      maxLength: 24
       pattern: '^\d{1,15}\.\d{2,8}$'
       example: '42.25'
     TransactionType:
@@ -1271,7 +1268,7 @@ components:
           pattern: '^\d{1,15}\.\d{2,8}$'
           maxLength: 24
           minLength: 4
-          example: '-1000.0400'
+          example: '1000.0400'
           description: Valor relacionado ao objeto.
         currency:
           $ref: '#/components/schemas/Currency'
@@ -1521,29 +1518,9 @@ components:
         format: date
         example: '2022-12-31'
     fromTransactionDateCurrent:
-      name: fromTransactionDate
-      description: |
-        Data inicial de filtragem. O período máximo utilizado no filtro é de 7 dias inclusive (D-6).       
-        [Restrição] Deve obrigatoriamente ser enviado caso o campo toTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
-      required: false
-      in: query
-      schema:
-        type: string
-        maxLength: 10
-        format: date
-        example: '2023-02-01'
+      $ref: '#/components/parameters/fromTransactionDate'
     toTransactionDateCurrent:
-      name: toTransactionDate
-      description: |
-        Data final de filtragem. O período máximo utilizado no filtro é de 7 dias inclusive (D-6).       
-        [Restrição] Deve obrigatoriamente ser enviado caso o campo fromTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
-      required: false
-      in: query
-      schema:
-        type: string
-        maxLength: 10
-        format: date
-        example: '2023-02-01'
+      $ref: '#/components/parameters/toTransactionDate'
   securitySchemes:
     OpenId:
       type: openIdConnect
