@@ -52,6 +52,8 @@ Já as demais instituições participantes do Open Finance autorizadas a operar 
 - Ambos do tipo string;
 - Ambos obrigatórios.
 '
+  - Modified response: 429
+    - Description changed from 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido' to 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite de requisições concorrentes foi atingido.'
 GET /vet-values
 - Description changed from 'Método para disponibilizar o valor VET.<br>O retorno, embora não especificado, deve abranger a classificação do tipo de operação, conforme a circular BCB n&#186; 3690 de 16/12/2013 com os seguintes items&#58;<br><ol><li>Comércio exterior</li><li>Transporte</li><li>Seguros</li><li>Viagens internacionais</li><li>Transferências unilaterais</li><li>Serviços diversos</li><li>Rendas de capitais</li><li>Capitais brasileiros</li><li>Capitais estrangeiros</li><li>Prestação de serviço de pagamento ou transferência internacional - EFX</li></ol>' to 'Método para disponibilizar os VETs praticados pela instituição nas operações de câmbio, agrupados por tipo de operação (compra ou venda), moeda, forma de entrega, faixas de valores e público-alvo (pessoa física, pessoa jurídica ou ambos).'
 - Responses changed
@@ -101,12 +103,10 @@ Normativa BCB 184, de 12 Novembro de 2021.
                     - Properties changed
                       - Modified property: maximum
                         - MinLength changed from 0 to 8
-                        - MaxLength changed from 8 to 22
-                        - Pattern changed from '^\d{1}\.\d{1,6}$' to '^\d{1,5}\.\d{6}$'
+                        - Pattern changed from '^\d{1}\.\d{1,6}$' to '^\d{1}\.\d{6}$'
                       - Modified property: minimum
                         - MinLength changed from 0 to 8
-                        - MaxLength changed from 8 to 22
-                        - Pattern changed from '^\d{1}\.\d{1,6}$' to '^\d{1,5}\.\d{6}$'
+                        - Pattern changed from '^\d{1}\.\d{1,6}$' to '^\d{1}\.\d{6}$'
                       - Modified property: prices
                         - Example changed from [map[customerRate:0.500000 interval:1_FAIXA value:0.020300] map[customerRate:0.100000 interval:2_FAIXA value:0.030600] map[customerRate:0.300000 interval:3_FAIXA value:0.034300] map[customerRate:0.100000 interval:4_FAIXA value:0.246800]] to [map[interval:1_FAIXA operationRate:0.500000 value:0.020300] map[interval:2_FAIXA operationRate:0.100000 value:0.030600] map[interval:3_FAIXA operationRate:0.300000 value:0.034300] map[interval:4_FAIXA operationRate:0.100000 value:0.246800]]
                         - Items changed
@@ -119,5 +119,6 @@ Normativa BCB 184, de 12 Novembro de 2021.
                               - Pattern changed from '^\d{1}\.\d{1,6}$' to '^\d{1}\.\d{6}$'
                             - Modified property: value
                               - MinLength changed from 0 to 8
-                              - MaxLength changed from 8 to 22
-                              - Pattern changed from '^\d{1}\.\d{1,6}$' to '^\d{1,5}\.\d{6}$'
+                              - Pattern changed from '^\d{1}\.\d{1,6}$' to '^\d{1}\.\d{6}$'
+  - Modified response: 429
+    - Description changed from 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido' to 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite de requisições concorrentes foi atingido.'
