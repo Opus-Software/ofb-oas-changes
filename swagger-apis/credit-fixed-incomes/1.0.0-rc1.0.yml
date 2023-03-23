@@ -201,31 +201,31 @@ paths:
         '200':
           $ref: '#/components/responses/ResponseCreditFixedIncomesTransactions'
         '400':
-          $ref: '#/components/responses/BadRequest'
+          $ref: '#/components/responses/BadRequestWithAdditionalProperties'
         '401':
-          $ref: '#/components/responses/Unauthorized'
+          $ref: '#/components/responses/UnauthorizedWithAdditionalProperties'
         '403':
-          $ref: '#/components/responses/Forbidden'
+          $ref: '#/components/responses/ForbiddenWithAdditionalProperties'
         '404':
-          $ref: '#/components/responses/NotFound'
+          $ref: '#/components/responses/NotFoundWithAdditionalProperties'
         '405':
-          $ref: '#/components/responses/MethodNotAllowed'
+          $ref: '#/components/responses/MethodNotAllowedWithAdditionalProperties'
         '406':
-          $ref: '#/components/responses/NotAcceptable'
+          $ref: '#/components/responses/NotAcceptableWithAdditionalProperties'
         '422':
-          $ref: '#/components/responses/UnprocessableEntity'
+          $ref: '#/components/responses/UnprocessableEntityWithAdditionalProperties'
         '423':
-          $ref: '#/components/responses/Locked'
+          $ref: '#/components/responses/LockedWithAdditionalProperties'
         '429':
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: '#/components/responses/TooManyRequestsWithAdditionalProperties'
         '500':
-          $ref: '#/components/responses/InternalServerError'
+          $ref: '#/components/responses/InternalServerErrorWithAdditionalProperties'
         '504':
-          $ref: '#/components/responses/GatewayTimeout'
+          $ref: '#/components/responses/GatewayTimeoutWithAdditionalProperties'
         '529':
-          $ref: '#/components/responses/SiteIsOverloaded'
+          $ref: '#/components/responses/SiteIsOverloadedWithAdditionalProperties'
         default:
-          $ref: '#/components/responses/Default'
+          $ref: '#/components/responses/DefaultWithAdditionalProperties'
       security:
         - OpenId:
             - openid
@@ -255,31 +255,31 @@ paths:
         '200':
           $ref: '#/components/responses/ResponseCreditFixedIncomesTransactionsCurrent'
         '400':
-          $ref: '#/components/responses/BadRequest'
+          $ref: '#/components/responses/BadRequestWithAdditionalProperties'
         '401':
-          $ref: '#/components/responses/Unauthorized'
+          $ref: '#/components/responses/UnauthorizedWithAdditionalProperties'
         '403':
-          $ref: '#/components/responses/Forbidden'
+          $ref: '#/components/responses/ForbiddenWithAdditionalProperties'
         '404':
-          $ref: '#/components/responses/NotFound'
+          $ref: '#/components/responses/NotFoundWithAdditionalProperties'
         '405':
-          $ref: '#/components/responses/MethodNotAllowed'
+          $ref: '#/components/responses/MethodNotAllowedWithAdditionalProperties'
         '406':
-          $ref: '#/components/responses/NotAcceptable'
+          $ref: '#/components/responses/NotAcceptableWithAdditionalProperties'
         '422':
-          $ref: '#/components/responses/UnprocessableEntity'
+          $ref: '#/components/responses/UnprocessableEntityWithAdditionalProperties'
         '423':
-          $ref: '#/components/responses/Locked'
+          $ref: '#/components/responses/LockedWithAdditionalProperties'
         '429':
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: '#/components/responses/TooManyRequestsWithAdditionalProperties'
         '500':
-          $ref: '#/components/responses/InternalServerError'
+          $ref: '#/components/responses/InternalServerErrorWithAdditionalProperties'
         '504':
-          $ref: '#/components/responses/GatewayTimeout'
+          $ref: '#/components/responses/GatewayTimeoutWithAdditionalProperties'
         '529':
-          $ref: '#/components/responses/SiteIsOverloaded'
+          $ref: '#/components/responses/SiteIsOverloadedWithAdditionalProperties'
         default:
-          $ref: '#/components/responses/Default'
+          $ref: '#/components/responses/DefaultWithAdditionalProperties'
       security:
         - OpenId:
             - openid
@@ -457,7 +457,7 @@ components:
               transactionQuantity:
                 type: string
                 description: Quantidade de títulos envolvidos na movimentação
-                maxLength: 24
+                maxLength: 25
                 pattern: '^\d{1,15}\.\d{2,8}$'
                 example: '42.25'
               transactionGrossValue:
@@ -707,6 +707,8 @@ components:
       type: object
       description: Meta informações referente a API requisitada.
       required:
+        - totalRecords
+        - totalPages
         - requestDateTime
       properties:
         requestDateTime:
@@ -1182,7 +1184,7 @@ components:
     TransactionQuantity:
       type: string
       description: Quantidade de títulos envolvidos na movimentação
-      maxLength: 24
+      maxLength: 25
       pattern: '^\d{1,15}\.\d{2,8}$'
       example: '42.25'
     TransactionType:
@@ -1269,7 +1271,7 @@ components:
           pattern: '^\d{1,15}\.\d{2,8}$'
           maxLength: 24
           minLength: 4
-          example: '1000.0400'
+          example: '-1000.0400'
           description: Valor relacionado ao objeto.
         currency:
           $ref: '#/components/schemas/Currency'
