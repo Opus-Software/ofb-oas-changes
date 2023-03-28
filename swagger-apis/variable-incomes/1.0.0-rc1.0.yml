@@ -97,10 +97,11 @@ paths:
         default:
           $ref: '#/components/responses/Default'
       security:
-        - OAuth2AuthorizationCode:
+        - OpenId:
             - openid
+          OAuth2Security:
             - 'consent:consentId'
-            - variable-incomes
+            - accounts
   '/investments/{investmentId}':
     get:
       tags:
@@ -145,10 +146,11 @@ paths:
         default:
           $ref: '#/components/responses/Default'
       security:
-        - OAuth2AuthorizationCode:
+        - OpenId:
             - openid
+          OAuth2Security:
             - 'consent:consentId'
-            - variable-incomes
+            - accounts
   '/investments/{investmentId}/balances':
     get:
       tags:
@@ -193,10 +195,11 @@ paths:
         default:
           $ref: '#/components/responses/Default'
       security:
-        - OAuth2AuthorizationCode:
+        - OpenId:
             - openid
+          OAuth2Security:
             - 'consent:consentId'
-            - variable-incomes
+            - accounts
   '/investments/{investmentId}/transactions':
     get:
       tags:
@@ -246,10 +249,11 @@ paths:
         default:
           $ref: '#/components/responses/Default'
       security:
-        - OAuth2AuthorizationCode:
+        - OpenId:
             - openid
+          OAuth2Security:
             - 'consent:consentId'
-            - variable-incomes
+            - accounts
   '/investments/{investmentId}/transactions-current':
     get:
       tags:
@@ -299,16 +303,17 @@ paths:
         default:
           $ref: '#/components/responses/Default'
       security:
-        - OAuth2AuthorizationCode:
+        - OpenId:
             - openid
+          OAuth2Security:
             - 'consent:consentId'
-            - variable-incomes
+            - accounts
   '/investments/{investmentId}/broker-notes{brokerNoteId}':
     get:
       tags:
         - Broker Note Details
       summary: Obtém as informações da nota de negociação identificado nas movimentações de compra e venda de ativos em bolsa
-      operationId: variableIncomesGetInvestmentsInvestmentIdBrokerNotesBrokerNodeID
+      operationId: variableIncomesGetInvestmentsInvestmentIdBrokerNotesBrokerNoteId
       description: Obtém as informações da nota de negociação identificado nas movimentações de compra e venda de ativos em bolsa
       parameters:
         - $ref: '#/components/parameters/InvestmentId'
@@ -348,10 +353,11 @@ paths:
         default:
           $ref: '#/components/responses/Default'
       security:
-        - OAuth2AuthorizationCode:
+        - OpenId:
             - openid
+          OAuth2Security:
             - 'consent:consentId'
-            - variable-incomes
+            - accounts
 components:
   schemas:
     ResponseVariableIncomesProductList:
