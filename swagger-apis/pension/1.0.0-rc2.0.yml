@@ -215,19 +215,7 @@ components:
         minimumRequirement:
           $ref: '#/components/schemas/RiskPensionMinimumRequirement'
         targetAudience:
-          type: string
-          description: |
-            A considerar os domínios abaixo:
-
-              1. Pessoa Natural
-              2. Pessoa Jurídica
-              3. Ambas (Pessoa Natural e Jurídica)
-          maxLength: 23
-          enum:
-            - PESSOA_NATURAL
-            - PESSOA_JURIDICA
-            - PESSOA_NATURAL_JURIDICA
-          example: PESSOA_NATURAL
+          $ref: '#/components/schemas/EnumTargetAudience'
       additionalProperties: false
     OKResponseSurvivalCoveragePension:
       type: object
@@ -252,7 +240,9 @@ components:
         - name
         - code
         - segment
-        - type
+        - defferalPeriod
+        - grantPeriodBenefit
+        - costs
         - targetAudience
       properties:
         participant:
@@ -313,11 +303,16 @@ components:
         minimumRequirement:
           $ref: '#/components/schemas/SurvivalPensionMinimumRequirements'
         targetAudience:
-          $ref: '#/components/schemas/SurvivalPensionEnumTargetAudience'
+          $ref: '#/components/schemas/EnumTargetAudience'
       additionalProperties: false
     SurvivalPensionInvestmentFund:
       type: object
       description: Fundos de Investimento (por fundo).
+      required:
+        - cnpjNumber
+        - name
+        - maximumAdministrationFee
+        - typePerformanceFee
       properties:
         cnpjNumber:
           $ref: '#/components/schemas/CnpjNumber'
@@ -387,20 +382,21 @@ components:
       required:
         - contractType
         - participantQualified
+        - contractingMinRequirement
       properties:
         contractType:
           type: string
           maxLength: 27
           enum:
-            - COLETIVO_AVERBADO
-            - COLETIVO_INSTITUIDO
+            - COLETIVO
             - INDIVIDUAL
+            - AMBAS
           description: |
             O tipo de serviço contratado. A considerar os domínios abaixo:
             1. Coletivo Averbado;
-            2. Coletivo instituído;
-            3. Individual.
-          example: COLETIVO_AVERBADO
+            2. Individual.
+            3. Ambas
+          example: COLETIVO
         participantQualified:
           type: boolean
           description: |
@@ -429,7 +425,13 @@ components:
       type: object
       description: Período de Diferimento
       required:
-        - premiumPaymentMethods
+        - interestRate
+        - updateIndex
+        - otherMinimumPerformanceGarantees
+        - reversalFinancialResults
+        - permissionScheduledFinancialPayments
+        - redemptionPaymentTerm
+        - portabilityPaymentTerm
       properties:
         interestRate:
           type: string
@@ -656,6 +658,9 @@ components:
       description: Período de concessão do benefício
       required:
         - incomeModalities
+        - interestRate
+        - updateIndex
+        - reversalFinancialResults
       properties:
         incomeModalities:
           type: array
@@ -846,17 +851,19 @@ components:
         - QUANTIDADE_DETERMINADA_PARCELAS
         - FIM_CICLO_DETERMINADO
       example: QUANTIDADE_DETERMINADA_PARCELAS
-    SurvivalPensionEnumTargetAudience:
+    EnumTargetAudience:
       type: string
       description: |
         A considerar os domínios abaixo:
 
           1. Pessoa Natural
           2. Pessoa Jurídica
+          3. Ambas (Pessoa Natural e Jurídica)
       maxLength: 23
       enum:
         - PESSOA_NATURAL
         - PESSOA_JURIDICA
+        - PESSOA_NATURAL_JURIDICA
       example: PESSOA_NATURAL
     EnumProductModality:
       type: string

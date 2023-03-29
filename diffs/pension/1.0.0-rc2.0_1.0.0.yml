@@ -215,6 +215,11 @@ GET /survival-coverages
           - Properties changed
             - Modified property: data
               - Items changed
+                - Required changed
+                  - New required property: type
+                  - Deleted required property: costs
+                  - Deleted required property: defferalPeriod
+                  - Deleted required property: grantPeriodBenefit
                 - Properties changed
                   - Modified property: costs
                     - Properties changed
@@ -239,6 +244,15 @@ GET /survival-coverages
                             - MinLength changed from 8 to 0
                             - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
                   - Modified property: defferalPeriod
+                    - Required changed
+                      - New required property: premiumPaymentMethods
+                      - Deleted required property: interestRate
+                      - Deleted required property: otherMinimumPerformanceGarantees
+                      - Deleted required property: permissionScheduledFinancialPayments
+                      - Deleted required property: portabilityPaymentTerm
+                      - Deleted required property: redemptionPaymentTerm
+                      - Deleted required property: reversalFinancialResults
+                      - Deleted required property: updateIndex
                     - Properties changed
                       - Modified property: interestRate
                         - Example changed from '0.019800' to '0.251231'
@@ -246,6 +260,11 @@ GET /survival-coverages
                         - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
                       - Modified property: investmentFunds
                         - Items changed
+                          - Required changed
+                            - Deleted required property: cnpjNumber
+                            - Deleted required property: maximumAdministrationFee
+                            - Deleted required property: name
+                            - Deleted required property: typePerformanceFee
                           - Properties changed
                             - Modified property: cnpjNumber
                               - Pattern changed from '^\d{14}$' to '\d{14}$'
@@ -273,6 +292,9 @@ GET /survival-coverages
                   - Modified property: grantPeriodBenefit
                     - Required changed
                       - New required property: biometricTable
+                      - Deleted required property: interestRate
+                      - Deleted required property: reversalFinancialResults
+                      - Deleted required property: updateIndex
                     - Properties changed
                       - Modified property: biometricTable
                         - MinItems changed from 0 to 1
@@ -282,6 +304,11 @@ GET /survival-coverages
                         - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
                       - Modified property: investmentFunds
                         - Items changed
+                          - Required changed
+                            - Deleted required property: cnpjNumber
+                            - Deleted required property: maximumAdministrationFee
+                            - Deleted required property: name
+                            - Deleted required property: typePerformanceFee
                           - Properties changed
                             - Modified property: cnpjNumber
                               - Pattern changed from '^\d{14}$' to '\d{14}$'
@@ -302,20 +329,8 @@ GET /survival-coverages
                       - Modified property: updateIndex
                         - Deleted enum values: [NAO_SE_APLICA]
                   - Modified property: minimumRequirement
-                    - Properties changed
-                      - Modified property: contractType
-                        - Description changed from 'O tipo de serviço contratado. A considerar os domínios abaixo:
-1. Coletivo Averbado;
-2. Coletivo instituído;
-3. Individual.
-' to 'O tipo de serviço contratado. A considerar os domínios abaixo:
-1. Coletivo Averbado;
-2. Individual.
-3. Ambas
-'
-                        - New enum values: [COLETIVO AMBAS]
-                        - Deleted enum values: [COLETIVO_AVERBADO COLETIVO_INSTITUIDO]
-                        - Example changed from 'COLETIVO_AVERBADO' to 'COLETIVO'
+                    - Required changed
+                      - Deleted required property: contractingMinRequirement
                   - Modified property: participant
                     - Description changed from 'Conjunto de informações relativas ao participante do produto de Open Finance' to 'Conjunto de informações relativas ao participante do produto de open banking'
                     - Properties changed
@@ -336,16 +351,6 @@ GET /survival-coverages
                     - Properties changed
                       - Modified property: cnpjNumber
                         - Pattern changed from '^\d{14}$' to '\d{14}$'
-                  - Modified property: targetAudience
-                    - Description changed from 'A considerar os domínios abaixo:
-  1. Pessoa Natural
-  2. Pessoa Jurídica
-' to 'A considerar os domínios abaixo:
-  1. Pessoa Natural
-  2. Pessoa Jurídica
-  3. Ambas (Pessoa Natural e Jurídica)
-'
-                    - New enum values: [PESSOA_NATURAL_JURIDICA]
                   - Modified property: termsAndConditions
                     - Items changed
                       - Properties changed
