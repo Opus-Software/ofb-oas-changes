@@ -52,6 +52,14 @@ GET /risk-coverages
                   - Modified property: minimumRequirement
                     - Required changed
                       - New required property: contractingMinRequirement
+                    - Properties changed
+                      - Modified property: contractType
+                        - Description changed from 'O tipo de serviço contratado. A considerar os domínios abaixo&#58;<br><ol><li>Coletivo Averbado</li><li>Coletivo Instituído</li><li>Individual</li></ol>' to 'O tipo de serviço contratado. A considerar os domínios abaixo:
+1. Coletivo;
+2. Individual.
+'
+                        - New enum values: [COLETIVO]
+                        - Deleted enum values: [COLETIVO_AVERBADO COLETIVO_INSTITUIDO]
                   - Modified property: otherGuaranteedValues
                     - Type changed from 'array' to 'string'
                     - Description changed from '' to '1. Saldamento
@@ -114,12 +122,6 @@ GET /survival-coverages
           - Properties changed
             - Modified property: data
               - Items changed
-                - Required changed
-                  - New required property: costs
-                  - New required property: defferalPeriod
-                  - New required property: grantPeriodBenefit
-                  - New required property: modality
-                  - Deleted required property: type
                 - Properties changed
                   - Modified property: costs
                     - Properties changed
@@ -144,15 +146,6 @@ GET /survival-coverages
                             - MinLength changed from 0 to 8
                             - Pattern changed from '^[0-1]\.\d{6}$' to '^\d{1}\.\d{6}$'
                   - Modified property: defferalPeriod
-                    - Required changed
-                      - New required property: interestRate
-                      - New required property: otherMinimumPerformanceGarantees
-                      - New required property: permissionScheduledFinancialPayments
-                      - New required property: portabilityPaymentTerm
-                      - New required property: redemptionPaymentTerm
-                      - New required property: reversalFinancialResults
-                      - New required property: updateIndex
-                      - Deleted required property: premiumPaymentMethods
                     - Properties changed
                       - Modified property: interestRate
                         - Example changed from '0.251231' to '0.019800'
@@ -160,11 +153,6 @@ GET /survival-coverages
                         - Pattern changed from '^[0-1]\.\d{6}$' to '^\d{1}\.\d{6}$'
                       - Modified property: investmentFunds
                         - Items changed
-                          - Required changed
-                            - New required property: cnpjNumber
-                            - New required property: maximumAdministrationFee
-                            - New required property: name
-                            - New required property: typePerformanceFee
                           - Properties changed
                             - Modified property: maximumAdministrationFee
                               - Example changed from '0.201000' to '0.019800'
@@ -178,13 +166,7 @@ GET /survival-coverages
                         - Example changed from '0.051230' to '0.019800'
                         - MinLength changed from 0 to 8
                         - Pattern changed from '^[0-1]\.\d{6}$' to '^\d{1}\.\d{6}$'
-                      - Modified property: updateIndex
-                        - New enum values: [NAO_SE_APLICA]
                   - Modified property: grantPeriodBenefit
-                    - Required changed
-                      - New required property: interestRate
-                      - New required property: reversalFinancialResults
-                      - New required property: updateIndex
                     - Properties changed
                       - Modified property: interestRate
                         - Example changed from '0.225222' to '0.019800'
@@ -192,11 +174,6 @@ GET /survival-coverages
                         - Pattern changed from '^[0-1]\.\d{6}$' to '^\d{1}\.\d{6}$'
                       - Modified property: investmentFunds
                         - Items changed
-                          - Required changed
-                            - New required property: cnpjNumber
-                            - New required property: maximumAdministrationFee
-                            - New required property: name
-                            - New required property: typePerformanceFee
                           - Properties changed
                             - Modified property: maximumAdministrationFee
                               - Example changed from '0.201000' to '0.019800'
@@ -210,25 +187,6 @@ GET /survival-coverages
                         - Example changed from '1.252111' to '0.019800'
                         - MinLength changed from 0 to 8
                         - Pattern changed from '^[0-1]\.\d{6}$' to '^\d{1}\.\d{6}$'
-                      - Modified property: updateIndex
-                        - New enum values: [NAO_SE_APLICA]
-                  - Modified property: minimumRequirement
-                    - Required changed
-                      - New required property: contractingMinRequirement
-                    - Properties changed
-                      - Modified property: contractType
-                        - Description changed from 'O tipo de serviço contratado. A considerar os domínios abaixo:
-1. Coletivo Averbado;
-2. Individual.
-3. Ambas
-' to 'O tipo de serviço contratado. A considerar os domínios abaixo:
-1. Coletivo Averbado;
-2. Coletivo instituído;
-3. Individual.
-'
-                        - New enum values: [COLETIVO_AVERBADO COLETIVO_INSTITUIDO]
-                        - Deleted enum values: [COLETIVO AMBAS]
-                        - Example changed from 'COLETIVO' to 'COLETIVO_AVERBADO'
                   - Modified property: participant
                     - Properties changed
                       - Modified property: urlComplementaryList
@@ -238,16 +196,6 @@ GET /survival-coverages
 - Ambos do tipo string;
 - Ambos obrigatórios.
 '
-                  - Modified property: targetAudience
-                    - Description changed from 'A considerar os domínios abaixo:
-  1. Pessoa Natural
-  2. Pessoa Jurídica
-  3. Ambas (Pessoa Natural e Jurídica)
-' to 'A considerar os domínios abaixo:
-  1. Pessoa Natural
-  2. Pessoa Jurídica
-'
-                    - Deleted enum values: [PESSOA_NATURAL_JURIDICA]
                   - Modified property: termsAndConditions
                     - Items changed
                       - Properties changed
