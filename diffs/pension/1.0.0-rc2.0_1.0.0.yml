@@ -86,13 +86,6 @@ GET /risk-coverages
                       - Deleted required property: contractingMinRequirement
                     - Properties changed
                       - Modified property: contractType
-                        - Description changed from 'O tipo de serviço contratado. A considerar os domínios abaixo:
-1. Coletivo;
-2. Individual.
-' to 'O tipo de serviço contratado. A considerar os domínios abaixo&#58;<br><ol><li>Coletivo Averbado</li><li>Coletivo Instituído</li><li>Individual</li></ol>'
-                        - New enum values: [COLETIVO_AVERBADO COLETIVO_INSTITUIDO]
-                        - Deleted enum values: [COLETIVO]
-                        - Example changed from 'COLETIVO' to 'COLETIVO_AVERBADO'
                         - MaxLength changed from null to 19
                   - Modified property: otherGuaranteedValues
                     - Type changed from 'string' to 'array'
@@ -136,15 +129,6 @@ GET /risk-coverages
                     - Required changed
                       - Deleted required property: gracePeriod
                     - Properties changed
-                      - Modified property: gracePeriod
-                        - Properties changed
-                          - Modified property: unit
-                            - Description changed from 'Informar o critério de carência para resgate:
-1. Dias;
-2. Meses;
-3. Não se aplica.
-' to 'Informar o critério de carência para a cobertura&#58;<br><ol><li>Dias</li><li>Meses</li><li>Não se aplica</li></ol>'
-                            - MaxLength changed from null to 10
                       - Modified property: table
                         - Items changed
                           - Required changed
@@ -231,6 +215,10 @@ GET /survival-coverages
           - Properties changed
             - Modified property: data
               - Items changed
+                - Required changed
+                  - Deleted required property: costs
+                  - Deleted required property: defferalPeriod
+                  - Deleted required property: grantPeriodBenefit
                 - Properties changed
                   - Modified property: costs
                     - Properties changed
@@ -255,6 +243,14 @@ GET /survival-coverages
                             - MinLength changed from 8 to 0
                             - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
                   - Modified property: defferalPeriod
+                    - Required changed
+                      - Deleted required property: interestRate
+                      - Deleted required property: otherMinimumPerformanceGarantees
+                      - Deleted required property: permissionScheduledFinancialPayments
+                      - Deleted required property: portabilityPaymentTerm
+                      - Deleted required property: redemptionPaymentTerm
+                      - Deleted required property: reversalFinancialResults
+                      - Deleted required property: updateIndex
                     - Properties changed
                       - Modified property: interestRate
                         - Example changed from '0.019800' to '0.251231'
@@ -262,6 +258,11 @@ GET /survival-coverages
                         - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
                       - Modified property: investmentFunds
                         - Items changed
+                          - Required changed
+                            - Deleted required property: cnpjNumber
+                            - Deleted required property: maximumAdministrationFee
+                            - Deleted required property: name
+                            - Deleted required property: typePerformanceFee
                           - Properties changed
                             - Modified property: cnpjNumber
                               - Pattern changed from '^\d{14}$' to '\d{14}$'
@@ -287,6 +288,9 @@ GET /survival-coverages
                   - Modified property: grantPeriodBenefit
                     - Required changed
                       - New required property: biometricTable
+                      - Deleted required property: interestRate
+                      - Deleted required property: reversalFinancialResults
+                      - Deleted required property: updateIndex
                     - Properties changed
                       - Modified property: biometricTable
                         - MinItems changed from 0 to 1
@@ -296,6 +300,11 @@ GET /survival-coverages
                         - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
                       - Modified property: investmentFunds
                         - Items changed
+                          - Required changed
+                            - Deleted required property: cnpjNumber
+                            - Deleted required property: maximumAdministrationFee
+                            - Deleted required property: name
+                            - Deleted required property: typePerformanceFee
                           - Properties changed
                             - Modified property: cnpjNumber
                               - Pattern changed from '^\d{14}$' to '\d{14}$'
@@ -313,6 +322,9 @@ GET /survival-coverages
                         - Example changed from '0.019800' to '1.252111'
                         - MinLength changed from 8 to 0
                         - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                  - Modified property: minimumRequirement
+                    - Required changed
+                      - Deleted required property: contractingMinRequirement
                   - Modified property: participant
                     - Description changed from 'Conjunto de informações relativas ao participante do produto de Open Finance' to 'Conjunto de informações relativas ao participante do produto de open banking'
                     - Properties changed
