@@ -241,9 +241,6 @@ components:
         - code
         - segment
         - type
-        - defferalPeriod
-        - grantPeriodBenefit
-        - costs
         - targetAudience
       properties:
         participant:
@@ -309,11 +306,6 @@ components:
     SurvivalPensionInvestmentFund:
       type: object
       description: Fundos de Investimento (por fundo).
-      required:
-        - cnpjNumber
-        - name
-        - maximumAdministrationFee
-        - typePerformanceFee
       properties:
         cnpjNumber:
           $ref: '#/components/schemas/CnpjNumber'
@@ -383,7 +375,6 @@ components:
       required:
         - contractType
         - participantQualified
-        - contractingMinRequirement
       properties:
         contractType:
           type: string
@@ -426,14 +417,7 @@ components:
       type: object
       description: Período de Diferimento
       required:
-        - interestRate
-        - updateIndex
-        - otherMinimumPerformanceGarantees
-        - reversalFinancialResults
         - premiumPaymentMethods
-        - permissionScheduledFinancialPayments
-        - redemptionPaymentTerm
-        - portabilityPaymentTerm
       properties:
         interestRate:
           type: string
@@ -660,9 +644,6 @@ components:
       description: Período de concessão do benefício
       required:
         - incomeModalities
-        - interestRate
-        - updateIndex
-        - reversalFinancialResults
       properties:
         incomeModalities:
           type: array
@@ -953,7 +934,7 @@ components:
         profitModality:
           $ref: '#/components/schemas/RiskPensionEnumProfitModality'
       additionalProperties: false
-    GracePeriod:
+    RiskPensionGracePeriod:
       type: object
       required:
         - amount
@@ -966,7 +947,7 @@ components:
           example: 90
           maximum: 9999999999
         unit:
-          $ref: '#/components/schemas/EnumGracePeriodUnit'
+          $ref: '#/components/schemas/RiskPensionEnumGracePeriodUnit'
       additionalProperties: false
     TermsAndConditions:
       type: object
@@ -1011,7 +992,7 @@ components:
             $ref: '#/components/schemas/RiskPensionReclaimTableItem'
           minItems: 1
         gracePeriod:
-          $ref: '#/components/schemas/GracePeriod'
+          $ref: '#/components/schemas/RiskPensionGracePeriod'
         differenciatedPercentage:
           description: Campo aberto (possibilidade de incluir URL)
           example: |
@@ -1058,12 +1039,14 @@ components:
       properties:
         contractType:
           type: string
-          description: O tipo de serviço contratado. A considerar os domínios abaixo&#58;<br><ol><li>Coletivo Averbado</li><li>Coletivo Instituído</li><li>Individual</li></ol>
+          description: |
+            O tipo de serviço contratado. A considerar os domínios abaixo:
+            1. Coletivo;
+            2. Individual.
           enum:
-            - COLETIVO_AVERBADO
-            - COLETIVO_INSTITUIDO
+            - COLETIVO
             - INDIVIDUAL
-          example: COLETIVO_AVERBADO
+          example: COLETIVO
         contractingMinRequirement:
           type: string
           description: Campo aberto contendo todos os requisitos mínimos para contratação (possibilidade de incluir URL).
@@ -1242,10 +1225,13 @@ components:
         - OUTROS
         - NAO_HA
       example: SORTEIO
-    EnumGracePeriodUnit:
+    RiskPensionEnumGracePeriodUnit:
       type: string
-      description: Informar o critério de carência para a cobertura&#58;<br><ol><li>Dias</li><li>Meses</li><li>Não se aplica</li></ol>
-      maxLength: 10
+      description: |
+        Informar o critério de carência para resgate:
+        1. Dias;
+        2. Meses;
+        3. Não se aplica.
       enum:
         - DIAS
         - MESES
