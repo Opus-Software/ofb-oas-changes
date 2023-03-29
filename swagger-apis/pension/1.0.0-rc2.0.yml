@@ -240,9 +240,7 @@ components:
         - name
         - code
         - segment
-        - defferalPeriod
-        - grantPeriodBenefit
-        - costs
+        - type
         - targetAudience
       properties:
         participant:
@@ -308,11 +306,6 @@ components:
     SurvivalPensionInvestmentFund:
       type: object
       description: Fundos de Investimento (por fundo).
-      required:
-        - cnpjNumber
-        - name
-        - maximumAdministrationFee
-        - typePerformanceFee
       properties:
         cnpjNumber:
           $ref: '#/components/schemas/CnpjNumber'
@@ -382,7 +375,6 @@ components:
       required:
         - contractType
         - participantQualified
-        - contractingMinRequirement
       properties:
         contractType:
           type: string
@@ -425,13 +417,7 @@ components:
       type: object
       description: Período de Diferimento
       required:
-        - interestRate
-        - updateIndex
-        - otherMinimumPerformanceGarantees
-        - reversalFinancialResults
-        - permissionScheduledFinancialPayments
-        - redemptionPaymentTerm
-        - portabilityPaymentTerm
+        - premiumPaymentMethods
       properties:
         interestRate:
           type: string
@@ -658,9 +644,6 @@ components:
       description: Período de concessão do benefício
       required:
         - incomeModalities
-        - interestRate
-        - updateIndex
-        - reversalFinancialResults
       properties:
         incomeModalities:
           type: array
@@ -997,6 +980,7 @@ components:
         - IPCA
         - IGP_M
         - INPC
+        - NAO_SE_APLICA
       example: IPCA
     RiskPensionReclaim:
       type: object
