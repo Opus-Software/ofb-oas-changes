@@ -9,14 +9,12 @@
 | accounts | [1.0.3](swagger-apis/accounts/1.0.3.yml) | [2.0.1](swagger-apis/accounts/2.0.1.yml) | [YAML](diffs/accounts/1.0.3_2.0.1-breaking-only.yml) | [YAML](diffs/accounts/1.0.3_2.0.1.yml) |
 | acquiring-services | [1.0.0](swagger-apis/acquiring-services/1.0.0.yml) |  |  |  |
 | admin | [1.0.2](swagger-apis/admin/1.0.2.yml) | [2.0.0](swagger-apis/admin/2.0.0.yml) | [YAML](diffs/admin/1.0.2_2.0.0-breaking-only.yml) | [YAML](diffs/admin/1.0.2_2.0.0.yml) |
-| bank-fixed-incomes | [1.0.0-rc1.0](swagger-apis/bank-fixed-incomes/1.0.0-rc1.0.yml) |  |  |  |
 | capitalization-bonds | [1.0.0-rc2.0](swagger-apis/capitalization-bonds/1.0.0-rc2.0.yml) |  |  |  |
 | channels | [1.0.2](swagger-apis/channels/1.0.2.yml) | [2.0.0](swagger-apis/channels/2.0.0.yml) | [YAML](diffs/channels/1.0.2_2.0.0-breaking-only.yml) | [YAML](diffs/channels/1.0.2_2.0.0.yml) |
 |  | [2.0.0](swagger-apis/channels/2.0.0.yml) | [3.0.0](swagger-apis/channels/3.0.0.yml) | [YAML](diffs/channels/2.0.0_3.0.0-breaking-only.yml) | [YAML](diffs/channels/2.0.0_3.0.0.yml) |
 | common | [1.0.2](swagger-apis/common/1.0.2.yml) |  |  |  |
 | consents | [1.0.3](swagger-apis/consents/1.0.3.yml) | [2.0.1](swagger-apis/consents/2.0.1.yml) | [YAML](diffs/consents/1.0.3_2.0.1-breaking-only.yml) | [YAML](diffs/consents/1.0.3_2.0.1.yml) |
 | credit-cards | [1.0.4](swagger-apis/credit-cards/1.0.4.yml) | [2.0.1](swagger-apis/credit-cards/2.0.1.yml) | [YAML](diffs/credit-cards/1.0.4_2.0.1-breaking-only.yml) | [YAML](diffs/credit-cards/1.0.4_2.0.1.yml) |
-| credit-fixed-incomes | [1.0.0-rc2.0](swagger-apis/credit-fixed-incomes/1.0.0-rc2.0.yml) |  |  |  |
 | customers | [1.0.3](swagger-apis/customers/1.0.3.yml) | [2.0.1](swagger-apis/customers/2.0.1.yml) | [YAML](diffs/customers/1.0.3_2.0.1-breaking-only.yml) | [YAML](diffs/customers/1.0.3_2.0.1.yml) |
 | exchange | [1.0.0](swagger-apis/exchange/1.0.0.yml) |  |  |  |
 | financings | [1.0.4](swagger-apis/financings/1.0.4.yml) | [2.0.1](swagger-apis/financings/2.0.1.yml) | [YAML](diffs/financings/1.0.4_2.0.1-breaking-only.yml) | [YAML](diffs/financings/1.0.4_2.0.1.yml) |
@@ -57,7 +55,6 @@
 |  | [1.0.1-rc1.0](swagger-apis/admin/1.0.1-rc1.0.yml) | [1.0.1](swagger-apis/admin/1.0.1.yml) | [YAML](diffs/admin/1.0.1-rc1.0_1.0.1.yml) |
 |  | [1.0.1](swagger-apis/admin/1.0.1.yml) | [1.0.2](swagger-apis/admin/1.0.2.yml) | [YAML](diffs/admin/1.0.1_1.0.2.yml) |
 |  | [1.0.2](swagger-apis/admin/1.0.2.yml) | [2.0.0](swagger-apis/admin/2.0.0.yml) | [YAML](diffs/admin/1.0.2_2.0.0.yml) |
-| bank-fixed-incomes | [1.0.0-rc1.0](swagger-apis/bank-fixed-incomes/1.0.0-rc1.0.yml) |  |  |
 | capitalization-bonds | [1.0.0-rc1.0](swagger-apis/capitalization-bonds/1.0.0-rc1.0.yml) | [1.0.0-rc2.0](swagger-apis/capitalization-bonds/1.0.0-rc2.0.yml) | [YAML](diffs/capitalization-bonds/1.0.0-rc1.0_1.0.0-rc2.0.yml) |
 | channels | [1.0.0-rc5.1](swagger-apis/channels/1.0.0-rc5.1.yml) | [1.0.0-rc5.2](swagger-apis/channels/1.0.0-rc5.2.yml) | [YAML](diffs/channels/1.0.0-rc5.1_1.0.0-rc5.2.yml) |
 |  | [1.0.0-rc5.2](swagger-apis/channels/1.0.0-rc5.2.yml) | [1.0.0-rc5](swagger-apis/channels/1.0.0-rc5.yml) | [YAML](diffs/channels/1.0.0-rc5.2_1.0.0-rc5.yml) |
@@ -91,7 +88,6 @@
 |  | [1.0.4](swagger-apis/credit-cards/1.0.4.yml) | [2.0.0-RC1.0](swagger-apis/credit-cards/2.0.0-RC1.0.yml) | [YAML](diffs/credit-cards/1.0.4_2.0.0-RC1.0.yml) |
 |  | [2.0.0-RC1.0](swagger-apis/credit-cards/2.0.0-RC1.0.yml) | [2.0.0](swagger-apis/credit-cards/2.0.0.yml) | [YAML](diffs/credit-cards/2.0.0-RC1.0_2.0.0.yml) |
 |  | [2.0.0](swagger-apis/credit-cards/2.0.0.yml) | [2.0.1](swagger-apis/credit-cards/2.0.1.yml) | [YAML](diffs/credit-cards/2.0.0_2.0.1.yml) |
-| credit-fixed-incomes | [1.0.0-rc1.0](swagger-apis/credit-fixed-incomes/1.0.0-rc1.0.yml) | [1.0.0-rc2.0](swagger-apis/credit-fixed-incomes/1.0.0-rc2.0.yml) | [YAML](diffs/credit-fixed-incomes/1.0.0-rc1.0_1.0.0-rc2.0.yml) |
 | customers | [1.0.0-rc6.5](swagger-apis/customers/1.0.0-rc6.5.yml) | [1.0.0-rc6.6](swagger-apis/customers/1.0.0-rc6.6.yml) | [YAML](diffs/customers/1.0.0-rc6.5_1.0.0-rc6.6.yml) |
 |  | [1.0.0-rc6.6](swagger-apis/customers/1.0.0-rc6.6.yml) | [1.0.0-rc6.7](swagger-apis/customers/1.0.0-rc6.7.yml) | [YAML](diffs/customers/1.0.0-rc6.6_1.0.0-rc6.7.yml) |
 |  | [1.0.0-rc6.7](swagger-apis/customers/1.0.0-rc6.7.yml) | [1.0.0](swagger-apis/customers/1.0.0.yml) | [YAML](diffs/customers/1.0.0-rc6.7_1.0.0.yml) |
@@ -187,10 +183,14 @@
 
 | OAS | Base | Revision | Breaking changes only | Full Diff |
 | --- | --- | --- | --- | --- |
+| bank-fixed-incomes | [1.0.0-rc1.0](swagger-apis/bank-fixed-incomes/1.0.0-rc1.0.yml) |  |  |  |
+| credit-fixed-incomes | [1.0.0-rc2.0](swagger-apis/credit-fixed-incomes/1.0.0-rc2.0.yml) |  |  |  |
 | variable-incomes | [1.0.0-rc1.0](swagger-apis/variable-incomes/1.0.0-rc1.0.yml) |  |  |  |
 
 ### All revisions
 
 | OAS | Base | Revision | Full Diff |
 | --- | --- | --- | --- |
+| bank-fixed-incomes | [1.0.0-rc1.0](swagger-apis/bank-fixed-incomes/1.0.0-rc1.0.yml) |  |  |
+| credit-fixed-incomes | [1.0.0-rc1.0](swagger-apis/credit-fixed-incomes/1.0.0-rc1.0.yml) | [1.0.0-rc2.0](swagger-apis/credit-fixed-incomes/1.0.0-rc2.0.yml) | [YAML](diffs/credit-fixed-incomes/1.0.0-rc1.0_1.0.0-rc2.0.yml) |
 | variable-incomes | [1.0.0-rc1.0](swagger-apis/variable-incomes/1.0.0-rc1.0.yml) |  |  |
