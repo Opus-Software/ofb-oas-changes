@@ -2,8 +2,8 @@
 info:
   title: API Credit Fixed Incomes - Open Finance Brasil
   description: |
-    Estas APIs visam o compartilhamento de dados sobre Investimentos e suas
-    características entre as Instituições Financeiras participantes do Open Finance Brasil
+    API de informações de operações de Renda Fixa Crédito do Open Finance Brasil – Fase 4. API que retorna informações de operações de investimento do tipo Renda Fixa Crédito (Debêntures, CRI/CRA) mantidas nas instituições transmissoras por seus clientes, incluindo dados como denominação do produto, rentabilidade, quantidade, prazos, saldos em posição do cliente e movimentações financeiras.
+    Não possui segregação entre pessoa natural e pessoa jurídica. Requer consentimento do cliente para todos os endpoints. A exposição se dará por cada operação de renda fixa contratada pelo cliente.
   version: 1.0.0-rc2.0
   license:
     name: Apache 2.0
@@ -13,27 +13,29 @@ info:
     email: gt-interfaces@openbankingbr.org
     url: 'https://openbanking-brasil.github.io/areadesenvolvedor/'
 servers:
-  - url: 'https://api.banco.com.br/open-banking/opendata-investments/v1'
+  - url: 'https://api.banco.com.br/open-banking/credit-fixed-incomes/v1'
     description: Servidor de Produção
-  - url: 'https://apih.banco.com.br/open-banking/opendata-investments/v1'
+  - url: 'https://apih.banco.com.br/open-banking/credit-fixed-incomes/v1'
     description: Servidor de Homologação
 tags:
-  - name: Listagem de produto
-    description: Método para obter a lista de Fundos de Investimentos
-  - name: Identificação do produto
-    description: 'Método para obter a lista de produtos de Renda Fixa Bancária (CDB, RDB, LCI e LCA)'
-  - name: Posição do cliente
-    description: 'Método para obter a lista de produtos de Renda Fixa Crédito (Debênture, CRI e CRA)'
-  - name: Movimentação do cliente
-    description: Método para obter a lista de informações de produtos de Renda Variável (Ações e Fundos de Índices)
+  - name: Product List
+    description: Obtém a lista de operações de Renda Fixa Crédito mantidas pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento.
+  - name: Product Identification
+    description: Obtém os dados da operação de Renda Fixa Crédito identificada por investmentId.
+  - name: Balances
+    description: Obtém a posição da operação de Renda Fixa Crédito identificada por investmentId.
+  - name: Transactions
+    description: Obtém as movimentações históricas (últimos 12 meses) da operação de Renda Fixa Crédito identificada por investmentId.
+  - name: Transactions Current
+    description: 'Obtém as movimentações recentes da operação de Renda Fixa Crédito identificada por investmentId. O período a ser considerado para apresentação de movimentações será de até 7 dias - 7 dias anteriores da consulta, incluindo o dia da consulta (D-6).'
 paths:
-  /list-products:
+  /investments:
     get:
       tags:
-        - Listagem de produto
-      summary: Conjunto de informações dos Fundos de Investimentos
-      operationId: creditFixedLista
-      description: Método para obter a lista de Fundos de Investimentos
+        - Product List
+      summary: Obtém a lista de operações de Renda Fixa Crédito mantidas pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento.
+      operationId: creditFixedIncomesGetInvestments
+      description: Obtém a lista de operações de Renda Fixa Crédito mantidas pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento.        -
       parameters:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/xFapiAuthDate'
@@ -45,7 +47,7 @@ paths:
         - $ref: '#/components/parameters/pagination-key'
       responses:
         '200':
-          $ref: '#/components/responses/OKResponseCreditFixedIncomesProductList'
+          $ref: '#/components/responses/ResponseCreditFixedIncomesProductList'
         '400':
           $ref: '#/components/responses/BadRequestWithAdditionalProperties'
         '401':
@@ -78,13 +80,13 @@ paths:
           OAuth2Security:
             - 'consent:consentId'
             - credit-fixed-incomes
-  '/identify-product/{investmentId}':
+  '/investments/{investmentId}':
     get:
       tags:
-        - Identificação do produto
-      summary: 'Conjunto de informações de produtos de Renda Fixa Bancária (CDB, RDB, LCI e LCA)'
-      operationId: creditFixedIdentificacao
-      description: 'Método para obter a lista de produtos de Renda Fixa Bancária (CDB, RDB, LCI e LCA)'
+        - Product Identification
+      summary: Obtém os dados da operação de Renda Fixa Crédito identificada por investmentId.
+      operationId: creditFixedIncomesGetInvestmentsInvestmentId
+      description: Obtém os dados da operação de Renda Fixa Crédito identificada por investmentId.
       parameters:
         - $ref: '#/components/parameters/InvestmentId'
         - $ref: '#/components/parameters/Authorization'
@@ -94,7 +96,7 @@ paths:
         - $ref: '#/components/parameters/xCustomerUserAgent'
       responses:
         '200':
-          $ref: '#/components/responses/OKResponseCreditFixedIncomesIdentifyProduct'
+          $ref: '#/components/responses/ResponseCreditFixedIncomesProductIdentification'
         '400':
           $ref: '#/components/responses/BadRequestWithAdditionalProperties'
         '401':
@@ -127,13 +129,13 @@ paths:
           OAuth2Security:
             - 'consent:consentId'
             - credit-fixed-incomes
-  '/credit-fixed-incomes/{investmentId}/balances':
+  '/investments/{investmentId}/balances':
     get:
       tags:
-        - Posição do cliente
-      summary: 'Conjunto de informações de produtos de Renda Fixa Crédito (Debênture, CRI e CRA)'
-      operationId: creditFixedPosition
-      description: 'Método para obter a lista de produtos de Renda Fixa Crédito (Debênture, CRI e CRA)'
+        - Balances
+      summary: Obtém a posição da operação de Renda Fixa Crédito identificada por investmentId.
+      operationId: creditFixedIncomesGetInvestmentsInvestmentIdBalances
+      description: Obtém a posição da operação de Renda Fixa Crédito identificada por investmentId.
       parameters:
         - $ref: '#/components/parameters/InvestmentId'
         - $ref: '#/components/parameters/Authorization'
@@ -143,7 +145,7 @@ paths:
         - $ref: '#/components/parameters/xCustomerUserAgent'
       responses:
         '200':
-          $ref: '#/components/responses/OKResponseCustomerPosition'
+          $ref: '#/components/responses/ResponseCreditFixedIncomesBalances'
         '400':
           $ref: '#/components/responses/BadRequestWithAdditionalProperties'
         '401':
@@ -176,13 +178,13 @@ paths:
           OAuth2Security:
             - 'consent:consentId'
             - credit-fixed-incomes
-  '/credit-fixed-incomes/{investmentId}/transactions':
+  '/investments/{investmentId}/transactions':
     get:
       tags:
-        - Movimentação do cliente
-      summary: Conjunto de informações de produtos de Renda Variável (Ações e Fundos de Índices)
-      operationId: creditFixedMovement
-      description: Método para obter a lista de informações de produtos de Renda Variável (Ações e Fundos de Índices)
+        - Transactions
+      summary: Obtém as movimentações da operação de Renda Fixa Crédito identificada por investmentId.
+      operationId: creditFixedIncomesGetInvestmentsInvestmentIdTransactions
+      description: Obtém as movimentações históricas (últimos 12 meses) da operação de Renda Fixa Crédito identificada por investmentId.
       parameters:
         - $ref: '#/components/parameters/InvestmentId'
         - $ref: '#/components/parameters/Authorization'
@@ -193,35 +195,91 @@ paths:
         - $ref: '#/components/parameters/page'
         - $ref: '#/components/parameters/pageSize'
         - $ref: '#/components/parameters/pagination-key'
+        - $ref: '#/components/parameters/fromTransactionDate'
+        - $ref: '#/components/parameters/toTransactionDate'
       responses:
         '200':
-          $ref: '#/components/responses/OKResponseCustomerMovement'
+          $ref: '#/components/responses/ResponseCreditFixedIncomesTransactions'
         '400':
-          $ref: '#/components/responses/BadRequestWithAdditionalProperties'
+          $ref: '#/components/responses/BadRequest'
         '401':
-          $ref: '#/components/responses/UnauthorizedWithAdditionalProperties'
+          $ref: '#/components/responses/Unauthorized'
         '403':
-          $ref: '#/components/responses/ForbiddenWithAdditionalProperties'
+          $ref: '#/components/responses/Forbidden'
         '404':
-          $ref: '#/components/responses/NotFoundWithAdditionalProperties'
+          $ref: '#/components/responses/NotFound'
         '405':
-          $ref: '#/components/responses/MethodNotAllowedWithAdditionalProperties'
+          $ref: '#/components/responses/MethodNotAllowed'
         '406':
-          $ref: '#/components/responses/NotAcceptableWithAdditionalProperties'
+          $ref: '#/components/responses/NotAcceptable'
         '422':
-          $ref: '#/components/responses/UnprocessableEntityWithAdditionalProperties'
+          $ref: '#/components/responses/UnprocessableEntity'
         '423':
-          $ref: '#/components/responses/LockedWithAdditionalProperties'
+          $ref: '#/components/responses/Locked'
         '429':
-          $ref: '#/components/responses/TooManyRequestsWithAdditionalProperties'
+          $ref: '#/components/responses/TooManyRequests'
         '500':
-          $ref: '#/components/responses/InternalServerErrorWithAdditionalProperties'
+          $ref: '#/components/responses/InternalServerError'
         '504':
-          $ref: '#/components/responses/GatewayTimeoutWithAdditionalProperties'
+          $ref: '#/components/responses/GatewayTimeout'
         '529':
-          $ref: '#/components/responses/SiteIsOverloadedWithAdditionalProperties'
+          $ref: '#/components/responses/SiteIsOverloaded'
         default:
-          $ref: '#/components/responses/DefaultWithAdditionalProperties'
+          $ref: '#/components/responses/Default'
+      security:
+        - OpenId:
+            - openid
+          OAuth2Security:
+            - 'consent:consentId'
+            - credit-fixed-incomes
+  '/investments/{investmentId}/transactions-current':
+    get:
+      tags:
+        - Transactions Current
+      summary: Obtém as movimentações da operação de Renda Fixa Crédito identificada por investmentId.
+      operationId: creditFixedIncomesGetInvestmentsInvestmentIdTransactionsCurrent
+      description: 'Obtém as movimentações recentes da operação de Renda Fixa Crédito identificada por investmentId. O período a ser considerado para apresentação de movimentações será de até 7 dias - 7 dias anteriores da consulta, incluindo o dia da consulta (D-6).'
+      parameters:
+        - $ref: '#/components/parameters/InvestmentId'
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/xFapiAuthDate'
+        - $ref: '#/components/parameters/xFapiCustomerIpAddress'
+        - $ref: '#/components/parameters/xFapiInteractionId'
+        - $ref: '#/components/parameters/xCustomerUserAgent'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/pageSize'
+        - $ref: '#/components/parameters/pagination-key'
+        - $ref: '#/components/parameters/fromTransactionDateCurrent'
+        - $ref: '#/components/parameters/toTransactionDateCurrent'
+      responses:
+        '200':
+          $ref: '#/components/responses/ResponseCreditFixedIncomesTransactionsCurrent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '423':
+          $ref: '#/components/responses/Locked'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+        '529':
+          $ref: '#/components/responses/SiteIsOverloaded'
+        default:
+          $ref: '#/components/responses/Default'
       security:
         - OpenId:
             - openid
@@ -230,7 +288,7 @@ paths:
             - credit-fixed-incomes
 components:
   schemas:
-    OKResponseCreditFixedIncomesProductList:
+    ResponseCreditFixedIncomesProductList:
       type: object
       required:
         - data
@@ -239,13 +297,14 @@ components:
       properties:
         data:
           type: array
+          minItems: 0
           items:
-            $ref: '#/components/schemas/CreditFixedLista'
+            $ref: '#/components/schemas/CreditFixedList'
         links:
           $ref: '#/components/schemas/CreditFixedIncomesLinks'
         meta:
           $ref: '#/components/schemas/CreditFixedIncomesMeta'
-    OKResponseCreditFixedIdentificacao:
+    ResponseCreditFixedIncomesProductIdentification:
       type: object
       required:
         - data
@@ -253,14 +312,12 @@ components:
         - meta
       properties:
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreditFixedIdentificacao'
+          $ref: '#/components/schemas/CreditFixedIdentification'
         links:
           $ref: '#/components/schemas/CreditFixedIncomesLinks'
         meta:
           $ref: '#/components/schemas/CreditFixedIncomesMeta'
-    OKResponseCustomerPosition:
+    ResponseCreditFixedIncomesBalances:
       type: object
       required:
         - data
@@ -272,6 +329,7 @@ components:
           required:
             - referenceDateTime
             - updatedUnitPrice
+            - quantity
             - grossAmount
             - netAmount
             - incomeTax
@@ -284,7 +342,15 @@ components:
             referenceDateTime:
               $ref: '#/components/schemas/ReferenceDateTime'
             updatedUnitPrice:
-              $ref: '#/components/schemas/UpdatedUnitPrice'
+              $ref: '#/components/schemas/UpdatedUnitPriceunit'
+            quantity:
+              type: string
+              format: double
+              description: quantidade de títulos detidos na data da posição do cliente
+              maxLength: 24
+              minLength: 4
+              pattern: '^\d{1,15}\.\d{2,8}$'
+              example: '15.00'
             grossAmount:
               $ref: '#/components/schemas/GrossAmount'
             netAmount:
@@ -300,10 +366,10 @@ components:
             preFixedRate:
               type: string
               description: |
-                Taxa de remuneração acordada com o cliente na contratação. Em casos de produtos progressivos, considerar taxa vigente  
-                [Restrição] Campo de preenchimento obrigatório pelas  participantes quando houver 'PRE_FIXADO' no campo 'Indexador'.
+                Taxa de remuneração acordada com o cliente na contratação. Em casos de produtos progressivos, considerar taxa vigente.      
+                [Restrição] Campo de preenchimento obrigatório pelas participantes quando houver 'PRE_FIXADO' no campo 'indexer' ou quando se tratar de produto com remuneração híbrida.
               maxLength: 8
-              pattern: '^\d{1}\.\d{1,6}$'
+              pattern: '^\d{1}\.\d{6}$'
               example: '0.300000'
             postFixedIndexerPercentage:
               $ref: '#/components/schemas/PostFixedIndexerPercentage'
@@ -315,7 +381,7 @@ components:
           $ref: '#/components/schemas/CreditFixedIncomesLinks'
         meta:
           $ref: '#/components/schemas/CreditFixedIncomesMeta'
-    OKResponseCustomerMovement:
+    ResponseCreditFixedIncomesTransactions:
       type: object
       required:
         - data
@@ -323,47 +389,140 @@ components:
         - meta
       properties:
         data:
-          type: object
-          required:
-            - type
-            - transactionType
-            - transactionDate
-            - transactionUnitePrice
-            - transactionQuantity
-            - transactionGrossValue
-            - transactionNetValue
-            - transactionId
-          properties:
-            type:
-              $ref: '#/components/schemas/Type'
-            transactionType:
-              $ref: '#/components/schemas/TransactionType'
-            typeAdditionalInfo:
-              $ref: '#/components/schemas/TypeAdditionalInfo'
-            transactionDate:
-              $ref: '#/components/schemas/TransactionDate'
-            transactionUnitePrice:
-              $ref: '#/components/schemas/TransactionUnitePrice'
-            transactionQuantity:
-              $ref: '#/components/schemas/TransactionQuantity'
-            transactionGrossValue:
-              $ref: '#/components/schemas/TransactionGrossValue'
-            incomeTax:
-              $ref: '#/components/schemas/IncomeTax'
-            financialTransactionTax:
-              $ref: '#/components/schemas/FinancialTransactionTax'
-            transactionNetValue:
-              $ref: '#/components/schemas/TransactionNetValue'
-            remunerationTransactionRate:
-              $ref: '#/components/schemas/RemunerationTransactionRate'
-            indexerPercentage:
-              $ref: '#/components/schemas/IndexerPercentage'
-            transactionId:
-              $ref: '#/components/schemas/TransactionId'
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/CreditFixedIncomesTransactions'
         links:
           $ref: '#/components/schemas/CreditFixedIncomesLinks'
         meta:
-          $ref: '#/components/schemas/CreditFixedIncomesMeta'
+          $ref: '#/components/schemas/CreditFixedIncomesMetaTransactions'
+    ResponseCreditFixedIncomesTransactionsCurrent:
+      type: object
+      required:
+        - data
+        - links
+        - meta
+      properties:
+        data:
+          type: array
+          minItems: 0
+          items:
+            type: object
+            required:
+              - type
+              - transactionType
+              - transactionDate
+              - transactionUnitPrice
+              - transactionQuantity
+              - transactionGrossValue
+              - transactionNetValue
+              - transactionId
+            properties:
+              type:
+                $ref: '#/components/schemas/Type'
+              transactionType:
+                $ref: '#/components/schemas/TransactionType'
+              typeAdditionalInfo:
+                type: string
+                description: |
+                  Informação adicional do tipo de movimentação, para preenchimento no caso de movimentações não delimitadas no domínio.         
+                  [Restrição] Campo de preenchimento obrigatório pelas participantes quando houver 'OUTROS' no campo 'transactionType'.
+                maxLength: 100
+                pattern: '[\w\W\s]*'
+              transactionDate:
+                type: string
+                format: date
+                description: Data da movimentação
+                maxLength: 10
+                pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                example: '2018-02-15'
+              transactionUnitPrice:
+                type: object
+                description: valor unitário negociado com o cliente na data de aquisição
+                required:
+                  - amount
+                  - currency
+                properties:
+                  amount:
+                    type: string
+                    format: double
+                    pattern: '^\d{1,15}\.\d{2,8}$'
+                    maxLength: 24
+                    minLength: 4
+                    example: '1000.000004'
+                    description: Valor relacionado ao objeto.
+                  currency:
+                    $ref: '#/components/schemas/Currency'
+              transactionQuantity:
+                type: string
+                description: Quantidade de títulos envolvidos na movimentação
+                maxLength: 24
+                pattern: '^\d{1,15}\.\d{2,8}$'
+                example: '42.25'
+              transactionGrossValue:
+                $ref: '#/components/schemas/TransactionGrossValue'
+              incomeTax:
+                type: object
+                description: |
+                  Valor do imposto de renda recolhido na transação.               
+                  [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'type' for preenchido com o valor 'SAIDA'.
+                required:
+                  - amount
+                  - currency
+                properties:
+                  amount:
+                    type: string
+                    format: double
+                    pattern: '^\d{1,15}\.\d{2,4}$'
+                    maxLength: 20
+                    minLength: 4
+                    example: '1000.04'
+                    description: Valor relacionado ao objeto.
+                  currency:
+                    $ref: '#/components/schemas/Currency'
+              financialTransactionTax:
+                type: object
+                description: |
+                  Valor do IOF recolhido na transação.                  
+                  [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'type' for preenchido com o valor 'SAIDA'. 
+                required:
+                  - amount
+                  - currency
+                properties:
+                  amount:
+                    type: string
+                    format: double
+                    pattern: '^\d{1,15}\.\d{2,4}$'
+                    maxLength: 20
+                    minLength: 4
+                    example: '1000.04'
+                    description: Valor relacionado ao objeto.
+                  currency:
+                    $ref: '#/components/schemas/Currency'
+              transactionNetValue:
+                $ref: '#/components/schemas/TransactionNetValue'
+              remunerationTransactionRate:
+                $ref: '#/components/schemas/RemunerationTransactionRate'
+              indexerPercentage:
+                type: string
+                description: |
+                  Percentual máximo do indexador na transação acordado com o cliente na contratação.     
+                  [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'type' for preenchido com o valor 'ENTRADA'.
+                maxLength: 8
+                pattern: '^\d{1}\.\d{6}$'
+                example: '1.100000'
+              transactionId:
+                type: string
+                description: |
+                  Código ou identificador único prestado pela instituição para individualizar o movimento.  
+                maxLength: 100
+                pattern: '^[a-zA-Z0-9][a-zA-Z0-9-]{0,99}$'
+                example: ABCD2126019929279212650822221989319253344
+        links:
+          $ref: '#/components/schemas/CreditFixedIncomesLinks'
+        meta:
+          $ref: '#/components/schemas/CreditFixedIncomesMetaTransactions'
     Amount:
       type: string
       format: double
@@ -380,24 +539,28 @@ components:
         - currency
       properties:
         amount:
-          $ref: '#/components/schemas/Amount'
+          type: string
+          format: double
+          pattern: '^\d{1,15}\.\d{2,4}$'
+          maxLength: 20
+          minLength: 4
+          example: '1000.04'
+          description: Valor relacionado ao objeto.
         currency:
           $ref: '#/components/schemas/Currency'
-    CreditFixedIdentificacao:
+    CreditFixedIdentification:
       type: object
       required:
         - issuerInstitutionCnpjNumber
         - investmentType
-        - debtorCnpjnNumber
-        - indexer
         - remuneration
         - issueUnitPrice
         - issueDate
         - dueDate
         - voucherPaymentIndicator
-        - voucherPaymentPeriodicity
         - purchaseDate
         - gracePeriodDate
+        - taxExemptProduct
       properties:
         issuerInstitutionCnpjNumber:
           type: string
@@ -407,36 +570,31 @@ components:
           example: '11225860000140'
         isinCode:
           type: string
-          description: 'Código ISIN da emissão, Código ISIN do produto, Código da emissora (campo opcional) código universal que identifica cada valor mobiliário ou instrumento financeiro, conforme Norma ISO 6166;'
+          description: |
+            Código ISIN da emissão, Código ISIN do produto, Código da emissora (campo opcional): código universal que identifica cada valor mobiliário ou instrumento financeiro, conforme Norma ISO 6166.
           maxLength: 12
           pattern: '^[A-Z]{2}([A-Z0-9]){9}\d{1}$'
           example: BRCST4CTF001
         investmentType:
           $ref: '#/components/schemas/EnumInvestimentType'
-        debtorCnpjnNumber:
+        debtorCnpjNumber:
           type: string
           description: |
             CNPJ do devedor (condicional para CRI e CRA)  
-            [Restrição] Campo de preenchimento obrigatório pelas participantes quando o tipo do investimento for igual a "CRI" ou "CRA".
+            [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'investmentType' for igual a "CRI" ou "CRA".
           maxLength: 14
           pattern: '^\d{14}$'
           example: '11225860000140'
         debtorName:
           type: string
           description: |
-            Nome da Marca reportada pelo participante no Open Finance. Recomenda-se utilizar, sempre que possível, o mesmo nome de marca atribuído no campo do diretório Customer Friendly Server Name (Authorisation Server).  
-            [Restrição] Campo de preenchimento obrigatório pelas participantes quando o tipo do investimento for igual a "CRI" ou "CRA".
+            Nome do devedor (condicional para CRI e CRA)  
+            [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'investmentType' for igual a "CRI" ou "CRA".
           pattern: '[\w\W\s]*'
-          maxLength: 50
+          maxLength: 70
           example: Roberto Marino
-        indexer:
-          $ref: '#/components/schemas/EnumIndexer'
-        indexerAdditionalInfo:
-          type: string
-          description: Informações adicionais do indexador
-          pattern: '[\w\W\s]*'
-          maxLength: 50
-          example: Dólar
+        taxExemptProduct:
+          $ref: '#/components/schemas/EnumTaxExemptProduct'
         remuneration:
           $ref: '#/components/schemas/Remuneration'
         issueUnitPrice:
@@ -451,7 +609,7 @@ components:
         dueDate:
           type: string
           format: date
-          description: Data de vencimento do contrato
+          description: Data de vencimento do título
           maxLength: 10
           pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
           example: '2018-02-15'
@@ -463,7 +621,7 @@ components:
           type: string
           description: |
             Informações adicionais da periodicidade de pagamento de cupom  
-            [Restrição] Campo de preenchimento obrigatório pelas participantes quando houver 'Outros' no campo 'Periodicidade de pagamento de cupom'.
+            [Restrição] Campo de preenchimento obrigatório pelas participantes quando houver 'Outros' no campo 'voucherPaymentPeriodicity'.
           maxLength: 50
           pattern: '[\w\W\s]*'
           example: Diária
@@ -471,7 +629,7 @@ components:
           type: string
           description: Código de registro do ativo na clearing
           maxLength: 30
-          pattern: ' [\w\W-]*'
+          pattern: '[\w\W-]*'
           example: CDB421GPXXX
         purchaseDate:
           type: string
@@ -484,7 +642,7 @@ components:
           type: string
           format: date
           description: Data até a qual o cliente não poderá resgatar antecipadamente seu investimento
-          maxLength: 11
+          maxLength: 10
           pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
           example: '2018-02-16'
     CreditFixedIncomesLinks:
@@ -545,8 +703,21 @@ components:
           maxLength: 20
           format: date-time
           example: '2021-05-21T08:30:00Z'
-    CreditFixedLista:
+    CreditFixedIncomesMetaTransactions:
       type: object
+      description: Meta informações referente a API requisitada.
+      required:
+        - requestDateTime
+      properties:
+        requestDateTime:
+          description: 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.'
+          type: string
+          maxLength: 20
+          format: date-time
+          example: '2021-05-21T08:30:00Z'
+    CreditFixedList:
+      type: object
+      description: Lista de títulos de renda fixa crédito mantidos pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento
       required:
         - brandName
         - companyCnpj
@@ -569,7 +740,7 @@ components:
           $ref: '#/components/schemas/EnumInvestimentType'
         investmentId:
           type: string
-          description: 'Código universal que identifica cada valor mobiliário ou instrumento financeiro, conforme Norma ISO 6166.<br><br>DEFINIÇÃO&#58;O ISIN (International Securities Identification Number) é um código que identifica um valor mobiliário, conforme a norma ISO 6166.<br>ESTRUTURA<br>O ISIN é um código alfanumérico que possui 12 caracteres com a seguinte estrutura&#58;<ul><li>um prefixo, composto de 2 caracteres alfa, que identifica o código do país (Norma ISO 3166);</li><li>o número básico, composto de 9 caracteres alfabéticos ou numéricos em sua extensão;</li><li>um dígito numérico de controle.</li></ul>'
+          description: 'Identifica de forma única  o relacionamento do cliente com o produto, mantendo as regras de imutabilidade dentro da instituição transmissora.'
           maxLength: 100
           pattern: '^[a-zA-Z0-9][a-zA-Z0-9-]{0,99}$'
           example: '92792126019929200000000000000000000000000'
@@ -582,13 +753,13 @@ components:
     EnumCalculation:
       type: string
       description: |
-        Base de cálculo
+        Base de cálculo (dias úteis ou dias corridos).
           1. dias úteis
           2. dias corridos
       enum:
-        - DIAS UTEIS
-        - DIAS CORRIDOS
-      example: DIAS CORRIDOS
+        - DIAS_UTEIS
+        - DIAS_CORRIDOS
+      example: DIAS_CORRIDOS
     EnumTaxExemptProduct:
       type: string
       description: Indicador de um produto incentivado
@@ -640,7 +811,7 @@ components:
       enum:
         - MENSAL
         - ANUAL
-        - DIÁRIO
+        - DIARIO
         - SEMESTRAL
       example: MENSAL
     EnumRateType:
@@ -656,14 +827,20 @@ components:
     FinancialTransactionTax:
       type: object
       description: |
-        valor do imposto considerando a alíquota vigente na data de referência  
+        Valor do imposto considerando a alíquota vigente na data de referência.
         [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'tipo da movimentação' for preenchido com o valor 'SAIDA'.
       required:
         - amount
         - currency
       properties:
         amount:
-          $ref: '#/components/schemas/Amount'
+          type: string
+          format: double
+          pattern: '^\d{1,15}\.\d{2,4}$'
+          maxLength: 20
+          minLength: 4
+          example: '1000.04'
+          description: Valor relacionado ao objeto.
         currency:
           $ref: '#/components/schemas/Currency'
     Fine:
@@ -674,40 +851,58 @@ components:
         - currency
       properties:
         amount:
-          $ref: '#/components/schemas/Amount'
+          type: string
+          format: double
+          pattern: '^\d{1,15}\.\d{2,4}$'
+          maxLength: 20
+          minLength: 4
+          example: '1000.04'
+          description: Valor relacionado ao objeto.
         currency:
           $ref: '#/components/schemas/Currency'
     GrossAmount:
       type: object
-      description: valor do investimento que se refere a quantidade x PU atualizado na data de referência;
+      description: valor do investimento que se refere a quantidade x PU atualizado na data de referência
       required:
         - amount
         - currency
       properties:
         amount:
-          $ref: '#/components/schemas/Amount'
+          type: string
+          format: double
+          pattern: '^\d{1,15}\.\d{2,4}$'
+          maxLength: 20
+          minLength: 4
+          example: '1000.04'
+          description: Valor relacionado ao objeto.
         currency:
           $ref: '#/components/schemas/Currency'
     IncomeTax:
       type: object
       description: |
-        valor do imposto considerando a alíquota vigente na data de referência  
+        Valor do imposto considerando a alíquota vigente na data de referência.
         [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'tipo da movimentação' for preenchido com o valor 'SAIDA'.
       required:
         - amount
         - currency
       properties:
         amount:
-          $ref: '#/components/schemas/Amount'
+          type: string
+          format: double
+          pattern: '^\d{1,15}\.\d{2,4}$'
+          maxLength: 20
+          minLength: 4
+          example: '1000.04'
+          description: Valor relacionado ao objeto.
         currency:
           $ref: '#/components/schemas/Currency'
     IndexerPercentage:
       type: string
       description: |
         Percentual máximo do indexador na transação acordado com o cliente na contratação.  
-        [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'tipo da movimentação' for preenchido com o valor 'ENTRADA'.
+        [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'type' for preenchido com o valor 'ENTRADA'.
       maxLength: 8
-      pattern: '^\d{1}\.\d{1,6}$'
+      pattern: '^\d{1}\.\d{6}$'
       example: '1.100000'
     IssueUnitPrice:
       type: object
@@ -718,8 +913,8 @@ components:
         amount:
           type: string
           description: Valor relacionado ao objeto.
-          maxLength: 23
-          pattern: '^-?\d{1,15}\.\d{2,8}$'
+          maxLength: 24
+          pattern: '^\d{1,15}\.\d{2,8}$'
           example: '1000.000004'
         currency:
           type: string
@@ -735,7 +930,13 @@ components:
         - currency
       properties:
         amount:
-          $ref: '#/components/schemas/Amount'
+          type: string
+          format: double
+          pattern: '^\d{1,15}\.\d{2,4}$'
+          maxLength: 20
+          minLength: 4
+          example: '1000.04'
+          description: Valor relacionado ao objeto.
         currency:
           $ref: '#/components/schemas/Currency'
     NetAmount:
@@ -746,16 +947,22 @@ components:
         - currency
       properties:
         amount:
-          $ref: '#/components/schemas/Amount'
+          type: string
+          format: double
+          pattern: '^\d{1,15}\.\d{2,4}$'
+          maxLength: 20
+          minLength: 4
+          example: '1000.04'
+          description: Valor relacionado ao objeto.
         currency:
           $ref: '#/components/schemas/Currency'
     PostFixedIndexerPercentage:
       type: string
       description: |
-        Percentual do indexador acordado com o  cliente na contratação. Em casos de produtos progressivos, considerar taxa vigente  
-        [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'Indexador' for preenchido de forma diferente de 'PRE_FIXADO'.
+        Percentual do indexador acordado com o  cliente na contratação. Em casos de produtos progressivos, considerar taxa vigente.     
+        [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'indexer' for preenchido de forma diferente de 'PRE_FIXADO' ou quando se tratar de produto com remuneração híbrida.
       maxLength: 8
-      pattern: '^\d{1}\.\d{1,6}$'
+      pattern: '^\d{1}\.\d{6}$'
       example: '1.100000'
     PreFixedRate:
       $ref: '#/components/schemas/Currency'
@@ -767,7 +974,13 @@ components:
         - currency
       properties:
         amount:
-          $ref: '#/components/schemas/Amount'
+          type: string
+          format: double
+          pattern: '^\d{1,15}\.\d{2,8}$'
+          maxLength: 24
+          minLength: 4
+          example: '1000.000004'
+          description: Valor relacionado ao objeto.
         currency:
           $ref: '#/components/schemas/Currency'
     Quantity:
@@ -794,18 +1007,18 @@ components:
         preFixedRate:
           type: string
           description: |
-            Valor da taxa de emissão do contrato  
-            [Restrição] Campo de preenchimento obrigatório pelas  participantes quando houver 'PRE_FIXADO' no campo 'Indexador'.
+            Valor da taxa de emissão do contrato.         
+            [Restrição] Campo de preenchimento obrigatório pelas participantes quando houver 'PRE_FIXADO' no campo 'indexer' ou quando se tratar de produto com remuneração híbrida.
           maxLength: 8
-          pattern: '^\d{1}\.\d{1,6}$'
+          pattern: '^\d{1}\.\d{6}$'
           example: '0.300000'
         postFixedIndexerPercentage:
           type: string
           description: |
-            Percentual do indexador de emissão do contrato  
-            [Restrição] Campo de preenchimento obrigatório pelas  participantes quando o campo 'Indexador' for preenchido de forma diferente de 'PRE_FIXADO'.
+            Percentual do indexador de emissão do contrato.    
+            [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'indexer' for preenchido de forma diferente de 'PRE_FIXADO' ou quando se tratar de produto com remuneração híbrida.
           maxLength: 8
-          pattern: '^\d{1}\.\d{1,6}$'
+          pattern: '^\d{1}\.\d{6}$'
           example: '1.100000'
         rateType:
           $ref: '#/components/schemas/EnumRateType'
@@ -819,73 +1032,202 @@ components:
           type: string
           description: |
             Informações adicionais do indexador  
-            [Restrição] Campo de preenchimento obrigatório pelas participantes quando houver 'Outros' no campo 'Indexador'.
+            [Restrição] Campo de preenchimento obrigatório pelas participantes quando houver 'Outros' no campo 'indexer'.
           pattern: '[\w\W\s]*'
           maxLength: 50
           example: Dólar
+    CreditFixedIncomesTransactions:
+      type: object
+      required:
+        - type
+        - transactionType
+        - transactionDate
+        - transactionUnitPrice
+        - transactionQuantity
+        - transactionGrossValue
+        - transactionNetValue
+        - transactionId
+      properties:
+        type:
+          $ref: '#/components/schemas/Type'
+        transactionType:
+          $ref: '#/components/schemas/TransactionType'
+        typeAdditionalInfo:
+          $ref: '#/components/schemas/TypeAdditionalInfo'
+        transactionDate:
+          $ref: '#/components/schemas/TransactionDate'
+        transactionUnitPrice:
+          type: object
+          description: valor unitário negociado com o cliente na data de aquisição
+          required:
+            - amount
+            - currency
+          properties:
+            amount:
+              type: string
+              format: double
+              pattern: '^\d{1,15}\.\d{2,8}$'
+              maxLength: 24
+              minLength: 4
+              example: '1000.000004'
+              description: Valor relacionado ao objeto.
+            currency:
+              $ref: '#/components/schemas/Currency'
+        transactionQuantity:
+          $ref: '#/components/schemas/TransactionQuantity'
+        transactionGrossValue:
+          $ref: '#/components/schemas/TransactionGrossValue'
+        incomeTax:
+          type: object
+          description: |
+            Valor do imposto de renda recolhido na transação.               
+            [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'type' for preenchido com o valor 'SAIDA'.
+          required:
+            - amount
+            - currency
+          properties:
+            amount:
+              type: string
+              format: double
+              pattern: '^\d{1,15}\.\d{2,4}$'
+              maxLength: 20
+              minLength: 4
+              example: '1000.04'
+              description: Valor relacionado ao objeto.
+            currency:
+              $ref: '#/components/schemas/Currency'
+        financialTransactionTax:
+          type: object
+          description: |
+            Valor do IOF recolhido na transação.                  
+            [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'type' for preenchido com o valor 'SAIDA'. 
+          required:
+            - amount
+            - currency
+          properties:
+            amount:
+              type: string
+              format: double
+              pattern: '^\d{1,15}\.\d{2,4}$'
+              maxLength: 20
+              minLength: 4
+              example: '1000.04'
+              description: Valor relacionado ao objeto.
+            currency:
+              $ref: '#/components/schemas/Currency'
+        transactionNetValue:
+          $ref: '#/components/schemas/TransactionNetValue'
+        remunerationTransactionRate:
+          $ref: '#/components/schemas/RemunerationTransactionRate'
+        indexerPercentage:
+          $ref: '#/components/schemas/IndexerPercentage'
+        transactionId:
+          $ref: '#/components/schemas/TransactionId'
     RemunerationTransactionRate:
       type: string
       description: |
-        Taxa de remuneração acordada com o cliente na contratação  
-        [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'tipo da movimentação' for preenchido com o valor 'ENTRADA'.
+        Taxa de remuneração acordada com o cliente na contratação.      
+        [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'type' for preenchido com o valor 'ENTRADA'.
       maxLength: 8
-      pattern: '^\d{1}\.\d{1,6}$'
+      pattern: '^\d{1}\.\d{6}$'
       example: '0.300000'
     TransactionDate:
       type: string
+      format: date
       description: Data da movimentação
       maxLength: 10
       pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
       example: '2018-02-15'
     TransactionGrossValue:
       type: object
+      required:
+        - amount
+        - currency
       description: 'Valor bruto da transação (Preço unitário da movimentação x Quantidade) '
       properties:
         amount:
-          $ref: '#/components/schemas/Amount'
+          type: string
+          format: double
+          pattern: '^\d{1,15}\.\d{2,4}$'
+          maxLength: 20
+          minLength: 4
+          example: '1000.04'
+          description: Valor relacionado ao objeto.
         currency:
           $ref: '#/components/schemas/Currency'
     TransactionId:
       type: string
-      description: Código ou identificador único prestado pela instituição para individualizar o movimento
+      description: |
+        Código ou identificador único prestado pela instituição para individualizar o movimento.  
       maxLength: 100
       pattern: '^[a-zA-Z0-9][a-zA-Z0-9-]{0,99}$'
       example: ABCD2126019929279212650822221989319253344
     TransactionNetValue:
       type: object
       description: Valor líquido da transação
+      required:
+        - amount
+        - currency
       properties:
         amount:
-          $ref: '#/components/schemas/Amount'
+          type: string
+          format: double
+          pattern: '^\d{1,15}\.\d{2,4}$'
+          maxLength: 20
+          minLength: 4
+          example: '1000.04'
+          description: Valor relacionado ao objeto.
         currency:
           $ref: '#/components/schemas/Currency'
     TransactionQuantity:
       type: string
       description: Quantidade de títulos envolvidos na movimentação
-      maxLength: 24
+      maxLength: 25
       pattern: '^\d{1,15}\.\d{2,8}$'
       example: '42.25'
     TransactionType:
       type: string
-      description: 'Aplicação, resgate, cancelamento, vencimento, pagamento de juros/amortização, transferência de titularidade, transferência de custódia e outros.'
-      example: Aplicação
-    TransactionUnitePrice:
+      description: 'Compra, venda, cancelamento, vencimento, pagamento de juros, amortização, prêmio, transferência de titularidade, transferência de custódia, multa, mora e outros'
+      enum:
+        - COMPRA
+        - VENDA
+        - CANCELAMENTO
+        - VENCIMENTO
+        - PAGAMENTO_JUROS
+        - AMORTIZACAO
+        - PREMIO
+        - TRANSFERENCIA_TITULARIDADE
+        - TRANSFERENCIA_CUSTODIA
+        - MULTA
+        - MORA
+        - OUTROS
+      example: COMPRA
+    TransactionUnitPrice:
       type: object
       description: 'Preço unitário bruto negociado na transação '
       properties:
         amount:
-          $ref: '#/components/schemas/Amount'
+          type: string
+          format: double
+          pattern: '^-?\d{1,15}\.\d{2,8}$'
+          maxLength: 25
+          minLength: 4
+          example: '1000.04'
+          description: Valor relacionado ao objeto.
         currency:
           $ref: '#/components/schemas/Currency'
     Type:
       type: string
       description: 'Tipo de movimentação na visão de investimento (Nos casos de motivo da movimentação  "pagamento de juros", "amortização", "prêmio", "multa" e "mora", fica convencionado que será considerado que o tipo de movimento será saída).'
+      enum:
+        - ENTRADA
+        - SAIDA
       example: ENTRADA
     TypeAdditionalInfo:
       type: string
       description: |
         Informação adicional do tipo de movimentação, para preenchimento no caso de movimentações não delimitadas no domínio  
-        [Restrição] Campo de preenchimento obrigatório pelas participantes quando houver 'Outros' no campo 'Motivo da movimentação'.
+        [Restrição] Campo de preenchimento obrigatório pelas participantes quando houver 'OUTROS' no campo 'transactionType'.
       maxLength: 100
       pattern: '[\w\W\s]*'
     UpdatedUnitPrice:
@@ -899,10 +1241,10 @@ components:
         amount:
           type: string
           format: double
-          pattern: '^-?\d{1,15}\.\d{2,8}$'
-          maxLength: 25
+          pattern: '^-?\d{1,15}\.\d{2,6}$'
+          maxLength: 23
           minLength: 4
-          example: '1000.0400'
+          example: '-1000.0400'
           description: Valor relacionado ao objeto.
         currency:
           $ref: '#/components/schemas/Currency'
@@ -914,6 +1256,23 @@ components:
           minLength: 4
           pattern: '^\d{1,15}\.\d{2,8}$'
           example: '15.00'
+    UpdatedUnitPriceunit:
+      type: object
+      description: valor bruto unitário atualizado na data de referência;
+      required:
+        - amount
+        - currency
+      properties:
+        amount:
+          type: string
+          format: double
+          pattern: '^\d{1,15}\.\d{2,8}$'
+          maxLength: 24
+          minLength: 4
+          example: '-1000.0400'
+          description: Valor relacionado ao objeto.
+        currency:
+          $ref: '#/components/schemas/Currency'
     VoucherPaymentIndicator:
       type: string
       description: |
@@ -928,12 +1287,19 @@ components:
       type: string
       description: |
         Em caso de haver pagamento de cupom, descrever a periodicidade (mensal, trimestral, semestral, anual, irregular e outros)
-          1. Mensal
-          2. Trimestral
-          3. Semestral
-          4. Anual
-          5. Irregular
-          6. Outros
+          1. Mensal  
+
+          2. Trimestral  
+
+          3. Semestral  
+
+          4. Anual  
+
+          5. Irregular  
+
+          6. Outros   
+            
+          [Restrição] Campo de preenchimento obrigatório pelos participantes quando houver 'SIM' no campo indicativo de pagamento de cupom 'voucherPaymentIndicator'.
       enum:
         - MENSAL
         - TRIMESTRAL
@@ -1044,12 +1410,13 @@ components:
     InvestmentId:
       name: investmentId
       in: path
-      description: Identificador.
+      description: 'Identifica de forma única  o relacionamento do cliente com o produto, mantendo as regras de imutabilidade dentro da instituição transmissora.'
       required: true
       schema:
         type: string
         pattern: '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
         maxLength: 100
+        example: '92792126019929200000000000000000000000000'
     Authorization:
       name: Authorization
       in: header
@@ -1062,7 +1429,7 @@ components:
     xFapiAuthDate:
       name: x-fapi-auth-date
       in: header
-      description: 'Data em que o usuário logou pela última vez com o receptor. Representada de acordo com a [RFC7231](https://tools.ietf.org/html/rfc7231).Exemplo: Sun, 10 Sep 2017 19:43:31 UTC'
+      description: 'Data em que o usuário logou pela última vez com o receptor. Representada de acordo com a RFC7231. Exemplo: Sun, 10 Sep 2017 19:43:31 UTC.'
       required: false
       schema:
         type: string
@@ -1082,8 +1449,8 @@ components:
     xFapiInteractionId:
       name: x-fapi-interaction-id
       in: header
-      description: 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.'
-      required: false
+      description: Um UUID RFC4122 usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser "espelhado" pela transmissora (server) no cabeçalho de resposta.
+      required: true
       schema:
         type: string
         pattern: '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
@@ -1127,6 +1494,54 @@ components:
         type: string
         maxLength: 2048
         pattern: '[\w\W\s]*'
+    fromTransactionDate:
+      name: fromTransactionDate
+      description: |
+        Data inicial de filtragem.      
+        [Restrição] Deve obrigatoriamente ser enviado caso o campo toTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
+      required: false
+      in: query
+      schema:
+        type: string
+        maxLength: 10
+        format: date
+        example: '2022-01-01'
+    toTransactionDate:
+      name: toTransactionDate
+      description: |
+        Data final de filtragem.      
+        [Restrição] Deve obrigatoriamente ser enviado caso o campo fromTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
+      required: false
+      in: query
+      schema:
+        type: string
+        maxLength: 10
+        format: date
+        example: '2022-12-31'
+    fromTransactionDateCurrent:
+      name: fromTransactionDate
+      description: |
+        Data inicial de filtragem. O período máximo utilizado no filtro é de 7 dias inclusive (D-6).       
+        [Restrição] Deve obrigatoriamente ser enviado caso o campo toTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
+      required: false
+      in: query
+      schema:
+        type: string
+        maxLength: 10
+        format: date
+        example: '2023-02-01'
+    toTransactionDateCurrent:
+      name: toTransactionDate
+      description: |
+        Data final de filtragem. O período máximo utilizado no filtro é de 7 dias inclusive (D-6).       
+        [Restrição] Deve obrigatoriamente ser enviado caso o campo fromTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
+      required: false
+      in: query
+      schema:
+        type: string
+        maxLength: 10
+        format: date
+        example: '2023-02-01'
   securitySchemes:
     OpenId:
       type: openIdConnect
@@ -1141,30 +1556,36 @@ components:
           scopes:
             credit-fixed-incomes: Escopo necessário para acesso à API Credit-Fixed-Incomes. O controle dos endpoints específicos é feito via permissions.
   responses:
-    OKResponseCreditFixedIncomesProductList:
-      description: Lista de títulos de renda fixa crédito mantidos pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento
+    ResponseCreditFixedIncomesProductList:
+      description: Dados obtidos com sucesso.
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/OKResponseCreditFixedIncomesProductList'
-    OKResponseCreditFixedIncomesIdentifyProduct:
-      description: 'Método para obter a lista de produtos de Renda Fixa Bancária (CDB, RDB, LCI e LCA)'
+            $ref: '#/components/schemas/ResponseCreditFixedIncomesProductList'
+    ResponseCreditFixedIncomesProductIdentification:
+      description: Dados obtidos com sucesso.
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/OKResponseCreditFixedIdentificacao'
-    OKResponseCustomerPosition:
-      description: 'Método para obter a lista de produtos de Renda Fixa Crédito (Debênture, CRI e CRA)'
+            $ref: '#/components/schemas/ResponseCreditFixedIncomesProductIdentification'
+    ResponseCreditFixedIncomesBalances:
+      description: Dados obtidos com sucesso.
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/OKResponseCustomerPosition'
-    OKResponseCustomerMovement:
-      description: Método para obter a lista de informações de produtos de Renda Variável (Ações e Fundos de Índices)
+            $ref: '#/components/schemas/ResponseCreditFixedIncomesBalances'
+    ResponseCreditFixedIncomesTransactions:
+      description: Dados obtidos com sucesso.
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/OKResponseCustomerMovement'
+            $ref: '#/components/schemas/ResponseCreditFixedIncomesTransactions'
+    ResponseCreditFixedIncomesTransactionsCurrent:
+      description: Dados obtidos com sucesso.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ResponseCreditFixedIncomesTransactionsCurrent'
     BadRequest:
       description: 'A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.'
       content:
