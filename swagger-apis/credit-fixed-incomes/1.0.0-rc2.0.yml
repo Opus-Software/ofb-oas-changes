@@ -75,8 +75,9 @@ paths:
         default:
           $ref: '#/components/responses/DefaultWithAdditionalProperties'
       security:
-        - OAuth2AuthorizationCode:
+        - OpenId:
             - openid
+          OAuth2Security:
             - 'consent:consentId'
             - credit-fixed-incomes
   '/investments/{investmentId}':
@@ -123,8 +124,9 @@ paths:
         default:
           $ref: '#/components/responses/DefaultWithAdditionalProperties'
       security:
-        - OAuth2AuthorizationCode:
+        - OpenId:
             - openid
+          OAuth2Security:
             - 'consent:consentId'
             - credit-fixed-incomes
   '/investments/{investmentId}/balances':
@@ -171,15 +173,16 @@ paths:
         default:
           $ref: '#/components/responses/DefaultWithAdditionalProperties'
       security:
-        - OAuth2AuthorizationCode:
+        - OpenId:
             - openid
+          OAuth2Security:
             - 'consent:consentId'
             - credit-fixed-incomes
   '/investments/{investmentId}/transactions':
     get:
       tags:
         - Transactions
-      summary: Obtém as movimentações da operação de Renda Fixa Crédito identificada por investmentId.
+      summary: Obtém as movimentações históricas (últimos 12 meses) da operação de Renda Fixa Crédito identificada por investmentId.
       operationId: creditFixedIncomesGetInvestmentsInvestmentIdTransactions
       description: Obtém as movimentações históricas (últimos 12 meses) da operação de Renda Fixa Crédito identificada por investmentId.
       parameters:
@@ -224,15 +227,16 @@ paths:
         default:
           $ref: '#/components/responses/Default'
       security:
-        - OAuth2AuthorizationCode:
+        - OpenId:
             - openid
+          OAuth2Security:
             - 'consent:consentId'
             - credit-fixed-incomes
   '/investments/{investmentId}/transactions-current':
     get:
       tags:
         - Transactions Current
-      summary: Obtém as movimentações da operação de Renda Fixa Crédito identificada por investmentId.
+      summary: 'Obtém as movimentações recentes da operação de Renda Fixa Crédito identificada por investmentId. O período a ser considerado para apresentação de movimentações será de até 7 dias - 7 dias anteriores da consulta, incluindo o dia da consulta (D-6).'
       operationId: creditFixedIncomesGetInvestmentsInvestmentIdTransactionsCurrent
       description: 'Obtém as movimentações recentes da operação de Renda Fixa Crédito identificada por investmentId. O período a ser considerado para apresentação de movimentações será de até 7 dias - 7 dias anteriores da consulta, incluindo o dia da consulta (D-6).'
       parameters:
@@ -277,8 +281,9 @@ paths:
         default:
           $ref: '#/components/responses/Default'
       security:
-        - OAuth2AuthorizationCode:
+        - OpenId:
             - openid
+          OAuth2Security:
             - 'consent:consentId'
             - credit-fixed-incomes
 components:
@@ -418,7 +423,7 @@ components:
                 $ref: '#/components/schemas/Type'
               transactionType:
                 $ref: '#/components/schemas/TransactionType'
-              trasanctionTypeAdditionalInfo:
+              typeAdditionalInfo:
                 type: string
                 description: |
                   Informação adicional do tipo de movimentação, para preenchimento no caso de movimentações não delimitadas no domínio.         
@@ -1047,7 +1052,7 @@ components:
           $ref: '#/components/schemas/Type'
         transactionType:
           $ref: '#/components/schemas/TransactionType'
-        trasanctionTypeAdditionalInfo:
+        typeAdditionalInfo:
           $ref: '#/components/schemas/TypeAdditionalInfo'
         transactionDate:
           $ref: '#/components/schemas/TransactionDate'
@@ -1538,7 +1543,10 @@ components:
         format: date
         example: '2023-02-01'
   securitySchemes:
-    OAuth2AuthorizationCode:
+    OpenId:
+      type: openIdConnect
+      openIdConnectUrl: 'https://auth.mockbank.poc.raidiam.io/.well-known/openid-configuration'
+    OAuth2Security:
       type: oauth2
       description: Fluxo OAuth necessário para que a receptora tenha acesso aos dados na instituição transmissora. Requer o processo de redirecionamento e autenticação do usuário a que se referem os dados.
       flows:
