@@ -2,9 +2,49 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 2
+### Modified Endpoints: 5
 -------------------------
+GET /investments
+- Security changed
+  - New security requirements: OAuth2AuthorizationCode
+  - Deleted security requirements: OAuth2Security AND OpenId
+GET /investments/{investmentId}
+- Security changed
+  - New security requirements: OAuth2AuthorizationCode
+  - Deleted security requirements: OAuth2Security AND OpenId
+GET /investments/{investmentId}/balances
+- Security changed
+  - New security requirements: OAuth2AuthorizationCode
+  - Deleted security requirements: OAuth2Security AND OpenId
 GET /investments/{investmentId}/transactions
 - Description changed from 'Obtém as movimentações históricas (últimos 12 meses) da operação de Fundos de Investimento identificada por investmentId.' to 'Obtém as movimentações históricas (últimos 12 meses) da operação de Renda Fixa Crédito identificada por investmentId.'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - New property: trasanctionTypeAdditionalInfo
+                  - Deleted property: typeAdditionalInfo
+- Security changed
+  - New security requirements: OAuth2AuthorizationCode
+  - Deleted security requirements: OAuth2Security AND OpenId
 GET /investments/{investmentId}/transactions-current
 - Description changed from 'Obtém as movimentações recentes da operação de Fundos de Investimento identificada por investmentId. O período a ser considerado para apresentação de movimentações será de até 7 dias - 7 dias anteriores da consulta, incluindo o dia da consulta (D-6).' to 'Obtém as movimentações recentes da operação de Renda Fixa Crédito identificada por investmentId. O período a ser considerado para apresentação de movimentações será de até 7 dias - 7 dias anteriores da consulta, incluindo o dia da consulta (D-6).'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - New property: trasanctionTypeAdditionalInfo
+                  - Deleted property: typeAdditionalInfo
+- Security changed
+  - New security requirements: OAuth2AuthorizationCode
+  - Deleted security requirements: OAuth2Security AND OpenId
