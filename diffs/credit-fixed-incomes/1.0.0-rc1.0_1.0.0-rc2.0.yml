@@ -13,6 +13,18 @@ GET /investments/{investmentId}
   - New security requirements: OAuth2AuthorizationCode
   - Deleted security requirements: OAuth2Security AND OpenId
 GET /investments/{investmentId}/balances
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: updatedUnitPrice
+                  - Properties changed
+                    - Modified property: amount
+                      - Example changed from '1000.0400' to '-1000.0400'
 - Security changed
   - New security requirements: OAuth2AuthorizationCode
   - Deleted security requirements: OAuth2Security AND OpenId
@@ -29,6 +41,8 @@ GET /investments/{investmentId}/transactions
                 - Properties changed
                   - New property: trasanctionTypeAdditionalInfo
                   - Deleted property: typeAdditionalInfo
+                  - Modified property: transactionQuantity
+                    - MaxLength changed from 24 to 25
 - Security changed
   - New security requirements: OAuth2AuthorizationCode
   - Deleted security requirements: OAuth2Security AND OpenId
