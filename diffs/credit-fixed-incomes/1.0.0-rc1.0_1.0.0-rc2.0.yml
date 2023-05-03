@@ -38,6 +38,9 @@ GET /investments/{investmentId}/transactions
           - Properties changed
             - Modified property: data
               - Items changed
+                - Required changed
+                  - Deleted required property: transactionQuantity
+                  - Deleted required property: transactionUnitPrice
                 - Properties changed
                   - New property: trasanctionTypeAdditionalInfo
                   - Deleted property: typeAdditionalInfo
@@ -46,7 +49,14 @@ GET /investments/{investmentId}/transactions
                       - Deleted required property: amount
                       - Deleted required property: currency
                   - Modified property: transactionQuantity
+                    - Description changed from 'Quantidade de títulos envolvidos na movimentação' to 'Quantidade de títulos envolvidos na movimentação
+[Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'transactionType' for preenchido com os valores 'COMPRA', 'VENDA', 'VENCIMENTO', 'TRANSFERENCIA_TITULARIDADE' ou 'TRANSFERENCIA_CUSTODIA'.
+'
                     - MaxLength changed from 24 to 25
+                  - Modified property: transactionUnitPrice
+                    - Description changed from 'valor unitário negociado com o cliente na data de aquisição' to 'valor unitário negociado com o cliente na data de aquisição
+[Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'transactionType' for preenchido com os valores 'COMPRA', 'VENDA' ou 'VENCIMENTO'.
+'
 - Security changed
   - New security requirements: OAuth2AuthorizationCode
   - Deleted security requirements: OAuth2Security AND OpenId
@@ -60,6 +70,9 @@ GET /investments/{investmentId}/transactions-current
           - Properties changed
             - Modified property: data
               - Items changed
+                - Required changed
+                  - Deleted required property: transactionQuantity
+                  - Deleted required property: transactionUnitPrice
                 - Properties changed
                   - New property: trasanctionTypeAdditionalInfo
                   - Deleted property: typeAdditionalInfo
@@ -67,6 +80,14 @@ GET /investments/{investmentId}/transactions-current
                     - Required changed
                       - Deleted required property: amount
                       - Deleted required property: currency
+                  - Modified property: transactionQuantity
+                    - Description changed from 'Quantidade de títulos envolvidos na movimentação' to 'Quantidade de títulos envolvidos na movimentação
+[Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'transactionType' for preenchido com os valores 'COMPRA', 'VENDA', 'VENCIMENTO', 'TRANSFERENCIA_TITULARIDADE' ou 'TRANSFERENCIA_CUSTODIA'.
+'
+                  - Modified property: transactionUnitPrice
+                    - Description changed from 'valor unitário negociado com o cliente na data de aquisição' to 'valor unitário negociado com o cliente na data de aquisição
+[Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'transactionType' for preenchido com os valores 'COMPRA', 'VENDA' ou 'VENCIMENTO'.
+'
 - Security changed
   - New security requirements: OAuth2AuthorizationCode
   - Deleted security requirements: OAuth2Security AND OpenId
