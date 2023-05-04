@@ -34,10 +34,10 @@
 | products-services | [1.0.2](swagger-apis/products-services/1.0.2.yml) | [2.0.0](swagger-apis/products-services/2.0.0.yml) | [YAML](diffs/products-services/1.0.2_2.0.0-breaking-only.yml) | [YAML](diffs/products-services/1.0.2_2.0.0.yml) |
 |  | [2.0.0](swagger-apis/products-services/2.0.0.yml) | [3.0.0](swagger-apis/products-services/3.0.0.yml) | [YAML](diffs/products-services/2.0.0_3.0.0-breaking-only.yml) | [YAML](diffs/products-services/2.0.0_3.0.0.yml) |
 | resources | [1.0.2](swagger-apis/resources/1.0.2.yml) | [2.0.1](swagger-apis/resources/2.0.1.yml) | [YAML](diffs/resources/1.0.2_2.0.1-breaking-only.yml) | [YAML](diffs/resources/1.0.2_2.0.1.yml) |
+|  | [2.0.1](swagger-apis/resources/2.0.1.yml) | [2.1.0-rc1.0](swagger-apis/resources/2.1.0-rc1.0.yml) | [YAML](diffs/resources/2.0.1_2.1.0-rc1.0-breaking-only.yml) | [YAML](diffs/resources/2.0.1_2.1.0-rc1.0.yml) |
 | treasure-titles | [1.0.0-rc1.0](swagger-apis/treasure-titles/1.0.0-rc1.0.yml) |  |  |  |
 | unarranged-accounts-overdraft | [1.0.4](swagger-apis/unarranged-accounts-overdraft/1.0.4.yml) | [2.0.1](swagger-apis/unarranged-accounts-overdraft/2.0.1.yml) | [YAML](diffs/unarranged-accounts-overdraft/1.0.4_2.0.1-breaking-only.yml) | [YAML](diffs/unarranged-accounts-overdraft/1.0.4_2.0.1.yml) |
 | variable-incomes | [1.0.0-rc2.0](swagger-apis/variable-incomes/1.0.0-rc2.0.yml) |  |  |  |
-| webhook | [1.0.0](swagger-apis/webhook/1.0.0.yml) |  |  |  |
 
 ### All revisions
 
@@ -177,6 +177,7 @@
 |  | [1.0.2](swagger-apis/resources/1.0.2.yml) | [2.0.0-RC1.0](swagger-apis/resources/2.0.0-RC1.0.yml) | [YAML](diffs/resources/1.0.2_2.0.0-RC1.0.yml) |
 |  | [2.0.0-RC1.0](swagger-apis/resources/2.0.0-RC1.0.yml) | [2.0.0](swagger-apis/resources/2.0.0.yml) | [YAML](diffs/resources/2.0.0-RC1.0_2.0.0.yml) |
 |  | [2.0.0](swagger-apis/resources/2.0.0.yml) | [2.0.1](swagger-apis/resources/2.0.1.yml) | [YAML](diffs/resources/2.0.0_2.0.1.yml) |
+|  | [2.0.1](swagger-apis/resources/2.0.1.yml) | [2.1.0-rc1.0](swagger-apis/resources/2.1.0-rc1.0.yml) | [YAML](diffs/resources/2.0.1_2.1.0-rc1.0.yml) |
 | treasure-titles | [1.0.0-rc1.0](swagger-apis/treasure-titles/1.0.0-rc1.0.yml) |  |  |
 | unarranged-accounts-overdraft | [1.0.0-rc6.5](swagger-apis/unarranged-accounts-overdraft/1.0.0-rc6.5.yml) | [1.0.0-rc6.6](swagger-apis/unarranged-accounts-overdraft/1.0.0-rc6.6.yml) | [YAML](diffs/unarranged-accounts-overdraft/1.0.0-rc6.5_1.0.0-rc6.6.yml) |
 |  | [1.0.0-rc6.6](swagger-apis/unarranged-accounts-overdraft/1.0.0-rc6.6.yml) | [1.0.0-rc6.7](swagger-apis/unarranged-accounts-overdraft/1.0.0-rc6.7.yml) | [YAML](diffs/unarranged-accounts-overdraft/1.0.0-rc6.6_1.0.0-rc6.7.yml) |
@@ -188,4 +189,17 @@
 |  | [2.0.0-RC1.0](swagger-apis/unarranged-accounts-overdraft/2.0.0-RC1.0.yml) | [2.0.0](swagger-apis/unarranged-accounts-overdraft/2.0.0.yml) | [YAML](diffs/unarranged-accounts-overdraft/2.0.0-RC1.0_2.0.0.yml) |
 |  | [2.0.0](swagger-apis/unarranged-accounts-overdraft/2.0.0.yml) | [2.0.1](swagger-apis/unarranged-accounts-overdraft/2.0.1.yml) | [YAML](diffs/unarranged-accounts-overdraft/2.0.0_2.0.1.yml) |
 | variable-incomes | [1.0.0-rc1.0](swagger-apis/variable-incomes/1.0.0-rc1.0.yml) | [1.0.0-rc2.0](swagger-apis/variable-incomes/1.0.0-rc2.0.yml) | [YAML](diffs/variable-incomes/1.0.0-rc1.0_1.0.0-rc2.0.yml) |
+
+## Deprecated APIs
+
+### Majors/Minors
+
+| OAS | Base | Revision | Breaking changes only | Full Diff |
+| --- | --- | --- | --- | --- |
+| webhook | [1.0.0](swagger-apis/webhook/1.0.0.yml) |  |  |  |
+
+### All revisions
+
+| OAS | Base | Revision | Full Diff |
+| --- | --- | --- | --- |
 | webhook | [1.0.0](swagger-apis/webhook/1.0.0.yml) |  |  |
