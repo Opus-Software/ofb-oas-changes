@@ -2,10 +2,11 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 1
+### Modified Endpoints: 5
 -------------------------
 GET /bank-fixed-incomes
 - Responses changed
+  - New response: 529
   - Modified response: 200
     - Content changed
       - Modified media type: application/json
@@ -17,23 +18,7 @@ GET /bank-fixed-incomes
                   - Modified property: index
                     - Properties changed
                       - Modified property: indexer
-                        - Description changed from '– Qualquer operação com taxa mista em CDI, DI, SELIC deverá ser ignorada - serão consideradas apenas taxas sem cupom  
-– No caso do pré-fixado será utilizado apenas o cupom, mesmo que haja outro indexador misturado  
-– No caso de TR, IPCA, IGP_M, IGP_DI, INPC, BCP, TLC E OUTROS, o cálculo será feito em cima do cupom (mesmo que ele seja zero), desconsiderando as operações que tenham indexador diferente de 100%
-Regras de cálculo por indexador
-▪ CDI = % DO CDI  
-▪ DI = % DO DI  
-▪ TR = TR + CUPOM  
-▪ IPCA = IPCA + CUPOM  
-▪ IGP_M = IGP_M + CUPOM  
-▪ IGP_DI = IGP_DI + CUPOM  
-▪ INPC = INPC + CUPOM  
-▪ BCP = BCP + CUPOM  
-▪ TLC = TLC + CUPOM  
-▪ SELIC = % DO SELIC  
-▪ PRE_FIXADO = CUPOM  
-▪ OUTROS = Indexador + Cupom
-' to '– Qualquer operação com taxa mista em CDI, DI, SELIC deverá ser ignorada - serão consideradas apenas taxas sem cupom  
+                        - Description changed from 'Índice utilizado como referência para a correção da rentabilidade e/ou rendimentos do ativo (p.ex. CDI).<br><br>Pré-fixado, em linha com padronização da B3&#58;<br><br><ol><li>CDI</li><li>DI</li><li>TR</li><li>IPCA</li><li>IGP-M</li><li>IGP-DI</li><li>INPC</li><li>BCP</li><li>TLC</li><li>Selic</li><li>PRE_FIXADO</li><li>Outros</li></ol>' to '– Qualquer operação com taxa mista em CDI, DI, SELIC deverá ser ignorada - serão consideradas apenas taxas sem cupom  
 – No caso do pré-fixado será utilizado apenas o cupom, mesmo que haja outro indexador misturado  
 – No caso de TR, IPCA, IGP_M, IGP_DI, INPC, BCP, TLC E OUTROS, o cálculo será feito em cima do cupom (mesmo que ele seja zero), desconsiderando as operações que tenham indexador diferente de 100%
 Regras de cálculo por indexador  
@@ -50,3 +35,127 @@ Regras de cálculo por indexador
 ▪ PRE_FIXADO = CUPOM  
 ▪ OUTROS = Indexador + Cupom
 '
+                  - Modified property: participant
+                    - Properties changed
+                      - Modified property: urlComplementaryList
+                        - Description changed from 'Array de objeto com a estrutura abaixo:
+- 'name' com o valor contido no campo ‘LegalEntityName’ conforme cadastro no diretório;
+- 'cnpjNumber' com o valor contido no campo CNPJ (‘RegistrationNumber’) correspondente a esta instituição;
+\- Ambos do tipo string;
+\- Ambos obrigatórios. 
+' to 'Espera-se que valor de retorno, após acesso ao link ‘urlComplementaryList’, deve ser array de objeto com a estrutura abaixo:
+- ‘name’ com o valor contido no campo ‘LegalEntityName’ conforme cadastro no diretório;
+- 'cnpjNumber' com o valor contido no campo CNPJ (‘RegistrationNumber’) correspondente a esta instituição;
+- Ambos do tipo string;
+- Ambos obrigatórios.
+'
+  - Modified response: 429
+    - Description changed from 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido' to 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite de requisições concorrentes foi atingido.'
+GET /credit-fixed-incomes
+- Responses changed
+  - New response: 529
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: participant
+                    - Properties changed
+                      - Modified property: urlComplementaryList
+                        - Description changed from 'Array de objeto com a estrutura abaixo:
+- 'name' com o valor contido no campo ‘LegalEntityName’ conforme cadastro no diretório;
+- 'cnpjNumber' com o valor contido no campo CNPJ (‘RegistrationNumber’) correspondente a esta instituição;
+\- Ambos do tipo string;
+\- Ambos obrigatórios. 
+' to 'Espera-se que valor de retorno, após acesso ao link ‘urlComplementaryList’, deve ser array de objeto com a estrutura abaixo:
+- ‘name’ com o valor contido no campo ‘LegalEntityName’ conforme cadastro no diretório;
+- 'cnpjNumber' com o valor contido no campo CNPJ (‘RegistrationNumber’) correspondente a esta instituição;
+- Ambos do tipo string;
+- Ambos obrigatórios.
+'
+  - Modified response: 429
+    - Description changed from 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido' to 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite de requisições concorrentes foi atingido.'
+GET /funds
+- Responses changed
+  - New response: 529
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: participant
+                    - Properties changed
+                      - Modified property: urlComplementaryList
+                        - Description changed from 'Array de objeto com a estrutura abaixo:
+- 'name' com o valor contido no campo ‘LegalEntityName’ conforme cadastro no diretório;
+- 'cnpjNumber' com o valor contido no campo CNPJ (‘RegistrationNumber’) correspondente a esta instituição;
+\- Ambos do tipo string;
+\- Ambos obrigatórios. 
+' to 'Espera-se que valor de retorno, após acesso ao link ‘urlComplementaryList’, deve ser array de objeto com a estrutura abaixo:
+- ‘name’ com o valor contido no campo ‘LegalEntityName’ conforme cadastro no diretório;
+- 'cnpjNumber' com o valor contido no campo CNPJ (‘RegistrationNumber’) correspondente a esta instituição;
+- Ambos do tipo string;
+- Ambos obrigatórios.
+'
+  - Modified response: 429
+    - Description changed from 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido' to 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite de requisições concorrentes foi atingido.'
+GET /treasure-titles
+- Responses changed
+  - New response: 529
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: participant
+                    - Properties changed
+                      - Modified property: urlComplementaryList
+                        - Description changed from 'Array de objeto com a estrutura abaixo:
+- 'name' com o valor contido no campo ‘LegalEntityName’ conforme cadastro no diretório;
+- 'cnpjNumber' com o valor contido no campo CNPJ (‘RegistrationNumber’) correspondente a esta instituição;
+\- Ambos do tipo string;
+\- Ambos obrigatórios. 
+' to 'Espera-se que valor de retorno, após acesso ao link ‘urlComplementaryList’, deve ser array de objeto com a estrutura abaixo:
+- ‘name’ com o valor contido no campo ‘LegalEntityName’ conforme cadastro no diretório;
+- 'cnpjNumber' com o valor contido no campo CNPJ (‘RegistrationNumber’) correspondente a esta instituição;
+- Ambos do tipo string;
+- Ambos obrigatórios.
+'
+  - Modified response: 429
+    - Description changed from 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido' to 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite de requisições concorrentes foi atingido.'
+GET /variable-incomes
+- Responses changed
+  - New response: 529
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: participant
+                    - Properties changed
+                      - Modified property: urlComplementaryList
+                        - Description changed from 'Array de objeto com a estrutura abaixo:
+- 'name' com o valor contido no campo ‘LegalEntityName’ conforme cadastro no diretório;
+- 'cnpjNumber' com o valor contido no campo CNPJ (‘RegistrationNumber’) correspondente a esta instituição;
+\- Ambos do tipo string;
+\- Ambos obrigatórios. 
+' to 'Espera-se que valor de retorno, após acesso ao link ‘urlComplementaryList’, deve ser array de objeto com a estrutura abaixo:
+- ‘name’ com o valor contido no campo ‘LegalEntityName’ conforme cadastro no diretório;
+- 'cnpjNumber' com o valor contido no campo CNPJ (‘RegistrationNumber’) correspondente a esta instituição;
+- Ambos do tipo string;
+- Ambos obrigatórios.
+'
+  - Modified response: 429
+    - Description changed from 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido' to 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite de requisições concorrentes foi atingido.'

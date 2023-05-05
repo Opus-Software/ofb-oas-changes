@@ -10,7 +10,7 @@
 | acquiring-services | [1.0.0](swagger-apis/acquiring-services/1.0.0.yml) |  |  |  |
 | admin | [1.0.2](swagger-apis/admin/1.0.2.yml) | [2.0.0](swagger-apis/admin/2.0.0.yml) | [YAML](diffs/admin/1.0.2_2.0.0-breaking-only.yml) | [YAML](diffs/admin/1.0.2_2.0.0.yml) |
 | bank-fixed-incomes | [1.0.0-rc2.0](swagger-apis/bank-fixed-incomes/1.0.0-rc2.0.yml) |  |  |  |
-| capitalization-bonds | [1.0.0-rc2.0](swagger-apis/capitalization-bonds/1.0.0-rc2.0.yml) |  |  |  |
+| capitalization-bonds | [1.0.0](swagger-apis/capitalization-bonds/1.0.0.yml) |  |  |  |
 | channels | [1.0.2](swagger-apis/channels/1.0.2.yml) | [2.0.0](swagger-apis/channels/2.0.0.yml) | [YAML](diffs/channels/1.0.2_2.0.0-breaking-only.yml) | [YAML](diffs/channels/1.0.2_2.0.0.yml) |
 |  | [2.0.0](swagger-apis/channels/2.0.0.yml) | [3.0.0](swagger-apis/channels/3.0.0.yml) | [YAML](diffs/channels/2.0.0_3.0.0-breaking-only.yml) | [YAML](diffs/channels/2.0.0_3.0.0.yml) |
 | common | [1.0.2](swagger-apis/common/1.0.2.yml) |  |  |  |
@@ -39,7 +39,6 @@
 | treasure-titles | [1.0.0-rc1.0](swagger-apis/treasure-titles/1.0.0-rc1.0.yml) |  |  |  |
 | unarranged-accounts-overdraft | [1.0.4](swagger-apis/unarranged-accounts-overdraft/1.0.4.yml) | [2.0.1](swagger-apis/unarranged-accounts-overdraft/2.0.1.yml) | [YAML](diffs/unarranged-accounts-overdraft/1.0.4_2.0.1-breaking-only.yml) | [YAML](diffs/unarranged-accounts-overdraft/1.0.4_2.0.1.yml) |
 | variable-incomes | [1.0.0-rc2.0](swagger-apis/variable-incomes/1.0.0-rc2.0.yml) |  |  |  |
-| webhook | [1.0.0](swagger-apis/webhook/1.0.0.yml) |  |  |  |
 
 ### All revisions
 
@@ -65,6 +64,7 @@
 |  | [1.0.2](swagger-apis/admin/1.0.2.yml) | [2.0.0](swagger-apis/admin/2.0.0.yml) | [YAML](diffs/admin/1.0.2_2.0.0.yml) |
 | bank-fixed-incomes | [1.0.0-rc1.0](swagger-apis/bank-fixed-incomes/1.0.0-rc1.0.yml) | [1.0.0-rc2.0](swagger-apis/bank-fixed-incomes/1.0.0-rc2.0.yml) | [YAML](diffs/bank-fixed-incomes/1.0.0-rc1.0_1.0.0-rc2.0.yml) |
 | capitalization-bonds | [1.0.0-rc1.0](swagger-apis/capitalization-bonds/1.0.0-rc1.0.yml) | [1.0.0-rc2.0](swagger-apis/capitalization-bonds/1.0.0-rc2.0.yml) | [YAML](diffs/capitalization-bonds/1.0.0-rc1.0_1.0.0-rc2.0.yml) |
+|  | [1.0.0-rc2.0](swagger-apis/capitalization-bonds/1.0.0-rc2.0.yml) | [1.0.0](swagger-apis/capitalization-bonds/1.0.0.yml) | [YAML](diffs/capitalization-bonds/1.0.0-rc2.0_1.0.0.yml) |
 | channels | [1.0.0-rc5.1](swagger-apis/channels/1.0.0-rc5.1.yml) | [1.0.0-rc5.2](swagger-apis/channels/1.0.0-rc5.2.yml) | [YAML](diffs/channels/1.0.0-rc5.1_1.0.0-rc5.2.yml) |
 |  | [1.0.0-rc5.2](swagger-apis/channels/1.0.0-rc5.2.yml) | [1.0.0-rc5](swagger-apis/channels/1.0.0-rc5.yml) | [YAML](diffs/channels/1.0.0-rc5.2_1.0.0-rc5.yml) |
 |  | [1.0.0-rc5](swagger-apis/channels/1.0.0-rc5.yml) | [1.0.0](swagger-apis/channels/1.0.0.yml) | [YAML](diffs/channels/1.0.0-rc5_1.0.0.yml) |
@@ -192,4 +192,17 @@
 |  | [2.0.0-RC1.0](swagger-apis/unarranged-accounts-overdraft/2.0.0-RC1.0.yml) | [2.0.0](swagger-apis/unarranged-accounts-overdraft/2.0.0.yml) | [YAML](diffs/unarranged-accounts-overdraft/2.0.0-RC1.0_2.0.0.yml) |
 |  | [2.0.0](swagger-apis/unarranged-accounts-overdraft/2.0.0.yml) | [2.0.1](swagger-apis/unarranged-accounts-overdraft/2.0.1.yml) | [YAML](diffs/unarranged-accounts-overdraft/2.0.0_2.0.1.yml) |
 | variable-incomes | [1.0.0-rc1.0](swagger-apis/variable-incomes/1.0.0-rc1.0.yml) | [1.0.0-rc2.0](swagger-apis/variable-incomes/1.0.0-rc2.0.yml) | [YAML](diffs/variable-incomes/1.0.0-rc1.0_1.0.0-rc2.0.yml) |
+
+## Deprecated APIs
+
+### Majors/Minors
+
+| OAS | Base | Revision | Breaking changes only | Full Diff |
+| --- | --- | --- | --- | --- |
+| webhook | [1.0.0](swagger-apis/webhook/1.0.0.yml) |  |  |  |
+
+### All revisions
+
+| OAS | Base | Revision | Full Diff |
+| --- | --- | --- | --- |
 | webhook | [1.0.0](swagger-apis/webhook/1.0.0.yml) |  |  |

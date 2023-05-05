@@ -2,10 +2,11 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 1
+### Modified Endpoints: 2
 -------------------------
-GET /vet-values
+GET /online-rates
 - Responses changed
+  - New response: 529
   - Modified response: 200
     - Content changed
       - Modified media type: application/json
@@ -14,7 +15,72 @@ GET /vet-values
             - Modified property: data
               - Items changed
                 - Properties changed
+                  - Modified property: deliveryForeignCurrency
+                    - Description changed from 'A classificação da forma de operação, conforme a circular BCB nº 3690 de 16/12/2013. (Vide Enum)<br><ul><li>ESPECIE</li><li>CARTAO_PRE_PAGO</li><li>TELETRANSMISSAO_SWIFT</li></ul>' to 'A classificação da forma de operação, conforme Resolução BCB nº 277 de 31/12/2022 ou outro normativo que a revogue. (Vide Enum)<br><ul><li>ESPECIE</li><li>CARTAO_PRE_PAGO</li><li>TELETRANSMISSAO_SWIFT</li></ul>'
+                  - Modified property: participant
+                    - Properties changed
+                      - Modified property: urlComplementaryList
+                        - Description changed from 'Array de objeto com a estrutura abaixo:
+- 'name' com o valor contido no campo ‘LegalEntityName’ conforme cadastro no diretório;
+- 'cnpjNumber' com o valor contido no campo CNPJ (‘RegistrationNumber’) correspondente a esta instituição;
+\- Ambos do tipo string;
+\- Ambos obrigatórios. 
+' to 'Espera-se que valor de retorno, após acesso ao link ‘urlComplementaryList’, deve ser array de objeto com a estrutura abaixo:
+- ‘name’ com o valor contido no campo ‘LegalEntityName’ conforme cadastro no diretório;
+- 'cnpjNumber' com o valor contido no campo CNPJ (‘RegistrationNumber’) correspondente a esta instituição;
+- Ambos do tipo string;
+- Ambos obrigatórios.
+'
+                  - Modified property: transactionCategory
+                    - Description changed from 'A classificação do tipo de operação, conforme a circular BCB nº 3690 de 16/12/2013.' to 'A classificação do tipo de operação, conforme Resolução BCB nº 277 de 31/12/2022 ou outro normativo que a revogue.'
+                  - Modified property: value
+                    - MaxLength changed from 8 to 22
+                    - Pattern changed from '^\d{1}\.\d{6}$' to '^\d{1,15}\.\d{6}$'
+  - Modified response: 429
+    - Description changed from 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido' to 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite de requisições concorrentes foi atingido.'
+GET /vet-values
+- Responses changed
+  - New response: 529
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: deliveryForeignCurrency
+                    - Description changed from 'A classificação da forma de operação, conforme a circular BCB nº 3690 de 16/12/2013. (Vide Enum)<br><ul><li>ESPECIE</li><li>CARTAO_PRE_PAGO</li><li>TELETRANSMISSAO_SWIFT</li></ul>' to 'A classificação da forma de operação, conforme Resolução BCB nº 277 de 31/12/2022 ou outro normativo que a revogue. (Vide Enum)<br><ul><li>ESPECIE</li><li>CARTAO_PRE_PAGO</li><li>TELETRANSMISSAO_SWIFT</li></ul>'
+                  - Modified property: participant
+                    - Properties changed
+                      - Modified property: urlComplementaryList
+                        - Description changed from 'Array de objeto com a estrutura abaixo:
+- 'name' com o valor contido no campo ‘LegalEntityName’ conforme cadastro no diretório;
+- 'cnpjNumber' com o valor contido no campo CNPJ (‘RegistrationNumber’) correspondente a esta instituição;
+\- Ambos do tipo string;
+\- Ambos obrigatórios. 
+' to 'Espera-se que valor de retorno, após acesso ao link ‘urlComplementaryList’, deve ser array de objeto com a estrutura abaixo:
+- ‘name’ com o valor contido no campo ‘LegalEntityName’ conforme cadastro no diretório;
+- 'cnpjNumber' com o valor contido no campo CNPJ (‘RegistrationNumber’) correspondente a esta instituição;
+- Ambos do tipo string;
+- Ambos obrigatórios.
+'
                   - Modified property: vetAmount
                     - Description changed from 'Distribuição por frequência.' to 'Distribuição por frequência.  
 É necessário que as Instituições Financeiras desconsiderem os valores de VET negativo no cálculo de vetAmount.
 '
+                    - Properties changed
+                      - Modified property: maximum
+                        - MaxLength changed from 8 to 22
+                        - Pattern changed from '^\d{1}\.\d{6}$' to '^\d{1,15}\.\d{6}$'
+                      - Modified property: minimum
+                        - MaxLength changed from 8 to 22
+                        - Pattern changed from '^\d{1}\.\d{6}$' to '^\d{1,15}\.\d{6}$'
+                      - Modified property: prices
+                        - Items changed
+                          - Properties changed
+                            - Modified property: value
+                              - MaxLength changed from 8 to 22
+                              - Pattern changed from '^\d{1}\.\d{6}$' to '^\d{1,15}\.\d{6}$'
+  - Modified response: 429
+    - Description changed from 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido' to 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite de requisições concorrentes foi atingido.'
