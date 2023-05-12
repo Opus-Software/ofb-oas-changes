@@ -1,15 +1,15 @@
 ﻿openapi: 3.0.0
 info:
-  title: API Pension - Open Banking Brasil
+  title: API Pension - Open Finance Brasil
   description: |
-    API de Previdência do Open Banking Brasil – Fase 4.
+    API de Previdência do Open Finance Brasil – Fase 4.
     API que retorna informações de Previdência.
   version: 1.0.0
   license:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0'
   contact:
-    name: Governança do Open Banking Brasil – Especificações
+    name: Governança do Open Finance Brasil – Especificações
     email: gt-interfaces@openbankingbr.org
     url: 'https://openbanking-brasil.github.io/areadesenvolvedor/'
 servers:
@@ -46,6 +46,8 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
+        '529':
+          $ref: '#/components/responses/SiteIsOverloaded'
   /survival-coverages:
     get:
       tags:
@@ -69,6 +71,8 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
+        '529':
+          $ref: '#/components/responses/SiteIsOverloaded'
 components:
   schemas:
     OKResponseRiskCoveragePension:
@@ -85,7 +89,7 @@ components:
         links:
           $ref: '#/components/schemas/Links'
         meta:
-          $ref: '#/components/schemas/Phase4Meta'
+          $ref: '#/components/schemas/OpenDataMeta'
       additionalProperties: false
     GetRiskPensionContractData:
       type: object
@@ -94,32 +98,19 @@ components:
         - society
         - name
         - code
+        - modality
         - coverages
-        - assistanceTypes
-        - additionals
         - termsAndConditions
-        - terms
-        - benefitRecalculation
-        - premiumPayment
+        - premiumUpdateIndex
+        - otherGuaranteedValues
+        - contributionPayment
+        - minimumRequirement
         - targetAudience
       properties:
         participant:
-          $ref: '#/components/schemas/Participant'
+          $ref: '#/components/schemas/PensionParticipant'
         society:
-          type: object
-          description: Conjunto de informações relativas à seguradora do produto de open insurance
-          required:
-            - name
-            - cnpjNumber
-          properties:
-            name:
-              type: string
-              description: Nome da Sociedade Seguradora.
-              maxLength: 80
-              example: Society A1
-            cnpjNumber:
-              $ref: '#/components/schemas/CnpjNumber'
-          additionalProperties: false
+          $ref: '#/components/schemas/PensionSociety'
         name:
           type: string
           maxLength: 80
@@ -130,8 +121,6 @@ components:
           maxLength: 80
           description: Código único a ser definido pela sociedade.
           example: '0001'
-        category:
-          $ref: '#/components/schemas/EnumInsurancePensionCategory'
         modality:
           $ref: '#/components/schemas/EnumProductModality'
         coverages:
@@ -152,166 +141,43 @@ components:
           description: Lista a ser preenchida pelas participantes quando houver 'Outros' no campo 'Tipo de Assistência'.
           example:
             - Assistance additional info.
-        additionals:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnumAdditional'
-          example:
-            - SORTEIO
-            - OUTROS
+        additional:
+          $ref: '#/components/schemas/EnumAdditional'
         termsAndConditions:
           type: array
           items:
             $ref: '#/components/schemas/TermsAndConditions'
           minItems: 1
-        globalCapital:
-          type: boolean
-          description: A considerar os seguintes domínios&#58;<br><ol><li>true</li><li>false</li></ol>
-          example: true
-        terms:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnumTerm'
         pmbacRemuneration:
-          $ref: '#/components/schemas/InsurancePensionEnumPmbacRemuneration'
-        benefitRecalculation:
-          $ref: '#/components/schemas/InsurancePensionBenefitRecalculation'
+          $ref: '#/components/schemas/RiskPensionEnumPmbacRemuneration'
+        premiumUpdateIndex:
+          $ref: '#/components/schemas/RiskPensionEnumPremiumUpdateIndex'
         ageAdjustment:
           $ref: '#/components/schemas/AgeAdjustment'
-        financialRegimeContractTypes:
-          type: array
-          items:
-            $ref: '#/components/schemas/InsurancePensionEnumFinancialRegime'
+        financialRegimeContractType:
+          $ref: '#/components/schemas/RiskPensionEnumFinancialRegime'
         reclaim:
-          $ref: '#/components/schemas/InsurancePensionReclaim'
+          $ref: '#/components/schemas/RiskPensionReclaim'
         otherGuaranteedValues:
-          type: array
-          items:
-            type: string
-            description: |
-              1. Saldamento
-              2. Benefício Prolongado
-              3. Não se aplica
-            maxLength: 20
-            enum:
-              - SALDAMENTO
-              - BENEFICIO_PROLONGADO
-              - NAO_APLICA
-            example: SALDAMENTO
-        allowPortability:
-          type: boolean
-          description: <ol><li>true</li><li>false</li></ol>
-        portabilityGraceTime:
-          $ref: '#/components/schemas/GracePeriod'
-        indemnityPaymentMethods:
-          type: array
-          items:
-            type: string
-            description: |
-              Modalidade de pagamento da indenização, a considerar os domínios abaixo:
-                1. Único
-                2. Sob a forma de renda
-            maxLength: 18
-            enum:
-              - UNICO
-              - SOB_FORMA_RENDA
-            example: UNICO
-        indemnityPaymentIncomes:
-          type: array
-          items:
-            type: string
-            description: |
-              Tipo de renda ou pensão, caso modalidade de pagamento de indenização seja sob a forma de renda:
-                1. Certa
-                2. Temporária
-                3. Temporária reversível
-                4. Temporário com mínimo garantido
-                5. Temporária reversível com mínimo garantido
-                6. Vitalícia
-                7. Vitalícia reversível
-                8. Vitalícia com o mínimo garantido
-                9. Vitalícia reversível como mínimo garantido
-            maxLength: 38
-            enum:
-              - CERTA
-              - TEMPORARIA
-              - TEMPORARIA_REVERSIVEL
-              - TEMPORARIO_MINIMO_GARANTIDO
-              - TEMPORARIA_REVERSIVEL_MINIMO_GARANTIDO
-              - VITALICIA
-              - VITALICIA_REVERSIVEL
-              - VITALICIA_MINIMO_GARANTIDO
-              - VITALICIA_REVERSIVEL_MINIMO_GARANTIDO
-            example: CERTA
-        premiumPayment:
-          type: object
-          required:
-            - paymentMethods
-            - frequencies
-          properties:
-            paymentMethods:
-              type: array
-              minItems: 1
-              items:
-                type: string
-                description: |
-                  Meio de pagamento escolhido pelo segurado. A considerar os domínios abaixo:
-                    1. Cartão de Crédito
-                    2. Cartão de Débito
-                    3. Débito em conta corrente
-                    4. Débito em conta poupança
-                    5. Boleto bancário
-                    6. PIX
-                    7. Consignação em Folha de Pagamento
-                    8. Pontos de Programa de Benefício
-                    9. Outros
-                maxLength: 27
-                enum:
-                  - CARTAO_CREDITO
-                  - CARTAO_DEBITO
-                  - DEBITO_CONTA_CORRENTE
-                  - DEBITO_CONTA_POUPANCA
-                  - BOLETO_BANCARIO
-                  - PIX
-                  - CONSIGNACAO_FOLHA_PAGAMENTO
-                  - PONTOS_PROGRAMA_BENEFÍCIO
-                  - OUTROS
-                example: CARTAO_CREDITO
-            frequencies:
-              type: array
-              minItems: 1
-              items:
-                type: string
-                description: |
-                  Periodicidade de pagamento do prêmio:
-                    1. Diária
-                    2. Mensal
-                    3. Única
-                    4. Anual
-                    5. Trimestral
-                    6. Semestral
-                    7. Fracionado
-                    8. Outra
-                maxLength: 10
-                enum:
-                  - DIARIA
-                  - MENSAL
-                  - UNICA
-                  - ANUAL
-                  - TRIMESTRAL
-                  - SEMESTRAL
-                  - FRACIONADO
-                  - OUTRA
-                example: DIARIA
-            contributionTax:
-              type: string
-              description: 'Distribuição de frequência relativa aos valores referentes às taxas cobradas, nos termos do Anexo III.'
-              maxLength: 500
-          additionalProperties: false
+          $ref: '#/components/schemas/RiskPensionEnumOtherGuaranteedValues'
+        contributionPayment:
+          $ref: '#/components/schemas/RiskPensionEnumContributionPayment'
         minimumRequirement:
           $ref: '#/components/schemas/RiskPensionMinimumRequirement'
         targetAudience:
-          $ref: '#/components/schemas/EnumTargetAudience'
+          type: string
+          description: |
+            A considerar os domínios abaixo:
+
+              1. Pessoa Natural
+              2. Pessoa Jurídica
+              3. Ambas (Pessoa Natural e Jurídica)
+          maxLength: 23
+          enum:
+            - PESSOA_NATURAL
+            - PESSOA_JURIDICA
+            - PESSOA_NATURAL_JURIDICA
+          example: PESSOA_NATURAL
       additionalProperties: false
     OKResponseSurvivalCoveragePension:
       type: object
@@ -327,7 +193,7 @@ components:
         links:
           $ref: '#/components/schemas/Links'
         meta:
-          $ref: '#/components/schemas/Phase4Meta'
+          $ref: '#/components/schemas/OpenDataMeta'
       additionalProperties: false
     GetSurvivalPensionContractData:
       type: object
@@ -336,13 +202,16 @@ components:
         - name
         - code
         - segment
-        - type
+        - modality
+        - defferalPeriod
+        - grantPeriodBenefit
+        - costs
         - targetAudience
       properties:
         participant:
-          $ref: '#/components/schemas/Participant'
+          $ref: '#/components/schemas/PensionParticipant'
         society:
-          $ref: '#/components/schemas/GetRiskPensionContractData/properties/society'
+          $ref: '#/components/schemas/PensionSociety'
         name:
           type: string
           maxLength: 80
@@ -397,11 +266,16 @@ components:
         minimumRequirement:
           $ref: '#/components/schemas/SurvivalPensionMinimumRequirements'
         targetAudience:
-          $ref: '#/components/schemas/EnumTargetAudience'
+          $ref: '#/components/schemas/SurvivalPensionEnumTargetAudience'
       additionalProperties: false
-    SurvivalPensionInvestimentFund:
+    SurvivalPensionInvestmentFund:
       type: object
       description: Fundos de Investimento (por fundo).
+      required:
+        - cnpjNumber
+        - name
+        - maximumAdministrationFee
+        - typePerformanceFee
       properties:
         cnpjNumber:
           $ref: '#/components/schemas/CnpjNumber'
@@ -414,12 +288,13 @@ components:
           example: EMPRESAAPREV
         maximumAdministrationFee:
           type: string
-          pattern: '^[0-1]\.\d{6}$'
+          pattern: '^(\d{1}\.\d{6})|(NA)$'
           description: |
             Lista com as informações do(s) Fundo(s) de Investimento(s) disponíveis para o período de diferimento/acumulação, contemplando:
               - Taxa Máxima de Administração - em %
-          example: '0.201000'
+          example: '0.019800'
           maxLength: 8
+          minLength: 8
         typePerformanceFee:
           type: string
           enum:
@@ -433,12 +308,13 @@ components:
           maxLength: 13
         maximumPerformanceFee:
           type: string
-          pattern: '^[0-1]\.\d{6}$'
+          pattern: '^(\d{1}\.\d{6})|(NA)$'
           description: |
             Lista com as informações do(s) Fundo(s) de Investimento(s) disponíveis para o período de diferimento/acumulação, contemplando: 
               - Taxa Máxima de Performance - em %
           maxLength: 8
-          example: '0.201000'
+          minLength: 8
+          example: '0.019800'
         eligibilityRule:
           type: boolean
           description: |
@@ -450,7 +326,7 @@ components:
           description: |
             Lista com as informações do(s) Fundo(s) de Investimento(s) disponíveis para o período de diferimento/acumulação, contemplando: 
               - Valor Mínimo de Contribuição
-          pattern: '^\d{1,16}\.\d{2,4}$'
+          pattern: '^(\d{1,16}\.\d{2,4})|(NA)$'
           example: '1000.00'
           maxLength: 21
         minimumMathematicalProvisionAmount:
@@ -458,7 +334,7 @@ components:
           description: |
             Lista com as informações do(s) Fundo(s) de Investimento(s) disponíveis para o período de diferimento/acumulação, contemplando: 
               - Valor Mínimo do Saldo Provisão matemática
-          pattern: '^\d{1,16}\.\d{2,4}$'
+          pattern: '^(\d{1,16}\.\d{2,4})|(NA)$'
           example: '1000.00'
           maxLength: 21
         currency:
@@ -469,20 +345,21 @@ components:
       required:
         - contractType
         - participantQualified
+        - contractingMinRequirement
       properties:
         contractType:
           type: string
           maxLength: 27
           enum:
-            - COLETIVO
+            - COLETIVO_AVERBADO
+            - COLETIVO_INSTITUIDO
             - INDIVIDUAL
-            - AMBAS
           description: |
             O tipo de serviço contratado. A considerar os domínios abaixo:
             1. Coletivo Averbado;
-            2. Individual.
-            3. Ambas
-          example: COLETIVO
+            2. Coletivo instituído;
+            3. Individual.
+          example: COLETIVO_AVERBADO
         participantQualified:
           type: boolean
           description: |
@@ -496,29 +373,30 @@ components:
           description: Campo aberto (possibilidade de incluir URL)
           example: 'https://openinsurance.com.br/aaa'
       additionalProperties: false
-    SusepProcessNumber:
-      type: string
-      description: 'Sequência numérica utilizada para consulta dos processos eletrônicos na SUSEP, com caracteres especiais, conforme campo de consulta no site da SUSEP (XXXXX.XXXXXX/XXXX-XX)<br>Observação&#58; Mascaras da SUSEP – Serão permitidos todas as máscaras de Produtos. Limitar pelos códigos das Máscaras.'
-      maxLength: 20
-      pattern: '^\d{5}\.\d{6}/\d{4}-\d{2}$'
-      example: 15414.622222/2222-22
     CnpjNumber:
       type: string
       description: 'O CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica. Deve-se ter apenas os números do CNPJ, sem máscara.'
-      pattern: '\d{14}$'
+      pattern: '^(\d{14})|(NA)$'
       example: '13456789000112'
     SurvivalPensionDefferalPeriod:
       type: object
       description: Período de Diferimento
       required:
-        - premiumPaymentMethods
+        - interestRate
+        - updateIndex
+        - otherMinimumPerformanceGarantees
+        - reversalFinancialResults
+        - permissionScheduledFinancialPayments
+        - redemptionPaymentTerm
+        - portabilityPaymentTerm
       properties:
         interestRate:
           type: string
           maxLength: 8
-          pattern: '^[0-1]\.\d{6}$'
+          minLength: 8
+          pattern: '^(\d{1}\.\d{6})|(NA)$'
           description: Taxa de juros mensal garantida que remunera o plano durante a fase de diferimento/acumulação.
-          example: '0.251231'
+          example: '0.019800'
         updateIndex:
           $ref: '#/components/schemas/UpdateIndex'
         otherMinimumPerformanceGarantees:
@@ -529,9 +407,10 @@ components:
         reversalFinancialResults:
           type: string
           maxLength: 8
-          pattern: '^[0-1]\.\d{6}$'
+          minLength: 8
+          pattern: '^(\d{1}\.\d{6})|(NA)$'
           description: Percentual de reversão de excedente financeiro na concessão. Em %.
-          example: '0.051230'
+          example: '0.019800'
         minimumPremiums:
           type: array
           items:
@@ -583,7 +462,7 @@ components:
         investmentFunds:
           type: array
           items:
-            $ref: '#/components/schemas/SurvivalPensionInvestimentFund'
+            $ref: '#/components/schemas/SurvivalPensionInvestmentFund'
       additionalProperties: false
     SurvivalPensionType:
       type: string
@@ -669,16 +548,18 @@ components:
       properties:
         minValue:
           type: string
-          pattern: '^[0-1]\.\d{6}$'
+          pattern: '^(\d{1}\.\d{6})|(NA)$'
           maxLength: 8
+          minLength: 8
           description: Percentual mínimo de carregamento cobrada quando do pagamento do prêmio/ contribuição. Em %.
-          example: '0.000000'
+          example: '0.019800'
         maxValue:
           type: string
-          pattern: '^[0-1]\.\d{6}$'
+          pattern: '^(\d{1}\.\d{6})|(NA)$'
           maxLength: 8
+          minLength: 8
           description: Percentual máximo de carregamento cobrada quando do pagamento do prêmio/ contribuição. Em %.
-          example: '0.100000'
+          example: '0.019800'
       additionalProperties: false
     SurvivalPensionLoadingLate:
       type: object
@@ -689,16 +570,18 @@ components:
       properties:
         minValue:
           type: string
-          pattern: '^[0-1]\.\d{6}$'
+          pattern: '^(\d{1}\.\d{6})|(NA)$'
           maxLength: 8
+          minLength: 8
           description: Percentual mínimo de taxa de carregamento cobrado quando da efetivação de resgate ou portabilidade.
-          example: '0.000000'
+          example: '0.019800'
         maxValue:
           type: string
-          pattern: '^[0-1]\.\d{6}$'
+          pattern: '^(\d{1}\.\d{6})|(NA)$'
           maxLength: 8
+          minLength: 8
           description: Percentual máximo de taxa de carregamento cobrado quando da efetivação de resgate ou portabilidade.
-          example: '0.100000'
+          example: '0.019800'
       additionalProperties: false
     SurvivalPensionMinimumPremium:
       type: object
@@ -723,7 +606,7 @@ components:
         amount:
           type: string
           maxLength: 21
-          pattern: '^\d{1,16}\.\d{2,4}$'
+          pattern: '^(\d{1,16}\.\d{2,4})|(NA)$'
           description: Valor mínimo em R$ de prêmio/ contribuição aceita pela sociedade ao plano (identificar valor mensal e/ou aporte único).
           example: '250.00'
       additionalProperties: false
@@ -732,7 +615,9 @@ components:
       description: Período de concessão do benefício
       required:
         - incomeModalities
-        - biometricTable
+        - interestRate
+        - updateIndex
+        - reversalFinancialResults
       properties:
         incomeModalities:
           type: array
@@ -768,7 +653,7 @@ components:
             example: PAGAMENTO_UNICO
         biometricTable:
           type: array
-          minItems: 1
+          minItems: 0
           items:
             type: string
             maxLength: 32
@@ -795,21 +680,23 @@ components:
         interestRate:
           type: string
           maxLength: 8
-          pattern: '^[0-1]\.\d{6}$'
+          minLength: 8
+          pattern: '^(\d{1}\.\d{6})|(NA)$'
           description: Taxa de juros garantida utilizada para conversão em renda. Em %
-          example: '0.225222'
+          example: '0.019800'
         updateIndex:
           $ref: '#/components/schemas/UpdateIndex'
         reversalFinancialResults:
           type: string
           maxLength: 8
-          pattern: '^[0-1]\.\d{6}$'
+          minLength: 8
+          pattern: '^(\d{1}\.\d{6})|(NA)$'
           description: Percentual de reversão de excedente financeiro na concessão. Em %.
-          example: '1.252111'
+          example: '0.019800'
         investmentFunds:
           type: array
           items:
-            $ref: '#/components/schemas/SurvivalPensionInvestimentFund'
+            $ref: '#/components/schemas/SurvivalPensionInvestmentFund'
       additionalProperties: false
     Links:
       type: object
@@ -823,82 +710,39 @@ components:
           maxLength: 2000
           description: URI completo que gerou a resposta atual.
           example: 'https://api.banco.com.br/open-banking/api/v1/resource'
-          pattern: '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+          pattern: '^((https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*))|(NA)$'
         first:
           type: string
           format: uri
           maxLength: 2000
           description: URI da primeira página que originou essa lista de resultados. Restrição - Obrigatório quando não for a primeira página da resposta
           example: 'https://api.banco.com.br/open-banking/api/v1/resource'
-          pattern: '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+          pattern: '^((https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*))|(NA)$'
         prev:
           type: string
           format: uri
           maxLength: 2000
           description: "URI da página anterior dessa lista de resultados. Restrição - \tObrigatório quando não for a primeira página da resposta"
           example: 'https://api.banco.com.br/open-banking/api/v1/resource'
-          pattern: '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+          pattern: '^((https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*))|(NA)$'
         next:
           type: string
           format: uri
           maxLength: 2000
           description: URI da próxima página dessa lista de resultados. Restrição - Obrigatório quando não for a última página da resposta
           example: 'https://api.banco.com.br/open-banking/api/v1/resource'
-          pattern: '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+          pattern: '^((https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*))|(NA)$'
         last:
           type: string
           format: uri
           maxLength: 2000
           description: URI da última página dessa lista de resultados. Restrição - Obrigatório quando não for a última página da resposta
           example: 'https://api.banco.com.br/open-banking/api/v1/resource'
-          pattern: '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+          pattern: '^((https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*))|(NA)$'
       additionalProperties: false
-    Meta:
+    PensionParticipant:
       type: object
-      description: Meta informações referente à API requisitada.
-      required:
-        - totalRecords
-        - totalPages
-        - requestDateTime
-      properties:
-        totalRecords:
-          type: integer
-          format: int32
-          description: Número total de registros no resultado
-          example: 1
-        totalPages:
-          type: integer
-          format: int32
-          description: Número total de páginas no resultado
-          example: 1
-        requestDateTime:
-          description: 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.'
-          type: string
-          maxLength: 20
-          format: date-time
-          example: '2021-05-21T08:30:00Z'
-      additionalProperties: false
-    Phase4Meta:
-      type: object
-      description: Meta informações referente à API requisitada.
-      required:
-        - totalRecords
-        - totalPages
-      properties:
-        totalRecords:
-          type: integer
-          format: int32
-          description: Número total de registros no resultado
-          example: 1
-        totalPages:
-          type: integer
-          format: int32
-          description: Número total de páginas no resultado
-          example: 1
-      additionalProperties: false
-    Participant:
-      type: object
-      description: Conjunto de informações relativas ao participante do produto de open banking
+      description: Conjunto de informações relativas ao participante do produto de Open Finance
       required:
         - brand
         - name
@@ -906,47 +750,69 @@ components:
       properties:
         brand:
           type: string
-          description: 'Nome da marca reportada pelo participante do Open Banking. O conceito a que se refere a ''marca'' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes.'
+          description: 'Nome da marca reportada pelo participante do Open Finance. O conceito a que se refere a ''marca'' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes.'
           maxLength: 80
           example: Organização
         name:
           type: string
-          description: Nome do participante do Open Banking.
+          description: Nome do participante do Open Finance.
           maxLength: 80
           example: Organização A1
         cnpjNumber:
           $ref: '#/components/schemas/CnpjNumber'
         urlComplementaryList:
+          description: |
+            Espera-se que valor de retorno, após acesso ao link ‘urlComplementaryList’, deve ser array de objeto com a estrutura abaixo:
+
+            - ‘name’ com o valor contido no campo ‘LegalEntityName’ conforme cadastro no diretório;
+
+            - ‘cnpjNumber’ com o valor contido no campo CNPJ (‘RegistrationNumber’) correspondente a esta instituição;
+
+            - Ambos do tipo string;
+
+            - Ambos obrigatórios.
           type: string
           maxLength: 1024
-          pattern: '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+          pattern: '^((https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*))|(NA)$'
           example: 'https://empresaa1.com/companies'
       additionalProperties: false
-    InsurancePensionEnumIndemnifiablePeriodType:
+    PensionSociety:
+      type: object
+      description: Conjunto de informações relativas à seguradora do produto de open insurance
+      required:
+        - name
+        - cnpjNumber
+      properties:
+        name:
+          type: string
+          description: Nome da Sociedade Seguradora.
+          maxLength: 80
+          example: Society A1
+        cnpjNumber:
+          $ref: '#/components/schemas/CnpjNumber'
+      additionalProperties: false
+    RiskPensionEnumIndemnifiablePeriodType:
       type: string
       description: |
         Listagem do pagamento para cada benefício:
           1. Quantidade determinada de parcelas;
           2. Até o fim de ciclo determinado.
         Se for pagamento único, esse campo não se aplica (retorna vazio).
-      maxLength: 31
       enum:
         - QUANTIDADE_DETERMINADA_PARCELAS
         - FIM_CICLO_DETERMINADO
       example: QUANTIDADE_DETERMINADA_PARCELAS
-    EnumTargetAudience:
+    SurvivalPensionEnumTargetAudience:
       type: string
       description: |
         A considerar os domínios abaixo:
 
           1. Pessoa Natural
           2. Pessoa Jurídica
-          3. Ambas (Pessoa Natural e Jurídica)
       maxLength: 23
       enum:
         - PESSOA_NATURAL
         - PESSOA_JURIDICA
-        - PESSOA_NATURAL_JURIDICA
       example: PESSOA_NATURAL
     EnumProductModality:
       type: string
@@ -975,7 +841,6 @@ components:
       type: object
       required:
         - type
-        - attributes
       properties:
         type:
           $ref: '#/components/schemas/EnumRiskPensionCoverageType'
@@ -1009,63 +874,37 @@ components:
       required:
         - minValue
         - maxValue
+        - indemnifiableDeadline
+        - indemnityPaymentMethod
         - gracePeriod
+        - excludedRisks
+        - excludedRisksURL
+        - profitModality
       properties:
-        indemnityPaymentMethods:
-          type: array
-          description: Listagem da forma de pagamento da indenização para cada combinação de modalidade/cobertura do produto
-          items:
-            type: string
-            enum:
-              - PAGAMENTO_CAPITAL_SEGURADO_VALOR_MONETARIO
-              - REEMBOLSO_DESPESAS
-              - PRESTACAO_SERVICOS
-            maxLength: 42
-        indemnityPaymentFrequencies:
-          type: array
-          description: Listagem de tipos de frequência de pagamento de indenização para cada combinação de modalidade/cobertura do produto
-          items:
-            type: string
-            description: ''
-            maxLength: 17
-            enum:
-              - INDENIZACAO_UNICA
-              - DIARIA_OU_PARCELA
-            example: INDENIZACAO_UNICA
         minValue:
           $ref: '#/components/schemas/InsurancePensionMinValue'
         maxValue:
           $ref: '#/components/schemas/InsurancePensionMaxValue'
-        indemnifiablePeriods:
-          type: array
-          items:
-            $ref: '#/components/schemas/InsurancePensionEnumIndemnifiablePeriodType'
-        maximumQtyIndemnifiableInstallments:
+        indemnifiablePeriod:
+          $ref: '#/components/schemas/RiskPensionEnumIndemnifiablePeriodType'
+        indemnifiableDeadline:
           type: integer
-          format: int64
-          description: 'Caso o período indenizável seja relacionado a parcelas, listagem de número máximo de parcelas indenizáveis para cada combinação de modalidade/ cobertura do produto.'
-          maximum: 9999999999
-          example: 10
+          description: Número máximo de parcelas indenizáveis. Caso seja relacionado a parcelas.
+        indemnityPaymentMethod:
+          $ref: '#/components/schemas/RiskPensionEnumIndemnityPaymentMethod'
         gracePeriod:
-          $ref: '#/components/schemas/GracePeriod'
-        differentiatedGracePeriod:
-          $ref: '#/components/schemas/GracePeriod'
-        deductibleDays:
-          type: integer
-          format: int64
-          description: Listagem de franquia em dias para cada combinação de modalidade/cobertura do produto.
-          maximum: 9999999999
-          example: 10
-        differentiatedDeductibleDays:
-          type: integer
-          format: int64
-          description: 'Detalhamento da franquia em dias diferentes para cada cobertura que exista alguma especificidade.<br>Caso a seguradora não tenha essa diferenciação, não retornará nada no campo.'
-          maximum: 9999999999
-          example: 15
-        deductible:
-          $ref: '#/components/schemas/InsurancePensionCoverageDeductible'
-        differentiatedDeductible:
-          $ref: '#/components/schemas/InsurancePensionCoverageDifferentiatedDeductible'
+          type: object
+          description: Período de carência da cobertura
+          properties:
+            amount:
+              type: integer
+              format: int64
+              description: Informar o prazo de carência
+              example: 90
+              maximum: 9999999999
+            unit:
+              $ref: '#/components/schemas/EnumGracePeriodUnit'
+          additionalProperties: false
         excludedRisks:
           type: array
           items:
@@ -1075,12 +914,10 @@ components:
           maxLength: 1024
           description: Campo aberto (possibilidade de incluir URL).
           example: 'https://openinsurance.com.br/aaa'
-        allowApartPurchase:
-          type: boolean
-          description: Indicar se a cobertura pode ser contratada isoladamente ou não.
-          example: true
+        profitModality:
+          $ref: '#/components/schemas/RiskPensionEnumProfitModality'
       additionalProperties: false
-    GracePeriod:
+    RiskPensionGracePeriod:
       type: object
       required:
         - amount
@@ -1093,7 +930,7 @@ components:
           example: 90
           maximum: 9999999999
         unit:
-          $ref: '#/components/schemas/EnumGracePeriodUnit'
+          $ref: '#/components/schemas/RiskPensionEnumGracePeriodUnit'
       additionalProperties: false
     TermsAndConditions:
       type: object
@@ -1102,7 +939,12 @@ components:
         - detail
       properties:
         susepProcessNumber:
-          $ref: '#/components/schemas/SusepProcessNumber'
+          type: string
+          description: 'Sequência numérica utilizada para consulta dos processos eletrônicos na SUSEP, com caracteres especiais, conforme campo de consulta no site da SUSEP (XXXXX.XXXXXX/XXXX-XX)<br>Observação&#58; Mascaras da SUSEP – Serão permitidos todas as máscaras de Produtos. Limitar pelos códigos das Máscaras.'
+          minLength: 12
+          maxLength: 20
+          pattern: '^(\d{5}\.\d{6}\/\d{4}-\d{2}$|^\d{2}\.\d{6}\/\d{2}-\d{2}$|^\d{3}-\d{5}\/\d{2}$|^\d{5}\.\d{6}\/\d{2}-\d{2})|(NA)$'
+          example: 15414.622222/2222-22
         detail:
           type: string
           description: 'Representam as Condições Gerais, Condições Especiais e Condições ou Cláusulas Particulares de um mesmo produto. (Circular SUSEP 321/06). Campo aberto (possibilidade de incluir URL)'
@@ -1121,17 +963,20 @@ components:
         - IPCA
         - IGP_M
         - INPC
+        - NAO_SE_APLICA
       example: IPCA
-    InsurancePensionReclaim:
+    RiskPensionReclaim:
       type: object
+      required:
+        - gracePeriod
       properties:
         table:
           type: array
           items:
-            $ref: '#/components/schemas/InsurancePensionReclaimTableItem'
+            $ref: '#/components/schemas/RiskPensionReclaimTableItem'
           minItems: 1
         gracePeriod:
-          $ref: '#/components/schemas/GracePeriod'
+          $ref: '#/components/schemas/RiskPensionGracePeriod'
         differenciatedPercentage:
           description: Campo aberto (possibilidade de incluir URL)
           example: |
@@ -1150,7 +995,7 @@ components:
         amount:
           type: string
           maxLength: 21
-          pattern: '^\d{1,16}\.\d{2,4}$'
+          pattern: '^(\d{1,16}\.\d{2,4})|(NA)$'
           example: '0.01'
         currency:
           $ref: '#/components/schemas/CurrencyCode'
@@ -1165,37 +1010,7 @@ components:
         amount:
           type: string
           maxLength: 21
-          pattern: '^\d{1,16}\.\d{2,4}$'
-          example: '0.01'
-        currency:
-          $ref: '#/components/schemas/CurrencyCode'
-      additionalProperties: false
-    InsurancePensionCoverageDeductible:
-      type: object
-      required:
-        - amount
-        - currency
-      description: Listagem de franquia em reais para cada combinação de modalidade/cobertura do produto.
-      properties:
-        amount:
-          type: string
-          maxLength: 21
-          pattern: '^\d{1,16}\.\d{2,4}$'
-          example: '0.01'
-        currency:
-          $ref: '#/components/schemas/CurrencyCode'
-      additionalProperties: false
-    InsurancePensionCoverageDifferentiatedDeductible:
-      type: object
-      required:
-        - amount
-        - currency
-      description: 'Detalhamento da franquia em reais diferentes para cada cobertura que exista alguma especificidade.<br>Caso a seguradora não tenha essa diferenciação, não retornará nada no campo.'
-      properties:
-        amount:
-          type: string
-          maxLength: 21
-          pattern: '^\d{1,16}\.\d{2,4}$'
+          pattern: '^(\d{1,16}\.\d{2,4})|(NA)$'
           example: '0.01'
         currency:
           $ref: '#/components/schemas/CurrencyCode'
@@ -1204,32 +1019,30 @@ components:
       type: object
       required:
         - contractType
+        - contractingMinRequirement
       properties:
         contractType:
           type: string
-          description: O tipo de serviço contratado. A considerar os domínios abaixo&#58;<br><ol><li>Coletivo Averbado</li><li>Coletivo Instituído</li><li>Individual</li></ol>
-          maxLength: 19
+          description: |
+            O tipo de serviço contratado. A considerar os domínios abaixo:
+            1. Coletivo;
+            2. Individual.
           enum:
-            - COLETIVO_AVERBADO
-            - COLETIVO_INSTITUIDO
+            - COLETIVO
             - INDIVIDUAL
-          example: COLETIVO_AVERBADO
+          example: COLETIVO
         contractingMinRequirement:
           type: string
           description: Campo aberto contendo todos os requisitos mínimos para contratação (possibilidade de incluir URL).
           maxLength: 1024
           example: 'https://openinsurance.com.br/aaa'
       additionalProperties: false
-    EnumInsurancePensionCategory:
-      type: string
-      description: Indicar a categoria do Produto&#58;<br><ol><li>Tradicional</li><li>Microsseguro</li></ol>
-      maxLength: 12
-      enum:
-        - TRADICIONAL
-        - MICROSSEGURO
-      example: TRADICIONAL
-    InsurancePensionReclaimTableItem:
+    RiskPensionReclaimTableItem:
       type: object
+      required:
+        - initialMonthRange
+        - finalMonthRange
+        - percentage
       properties:
         initialMonthRange:
           type: integer
@@ -1241,39 +1054,24 @@ components:
           example: 12
         percentage:
           type: string
-          pattern: '^\d\.\d{4}$'
+          pattern: '^(\d{1}\.\d{6})|(NA)$'
+          maxLength: 8
+          minLength: 8
           description: Percentual de faixa de resgate.
-          maxLength: 6
-          example: '0.5000'
+          example: '0.019800'
       additionalProperties: false
-    InsurancePensionEnumPmbacRemuneration:
+    RiskPensionEnumPmbacRemuneration:
       type: object
+      required:
+        - interestRate
       properties:
         interestRate:
           type: string
-          pattern: '^\d{1,16}\.\d{4}$'
+          pattern: '^(\d{1}\.\d{6})|(NA)$'
           description: Taxa de juros para capitalização da PMBaC
-          example: '14.2521'
-        updateIndexes:
-          type: array
-          items:
-            $ref: '#/components/schemas/InsurancePensionBenefitRecalculation/properties/updateIndexes/items'
-      additionalProperties: false
-    InsurancePensionBenefitRecalculation:
-      type: object
-      required:
-        - criterias
-        - updateIndexes
-      properties:
-        criterias:
-          type: array
-          items:
-            type: string
-            enum:
-              - INDICE
-              - VINCULADO_SALDO_DEVEDOR
-              - VARIAVEL_ACORDO_CRITERIO_ESPECIFICO
-            maxLength: 35
+          maxLength: 8
+          minLength: 8
+          example: '0.019800'
         updateIndexes:
           type: array
           items:
@@ -1283,7 +1081,6 @@ components:
                 1. IPCA (IBGE)
                 2. IGP-M (FGV)
                 3. INPC (IBGE)
-            maxLength: 9
             enum:
               - IPCA
               - IGP_M
@@ -1321,7 +1118,8 @@ components:
       additionalProperties: false
     CurrencyCode:
       type: string
-      pattern: '^[A-Z]{3}$'
+      pattern: '^([A-Z]{3})|(NA)$'
+      maxLength: 3
       description: 'Moeda referente ao valor monetário, seguindo o modelo ISO-4217.'
       example: BRL
     EnumExcludedRisks:
@@ -1404,7 +1202,6 @@ components:
       example: ACOMPANHANTE_CASO_HOSPITALIZACAO_PROLONGADA
     EnumAdditional:
       type: string
-      maxLength: 44
       enum:
         - SORTEIO
         - SERVICOS_ASSISTENCIAS_COMPLEMENTARES_PAGO
@@ -1421,28 +1218,235 @@ components:
         - MESES
         - NAO_APLICA
       example: MESES
-    EnumTerm:
+    RiskPensionEnumGracePeriodUnit:
       type: string
-      description: Define o prazo do plano contratado<br><ol><li>Vitalícia</li><li>Temporária - prazo fixo</li><li>Temporária – intermitente</li></ol>
-      maxLength: 23
+      description: |
+        Informar o critério de carência para resgate:
+        1. Dias;
+        2. Meses;
+        3. Não se aplica.
       enum:
-        - VITALICIA
-        - TEMPORARIA_PRAZO_FIXO
-        - TEMPORARIA_INTERMITENTE
-      example: VITALICIA
-    InsurancePensionEnumFinancialRegime:
+        - DIAS
+        - MESES
+        - NAO_APLICA
+      example: MESES
+    RiskPensionEnumFinancialRegime:
       type: string
       description: |
         Listagem de regime financeiro para cada combinação de modalidade/cobertura do produto indicando:
           1. Repartição simples
           2. Repartição Capitais Cobertura
           3. Capitalização
-      maxLength: 19
       example: REPARTICAO_SIMPLES
       enum:
         - REPARTICAO_SIMPLES
         - REPARTICAO_CAPITAIS
         - CAPITALIZACAO
+    RiskPensionEnumPremiumUpdateIndex:
+      type: string
+      description: Índice utilizado na atualização do prêmio/contribuição e do capital segurado/benefício
+      enum:
+        - IPCA
+        - IGPM
+        - INPC
+      example: IPCA
+    RiskPensionEnumContributionPayment:
+      type: object
+      description: Pagamento da contribuição.
+      required:
+        - contributionPaymentMethod
+        - contributionPeriodicity
+      properties:
+        contributionPaymentMethod:
+          type: string
+          example: CARTAO_CREDITO
+          description: |
+            Forma de pagamento da contribuição.
+             - CARTAO_CREDITO
+             - DEBITO_CONTA
+             - DEBITO_CONTA_POUPANCA
+             - BOLETO_BANCARIO
+             - PIX
+             - TED_DOC
+             - CONSIGNACAO_FOLHA_PAGAMENTO
+             - PONTOS_PROGRAMA_BENEFICIO
+             - OUTROS
+          enum:
+            - CARTAO_CREDITO
+            - DEBITO_CONTA
+            - DEBITO_CONTA_POUPANCA
+            - BOLETO_BANCARIO
+            - PIX
+            - TED_DOC
+            - CONSIGNACAO_FOLHA_PAGAMENTO
+            - PONTOS_PROGRAMA_BENEFICIO
+            - OUTROS
+        contributionPaymentMethodAdditionalInfo:
+          type: string
+          pattern: '[\w\W\s]*'
+          example: Informações adicionais
+          maxLength: 140
+          description: |
+            Campo livre para preenchimento das informações adicionais referente ao contributionPaymentMethod.
+
+            [Restrição] Obrigatório quando 'contributionPaymentMethod' for igual 'OUTROS'. 
+        contributionPeriodicity:
+          type: string
+          example: MENSAL
+          description: |
+            Periodicidade de pagamento da contribuição.
+            - MENSAL
+            - UNICA
+            - ANUAL
+            - TRIMESTRAL
+            - SEMESTRAL
+            - BIMESTRAL
+            - OUTROS
+          enum:
+            - MENSAL
+            - UNICA
+            - ANUAL
+            - TRIMESTRAL
+            - SEMESTRAL
+            - BIMESTRAL
+            - OUTROS
+        contributionPeriodicityAdditionalInfo:
+          type: string
+          pattern: '[\w\W\s]*'
+          example: Informações adicionais
+          maxLength: 140
+          description: |
+            Campo livre para preenchimento das informações adicionais referente ao contributionPaymentMethod.
+
+            [Restrição] Obrigatório quando 'contributionPeriodicity' for igual 'OUTROS'.
+      additionalProperties: false
+    RiskPensionEnumIndemnityPaymentMethod:
+      type: string
+      description: |
+        Modalidade de pagamento da indenização, a considerar os domínios abaixo:
+          1. Único
+          2. Sob a forma de renda
+      enum:
+        - UNICO
+        - SOB_FORMA_RENDA
+      example: UNICO
+    RiskPensionEnumOtherGuaranteedValues:
+      type: string
+      description: |
+        1. Saldamento
+        2. Benefício Prolongado
+        3. Não se aplica
+      enum:
+        - SALDAMENTO
+        - BENEFICIO_PROLONGADO
+        - NAO_APLICA
+      example: SALDAMENTO
+    RiskPensionEnumProfitModality:
+      type: string
+      description: |
+        Modalidade de pagamento da indenização.
+      enum:
+        - PAGAMENTO_UNICO
+        - FORMA_RENDA
+      example: PAGAMENTO_UNICO
+    ResponseErrorMetaSingle:
+      type: object
+      required:
+        - errors
+      properties:
+        errors:
+          type: array
+          minItems: 1
+          maxItems: 13
+          items:
+            type: object
+            required:
+              - code
+              - title
+              - detail
+            properties:
+              code:
+                description: Código de erro específico do endpoint
+                type: string
+                pattern: '[\w\W\s]*'
+                maxLength: 255
+              title:
+                description: Título legível por humanos deste erro específico
+                type: string
+                pattern: '[\w\W\s]*'
+                maxLength: 255
+              detail:
+                description: Descrição legível por humanos deste erro específico
+                type: string
+                pattern: '[\w\W\s]*'
+                maxLength: 2048
+        meta:
+          $ref: '#/components/schemas/MetaOnlyRequestDateTime'
+    MetaOnlyRequestDateTime:
+      type: object
+      description: Meta informações referente à API requisitada.
+      required:
+        - requestDateTime
+      properties:
+        requestDateTime:
+          description: "Data e hora da consulta, conforme especificação RFC-3339, formato UTC."
+          type: string
+          maxLength: 20
+          format: date-time
+          example: "2021-05-21T08:30:00Z"
+    OpenDataResponseError:
+      type: object
+      required:
+        - errors
+      properties:
+        errors:
+          type: array
+          minItems: 1
+          maxItems: 13
+          items:
+            type: object
+            required:
+              - code
+              - title
+              - detail
+            properties:
+              code:
+                description: Código de erro específico do endpoint
+                type: string
+                pattern: '[\w\W\s]*'
+                maxLength: 255
+              title:
+                description: Título legível por humanos deste erro específico
+                type: string
+                pattern: '[\w\W\s]*'
+                maxLength: 255
+              detail:
+                description: Descrição legível por humanos deste erro específico
+                type: string
+                pattern: '[\w\W\s]*'
+                maxLength: 2048
+            additionalProperties: false
+        meta:
+          $ref: '#/components/schemas/OpenDataMeta'
+      additionalProperties: false
+    OpenDataMeta:
+      type: object
+      description: Meta informações referente à API requisitada.
+      required:
+        - totalRecords
+        - totalPages
+      properties:
+        totalRecords:
+          type: integer
+          format: int32
+          description: Número total de registros no resultado
+          example: 1
+        totalPages:
+          type: integer
+          format: int32
+          description: Número total de páginas no resultado
+          example: 1
+      additionalProperties: false
   parameters:
     page:
       name: page
@@ -1452,6 +1456,7 @@ components:
         type: integer
         default: 1
         minimum: 1
+        maximum: 2147483647
         format: int32
     pageSize:
       name: page-size
@@ -1481,61 +1486,34 @@ components:
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: '#/components/responses/NotFound/content/application~1json%3B%20charset%3Dutf-8/schema'
+            $ref: '#/components/schemas/OpenDataResponseError'
     NotFound:
       description: O recurso solicitado não existe ou não foi implementado
       content:
         application/json; charset=utf-8:
           schema:
-            type: object
-            required:
-              - errors
-            properties:
-              errors:
-                type: array
-                minItems: 1
-                maxItems: 13
-                items:
-                  type: object
-                  required:
-                    - code
-                    - title
-                    - detail
-                  properties:
-                    code:
-                      description: Código de erro específico do endpoint
-                      type: string
-                      pattern: '[\w\W\s]*'
-                      maxLength: 255
-                    title:
-                      description: Título legível por humanos deste erro específico
-                      type: string
-                      pattern: '[\w\W\s]*'
-                      maxLength: 255
-                    detail:
-                      description: Descrição legível por humanos deste erro específico
-                      type: string
-                      pattern: '[\w\W\s]*'
-                      maxLength: 2048
-                  additionalProperties: false
-              meta:
-                $ref: '#/components/schemas/Meta'
-            additionalProperties: false
+            $ref: '#/components/schemas/OpenDataResponseError'
     MethodNotAllowed:
       description: O consumidor tentou acessar o recurso com um método não suportado
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: '#/components/responses/NotFound/content/application~1json%3B%20charset%3Dutf-8/schema'
+            $ref: '#/components/schemas/OpenDataResponseError'
     TooManyRequests:
-      description: 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido'
+      description: 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite de requisições concorrentes foi atingido.'
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: '#/components/responses/NotFound/content/application~1json%3B%20charset%3Dutf-8/schema'
+            $ref: '#/components/schemas/OpenDataResponseError'
     InternalServerError:
       description: Ocorreu um erro no gateway da API ou no microsserviço
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: '#/components/responses/NotFound/content/application~1json%3B%20charset%3Dutf-8/schema'
+            $ref: '#/components/schemas/OpenDataResponseError'
+    SiteIsOverloaded:
+      description: 'O site está sobrecarregado e a operação foi recusada, pois foi atingido o limite máximo de TPS global, neste momento.'
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/ResponseErrorMetaSingle'

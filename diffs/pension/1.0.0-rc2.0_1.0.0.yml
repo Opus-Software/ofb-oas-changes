@@ -5,11 +5,7 @@
 ### Modified Endpoints: 2
 -------------------------
 GET /risk-coverages
-- Modified query param: page
-  - Schema changed
-    - Max changed from 2.147483647e+09 to null
 - Responses changed
-  - Deleted response: 529
   - Modified response: 200
     - Content changed
       - Modified media type: application/json
@@ -17,216 +13,64 @@ GET /risk-coverages
           - Properties changed
             - Modified property: data
               - Items changed
-                - Required changed
-                  - New required property: additionals
-                  - New required property: assistanceTypes
-                  - New required property: benefitRecalculation
-                  - New required property: premiumPayment
-                  - New required property: terms
-                  - Deleted required property: contributionPayment
-                  - Deleted required property: minimumRequirement
-                  - Deleted required property: modality
-                  - Deleted required property: otherGuaranteedValues
-                  - Deleted required property: premiumUpdateIndex
                 - Properties changed
-                  - New property: additionals
-                  - New property: allowPortability
-                  - New property: benefitRecalculation
-                  - New property: category
-                  - New property: financialRegimeContractTypes
-                  - New property: globalCapital
-                  - New property: indemnityPaymentIncomes
-                  - New property: indemnityPaymentMethods
-                  - New property: portabilityGraceTime
-                  - New property: premiumPayment
-                  - New property: terms
-                  - Deleted property: additional
-                  - Deleted property: contributionPayment
-                  - Deleted property: financialRegimeContractType
-                  - Deleted property: premiumUpdateIndex
                   - Modified property: coverages
                     - Items changed
-                      - Required changed
-                        - New required property: attributes
                       - Properties changed
                         - Modified property: attributes
-                          - Required changed
-                            - Deleted required property: excludedRisks
-                            - Deleted required property: excludedRisksURL
-                            - Deleted required property: indemnifiableDeadline
-                            - Deleted required property: indemnityPaymentMethod
-                            - Deleted required property: profitModality
                           - Properties changed
-                            - New property: allowApartPurchase
-                            - New property: deductible
-                            - New property: deductibleDays
-                            - New property: differentiatedDeductible
-                            - New property: differentiatedDeductibleDays
-                            - New property: differentiatedGracePeriod
-                            - New property: indemnifiablePeriods
-                            - New property: indemnityPaymentFrequencies
-                            - New property: indemnityPaymentMethods
-                            - New property: maximumQtyIndemnifiableInstallments
-                            - Deleted property: indemnifiableDeadline
-                            - Deleted property: indemnifiablePeriod
-                            - Deleted property: indemnityPaymentMethod
-                            - Deleted property: profitModality
-                            - Modified property: gracePeriod
-                              - Description changed from 'Período de carência da cobertura' to ''
-                              - Required changed
-                                - New required property: amount
-                                - New required property: unit
                             - Modified property: maxValue
                               - Properties changed
+                                - Modified property: amount
+                                  - Pattern changed from '^\d{1,16}\.\d{2,4}$' to '^(\d{1,16}\.\d{2,4})|(NA)$'
                                 - Modified property: currency
-                                  - MaxLength changed from 3 to null
+                                  - Pattern changed from '^[A-Z]{3}$' to '^([A-Z]{3})|(NA)$'
                             - Modified property: minValue
                               - Properties changed
+                                - Modified property: amount
+                                  - Pattern changed from '^\d{1,16}\.\d{2,4}$' to '^(\d{1,16}\.\d{2,4})|(NA)$'
                                 - Modified property: currency
-                                  - MaxLength changed from 3 to null
-                  - Modified property: minimumRequirement
-                    - Required changed
-                      - Deleted required property: contractingMinRequirement
-                    - Properties changed
-                      - Modified property: contractType
-                        - Description changed from 'O tipo de serviço contratado. A considerar os domínios abaixo:
-1. Coletivo;
-2. Individual.
-' to 'O tipo de serviço contratado. A considerar os domínios abaixo&#58;<br><ol><li>Coletivo Averbado</li><li>Coletivo Instituído</li><li>Individual</li></ol>'
-                        - New enum values: [COLETIVO_AVERBADO COLETIVO_INSTITUIDO]
-                        - Deleted enum values: [COLETIVO]
-                        - Example changed from 'COLETIVO' to 'COLETIVO_AVERBADO'
-                        - MaxLength changed from null to 19
-                  - Modified property: otherGuaranteedValues
-                    - Type changed from 'string' to 'array'
-                    - Description changed from '1. Saldamento
-2. Benefício Prolongado
-3. Não se aplica
-' to ''
-                    - Deleted enum values: [SALDAMENTO BENEFICIO_PROLONGADO NAO_APLICA]
-                    - Example changed from 'SALDAMENTO' to null
-                    - Items changed
-                      - Schema added
+                                  - Pattern changed from '^[A-Z]{3}$' to '^([A-Z]{3})|(NA)$'
                   - Modified property: participant
-                    - Description changed from 'Conjunto de informações relativas ao participante do produto de Open Finance' to 'Conjunto de informações relativas ao participante do produto de open banking'
                     - Properties changed
-                      - Modified property: brand
-                        - Description changed from 'Nome da marca reportada pelo participante do Open Finance. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes.' to 'Nome da marca reportada pelo participante do Open Banking. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes.'
                       - Modified property: cnpjNumber
-                        - Pattern changed from '^\d{14}$' to '\d{14}$'
-                      - Modified property: name
-                        - Description changed from 'Nome do participante do Open Finance.' to 'Nome do participante do Open Banking.'
+                        - Pattern changed from '^\d{14}$' to '^(\d{14})|(NA)$'
                       - Modified property: urlComplementaryList
-                        - Description changed from 'Espera-se que valor de retorno, após acesso ao link ‘urlComplementaryList’, deve ser array de objeto com a estrutura abaixo:
-- ‘name’ com o valor contido no campo ‘LegalEntityName’ conforme cadastro no diretório;
-- ‘cnpjNumber’ com o valor contido no campo CNPJ (‘RegistrationNumber’) correspondente a esta instituição;
-- Ambos do tipo string;
-- Ambos obrigatórios.
-' to ''
+                        - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^((https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*))|(NA)$'
                   - Modified property: pmbacRemuneration
-                    - Required changed
-                      - Deleted required property: interestRate
                     - Properties changed
                       - Modified property: interestRate
-                        - Example changed from '0.019800' to '14.2521'
-                        - MinLength changed from 8 to 0
-                        - MaxLength changed from 8 to null
-                        - Pattern changed from '^\d{1}\.\d{6}$' to '^\d{1,16}\.\d{4}$'
-                      - Modified property: updateIndexes
-                        - Items changed
-                          - MaxLength changed from null to 9
+                        - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})|(NA)$'
                   - Modified property: reclaim
-                    - Required changed
-                      - Deleted required property: gracePeriod
                     - Properties changed
-                      - Modified property: gracePeriod
-                        - Properties changed
-                          - Modified property: unit
-                            - Description changed from 'Informar o critério de carência para resgate:
-1. Dias;
-2. Meses;
-3. Não se aplica.
-' to 'Informar o critério de carência para a cobertura&#58;<br><ol><li>Dias</li><li>Meses</li><li>Não se aplica</li></ol>'
-                            - MaxLength changed from null to 10
                       - Modified property: table
                         - Items changed
-                          - Required changed
-                            - Deleted required property: finalMonthRange
-                            - Deleted required property: initialMonthRange
-                            - Deleted required property: percentage
                           - Properties changed
                             - Modified property: percentage
-                              - Example changed from '0.019800' to '0.5000'
-                              - MinLength changed from 8 to 0
-                              - MaxLength changed from 8 to 6
-                              - Pattern changed from '^\d{1}\.\d{6}$' to '^\d\.\d{4}$'
+                              - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})|(NA)$'
                   - Modified property: society
                     - Properties changed
                       - Modified property: cnpjNumber
-                        - Pattern changed from '^\d{14}$' to '\d{14}$'
+                        - Pattern changed from '^\d{14}$' to '^(\d{14})|(NA)$'
                   - Modified property: termsAndConditions
                     - Items changed
                       - Properties changed
                         - Modified property: susepProcessNumber
-                          - MinLength changed from 12 to 0
-                          - Pattern changed from '^\d{5}\.\d{6}\/\d{4}-\d{2}$|^\d{2}\.\d{6}\/\d{2}-\d{2}$|^\d{3}-\d{5}\/\d{2}$|^\d{5}\.\d{6}\/\d{2}-\d{2}$' to '^\d{5}\.\d{6}/\d{4}-\d{2}$'
-  - Modified response: 400
-    - Content changed
-      - Modified media type: application/json; charset=utf-8
-        - Schema changed
-          - Properties changed
-            - Modified property: meta
-              - Required changed
-                - New required property: requestDateTime
+                          - Pattern changed from '^\d{5}\.\d{6}\/\d{4}-\d{2}$|^\d{2}\.\d{6}\/\d{2}-\d{2}$|^\d{3}-\d{5}\/\d{2}$|^\d{5}\.\d{6}\/\d{2}-\d{2}$' to '^(\d{5}\.\d{6}\/\d{4}-\d{2}$|^\d{2}\.\d{6}\/\d{2}-\d{2}$|^\d{3}-\d{5}\/\d{2}$|^\d{5}\.\d{6}\/\d{2}-\d{2})|(NA)$'
+            - Modified property: links
               - Properties changed
-                - New property: requestDateTime
-  - Modified response: 404
-    - Content changed
-      - Modified media type: application/json; charset=utf-8
-        - Schema changed
-          - Properties changed
-            - Modified property: meta
-              - Required changed
-                - New required property: requestDateTime
-              - Properties changed
-                - New property: requestDateTime
-  - Modified response: 405
-    - Content changed
-      - Modified media type: application/json; charset=utf-8
-        - Schema changed
-          - Properties changed
-            - Modified property: meta
-              - Required changed
-                - New required property: requestDateTime
-              - Properties changed
-                - New property: requestDateTime
-  - Modified response: 429
-    - Description changed from 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite de requisições concorrentes foi atingido.' to 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido'
-    - Content changed
-      - Modified media type: application/json; charset=utf-8
-        - Schema changed
-          - Properties changed
-            - Modified property: meta
-              - Required changed
-                - New required property: requestDateTime
-              - Properties changed
-                - New property: requestDateTime
-  - Modified response: 500
-    - Content changed
-      - Modified media type: application/json; charset=utf-8
-        - Schema changed
-          - Properties changed
-            - Modified property: meta
-              - Required changed
-                - New required property: requestDateTime
-              - Properties changed
-                - New property: requestDateTime
+                - Modified property: first
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^((https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*))|(NA)$'
+                - Modified property: last
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^((https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*))|(NA)$'
+                - Modified property: next
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^((https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*))|(NA)$'
+                - Modified property: prev
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^((https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*))|(NA)$'
+                - Modified property: self
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^((https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*))|(NA)$'
 GET /survival-coverages
-- Modified query param: page
-  - Schema changed
-    - Max changed from 2.147483647e+09 to null
 - Responses changed
-  - Deleted response: 529
   - Modified response: 200
     - Content changed
       - Modified media type: application/json
@@ -234,221 +78,94 @@ GET /survival-coverages
           - Properties changed
             - Modified property: data
               - Items changed
-                - Required changed
-                  - New required property: type
-                  - Deleted required property: costs
-                  - Deleted required property: defferalPeriod
-                  - Deleted required property: grantPeriodBenefit
-                  - Deleted required property: modality
                 - Properties changed
                   - Modified property: costs
                     - Properties changed
                       - Modified property: loadingAntecipated
                         - Properties changed
                           - Modified property: maxValue
-                            - Example changed from '0.019800' to '0.100000'
-                            - MinLength changed from 8 to 0
-                            - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                            - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})|(NA)$'
                           - Modified property: minValue
-                            - Example changed from '0.019800' to '0.000000'
-                            - MinLength changed from 8 to 0
-                            - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                            - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})|(NA)$'
                       - Modified property: loadingLate
                         - Properties changed
                           - Modified property: maxValue
-                            - Example changed from '0.019800' to '0.100000'
-                            - MinLength changed from 8 to 0
-                            - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                            - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})|(NA)$'
                           - Modified property: minValue
-                            - Example changed from '0.019800' to '0.000000'
-                            - MinLength changed from 8 to 0
-                            - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                            - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})|(NA)$'
                   - Modified property: defferalPeriod
-                    - Required changed
-                      - New required property: premiumPaymentMethods
-                      - Deleted required property: interestRate
-                      - Deleted required property: otherMinimumPerformanceGarantees
-                      - Deleted required property: permissionScheduledFinancialPayments
-                      - Deleted required property: portabilityPaymentTerm
-                      - Deleted required property: redemptionPaymentTerm
-                      - Deleted required property: reversalFinancialResults
-                      - Deleted required property: updateIndex
                     - Properties changed
                       - Modified property: interestRate
-                        - Example changed from '0.019800' to '0.251231'
-                        - MinLength changed from 8 to 0
-                        - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                        - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})|(NA)$'
                       - Modified property: investmentFunds
                         - Items changed
-                          - Required changed
-                            - Deleted required property: cnpjNumber
-                            - Deleted required property: maximumAdministrationFee
-                            - Deleted required property: name
-                            - Deleted required property: typePerformanceFee
                           - Properties changed
                             - Modified property: cnpjNumber
-                              - Pattern changed from '^\d{14}$' to '\d{14}$'
+                              - Pattern changed from '^\d{14}$' to '^(\d{14})|(NA)$'
                             - Modified property: currency
-                              - MaxLength changed from 3 to null
+                              - Pattern changed from '^[A-Z]{3}$' to '^([A-Z]{3})|(NA)$'
                             - Modified property: maximumAdministrationFee
-                              - Example changed from '0.019800' to '0.201000'
-                              - MinLength changed from 8 to 0
-                              - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                              - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})|(NA)$'
                             - Modified property: maximumPerformanceFee
-                              - Example changed from '0.019800' to '0.201000'
-                              - MinLength changed from 8 to 0
-                              - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                              - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})|(NA)$'
+                            - Modified property: minimumContributionAmount
+                              - Pattern changed from '^\d{1,16}\.\d{2,4}$' to '^(\d{1,16}\.\d{2,4})|(NA)$'
+                            - Modified property: minimumMathematicalProvisionAmount
+                              - Pattern changed from '^\d{1,16}\.\d{2,4}$' to '^(\d{1,16}\.\d{2,4})|(NA)$'
                       - Modified property: minimumPremiums
                         - Items changed
                           - Properties changed
+                            - Modified property: amount
+                              - Pattern changed from '^\d{1,16}\.\d{2,4}$' to '^(\d{1,16}\.\d{2,4})|(NA)$'
                             - Modified property: currency
-                              - MaxLength changed from 3 to null
+                              - Pattern changed from '^[A-Z]{3}$' to '^([A-Z]{3})|(NA)$'
                       - Modified property: reversalFinancialResults
-                        - Example changed from '0.019800' to '0.051230'
-                        - MinLength changed from 8 to 0
-                        - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
-                      - Modified property: updateIndex
-                        - Deleted enum values: [NAO_SE_APLICA]
+                        - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})|(NA)$'
                   - Modified property: grantPeriodBenefit
-                    - Required changed
-                      - New required property: biometricTable
-                      - Deleted required property: interestRate
-                      - Deleted required property: reversalFinancialResults
-                      - Deleted required property: updateIndex
                     - Properties changed
-                      - Modified property: biometricTable
-                        - MinItems changed from 0 to 1
                       - Modified property: interestRate
-                        - Example changed from '0.019800' to '0.225222'
-                        - MinLength changed from 8 to 0
-                        - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                        - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})|(NA)$'
                       - Modified property: investmentFunds
                         - Items changed
-                          - Required changed
-                            - Deleted required property: cnpjNumber
-                            - Deleted required property: maximumAdministrationFee
-                            - Deleted required property: name
-                            - Deleted required property: typePerformanceFee
                           - Properties changed
                             - Modified property: cnpjNumber
-                              - Pattern changed from '^\d{14}$' to '\d{14}$'
+                              - Pattern changed from '^\d{14}$' to '^(\d{14})|(NA)$'
                             - Modified property: currency
-                              - MaxLength changed from 3 to null
+                              - Pattern changed from '^[A-Z]{3}$' to '^([A-Z]{3})|(NA)$'
                             - Modified property: maximumAdministrationFee
-                              - Example changed from '0.019800' to '0.201000'
-                              - MinLength changed from 8 to 0
-                              - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                              - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})|(NA)$'
                             - Modified property: maximumPerformanceFee
-                              - Example changed from '0.019800' to '0.201000'
-                              - MinLength changed from 8 to 0
-                              - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
+                              - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})|(NA)$'
+                            - Modified property: minimumContributionAmount
+                              - Pattern changed from '^\d{1,16}\.\d{2,4}$' to '^(\d{1,16}\.\d{2,4})|(NA)$'
+                            - Modified property: minimumMathematicalProvisionAmount
+                              - Pattern changed from '^\d{1,16}\.\d{2,4}$' to '^(\d{1,16}\.\d{2,4})|(NA)$'
                       - Modified property: reversalFinancialResults
-                        - Example changed from '0.019800' to '1.252111'
-                        - MinLength changed from 8 to 0
-                        - Pattern changed from '^\d{1}\.\d{6}$' to '^[0-1]\.\d{6}$'
-                      - Modified property: updateIndex
-                        - Deleted enum values: [NAO_SE_APLICA]
-                  - Modified property: minimumRequirement
-                    - Required changed
-                      - Deleted required property: contractingMinRequirement
-                    - Properties changed
-                      - Modified property: contractType
-                        - Description changed from 'O tipo de serviço contratado. A considerar os domínios abaixo:
-1. Coletivo Averbado;
-2. Coletivo instituído;
-3. Individual.
-' to 'O tipo de serviço contratado. A considerar os domínios abaixo:
-1. Coletivo Averbado;
-2. Individual.
-3. Ambas
-'
-                        - New enum values: [COLETIVO AMBAS]
-                        - Deleted enum values: [COLETIVO_AVERBADO COLETIVO_INSTITUIDO]
-                        - Example changed from 'COLETIVO_AVERBADO' to 'COLETIVO'
+                        - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})|(NA)$'
                   - Modified property: participant
-                    - Description changed from 'Conjunto de informações relativas ao participante do produto de Open Finance' to 'Conjunto de informações relativas ao participante do produto de open banking'
                     - Properties changed
-                      - Modified property: brand
-                        - Description changed from 'Nome da marca reportada pelo participante do Open Finance. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes.' to 'Nome da marca reportada pelo participante do Open Banking. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes.'
                       - Modified property: cnpjNumber
-                        - Pattern changed from '^\d{14}$' to '\d{14}$'
-                      - Modified property: name
-                        - Description changed from 'Nome do participante do Open Finance.' to 'Nome do participante do Open Banking.'
+                        - Pattern changed from '^\d{14}$' to '^(\d{14})|(NA)$'
                       - Modified property: urlComplementaryList
-                        - Description changed from 'Espera-se que valor de retorno, após acesso ao link ‘urlComplementaryList’, deve ser array de objeto com a estrutura abaixo:
-- ‘name’ com o valor contido no campo ‘LegalEntityName’ conforme cadastro no diretório;
-- ‘cnpjNumber’ com o valor contido no campo CNPJ (‘RegistrationNumber’) correspondente a esta instituição;
-- Ambos do tipo string;
-- Ambos obrigatórios.
-' to ''
+                        - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^((https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*))|(NA)$'
                   - Modified property: society
                     - Properties changed
                       - Modified property: cnpjNumber
-                        - Pattern changed from '^\d{14}$' to '\d{14}$'
-                  - Modified property: targetAudience
-                    - Description changed from 'A considerar os domínios abaixo:
-  1. Pessoa Natural
-  2. Pessoa Jurídica
-' to 'A considerar os domínios abaixo:
-  1. Pessoa Natural
-  2. Pessoa Jurídica
-  3. Ambas (Pessoa Natural e Jurídica)
-'
-                    - New enum values: [PESSOA_NATURAL_JURIDICA]
+                        - Pattern changed from '^\d{14}$' to '^(\d{14})|(NA)$'
                   - Modified property: termsAndConditions
                     - Items changed
                       - Properties changed
                         - Modified property: susepProcessNumber
-                          - MinLength changed from 12 to 0
-                          - Pattern changed from '^\d{5}\.\d{6}\/\d{4}-\d{2}$|^\d{2}\.\d{6}\/\d{2}-\d{2}$|^\d{3}-\d{5}\/\d{2}$|^\d{5}\.\d{6}\/\d{2}-\d{2}$' to '^\d{5}\.\d{6}/\d{4}-\d{2}$'
-  - Modified response: 400
-    - Content changed
-      - Modified media type: application/json; charset=utf-8
-        - Schema changed
-          - Properties changed
-            - Modified property: meta
-              - Required changed
-                - New required property: requestDateTime
+                          - Pattern changed from '^\d{5}\.\d{6}\/\d{4}-\d{2}$|^\d{2}\.\d{6}\/\d{2}-\d{2}$|^\d{3}-\d{5}\/\d{2}$|^\d{5}\.\d{6}\/\d{2}-\d{2}$' to '^(\d{5}\.\d{6}\/\d{4}-\d{2}$|^\d{2}\.\d{6}\/\d{2}-\d{2}$|^\d{3}-\d{5}\/\d{2}$|^\d{5}\.\d{6}\/\d{2}-\d{2})|(NA)$'
+            - Modified property: links
               - Properties changed
-                - New property: requestDateTime
-  - Modified response: 404
-    - Content changed
-      - Modified media type: application/json; charset=utf-8
-        - Schema changed
-          - Properties changed
-            - Modified property: meta
-              - Required changed
-                - New required property: requestDateTime
-              - Properties changed
-                - New property: requestDateTime
-  - Modified response: 405
-    - Content changed
-      - Modified media type: application/json; charset=utf-8
-        - Schema changed
-          - Properties changed
-            - Modified property: meta
-              - Required changed
-                - New required property: requestDateTime
-              - Properties changed
-                - New property: requestDateTime
-  - Modified response: 429
-    - Description changed from 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite de requisições concorrentes foi atingido.' to 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido'
-    - Content changed
-      - Modified media type: application/json; charset=utf-8
-        - Schema changed
-          - Properties changed
-            - Modified property: meta
-              - Required changed
-                - New required property: requestDateTime
-              - Properties changed
-                - New property: requestDateTime
-  - Modified response: 500
-    - Content changed
-      - Modified media type: application/json; charset=utf-8
-        - Schema changed
-          - Properties changed
-            - Modified property: meta
-              - Required changed
-                - New required property: requestDateTime
-              - Properties changed
-                - New property: requestDateTime
+                - Modified property: first
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^((https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*))|(NA)$'
+                - Modified property: last
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^((https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*))|(NA)$'
+                - Modified property: next
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^((https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*))|(NA)$'
+                - Modified property: prev
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^((https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*))|(NA)$'
+                - Modified property: self
+                  - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^((https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*))|(NA)$'
