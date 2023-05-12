@@ -5,6 +5,10 @@
 ### Modified Endpoints: 5
 -------------------------
 GET /investments
+- Modified query param: page-size
+  - Description changed from 'Quantidade total de registros por páginas.' to 'Quantidade total de registros por páginas. A transmissora deve considerar entrada como 25, caso seja informado algum valor menor pela receptora. Enquanto houver mais que 25 registros a enviar, a transmissora deve considerar o mínimo por página como 25. Somente a última página retornada (ou primeira, no caso de página única) pode conter menos de 25 registros. Mais informações, acesse Especificações de APIs > Padrões > Paginação.'
+  - Schema changed
+    - Min changed from 1 to 25
 - Security changed
   - New security requirements: OAuth2AuthorizationCode
   - Deleted security requirements: OAuth2Security AND OpenId
@@ -30,6 +34,10 @@ GET /investments/{investmentId}/balances
   - Deleted security requirements: OAuth2Security AND OpenId
 GET /investments/{investmentId}/transactions
 - Description changed from 'Obtém as movimentações históricas (últimos 12 meses) da operação de Fundos de Investimento identificada por investmentId.' to 'Obtém as movimentações históricas (últimos 12 meses) da operação de Renda Fixa Crédito identificada por investmentId.'
+- Modified query param: page-size
+  - Description changed from 'Quantidade total de registros por páginas.' to 'Quantidade total de registros por páginas. A transmissora deve considerar entrada como 25, caso seja informado algum valor menor pela receptora. Enquanto houver mais que 25 registros a enviar, a transmissora deve considerar o mínimo por página como 25. Somente a última página retornada (ou primeira, no caso de página única) pode conter menos de 25 registros. Mais informações, acesse Especificações de APIs > Padrões > Paginação.'
+  - Schema changed
+    - Min changed from 1 to 25
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -62,6 +70,10 @@ GET /investments/{investmentId}/transactions
   - Deleted security requirements: OAuth2Security AND OpenId
 GET /investments/{investmentId}/transactions-current
 - Description changed from 'Obtém as movimentações recentes da operação de Fundos de Investimento identificada por investmentId. O período a ser considerado para apresentação de movimentações será de até 7 dias - 7 dias anteriores da consulta, incluindo o dia da consulta (D-6).' to 'Obtém as movimentações recentes da operação de Renda Fixa Crédito identificada por investmentId. O período a ser considerado para apresentação de movimentações será de até 7 dias - 7 dias anteriores da consulta, incluindo o dia da consulta (D-6).'
+- Modified query param: page-size
+  - Description changed from 'Quantidade total de registros por páginas.' to 'Quantidade total de registros por páginas. A transmissora deve considerar entrada como 25, caso seja informado algum valor menor pela receptora. Enquanto houver mais que 25 registros a enviar, a transmissora deve considerar o mínimo por página como 25. Somente a última página retornada (ou primeira, no caso de página única) pode conter menos de 25 registros. Mais informações, acesse Especificações de APIs > Padrões > Paginação.'
+  - Schema changed
+    - Min changed from 1 to 25
 - Responses changed
   - Modified response: 200
     - Content changed
