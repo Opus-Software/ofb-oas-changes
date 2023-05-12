@@ -21,7 +21,7 @@
 | customers | [1.0.3](swagger-apis/customers/1.0.3.yml) | [2.0.1](swagger-apis/customers/2.0.1.yml) | [YAML](diffs/customers/1.0.3_2.0.1-breaking-only.yml) | [YAML](diffs/customers/1.0.3_2.0.1.yml) |
 | exchange | [1.0.0](swagger-apis/exchange/1.0.0.yml) |  |  |  |
 | financings | [1.0.4](swagger-apis/financings/1.0.4.yml) | [2.0.1](swagger-apis/financings/2.0.1.yml) | [YAML](diffs/financings/1.0.4_2.0.1-breaking-only.yml) | [YAML](diffs/financings/1.0.4_2.0.1.yml) |
-| funds | [1.0.0-rc1.0](swagger-apis/funds/1.0.0-rc1.0.yml) |  |  |  |
+| funds | [1.0.0-rc2.0](swagger-apis/funds/1.0.0-rc2.0.yml) |  |  |  |
 | insurances | [1.0.0-rc2.0](swagger-apis/insurances/1.0.0-rc2.0.yml) |  |  |  |
 | investments | [1.0.0](swagger-apis/investments/1.0.0.yml) |  |  |  |
 | invoice-financings | [1.0.4](swagger-apis/invoice-financings/1.0.4.yml) | [2.0.1](swagger-apis/invoice-financings/2.0.1.yml) | [YAML](diffs/invoice-financings/1.0.4_2.0.1-breaking-only.yml) | [YAML](diffs/invoice-financings/1.0.4_2.0.1.yml) |
@@ -119,7 +119,7 @@
 |  | [1.0.4](swagger-apis/financings/1.0.4.yml) | [2.0.0-RC1.0](swagger-apis/financings/2.0.0-RC1.0.yml) | [YAML](diffs/financings/1.0.4_2.0.0-RC1.0.yml) |
 |  | [2.0.0-RC1.0](swagger-apis/financings/2.0.0-RC1.0.yml) | [2.0.0](swagger-apis/financings/2.0.0.yml) | [YAML](diffs/financings/2.0.0-RC1.0_2.0.0.yml) |
 |  | [2.0.0](swagger-apis/financings/2.0.0.yml) | [2.0.1](swagger-apis/financings/2.0.1.yml) | [YAML](diffs/financings/2.0.0_2.0.1.yml) |
-| funds | [1.0.0-rc1.0](swagger-apis/funds/1.0.0-rc1.0.yml) |  |  |
+| funds | [1.0.0-rc1.0](swagger-apis/funds/1.0.0-rc1.0.yml) | [1.0.0-rc2.0](swagger-apis/funds/1.0.0-rc2.0.yml) | [YAML](diffs/funds/1.0.0-rc1.0_1.0.0-rc2.0.yml) |
 | insurances | [1.0.0-rc1.0](swagger-apis/insurances/1.0.0-rc1.0.yml) | [1.0.0-rc1.5](swagger-apis/insurances/1.0.0-rc1.5.yml) | [YAML](diffs/insurances/1.0.0-rc1.0_1.0.0-rc1.5.yml) |
 |  | [1.0.0-rc1.5](swagger-apis/insurances/1.0.0-rc1.5.yml) | [1.0.0-rc2.0](swagger-apis/insurances/1.0.0-rc2.0.yml) | [YAML](diffs/insurances/1.0.0-rc1.5_1.0.0-rc2.0.yml) |
 | investments | [1.0.0-rc1.0](swagger-apis/investments/1.0.0-rc1.0.yml) | [1.0.0-rc2.0](swagger-apis/investments/1.0.0-rc2.0.yml) | [YAML](diffs/investments/1.0.0-rc1.0_1.0.0-rc2.0.yml) |
