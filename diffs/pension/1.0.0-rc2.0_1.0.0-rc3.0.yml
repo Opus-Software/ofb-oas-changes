@@ -1,0 +1,227 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 2
+-------------------------
+GET /risk-coverages
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: assistanceTypes
+                    - Items changed
+                      - New enum values: [NA]
+                  - Modified property: contributionPayment
+                    - Properties changed
+                      - Modified property: contributionPaymentMethod
+                        - New enum values: [NA]
+                      - Modified property: contributionPeriodicity
+                        - New enum values: [NA]
+                  - Modified property: coverages
+                    - Items changed
+                      - Properties changed
+                        - Modified property: attributes
+                          - Properties changed
+                            - Modified property: excludedRisks
+                              - Items changed
+                                - New enum values: [NA]
+                            - Modified property: indemnifiablePeriod
+                              - New enum values: [NA]
+                            - Modified property: indemnityPaymentMethod
+                              - New enum values: [NA]
+                            - Modified property: maxValue
+                              - Properties changed
+                                - Modified property: amount
+                                  - Pattern changed from '^\d{1,16}\.\d{2,4}$' to '^(\d{1,16}\.\d{2,4})$|^(NA)$'
+                                - Modified property: currency
+                                  - Pattern changed from '^[A-Z]{3}$' to '^([A-Z]{3})$|^(NA)$'
+                            - Modified property: minValue
+                              - Properties changed
+                                - Modified property: amount
+                                  - Pattern changed from '^\d{1,16}\.\d{2,4}$' to '^(\d{1,16}\.\d{2,4})$|^(NA)$'
+                                - Modified property: currency
+                                  - Pattern changed from '^[A-Z]{3}$' to '^([A-Z]{3})$|^(NA)$'
+                            - Modified property: profitModality
+                              - New enum values: [NA]
+                        - Modified property: type
+                          - New enum values: [NA]
+                  - Modified property: financialRegimeContractType
+                    - New enum values: [NA]
+                  - Modified property: minimumRequirement
+                    - Properties changed
+                      - Modified property: contractType
+                        - New enum values: [NA]
+                  - Modified property: modality
+                    - New enum values: [NA]
+                  - Modified property: participant
+                    - Properties changed
+                      - Modified property: cnpjNumber
+                        - Pattern changed from '^\d{14}$' to '^(\d{14})$|^(NA)$'
+                      - Modified property: urlComplementaryList
+                        - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^((https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*))|(NA)$'
+                  - Modified property: pmbacRemuneration
+                    - Properties changed
+                      - Modified property: interestRate
+                        - MaxLength changed from 8 to 9
+                        - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})$|^(-1.000000)$'
+                      - Modified property: updateIndexes
+                        - Items changed
+                          - New enum values: [NA]
+                  - Modified property: premiumUpdateIndex
+                    - New enum values: [NA]
+                  - Modified property: reclaim
+                    - Properties changed
+                      - Modified property: table
+                        - Items changed
+                          - Properties changed
+                            - Modified property: percentage
+                              - MaxLength changed from 8 to 9
+                              - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})$|^(-1.000000)$'
+                  - Modified property: society
+                    - Properties changed
+                      - Modified property: cnpjNumber
+                        - Pattern changed from '^\d{14}$' to '^(\d{14})$|^(NA)$'
+                  - Modified property: targetAudience
+                    - New enum values: [NA]
+                  - Modified property: termsAndConditions
+                    - Items changed
+                      - Properties changed
+                        - Modified property: susepProcessNumber
+                          - Pattern changed from '^\d{5}\.\d{6}\/\d{4}-\d{2}$|^\d{2}\.\d{6}\/\d{2}-\d{2}$|^\d{3}-\d{5}\/\d{2}$|^\d{5}\.\d{6}\/\d{2}-\d{2}$' to '^(\d{5}\.\d{6}\/\d{4}-\d{2}$|^\d{2}\.\d{6}\/\d{2}-\d{2}$|^\d{3}-\d{5}\/\d{2}$|^\d{5}\.\d{6}\/\d{2}-\d{2})$|^(NA)$'
+GET /survival-coverages
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: costs
+                    - Properties changed
+                      - Modified property: loadingAntecipated
+                        - Properties changed
+                          - Modified property: maxValue
+                            - MaxLength changed from 8 to 9
+                            - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})$|^(-1.000000)$'
+                          - Modified property: minValue
+                            - MaxLength changed from 8 to 9
+                            - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})$|^(-1.000000)$'
+                      - Modified property: loadingLate
+                        - Properties changed
+                          - Modified property: maxValue
+                            - MaxLength changed from 8 to 9
+                            - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})$|^(-1.000000)$'
+                          - Modified property: minValue
+                            - MaxLength changed from 8 to 9
+                            - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})$|^(-1.000000)$'
+                  - Modified property: defferalPeriod
+                    - Required changed
+                      - Deleted required property: permissionScheduledFinancialPayments
+                    - Properties changed
+                      - Modified property: interestRate
+                        - MaxLength changed from 8 to 9
+                        - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})$|^(-1.000000)$'
+                      - Modified property: investmentFunds
+                        - Items changed
+                          - Properties changed
+                            - Modified property: cnpjNumber
+                              - Pattern changed from '^\d{14}$' to '^(\d{14})$|^(NA)$'
+                            - Modified property: currency
+                              - Pattern changed from '^[A-Z]{3}$' to '^([A-Z]{3})$|^(NA)$'
+                            - Modified property: maximumAdministrationFee
+                              - MaxLength changed from 8 to 9
+                              - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})$|^(-1.000000)$'
+                            - Modified property: maximumPerformanceFee
+                              - MaxLength changed from 8 to 9
+                              - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})$|^(-1.000000)$'
+                            - Modified property: minimumContributionAmount
+                              - Pattern changed from '^\d{1,16}\.\d{2,4}$' to '^(\d{1,16}\.\d{2,4})$|^(NA)$'
+                            - Modified property: minimumMathematicalProvisionAmount
+                              - Pattern changed from '^\d{1,16}\.\d{2,4}$' to '^(\d{1,16}\.\d{2,4})$|^(NA)$'
+                            - Modified property: typePerformanceFee
+                              - New enum values: [NA]
+                      - Modified property: minimumPremiums
+                        - Items changed
+                          - Properties changed
+                            - Modified property: amount
+                              - Pattern changed from '^\d{1,16}\.\d{2,4}$' to '^(\d{1,16}\.\d{2,4})$|^(NA)$'
+                            - Modified property: currency
+                              - Pattern changed from '^[A-Z]{3}$' to '^([A-Z]{3})$|^(NA)$'
+                            - Modified property: periodicity
+                              - New enum values: [NA]
+                      - Modified property: premiumPaymentMethods
+                        - Items changed
+                          - New enum values: [NA]
+                      - Modified property: reversalFinancialResults
+                        - MaxLength changed from 8 to 9
+                        - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})$|^(-1.000000)$'
+                  - Modified property: grantPeriodBenefit
+                    - Properties changed
+                      - Modified property: biometricTable
+                        - Items changed
+                          - New enum values: [NA]
+                      - Modified property: incomeModalities
+                        - Items changed
+                          - New enum values: [NA]
+                      - Modified property: interestRate
+                        - MaxLength changed from 8 to 9
+                        - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})$|^(-1.000000)$'
+                      - Modified property: investmentFunds
+                        - Items changed
+                          - Properties changed
+                            - Modified property: cnpjNumber
+                              - Pattern changed from '^\d{14}$' to '^(\d{14})$|^(NA)$'
+                            - Modified property: currency
+                              - Pattern changed from '^[A-Z]{3}$' to '^([A-Z]{3})$|^(NA)$'
+                            - Modified property: maximumAdministrationFee
+                              - MaxLength changed from 8 to 9
+                              - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})$|^(-1.000000)$'
+                            - Modified property: maximumPerformanceFee
+                              - MaxLength changed from 8 to 9
+                              - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})$|^(-1.000000)$'
+                            - Modified property: minimumContributionAmount
+                              - Pattern changed from '^\d{1,16}\.\d{2,4}$' to '^(\d{1,16}\.\d{2,4})$|^(NA)$'
+                            - Modified property: minimumMathematicalProvisionAmount
+                              - Pattern changed from '^\d{1,16}\.\d{2,4}$' to '^(\d{1,16}\.\d{2,4})$|^(NA)$'
+                            - Modified property: typePerformanceFee
+                              - New enum values: [NA]
+                      - Modified property: reversalFinancialResults
+                        - MaxLength changed from 8 to 9
+                        - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})$|^(-1.000000)$'
+                  - Modified property: minimumRequirement
+                    - Required changed
+                      - Deleted required property: participantQualified
+                    - Properties changed
+                      - Modified property: contractType
+                        - New enum values: [NA]
+                  - Modified property: modality
+                    - New enum values: [NA]
+                  - Modified property: participant
+                    - Properties changed
+                      - Modified property: cnpjNumber
+                        - Pattern changed from '^\d{14}$' to '^(\d{14})$|^(NA)$'
+                      - Modified property: urlComplementaryList
+                        - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^((https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*))|(NA)$'
+                  - Modified property: segment
+                    - New enum values: [NA]
+                  - Modified property: society
+                    - Properties changed
+                      - Modified property: cnpjNumber
+                        - Pattern changed from '^\d{14}$' to '^(\d{14})$|^(NA)$'
+                  - Modified property: targetAudience
+                    - New enum values: [NA]
+                  - Modified property: termsAndConditions
+                    - Items changed
+                      - Properties changed
+                        - Modified property: susepProcessNumber
+                          - Pattern changed from '^\d{5}\.\d{6}\/\d{4}-\d{2}$|^\d{2}\.\d{6}\/\d{2}-\d{2}$|^\d{3}-\d{5}\/\d{2}$|^\d{5}\.\d{6}\/\d{2}-\d{2}$' to '^(\d{5}\.\d{6}\/\d{4}-\d{2}$|^\d{2}\.\d{6}\/\d{2}-\d{2}$|^\d{3}-\d{5}\/\d{2}$|^\d{5}\.\d{6}\/\d{2}-\d{2})$|^(NA)$'
+                  - Modified property: type
+                    - New enum values: [NA]
