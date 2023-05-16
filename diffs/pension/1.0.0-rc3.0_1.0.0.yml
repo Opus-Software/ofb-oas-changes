@@ -20,8 +20,48 @@ GET /risk-coverages
                   - Modified property: contributionPayment
                     - Properties changed
                       - Modified property: contributionPaymentMethod
+                        - Description changed from 'Forma de pagamento da contribuição.
+ - CARTAO_CREDITO
+ - DEBITO_CONTA
+ - DEBITO_CONTA_POUPANCA
+ - BOLETO_BANCARIO
+ - PIX
+ - TED_DOC
+ - CONSIGNACAO_FOLHA_PAGAMENTO
+ - PONTOS_PROGRAMA_BENEFICIO
+ - OUTROS
+ - NA
+' to 'Forma de pagamento da contribuição.
+ - CARTAO_CREDITO
+ - DEBITO_CONTA
+ - DEBITO_CONTA_POUPANCA
+ - BOLETO_BANCARIO
+ - PIX
+ - TED_DOC
+ - CONSIGNACAO_FOLHA_PAGAMENTO
+ - PONTOS_PROGRAMA_BENEFICIO
+ - OUTROS
+'
                         - Deleted enum values: [NA]
                       - Modified property: contributionPeriodicity
+                        - Description changed from 'Periodicidade de pagamento da contribuição.
+- MENSAL
+- UNICA
+- ANUAL
+- TRIMESTRAL
+- SEMESTRAL
+- BIMESTRAL
+- OUTROS
+- NA
+' to 'Periodicidade de pagamento da contribuição.
+- MENSAL
+- UNICA
+- ANUAL
+- TRIMESTRAL
+- SEMESTRAL
+- BIMESTRAL
+- OUTROS
+'
                         - Deleted enum values: [NA]
                   - Modified property: coverages
                     - Items changed
@@ -32,8 +72,26 @@ GET /risk-coverages
                               - Items changed
                                 - Deleted enum values: [NA]
                             - Modified property: indemnifiablePeriod
+                              - Description changed from 'Listagem do pagamento para cada benefício:
+  1. Quantidade determinada de parcelas;
+  2. Até o fim de ciclo determinado.
+  3. NA
+Se for pagamento único, esse campo não se aplica (retorna vazio).
+' to 'Listagem do pagamento para cada benefício:
+  1. Quantidade determinada de parcelas;
+  2. Até o fim de ciclo determinado.
+Se for pagamento único, esse campo não se aplica (retorna vazio).
+'
                               - Deleted enum values: [NA]
                             - Modified property: indemnityPaymentMethod
+                              - Description changed from 'Modalidade de pagamento da indenização, a considerar os domínios abaixo:
+  1. Único
+  2. Sob a forma de renda
+  3. NA
+' to 'Modalidade de pagamento da indenização, a considerar os domínios abaixo:
+  1. Único
+  2. Sob a forma de renda
+'
                               - Deleted enum values: [NA]
                             - Modified property: maxValue
                               - Properties changed
@@ -52,12 +110,31 @@ GET /risk-coverages
                         - Modified property: type
                           - Deleted enum values: [NA]
                   - Modified property: financialRegimeContractType
+                    - Description changed from 'Listagem de regime financeiro para cada combinação de modalidade/cobertura do produto indicando:
+  1. Repartição simples
+  2. Repartição Capitais Cobertura
+  3. Capitalização
+  4. NA
+' to 'Listagem de regime financeiro para cada combinação de modalidade/cobertura do produto indicando:
+  1. Repartição simples
+  2. Repartição Capitais Cobertura
+  3. Capitalização
+'
                     - Deleted enum values: [NA]
                   - Modified property: minimumRequirement
                     - Properties changed
                       - Modified property: contractType
+                        - Description changed from 'O tipo de serviço contratado. A considerar os domínios abaixo:
+1. Coletivo;
+2. Individual.
+3. NA
+' to 'O tipo de serviço contratado. A considerar os domínios abaixo:
+1. Coletivo;
+2. Individual.
+'
                         - Deleted enum values: [NA]
                   - Modified property: modality
+                    - Description changed from '<ol><li>Funeral</li><li>Prestamista (exceto Habitacional e Rural)</li><li>Viagem</li><li>Educacional</li><li>Dotal (Misto e Puro)</li><li>Acidentes Pessoais</li><li>Vida</li><li>Perda do Certificado de Habilitação de Voo – PCHV</li><li>Doenças Graves ou Doença Terminal</li><li>Desemprego/ Perda de Renda</li><li>Eventos Aleatórios</li><li>Pecúlio</li><li>Pensão prazo certo</li><li>Pensão menores 21 anos</li><li>Pensão menores 24 anos</li><li>Pensão cônjuge vitalícia</li><li>Pensão cônjuge temporária</li><li>NA</li></ol>' to '<ol><li>Funeral</li><li>Prestamista (exceto Habitacional e Rural)</li><li>Viagem</li><li>Educacional</li><li>Dotal (Misto e Puro)</li><li>Acidentes Pessoais</li><li>Vida</li><li>Perda do Certificado de Habilitação de Voo – PCHV</li><li>Doenças Graves ou Doença Terminal</li><li>Desemprego/ Perda de Renda</li><li>Eventos Aleatórios</li><li>Pecúlio</li><li>Pensão prazo certo</li><li>Pensão menores 21 anos</li><li>Pensão menores 24 anos</li><li>Pensão cônjuge vitalícia</li><li>Pensão cônjuge temporária</li></ol>'
                     - Deleted enum values: [NA]
                   - Modified property: participant
                     - Properties changed
@@ -70,6 +147,16 @@ GET /risk-coverages
                         - Pattern changed from '^(\d{1}\.\d{6})$|^(-1.000000)$' to '^(\d{1}\.\d{6})|(NA)$'
                       - Modified property: updateIndexes
                         - Items changed
+                          - Description changed from 'Índice utilizado na atualização da PMBaC:
+  1. IPCA (IBGE)
+  2. IGP-M (FGV)
+  3. INPC (IBGE)
+  4. NA
+' to 'Índice utilizado na atualização da PMBaC:
+  1. IPCA (IBGE)
+  2. IGP-M (FGV)
+  3. INPC (IBGE)
+'
                           - Deleted enum values: [NA]
                   - Modified property: premiumUpdateIndex
                     - Deleted enum values: [NA]
@@ -86,6 +173,16 @@ GET /risk-coverages
                       - Modified property: cnpjNumber
                         - Pattern changed from '^(\d{14})$|^(NA)$' to '^(\d{14})|(NA)$'
                   - Modified property: targetAudience
+                    - Description changed from 'A considerar os domínios abaixo:
+  1. Pessoa Natural
+  2. Pessoa Jurídica
+  3. Ambas (Pessoa Natural e Jurídica)
+  4. NA
+' to 'A considerar os domínios abaixo:
+  1. Pessoa Natural
+  2. Pessoa Jurídica
+  3. Ambas (Pessoa Natural e Jurídica)
+'
                     - Deleted enum values: [NA]
                   - Modified property: termsAndConditions
                     - Items changed
@@ -180,6 +277,34 @@ GET /survival-coverages
                           - Deleted enum values: [NA]
                       - Modified property: incomeModalities
                         - Items changed
+                          - Description changed from 'Modalidades de renda disponíveis para contratação.
+  A considerar os seguintes domínios:
+  1. Pagamento Único
+  2. Renda por Prazo Certo;
+  3. Renda Temporária;
+  4. Renda Temporária Reversível;
+  5. Renda Temporária com mínimo garantido;
+  6. Renda Temporária Reversível com Mínimo Garantido;
+  7. Renda Vitalícia;
+  8. Renda Vitalícia Reversível ao Beneficiário Indicado
+  9. Renda Vitalícia Reversível ao Cônjuge com Continuidade de Menores
+  10. Renda Vitalícia com o Mínimo Garantido;
+  11. Renda Vitalícia com Prazo mínimo garantido.
+  12. NA
+' to 'Modalidades de renda disponíveis para contratação.
+  A considerar os seguintes domínios:
+  1. Pagamento Único
+  2. Renda por Prazo Certo;
+  3. Renda Temporária;
+  4. Renda Temporária Reversível;
+  5. Renda Temporária com mínimo garantido;
+  6. Renda Temporária Reversível com Mínimo Garantido;
+  7. Renda Vitalícia;
+  8. Renda Vitalícia Reversível ao Beneficiário Indicado
+  9. Renda Vitalícia Reversível ao Cônjuge com Continuidade de Menores
+  10. Renda Vitalícia com o Mínimo Garantido;
+  11. Renda Vitalícia com Prazo mínimo garantido.
+'
                           - Deleted enum values: [NA]
                       - Modified property: interestRate
                         - MaxLength changed from 9 to 8
@@ -211,20 +336,52 @@ GET /survival-coverages
                       - New required property: participantQualified
                     - Properties changed
                       - Modified property: contractType
+                        - Description changed from 'O tipo de serviço contratado. A considerar os domínios abaixo:
+1. Coletivo Averbado;
+2. Coletivo instituído;
+3. Individual.
+4. NA
+' to 'O tipo de serviço contratado. A considerar os domínios abaixo:
+1. Coletivo Averbado;
+2. Coletivo instituído;
+3. Individual.
+'
                         - Deleted enum values: [NA]
                   - Modified property: modality
+                    - Description changed from '1. Contribuição Variável;
+2. Benefício Definido.
+3. NA
+' to '1. Contribuição Variável;
+2. Benefício Definido.
+'
                     - Deleted enum values: [NA]
                   - Modified property: participant
                     - Properties changed
                       - Modified property: cnpjNumber
                         - Pattern changed from '^(\d{14})$|^(NA)$' to '^(\d{14})|(NA)$'
                   - Modified property: segment
+                    - Description changed from 'Segmento do qual se trata o produto contratado
+1. Seguro de Pessoas
+2. Previdência
+3. NA
+' to 'Segmento do qual se trata o produto contratado
+1. Seguro de Pessoas
+2. Previdência
+'
                     - Deleted enum values: [NA]
                   - Modified property: society
                     - Properties changed
                       - Modified property: cnpjNumber
                         - Pattern changed from '^(\d{14})$|^(NA)$' to '^(\d{14})|(NA)$'
                   - Modified property: targetAudience
+                    - Description changed from 'A considerar os domínios abaixo:
+  1. Pessoa Natural
+  2. Pessoa Jurídica
+  3. NA
+' to 'A considerar os domínios abaixo:
+  1. Pessoa Natural
+  2. Pessoa Jurídica
+'
                     - Deleted enum values: [NA]
                   - Modified property: termsAndConditions
                     - Items changed
@@ -232,6 +389,34 @@ GET /survival-coverages
                         - Modified property: susepProcessNumber
                           - Pattern changed from '^(\d{5}\.\d{6}\/\d{4}-\d{2}$|^\d{2}\.\d{6}\/\d{2}-\d{2}$|^\d{3}-\d{5}\/\d{2}$|^\d{5}\.\d{6}\/\d{2}-\d{2})$|^(NA)$' to '^(\d{5}\.\d{6}\/\d{4}-\d{2}$|^\d{2}\.\d{6}\/\d{2}-\d{2}$|^\d{3}-\d{5}\/\d{2}$|^\d{5}\.\d{6}\/\d{2}-\d{2})|(NA)$'
                   - Modified property: type
+                    - Description changed from '1.  PGBL
+2.  PRGP
+3.  PAGP
+4.  PRSA
+5.  PRI
+6.  PDR
+7.  VGBL
+8.  VRGP
+9.  VAGP
+10. VRSA
+11. VRI
+12. VDR
+13. Demais produtos de Previdência.
+14. NA
+' to '1.  PGBL
+2.  PRGP
+3.  PAGP
+4.  PRSA
+5.  PRI
+6.  PDR
+7.  VGBL
+8.  VRGP
+9.  VAGP
+10. VRSA
+11. VRI
+12. VDR
+13. Demais produtos de Previdência.
+'
                     - Deleted enum values: [NA]
             - Modified property: links
               - Properties changed
