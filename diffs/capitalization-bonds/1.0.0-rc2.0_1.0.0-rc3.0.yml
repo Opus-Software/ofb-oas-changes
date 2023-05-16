@@ -1,0 +1,102 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 1
+-------------------------
+GET /bonds
+- Responses changed
+  - New response: 529
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: capitalizationPeriod
+                    - Properties changed
+                      - Modified property: contributionAmount
+                        - Items changed
+                          - Properties changed
+                            - Modified property: maximum
+                              - Pattern changed from '^\d{1,16}\.\d{2,4}$' to '^(\d{1,16}\.\d{2,4})$|^(NA)$'
+                            - Modified property: minimum
+                              - Pattern changed from '^\d{1,16}\.\d{2,4}$' to '^(\d{1,16}\.\d{2,4})$|^(NA)$'
+                            - Modified property: periodicity
+                              - New enum values: [NA]
+                      - Modified property: earlyRedemptions
+                        - Items changed
+                          - Properties changed
+                            - Modified property: rate
+                              - MaxLength changed from 8 to 9
+                              - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})$|^(-1.000000)$'
+                      - Modified property: interestRate
+                        - MaxLength changed from 8 to 9
+                        - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})$|^(-1.000000)$'
+                      - Modified property: redemptionPercentageEndTerm
+                        - MaxLength changed from 8 to 9
+                        - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})$|^(-1.000000)$'
+                      - Modified property: updateIndex
+                        - New enum values: [NA]
+                  - Modified property: contributionPayment
+                    - Properties changed
+                      - Modified property: paymentMethod
+                        - New enum values: [NA]
+                      - Modified property: updateIndex
+                        - New enum values: [NA]
+                  - Modified property: costType
+                    - New enum values: [NA]
+                  - Modified property: draws
+                    - Items changed
+                      - Required changed
+                        - Deleted required property: earlySettlementRaffle
+                        - Deleted required property: mandatoryContemplation
+                      - Properties changed
+                        - Modified property: minimumContemplationProbability
+                          - MaxLength changed from 8 to 9
+                          - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})$|^(-1.000000)$'
+                        - Modified property: timeInterval
+                          - New enum values: [NA]
+                  - Modified property: finalRedemptionRate
+                    - MaxLength changed from 8 to 9
+                    - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})$|^(-1.000000)$'
+                  - Modified property: latePayment
+                    - Required changed
+                      - Deleted required property: periodExtensionOption
+                  - Modified property: modality
+                    - New enum values: [NA]
+                  - Modified property: participant
+                    - Properties changed
+                      - Modified property: cnpjNumber
+                        - Pattern changed from '^\d{14}$' to '^(\d{14})$|^(NA)$'
+                      - Modified property: urlComplementaryList
+                        - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)|(NA)$'
+                  - Modified property: quotas
+                    - Items changed
+                      - Properties changed
+                        - Modified property: capitalizationQuota
+                          - MaxLength changed from 8 to 9
+                          - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})$|^(-1.000000)$'
+                        - Modified property: chargingQuota
+                          - MaxLength changed from 8 to 9
+                          - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})$|^(-1.000000)$'
+                        - Modified property: raffleQuota
+                          - MaxLength changed from 8 to 9
+                          - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})$|^(-1.000000)$'
+                  - Modified property: redemptionPercentageEndTerm
+                    - MaxLength changed from 8 to 9
+                    - Pattern changed from '^\d{1}\.\d{6}$' to '^(\d{1}\.\d{6})$|^(-1.000000)$'
+                  - Modified property: society
+                    - Properties changed
+                      - Modified property: cnpjNumber
+                        - Pattern changed from '^\d{14}$' to '^(\d{14})$|^(NA)$'
+                  - Modified property: targetAudience
+                    - New enum values: [NA]
+                  - Modified property: termsAndConditions
+                    - Properties changed
+                      - Modified property: susepProcessNumber
+                        - Pattern changed from '^\d{5}\.\d{6}\/\d{4}-\d{2}$|^\d{2}\.\d{6}\/\d{2}-\d{2}$|^\d{3}-\d{5}\/\d{2}$|^\d{5}\.\d{6}\/\d{2}-\d{2}$' to '^(\d{5}\.\d{6}\/\d{4}-\d{2}$|^\d{2}\.\d{6}\/\d{2}-\d{2}$|^\d{3}-\d{5}\/\d{2}$|^\d{5}\.\d{6}\/\d{2}-\d{2})$|^(NA)$'
+  - Modified response: 429
+    - Description changed from 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido' to 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite de requisições concorrentes foi atingido.'

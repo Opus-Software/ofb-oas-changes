@@ -1,0 +1,99 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 1
+-------------------------
+GET /bonds
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: capitalizationPeriod
+                    - Properties changed
+                      - Modified property: contributionAmount
+                        - Items changed
+                          - Properties changed
+                            - Modified property: maximum
+                              - Pattern changed from '^(\d{1,16}\.\d{2,4})$|^(NA)$' to '^\d{1,16}\.\d{2,4}$'
+                            - Modified property: minimum
+                              - Pattern changed from '^(\d{1,16}\.\d{2,4})$|^(NA)$' to '^\d{1,16}\.\d{2,4}$'
+                            - Modified property: periodicity
+                              - Deleted enum values: [NA]
+                      - Modified property: earlyRedemptions
+                        - Items changed
+                          - Properties changed
+                            - Modified property: rate
+                              - MaxLength changed from 9 to 8
+                              - Pattern changed from '^(\d{1}\.\d{6})$|^(-1.000000)$' to '^\d{1}\.\d{6}$'
+                      - Modified property: interestRate
+                        - MaxLength changed from 9 to 8
+                        - Pattern changed from '^(\d{1}\.\d{6})$|^(-1.000000)$' to '^\d{1}\.\d{6}$'
+                      - Modified property: redemptionPercentageEndTerm
+                        - MaxLength changed from 9 to 8
+                        - Pattern changed from '^(\d{1}\.\d{6})$|^(-1.000000)$' to '^\d{1}\.\d{6}$'
+                      - Modified property: updateIndex
+                        - Deleted enum values: [NA]
+                  - Modified property: contributionPayment
+                    - Properties changed
+                      - Modified property: paymentMethod
+                        - Deleted enum values: [NA]
+                      - Modified property: updateIndex
+                        - Deleted enum values: [NA]
+                  - Modified property: costType
+                    - Deleted enum values: [NA]
+                  - Modified property: draws
+                    - Items changed
+                      - Required changed
+                        - New required property: earlySettlementRaffle
+                        - New required property: mandatoryContemplation
+                      - Properties changed
+                        - Modified property: minimumContemplationProbability
+                          - MaxLength changed from 9 to 8
+                          - Pattern changed from '^(\d{1}\.\d{6})$|^(-1.000000)$' to '^\d{1}\.\d{6}$'
+                        - Modified property: timeInterval
+                          - Deleted enum values: [NA]
+                  - Modified property: finalRedemptionRate
+                    - MaxLength changed from 9 to 8
+                    - Pattern changed from '^(\d{1}\.\d{6})$|^(-1.000000)$' to '^\d{1}\.\d{6}$'
+                  - Modified property: latePayment
+                    - Required changed
+                      - New required property: periodExtensionOption
+                  - Modified property: modality
+                    - Deleted enum values: [NA]
+                  - Modified property: participant
+                    - Properties changed
+                      - Modified property: cnpjNumber
+                        - Pattern changed from '^(\d{14})$|^(NA)$' to '^\d{14}$'
+                      - Modified property: urlComplementaryList
+                        - Pattern changed from '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)|(NA)$' to '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                  - Modified property: quotas
+                    - Items changed
+                      - Properties changed
+                        - Modified property: capitalizationQuota
+                          - MaxLength changed from 9 to 8
+                          - Pattern changed from '^(\d{1}\.\d{6})$|^(-1.000000)$' to '^\d{1}\.\d{6}$'
+                        - Modified property: chargingQuota
+                          - MaxLength changed from 9 to 8
+                          - Pattern changed from '^(\d{1}\.\d{6})$|^(-1.000000)$' to '^\d{1}\.\d{6}$'
+                        - Modified property: raffleQuota
+                          - MaxLength changed from 9 to 8
+                          - Pattern changed from '^(\d{1}\.\d{6})$|^(-1.000000)$' to '^\d{1}\.\d{6}$'
+                  - Modified property: redemptionPercentageEndTerm
+                    - MaxLength changed from 9 to 8
+                    - Pattern changed from '^(\d{1}\.\d{6})$|^(-1.000000)$' to '^\d{1}\.\d{6}$'
+                  - Modified property: society
+                    - Properties changed
+                      - Modified property: cnpjNumber
+                        - Pattern changed from '^(\d{14})$|^(NA)$' to '^\d{14}$'
+                  - Modified property: targetAudience
+                    - Deleted enum values: [NA]
+                  - Modified property: termsAndConditions
+                    - Properties changed
+                      - Modified property: susepProcessNumber
+                        - Pattern changed from '^(\d{5}\.\d{6}\/\d{4}-\d{2}$|^\d{2}\.\d{6}\/\d{2}-\d{2}$|^\d{3}-\d{5}\/\d{2}$|^\d{5}\.\d{6}\/\d{2}-\d{2})$|^(NA)$' to '^\d{5}\.\d{6}\/\d{4}-\d{2}$|^\d{2}\.\d{6}\/\d{2}-\d{2}$|^\d{3}-\d{5}\/\d{2}$|^\d{5}\.\d{6}\/\d{2}-\d{2}$'
