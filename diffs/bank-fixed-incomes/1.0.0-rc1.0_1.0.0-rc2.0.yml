@@ -23,6 +23,34 @@ GET /investments/{investmentId}
 GET /investments/{investmentId}/balances
 - Modified header param: x-fapi-auth-date
   - Description changed from 'Data em que o usuário logou pela última vez com o receptor. Representada de acordo com a RFC7231. Exemplo: Sun, 10 Sep 2017 19:43:31 UTC.' to 'Data em que o usuário logou pela última vez com o receptor. Representada de acordo com a [RFC7231](https://tools.ietf.org/html/rfc7231).Exemplo: Sun, 10 Sep 2017 19:43:31 UTC'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: postFixedIndexerPercentage
+                  - Description changed from 'Percentual do indexador acordado com o  cliente na contratação. Em casos de produtos progressivos, considerar taxa vigente.  p.ex. 0.014500.
+O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros(representação de porcentagem p.ex: 0.150000. Este valor representa 15%. O valor 1 representa 100%).
+[Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'indexer' for preenchido de forma diferente de 'PRE_FIXADO' ou quando se tratar de produto com remuneração híbrida.
+' to 'Percentual do indexador acordado com o cliente na contratação. 
+Em casos de produtos progressivos, considerar taxa vigente. p.ex. 0.014500. 
+O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros(representação de porcentagem p.ex: 0.150000. 
+Este valor representa 15%. O valor 1 representa 100%). É esperado que o preenchimento deste campo pelas participantes seja enviado de acordo com o campo postFixedIndexerPercentage do endpoint /investment/{investmentId}.              pattern: '^\d{1}\.\d{6}$'
+'
+                  - Pattern changed from '^\d{1}\.\d{6}$' to ''
+                - Modified property: preFixedRate
+                  - Description changed from 'Taxa de remuneração acordada com o cliente na contratação. Em casos de produtos progressivos, considerar taxa vigente.  p.ex. 0.014500.
+O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros(representação de porcentagem p.ex: 0.150000. Este valor representa 15%. O valor 1 representa 100%).
+[Restrição] Campo de preenchimento obrigatório pelas participantes quando houver 'PRE_FIXADO' no campo 'indexer' ou quando se tratar de produto com remuneração híbrida.
+' to 'Taxa de remuneração acordada com o cliente na contratação. 
+Em casos de produtos progressivos, considerar taxa vigente. p.ex. 0.014500. 
+O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros(representação de porcentagem p.ex: 0.150000. 
+Este valor representa 15%. O valor 1 representa 100%). É esperado que o preenchimento deste campo pelas participantes seja enviado de acordo com o campo preFixedRate do endpoint /investment/{investmentId}.              pattern: '^\d{1}\.\d{6}$'
+'
+                  - Pattern changed from '^\d{1}\.\d{6}$' to ''
 - Security changed
   - New security requirements: OAuth2AuthorizationCode
   - Deleted security requirements: OAuth2Security AND OpenId
