@@ -39,6 +39,7 @@
 | treasure-titles | [1.0.0-rc2.0](swagger-apis/treasure-titles/1.0.0-rc2.0.yml) |  |  |  |
 | unarranged-accounts-overdraft | [1.0.4](swagger-apis/unarranged-accounts-overdraft/1.0.4.yml) | [2.0.1](swagger-apis/unarranged-accounts-overdraft/2.0.1.yml) | [YAML](diffs/unarranged-accounts-overdraft/1.0.4_2.0.1-breaking-only.yml) | [YAML](diffs/unarranged-accounts-overdraft/1.0.4_2.0.1.yml) |
 | variable-incomes | [1.0.0-rc2.0](swagger-apis/variable-incomes/1.0.0-rc2.0.yml) |  |  |  |
+| webhook | [1.0.0-beta1](swagger-apis/webhook/1.0.0-beta1.yml) |  |  |  |
 
 ### All revisions
 
@@ -196,6 +197,9 @@
 |  | [2.0.0-RC1.0](swagger-apis/unarranged-accounts-overdraft/2.0.0-RC1.0.yml) | [2.0.0](swagger-apis/unarranged-accounts-overdraft/2.0.0.yml) | [YAML](diffs/unarranged-accounts-overdraft/2.0.0-RC1.0_2.0.0.yml) |
 |  | [2.0.0](swagger-apis/unarranged-accounts-overdraft/2.0.0.yml) | [2.0.1](swagger-apis/unarranged-accounts-overdraft/2.0.1.yml) | [YAML](diffs/unarranged-accounts-overdraft/2.0.0_2.0.1.yml) |
 | variable-incomes | [1.0.0-rc1.0](swagger-apis/variable-incomes/1.0.0-rc1.0.yml) | [1.0.0-rc2.0](swagger-apis/variable-incomes/1.0.0-rc2.0.yml) | [YAML](diffs/variable-incomes/1.0.0-rc1.0_1.0.0-rc2.0.yml) |
+| webhook | [1.0.0-beta.1](swagger-apis/webhook/1.0.0-beta.1.yml) | [1.0.0-beta.2](swagger-apis/webhook/1.0.0-beta.2.yml) | [YAML](diffs/webhook/1.0.0-beta.1_1.0.0-beta.2.yml) |
+|  | [1.0.0-beta.2](swagger-apis/webhook/1.0.0-beta.2.yml) | [1.0.0-beta1](swagger-apis/webhook/1.0.0-beta1.yml) | [YAML](diffs/webhook/1.0.0-beta.2_1.0.0-beta1.yml) |
+|  | [1.0.0-beta1](swagger-apis/webhook/1.0.0-beta1.yml) | [1.0.0](swagger-apis/webhook/1.0.0.yml) | [YAML](diffs/webhook/1.0.0-beta1_1.0.0.yml) |
 
 ## Deprecated APIs
 
@@ -205,7 +209,6 @@
 | --- | --- | --- | --- | --- |
 | exchanges | [1.0.0-rc1.0](swagger-apis/exchanges/1.0.0-rc1.0.yml) |  |  |  |
 | exchanges-aguardando-definicao | [1.0.0-rc1.0](swagger-apis/exchanges-aguardando-definicao/1.0.0-rc1.0.yml) |  |  |  |
-| webhook | [1.0.0-beta1](swagger-apis/webhook/1.0.0-beta1.yml) |  |  |  |
 
 ### All revisions
 
@@ -213,6 +216,3 @@
 | --- | --- | --- | --- |
 | exchanges | [1.0.0-rc1.0](swagger-apis/exchanges/1.0.0-rc1.0.yml) |  |  |
 | exchanges-aguardando-definicao | [1.0.0-rc1.0](swagger-apis/exchanges-aguardando-definicao/1.0.0-rc1.0.yml) |  |  |
-| webhook | [1.0.0-beta.1](swagger-apis/webhook/1.0.0-beta.1.yml) | [1.0.0-beta.2](swagger-apis/webhook/1.0.0-beta.2.yml) | [YAML](diffs/webhook/1.0.0-beta.1_1.0.0-beta.2.yml) |
-|  | [1.0.0-beta.2](swagger-apis/webhook/1.0.0-beta.2.yml) | [1.0.0-beta1](swagger-apis/webhook/1.0.0-beta1.yml) | [YAML](diffs/webhook/1.0.0-beta.2_1.0.0-beta1.yml) |
-|  | [1.0.0-beta1](swagger-apis/webhook/1.0.0-beta1.yml) | [1.0.0](swagger-apis/webhook/1.0.0.yml) | [YAML](diffs/webhook/1.0.0-beta1_1.0.0.yml) |
