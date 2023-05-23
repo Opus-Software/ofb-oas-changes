@@ -3,7 +3,7 @@ info:
   title: API Capitalization-bonds - Open Finance Brasil
   description: |
     As APIs descritas neste documento é referente a API de Capitalização da fase OpenInsurance do Open Finance Brasil.
-  version: 1.0.0-rc2.0
+  version: 1.0.0-rc3.0
   license:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0'
@@ -126,15 +126,15 @@ components:
         redemptionPercentageEndTerm:
           type: string
           description: 'Percentual mínimo da soma das contribuições efetuadas que poderá ser resgatado ao final da vigência, tendo como condição os pagamentos das parcelas nos respectivos vencimentos.'
-          maxLength: 8
+          maxLength: 9
           minLength: 8
-          pattern: '^\d{1}\.\d{6}$'
+          pattern: '^(\d{1}\.\d{6})$|^(-1.000000)$'
           example: '0.019800'
         finalRedemptionRate:
           type: string
           description: Valor percentual (%) de resgate final permitido.
-          pattern: '^\d{1}\.\d{6}$'
-          maxLength: 8
+          pattern: '^(\d{1}\.\d{6})$|^(-1.000000)$'
+          maxLength: 9
           minLength: 8
           example: '0.019800'
         draws:
@@ -164,11 +164,13 @@ components:
               1. Pessoa Natural
               2. Pessoa Jurídica
               3. Ambas (Pessoa Natural e Jurídica)
+              4. NA
           maxLength: 23
           enum:
             - PESSOA_NATURAL
             - PESSOA_JURIDICA
             - PESSOA_NATURAL_JURIDICA
+            - NA
           example: PESSOA_NATURAL
       additionalProperties: false
     Participant:
@@ -192,7 +194,7 @@ components:
         cnpjNumber:
           type: string
           description: 'O CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica. Deve-se ter apenas os números do CNPJ, sem máscara.'
-          pattern: '^\d{14}$'
+          pattern: '^(\d{14})$|^(NA)$'
           example: '13456789000112'
         urlComplementaryList:
           type: string
@@ -207,7 +209,7 @@ components:
 
             - Ambos obrigatórios.
           maxLength: 1024
-          pattern: '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+          pattern: '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)|(NA)$'
           example: 'https://empresaa1.com/companies'
       additionalProperties: false
     EnumCapitalizationBondsProductModality:
@@ -219,6 +221,7 @@ components:
         4. Popular: A modalidade popular tem por objetivo propiciar a capitalização da contribuição e a participação do titular em sorteios, sem que haja devolução integral do valor pago. (Res CNSP 384/20)
         5. Incentivo: A modalidade incentivo tem por objetivo a vinculação a um evento promocional de caráter comercial instituído pelo subscritor para alavancar a venda de seu(s) produto(s) ou serviços ou para fidelizar seus clientes. (Res CNSP 384/20)
         6. Filantropia Premiável: A modalidade filantropia premiável é destinada ao subscritor interessado em contribuir com entidades beneficentes de assistências sociais, certificadas nos termos da legislação vigente, e participar de sorteio(s). (Res CNSP 384/20)
+        7. NA
       minLength: 7
       maxLength: 24
       enum:
@@ -228,6 +231,7 @@ components:
         - POPULAR
         - INCENTIVO
         - FILANTROPIA_PREMIAVEL
+        - NA
       example: TRADICIONAL
     EnumCapitalizationBondsProductCostType:
       type: string
@@ -236,12 +240,14 @@ components:
         1. Pagamento Único
         2. Pagamento Mensal
         3. Pagamento Periódico
+        4. NA
       minLength: 15
       maxLength: 19
       enum:
         - PAGAMENTO_UNICO
         - PAGAMENTO_MENSAL
         - PAGAMENTO_PERIODICO
+        - NA
       example: PAGAMENTO_UNICO
     TermsAndConditions:
       type: object
@@ -252,9 +258,9 @@ components:
         susepProcessNumber:
           type: string
           description: 'Sequência numérica utilizada para consulta dos processos eletrônicos na SUSEP, com caracteres especiais, conforme campo de consulta no site da SUSEP (XXXXX.XXXXXX/XXXX-XX)<br>Observação&#58; Mascaras da SUSEP – Serão permitidos todas as máscaras de Produtos. Limitar pelos códigos das Máscaras.'
-          minLength: 12
+          minLength: 2
           maxLength: 20
-          pattern: '^\d{5}\.\d{6}\/\d{4}-\d{2}$|^\d{2}\.\d{6}\/\d{2}-\d{2}$|^\d{3}-\d{5}\/\d{2}$|^\d{5}\.\d{6}\/\d{2}-\d{2}$'
+          pattern: '^(\d{5}\.\d{6}\/\d{4}-\d{2}$|^\d{2}\.\d{6}\/\d{2}-\d{2}$|^\d{3}-\d{5}\/\d{2}$|^\d{5}\.\d{6}\/\d{2}-\d{2})$|^(NA)$'
           example: 15414.622222/2222-22
         detail:
           type: string
@@ -279,23 +285,23 @@ components:
         capitalizationQuota:
           type: string
           description: Percentual da contribuição destinado à constituição de capital referente ao direito de resgate. (Resolução CNSP 384/20) Em porcentagem(%).
-          maxLength: 8
+          maxLength: 9
           minLength: 8
-          pattern: '^\d{1}\.\d{6}$'
+          pattern: '^(\d{1}\.\d{6})$|^(-1.000000)$'
           example: '0.019800'
         raffleQuota:
           type: string
           description: 'Percentual da contribuição destinado a custear os sorteios, se previstos no plano. (Resolução CNSP 384/20) Em porcentagem(%).'
-          maxLength: 8
+          maxLength: 9
           minLength: 8
-          pattern: '^\d{1}\.\d{6}$'
+          pattern: '^(\d{1}\.\d{6})$|^(-1.000000)$'
           example: '0.019800'
         chargingQuota:
           type: string
           description: 'Percentual da contribuição destinado aos custos de despesas com corretagem, colocação e administração do título de capitalização, emissão, divulgação, lucro da sociedade de capitalização e eventuais despesas relativas ao custeio da contemplação obrigatória e da distribuição de bônus. (Resolução CNSP 384/20) Em porcentagem(%).'
-          maxLength: 8
+          maxLength: 9
           minLength: 8
-          pattern: '^\d{1}\.\d{6}$'
+          pattern: '^(\d{1}\.\d{6})$|^(-1.000000)$'
           example: '0.019800'
       additionalProperties: false
     CapitalizationBondsProductCapitalizationPeriod:
@@ -310,9 +316,9 @@ components:
       properties:
         interestRate:
           type: string
-          pattern: '^\d{1}\.\d{6}$'
+          pattern: '^(\d{1}\.\d{6})$|^(-1.000000)$'
           description: 'Taxa que remunera a parte da mensalidade destinada a formar o Capital, ou seja, a Provisão Matemática de Resgate, também chamada de saldo de capitalização. Em porcentagem ao mês (% a.m.).'
-          maxLength: 8
+          maxLength: 9
           minLength: 8
           example: '0.019800'
         updateIndex:
@@ -345,17 +351,17 @@ components:
               rate:
                 type: string
                 description: Taxa relativa ao Resgate Antecipado
-                maxLength: 8
+                maxLength: 9
                 minLength: 8
-                pattern: '^\d{1}\.\d{6}$'
+                pattern: '^(\d{1}\.\d{6})$|^(-1.000000)$'
                 example: '0.019800'
             additionalProperties: false
         redemptionPercentageEndTerm:
           type: string
           description: 'Percentual mínimo da soma das contribuições efetuadas que poderá ser resgatado ao final da vigência, tendo como condição os pagamentos das parcelas nos respectivos vencimentos.'
-          maxLength: 8
+          maxLength: 9
           minLength: 8
-          pattern: '^\d{1}\.\d{6}$'
+          pattern: '^(\d{1}\.\d{6})$|^(-1.000000)$'
           example: '0.019800'
         gracePeriodRedemption:
           type: number
@@ -374,6 +380,7 @@ components:
         - TR
         - INDICE_REMUNERACAO_DEPOSITOS_POUPANCA
         - OUTROS
+        - NA
       example: IPCA
       description: |
         Índice utilizado na atualização dos pagamentos mensais (para títulos com mais de 12 meses de vigência) (não aplicável a pagamento único). 
@@ -405,6 +412,7 @@ components:
               9. Semestral
               10. Anual
               11. Outros
+              12. NA
           maxLength: 13
           enum:
             - UNICO
@@ -418,6 +426,7 @@ components:
             - SEMESTRAL
             - ANUAL
             - OUTROS
+            - NA
           example: UNICO
         periodicityAdditionalInfo:
           type: string
@@ -426,7 +435,7 @@ components:
           example: ''
         minimum:
           type: string
-          pattern: '^\d{1,16}\.\d{2,4}$'
+          pattern: '^(\d{1,16}\.\d{2,4})$|^(NA)$'
           description: |
             Condicional: Quando modalidade for igual 'TRADICIONAL'
             Valor mínimo correspondente ao pagamento efetuado pelo subscritor à sociedade de capitalização.
@@ -434,7 +443,7 @@ components:
           example: '1.2222'
         maximum:
           type: string
-          pattern: '^\d{1,16}\.\d{2,4}$'
+          pattern: '^(\d{1,16}\.\d{2,4})$|^(NA)$'
           description: |
             Condicional: Quando modalidade for igual 'TRADICIONAL'
             Valor máximo correspondente ao pagamento efetuado pelo subscritor à sociedade de capitalização.
@@ -452,7 +461,6 @@ components:
       type: object
       required:
         - suspensionMonths
-        - periodExtensionOption
       properties:
         suspensionMonths:
           type: number
@@ -501,6 +509,7 @@ components:
         - CONSIGNACAO_FOLHA_PAGAMENTO
         - PAGAMENTO_PONTOS
         - OUTROS
+        - NA
       example: CARTAO_CREDITO
       description: |
         Meio de Pagamento utilizado para pagamento da contribuição. A considerar os domínios abaixo:
@@ -513,14 +522,13 @@ components:
           7. Consignação em Folha de Pagamento
           8. Pontos de Programas de Benefício
           9. Outros
+          10. NA
     CapitalizationBondsProductPrizeDraw:
       type: object
       required:
         - timeInterval
         - quantity
         - prizeMultiplier
-        - earlySettlementRaffle
-        - mandatoryContemplation
         - minimumContemplationProbability
       properties:
         timeInterval:
@@ -538,6 +546,7 @@ components:
               - SEMESTRAL
               - ANUAL
               - OUTROS
+              - NA
           maxLength: 13
           enum:
             - UNICO
@@ -551,6 +560,7 @@ components:
             - SEMESTRAL
             - ANUAL
             - OUTROS
+            - NA
           example: UNICO
         timeIntervalAdditionalInfo:
           type: string
@@ -591,9 +601,9 @@ components:
           example: Sorteios próprios às terças-feiras Toda quarta-feira sorteios através da loteria federal.
         minimumContemplationProbability:
           type: string
-          pattern: '^\d{1}\.\d{6}$'
+          pattern: '^(\d{1}\.\d{6})$|^(-1.000000)$'
           description: 'Número representativo da probabilidade mínima de contemplação nos sorteios, em porcentagem (%).'
-          maxLength: 8
+          maxLength: 9
           minLength: 8
           example: '0.019800'
       additionalProperties: false
