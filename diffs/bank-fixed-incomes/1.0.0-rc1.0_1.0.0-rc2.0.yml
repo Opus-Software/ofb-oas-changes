@@ -75,6 +75,12 @@ GET /investments/{investmentId}/transactions
                     - Description changed from 'Aplicação, resgate, cancelamento, vencimento, pagamento de juros/amortização, transferência de titularidade, transferência de custódia e outros.' to 'Aplicação, resgate, cancelamento, vencimento, pagamento de juros, amortização, transferência de titularidade, transferência de custódia e outros.'
                     - New enum values: [PAGAMENTO_JUROS AMORTIZACAO]
                     - Deleted enum values: [PAGAMENTO_JUROS_AMORTIZACAO]
+                  - Modified property: type
+                    - Description changed from 'Tipo de movimentação na visão de investimento (entrada ou saída) . (Nos casos de motivo de pagamento  "pagamento de juros" e "amortização", fica convencionado que será considerado que o tipo de movimento será saída).' to 'Tipo de movimentação na visão de investimento
+ENTRADA: APLICACAO, CANCELAMENTO,TRANSFERENCIA_TITULARIDADE, TRANSFERENCIA_CUSTODIA,OUTROS.
+SAIDA: RESGATE, CANCELAMENTO, VENCIMENTO, PAGAMENTO_JUROS, AMORTIZACAO, TRANSFERENCIA_TITULARIDADE, TRANSFERENCIA_CUSTODIA, OUTROS.
+Por exemplo, para movimentação de CANCELAMENTO, tipicamente, será o type contrário ao evento originário. Ou seja, para cancelamento de APLICACAO, considera-se type SAIDA; para cancelamento de RESGATE, considera-se typeENTRADA.
+'
 - Security changed
   - New security requirements: OAuth2AuthorizationCode
   - Deleted security requirements: OAuth2Security AND OpenId
@@ -101,6 +107,12 @@ GET /investments/{investmentId}/transactions-current
                     - Description changed from 'Aplicação, resgate, cancelamento, vencimento, pagamento de juros/amortização, transferência de titularidade, transferência de custódia e outros.' to 'Aplicação, resgate, cancelamento, vencimento, pagamento de juros, amortização, transferência de titularidade, transferência de custódia e outros.'
                     - New enum values: [PAGAMENTO_JUROS AMORTIZACAO]
                     - Deleted enum values: [PAGAMENTO_JUROS_AMORTIZACAO]
+                  - Modified property: type
+                    - Description changed from 'Tipo de movimentação na visão de investimento (entrada ou saída) . (Nos casos de motivo de pagamento  "pagamento de juros" e "amortização", fica convencionado que será considerado que o tipo de movimento será saída).' to 'Tipo de movimentação na visão de investimento
+ENTRADA: APLICACAO, CANCELAMENTO,TRANSFERENCIA_TITULARIDADE, TRANSFERENCIA_CUSTODIA,OUTROS.
+SAIDA: RESGATE, CANCELAMENTO, VENCIMENTO, PAGAMENTO_JUROS, AMORTIZACAO, TRANSFERENCIA_TITULARIDADE, TRANSFERENCIA_CUSTODIA, OUTROS.
+Por exemplo, para movimentação de CANCELAMENTO, tipicamente, será o type contrário ao evento originário. Ou seja, para cancelamento de APLICACAO, considera-se type SAIDA; para cancelamento de RESGATE, considera-se typeENTRADA.
+'
 - Security changed
   - New security requirements: OAuth2AuthorizationCode
   - Deleted security requirements: OAuth2Security AND OpenId
