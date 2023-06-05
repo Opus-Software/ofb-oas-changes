@@ -572,16 +572,14 @@ components:
         debtorCnpjNumber:
           type: string
           description: |
-            CNPJ do devedor (condicional para CRI e CRA)  
-            [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'investmentType' for igual a "CRI" ou "CRA".
+            CNPJ do devedor. Caso a transmissora possua a informação para os produtos CRI e CRA, o envio deste campo é obrigatório.
           maxLength: 14
           pattern: '^\d{14}$'
           example: '11225860000140'
         debtorName:
           type: string
           description: |
-            Nome do devedor (condicional para CRI e CRA)  
-            [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'investmentType' for igual a "CRI" ou "CRA".
+            Nome do devedor. Caso a transmissora possua a informação para os produtos CRI e CRA, o envio deste campo é obrigatório.
           pattern: '[\w\W\s]*'
           maxLength: 70
           example: Roberto Marino
@@ -820,7 +818,6 @@ components:
       type: object
       description: |
         Valor do imposto considerando a alíquota vigente na data de referência.
-        [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'tipo da movimentação' for preenchido com o valor 'SAIDA'.
       required:
         - amount
         - currency
@@ -873,7 +870,6 @@ components:
       type: object
       description: |
         Valor do imposto considerando a alíquota vigente na data de referência.
-        [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'tipo da movimentação' for preenchido com o valor 'SAIDA'.
       required:
         - amount
         - currency
@@ -1190,7 +1186,14 @@ components:
       example: COMPRA
     Type:
       type: string
-      description: 'Tipo de movimentação na visão de investimento (Nos casos de motivo da movimentação  "pagamento de juros", "amortização", "prêmio", "multa" e "mora", fica convencionado que será considerado que o tipo de movimento será saída).'
+      description: |
+        Tipo de movimentação na visão de investimento​:
+
+        ENTRADA: COMPRA, CANCELAMENTO, TRANSFERENCIA_TITULARIDADE, TRANSFERENCIA_CUSTODIA, OUTROS​.
+
+        SAIDA: VENDA, CANCELAMENTO, VENCIMENTO, PAGAMENTO_JUROS, AMORTIZACAO, PREMIO, TRANSFERENCIA_TITULARIDADE, TRANSFERENCIA_CUSTODIA, MULTA, MORA, OUTROS. ​
+
+        Por exemplo, para movimentação de CANCELAMENTO, tipicamente, será o type contrário ao evento originário. Ou seja, para cancelamento de COMPRA, considera-se type SAIDA; para cancelamento de VENDA, considera-se type ENTRADA.
       enum:
         - ENTRADA
         - SAIDA
