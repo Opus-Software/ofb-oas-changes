@@ -21,6 +21,10 @@ GET /investments/{investmentId}
           - Properties changed
             - Modified property: data
               - Properties changed
+                - Modified property: clearingCode
+                  - Description changed from 'Código de registro do ativo na clearing' to 'Código de registro do ativo na Clearing. Caso a transmissora possua a informação o envio deste campo é obrigatório.
+[Restrição] Deve ser preenchido nos casos em que o 'isinCode' não seja preenchido.
+'
                 - Modified property: debtorCnpjNumber
                   - Description changed from 'CNPJ do devedor (condicional para CRI e CRA)  
 [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'investmentType' for igual a "CRI" ou "CRA".
@@ -30,6 +34,11 @@ GET /investments/{investmentId}
                   - Description changed from 'Nome do devedor (condicional para CRI e CRA)  
 [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'investmentType' for igual a "CRI" ou "CRA".
 ' to 'Nome do devedor. Caso a transmissora possua a informação para os produtos CRI e CRA, o envio deste campo é obrigatório.
+'
+                - Modified property: isinCode
+                  - Description changed from 'Código ISIN da emissão, Código ISIN do produto, Código da emissora (campo opcional): código universal que identifica cada valor mobiliário ou instrumento financeiro, conforme Norma ISO 6166.
+' to 'Código ISIN é um código universal que identifica cada valor mobiliário ou instrumento financeiro, conforme Norma ISO 6166. Caso a transmissora possua a informação o envio deste campo é obrigatório.
+[Restrição] Deve ser preenchido nos casos em que o 'clearingCode' não seja preenchido.
 '
 - Security changed
   - New security requirements: OAuth2AuthorizationCode
