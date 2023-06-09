@@ -427,7 +427,7 @@ components:
                 enum:
                   - FORMA_PAGAMENTO_INVALIDA
                   - DATA_PAGAMENTO_INVALIDA
-                  - DETALHE_PGTO_INVALIDO
+                  - DETALHE_PAGAMENTO_INVALIDO
                   - PARAMETRO_NAO_INFORMADO
                   - PARAMETRO_INVALIDO
                   - ERRO_IDEMPOTENCIA
@@ -1109,23 +1109,25 @@ components:
       description: |
         Define o código da razão pela qual o pagamento foi rejeitado
 
-        - SALDO_INSUFICIENTE - A conta selecionada não possui saldo suficiente para realizar o pagamento.
+        SALDO_INSUFICIENTE
 
-        - VALOR_ACIMA_LIMITE - O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente.
+        VALOR_ACIMA_LIMITE
 
-        - VALOR_INVALIDO - O valor enviado não é válido para o QR Code informado.
+        VALOR_INVALIDO
 
-        - COBRANCA_INVALIDA - Validação de expiração, validação de vencimento ou Status Válido.
+        COBRANCA_INVALIDA
 
-        - NAO_INFORMADO - Não reportado/identificado pela instituição detentora de conta.
+        NAO_INFORMADO
 
-        - PAGAMENTO_DIVERGENTE_CONSENTIMENTO - Dados do pagamento divergentes dos dados do consentimento.
+        PAGAMENTO_DIVERGENTE_CONSENTIMENTO
 
-        - DETALHE_PAGAMENTO_INVALIDO - Parâmetro [nome_campo] não obedecer às regras de negócio.
+        DETALHE_PAGAMENTO_INVALIDO
 
-        - PAGAMENTO_RECUSADO_DETENTORA - [Descrição do motivo de recusa].
+        PAGAMENTO_RECUSADO_DETENTORA
 
-        - PAGAMENTO_RECUSADO_SPI - [Código de erro conforme tabela de domínios reason PACS.002].
+        PAGAMENTO_RECUSADO_SPI
+
+        FALHA_INFRAESTRUTURA
     EnumPaymentCancellationReasonType:
       type: string
       enum:
