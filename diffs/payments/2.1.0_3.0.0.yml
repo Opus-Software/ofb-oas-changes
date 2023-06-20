@@ -7,7 +7,29 @@
 POST /consents
 - Modified header param: x-fapi-interaction-id
   - Required changed from true to false
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: creditor
+                - Properties changed
+                  - Modified property: name
+                    - Pattern changed from '^([A-Za-zÀ-ÖØ-öø-ÿ,.@:&*+_<>()!?/\\$%\d' -]+)$' to '^([A-Za-zÀ-ÖØ-öø-ÿ' -]+)$'
 - Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: creditor
+                  - Properties changed
+                    - Modified property: name
+                      - Pattern changed from '^([A-Za-zÀ-ÖØ-öø-ÿ,.@:&*+_<>()!?/\\$%\d' -]+)$' to '^([A-Za-zÀ-ÖØ-öø-ÿ' -]+)$'
   - Modified response: 400
     - Description changed from 'Seguir as orientações presentes na descrição da API, subitem 1.2.3' to 'A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.'
   - Modified response: 422
@@ -26,6 +48,17 @@ GET /consents/{consentId}
 - Modified header param: x-fapi-interaction-id
   - Required changed from true to false
 - Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: creditor
+                  - Properties changed
+                    - Modified property: name
+                      - Pattern changed from '^([A-Za-zÀ-ÖØ-öø-ÿ,.@:&*+_<>()!?/\\$%\d' -]+)$' to '^([A-Za-zÀ-ÖØ-öø-ÿ' -]+)$'
   - Modified response: 400
     - Headers changed
       - New header: x-fapi-interaction-id
