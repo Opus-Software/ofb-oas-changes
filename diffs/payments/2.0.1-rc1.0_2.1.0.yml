@@ -148,6 +148,19 @@ FALHA_INFRAESTRUTURA
     - Headers changed
       - Deleted header: x-fapi-interaction-id
 PATCH /pix/payments/{paymentId}
+- Description changed from '
+Esse endpoint deve ser usado para cancelar, a pedido do cliente pagador, as transações que estejam em uma das seguintes situações: Agendada com sucesso (SCHD), retida para análise (PDNG) ou aguardando autorização de múltiplas alçadas (PATC).  
+- Caso a requisição seja bem sucedida, a transação vai para a situação CANC.
+- Caso o status do pagamento seja diferente de SCHD/PDNG/PATC ou alguma outra regra de negócio impeça o cancelamento, a requisição PATCH retorna HTTP Status 422 com o code PAGAMENTO_NAO_PERMITE_CANCELAMENTO.
+- Caso receba um 422, a iniciadora deve fazer uma requisição GET no pagamento para verificar a situação atual dele, bem como detalhes associados.  
+O cancelamento de pagamento deve ser enviado até 23:59 (Horário de Brasília) do dia anterior à data de efetivação do pagamento.  
+' to '
+Esse endpoint deve ser usado para cancelar, a pedido do cliente pagador, as transações que estejam em uma das seguintes situações: Agendada com sucesso (SCHD), retida para análise (PDNG) ou aguardando autorização de múltiplas alçadas (PATC).  
+- Caso a requisição seja bem sucedida, a transação vai para a situação CANC.
+- Caso o status do pagamento seja diferente de SCHD/PDNG/PATC ou alguma outra regra de negócio impeça o cancelamento, a requisição PATCH retorna HTTP Status 422 com o code PAGAMENTO_NAO_PERMITE_CANCELAMENTO.
+- Caso receba um 422, a iniciadora deve fazer uma requisição GET no pagamento para verificar a situação atual dele, bem como detalhes associados.  
+O cancelamento de pagamento agendado (SCHD) pode ser enviado até 23:59 (Horário de Brasília) do dia anterior à data de efetivação do pagamento.  
+'
 - Modified header param: x-fapi-interaction-id
   - Required changed from false to true
 - Responses changed
