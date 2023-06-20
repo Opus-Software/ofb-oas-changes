@@ -2,7 +2,7 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 3
+### Modified Endpoints: 4
 -------------------------
 POST /consents
 - Request body changed
@@ -51,6 +51,11 @@ GET /consents/{consentId}
                   - Properties changed
                     - Modified property: name
                       - Pattern changed from '^([A-Za-zÀ-ÖØ-öø-ÿ,.@:&*+_<>()!?/\\$%\d' -]+)$' to '^([A-Za-zÀ-ÖØ-öø-ÿ' -]+)$'
+GET /pix/payments/{paymentId}
+- Security changed
+  - New security requirements: OAuth2ClientCredentials
+  - Modified security requirements: OAuth2AuthorizationCode
+    - Scheme OAuth2AuthorizationCode Added scopes: [openid]
 PATCH /pix/payments/{paymentId}
 - Responses changed
   - Modified response: 422
