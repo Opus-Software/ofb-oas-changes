@@ -472,7 +472,7 @@ components:
                   • NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta.  
         meta:
           $ref: '#/components/schemas/Meta'
-    422ResponseErrorCreatePixPayments:
+    422ResponseErrorCreatePixPayment:
       type: object
       required:
         - errors
@@ -568,44 +568,6 @@ components:
                   • PAGAMENTO_RECUSADO_SPI: [código de erro conforme tabela de domínios reason PACS.002].
 
                   • ERRO_IDEMPOTENCIA: Conteúdo da mensagem (claim data) diverge do conteúdo associado a esta chave de idempotência (x-idempotency-key).
-        meta:
-          $ref: '#/components/schemas/Meta'
-    422ResponseErrorCreatePixPayment:
-      type: object
-      required:
-        - errors
-      properties:
-        errors:
-          type: array
-          minItems: 1
-          maxItems: 9
-          items:
-            type: object
-            required:
-              - code
-              - title
-              - detail
-            properties:
-              code:
-                $ref: '#/components/schemas/EnumErrorsCreatePixPayment'
-              title:
-                type: string
-                maxLength: 255
-                pattern: '[\w\W\s]*'
-                example: Saldo insuficiente.
-                description: |
-                  Título específico do erro reportado, de acordo com o código enviado:
-
-                  • PAGAMENTO_NAO_PERMITE_CANCELAMENTO: Pagamento não permite cancelamento
-              detail:
-                type: string
-                maxLength: 2048
-                pattern: '[\w\W\s]*'
-                example: A conta selecionada não possui saldo suficiente para realizar o pagamento.
-                description: |
-                  Descrição específica do erro de acordo com o código reportado:
-
-                  • PAGAMENTO_NAO_PERMITE_CANCELAMENTO: Pagamento não permite cancelamento
         meta:
           $ref: '#/components/schemas/Meta'
     BusinessEntity:
@@ -1001,15 +963,6 @@ components:
         AUTHORISED - Autorizado   
         REJECTED - Rejeitado  
         CONSUMED - Consumido 
-    EnumErrorsCreatePixPayment:
-      type: string
-      enum:
-        - PAGAMENTO_NAO_PERMITE_CANCELAMENTO
-      example: PAGAMENTO_NAO_PERMITE_CANCELAMENTO
-      description: |
-        Códigos de erros previstos na criação da iniciação de pagamento:
-
-        • PAGAMENTO_NAO_PERMITE_CANCELAMENTO: Pagamento não permite cancelamento
     EnumErrorsCreatePayment:
       type: string
       enum:
@@ -1245,7 +1198,7 @@ components:
             O CNPJ será utilizado com 14 números e deverá ser informado sem pontos ou traços.
         name:
           type: string
-          pattern: '^([A-Za-zÀ-ÖØ-öø-ÿ'' -]+)$'
+          pattern: ^([A-Za-zÀ-ÖØ-öø-ÿ,.@:&*+_<>()!?/\\$%\d' -]+)$
           maxLength: 120
           example: Marco Antonio de Brito
           description: |
@@ -2458,7 +2411,7 @@ components:
       content:
         application/jwt:
           schema:
-            $ref: '#/components/schemas/422ResponseErrorCreatePixPayments'
+            $ref: '#/components/schemas/422ResponseErrorCreatePixPayment'
           examples:
             Saldo insuficiente:
               summary: Saldo insuficiente
@@ -2498,8 +2451,8 @@ components:
           schema:
             $ref: '#/components/schemas/422ResponseErrorCreatePixPayment'
           examples:
-            Saldo insuficiente:
-              summary: Saldo insuficiente
+            Pagamento não permite cancelamento:
+              summary: Pagamento não permite cancelamento
               value:
                 errors:
                   - code: PAGAMENTO_NAO_PERMITE_CANCELAMENTO
