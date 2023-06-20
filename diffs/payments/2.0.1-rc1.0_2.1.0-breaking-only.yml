@@ -20,7 +20,7 @@ POST /consents
               - Items changed
                 - Properties changed
                   - Modified property: code
-                    - Deleted enum values: [FORMA_PAGAMENTO_INVALIDA DATA_PAGAMENTO_INVALIDA DETALHE_PGTO_INVALIDO PARAMETRO_NAO_INFORMADO PARAMETRO_INVALIDO ERRO_IDEMPOTENCIA NAO_INFORMADO]
+                    - Deleted enum values: [DETALHE_PGTO_INVALIDO]
 GET /consents/{consentId}
 - Modified header param: x-fapi-interaction-id
   - Required changed from false to true
@@ -52,6 +52,13 @@ PATCH /pix/payments/{paymentId}
   - Modified response: 422
     - Content changed
       - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Deleted enum values: [SALDO_INSUFICIENTE BENEFICIARIO_INCOMPATIVEL VALOR_INCOMPATIVEL VALOR_ACIMA_LIMITE VALOR_INVALIDO COBRANCA_INVALIDA CONSENTIMENTO_INVALIDO JANELA_OPER_INVALIDA PARAMETRO_NAO_INFORMADO PARAMETRO_INVALIDO NAO_INFORMADO PAGAMENTO_DIVERGENTE_CONSENTIMENTO DETALHE_PAGAMENTO_INVALIDO PAGAMENTO_RECUSADO_DETENTORA PAGAMENTO_RECUSADO_SPI ERRO_IDEMPOTENCIA]
         - Examples changed
-          - New example: Pagamento não permite cancelamento
-          - Deleted example: Saldo insuficiente
+          - Modified example: Saldo insuficiente
+            - Value changed from map[errors:[map[code:SALDO_INSUFICIENTE detail:A conta selecionada não possui saldo suficiente para realizar o pagamento. title:Saldo insuficiente.]] meta:map[requestDateTime:2021-05-21T08:30:00Z]] to map[errors:[map[code:PAGAMENTO_NAO_PERMITE_CANCELAMENTO detail:Pagamento não permite cancelamento title:Pagamento não permite cancelamento]] meta:map[requestDateTime:2021-05-21T08:30:00Z]]

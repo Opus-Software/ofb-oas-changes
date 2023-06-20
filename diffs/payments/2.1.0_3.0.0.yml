@@ -22,44 +22,8 @@ POST /consents
               - Items changed
                 - Properties changed
                   - Modified property: code
-                    - Description changed from 'Códigos de erros previstos na criação de consentimento para a iniciação de pagamentos:  
-• Pagamento não permite cancelamento
-' to 'Códigos de erros previstos na criação de consentimento para a iniciação de pagamentos:  
-• FORMA_PAGAMENTO_INVALIDA: Forma de pagamento inválida.  
-• DATA_PAGAMENTO_INVALIDA: Data de pagamento inválida.  
-• DETALHE_PAGAMENTO_INVALIDO: Detalhe do pagamento inválido.  
-• PARAMETRO_NAO_INFORMADO: Parâmetro não informado.  
-• PARAMETRO_INVALIDO: Parâmetro inválido.  
-• ERRO_IDEMPOTENCIA: Erro idempotência.  
-• NAO_INFORMADO: Não informado.   
-'
-                    - New enum values: [FORMA_PAGAMENTO_INVALIDA DATA_PAGAMENTO_INVALIDA DETALHE_PGTO_INVALIDO PARAMETRO_NAO_INFORMADO PARAMETRO_INVALIDO ERRO_IDEMPOTENCIA NAO_INFORMADO]
-                    - Deleted enum values: [PAGAMENTO_NAO_PERMITE_CANCELAMENTO]
-                    - Example changed from 'PAGAMENTO_NAO_PERMITE_CANCELAMENTO' to 'FORMA_PAGAMENTO_INVALIDA'
-                  - Modified property: detail
-                    - Description changed from 'Descrição específica do erro de acordo com o código reportado:  
-• PAGAMENTO_NAO_PERMITE_CANCELAMENTO: Pagamento não permite cancelamento 
-' to 'Descrição específica do erro de acordo com o código reportado:  
-• FORMA_PAGAMENTO_INVALIDA: Forma de pagamento [Modalidade] não suportada.  
-• DATA_PAGAMENTO_INVALIDA: Data de pagamento inválida para a forma de pagamento selecionada.  
-• DETALHE_PAGAMENTO_INVALIDO: Parâmetro [nome_campo] não obedece às regras de negócio.  
-• PARAMETRO_NAO_INFORMADO: Parâmetro [nome_campo] obrigatório não informado.  
-• PARAMETRO_INVALIDO: Parâmetro [nome_campo] não obedece as regras de formatação esperadas.  
-• ERRO_IDEMPOTENCIA: Conteúdo da mensagem (claim data) diverge do conteúdo associado a esta chave de idempotência (x-idempotency-key).  
-• NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta.  
-'
-                  - Modified property: title
-                    - Description changed from 'Título específico do erro reportado, de acordo com o código enviado:  
-• Pagamento não permite cancelamento 
-' to 'Título específico do erro reportado, de acordo com o código enviado:  
-• FORMA_PAGAMENTO_INVALIDA: Forma de pagamento inválida.  
-• DATA_PAGAMENTO_INVALIDA: Data de pagamento inválida.  
-• DETALHE_PAGAMENTO_INVALIDO: Detalhe do pagamento inválido.  
-• PARAMETRO_NAO_INFORMADO: Parâmetro não informado.  
-• PARAMETRO_INVALIDO: Parâmetro inválido.  
-• ERRO_IDEMPOTENCIA: Erro idempotência.  
-• NAO_INFORMADO: Não informado.    
-'
+                    - New enum values: [DETALHE_PGTO_INVALIDO]
+                    - Deleted enum values: [DETALHE_PAGAMENTO_INVALIDO]
 GET /consents/{consentId}
 - Modified header param: x-fapi-interaction-id
   - Required changed from true to false
@@ -108,55 +72,6 @@ FALHA_INFRAESTRUTURA
     - Description changed from 'Seguir as orientações presentes na descrição da API, subitem 2.1.3.' to 'A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.'
   - Modified response: 422
     - Description changed from 'Seguir as orientações presentes na descrição da API, itens 2.2 e 2.3 e seus subitens.' to 'A solicitação foi bem formada, mas não pôde ser processada devido à lógica de negócios específica da solicitação.'
-    - Content changed
-      - Modified media type: application/jwt
-        - Schema changed
-          - Properties changed
-            - Modified property: errors
-              - Items changed
-                - Properties changed
-                  - Modified property: detail
-                    - Description changed from 'Descrição específica do erro de acordo com o código reportado:
-• PAGAMENTO_NAO_PERMITE_CANCELAMENTO: Pagamento não permite cancelamento
-' to 'Descrição específica do erro de acordo com o código reportado:
-• SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento.
-• BENEFICIARIO_INCOMPATIVEL: O beneficiário informado no consentimento não é o mesmo do esperado pelo DICT.
-• VALOR_INCOMPATIVEL: O valor informado no consentimento não é o mesmo valor do informado no payload de pagamento.
-• VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente.
-• VALOR_INVALIDO: O valor enviado não é válido para o QR Code informado.
-• COBRANCA_INVALIDA: Validação de expiração, validação de vencimento ou Status Válido.
-• CONSENTIMENTO_INVALIDO: Consentimento inválido (status diferente de "AUTHORISED" ou está expirado).
-• JANELA_OPER_INVALIDA: Requisição está fora da janela de funcionamento.
-• PARAMETRO_NAO_INFORMADO: endToEndId
-• PARAMETRO_INVALIDO: endToEndId
-• NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta.
-• PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento.
-• DETALHE_PAGAMENTO_INVALIDO: Parâmetro [nome_campo] não obedece às regras de negócio.
-• PAGAMENTO_RECUSADO_DETENTORA: [descrição do motivo de recusa].
-• PAGAMENTO_RECUSADO_SPI: [código de erro conforme tabela de domínios reason PACS.002].
-• ERRO_IDEMPOTENCIA: Conteúdo da mensagem (claim data) diverge do conteúdo associado a esta chave de idempotência (x-idempotency-key).
-'
-                  - Modified property: title
-                    - Description changed from 'Título específico do erro reportado, de acordo com o código enviado:
-• PAGAMENTO_NAO_PERMITE_CANCELAMENTO: Pagamento não permite cancelamento
-' to 'Título específico do erro reportado, de acordo com o código enviado:
-• SALDO_INSUFICIENTE: Saldo insuficiente.
-• BENEFICIARIO_INCOMPATIVEL: Beneficiário incompatível.
-• VALOR_INCOMPATIVEL: Valor da transação incompatível.
-• VALOR_ACIMA_LIMITE: Acima do limite estabelecido.
-• VALOR_INVALIDO: Valor inválido.
-• COBRANCA_INVALIDA: Cobrança inválida.
-• CONSENTIMENTO_INVALIDO: Consentimento inválido.
-• JANELA_OPER_INVALIDA: Janela de operação inválida.
-• PARAMETRO_NAO_INFORMADO: Parâmetro obrigatório não informado.
-• PARAMETRO_INVALIDO: Parâmetro com valor inválido.
-• NAO_INFORMADO: Não informado.
-• PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Divergência entre pagamento e consentimento.
-• DETALHE_PAGAMENTO_INVALIDO: Detalhe do pagamento inválido.
-• PAGAMENTO_RECUSADO_DETENTORA: Pagamento recusado pela detentora de conta.
-• PAGAMENTO_RECUSADO_SPI: Pagamento recusado no Sistema de Pagamentos Instantâneos (SPI).
-• ERRO_IDEMPOTENCIA: Erro idempotência.
-'
     - Headers changed
       - New header: x-fapi-interaction-id
 GET /pix/payments/{paymentId}
@@ -248,6 +163,30 @@ FALHA_INFRAESTRUTURA
             - Modified property: errors
               - Items changed
                 - Properties changed
+                  - Modified property: code
+                    - Description changed from 'Códigos de erros previstos na criação da iniciação de pagamento:
+• PAGAMENTO_NAO_PERMITE_CANCELAMENTO: Pagamento não permite cancelamento
+' to 'Códigos de erros previstos na criação da iniciação de pagamento:
+• SALDO_INSUFICIENTE: Esta conta não possui saldo suficiente para realizar o pagamento.
+• BENEFICIARIO_INCOMPATIVEL: O beneficiário informado no consentimento não é o mesmo do esperado pelo DICT.
+• VALOR_INCOMPATIVEL: O valor informado no consentimento não é o mesmo valor do informado no payload de pagamento.
+• VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente.
+• VALOR_INVALIDO: O valor enviado não é válido para o QR Code informado.
+• COBRANCA_INVALIDA: Validação de expiração, validação de vencimento, Status Válido.
+• CONSENTIMENTO_INVALIDO: Consentimento inválido (status não é "authorised" ou está expirado).
+• JANELA_OPER_INVALIDA: Requisição está fora da janela de funcionamento.
+• PARAMETRO_NAO_INFORMADO: Parâmetro não informado.  
+• PARAMETRO_INVALIDO: Parâmetro inválido.
+• NAO_INFORMADO: Não informada pela detentora de conta.
+• PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento.
+• DETALHE_PAGAMENTO_INVALIDO: Detalhe do pagamento inválido.
+• PAGAMENTO_RECUSADO_DETENTORA: Pagamento recusado pela detentora de conta.
+• PAGAMENTO_RECUSADO_SPI: Pagamento recusado no Sistema de Pagamentos Instantâneos (SPI).
+• ERRO_IDEMPOTENCIA: Erro idempotência.
+'
+                    - New enum values: [SALDO_INSUFICIENTE BENEFICIARIO_INCOMPATIVEL VALOR_INCOMPATIVEL VALOR_ACIMA_LIMITE VALOR_INVALIDO COBRANCA_INVALIDA CONSENTIMENTO_INVALIDO JANELA_OPER_INVALIDA PARAMETRO_NAO_INFORMADO PARAMETRO_INVALIDO NAO_INFORMADO PAGAMENTO_DIVERGENTE_CONSENTIMENTO DETALHE_PAGAMENTO_INVALIDO PAGAMENTO_RECUSADO_DETENTORA PAGAMENTO_RECUSADO_SPI ERRO_IDEMPOTENCIA]
+                    - Deleted enum values: [PAGAMENTO_NAO_PERMITE_CANCELAMENTO]
+                    - Example changed from 'PAGAMENTO_NAO_PERMITE_CANCELAMENTO' to 'SALDO_INSUFICIENTE'
                   - Modified property: detail
                     - Description changed from 'Descrição específica do erro de acordo com o código reportado:
 • PAGAMENTO_NAO_PERMITE_CANCELAMENTO: Pagamento não permite cancelamento
@@ -291,5 +230,5 @@ FALHA_INFRAESTRUTURA
 • ERRO_IDEMPOTENCIA: Erro idempotência.
 '
         - Examples changed
-          - New example: Saldo insuficiente
-          - Deleted example: Pagamento não permite cancelamento
+          - Modified example: Saldo insuficiente
+            - Value changed from map[errors:[map[code:PAGAMENTO_NAO_PERMITE_CANCELAMENTO detail:Pagamento não permite cancelamento title:Pagamento não permite cancelamento]] meta:map[requestDateTime:2021-05-21T08:30:00Z]] to map[errors:[map[code:SALDO_INSUFICIENTE detail:A conta selecionada não possui saldo suficiente para realizar o pagamento. title:Saldo insuficiente.]] meta:map[requestDateTime:2021-05-21T08:30:00Z]]
