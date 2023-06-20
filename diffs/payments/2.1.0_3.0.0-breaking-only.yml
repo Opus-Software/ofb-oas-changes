@@ -2,10 +2,32 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 1
+### Modified Endpoints: 3
 -------------------------
 POST /consents
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: creditor
+                - Properties changed
+                  - Modified property: name
+                    - Pattern changed from '^([A-Za-zÀ-ÖØ-öø-ÿ,.@:&*+_<>()!?/\\$%\d' -]+)$' to '^([A-Za-zÀ-ÖØ-öø-ÿ' -]+)$'
 - Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: creditor
+                  - Properties changed
+                    - Modified property: name
+                      - Pattern changed from '^([A-Za-zÀ-ÖØ-öø-ÿ,.@:&*+_<>()!?/\\$%\d' -]+)$' to '^([A-Za-zÀ-ÖØ-öø-ÿ' -]+)$'
   - Modified response: 422
     - Content changed
       - Modified media type: application/jwt
@@ -16,3 +38,24 @@ POST /consents
                 - Properties changed
                   - Modified property: code
                     - Deleted enum values: [DETALHE_PAGAMENTO_INVALIDO]
+GET /consents/{consentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: creditor
+                  - Properties changed
+                    - Modified property: name
+                      - Pattern changed from '^([A-Za-zÀ-ÖØ-öø-ÿ,.@:&*+_<>()!?/\\$%\d' -]+)$' to '^([A-Za-zÀ-ÖØ-öø-ÿ' -]+)$'
+PATCH /pix/payments/{paymentId}
+- Responses changed
+  - Modified response: 422
+    - Content changed
+      - Modified media type: application/jwt
+        - Examples changed
+          - New example: Saldo insuficiente
+          - Deleted example: Pagamento não permite cancelamento
