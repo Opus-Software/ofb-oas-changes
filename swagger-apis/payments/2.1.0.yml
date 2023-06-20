@@ -60,7 +60,7 @@ info:
         &ensp;1.2.2 Validação de Access_Token: Verifica se Access_Token utilizado está correto - HTTP Code 401 (UNAUTHORIZED);  
         &ensp;1.2.3 Validação de assinatura da mensagem: Valida se assinatura das mensagens enviadas está correta – HTTP Code 400 (BAD_SIGNATURE);  
         &ensp;1.2.4 Validação de Claims (exceto data);  
-          &emsp;1.2.4.1 Valida se dados (aud, iss, iat e jti) são válidos - HTTP status code 403 – (INVALID_CLIENT);  
+          &emsp;1.2.4.1 Valida se dados (aud, iss, iat e jti) são válidos - HTTP status code 400 – (BAD REQUEST);  
           &emsp;1.2.4.2 Valida reuso de jti - HTTP Code 403 (INVALID_CLIENT).  
       1.3 **Casos de erro sintáticos e semânticos, previstos com retorno HTTP Code 422 - Unprocessable Entity (detalhamento adicional na documentação técnica da API):**   
         &ensp;1.3.1 **Sintáticos**  
@@ -79,7 +79,7 @@ info:
         &ensp;2.1.2 Validação de Access_Token: Verifica se Access_Token utilizado está correto - HTTP Code 401 (UNAUTHORIZED);  
         &ensp;2.1.3 Validação de assinatura da mensagem: Valida se assinatura das mensagens enviadas está correta – HTTP Code 400 (BAD_SIGNATURE);  
         &ensp;2.1.4 Validação de Claims (exceto data);  
-          &emsp;2.1.4.1 Valida se dados (aud, iss, iat e jti) são válidos - HTTP status code 403 – (INVALID_CLIENT);  
+          &emsp;2.1.4.1 Valida se dados (aud, iss, iat e jti) são válidos - HTTP status code 400 – (BAD REQUEST);  
           &emsp;2.1.4.2 Valida reuso de jti - HTTP Code 403 (INVALID_CLIENT).  
       2.2 **Casos de erro sintáticos e semânticos, previstos com retorno HTTP Code 422 - Unprocessable Entity (detalhamento adicional na documentação técnica da API):**  
         &ensp;2.2.1 **Sintáticos**  
@@ -1198,7 +1198,7 @@ components:
             O CNPJ será utilizado com 14 números e deverá ser informado sem pontos ou traços.
         name:
           type: string
-          pattern: '^([A-Za-zÀ-ÖØ-öø-ÿ,.@:&*+_<>()!?/\\$%\d'' -]+)$'
+          pattern: '^([A-Za-zÀ-ÖØ-öø-ÿ'' -]+)$'
           maxLength: 120
           example: Marco Antonio de Brito
           description: |
@@ -2258,7 +2258,7 @@ components:
       name: x-fapi-interaction-id
       in: header
       description: 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.'
-      required: true
+      required: false
       schema:
         type: string
         pattern: '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
@@ -2401,7 +2401,7 @@ components:
               Cabeçalho que indica o tempo (em segundos) que o cliente deverá aguardar para realizar uma nova tentativa de chamada. Este cabeçalho deverá estar presente quando o código HTTP de retorno for 429 Too many requests.
             type: integer
     UnprocessableEntityPixPayment:
-      description: 'Seguir as orientações presentes na descrição da API, item 1.3 e seus subitens.'
+      description: 'Seguir as orientações presentes na descrição da API, itens 2.2 e 2.3 e seus subitens.'
       content:
         application/jwt:
           schema:
@@ -2445,13 +2445,13 @@ components:
           schema:
             $ref: '#/components/schemas/422ResponseErrorCreatePixPayment'
           examples:
-            Pagamento não permite cancelamento:
-              summary: Pagamento não permite cancelamento
+            Saldo insuficiente:
+              summary: Saldo insuficiente
               value:
                 errors:
-                  - code: PAGAMENTO_NAO_PERMITE_CANCELAMENTO
-                    title: Pagamento não permite cancelamento
-                    detail: Pagamento não permite cancelamento
+                  - code: SALDO_INSUFICIENTE
+                    title: Saldo insuficiente.
+                    detail: A conta selecionada não possui saldo suficiente para realizar o pagamento.
                 meta:
                   requestDateTime: '2021-05-21T08:30:00Z'
       headers:
