@@ -5,6 +5,8 @@
 ### Modified Endpoints: 5
 -------------------------
 POST /consents
+- Modified header param: x-fapi-interaction-id
+  - Required changed from false to true
 - Responses changed
   - Modified response: 400
     - Description changed from 'A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.' to 'Seguir as orientações presentes na descrição da API, subitem 1.2.3'
@@ -23,11 +25,15 @@ POST /consents
                     - New enum values: [DETALHE_PAGAMENTO_INVALIDO]
                     - Deleted enum values: [DETALHE_PGTO_INVALIDO]
 GET /consents/{consentId}
+- Modified header param: x-fapi-interaction-id
+  - Required changed from false to true
 - Responses changed
   - Modified response: 400
     - Headers changed
       - Deleted header: x-fapi-interaction-id
 POST /pix/payments
+- Modified header param: x-fapi-interaction-id
+  - Required changed from false to true
 - Responses changed
   - Modified response: 201
     - Content changed
@@ -69,6 +75,8 @@ FALHA_INFRAESTRUTURA
     - Headers changed
       - Deleted header: x-fapi-interaction-id
 GET /pix/payments/{paymentId}
+- Modified header param: x-fapi-interaction-id
+  - Required changed from false to true
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -107,6 +115,8 @@ FALHA_INFRAESTRUTURA
     - Headers changed
       - Deleted header: x-fapi-interaction-id
 PATCH /pix/payments/{paymentId}
+- Modified header param: x-fapi-interaction-id
+  - Required changed from false to true
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -146,3 +156,8 @@ FALHA_INFRAESTRUTURA
       - Deleted header: x-fapi-interaction-id
   - Modified response: 422
     - Description changed from 'A solicitação foi bem formada, mas não pôde ser processada devido à lógica de negócios específica da solicitação.' to 'A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.'
+    - Content changed
+      - Modified media type: application/jwt
+        - Examples changed
+          - New example: Pagamento não permite cancelamento
+          - Deleted example: Saldo insuficiente

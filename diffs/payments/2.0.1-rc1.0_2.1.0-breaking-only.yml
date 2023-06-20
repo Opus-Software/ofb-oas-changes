@@ -5,6 +5,8 @@
 ### Modified Endpoints: 5
 -------------------------
 POST /consents
+- Modified header param: x-fapi-interaction-id
+  - Required changed from false to true
 - Responses changed
   - Modified response: 400
     - Headers changed
@@ -20,22 +22,36 @@ POST /consents
                   - Modified property: code
                     - Deleted enum values: [DETALHE_PGTO_INVALIDO]
 GET /consents/{consentId}
+- Modified header param: x-fapi-interaction-id
+  - Required changed from false to true
 - Responses changed
   - Modified response: 400
     - Headers changed
       - Deleted header: x-fapi-interaction-id
 POST /pix/payments
+- Modified header param: x-fapi-interaction-id
+  - Required changed from false to true
 - Responses changed
   - Modified response: 422
     - Headers changed
       - Deleted header: x-fapi-interaction-id
 GET /pix/payments/{paymentId}
+- Modified header param: x-fapi-interaction-id
+  - Required changed from false to true
 - Responses changed
   - Modified response: 400
     - Headers changed
       - Deleted header: x-fapi-interaction-id
 PATCH /pix/payments/{paymentId}
+- Modified header param: x-fapi-interaction-id
+  - Required changed from false to true
 - Responses changed
   - Modified response: 400
     - Headers changed
       - Deleted header: x-fapi-interaction-id
+  - Modified response: 422
+    - Content changed
+      - Modified media type: application/jwt
+        - Examples changed
+          - New example: Pagamento não permite cancelamento
+          - Deleted example: Saldo insuficiente
