@@ -87,6 +87,14 @@ As informações quanto à conta de origem do pagador poderão ser trazidas no c
 POST /pix/payments
 - Modified header param: x-fapi-interaction-id
   - Required changed from true to false
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Deleted property: authorizationFlow
 - Responses changed
   - Modified response: 201
     - Content changed
@@ -95,6 +103,7 @@ POST /pix/payments
           - Properties changed
             - Modified property: data
               - Properties changed
+                - Deleted property: authorizationFlow
                 - Modified property: rejectionReason
                   - Properties changed
                     - Modified property: code
@@ -138,6 +147,7 @@ GET /pix/payments/{paymentId}
           - Properties changed
             - Modified property: data
               - Properties changed
+                - Deleted property: authorizationFlow
                 - Modified property: rejectionReason
                   - Properties changed
                     - Modified property: code
@@ -187,6 +197,14 @@ O cancelamento de pagamento deve ser enviado até 23:59 (Horário de Brasília) 
 '
 - Modified header param: x-fapi-interaction-id
   - Required changed from true to false
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Deleted property: authorizationFlow
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -195,6 +213,7 @@ O cancelamento de pagamento deve ser enviado até 23:59 (Horário de Brasília) 
           - Properties changed
             - Modified property: data
               - Properties changed
+                - Deleted property: authorizationFlow
                 - Modified property: rejectionReason
                   - Properties changed
                     - Modified property: code
