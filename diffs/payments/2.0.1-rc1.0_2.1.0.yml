@@ -30,6 +30,16 @@ POST /consents
                   - Properties changed
                     - Modified property: name
                       - Pattern changed from '^([A-Za-zÀ-ÖØ-öø-ÿ' -]+)$' to '^([A-Za-zÀ-ÖØ-öø-ÿ,.@:&*+_<>()!?/\\$%\d' -]+)$'
+                - Modified property: debtorAccount
+                  - Description changed from 'Objeto que contém a identificação da conta de origem do pagador.  
+As informações quanto à conta de origem do pagador poderão ser trazidas no consentimento para a detentora, caso a iniciadora tenha coletado essas informações do cliente. Do contrário, será coletada na detentora e trazida para a iniciadora como resposta à criação do pagamento.
+' to 'Objeto que contém a identificação da conta de origem do pagador.
+As informações quanto à conta de origem do pagador poderão ser trazidas no consentimento para a detentora, caso a iniciadora tenha coletado essas informações do cliente.
+No caso em que o cliente não preenche os dados na iniciadora, a detentora deverá persistir as informações da conta selecionada seguindo as condições abaixo.
+[Restrição] 
+- AUTHORISED e CONSUMED: Para esses dois status, o preenchimento do campo deverá ser obrigatório.
+- REJECTED: Para este status o preenchimento é condicional, dado que há cenários em que a detentora também não terá conhecimento da conta origem, pois a mesma não foi selecionada pelo usuário. Nos casos em que houver seleção, a conta deve ser preenchida obrigatoriamente.
+'
   - Modified response: 400
     - Description changed from 'A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.' to 'Seguir as orientações presentes na descrição da API, subitem 1.2.3'
     - Headers changed
@@ -61,6 +71,16 @@ GET /consents/{consentId}
                   - Properties changed
                     - Modified property: name
                       - Pattern changed from '^([A-Za-zÀ-ÖØ-öø-ÿ' -]+)$' to '^([A-Za-zÀ-ÖØ-öø-ÿ,.@:&*+_<>()!?/\\$%\d' -]+)$'
+                - Modified property: debtorAccount
+                  - Description changed from 'Objeto que contém a identificação da conta de origem do pagador.  
+As informações quanto à conta de origem do pagador poderão ser trazidas no consentimento para a detentora, caso a iniciadora tenha coletado essas informações do cliente. Do contrário, será coletada na detentora e trazida para a iniciadora como resposta à criação do pagamento.
+' to 'Objeto que contém a identificação da conta de origem do pagador.
+As informações quanto à conta de origem do pagador poderão ser trazidas no consentimento para a detentora, caso a iniciadora tenha coletado essas informações do cliente.
+No caso em que o cliente não preenche os dados na iniciadora, a detentora deverá persistir as informações da conta selecionada seguindo as condições abaixo.
+[Restrição] 
+- AUTHORISED e CONSUMED: Para esses dois status, o preenchimento do campo deverá ser obrigatório.
+- REJECTED: Para este status o preenchimento é condicional, dado que há cenários em que a detentora também não terá conhecimento da conta origem, pois a mesma não foi selecionada pelo usuário. Nos casos em que houver seleção, a conta deve ser preenchida obrigatoriamente.
+'
   - Modified response: 400
     - Headers changed
       - Deleted header: x-fapi-interaction-id
