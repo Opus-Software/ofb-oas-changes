@@ -18,6 +18,50 @@ POST /consents
                 - Properties changed
                   - Modified property: name
                     - Pattern changed from '^([A-Za-zÀ-ÖØ-öø-ÿ' -]+)$' to '^([A-Za-zÀ-ÖØ-öø-ÿ,.@:&*+_<>()!?/\\$%\d' -]+)$'
+              - Modified property: debtorAccount
+                - Properties changed
+                  - Modified property: accountType
+                    - Description changed from 'Tipos de contas usadas para pagamento via Pix.  
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.  
+Segue descrição de cada valor do ENUM para o escopo do Pix.  
+CACC - Current - Conta Corrente.  
+SLRY - Salary - Conta-Salário.  
+SVGS - Savings - Conta de Poupança.  
+TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+' to 'Tipos de contas usadas para pagamento.
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.
+Segue descrição de cada valor do ENUM.
+- CACC - Current - Conta Corrente.
+- SLRY - Salary - Conta-Salário.
+- SVGS - Savings - Conta de Poupança.
+- TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+'
+              - Modified property: payment
+                - Properties changed
+                  - Modified property: details
+                    - Properties changed
+                      - Modified property: creditorAccount
+                        - Properties changed
+                          - Modified property: accountType
+                            - Description changed from 'Tipos de contas usadas para pagamento via Pix.  
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.  
+Segue descrição de cada valor do ENUM para o escopo do Pix.  
+CACC - Current - Conta Corrente.  
+SLRY - Salary - Conta-Salário.  
+SVGS - Savings - Conta de Poupança.  
+TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+' to 'Tipos de contas usadas para pagamento.
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.
+Segue descrição de cada valor do ENUM.
+- CACC - Current - Conta Corrente.
+- SLRY - Salary - Conta-Salário.
+- SVGS - Savings - Conta de Poupança.
+- TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+'
 - Responses changed
   - Modified response: 201
     - Content changed
@@ -39,6 +83,49 @@ No caso em que o cliente não preenche os dados na iniciadora, a detentora dever
 [Restrição] 
 - AUTHORISED e CONSUMED: Para esses dois status, o preenchimento do campo deverá ser obrigatório.
 - REJECTED: Para este status o preenchimento é condicional, dado que há cenários em que a detentora também não terá conhecimento da conta origem, pois a mesma não foi selecionada pelo usuário. Nos casos em que houver seleção, a conta deve ser preenchida obrigatoriamente.
+'
+                  - Properties changed
+                    - Modified property: accountType
+                      - Description changed from 'Tipos de contas usadas para pagamento via Pix.  
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.  
+Segue descrição de cada valor do ENUM para o escopo do Pix.  
+CACC - Current - Conta Corrente.  
+SLRY - Salary - Conta-Salário.  
+SVGS - Savings - Conta de Poupança.  
+TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+' to 'Tipos de contas usadas para pagamento.
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.
+Segue descrição de cada valor do ENUM.
+- CACC - Current - Conta Corrente.
+- SLRY - Salary - Conta-Salário.
+- SVGS - Savings - Conta de Poupança.
+- TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+'
+                - Modified property: payment
+                  - Properties changed
+                    - Modified property: details
+                      - Properties changed
+                        - Modified property: creditorAccount
+                          - Properties changed
+                            - Modified property: accountType
+                              - Description changed from 'Tipos de contas usadas para pagamento via Pix.  
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.  
+Segue descrição de cada valor do ENUM para o escopo do Pix.  
+CACC - Current - Conta Corrente.  
+SLRY - Salary - Conta-Salário.  
+SVGS - Savings - Conta de Poupança.  
+TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+' to 'Tipos de contas usadas para pagamento.
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.
+Segue descrição de cada valor do ENUM.
+- CACC - Current - Conta Corrente.
+- SLRY - Salary - Conta-Salário.
+- SVGS - Savings - Conta de Poupança.
+- TRAN - TransactingAccount - Conta de Pagamento pré-paga.
 '
   - Modified response: 400
     - Description changed from 'A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.' to 'Seguir as orientações presentes na descrição da API, subitem 1.2.3'
@@ -81,6 +168,49 @@ No caso em que o cliente não preenche os dados na iniciadora, a detentora dever
 - AUTHORISED e CONSUMED: Para esses dois status, o preenchimento do campo deverá ser obrigatório.
 - REJECTED: Para este status o preenchimento é condicional, dado que há cenários em que a detentora também não terá conhecimento da conta origem, pois a mesma não foi selecionada pelo usuário. Nos casos em que houver seleção, a conta deve ser preenchida obrigatoriamente.
 '
+                  - Properties changed
+                    - Modified property: accountType
+                      - Description changed from 'Tipos de contas usadas para pagamento via Pix.  
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.  
+Segue descrição de cada valor do ENUM para o escopo do Pix.  
+CACC - Current - Conta Corrente.  
+SLRY - Salary - Conta-Salário.  
+SVGS - Savings - Conta de Poupança.  
+TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+' to 'Tipos de contas usadas para pagamento.
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.
+Segue descrição de cada valor do ENUM.
+- CACC - Current - Conta Corrente.
+- SLRY - Salary - Conta-Salário.
+- SVGS - Savings - Conta de Poupança.
+- TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+'
+                - Modified property: payment
+                  - Properties changed
+                    - Modified property: details
+                      - Properties changed
+                        - Modified property: creditorAccount
+                          - Properties changed
+                            - Modified property: accountType
+                              - Description changed from 'Tipos de contas usadas para pagamento via Pix.  
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.  
+Segue descrição de cada valor do ENUM para o escopo do Pix.  
+CACC - Current - Conta Corrente.  
+SLRY - Salary - Conta-Salário.  
+SVGS - Savings - Conta de Poupança.  
+TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+' to 'Tipos de contas usadas para pagamento.
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.
+Segue descrição de cada valor do ENUM.
+- CACC - Current - Conta Corrente.
+- SLRY - Salary - Conta-Salário.
+- SVGS - Savings - Conta de Poupança.
+- TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+'
   - Modified response: 400
     - Headers changed
       - Deleted header: x-fapi-interaction-id
@@ -95,6 +225,26 @@ POST /pix/payments
           - Modified property: data
             - Properties changed
               - New property: authorizationFlow
+              - Modified property: creditorAccount
+                - Properties changed
+                  - Modified property: accountType
+                    - Description changed from 'Tipos de contas usadas para pagamento via Pix.  
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.  
+Segue descrição de cada valor do ENUM para o escopo do Pix.  
+CACC - Current - Conta Corrente.  
+SLRY - Salary - Conta-Salário.  
+SVGS - Savings - Conta de Poupança.  
+TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+' to 'Tipos de contas usadas para pagamento.
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.
+Segue descrição de cada valor do ENUM.
+- CACC - Current - Conta Corrente.
+- SLRY - Salary - Conta-Salário.
+- SVGS - Savings - Conta de Poupança.
+- TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+'
 - Responses changed
   - Modified response: 201
     - Content changed
@@ -104,6 +254,46 @@ POST /pix/payments
             - Modified property: data
               - Properties changed
                 - New property: authorizationFlow
+                - Modified property: creditorAccount
+                  - Properties changed
+                    - Modified property: accountType
+                      - Description changed from 'Tipos de contas usadas para pagamento via Pix.  
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.  
+Segue descrição de cada valor do ENUM para o escopo do Pix.  
+CACC - Current - Conta Corrente.  
+SLRY - Salary - Conta-Salário.  
+SVGS - Savings - Conta de Poupança.  
+TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+' to 'Tipos de contas usadas para pagamento.
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.
+Segue descrição de cada valor do ENUM.
+- CACC - Current - Conta Corrente.
+- SLRY - Salary - Conta-Salário.
+- SVGS - Savings - Conta de Poupança.
+- TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+'
+                - Modified property: debtorAccount
+                  - Properties changed
+                    - Modified property: accountType
+                      - Description changed from 'Tipos de contas usadas para pagamento via Pix.  
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.  
+Segue descrição de cada valor do ENUM para o escopo do Pix.  
+CACC - Current - Conta Corrente.  
+SLRY - Salary - Conta-Salário.  
+SVGS - Savings - Conta de Poupança.  
+TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+' to 'Tipos de contas usadas para pagamento.
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.
+Segue descrição de cada valor do ENUM.
+- CACC - Current - Conta Corrente.
+- SLRY - Salary - Conta-Salário.
+- SVGS - Savings - Conta de Poupança.
+- TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+'
                 - Modified property: rejectionReason
                   - Properties changed
                     - Modified property: code
@@ -148,6 +338,46 @@ GET /pix/payments/{paymentId}
             - Modified property: data
               - Properties changed
                 - New property: authorizationFlow
+                - Modified property: creditorAccount
+                  - Properties changed
+                    - Modified property: accountType
+                      - Description changed from 'Tipos de contas usadas para pagamento via Pix.  
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.  
+Segue descrição de cada valor do ENUM para o escopo do Pix.  
+CACC - Current - Conta Corrente.  
+SLRY - Salary - Conta-Salário.  
+SVGS - Savings - Conta de Poupança.  
+TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+' to 'Tipos de contas usadas para pagamento.
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.
+Segue descrição de cada valor do ENUM.
+- CACC - Current - Conta Corrente.
+- SLRY - Salary - Conta-Salário.
+- SVGS - Savings - Conta de Poupança.
+- TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+'
+                - Modified property: debtorAccount
+                  - Properties changed
+                    - Modified property: accountType
+                      - Description changed from 'Tipos de contas usadas para pagamento via Pix.  
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.  
+Segue descrição de cada valor do ENUM para o escopo do Pix.  
+CACC - Current - Conta Corrente.  
+SLRY - Salary - Conta-Salário.  
+SVGS - Savings - Conta de Poupança.  
+TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+' to 'Tipos de contas usadas para pagamento.
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.
+Segue descrição de cada valor do ENUM.
+- CACC - Current - Conta Corrente.
+- SLRY - Salary - Conta-Salário.
+- SVGS - Savings - Conta de Poupança.
+- TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+'
                 - Modified property: rejectionReason
                   - Properties changed
                     - Modified property: code
@@ -212,6 +442,46 @@ O cancelamento de pagamento agendado (SCHD) pode ser enviado até 23:59 (Horári
             - Modified property: data
               - Properties changed
                 - New property: authorizationFlow
+                - Modified property: creditorAccount
+                  - Properties changed
+                    - Modified property: accountType
+                      - Description changed from 'Tipos de contas usadas para pagamento via Pix.  
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.  
+Segue descrição de cada valor do ENUM para o escopo do Pix.  
+CACC - Current - Conta Corrente.  
+SLRY - Salary - Conta-Salário.  
+SVGS - Savings - Conta de Poupança.  
+TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+' to 'Tipos de contas usadas para pagamento.
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.
+Segue descrição de cada valor do ENUM.
+- CACC - Current - Conta Corrente.
+- SLRY - Salary - Conta-Salário.
+- SVGS - Savings - Conta de Poupança.
+- TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+'
+                - Modified property: debtorAccount
+                  - Properties changed
+                    - Modified property: accountType
+                      - Description changed from 'Tipos de contas usadas para pagamento via Pix.  
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.  
+Segue descrição de cada valor do ENUM para o escopo do Pix.  
+CACC - Current - Conta Corrente.  
+SLRY - Salary - Conta-Salário.  
+SVGS - Savings - Conta de Poupança.  
+TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+' to 'Tipos de contas usadas para pagamento.
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.
+Segue descrição de cada valor do ENUM.
+- CACC - Current - Conta Corrente.
+- SLRY - Salary - Conta-Salário.
+- SVGS - Savings - Conta de Poupança.
+- TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+'
                 - Modified property: rejectionReason
                   - Properties changed
                     - Modified property: code
