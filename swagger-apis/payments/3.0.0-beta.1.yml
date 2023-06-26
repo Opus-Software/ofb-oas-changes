@@ -731,7 +731,7 @@ components:
         payment:
           $ref: '#/components/schemas/PaymentPix'
         creditorAccount:
-          $ref: '#/components/schemas/PaymentsCreditorAccount'
+          $ref: '#/components/schemas/CreditorAccount'
         remittanceInformation:
           type: string
           maxLength: 140
@@ -856,45 +856,6 @@ components:
             se houver valor alfanumérico, este deve ser convertido para 0.
         accountType:
           $ref: '#/components/schemas/EnumAccountPaymentsType'
-    PaymentsCreditorAccount:
-      type: object
-      description: |
-        Objeto que contém a identificação da conta de destino do beneficiário/recebedor.  
-      required:
-        - ispb
-        - number
-        - accountType
-      properties:
-        ispb:
-          type: string
-          minLength: 8
-          maxLength: 8
-          pattern: '^[0-9]{8}$'
-          example: '12345678'
-          description: |
-            Deve ser preenchido com o ISPB (Identificador do Sistema de Pagamentos Brasileiros) do participante do SPI (Sistema de pagamentos instantâneos) somente com números.
-        issuer:
-          type: string
-          minLength: 1
-          maxLength: 4
-          pattern: '^[0-9]{1,4}$'
-          example: '1774'
-          description: |
-            Código da Agência emissora da conta sem dígito.  
-            (Agência é a dependência destinada ao atendimento aos clientes, ao público em geral e aos associados de cooperativas de crédito,  
-            no exercício de atividades da instituição, não podendo ser móvel ou transitória).  
-            [Restrição] Preenchimento obrigatório para os seguintes tipos de conta: CACC (CONTA_DEPOSITO_A_VISTA), SVGS (CONTA_POUPANCA) e SLRY (CONTA_SALARIO).
-        number:
-          type: string
-          minLength: 1
-          maxLength: 20
-          pattern: '^[0-9]{1,20}$'
-          example: '1234567890'
-          description: |
-            Deve ser preenchido com o número da conta do usuário recebedor, com dígito verificador (se este existir),  
-            se houver valor alfanumérico, este deve ser convertido para 0.
-        accountType:
-          $ref: '#/components/schemas/EnumPaymentsAccountPaymentsType'
     DebtorAccount:
       type: object
       description: |
@@ -935,46 +896,6 @@ components:
             se houver valor alfanumérico, este deve ser convertido para 0.
         accountType:
           $ref: '#/components/schemas/EnumAccountPaymentsType'
-    PaymentsDebtorAccount:
-      type: object
-      description: |
-        Objeto que contém a identificação da conta de origem do pagador.  
-        As informações quanto à conta de origem do pagador poderão ser trazidas no consentimento para a detentora, caso a iniciadora tenha coletado essas informações do cliente. Do contrário, será coletada na detentora e trazida para a iniciadora como resposta à criação do pagamento.
-      required:
-        - ispb
-        - number
-        - accountType
-      properties:
-        ispb:
-          type: string
-          minLength: 8
-          maxLength: 8
-          pattern: '^[0-9]{8}$'
-          example: '12345678'
-          description: |
-            Deve ser preenchido com o ISPB (Identificador do Sistema de Pagamentos Brasileiros) do participante do SPI (Sistema de pagamentos instantâneos) somente com números.
-        issuer:
-          type: string
-          minLength: 1
-          maxLength: 4
-          pattern: '^[0-9]{1,4}$'
-          example: '1774'
-          description: |
-            Código da Agência emissora da conta sem dígito.  
-            (Agência é a dependência destinada ao atendimento aos clientes, ao público em geral e aos associados de cooperativas de crédito,  
-            no exercício de atividades da instituição, não podendo ser móvel ou transitória).  
-            [Restrição] Preenchimento obrigatório para os seguintes tipos de conta: CACC (CONTA_DEPOSITO_A_VISTA), SVGS (CONTA_POUPANCA) e SLRY (CONTA_SALARIO).
-        number:
-          type: string
-          minLength: 1
-          maxLength: 20
-          pattern: '^[0-9]{1,20}$'
-          example: '1234567890'
-          description: |
-            Deve ser preenchido com o número da conta transacional do usuário pagador, com dígito verificador (se este existir),  
-            se houver valor alfanumérico, este deve ser convertido para 0.
-        accountType:
-          $ref: '#/components/schemas/EnumPaymentsAccountPaymentsType'
     ConsentsDebtorAccount:
       type: object
       description: |
@@ -1115,22 +1036,6 @@ components:
         - SLRY - Salary - Conta-Salário.
         - SVGS - Savings - Conta de Poupança.
         - TRAN - TransactingAccount - Conta de Pagamento pré-paga.
-    EnumPaymentsAccountPaymentsType:
-      type: string
-      enum:
-        - CACC
-        - SVGS
-        - TRAN
-      example: CACC
-      description: |
-        Tipos de contas usadas para pagamento.
-        Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  
-        conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.
-        Segue descrição de cada valor do ENUM.
-
-        - CACC - Current - Conta Corrente.
-        - SVGS - Savings - Conta de Poupança.
-        - TRAN - TransactingAccount - Conta de Pagamento pré-paga.
     EnumAuthorisationStatusType:
       type: string
       enum:
@@ -1162,10 +1067,13 @@ components:
       type: string
       enum:
         - SALDO_INSUFICIENTE
+        - BENEFICIARIO_INCOMPATIVEL
+        - VALOR_INCOMPATIVEL
         - VALOR_ACIMA_LIMITE
         - VALOR_INVALIDO
         - COBRANCA_INVALIDA
         - CONSENTIMENTO_INVALIDO
+        - JANELA_OPER_INVALIDA
         - PARAMETRO_NAO_INFORMADO
         - PARAMETRO_INVALIDO
         - NAO_INFORMADO
@@ -1180,6 +1088,10 @@ components:
 
         • SALDO_INSUFICIENTE: Esta conta não possui saldo suficiente para realizar o pagamento.
 
+        • BENEFICIARIO_INCOMPATIVEL: O beneficiário informado no consentimento não é o mesmo do esperado pelo DICT.
+
+        • VALOR_INCOMPATIVEL: O valor informado no consentimento não é o mesmo valor do informado no payload de pagamento.
+
         • VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente.
 
         • VALOR_INVALIDO: O valor enviado não é válido para o QR Code informado.
@@ -1187,6 +1099,8 @@ components:
         • COBRANCA_INVALIDA: Validação de expiração, validação de vencimento, Status Válido.
 
         • CONSENTIMENTO_INVALIDO: Consentimento inválido (status não é "authorised" ou está expirado).
+
+        • JANELA_OPER_INVALIDA: Requisição está fora da janela de funcionamento.
 
         • PARAMETRO_NAO_INFORMADO: Parâmetro não informado.  
 
@@ -1278,34 +1192,6 @@ components:
       example: PIX
       description: |
         Este campo define o tipo de pagamento que será iniciado após a autorização do consentimento.
-    EnumConsentRejectionReasonType:
-      type: string
-      enum:
-        - VALOR_INVALIDONAO_INFORMADO
-        - FALHA_INFRAESTRUTURA
-        - FALHA_INFRAESTRUTURA_DETENTORA
-        - TEMPO_EXPIRADO_AUTORIZACAO
-        - TEMPO_EXPIRADO_CONSUMO
-        - REJEITADO_USUARIO
-        - CONTAS_ORIGEM_DESTINO_IGUAIS
-        - CONTA_NAO_PERMITE_PAGAMENTO
-        - SALDO_INSUFICIENTE
-        - VALOR_ACIMA_LIMITE
-        - QRCODE_INVALIDO
-      example: SALDO_INSUFICIENTE
-      description: |
-        Define o código da razão pela qual o consentimento foi rejeitado
-        - VALOR_INVALIDONAO_INFORMADO
-        - FALHA_INFRAESTRUTURA - [Descrição de qual falha na infraestrutura inviabilizou o processamento].
-        - FALHA_INFRAESTRUTURA_DETENTORA
-        - TEMPO_EXPIRADO_AUTORIZACAO - Consentimento expirou antes que o usuário pudesse confirmá-lo.
-        - TEMPO_EXPIRADO_CONSUMO
-        - REJEITADO_USUARIO - O usuário rejeitou a autorização do consentimento
-        - CONTAS_ORIGEM_DESTINO_IGUAIS - A conta selecionada é igual à conta destino e não permite realizar esse pagamento.
-        - CONTA_NAO_PERMITE_PAGAMENTO - A conta selecionada é do tipo [salario/investimento/liquidação/outros] e não permite realizar esse pagamento.
-        - SALDO_INSUFICIENTE - A conta selecionada não possui saldo suficiente para realizar o pagamento.
-        - VALOR_ACIMA_LIMITE - O valor ultrapassa o limite estabelecido [na instituição/no arranjo/outro] para permitir a realização de transações pelo cliente.
-        - QRCODE_INVALIDO
     EnumRejectionReasonType:
       type: string
       enum:
@@ -1324,14 +1210,13 @@ components:
         - FALHA_INFRAESTRUTURA_ICP
         - FALHA_INFRAESTRUTURA_PSP_RECEBEDOR
         - FALHA_INFRAESTRUTURA_DETENTORA
-        - CONTAS_ORIGEM_DESTINO_IGUAIS
       example: SALDO_INSUFICIENTE
       description: |
         Define o código da razão pela qual o pagamento foi rejeitado
 
         - SALDO_INSUFICIENTE - A conta selecionada não possui saldo suficiente para realizar o pagamento.
 
-        - VALOR_ACIMA_LIMITE - O valor ultrapassa o limite estabelecido [na instituição/no arranjo/outro] para permitir a realização de transações pelo cliente.
+        - VALOR_ACIMA_LIMITE - O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente.
 
         - VALOR_INVALIDO - O valor enviado não é válido para o QR Code informado.
 
@@ -1356,10 +1241,8 @@ components:
         - FALHA_INFRAESTRUTURA_ICP - Indica uma falha na Infraestrutura de Chaves Públicas (ICP).
 
         - FALHA_INFRAESTRUTURA_PSP_RECEBEDOR - Indica uma falha na infraestrutura do Prestador de Serviço de Pagamento (PSP) que recebe o pagamento.
-
+        
         - FALHA_INFRAESTRUTURA_DETENTORA - indica uma falha na infraestrutura da instituição detentora das informações ou recursos.
-
-        - CONTAS_ORIGEM_DESTINO_IGUAIS - Indica uma tentativa de pagamento onde a conta origem e a conta de destino são iguais.
 
         O rejectionReason FALHA_INFRAESTRUTURA não será excluído, apenas deixará de ser utilizado, permitindo assim, retro compatibilidade e integridade entre os participantes.
     EnumPaymentCancellationReasonType:
@@ -1393,20 +1276,6 @@ components:
         INICIADORA - Pagamento cancelado pelo usuário pagador nos canais da iniciadora
 
         DETENTORA - Pagamento cancelado pelo usuário pagador nos canais da detentora
-    ConsentRejectionReason:
-      type: object
-      description: Motivo da rejeição do consentimento. Informações complementares sobre o motivo do status
-      required:
-        - code
-        - detail
-      properties:
-        code:
-          $ref: '#/components/schemas/EnumConsentRejectionReasonType'
-        detail:
-          type: string
-          pattern: '[\w\W\s]*'
-          maxLength: 2048
-          description: Contém informações adicionais ao consentimento rejeitado.
     RejectionReason:
       type: object
       description: |-
@@ -1849,8 +1718,6 @@ components:
               $ref: '#/components/schemas/PaymentConsent'
             debtorAccount:
               $ref: '#/components/schemas/ConsentsDebtorAccount'
-            rejectionReason:
-              $ref: '#/components/schemas/ConsentRejectionReason'
         links:
           $ref: '#/components/schemas/LinkSingle'
         meta:
@@ -2294,9 +2161,9 @@ components:
               description: |
                 Deve ser preenchido sempre que o usuário pagador inserir alguma informação adicional em um pagamento, a ser enviada ao recebedor.
             creditorAccount:
-              $ref: '#/components/schemas/PaymentsCreditorAccount'
+              $ref: '#/components/schemas/CreditorAccount'
             debtorAccount:
-              $ref: '#/components/schemas/PaymentsDebtorAccount' 
+              $ref: '#/components/schemas/DebtorAccount'
             authorizationFlow:
               type: string
               enum:
@@ -2428,11 +2295,11 @@ components:
           description: |
             Deve ser preenchido sempre que o usuário pagador inserir alguma informação adicional em um pagamento, a ser enviada ao recebedor.
         creditorAccount:
-          $ref: '#/components/schemas/PaymentsCreditorAccount'
+          $ref: '#/components/schemas/CreditorAccount'
         cancellation:
           $ref: '#/components/schemas/PixPaymentCancellation'
         debtorAccount:
-          $ref: '#/components/schemas/PaymentsDebtorAccount' 
+          $ref: '#/components/schemas/DebtorAccount'
         authorizationFlow:
           type: string
           enum:

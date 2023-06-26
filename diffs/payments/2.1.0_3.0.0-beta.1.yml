@@ -117,7 +117,6 @@ GET /consents/{consentId}
           - Properties changed
             - Modified property: data
               - Properties changed
-                - New property: rejectionReason
                 - Modified property: debtorAccount
                   - Properties changed
                     - Modified property: accountType
@@ -186,10 +185,10 @@ Modalidades tradicionais previstas pela Resolução 4.753, não contemplando con
 conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.
 Segue descrição de cada valor do ENUM.
 - CACC - Current - Conta Corrente.
+- SLRY - Salary - Conta-Salário.
 - SVGS - Savings - Conta de Poupança.
 - TRAN - TransactingAccount - Conta de Pagamento pré-paga.
 '
-                    - Deleted enum values: [SLRY]
 - Responses changed
   - Modified response: 201
     - Content changed
@@ -214,10 +213,10 @@ Modalidades tradicionais previstas pela Resolução 4.753, não contemplando con
 conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.
 Segue descrição de cada valor do ENUM.
 - CACC - Current - Conta Corrente.
+- SLRY - Salary - Conta-Salário.
 - SVGS - Savings - Conta de Poupança.
 - TRAN - TransactingAccount - Conta de Pagamento pré-paga.
 '
-                      - Deleted enum values: [SLRY]
                 - Modified property: debtorAccount
                   - Properties changed
                     - Modified property: accountType
@@ -234,10 +233,10 @@ Modalidades tradicionais previstas pela Resolução 4.753, não contemplando con
 conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.
 Segue descrição de cada valor do ENUM.
 - CACC - Current - Conta Corrente.
+- SLRY - Salary - Conta-Salário.
 - SVGS - Savings - Conta de Poupança.
 - TRAN - TransactingAccount - Conta de Pagamento pré-paga.
 '
-                      - Deleted enum values: [SLRY]
                 - Modified property: rejectionReason
                   - Properties changed
                     - Modified property: code
@@ -254,7 +253,7 @@ Segue descrição de cada valor do ENUM.
 - FALHA_INFRAESTRUTURA - [Descrição de qual falha na infraestrutura inviabilizou o processamento].
 ' to 'Define o código da razão pela qual o pagamento foi rejeitado
 - SALDO_INSUFICIENTE - A conta selecionada não possui saldo suficiente para realizar o pagamento.
-- VALOR_ACIMA_LIMITE - O valor ultrapassa o limite estabelecido [na instituição/no arranjo/outro] para permitir a realização de transações pelo cliente.
+- VALOR_ACIMA_LIMITE - O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente.
 - VALOR_INVALIDO - O valor enviado não é válido para o QR Code informado.
 - COBRANCA_INVALIDA - Validação de expiração, validação de vencimento ou Status Válido.
 - NAO_INFORMADO - Não reportado/identificado pela instituição detentora de conta.
@@ -268,52 +267,9 @@ Segue descrição de cada valor do ENUM.
 - FALHA_INFRAESTRUTURA_ICP - Indica uma falha na Infraestrutura de Chaves Públicas (ICP).
 - FALHA_INFRAESTRUTURA_PSP_RECEBEDOR - Indica uma falha na infraestrutura do Prestador de Serviço de Pagamento (PSP) que recebe o pagamento.
 - FALHA_INFRAESTRUTURA_DETENTORA - indica uma falha na infraestrutura da instituição detentora das informações ou recursos.
-- CONTAS_ORIGEM_DESTINO_IGUAIS - Indica uma tentativa de pagamento onde a conta origem e a conta de destino são iguais.
 O rejectionReason FALHA_INFRAESTRUTURA não será excluído, apenas deixará de ser utilizado, permitindo assim, retro compatibilidade e integridade entre os participantes.
 '
-                      - New enum values: [FALHA_INFRAESTRUTURA_SPI FALHA_INFRAESTRUTURA_DICT FALHA_INFRAESTRUTURA_ICP FALHA_INFRAESTRUTURA_PSP_RECEBEDOR FALHA_INFRAESTRUTURA_DETENTORA CONTAS_ORIGEM_DESTINO_IGUAIS]
-  - Modified response: 422
-    - Content changed
-      - Modified media type: application/jwt
-        - Schema changed
-          - Properties changed
-            - Modified property: errors
-              - Items changed
-                - Properties changed
-                  - Modified property: code
-                    - Description changed from 'Códigos de erros previstos na criação da iniciação de pagamento:
-• SALDO_INSUFICIENTE: Esta conta não possui saldo suficiente para realizar o pagamento.
-• BENEFICIARIO_INCOMPATIVEL: O beneficiário informado no consentimento não é o mesmo do esperado pelo DICT.
-• VALOR_INCOMPATIVEL: O valor informado no consentimento não é o mesmo valor do informado no payload de pagamento.
-• VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente.
-• VALOR_INVALIDO: O valor enviado não é válido para o QR Code informado.
-• COBRANCA_INVALIDA: Validação de expiração, validação de vencimento, Status Válido.
-• CONSENTIMENTO_INVALIDO: Consentimento inválido (status não é "authorised" ou está expirado).
-• JANELA_OPER_INVALIDA: Requisição está fora da janela de funcionamento.
-• PARAMETRO_NAO_INFORMADO: Parâmetro não informado.  
-• PARAMETRO_INVALIDO: Parâmetro inválido.
-• NAO_INFORMADO: Não informada pela detentora de conta.
-• PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento.
-• DETALHE_PAGAMENTO_INVALIDO: Detalhe do pagamento inválido.
-• PAGAMENTO_RECUSADO_DETENTORA: Pagamento recusado pela detentora de conta.
-• PAGAMENTO_RECUSADO_SPI: Pagamento recusado no Sistema de Pagamentos Instantâneos (SPI).
-• ERRO_IDEMPOTENCIA: Erro idempotência.
-' to 'Códigos de erros previstos na criação da iniciação de pagamento:
-• SALDO_INSUFICIENTE: Esta conta não possui saldo suficiente para realizar o pagamento.
-• VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente.
-• VALOR_INVALIDO: O valor enviado não é válido para o QR Code informado.
-• COBRANCA_INVALIDA: Validação de expiração, validação de vencimento, Status Válido.
-• CONSENTIMENTO_INVALIDO: Consentimento inválido (status não é "authorised" ou está expirado).
-• PARAMETRO_NAO_INFORMADO: Parâmetro não informado.  
-• PARAMETRO_INVALIDO: Parâmetro inválido.
-• NAO_INFORMADO: Não informada pela detentora de conta.
-• PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento.
-• DETALHE_PAGAMENTO_INVALIDO: Detalhe do pagamento inválido.
-• PAGAMENTO_RECUSADO_DETENTORA: Pagamento recusado pela detentora de conta.
-• PAGAMENTO_RECUSADO_SPI: Pagamento recusado no Sistema de Pagamentos Instantâneos (SPI).
-• ERRO_IDEMPOTENCIA: Erro idempotência.
-'
-                    - Deleted enum values: [BENEFICIARIO_INCOMPATIVEL VALOR_INCOMPATIVEL JANELA_OPER_INVALIDA]
+                      - New enum values: [FALHA_INFRAESTRUTURA_SPI FALHA_INFRAESTRUTURA_DICT FALHA_INFRAESTRUTURA_ICP FALHA_INFRAESTRUTURA_PSP_RECEBEDOR FALHA_INFRAESTRUTURA_DETENTORA]
 GET /pix/payments/{paymentId}
 - Responses changed
   - Modified response: 200
@@ -339,10 +295,10 @@ Modalidades tradicionais previstas pela Resolução 4.753, não contemplando con
 conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.
 Segue descrição de cada valor do ENUM.
 - CACC - Current - Conta Corrente.
+- SLRY - Salary - Conta-Salário.
 - SVGS - Savings - Conta de Poupança.
 - TRAN - TransactingAccount - Conta de Pagamento pré-paga.
 '
-                      - Deleted enum values: [SLRY]
                 - Modified property: debtorAccount
                   - Properties changed
                     - Modified property: accountType
@@ -359,10 +315,10 @@ Modalidades tradicionais previstas pela Resolução 4.753, não contemplando con
 conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.
 Segue descrição de cada valor do ENUM.
 - CACC - Current - Conta Corrente.
+- SLRY - Salary - Conta-Salário.
 - SVGS - Savings - Conta de Poupança.
 - TRAN - TransactingAccount - Conta de Pagamento pré-paga.
 '
-                      - Deleted enum values: [SLRY]
                 - Modified property: rejectionReason
                   - Properties changed
                     - Modified property: code
@@ -379,7 +335,7 @@ Segue descrição de cada valor do ENUM.
 - FALHA_INFRAESTRUTURA - [Descrição de qual falha na infraestrutura inviabilizou o processamento].
 ' to 'Define o código da razão pela qual o pagamento foi rejeitado
 - SALDO_INSUFICIENTE - A conta selecionada não possui saldo suficiente para realizar o pagamento.
-- VALOR_ACIMA_LIMITE - O valor ultrapassa o limite estabelecido [na instituição/no arranjo/outro] para permitir a realização de transações pelo cliente.
+- VALOR_ACIMA_LIMITE - O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente.
 - VALOR_INVALIDO - O valor enviado não é válido para o QR Code informado.
 - COBRANCA_INVALIDA - Validação de expiração, validação de vencimento ou Status Válido.
 - NAO_INFORMADO - Não reportado/identificado pela instituição detentora de conta.
@@ -393,10 +349,9 @@ Segue descrição de cada valor do ENUM.
 - FALHA_INFRAESTRUTURA_ICP - Indica uma falha na Infraestrutura de Chaves Públicas (ICP).
 - FALHA_INFRAESTRUTURA_PSP_RECEBEDOR - Indica uma falha na infraestrutura do Prestador de Serviço de Pagamento (PSP) que recebe o pagamento.
 - FALHA_INFRAESTRUTURA_DETENTORA - indica uma falha na infraestrutura da instituição detentora das informações ou recursos.
-- CONTAS_ORIGEM_DESTINO_IGUAIS - Indica uma tentativa de pagamento onde a conta origem e a conta de destino são iguais.
 O rejectionReason FALHA_INFRAESTRUTURA não será excluído, apenas deixará de ser utilizado, permitindo assim, retro compatibilidade e integridade entre os participantes.
 '
-                      - New enum values: [FALHA_INFRAESTRUTURA_SPI FALHA_INFRAESTRUTURA_DICT FALHA_INFRAESTRUTURA_ICP FALHA_INFRAESTRUTURA_PSP_RECEBEDOR FALHA_INFRAESTRUTURA_DETENTORA CONTAS_ORIGEM_DESTINO_IGUAIS]
+                      - New enum values: [FALHA_INFRAESTRUTURA_SPI FALHA_INFRAESTRUTURA_DICT FALHA_INFRAESTRUTURA_ICP FALHA_INFRAESTRUTURA_PSP_RECEBEDOR FALHA_INFRAESTRUTURA_DETENTORA]
 PATCH /pix/payments/{paymentId}
 - Responses changed
   - Modified response: 200
@@ -462,7 +417,7 @@ Segue descrição de cada valor do ENUM.
 - FALHA_INFRAESTRUTURA - [Descrição de qual falha na infraestrutura inviabilizou o processamento].
 ' to 'Define o código da razão pela qual o pagamento foi rejeitado
 - SALDO_INSUFICIENTE - A conta selecionada não possui saldo suficiente para realizar o pagamento.
-- VALOR_ACIMA_LIMITE - O valor ultrapassa o limite estabelecido [na instituição/no arranjo/outro] para permitir a realização de transações pelo cliente.
+- VALOR_ACIMA_LIMITE - O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente.
 - VALOR_INVALIDO - O valor enviado não é válido para o QR Code informado.
 - COBRANCA_INVALIDA - Validação de expiração, validação de vencimento ou Status Válido.
 - NAO_INFORMADO - Não reportado/identificado pela instituição detentora de conta.
@@ -476,7 +431,6 @@ Segue descrição de cada valor do ENUM.
 - FALHA_INFRAESTRUTURA_ICP - Indica uma falha na Infraestrutura de Chaves Públicas (ICP).
 - FALHA_INFRAESTRUTURA_PSP_RECEBEDOR - Indica uma falha na infraestrutura do Prestador de Serviço de Pagamento (PSP) que recebe o pagamento.
 - FALHA_INFRAESTRUTURA_DETENTORA - indica uma falha na infraestrutura da instituição detentora das informações ou recursos.
-- CONTAS_ORIGEM_DESTINO_IGUAIS - Indica uma tentativa de pagamento onde a conta origem e a conta de destino são iguais.
 O rejectionReason FALHA_INFRAESTRUTURA não será excluído, apenas deixará de ser utilizado, permitindo assim, retro compatibilidade e integridade entre os participantes.
 '
-                      - New enum values: [FALHA_INFRAESTRUTURA_SPI FALHA_INFRAESTRUTURA_DICT FALHA_INFRAESTRUTURA_ICP FALHA_INFRAESTRUTURA_PSP_RECEBEDOR FALHA_INFRAESTRUTURA_DETENTORA CONTAS_ORIGEM_DESTINO_IGUAIS]
+                      - New enum values: [FALHA_INFRAESTRUTURA_SPI FALHA_INFRAESTRUTURA_DICT FALHA_INFRAESTRUTURA_ICP FALHA_INFRAESTRUTURA_PSP_RECEBEDOR FALHA_INFRAESTRUTURA_DETENTORA]
