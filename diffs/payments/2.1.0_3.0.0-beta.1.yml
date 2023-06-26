@@ -108,6 +108,9 @@ Segue descrição de cada valor do ENUM.
 - SVGS - Savings - Conta de Poupança.
 - TRAN - TransactingAccount - Conta de Pagamento pré-paga.
 '
+  - Modified response: 400
+    - Headers changed
+      - New header: x-fapi-interaction-id
 GET /consents/{consentId}
 - Responses changed
   - Modified response: 200
@@ -162,6 +165,9 @@ Segue descrição de cada valor do ENUM.
 - SVGS - Savings - Conta de Poupança.
 - TRAN - TransactingAccount - Conta de Pagamento pré-paga.
 '
+  - Modified response: 400
+    - Headers changed
+      - New header: x-fapi-interaction-id
 POST /pix/payments
 - Request body changed
   - Content changed
@@ -314,6 +320,8 @@ O rejectionReason FALHA_INFRAESTRUTURA não será excluído, apenas deixará de 
 • ERRO_IDEMPOTENCIA: Erro idempotência.
 '
                     - Deleted enum values: [BENEFICIARIO_INCOMPATIVEL VALOR_INCOMPATIVEL JANELA_OPER_INVALIDA]
+    - Headers changed
+      - New header: x-fapi-interaction-id
 GET /pix/payments/{paymentId}
 - Responses changed
   - Modified response: 200
@@ -397,6 +405,9 @@ Segue descrição de cada valor do ENUM.
 O rejectionReason FALHA_INFRAESTRUTURA não será excluído, apenas deixará de ser utilizado, permitindo assim, retro compatibilidade e integridade entre os participantes.
 '
                       - New enum values: [FALHA_INFRAESTRUTURA_SPI FALHA_INFRAESTRUTURA_DICT FALHA_INFRAESTRUTURA_ICP FALHA_INFRAESTRUTURA_PSP_RECEBEDOR FALHA_INFRAESTRUTURA_DETENTORA CONTAS_ORIGEM_DESTINO_IGUAIS]
+  - Modified response: 400
+    - Headers changed
+      - New header: x-fapi-interaction-id
 PATCH /pix/payments/{paymentId}
 - Responses changed
   - Modified response: 200
@@ -480,3 +491,6 @@ Segue descrição de cada valor do ENUM.
 O rejectionReason FALHA_INFRAESTRUTURA não será excluído, apenas deixará de ser utilizado, permitindo assim, retro compatibilidade e integridade entre os participantes.
 '
                       - New enum values: [FALHA_INFRAESTRUTURA_SPI FALHA_INFRAESTRUTURA_DICT FALHA_INFRAESTRUTURA_ICP FALHA_INFRAESTRUTURA_PSP_RECEBEDOR FALHA_INFRAESTRUTURA_DETENTORA CONTAS_ORIGEM_DESTINO_IGUAIS]
+  - Modified response: 400
+    - Headers changed
+      - New header: x-fapi-interaction-id
