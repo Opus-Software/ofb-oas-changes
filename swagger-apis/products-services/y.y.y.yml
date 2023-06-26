@@ -467,37 +467,16 @@ components:
           example: Organização A
         companies:
           type: array
-          maxItems: 700
+          maxItems: 20
           description: 'Companies traz uma lista de todas as instituições da Marca'
           items:
             $ref: '#/components/schemas/PersonalAccountCompany'
           minItems: 1
     PersonalAccountCompany:
       type: object
-      required:
-        - name
-        - cnpjNumber
+      allOf:
+        - $ref: '#/components/schemas/Company'
       properties:
-        name:
-          type: string
-          description: Nome da Instituição, pertencente à marca, responsável pela modalidade de Empréstimos. p.ex.'Empresa da Organização A'
-          maxLength: 80
-          pattern: '[\w\W\s]*'
-          example: 'Empresa A1'
-        cnpjNumber:
-          type: string
-          pattern: '^(\d{14})$|^NA$'
-          description: CNPJ
-          maxLength: 14
-          example: "50685362000135"
-        urlComplementaryList:
-          type: string
-          pattern: '[\w\W\s]*'
-          maxLength: 1024
-          description: |
-            URL do link que conterá a lista complementar com os nomes e CNPJs agrupados sob o mesmo cnpjNumber. Os contidos nessa lista possuem as mesmas características para produtos e serviços. Endereço eletrônico de acesso ao canal. Será obrigatoriamente preenchido se houver lista complementar com os nomes e CNPJs a ser disponibilizada.
-            Restrição: Será obrigatorimente preenchido se houver lista complementar com os nomes e CNPJs a ser disponibilizada
-          example: 'https://empresadaorganizacaoa.com/complementarylist'
         personalAccounts:
           type: array
           items:
@@ -510,6 +489,7 @@ components:
       required:
         - type
         - fees
+        - serviceBundles
         - openingClosingChannels
         - transactionMethods
         - termsConditions
@@ -524,15 +504,7 @@ components:
             $ref: '#/components/schemas/PersonalAccountServiceBundle'
           minItems: 1
           maxItems: 200
-          description: |
-            Lista dos Pacotes de serviços
-
-            [Restrição]
-            - Caso o ENUM do campo “type” seja CONTA_PAGAMENTO_PRE_PAGA a estrutura “serviceBundle” fica condicionado caso a instituição tenha pacote de serviço
-            atrelado a este tipo de conta, porque são contas com serviços essenciais padronizados e regulados pela Resolução BACEN 3919, de 25/11/2010
-
-            - Caso o ENUM do campo “type” seja CONTA_DEPOSITO_A_VISTA (conta corrente) ou CONTA_POUPANCA, deverá ser incluso a estrutura “serviceBundle”, porque
-            existem hoje pacotes passíveis de cobrança diferentes dos serviços essenciais (que não são cobrados)
+          description: Lista dos Pacotes de serviços
         openingClosingChannels:
           type: array
           items:
@@ -923,7 +895,7 @@ components:
           example: Organização A
         companies:
           type: array
-          maxItems: 700
+          maxItems: 20
           items:
             $ref: '#/components/schemas/BusinessAccountsCompany'
           minItems: 1
@@ -933,27 +905,9 @@ components:
       required:
         - name
         - cnpjNumber
+      allOf:
+        - $ref: '#/components/schemas/Company'
       properties:
-        name:
-          type: string
-          description: Nome da Instituição, pertencente à marca, responsável pela modalidade de Empréstimos. p.ex.'Empresa da Organização A'
-          maxLength: 80
-          pattern: '[\w\W\s]*'
-          example: 'Empresa A1'
-        cnpjNumber:
-          type: string
-          pattern: '^(\d{14})$|^NA$'
-          description: CNPJ
-          maxLength: 14
-          example: "50685362000135"
-        urlComplementaryList:
-          type: string
-          pattern: '[\w\W\s]*'
-          maxLength: 1024
-          description: |
-            URL do link que conterá a lista complementar com os nomes e CNPJs agrupados sob o mesmo cnpjNumber. Os contidos nessa lista possuem as mesmas características para produtos e serviços. Endereço eletrônico de acesso ao canal. Será obrigatoriamente preenchido se houver lista complementar com os nomes e CNPJs a ser disponibilizada.
-            Restrição: Será obrigatorimente preenchido se houver lista complementar com os nomes e CNPJs a ser disponibilizada
-          example: 'https://empresadaorganizacaoa.com/complementarylist'
         businessAccounts:
           type: array
           items:
@@ -966,6 +920,7 @@ components:
       required:
         - type
         - fees
+        - serviceBundles
         - openingClosingChannels
         - transactionMethods
         - termsConditions
@@ -992,15 +947,7 @@ components:
           items:
             $ref:  "#/components/schemas/ServiceBundle"
           minItems: 1
-          description: |
-            Lista dos serviços que compõe o pacote de serviços
-
-            [Restrição]
-            - Caso o ENUM do campo “type” seja CONTA_PAGAMENTO_PRE_PAGA a estrutura “serviceBundle” fica condicionado caso a instituição tenha pacote de serviço
-            atrelado a este tipo de conta, porque são contas com serviços essenciais padronizados e regulados pela Resolução BACEN 3919, de 25/11/2010
-
-            - Caso o ENUM do campo “type” seja CONTA_DEPOSITO_A_VISTA (conta corrente) ou CONTA_POUPANCA, deverá ser incluso a estrutura “serviceBundle”, porque
-            existem hoje pacotes passíveis de cobrança diferentes dos serviços essenciais (que não são cobrados)
+          description: Lista dos serviços que compõe o pacote de serviços
         openingClosingChannels:
           type: array
           items:
@@ -1115,12 +1062,6 @@ components:
           maxLength: 80
           description: 'Nome da Instituição, pertencente à marca, responsável pela comercialização dos produtos e serviços'
           example: Empresa da Marca A
-        cnpjNumber:
-          type: string
-          pattern: '^(\d{14})$|^NA$'
-          description: CNPJ
-          maxLength: 14
-          example: "50685362000135"
         urlComplementaryList:
           type: string
           pattern: '[\w\W\s]*'
@@ -1134,6 +1075,8 @@ components:
           minItems: 1
           maxItems: 6
           description: Lista de modalidades de empréstimos
+      allOf:
+        - $ref: '#/components/schemas/CNPJ'
     ResponseBusinessLoans:
       type: object
       required:
@@ -1183,12 +1126,6 @@ components:
           maxLength: 80
           description: Nome da Instituição, pertencente à marca, responsável pela modalidade de Empréstimos. p.ex.'Empresa da Organização A'
           example: Empresa A1
-        cnpjNumber:
-          type: string
-          pattern: '^(\d{14})$|^NA$'
-          description: CNPJ
-          maxLength: 14
-          example: "50685362000135"
         urlComplementaryList:
           type: string
           pattern: '[\w\W\s]*'
@@ -1202,6 +1139,8 @@ components:
           minItems: 1
           maxItems: 6
           description: Lista de modalidades de empréstimos
+      allOf:
+        - $ref: '#/components/schemas/CNPJ'
     PersonalLoan:
       type: object
       required:
@@ -1349,11 +1288,56 @@ components:
           $ref: '#/components/schemas/MaximumPrice'
     LoanInterestRate:
       required:
-        - referentialRateIndexer
-        - rate
         - applications
         - minimumRate
         - maximumRate
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/InterestRateFee'
+      properties:
+        applications:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationRate'
+          minItems: 4
+          maxItems: 4
+          description: Lista  das faixas de cobrança da taxa efetiva aplicada pela contratação de crédito
+        minimumRate:
+          type: string
+          pattern: '(^[0-9](\.[0-9]{4})$|^NA$)'
+          maxLength: 6
+          description: 'Percentual mínimo cobrado (taxa efetiva) no mês de referência, para o Empréstimo contratado  A apuração pode acontecer com até 4 casas decimais. O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)'
+          example: '0.0456'
+        maximumRate:
+          type: string
+          pattern: '(^[0-9](\.[0-9]{4})$|^NA$)'
+          maxLength: 6
+          description: 'Percentual máximo cobrado (taxa efetiva) no mês de referência, para o Empréstimo contratado  A apuração pode acontecer com até 4 casas decimais. O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)'
+          example: '0.6865'
+    ApplicationRate:
+      type: object
+      properties:
+        interval:
+          $ref: '#/components/schemas/ApplicationIntervals'
+        indexer:
+          $ref: '#/components/schemas/Indexer'
+        customers:
+          $ref: '#/components/schemas/Customer'
+      required:
+        - interval
+        - indexer
+        - customers
+    Indexer:
+      type: object
+      properties:
+        rate:
+          type: string
+          pattern: '(^[0-9](\.[0-9]{4})$|^NA$)'
+          maxLength: 6
+          description: |
+            Percentual que corresponde a mediana da taxa efetiva cobrada do cliente pela contratação do crédito, no intervalo informado. p.ex. '0,8700%'. A apuração pode acontecer com até 4 casas decimais. O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)
+          example: '0.8700'
+    InterestRateFee:
       type: object
       properties:
         referentialRateIndexer:
@@ -1382,57 +1366,14 @@ components:
           example: PRE_FIXADO
         rate:
           type: string
-          pattern: '^\d{1}\.\d{6}$'
+          pattern: '(^[0-1](\.[0-9]{2})$|^NA$)'
           description: |
             Percentual que incide sobre a composição das taxas de juros remuneratórios. (representa uma porcentagem Ex: 0.15 (O valor ao lado representa 15%. O valor '1 'representa 100%) A apuração pode acontecer com até 4 casas decimais. O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)
-          example: '0.150000'
-          minLength: 8
-          maxLength: 8
-        applications:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApplicationRate'
-          minItems: 4
-          maxItems: 4
-          description: Lista  das faixas de cobrança da taxa efetiva aplicada pela contratação de crédito
-        minimumRate:
-          type: string
-          pattern: '^\d{1}\.\d{6}$'
-          minLength: 8
-          maxLength: 8
-          description: 'Percentual mínimo cobrado (taxa efetiva) no mês de referência, para o Empréstimo contratado  A apuração pode acontecer com até 4 casas decimais. O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)'
-          example: '0.045600'
-        maximumRate:
-          type: string
-          pattern: '^\d{1}\.\d{6}$'
-          minLength: 8
-          maxLength: 8
-          description: 'Percentual máximo cobrado (taxa efetiva) no mês de referência, para o Empréstimo contratado  A apuração pode acontecer com até 4 casas decimais. O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)'
-          example: '0.686500'
-    ApplicationRate:
-      type: object
-      properties:
-        interval:
-          $ref: '#/components/schemas/ApplicationIntervals'
-        indexer:
-          $ref: '#/components/schemas/Indexer'
-        customers:
-          $ref: '#/components/schemas/Customer'
+          example: '0.15'
+          maxLength: 4
       required:
-        - interval
-        - indexer
-        - customers
-    Indexer:
-      type: object
-      properties:
-        rate:
-          type: string
-          pattern: '^\d{1}\.\d{6}$'
-          minLength: 8
-          maxLength: 8
-          description: |
-            Percentual que corresponde a mediana da taxa efetiva cobrada do cliente pela contratação do crédito, no intervalo informado. p.ex. '0,8700%'. A apuração pode acontecer com até 4 casas decimais. O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)
-          example: '0.870000'
+        - referentialRateIndexer
+        - rate
     PriceIntervals:
       type: string
       enum:
@@ -1590,11 +1531,10 @@ components:
       properties:
         minimumFeeRate:
           type: string
-          pattern: '^\d{1}\.\d{6}$'
+          pattern: '(^[0-9](\.[0-9]{2})$|^NA$)'
           description: Percentual para pagamento mínimo sobre o saldo devedor da fatura.
-          example: '0.250000'
-          minLength: 8
-          maxLength: 8
+          example: '0.25'
+          maxLength: 4
         additionalInfo:
           type: string
           maxLength: 500
@@ -1626,14 +1566,12 @@ components:
           items:
             $ref: '#/components/schemas/InterestRate'
           minItems: 1
-          maxItems: 20
           description: Lista da representação que traz o conjunto de informações necessárias para demonstrar a distribuição de frequências das taxas de juros remuneratórios para crédito rotativo
         instalmentRates:
           type: array
           items:
             $ref: '#/components/schemas/InterestRate'
           minItems: 1
-          maxItems: 20
           description: Lista da representação que traz o conjunto de informações necessárias para demonstrar a distribuição de frequências das taxas de juros remuneratórios para parcelamento do saldo devedor
         otherCredits:
           type: array
@@ -1683,56 +1621,31 @@ components:
     PersonalCreditCardBrand:
       type: object
       required:
-        - name
         - companies
+      allOf:
+        - $ref: '#/components/schemas/Brand'
       properties:
-        name:
-          type: string
-          maxLength: 80
-          pattern: '[\w\W\s]*'
-          description: Nome da Marca selecionada pelas Organizações
-          example: Organização A
         companies:
           type: array
           description: Companies traz uma lista de todas as instituições da Marca
           items:
             $ref: '#/components/schemas/PersonalCreditCardCompany'
           minItems: 1
-          maxItems: 800
     PersonalCreditCardCompany:
       type: object
       required:
         - name
         - cnpjNumber
         - personalCreditCards
+      allOf:
+        - $ref: '#/components/schemas/Company'
       properties:
-        name:
-          type: string
-          description: Nome da Instituição, pertencente à marca, responsável pela modalidade de Empréstimos. p.ex.'Empresa da Organização A'
-          maxLength: 80
-          pattern: '[\w\W\s]*'
-          example: 'Empresa A1'
-        cnpjNumber:
-          type: string
-          pattern: '^(\d{14})$|^NA$'
-          description: CNPJ
-          maxLength: 14
-          example: "50685362000135"
-        urlComplementaryList:
-          type: string
-          pattern: '[\w\W\s]*'
-          maxLength: 1024
-          description: |
-            URL do link que conterá a lista complementar com os nomes e CNPJs agrupados sob o mesmo cnpjNumber. Os contidos nessa lista possuem as mesmas características para produtos e serviços. Endereço eletrônico de acesso ao canal. Será obrigatoriamente preenchido se houver lista complementar com os nomes e CNPJs a ser disponibilizada.
-            Restrição: Será obrigatorimente preenchido se houver lista complementar com os nomes e CNPJs a ser disponibilizada
-          example: 'https://empresadaorganizacaoa.com/complementarylist'
         personalCreditCards:
           type: array
           description: Lista das contas de pagamento pós-paga
           items:
             $ref: '#/components/schemas/PersonalCreditCard'
           minItems: 1
-          maxItems: 300
     BusinessCreditCardResponse:
       type: object
       required:
@@ -1755,53 +1668,29 @@ components:
       type: object
       required:
         - companies
+      allOf:
+        - $ref: '#/components/schemas/Brand'
       properties:
-        name:
-          type: string
-          maxLength: 80
-          pattern: '[\w\W\s]*'
-          description: Nome da Marca selecionada pelas Organizações
-          example: Organização A
         companies:
           type: array
           description: Companies traz uma lista de todas as instituições da Marca
           items:
             $ref: '#/components/schemas/BusinessCreditCardCompany'
           minItems: 1
-          maxItems: 720
     BusinessCreditCardCompany:
       type: object
       required:
         - name
         - cnpjNumber
+      allOf:
+        - $ref: '#/components/schemas/Company'
       properties:
-        name:
-          type: string
-          description: Nome da Instituição, pertencente à marca, responsável pela modalidade de Empréstimos. p.ex.'Empresa da Organização A'
-          maxLength: 80
-          pattern: '[\w\W\s]*'
-          example: 'Empresa A1'
-        cnpjNumber:
-          type: string
-          pattern: '^(\d{14})$|^NA$'
-          description: CNPJ
-          maxLength: 14
-          example: "50685362000135"
-        urlComplementaryList:
-          type: string
-          pattern: '[\w\W\s]*'
-          maxLength: 1024
-          description: |
-            URL do link que conterá a lista complementar com os nomes e CNPJs agrupados sob o mesmo cnpjNumber. Os contidos nessa lista possuem as mesmas características para produtos e serviços. Endereço eletrônico de acesso ao canal. Será obrigatoriamente preenchido se houver lista complementar com os nomes e CNPJs a ser disponibilizada.
-            Restrição: Será obrigatorimente preenchido se houver lista complementar com os nomes e CNPJs a ser disponibilizada
-          example: 'https://empresadaorganizacaoa.com/complementarylist'
         businessCreditCards:
           type: array
           description: Lista dos nomes de conta de pagamento pós-paga
           items:
             $ref: '#/components/schemas/BusinessCreditCard'
           minItems: 1
-          maxItems: 80
     CreditCardService:
       type: object
       required:
@@ -1880,13 +1769,9 @@ components:
       required:
         - name
         - companies
+      allOf:
+        - $ref: '#/components/schemas/Brand'
       properties:
-        name:
-          type: string
-          maxLength: 80
-          pattern: '[\w\W\s]*'
-          description: Nome da Marca selecionada pelas Organizações
-          example: Organização A
         companies:
           type: array
           items:
@@ -1899,27 +1784,9 @@ components:
         - name
         - cnpjNumber
         - personalFinancings
+      allOf:
+        - $ref: '#/components/schemas/Company'
       properties:
-        name:
-          type: string
-          description: Nome da Instituição, pertencente à marca, responsável pela modalidade de Empréstimos. p.ex.'Empresa da Organização A'
-          maxLength: 80
-          pattern: '[\w\W\s]*'
-          example: 'Empresa A1'
-        cnpjNumber:
-          type: string
-          pattern: '^(\d{14})$|^NA$'
-          description: CNPJ
-          maxLength: 14
-          example: "50685362000135"
-        urlComplementaryList:
-          type: string
-          pattern: '[\w\W\s]*'
-          maxLength: 1024
-          description: |
-            URL do link que conterá a lista complementar com os nomes e CNPJs agrupados sob o mesmo cnpjNumber. Os contidos nessa lista possuem as mesmas características para produtos e serviços. Endereço eletrônico de acesso ao canal. Será obrigatoriamente preenchido se houver lista complementar com os nomes e CNPJs a ser disponibilizada.
-            Restrição: Será obrigatorimente preenchido se houver lista complementar com os nomes e CNPJs a ser disponibilizada
-          example: 'https://empresadaorganizacaoa.com/complementarylist'
         personalFinancings:
           type: array
           items:
@@ -2020,45 +1887,9 @@ components:
         - chargingTriggerInfo
     FinancingInterestRate:
       type: object
-      required:
-        - referentialRateIndexer
-        - rate
-        - applications
-        - minimumRate
-        - maximumRate
+      allOf:
+        - $ref: '#/components/schemas/InterestRateFee'
       properties:
-        referentialRateIndexer:
-          type: string
-          enum:
-            - SEM_INDEXADOR_TAXA
-            - PRE_FIXADO
-            - POS_FIXADO_TR_TBF
-            - POS_FIXADO_TJLP
-            - POS_FIXADO_LIBOR
-            - POS_FIXADO_TLP
-            - OUTRAS_TAXAS_POS_FIXADAS
-            - FLUTUANTES_CDI
-            - FLUTUANTES_SELIC
-            - OUTRAS_TAXAS_FLUTUANTES
-            - INDICES_PRECOS_IGPM
-            - INDICES_PRECOS_IPCA
-            - INDICES_PRECOS_IPCC
-            - OUTROS_INDICES_PRECO
-            - CREDITO_RURAL_TCR_PRE
-            - CREDITO_RURAL_TCR_POS
-            - CREDITO_RURAL_TRFC_PRE
-            - CREDITO_RURAL_TRFC_POS
-            - OUTROS_INDEXADORES
-          description: 'Tipos de taxas referenciais ou indexadores, conforme Anexo 5: Taxa referencial ou Indexador (Indx), do Documento 3040'
-          example: PRE_FIXADO
-        rate:
-          type: string
-          pattern: '^\d{1}\.\d{6}$'
-          description: |
-            Percentual que incide sobre a composição das taxas de juros remuneratórios. (representa uma porcentagem Ex: 0.15 (O valor ao lado representa 15%. O valor '1 'representa 100%) A apuração pode acontecer com até 4 casas decimais. O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)
-          example: '0.150000'
-          minLength: 8
-          maxLength: 8
         applications:
           type: array
           items:
@@ -2068,38 +1899,40 @@ components:
           example:
             - interval: 1_FAIXA
               indexer:
-                rate: '0.098700'
+                rate: '0.0987'
               customers:
-                rate: '0.150000'
+                rate: '0.1500'
             - interval: 2_FAIXA
               indexer:
-                rate: '0.160000'
+                rate: '0.1600'
               customers:
-                rate: '0.350000'
+                rate: '0.3500'
             - interval: 3_FAIXA
               indexer:
-                rate: '0.360000'
+                rate: '0.3600'
               customers:
-                rate: '0.200000'
+                rate: '0.2000'
             - interval: 4_FAIXA
               indexer:
-                rate: '0.589000'
+                rate: '0.5890'
               customers:
-                rate: '0.300000'
+                rate: '0.3000'
         minimumRate:
           type: string
-          pattern: '^\d{1}\.\d{6}$'
+          pattern: '(^[0-9](\.[0-9]{4})$|^NA$)'
           description: 'Percentual mínimo cobrado (taxa efetiva) no mês de referência, para o Financiamento contratado  A apuração pode acontecer com até 4 casas decimais. O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)'
-          example: '0.045600'
-          minLength: 8
-          maxLength: 8
+          example: '0.0456'
+          maxLength: 6
         maximumRate:
           type: string
-          pattern: '^\d{1}\.\d{6}$'
+          pattern: '(^[0-9](\.[0-9]{4})$|^NA$)'
           description: 'Percentual máximo cobrado (taxa efetiva) no mês de referência, para o Financiamento contratado  A apuração pode acontecer com até 4 casas decimais. O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)'
-          example: '0.686500'
-          minLength: 8
-          maxLength: 8
+          example: '0.6865'
+          maxLength: 6
+      required:
+        - applications
+        - minimumRate
+        - maximumRate
     ResponseBusinessFinancings:
       type: object
       required:
@@ -2123,13 +1956,9 @@ components:
       required:
         - name
         - companies
+      allOf:
+        - $ref: '#/components/schemas/Brand'
       properties:
-        name:
-          type: string
-          maxLength: 80
-          pattern: '[\w\W\s]*'
-          description: Nome da Marca selecionada pelas Organizações
-          example: Organização A
         companies:
           type: array
           items:
@@ -2142,27 +1971,9 @@ components:
         - name
         - cnpjNumber
         - businessFinancings
+      allOf:
+        - $ref: '#/components/schemas/Company'
       properties:
-        name:
-          type: string
-          description: Nome da Instituição, pertencente à marca, responsável pela modalidade de Empréstimos. p.ex.'Empresa da Organização A'
-          maxLength: 80
-          pattern: '[\w\W\s]*'
-          example: 'Empresa A1'
-        cnpjNumber:
-          type: string
-          pattern: '^(\d{14})$|^NA$'
-          description: CNPJ
-          maxLength: 14
-          example: "50685362000135"
-        urlComplementaryList:
-          type: string
-          pattern: '[\w\W\s]*'
-          maxLength: 1024
-          description: |
-            URL do link que conterá a lista complementar com os nomes e CNPJs agrupados sob o mesmo cnpjNumber. Os contidos nessa lista possuem as mesmas características para produtos e serviços. Endereço eletrônico de acesso ao canal. Será obrigatoriamente preenchido se houver lista complementar com os nomes e CNPJs a ser disponibilizada.
-            Restrição: Será obrigatorimente preenchido se houver lista complementar com os nomes e CNPJs a ser disponibilizada
-          example: 'https://empresadaorganizacaoa.com/complementarylist'
         businessFinancings:
           type: array
           items:
@@ -2266,27 +2077,9 @@ components:
         - name
         - cnpjNumber
         - personalInvoiceFinancings
+      allOf:
+        - $ref: '#/components/schemas/Company'
       properties:
-        name:
-          type: string
-          description: Nome da Instituição, pertencente à marca, responsável pela modalidade de Empréstimos. p.ex.'Empresa da Organização A'
-          maxLength: 80
-          pattern: '[\w\W\s]*'
-          example: 'Empresa A1'
-        cnpjNumber:
-          type: string
-          pattern: '^(\d{14})$|^NA$'
-          description: CNPJ
-          maxLength: 14
-          example: "50685362000135"
-        urlComplementaryList:
-          type: string
-          pattern: '[\w\W\s]*'
-          maxLength: 1024
-          description: |
-            URL do link que conterá a lista complementar com os nomes e CNPJs agrupados sob o mesmo cnpjNumber. Os contidos nessa lista possuem as mesmas características para produtos e serviços. Endereço eletrônico de acesso ao canal. Será obrigatoriamente preenchido se houver lista complementar com os nomes e CNPJs a ser disponibilizada.
-            Restrição: Será obrigatorimente preenchido se houver lista complementar com os nomes e CNPJs a ser disponibilizada
-          example: 'https://empresadaorganizacaoa.com/complementarylist'
         personalInvoiceFinancings:
           type: array
           items:
@@ -2387,45 +2180,9 @@ components:
           $ref: '#/components/schemas/MaximumPrice'
     PersonalInvoiceFinancingsInterestRates:
       type: object
-      required:
-        - referentialRateIndexer
-        - rate
-        - applications
-        - minimumRate
-        - maximumRate
+      allOf:
+        - $ref: '#/components/schemas/InterestRateFee'
       properties:
-        referentialRateIndexer:
-          type: string
-          enum:
-            - SEM_INDEXADOR_TAXA
-            - PRE_FIXADO
-            - POS_FIXADO_TR_TBF
-            - POS_FIXADO_TJLP
-            - POS_FIXADO_LIBOR
-            - POS_FIXADO_TLP
-            - OUTRAS_TAXAS_POS_FIXADAS
-            - FLUTUANTES_CDI
-            - FLUTUANTES_SELIC
-            - OUTRAS_TAXAS_FLUTUANTES
-            - INDICES_PRECOS_IGPM
-            - INDICES_PRECOS_IPCA
-            - INDICES_PRECOS_IPCC
-            - OUTROS_INDICES_PRECO
-            - CREDITO_RURAL_TCR_PRE
-            - CREDITO_RURAL_TCR_POS
-            - CREDITO_RURAL_TRFC_PRE
-            - CREDITO_RURAL_TRFC_POS
-            - OUTROS_INDEXADORES
-          description: 'Tipos de taxas referenciais ou indexadores, conforme Anexo 5: Taxa referencial ou Indexador (Indx), do Documento 3040'
-          example: PRE_FIXADO
-        rate:
-          type: string
-          pattern: '^\d{1}\.\d{6}$'
-          description: |
-            Percentual que incide sobre a composição das taxas de juros remuneratórios. (representa uma porcentagem Ex: 0.15 (O valor ao lado representa 15%. O valor '1 'representa 100%) A apuração pode acontecer com até 4 casas decimais. O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)
-          example: '0.150000'
-          minLength: 8
-          maxLength: 8
         applications:
           type: array
           description: Lista  das faixas de cobrança da taxa efetiva de remuneração
@@ -2437,18 +2194,19 @@ components:
           type: string
           description: |
             Percentual mínimo cobrado (taxa efetiva) no mês de referência, para os Direitos Creditórios Descontados contratado  A apuração pode acontecer com até 4 casas decimais. O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.15. Este valor representa 15%. O valor 1 representa 100%)
-          pattern: '^\d{1}\.\d{6}$'
-          minLength: 8
-          maxLength: 8
-          example: '0.088900'
+          pattern: '(^[0-9](\.[0-9]{4})$|^NA$)'
+          example: '0.0889'
         maximumRate:
           type: string
           description: |
             Percentual máximo cobrado (taxa efetiva) no mês de referência, para os Direitos Creditórios Descontados contratado  A apuração pode acontecer com até 4 casas decimais. O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.15. Este valor representa 15%. O valor 1 representa 100%)
-          pattern: '^\d{1}\.\d{6}$'
-          minLength: 8
-          maxLength: 8
-          example: '0.686500'
+          pattern: '(^[0-9](\.[0-9]{4})$|^NA$)'
+          example: '0.6865'
+      required:
+        - applications
+        - minimumRate
+        - maximumRate
+        - customers
     ResponseBusinessInvoiceFinancings:
       type: object
       required:
@@ -2491,27 +2249,9 @@ components:
         - name
         - cnpjNumber
         - businessInvoiceFinancings
+      allOf:
+        - $ref: '#/components/schemas/Company'
       properties:
-        name:
-          type: string
-          description: Nome da Instituição, pertencente à marca, responsável pela modalidade de Empréstimos. p.ex.'Empresa da Organização A'
-          maxLength: 80
-          pattern: '[\w\W\s]*'
-          example: 'Empresa A1'
-        cnpjNumber:
-          type: string
-          pattern: '^(\d{14})$|^NA$'
-          description: CNPJ
-          maxLength: 14
-          example: "50685362000135"
-        urlComplementaryList:
-          type: string
-          pattern: '[\w\W\s]*'
-          maxLength: 1024
-          description: |
-            URL do link que conterá a lista complementar com os nomes e CNPJs agrupados sob o mesmo cnpjNumber. Os contidos nessa lista possuem as mesmas características para produtos e serviços. Endereço eletrônico de acesso ao canal. Será obrigatoriamente preenchido se houver lista complementar com os nomes e CNPJs a ser disponibilizada.
-            Restrição: Será obrigatorimente preenchido se houver lista complementar com os nomes e CNPJs a ser disponibilizada
-          example: 'https://empresadaorganizacaoa.com/complementarylist'
         businessInvoiceFinancings:
           type: array
           items:
@@ -2572,45 +2312,9 @@ components:
           description: Lista das Tarifas cobradas sobre Serviços
     BusinessInvoiceFinancingsInterestRates:
       type: object
-      required:
-        - referentialRateIndexer
-        - rate
-        - applications
-        - minimumRate
-        - maximumRate
+      allOf:
+        - $ref: '#/components/schemas/InterestRateFee'
       properties:
-        referentialRateIndexer:
-          type: string
-          enum:
-            - SEM_INDEXADOR_TAXA
-            - PRE_FIXADO
-            - POS_FIXADO_TR_TBF
-            - POS_FIXADO_TJLP
-            - POS_FIXADO_LIBOR
-            - POS_FIXADO_TLP
-            - OUTRAS_TAXAS_POS_FIXADAS
-            - FLUTUANTES_CDI
-            - FLUTUANTES_SELIC
-            - OUTRAS_TAXAS_FLUTUANTES
-            - INDICES_PRECOS_IGPM
-            - INDICES_PRECOS_IPCA
-            - INDICES_PRECOS_IPCC
-            - OUTROS_INDICES_PRECO
-            - CREDITO_RURAL_TCR_PRE
-            - CREDITO_RURAL_TCR_POS
-            - CREDITO_RURAL_TRFC_PRE
-            - CREDITO_RURAL_TRFC_POS
-            - OUTROS_INDEXADORES
-          description: 'Tipos de taxas referenciais ou indexadores, conforme Anexo 5: Taxa referencial ou Indexador (Indx), do Documento 3040'
-          example: PRE_FIXADO
-        rate:
-          type: string
-          pattern: '^\d{1}\.\d{6}$'
-          description: |
-            Percentual que incide sobre a composição das taxas de juros remuneratórios. (representa uma porcentagem Ex: 0.15 (O valor ao lado representa 15%. O valor '1 'representa 100%) A apuração pode acontecer com até 4 casas decimais. O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)
-          example: '0.150000'
-          minLength: 8
-          maxLength: 8
         applications:
           type: array
           description: Lista  das faixas de cobrança da taxa efetiva de remuneração
@@ -2622,18 +2326,19 @@ components:
           type: string
           description: |
             Percentual mínimo cobrado (taxa efetiva) no mês de referência, para os Direitos Creditórios Descontados contratado  A apuração pode acontecer com até 4 casas decimais. O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.15. Este valor representa 15%. O valor 1 representa 100%)
-          pattern: '^\d{1}\.\d{6}$'
-          minLength: 8
-          maxLength: 8
-          example: '0.150000'
+          pattern: '(^[0-9](\.[0-9]{4})$|^NA$)'
+          example: '0.1500'
         maximumRate:
           type: string
           description: |
             Percentual máximo cobrado (taxa efetiva) no mês de referência, para os Direitos Creditórios Descontados contratado  A apuração pode acontecer com até 4 casas decimais. O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.15. Este valor representa 15%. O valor 1 representa 100%)
-          pattern: '^\d{1}\.\d{6}$'
-          minLength: 8
-          maxLength: 8
-          example: '0.686500'
+          pattern: '(^[0-9](\.[0-9]{4})$|^NA$)'
+          example: '0.6865'
+      required:
+        - fees
+        - applications
+        - minimumRate
+        - maximumRate
     ResponseBusinessUnarrangedAccountOverdraft:
       type: object
       required:
@@ -2666,7 +2371,6 @@ components:
           example: "Organização A"
         companies:
           type: array
-          maxItems: 700
           items:
             $ref: '#/components/schemas/BusinessUnarrangedAccountOverdraftCompany'
           description: Companies traz uma lista de todas as instituições da Marca
@@ -2676,30 +2380,11 @@ components:
           - name
           - cnpjNumber
           - businessUnarrangedAccountOverdraft
+        allOf:
+          - $ref: '#/components/schemas/Company'
         properties:
-          name:
-            type: string
-            description: Nome da Instituição, pertencente à marca, responsável pela modalidade de Empréstimos. p.ex.'Empresa da Organização A'
-            maxLength: 80
-            pattern: '[\w\W\s]*'
-            example: 'Empresa A1'
-          cnpjNumber:
-            type: string
-            pattern: '^(\d{14})$|^NA$'
-            description: CNPJ
-            maxLength: 14
-            example: "50685362000135"
-          urlComplementaryList:
-            type: string
-            pattern: '[\w\W\s]*'
-            maxLength: 1024
-            description: |
-              URL do link que conterá a lista complementar com os nomes e CNPJs agrupados sob o mesmo cnpjNumber. Os contidos nessa lista possuem as mesmas características para produtos e serviços. Endereço eletrônico de acesso ao canal. Será obrigatoriamente preenchido se houver lista complementar com os nomes e CNPJs a ser disponibilizada.
-              Restrição: Será obrigatorimente preenchido se houver lista complementar com os nomes e CNPJs a ser disponibilizada
-            example: 'https://empresadaorganizacaoa.com/complementarylist'
           businessUnarrangedAccountOverdraft:
             type: array
-            maxItems: 20
             items:
               $ref: '#/components/schemas/BusinessUnarrangedAccountOverdraft'
             description: Lista de adiantamento a depositante
@@ -2714,7 +2399,6 @@ components:
           $ref: '#/components/schemas/BusinessUnarrangedAccountOverdraftFee'
         interestRates:
           type: array
-          maxItems: 20
           items:
             $ref: '#/components/schemas/UnarrangedAccountOverdraftRate'
           minItems: 1
@@ -2785,22 +2469,22 @@ components:
             value: "500.00"
             currency: BRL
             customers:
-              rate: "0.150000"
+              rate: "0.1500"
           - interval: 2_FAIXA
             value: "860.00"
             currency: BRL
             customers:
-              rate: "0.350000"
+              rate: "0.3500"
           - interval: 3_FAIXA
             value: "1090.40"
             currency: "BRL"
             customers:
-              rate: "0.200000"
+              rate: "0.2000"
           - interval: 4_FAIXA
             value: "2100.00"
             currency: BRL
             customers:
-              rate: "0.300000"
+              rate: "0.3000"
         minimum:
           value: "430.00"
           currency: "BRL"
@@ -2808,25 +2492,14 @@ components:
           value: "2200.00"
           currency: "BRL"
     UnarrangedAccountOverdraftRate:
-      description: Tarifas cobradas sobre Serviços ofertados
       type: object
       required:
-        - referentialRateIndexer
-        - rate
         - applications
         - minimumRate
         - maximumRate
+      allOf:
+        - $ref: '#/components/schemas/FeeReferentialRateIndexer'
       properties:
-        referentialRateIndexer:
-          $ref: '#/components/schemas/ReferentialRateIndexer'
-        rate:
-          type: string
-          description: |
-            Percentual que incide sobre a composição das taxas de juros remuneratórios. (representa uma porcentagem Ex: 0.15 (O valor ao lado representa 15%. O valor '1 'representa 100%). A apuração pode acontecer com até 4 casas decimais. O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)
-          pattern: '^\d{1}\.\d{6}$'
-          minLength: 8
-          maxLength: 8
-          example: '0.150000'
         applications:
           description:  Lista  das faixas de cobrança da taxa efetiva de remuneração.
           type: array
@@ -2838,42 +2511,53 @@ components:
           type: string
           description: |
             Percentual mínimo cobrado (taxa efetiva) no mês de referência, para o crédito contratado A apuração pode acontecer com até 4 casas decimais. O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)
-          pattern: '^\d{1}\.\d{6}$'
-          minLength: 8
-          maxLength: 8
+          pattern: '(^[0-9](\.[0-9]{4})|NA)$'
         maximumRate:
           type: string
           description: |
             Percentual máximo cobrado (taxa efetiva) no mês de referência, para o crédito contratado A apuração pode acontecer com até 4 casas decimais. O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)
-          pattern: '^\d{1}\.\d{6}$'
-          minLength: 8
-          maxLength: 8
+          pattern: '(^[0-9](\.[0-9]{4})|NA)$'
       example:
           referentialRateIndexer: "SEM_INDEXADOR_TAXA"
-          rate: "0.650000"
+          rate: "0.65"
           applications:
               - interval: "1_FAIXA"
                 indexer:
-                  rate: "0.018700"
+                  rate: "0.0187"
                 customers:
-                  rate: "0.150000"
+                  rate: "0.1500"
               - interval: "2_FAIXA"
                 indexer:
-                 rate: "0.290000"
+                 rate: "0.2900"
                 customers:
-                  rate: "0.350000"
+                  rate: "0.3500"
               - interval: "3_FAIXA"
                 indexer:
-                  rate: "0.360000"
+                  rate: "0.3600"
                 customers:
-                  rate: "0.200000"
+                  rate: "0.2000"
               - interval: "4_FAIXA"
                 indexer:
-                  rate: "0.799000"
+                  rate: "0.7990"
                 customers:
-                  rate: "0.300000"
-          minimumRate: "0.005600"
-          maximumRate: "0.856500"
+                  rate: "0.3000"
+          minimumRate: "0.0056"
+          maximumRate: "0.8565"
+    FeeReferentialRateIndexer:
+      description: Tarifas cobradas sobre Serviços ofertados
+      type: object
+      required:
+        - referentialRateIndexer
+        - rate
+      properties:
+        referentialRateIndexer:
+          $ref: '#/components/schemas/ReferentialRateIndexer'
+        rate:
+          type: string
+          description: |
+            Percentual que incide sobre a composição das taxas de juros remuneratórios. (representa uma porcentagem Ex: 0.15 (O valor ao lado representa 15%. O valor '1 'representa 100%). A apuração pode acontecer com até 4 casas decimais. O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)
+          pattern: '(^[0-9](\.[0-9]{2})|NA)$'
+          example: '0.15'
     ResponsePersonalUnarrangedAccountOverdraft:
       type: object
       required:
@@ -2906,7 +2590,6 @@ components:
           example: "Organização A"
         companies:
           type: array
-          maxItems: 700
           items:
             $ref: '#/components/schemas/PersonalUnarrangedAccountOverdraftCompany'
           description: Companies traz uma lista de todas as instituições da Marca
@@ -2916,30 +2599,11 @@ components:
           - name
           - cnpjNumber
           - personalUnarrangedAccountOverdraft
+        allOf:
+          - $ref: '#/components/schemas/Company'
         properties:
-          name:
-            type: string
-            description: Nome da Instituição, pertencente à marca, responsável pela modalidade de Empréstimos. p.ex.'Empresa da Organização A'
-            maxLength: 80
-            pattern: '[\w\W\s]*'
-            example: 'Empresa A1'
-          cnpjNumber:
-            type: string
-            pattern: '^(\d{14})$|^NA$'
-            description: CNPJ
-            maxLength: 14
-            example: "50685362000135"
-          urlComplementaryList:
-            type: string
-            pattern: '[\w\W\s]*'
-            maxLength: 1024
-            description: |
-              URL do link que conterá a lista complementar com os nomes e CNPJs agrupados sob o mesmo cnpjNumber. Os contidos nessa lista possuem as mesmas características para produtos e serviços. Endereço eletrônico de acesso ao canal. Será obrigatoriamente preenchido se houver lista complementar com os nomes e CNPJs a ser disponibilizada.
-              Restrição: Será obrigatorimente preenchido se houver lista complementar com os nomes e CNPJs a ser disponibilizada
-            example: 'https://empresadaorganizacaoa.com/complementarylist'
           personalUnarrangedAccountOverdraft:
             type: array
-            maxItems: 20
             items:
               $ref: '#/components/schemas/PersonalUnarrangedAccountOverdraft'
             description: Lista de produtos e serviços referente adiantamento a depositante
@@ -2947,6 +2611,7 @@ components:
       type: object
       required:
         - fees
+        - interestRate
         - termsConditions
       properties:
         fees:
@@ -2971,7 +2636,6 @@ components:
       properties:
         priorityServices:
           type: array
-          maxItems: 20
           items:
             $ref: '#/components/schemas/UnarrangedAccountOverdraftService'
           minItems: 1
@@ -3082,10 +2746,9 @@ components:
           type: string
           description: |
             Percentual de clientes em cada faixa.
-          pattern: '^\d{1}\.\d{6}$'
-          example: '0.150000'
-          minLength: 8
-          maxLength: 8
+          pattern: '(^[0-9](\.[0-9]{4})$|^NA$)'
+          example: '0.1500'
+          maxLength: 6
     MinimumBalance:
       type: object
       required:
@@ -3122,10 +2785,8 @@ components:
           type: string
           description: |
             Percentual que incide sobre a composição das taxas de juros remuneratórios. (representa uma porcentagem Ex: 0.15 (O valor ao lado representa 15%. O valor '1 'representa 100%). A apuração pode acontecer com até 4 casas decimais. O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)
-          pattern: '^\d{1}\.\d{6}$'
-          minLength: 8
-          maxLength: 8
-          example: '0.150000'
+          pattern: '(^[0-9](\.[0-9]{2})|NA)$'
+          example: '0.15'
         applications:
           type: array
           description: Lista distribuição percentuais relativos à taxa de juros remuneratórios
@@ -3135,18 +2796,14 @@ components:
           maxItems: 4
         minimumRate:
           type: string
-          pattern: '^\d{1}\.\d{6}$'
+          pattern: '(^[0-9](\.[0-9]{4})$|^NA$)'
           description: 'Percentual mínimo cobrado (taxa efetiva) no mês de referência, para o Financiamento contratado  A apuração pode acontecer com até 4 casas decimais. O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)'
-          minLength: 8
-          maxLength: 8
-          example: '0.045600'
+          example: '0.0456'
         maximumRate:
           type: string
-          pattern: '^\d{1}\.\d{6}$'
+          pattern: '(^[0-9](\.[0-9]{4})$|^NA$)'
           description: 'Percentual máximo cobrado (taxa efetiva) no mês de referência, para o Financiamento contratado  A apuração pode acontecer com até 4 casas decimais. O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)'
-          minLength: 8
-          maxLength: 8
-          example: '0.686500'
+          example: '0.6865'
     ReferentialRateIndexer:
       type: string
       description: |
@@ -3246,6 +2903,50 @@ components:
           $ref: '#/components/schemas/CreditCardInterest'
         termsConditions:
           $ref: '#/components/schemas/CreditCardTermsConditions'
+    Brand:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          maxLength: 80
+          pattern: '[\w\W\s]*'
+          description: Nome da Marca selecionada pelas Organizações
+          example: Organização A
+    Company:
+      type: object
+      required:
+        - name
+        - cnpjNumber
+      allOf:
+        - $ref: '#/components/schemas/CNPJ'
+      properties:
+        name:
+          type: string
+          description: Nome da Instituição, pertencente à marca, responsável pela modalidade de Empréstimos. p.ex.'Empresa da Organização A'
+          maxLength: 80
+          pattern: '[\w\W\s]*'
+          example: 'Empresa A1'
+        urlComplementaryList:
+          type: string
+          pattern: '[\w\W\s]*'
+          maxLength: 1024
+          description: |
+            URL do link que conterá a lista complementar com os nomes e CNPJs agrupados sob o mesmo cnpjNumber. Os contidos nessa lista possuem as mesmas características para produtos e serviços. Endereço eletrônico de acesso ao canal. Será obrigatoriamente preenchido se houver lista complementar com os nomes e CNPJs a ser disponibilizada.
+            Restrição: Será obrigatorimente preenchido se houver lista complementar com os nomes e CNPJs a ser disponibilizada
+          example: 'https://empresadaorganizacaoa.com/complementarylist'
+    CNPJ:
+      type: object
+      required:
+        - cnpjNumber
+      properties:
+        cnpjNumber:
+          type: string
+          pattern: '^(\d{14})$|^NA$'
+          description: CNPJ
+          maxLength: 14
+          example: "50685362000135"
     Links:
       type: object
       properties:
