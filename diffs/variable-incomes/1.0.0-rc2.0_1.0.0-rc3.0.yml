@@ -2,7 +2,7 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 1
+### Modified Endpoints: 2
 -------------------------
 GET /investments/{investmentId}
 - Responses changed
@@ -17,3 +17,10 @@ GET /investments/{investmentId}
               - Properties changed
                 - Modified property: issuerInstitutionCnpjNumber
                   - Description changed from 'CNPJ da instituição emissora.' to 'CNPJ da instituição emissora. Caso a transmissora possua a informação o envio deste campo é obrigatório.'
+GET /investments/{investmentId}/balances
+- Description changed from 'Obtém a posição da operação de Renda Variável identificada por investmentId.' to 'Obtém a posição da operação de Renda Variável identificada por investmentId.
+Nos casos em que não houver posição para o investimento, ou seja, quantidade de ativos e valores monetários zerados, mas o mesmo ainda estiver no prazo de exposição (até 12 meses após a última movimentação), deve se retornar status code 200 e para o payload de retorno considerar os valores abaixo. Campos não obrigatórios não devem ser retornados: 
+- Valores monetários: 0.00
+- Quantidade de ativos: 0.00
+- Data e hora da última posição: mesmo conteúdo do campo requestDateTime
+'
