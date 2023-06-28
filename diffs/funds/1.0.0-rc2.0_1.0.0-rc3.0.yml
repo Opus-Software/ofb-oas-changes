@@ -2,8 +2,15 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 2
+### Modified Endpoints: 3
 -------------------------
+GET /investments/{investmentId}/balances
+- Description changed from 'Obtém a posição da operação de Fundos de Investimento identificada por investmentId.' to 'Obtém a posição da operação de Fundos de Investimento identificada por investmentId.
+Nos casos em que não houver posição para o investimento, ou seja, quantidade de ativos e valores monetários zerados, mas o mesmo ainda estiver no prazo de exposição (até 12 meses após a última movimentação), deve se retornar status code 200 e para o payload de retorno considerar os valores abaixo. Campos não obrigatórios não devem ser retornados: 
+- Valores monetários: 0.00
+- Quantidade de ativos: 0.00
+- Data e hora da última posição: mesmo conteúdo do campo requestDateTime
+'
 GET /investments/{investmentId}/transactions
 - Responses changed
   - Modified response: 200
