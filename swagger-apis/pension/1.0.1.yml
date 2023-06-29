@@ -233,6 +233,7 @@ components:
             1. Seguro de Pessoas
             2. Previdência
             3. NA
+          maxLength: 20
           enum:
             - SEGURO_PESSOAS
             - PREVIDENCIA
@@ -244,6 +245,7 @@ components:
             1. Contribuição Variável;
             2. Benefício Definido.
             3. NA
+          maxLength: 21
           enum:
             - CONTRIBUICAO_VARIAVEL
             - BENEFICIO_DEFINIDO
@@ -310,6 +312,7 @@ components:
             Lista com as informações do(s) Fundo(s) de Investimento(s) disponíveis para o período de diferimento/acumulação, contemplando:
                - Tipo de taxa de performance
           example: DIRETAMENTE
+          maxLength: 13
         maximumPerformanceFee:
           type: string
           pattern: '^(\d{1}\.\d{6})$|^(-1.000000)$'
@@ -352,6 +355,7 @@ components:
       properties:
         contractType:
           type: string
+          maxLength: 27
           enum:
             - COLETIVO_AVERBADO
             - COLETIVO_INSTITUIDO
@@ -422,6 +426,7 @@ components:
           type: array
           items:
             type: string
+            maxLength: 27
             enum:
               - CARTAO_CREDITO
               - DEBITO_CONTA
@@ -484,6 +489,7 @@ components:
         12. VDR
         13. Demais produtos de Previdência.
         14. NA
+      maxLength: 27
       enum:
         - PGBL
         - PRGP
@@ -595,6 +601,7 @@ components:
           $ref: '#/components/schemas/CurrencyCode'
         periodicity:
           type: string
+          maxLength: 10
           example: MENSAL
           enum:
             - DIARIO
@@ -662,6 +669,7 @@ components:
           minItems: 0
           items:
             type: string
+            maxLength: 32
             description: |
               Tábua biométrica utilizada como parâmetro para conversão em renda atuarial que deve observar a relação discriminada de coberturas, conforme Tabela II.2 do Anexo II.
               Deverá ser informada a tábua biométrica aplicável à modalidade de renda padrão do plano.
@@ -819,6 +827,7 @@ components:
           1. Pessoa Natural
           2. Pessoa Jurídica
           3. NA
+      maxLength: 23
       enum:
         - PESSOA_NATURAL
         - PESSOA_JURIDICA
@@ -963,6 +972,7 @@ components:
       additionalProperties: false
     UpdateIndex:
       type: string
+      maxLength: 5
       description: |
         Índice utilizado na atualização do prêmio e do capital segurado, caso critério de atualização por meio de índice:
         1. IPCA (IBGE);
