@@ -1,0 +1,1274 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 12
+--------------------------
+GET /business-accounts
+- Deleted query param: page
+- Deleted query param: page-size
+- Responses changed
+  - Deleted response: 400
+  - Deleted response: 404
+  - Deleted response: 405
+  - Deleted response: 429
+  - Deleted response: 500
+  - Deleted response: 504
+  - Deleted response: 529
+  - Deleted response: default
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Properties changed
+                    - Modified property: companies
+                      - MaxItems changed from 700 to null
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - 1 schemas added
+                        - Properties changed
+                          - Deleted property: cnpjNumber
+                          - Deleted property: name
+                          - Deleted property: urlComplementaryList
+                          - Modified property: businessAccounts
+                            - Items changed
+                              - Required changed
+                                - New required property: serviceBundles
+                              - Properties changed
+                                - Modified property: additionalInfo
+                                  - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                - Modified property: fees
+                                  - Properties changed
+                                    - Modified property: services
+                                      - MaxItems changed from 200 to null
+                                      - Items changed
+                                        - Properties changed
+                                          - Modified property: chargingTriggerInfo
+                                            - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                          - Modified property: code
+                                            - Pattern changed from '[\w\W\s]*' to ''
+                                          - Modified property: name
+                                            - Pattern changed from '[\w\W\s]*' to ''
+                                          - Modified property: prices
+                                            - Items changed
+                                              - Properties changed
+                                                - Modified property: customers
+                                                  - Properties changed
+                                                    - Modified property: rate
+                                                      - Example changed from '0.150000' to '0.1500'
+                                                      - MinLength changed from 8 to 0
+                                                      - MaxLength changed from 8 to 6
+                                                      - Pattern changed from '^\d{1}\.\d{6}$' to '(^[0-9](\.[0-9]{4})$|^NA$)'
+                                                - Modified property: interval
+                                                  - MinItems changed from 0 to 1
+                                                  - MaxItems changed from null to 1
+                                - Modified property: incomeRate
+                                  - Properties changed
+                                    - Modified property: prepaidPaymentAccount
+                                      - Description changed from 'Campo Livre. Deve explicitar o Percentual em favor do titular da conta de pagamento pré-paga.' to 'Percentual em favor do titular da conta de pagamento pré-paga. Campo Livre.
+Restrição: De preenchimento obrigatório para Conta do Tipo CONTA_PAGAMENTO_PRE_PAGA.
+'
+                                      - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                      - MinItems changed from 0 to 1
+                                      - MaxItems changed from null to 1
+                                    - Modified property: savingAccount
+                                      - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                      - MinItems changed from 0 to 1
+                                      - MaxItems changed from null to 1
+                                - Modified property: serviceBundles
+                                  - Description changed from 'Lista dos serviços que compõe o pacote de serviços
+[Restrição]
+- Caso o ENUM do campo “type” seja CONTA_PAGAMENTO_PRE_PAGA a estrutura “serviceBundle” fica condicionado caso a instituição tenha pacote de serviço
+atrelado a este tipo de conta, porque são contas com serviços essenciais padronizados e regulados pela Resolução BACEN 3919, de 25/11/2010
+- Caso o ENUM do campo “type” seja CONTA_DEPOSITO_A_VISTA (conta corrente) ou CONTA_POUPANCA, deverá ser incluso a estrutura “serviceBundle”, porque
+existem hoje pacotes passíveis de cobrança diferentes dos serviços essenciais (que não são cobrados)
+' to 'Lista dos serviços que compõe o pacote de serviços'
+                                  - MaxItems changed from 100 to null
+                                  - Items changed
+                                    - Properties changed
+                                      - Modified property: name
+                                        - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                      - Modified property: prices
+                                        - Items changed
+                                          - Properties changed
+                                            - Modified property: customers
+                                              - Properties changed
+                                                - Modified property: rate
+                                                  - Example changed from '0.150000' to '0.1500'
+                                                  - MinLength changed from 8 to 0
+                                                  - MaxLength changed from 8 to 6
+                                                  - Pattern changed from '^\d{1}\.\d{6}$' to '(^[0-9](\.[0-9]{4})$|^NA$)'
+                                            - Modified property: interval
+                                              - MinItems changed from 0 to 1
+                                              - MaxItems changed from null to 1
+                                      - Modified property: services
+                                        - MaxItems changed from 100 to null
+                                        - Items changed
+                                          - Properties changed
+                                            - Modified property: chargingTriggerInfo
+                                              - Format changed from '' to '\w*\W*'
+                                              - Pattern changed from '[\w\W\s]*' to ''
+                                            - Modified property: code
+                                              - Format changed from '' to '\w*\W*'
+                                              - Pattern changed from '[\w\W\s]*' to ''
+                                            - Modified property: eventLimitQuantity
+                                              - Format changed from '' to '^(\d{1,6}){1}$'
+                                              - Pattern changed from '^(\d{1,6}){1}$' to ''
+                                            - Modified property: freeEventQuantity
+                                              - Format changed from '' to '^(\d{1,6}){1}$'
+                                              - Pattern changed from '^(\d{1,6}){1}$' to ''
+                                - Modified property: termsConditions
+                                  - Properties changed
+                                    - Modified property: closingProcessInfo
+                                      - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                    - Modified property: elegibilityCriteriaInfo
+                                      - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                    - Modified property: name
+                      - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Example changed from 'https://api.banco.com.br/open-banking/products-services/v1/resource' to 'https://api.banco.com.br/open-banking/products-services/v1/<resource>'
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: last
+                  - Example changed from 'https://api.banco.com.br/open-banking/products-services/v1/resource' to 'https://api.banco.com.br/open-banking/products-services/v1/<resource>'
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: next
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: prev
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: self
+                  - Example changed from 'https://api.banco.com.br/open-banking/products-services/v1/resource' to 'https://api.banco.com.br/open-banking/products-services/v1/<resource>'
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+GET /business-credit-cards
+- Deleted query param: page
+- Deleted query param: page-size
+- Responses changed
+  - Deleted response: 400
+  - Deleted response: 404
+  - Deleted response: 405
+  - Deleted response: 429
+  - Deleted response: 500
+  - Deleted response: 504
+  - Deleted response: 529
+  - Deleted response: default
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Property 'AllOf' changed
+                    - 1 schemas added
+                  - Properties changed
+                    - Deleted property: name
+                    - Modified property: companies
+                      - MaxItems changed from 720 to null
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - 1 schemas added
+                        - Properties changed
+                          - Deleted property: cnpjNumber
+                          - Deleted property: name
+                          - Deleted property: urlComplementaryList
+                          - Modified property: businessCreditCards
+                            - MaxItems changed from 80 to null
+                            - Items changed
+                              - Properties changed
+                                - Modified property: fees
+                                  - Properties changed
+                                    - Modified property: services
+                                      - MaxItems changed from 9 to 8
+                                      - Items changed
+                                        - Properties changed
+                                          - Modified property: chargingTriggerInfo
+                                            - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                          - Modified property: code
+                                            - Deleted enum values: [ANUIDADE_DIFERENCIADA]
+                                          - Modified property: name
+                                            - Deleted enum values: [ANUIDADE_DIFERENCIADA]
+                                          - Modified property: prices
+                                            - Items changed
+                                              - Properties changed
+                                                - Modified property: customers
+                                                  - Properties changed
+                                                    - Modified property: rate
+                                                      - Example changed from '0.150000' to '0.1500'
+                                                      - MinLength changed from 8 to 0
+                                                      - MaxLength changed from 8 to 6
+                                                      - Pattern changed from '^\d{1}\.\d{6}$' to '(^[0-9](\.[0-9]{4})$|^NA$)'
+                                                - Modified property: interval
+                                                  - MinItems changed from 0 to 1
+                                                  - MaxItems changed from null to 1
+                                - Modified property: identification
+                                  - Properties changed
+                                    - Modified property: creditCard
+                                      - Properties changed
+                                        - Modified property: additionalInfo
+                                          - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                    - Modified property: product
+                                      - Properties changed
+                                        - Modified property: additionalInfo
+                                          - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                - Modified property: interest
+                                  - Required changed
+                                    - New required property: feeRate
+                                    - New required property: instalmentRate
+                                    - New required property: interestRates
+                                    - Deleted required property: instalmentRates
+                                    - Deleted required property: otherCredits
+                                    - Deleted required property: rates
+                                  - Properties changed
+                                    - New property: feeRate
+                                    - New property: instalmentRate
+                                    - New property: interestRates
+                                    - Deleted property: instalmentRates
+                                    - Deleted property: otherCredits
+                                    - Deleted property: rates
+                                - Modified property: name
+                                  - Example changed from 'Cartão Vantagens' to 'Cartão Universitário'
+                                  - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                - Modified property: rewardsProgram
+                                  - Properties changed
+                                    - Modified property: rewardProgramInfo
+                                      - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                - Modified property: termsConditions
+                                  - Properties changed
+                                    - Modified property: additionalInfo
+                                      - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                    - Modified property: closingProcessInfo
+                                      - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                    - Modified property: elegibilityCriteriaInfo
+                                      - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                    - Modified property: minimumFeeRate
+                                      - Example changed from '0.250000' to '0.25'
+                                      - MinLength changed from 8 to 0
+                                      - MaxLength changed from 8 to 4
+                                      - Pattern changed from '^\d{1}\.\d{6}$' to '(^[0-9](\.[0-9]{2})$|^NA$)'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Example changed from 'https://api.banco.com.br/open-banking/products-services/v1/resource' to 'https://api.banco.com.br/open-banking/products-services/v1/<resource>'
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: last
+                  - Example changed from 'https://api.banco.com.br/open-banking/products-services/v1/resource' to 'https://api.banco.com.br/open-banking/products-services/v1/<resource>'
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: next
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: prev
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: self
+                  - Example changed from 'https://api.banco.com.br/open-banking/products-services/v1/resource' to 'https://api.banco.com.br/open-banking/products-services/v1/<resource>'
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+GET /business-financings
+- Deleted query param: page
+- Deleted query param: page-size
+- Responses changed
+  - Deleted response: 400
+  - Deleted response: 404
+  - Deleted response: 405
+  - Deleted response: 429
+  - Deleted response: 500
+  - Deleted response: 504
+  - Deleted response: 529
+  - Deleted response: default
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Property 'AllOf' changed
+                    - 1 schemas added
+                  - Properties changed
+                    - Deleted property: name
+                    - Modified property: companies
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - 1 schemas added
+                        - Properties changed
+                          - Deleted property: cnpjNumber
+                          - Deleted property: name
+                          - Deleted property: urlComplementaryList
+                          - Modified property: businessFinancings
+                            - Items changed
+                              - Required changed
+                                - New required property: interestRate
+                                - Deleted required property: interestRates
+                              - Properties changed
+                                - New property: interestRate
+                                - Deleted property: interestRates
+                                - Modified property: fees
+                                  - Properties changed
+                                    - Modified property: services
+                                      - Items changed
+                                        - Required changed
+                                          - New required property: customers
+                                        - Properties changed
+                                          - Modified property: chargingTriggerInfo
+                                            - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                          - Modified property: code
+                                            - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                          - Modified property: name
+                                            - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                          - Modified property: prices
+                                            - Items changed
+                                              - Properties changed
+                                                - Modified property: customers
+                                                  - Properties changed
+                                                    - Modified property: rate
+                                                      - Example changed from '0.150000' to '0.1500'
+                                                      - MinLength changed from 8 to 0
+                                                      - MaxLength changed from 8 to 6
+                                                      - Pattern changed from '^\d{1}\.\d{6}$' to '(^[0-9](\.[0-9]{4})$|^NA$)'
+                                                - Modified property: interval
+                                                  - MinItems changed from 0 to 1
+                                                  - MaxItems changed from null to 1
+                                - Modified property: termsConditions
+                                  - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                - Modified property: type
+                                  - New enum values: [FINANCIAMENTO_IMOBILIARIO_SISTEMA_FINANCEIRO_HABILITACAO_SFH FINANCIAMENTO_IMOBILIARIO_SISTEMA_FINANCEIRO_HABILITACAO_SFI]
+                                  - Deleted enum values: [FINANCIAMENTO_IMOBILIARIO_SISTEMA_FINANCEIRO_HABITACAO_SFH FINANCIAMENTO_IMOBILIARIO_SISTEMA_FINANCEIRO_HABITACAO_SFI]
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Example changed from 'https://api.banco.com.br/open-banking/products-services/v1/resource' to 'https://api.banco.com.br/open-banking/products-services/v1/<resource>'
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: last
+                  - Example changed from 'https://api.banco.com.br/open-banking/products-services/v1/resource' to 'https://api.banco.com.br/open-banking/products-services/v1/<resource>'
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: next
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: prev
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: self
+                  - Example changed from 'https://api.banco.com.br/open-banking/products-services/v1/resource' to 'https://api.banco.com.br/open-banking/products-services/v1/<resource>'
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+GET /business-invoice-financings
+- Deleted query param: page
+- Deleted query param: page-size
+- Responses changed
+  - Deleted response: 400
+  - Deleted response: 404
+  - Deleted response: 405
+  - Deleted response: 429
+  - Deleted response: 500
+  - Deleted response: 504
+  - Deleted response: 529
+  - Deleted response: default
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Properties changed
+                    - Modified property: companies
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - 1 schemas added
+                        - Properties changed
+                          - Deleted property: cnpjNumber
+                          - Deleted property: name
+                          - Deleted property: urlComplementaryList
+                          - Modified property: businessInvoiceFinancings
+                            - Items changed
+                              - Required changed
+                                - New required property: interestRate
+                                - Deleted required property: interestRates
+                              - Properties changed
+                                - New property: interestRate
+                                - Deleted property: interestRates
+                                - Modified property: fees
+                                  - Properties changed
+                                    - Modified property: services
+                                      - Items changed
+                                        - Properties changed
+                                          - Modified property: chargingTriggerInfo
+                                            - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                          - Modified property: code
+                                            - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                          - Modified property: name
+                                            - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                          - Modified property: prices
+                                            - Items changed
+                                              - Properties changed
+                                                - Modified property: customers
+                                                  - Properties changed
+                                                    - Modified property: rate
+                                                      - Example changed from '0.150000' to '0.1500'
+                                                      - MinLength changed from 8 to 0
+                                                      - MaxLength changed from 8 to 6
+                                                      - Pattern changed from '^\d{1}\.\d{6}$' to '(^[0-9](\.[0-9]{4})$|^NA$)'
+                                                - Modified property: interval
+                                                  - MinItems changed from 0 to 1
+                                                  - MaxItems changed from null to 1
+                                - Modified property: termsConditions
+                                  - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                    - Modified property: name
+                      - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Example changed from 'https://api.banco.com.br/open-banking/products-services/v1/resource' to 'https://api.banco.com.br/open-banking/products-services/v1/<resource>'
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: last
+                  - Example changed from 'https://api.banco.com.br/open-banking/products-services/v1/resource' to 'https://api.banco.com.br/open-banking/products-services/v1/<resource>'
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: next
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: prev
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: self
+                  - Example changed from 'https://api.banco.com.br/open-banking/products-services/v1/resource' to 'https://api.banco.com.br/open-banking/products-services/v1/<resource>'
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+GET /business-loans
+- Deleted query param: page
+- Deleted query param: page-size
+- Responses changed
+  - Deleted response: 400
+  - Deleted response: 404
+  - Deleted response: 405
+  - Deleted response: 429
+  - Deleted response: 500
+  - Deleted response: 504
+  - Deleted response: 529
+  - Deleted response: default
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Properties changed
+                    - Modified property: companies
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - 1 schemas added
+                        - Properties changed
+                          - Deleted property: cnpjNumber
+                          - Modified property: businessLoans
+                            - Items changed
+                              - Properties changed
+                                - New property: interestRate
+                                - Deleted property: interestRates
+                                - Modified property: fees
+                                  - Properties changed
+                                    - Modified property: services
+                                      - Items changed
+                                        - Properties changed
+                                          - Modified property: chargingTriggerInfo
+                                            - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                          - Modified property: code
+                                            - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                          - Modified property: name
+                                            - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                          - Modified property: prices
+                                            - Items changed
+                                              - Properties changed
+                                                - Modified property: customers
+                                                  - Properties changed
+                                                    - Modified property: rate
+                                                      - Example changed from '0.150000' to '0.1500'
+                                                      - MinLength changed from 8 to 0
+                                                      - MaxLength changed from 8 to 6
+                                                      - Pattern changed from '^\d{1}\.\d{6}$' to '(^[0-9](\.[0-9]{4})$|^NA$)'
+                                                - Modified property: interval
+                                                  - MinItems changed from 0 to 1
+                                                  - MaxItems changed from null to 1
+                                - Modified property: termsConditions
+                                  - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                          - Modified property: name
+                            - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                          - Modified property: urlComplementaryList
+                            - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                    - Modified property: name
+                      - Description changed from 'Nome da Marca reportada pelo participante do Open Finance. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes' to 'Nome da Marca reportada pelo participante do Open Banking. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes'
+                      - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Example changed from 'https://api.banco.com.br/open-banking/products-services/v1/resource' to 'https://api.banco.com.br/open-banking/products-services/v1/<resource>'
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: last
+                  - Example changed from 'https://api.banco.com.br/open-banking/products-services/v1/resource' to 'https://api.banco.com.br/open-banking/products-services/v1/<resource>'
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: next
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: prev
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: self
+                  - Example changed from 'https://api.banco.com.br/open-banking/products-services/v1/resource' to 'https://api.banco.com.br/open-banking/products-services/v1/<resource>'
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+GET /business-unarranged-account-overdraft
+- Deleted query param: page
+- Deleted query param: page-size
+- Responses changed
+  - Deleted response: 400
+  - Deleted response: 404
+  - Deleted response: 405
+  - Deleted response: 429
+  - Deleted response: 500
+  - Deleted response: 504
+  - Deleted response: 529
+  - Deleted response: default
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Properties changed
+                    - Modified property: companies
+                      - MaxItems changed from 700 to null
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - 1 schemas added
+                        - Properties changed
+                          - Deleted property: cnpjNumber
+                          - Deleted property: name
+                          - Deleted property: urlComplementaryList
+                          - Modified property: businessUnarrangedAccountOverdraft
+                            - MaxItems changed from 20 to null
+                            - Items changed
+                              - Properties changed
+                                - New property: interestRate
+                                - Deleted property: interestRates
+                                - Modified property: fees
+                                  - Properties changed
+                                    - Modified property: services
+                                      - Items changed
+                                        - Example changed from map[chargingTriggerInfo:Levantamento de informações e avaliação de viabilidade e de riscos para a concessão de crédito em caráter emergencial para cobertura de saldo devedor em conta de depósitos à vista e de excesso sobre o limite previamente pactuado de cheque especial, cobrada no máximo uma vez nos últimos trinta dias code:ADIANT_DEPOSITANTE maximum:map[currency:BRL value:2200.00] minimum:map[currency:BRL value:430.00] name:CONCESSAO_ADIANTAMENTO_DEPOSITANTE prices:[map[currency:BRL customers:map[rate:0.150000] interval:1_FAIXA value:500.00] map[currency:BRL customers:map[rate:0.350000] interval:2_FAIXA value:860.00] map[currency:BRL customers:map[rate:0.200000] interval:3_FAIXA value:1090.40] map[currency:BRL customers:map[rate:0.300000] interval:4_FAIXA value:2100.00]]] to map[chargingTriggerInfo:Levantamento de informações e avaliação de viabilidade e de riscos para a concessão de crédito em caráter emergencial para cobertura de saldo devedor em conta de depósitos à vista e de excesso sobre o limite previamente pactuado de cheque especial, cobrada no máximo uma vez nos últimos trinta dias code:ADIANT_DEPOSITANTE maximum:map[currency:BRL value:2200.00] minimum:map[currency:BRL value:430.00] name:CONCESSAO_ADIANTAMENTO_DEPOSITANTE prices:[map[currency:BRL customers:map[rate:0.1500] interval:1_FAIXA value:500.00] map[currency:BRL customers:map[rate:0.3500] interval:2_FAIXA value:860.00] map[currency:BRL customers:map[rate:0.2000] interval:3_FAIXA value:1090.40] map[currency:BRL customers:map[rate:0.3000] interval:4_FAIXA value:2100.00]]]
+                                        - Properties changed
+                                          - Modified property: chargingTriggerInfo
+                                            - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                          - Modified property: prices
+                                            - Items changed
+                                              - Properties changed
+                                                - Modified property: customers
+                                                  - Properties changed
+                                                    - Modified property: rate
+                                                      - Example changed from '0.150000' to '0.1500'
+                                                      - MinLength changed from 8 to 0
+                                                      - MaxLength changed from 8 to 6
+                                                      - Pattern changed from '^\d{1}\.\d{6}$' to '(^[0-9](\.[0-9]{4})$|^NA$)'
+                                                - Modified property: interval
+                                                  - MinItems changed from 0 to 1
+                                                  - MaxItems changed from null to 1
+                                - Modified property: termsConditions
+                                  - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                    - Modified property: name
+                      - Description changed from 'Nome da Marca reportada pelo participante do Open Finance. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes.' to 'Nome da Marca reportada pelo participante do Open Banking. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes.'
+                      - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Example changed from 'https://api.banco.com.br/open-banking/products-services/v1/resource' to 'https://api.banco.com.br/open-banking/products-services/v1/<resource>'
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: last
+                  - Example changed from 'https://api.banco.com.br/open-banking/products-services/v1/resource' to 'https://api.banco.com.br/open-banking/products-services/v1/<resource>'
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: next
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: prev
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: self
+                  - Example changed from 'https://api.banco.com.br/open-banking/products-services/v1/resource' to 'https://api.banco.com.br/open-banking/products-services/v1/<resource>'
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+GET /personal-accounts
+- Deleted query param: page
+- Deleted query param: page-size
+- Responses changed
+  - Deleted response: 400
+  - Deleted response: 404
+  - Deleted response: 405
+  - Deleted response: 429
+  - Deleted response: 500
+  - Deleted response: 504
+  - Deleted response: 529
+  - Deleted response: default
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Properties changed
+                    - Modified property: companies
+                      - MaxItems changed from 700 to null
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - 1 schemas added
+                        - Required changed
+                          - New required property: cnpjNumbers
+                          - Deleted required property: cnpjNumber
+                        - Properties changed
+                          - Deleted property: cnpjNumber
+                          - Deleted property: name
+                          - Deleted property: urlComplementaryList
+                          - Modified property: personalAccounts
+                            - Items changed
+                              - Required changed
+                                - New required property: incomeRates
+                                - New required property: serviceBundles
+                              - Properties changed
+                                - Modified property: additionalInfo
+                                  - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                - Modified property: fees
+                                  - Properties changed
+                                    - Modified property: otherServices
+                                      - MaxItems changed from 100 to null
+                                      - Items changed
+                                        - Properties changed
+                                          - Modified property: chargingTriggerInfo
+                                            - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                          - Modified property: code
+                                            - Pattern changed from '[\w\W\s]*' to ''
+                                          - Modified property: name
+                                            - Pattern changed from '[\w\W\s]*' to ''
+                                          - Modified property: prices
+                                            - Items changed
+                                              - Properties changed
+                                                - Modified property: customers
+                                                  - Properties changed
+                                                    - Modified property: rate
+                                                      - Example changed from '0.150000' to '0.1500'
+                                                      - MinLength changed from 8 to 0
+                                                      - MaxLength changed from 8 to 6
+                                                      - Pattern changed from '^\d{1}\.\d{6}$' to '(^[0-9](\.[0-9]{4})$|^NA$)'
+                                                - Modified property: interval
+                                                  - MinItems changed from 0 to 1
+                                                  - MaxItems changed from null to 1
+                                    - Modified property: priorityServices
+                                      - MaxItems changed from 40 to 31
+                                      - Items changed
+                                        - Properties changed
+                                          - Modified property: chargingTriggerInfo
+                                            - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                          - Modified property: code
+                                            - Description changed from 'Lista das Siglas de identificação do Serviço Prioritário, segundo Resolução 3.919 do Bacen.' to 'Sigla de identificação do Serviço Prioritário, segundo Resolução 3.919 do Bacen.'
+                                            - New enum values: [2_VIA-CARTAO_POUPANCA DOCELETRONICO]
+                                            - Deleted enum values: [2_VIA_CARTAO_POUPANCA DOC_ELETRONICO ANUIDADE_NACIONAL ANUIDADE_INTERNACIONAL ANUIDADE_DIFERENCIADA SAQUE_CARTAO_BRASIL SAQUE_CARTAO_EXTERIOR AVALIACAO_EMERGENCIAL_CREDITO EMISSAO_SEGUNDA_VIA TARIFA_PAGAMENTO_CONTAS SMS]
+                                          - Modified property: name
+                                            - Deleted enum values: [ANUIDADE_CARTAO_BASICO_NACIONAL ANUIDADE_CARTAO_BASICO_INTERNACIONAL ANUIDADE_DIFERENCIADA UTILIZACAO_CANAIS_ATENDIMENTO_RETIRADA_ESPECIE_BRASIL UTILIZACAO_CANAIS_ATENDIMENTO_RETIRADA_ESPECIE_EXTERIOR AVALIACAO_EMERGENCIAL_CREDITO FORNECIMENTO_SEGUNDA_VIA_FUNCAO_CREDITO PAGAMENTO_CONTAS_UTILIZANDO_FUNCAO_CREDITO SMS]
+                                            - MaxLength changed from null to 250
+                                            - Pattern changed from '' to '\w*\W*'
+                                          - Modified property: prices
+                                            - Items changed
+                                              - Properties changed
+                                                - Modified property: customers
+                                                  - Properties changed
+                                                    - Modified property: rate
+                                                      - Example changed from '0.150000' to '0.1500'
+                                                      - MinLength changed from 8 to 0
+                                                      - MaxLength changed from 8 to 6
+                                                      - Pattern changed from '^\d{1}\.\d{6}$' to '(^[0-9](\.[0-9]{4})$|^NA$)'
+                                                - Modified property: interval
+                                                  - MinItems changed from 0 to 1
+                                                  - MaxItems changed from null to 1
+                                - Modified property: incomeRate
+                                  - Properties changed
+                                    - Modified property: prepaidPaymentAccount
+                                      - Description changed from 'Campo Livre. Deve explicitar o Percentual em favor do titular da conta de pagamento pré-paga.' to 'Percentual em favor do titular da conta de pagamento pré-paga. Campo Livre.
+Restrição: De preenchimento obrigatório para Conta do Tipo CONTA_PAGAMENTO_PRE_PAGA.
+'
+                                      - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                      - MinItems changed from 0 to 1
+                                      - MaxItems changed from null to 1
+                                    - Modified property: savingAccount
+                                      - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                      - MinItems changed from 0 to 1
+                                      - MaxItems changed from null to 1
+                                - Modified property: serviceBundles
+                                  - Description changed from 'Lista dos Pacotes de serviços
+[Restrição]
+- Caso o ENUM do campo “type” seja CONTA_PAGAMENTO_PRE_PAGA a estrutura “serviceBundle” fica condicionado caso a instituição tenha pacote de serviço
+atrelado a este tipo de conta, porque são contas com serviços essenciais padronizados e regulados pela Resolução BACEN 3919, de 25/11/2010
+- Caso o ENUM do campo “type” seja CONTA_DEPOSITO_A_VISTA (conta corrente) ou CONTA_POUPANCA, deverá ser incluso a estrutura “serviceBundle”, porque
+existem hoje pacotes passíveis de cobrança diferentes dos serviços essenciais (que não são cobrados)
+' to 'Lista dos Pacotes de serviços'
+                                  - MaxItems changed from 200 to null
+                                  - Items changed
+                                    - Properties changed
+                                      - Modified property: name
+                                        - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                      - Modified property: prices
+                                        - Items changed
+                                          - Properties changed
+                                            - Modified property: customers
+                                              - Properties changed
+                                                - Modified property: rate
+                                                  - Example changed from '0.150000' to '0.1500'
+                                                  - MinLength changed from 8 to 0
+                                                  - MaxLength changed from 8 to 6
+                                                  - Pattern changed from '^\d{1}\.\d{6}$' to '(^[0-9](\.[0-9]{4})$|^NA$)'
+                                            - Modified property: interval
+                                              - MinItems changed from 0 to 1
+                                              - MaxItems changed from null to 1
+                                      - Modified property: services
+                                        - MaxItems changed from 100 to null
+                                        - Items changed
+                                          - Properties changed
+                                            - Modified property: chargingTriggerInfo
+                                              - Format changed from '' to '\w*\W*'
+                                              - Pattern changed from '[\w\W\s]*' to ''
+                                            - Modified property: code
+                                              - Format changed from '' to '\w*\W*'
+                                              - Pattern changed from '[\w\W\s]*' to ''
+                                            - Modified property: eventLimitQuantity
+                                              - Format changed from '' to '^(\d{1,6}){1}$'
+                                              - Pattern changed from '^(\d{1,6}){1}$' to ''
+                                            - Modified property: freeEventQuantity
+                                              - Format changed from '' to '^(\d{1,6}){1}$'
+                                              - Pattern changed from '^(\d{1,6}){1}$' to ''
+                                - Modified property: termsConditions
+                                  - Properties changed
+                                    - Modified property: closingProcessInfo
+                                      - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                    - Modified property: elegibilityCriteriaInfo
+                                      - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                    - Modified property: name
+                      - Description changed from 'Nome da Marca reportada pelo participante do Open Finance. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes' to 'Nome da Marca reportada pelo participante do Open Banking. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes'
+                      - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Example changed from 'https://api.banco.com.br/open-banking/products-services/v1/resource' to 'https://api.banco.com.br/open-banking/products-services/v1/<resource>'
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: last
+                  - Example changed from 'https://api.banco.com.br/open-banking/products-services/v1/resource' to 'https://api.banco.com.br/open-banking/products-services/v1/<resource>'
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: next
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: prev
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: self
+                  - Example changed from 'https://api.banco.com.br/open-banking/products-services/v1/resource' to 'https://api.banco.com.br/open-banking/products-services/v1/<resource>'
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+GET /personal-credit-cards
+- Deleted query param: page
+- Deleted query param: page-size
+- Responses changed
+  - Deleted response: 400
+  - Deleted response: 404
+  - Deleted response: 405
+  - Deleted response: 429
+  - Deleted response: 500
+  - Deleted response: 504
+  - Deleted response: 529
+  - Deleted response: default
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Property 'AllOf' changed
+                    - 1 schemas added
+                  - Required changed
+                    - Deleted required property: name
+                  - Properties changed
+                    - Deleted property: name
+                    - Modified property: companies
+                      - MaxItems changed from 800 to null
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - 1 schemas added
+                        - Properties changed
+                          - Deleted property: cnpjNumber
+                          - Deleted property: name
+                          - Deleted property: urlComplementaryList
+                          - Modified property: personalCreditCards
+                            - MaxItems changed from 300 to null
+                            - Items changed
+                              - Properties changed
+                                - Modified property: fees
+                                  - Properties changed
+                                    - Modified property: services
+                                      - MaxItems changed from 9 to 8
+                                      - Items changed
+                                        - Properties changed
+                                          - Modified property: chargingTriggerInfo
+                                            - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                          - Modified property: code
+                                            - Deleted enum values: [ANUIDADE_DIFERENCIADA]
+                                          - Modified property: name
+                                            - Deleted enum values: [ANUIDADE_DIFERENCIADA]
+                                          - Modified property: prices
+                                            - Items changed
+                                              - Properties changed
+                                                - Modified property: customers
+                                                  - Properties changed
+                                                    - Modified property: rate
+                                                      - Example changed from '0.150000' to '0.1500'
+                                                      - MinLength changed from 8 to 0
+                                                      - MaxLength changed from 8 to 6
+                                                      - Pattern changed from '^\d{1}\.\d{6}$' to '(^[0-9](\.[0-9]{4})$|^NA$)'
+                                                - Modified property: interval
+                                                  - MinItems changed from 0 to 1
+                                                  - MaxItems changed from null to 1
+                                - Modified property: identification
+                                  - Properties changed
+                                    - Modified property: creditCard
+                                      - Properties changed
+                                        - Modified property: additionalInfo
+                                          - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                    - Modified property: product
+                                      - Properties changed
+                                        - Modified property: additionalInfo
+                                          - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                - Modified property: interest
+                                  - Required changed
+                                    - New required property: feeRate
+                                    - New required property: instalmentRate
+                                    - New required property: interestRates
+                                    - Deleted required property: instalmentRates
+                                    - Deleted required property: otherCredits
+                                    - Deleted required property: rates
+                                  - Properties changed
+                                    - New property: feeRate
+                                    - New property: instalmentRate
+                                    - New property: interestRates
+                                    - Deleted property: instalmentRates
+                                    - Deleted property: otherCredits
+                                    - Deleted property: rates
+                                - Modified property: name
+                                  - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                - Modified property: rewardsProgram
+                                  - Properties changed
+                                    - Modified property: rewardProgramInfo
+                                      - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                - Modified property: termsConditions
+                                  - Properties changed
+                                    - Modified property: additionalInfo
+                                      - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                    - Modified property: closingProcessInfo
+                                      - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                    - Modified property: elegibilityCriteriaInfo
+                                      - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                    - Modified property: minimumFeeRate
+                                      - Example changed from '0.250000' to '0.25'
+                                      - MinLength changed from 8 to 0
+                                      - MaxLength changed from 8 to 4
+                                      - Pattern changed from '^\d{1}\.\d{6}$' to '(^[0-9](\.[0-9]{2})$|^NA$)'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Example changed from 'https://api.banco.com.br/open-banking/products-services/v1/resource' to 'https://api.banco.com.br/open-banking/products-services/v1/<resource>'
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: last
+                  - Example changed from 'https://api.banco.com.br/open-banking/products-services/v1/resource' to 'https://api.banco.com.br/open-banking/products-services/v1/<resource>'
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: next
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: prev
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: self
+                  - Example changed from 'https://api.banco.com.br/open-banking/products-services/v1/resource' to 'https://api.banco.com.br/open-banking/products-services/v1/<resource>'
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+GET /personal-financings
+- Deleted query param: page
+- Deleted query param: page-size
+- Responses changed
+  - Deleted response: 400
+  - Deleted response: 404
+  - Deleted response: 405
+  - Deleted response: 429
+  - Deleted response: 500
+  - Deleted response: 504
+  - Deleted response: 529
+  - Deleted response: default
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Property 'AllOf' changed
+                    - 1 schemas added
+                  - Properties changed
+                    - Deleted property: name
+                    - Modified property: companies
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - 1 schemas added
+                        - Properties changed
+                          - Deleted property: cnpjNumber
+                          - Deleted property: name
+                          - Deleted property: urlComplementaryList
+                          - Modified property: personalFinancings
+                            - Items changed
+                              - Required changed
+                                - New required property: interestRate
+                                - Deleted required property: interestRates
+                              - Properties changed
+                                - New property: interestRate
+                                - Deleted property: interestRates
+                                - Modified property: fees
+                                  - Properties changed
+                                    - Modified property: services
+                                      - Items changed
+                                        - Required changed
+                                          - New required property: customers
+                                        - Properties changed
+                                          - Modified property: chargingTriggerInfo
+                                            - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                          - Modified property: code
+                                            - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                          - Modified property: name
+                                            - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                          - Modified property: prices
+                                            - Items changed
+                                              - Properties changed
+                                                - Modified property: customers
+                                                  - Properties changed
+                                                    - Modified property: rate
+                                                      - Example changed from '0.150000' to '0.1500'
+                                                      - MinLength changed from 8 to 0
+                                                      - MaxLength changed from 8 to 6
+                                                      - Pattern changed from '^\d{1}\.\d{6}$' to '(^[0-9](\.[0-9]{4})$|^NA$)'
+                                                - Modified property: interval
+                                                  - MinItems changed from 0 to 1
+                                                  - MaxItems changed from null to 1
+                                - Modified property: termsConditions
+                                  - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                - Modified property: type
+                                  - New enum values: [FINANCIAMENTO_IMOBILIARIO_SISTEMA_FINANCEIRO_HABILITACAO_SFH FINANCIAMENTO_IMOBILIARIO_SISTEMA_FINANCEIRO_HABILITACAO_SFI]
+                                  - Deleted enum values: [FINANCIAMENTO_IMOBILIARIO_SISTEMA_FINANCEIRO_HABITACAO_SFH FINANCIAMENTO_IMOBILIARIO_SISTEMA_FINANCEIRO_HABITACAO_SFI]
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Example changed from 'https://api.banco.com.br/open-banking/products-services/v1/resource' to 'https://api.banco.com.br/open-banking/products-services/v1/<resource>'
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: last
+                  - Example changed from 'https://api.banco.com.br/open-banking/products-services/v1/resource' to 'https://api.banco.com.br/open-banking/products-services/v1/<resource>'
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: next
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: prev
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: self
+                  - Example changed from 'https://api.banco.com.br/open-banking/products-services/v1/resource' to 'https://api.banco.com.br/open-banking/products-services/v1/<resource>'
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+GET /personal-invoice-financings
+- Deleted query param: page
+- Deleted query param: page-size
+- Responses changed
+  - Deleted response: 400
+  - Deleted response: 404
+  - Deleted response: 405
+  - Deleted response: 429
+  - Deleted response: 500
+  - Deleted response: 504
+  - Deleted response: 529
+  - Deleted response: default
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Properties changed
+                    - Modified property: companies
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - 1 schemas added
+                        - Properties changed
+                          - Deleted property: cnpjNumber
+                          - Deleted property: name
+                          - Deleted property: urlComplementaryList
+                          - Modified property: personalInvoiceFinancings
+                            - Items changed
+                              - Required changed
+                                - New required property: interestRate
+                                - Deleted required property: interestRates
+                              - Properties changed
+                                - New property: interestRate
+                                - Deleted property: interestRates
+                                - Modified property: fees
+                                  - Properties changed
+                                    - Modified property: services
+                                      - Items changed
+                                        - Properties changed
+                                          - Modified property: chargingTriggerInfo
+                                            - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                          - Modified property: code
+                                            - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                          - Modified property: name
+                                            - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                          - Modified property: prices
+                                            - Items changed
+                                              - Properties changed
+                                                - Modified property: customers
+                                                  - Properties changed
+                                                    - Modified property: rate
+                                                      - Example changed from '0.150000' to '0.1500'
+                                                      - MinLength changed from 8 to 0
+                                                      - MaxLength changed from 8 to 6
+                                                      - Pattern changed from '^\d{1}\.\d{6}$' to '(^[0-9](\.[0-9]{4})$|^NA$)'
+                                                - Modified property: interval
+                                                  - MinItems changed from 0 to 1
+                                                  - MaxItems changed from null to 1
+                                - Modified property: termsConditions
+                                  - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                    - Modified property: name
+                      - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Example changed from 'https://api.banco.com.br/open-banking/products-services/v1/resource' to 'https://api.banco.com.br/open-banking/products-services/v1/<resource>'
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: last
+                  - Example changed from 'https://api.banco.com.br/open-banking/products-services/v1/resource' to 'https://api.banco.com.br/open-banking/products-services/v1/<resource>'
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: next
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: prev
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: self
+                  - Example changed from 'https://api.banco.com.br/open-banking/products-services/v1/resource' to 'https://api.banco.com.br/open-banking/products-services/v1/<resource>'
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+GET /personal-loans
+- Deleted query param: page
+- Deleted query param: page-size
+- Responses changed
+  - Deleted response: 400
+  - Deleted response: 404
+  - Deleted response: 405
+  - Deleted response: 429
+  - Deleted response: 500
+  - Deleted response: 504
+  - Deleted response: 529
+  - Deleted response: default
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Properties changed
+                    - Modified property: companies
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - 1 schemas added
+                        - Properties changed
+                          - Deleted property: cnpjNumber
+                          - Modified property: name
+                            - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                          - Modified property: personalLoans
+                            - Items changed
+                              - Properties changed
+                                - New property: interestRate
+                                - Deleted property: interestRates
+                                - Modified property: fees
+                                  - Properties changed
+                                    - Modified property: services
+                                      - Items changed
+                                        - Properties changed
+                                          - Modified property: chargingTriggerInfo
+                                            - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                          - Modified property: code
+                                            - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                          - Modified property: name
+                                            - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                          - Modified property: prices
+                                            - Items changed
+                                              - Properties changed
+                                                - Modified property: customers
+                                                  - Properties changed
+                                                    - Modified property: rate
+                                                      - Example changed from '0.150000' to '0.1500'
+                                                      - MinLength changed from 8 to 0
+                                                      - MaxLength changed from 8 to 6
+                                                      - Pattern changed from '^\d{1}\.\d{6}$' to '(^[0-9](\.[0-9]{4})$|^NA$)'
+                                                - Modified property: interval
+                                                  - MinItems changed from 0 to 1
+                                                  - MaxItems changed from null to 1
+                                - Modified property: termsConditions
+                                  - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                          - Modified property: urlComplementaryList
+                            - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                    - Modified property: name
+                      - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Example changed from 'https://api.banco.com.br/open-banking/products-services/v1/resource' to 'https://api.banco.com.br/open-banking/products-services/v1/<resource>'
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: last
+                  - Example changed from 'https://api.banco.com.br/open-banking/products-services/v1/resource' to 'https://api.banco.com.br/open-banking/products-services/v1/<resource>'
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: next
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: prev
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: self
+                  - Example changed from 'https://api.banco.com.br/open-banking/products-services/v1/resource' to 'https://api.banco.com.br/open-banking/products-services/v1/<resource>'
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+GET /personal-unarranged-account-overdraft
+- Deleted query param: page
+- Deleted query param: page-size
+- Responses changed
+  - Deleted response: 400
+  - Deleted response: 404
+  - Deleted response: 405
+  - Deleted response: 429
+  - Deleted response: 500
+  - Deleted response: 504
+  - Deleted response: 529
+  - Deleted response: default
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Properties changed
+                    - Modified property: companies
+                      - MaxItems changed from 700 to null
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - 1 schemas added
+                        - Properties changed
+                          - Deleted property: cnpjNumber
+                          - Deleted property: name
+                          - Deleted property: urlComplementaryList
+                          - Modified property: personalUnarrangedAccountOverdraft
+                            - MaxItems changed from 20 to null
+                            - Items changed
+                              - Required changed
+                                - New required property: interestRate
+                              - Properties changed
+                                - New property: interestRate
+                                - Deleted property: interestRates
+                                - Modified property: fees
+                                  - Properties changed
+                                    - Modified property: priorityServices
+                                      - MaxItems changed from 20 to null
+                                      - Items changed
+                                        - Example changed from map[chargingTriggerInfo:Levantamento de informações e avaliação de viabilidade e de riscos para a concessão de crédito em caráter emergencial para cobertura de saldo devedor em conta de depósitos à vista e de excesso sobre o limite previamente pactuado de cheque especial, cobrada no máximo uma vez nos últimos trinta dias code:ADIANT_DEPOSITANTE maximum:map[currency:BRL value:2200.00] minimum:map[currency:BRL value:430.00] name:CONCESSAO_ADIANTAMENTO_DEPOSITANTE prices:[map[currency:BRL customers:map[rate:0.150000] interval:1_FAIXA value:500.00] map[currency:BRL customers:map[rate:0.350000] interval:2_FAIXA value:860.00] map[currency:BRL customers:map[rate:0.200000] interval:3_FAIXA value:1090.40] map[currency:BRL customers:map[rate:0.300000] interval:4_FAIXA value:2100.00]]] to map[chargingTriggerInfo:Levantamento de informações e avaliação de viabilidade e de riscos para a concessão de crédito em caráter emergencial para cobertura de saldo devedor em conta de depósitos à vista e de excesso sobre o limite previamente pactuado de cheque especial, cobrada no máximo uma vez nos últimos trinta dias code:ADIANT_DEPOSITANTE maximum:map[currency:BRL value:2200.00] minimum:map[currency:BRL value:430.00] name:CONCESSAO_ADIANTAMENTO_DEPOSITANTE prices:[map[currency:BRL customers:map[rate:0.1500] interval:1_FAIXA value:500.00] map[currency:BRL customers:map[rate:0.3500] interval:2_FAIXA value:860.00] map[currency:BRL customers:map[rate:0.2000] interval:3_FAIXA value:1090.40] map[currency:BRL customers:map[rate:0.3000] interval:4_FAIXA value:2100.00]]]
+                                        - Properties changed
+                                          - Modified property: chargingTriggerInfo
+                                            - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                                          - Modified property: prices
+                                            - Items changed
+                                              - Properties changed
+                                                - Modified property: customers
+                                                  - Properties changed
+                                                    - Modified property: rate
+                                                      - Example changed from '0.150000' to '0.1500'
+                                                      - MinLength changed from 8 to 0
+                                                      - MaxLength changed from 8 to 6
+                                                      - Pattern changed from '^\d{1}\.\d{6}$' to '(^[0-9](\.[0-9]{4})$|^NA$)'
+                                                - Modified property: interval
+                                                  - MinItems changed from 0 to 1
+                                                  - MaxItems changed from null to 1
+                                - Modified property: termsConditions
+                                  - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+                    - Modified property: name
+                      - Description changed from 'Nome da Marca reportada pelo participante do Open Finance. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes.' to 'Nome da Marca reportada pelo participante do Open Banking. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes.'
+                      - Pattern changed from '[\w\W\s]*' to '\w*\W*'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Example changed from 'https://api.banco.com.br/open-banking/products-services/v1/resource' to 'https://api.banco.com.br/open-banking/products-services/v1/<resource>'
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: last
+                  - Example changed from 'https://api.banco.com.br/open-banking/products-services/v1/resource' to 'https://api.banco.com.br/open-banking/products-services/v1/<resource>'
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: next
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: prev
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: self
+                  - Example changed from 'https://api.banco.com.br/open-banking/products-services/v1/resource' to 'https://api.banco.com.br/open-banking/products-services/v1/<resource>'
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+Servers changed
+- New server: http://api.banco.com.br/open-banking/products-services/v2
+- Deleted server: http://api.banco.com.br/open-banking/products-services/v1

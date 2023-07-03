@@ -1,0 +1,1160 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 12
+--------------------------
+GET /business-accounts
+- Modified query param: page
+  - Schema changed
+    - Format changed from '' to 'int32'
+    - Max changed from null to 2.147483647e+09
+- Modified query param: page-size
+  - Schema changed
+    - Format changed from '' to 'int32'
+    - Max changed from null to 1000
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Properties changed
+                    - Modified property: companies
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - 1 schemas deleted
+                        - Properties changed
+                          - Modified property: businessAccounts
+                            - Items changed
+                              - Required changed
+                                - Deleted required property: serviceBundles
+                              - Properties changed
+                                - Modified property: additionalInfo
+                                  - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                - Modified property: fees
+                                  - Properties changed
+                                    - Modified property: services
+                                      - Items changed
+                                        - Properties changed
+                                          - Modified property: chargingTriggerInfo
+                                            - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                          - Modified property: code
+                                            - Pattern changed from '' to '[\w\W\s]*'
+                                          - Modified property: name
+                                            - Pattern changed from '' to '[\w\W\s]*'
+                                          - Modified property: prices
+                                            - Items changed
+                                              - Properties changed
+                                                - Modified property: customers
+                                                  - Properties changed
+                                                    - Modified property: rate
+                                                      - MaxLength changed from 6 to 8
+                                                      - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '^\d{1}\.\d{6}$'
+                                                - Modified property: interval
+                                                  - MinItems changed from 1 to 0
+                                                  - MaxItems changed from 1 to null
+                                - Modified property: incomeRate
+                                  - Properties changed
+                                    - Modified property: prepaidPaymentAccount
+                                      - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                      - MinItems changed from 1 to 0
+                                      - MaxItems changed from 1 to null
+                                    - Modified property: savingAccount
+                                      - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                      - MinItems changed from 1 to 0
+                                      - MaxItems changed from 1 to null
+                                - Modified property: serviceBundles
+                                  - Items changed
+                                    - Properties changed
+                                      - Modified property: name
+                                        - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                      - Modified property: prices
+                                        - Items changed
+                                          - Properties changed
+                                            - Modified property: customers
+                                              - Properties changed
+                                                - Modified property: rate
+                                                  - MaxLength changed from 6 to 8
+                                                  - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '^\d{1}\.\d{6}$'
+                                            - Modified property: interval
+                                              - MinItems changed from 1 to 0
+                                              - MaxItems changed from 1 to null
+                                      - Modified property: services
+                                        - Items changed
+                                          - Properties changed
+                                            - Modified property: chargingTriggerInfo
+                                              - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                            - Modified property: code
+                                              - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                - Modified property: termsConditions
+                                  - Properties changed
+                                    - Modified property: closingProcessInfo
+                                      - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                    - Modified property: elegibilityCriteriaInfo
+                                      - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                    - Modified property: name
+                      - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+GET /business-credit-cards
+- Modified query param: page
+  - Schema changed
+    - Format changed from '' to 'int32'
+    - Max changed from null to 2.147483647e+09
+- Modified query param: page-size
+  - Schema changed
+    - Format changed from '' to 'int32'
+    - Max changed from null to 1000
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Property 'AllOf' changed
+                    - 1 schemas deleted
+                  - Properties changed
+                    - Modified property: companies
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - 1 schemas deleted
+                        - Properties changed
+                          - Modified property: businessCreditCards
+                            - Items changed
+                              - Properties changed
+                                - Modified property: fees
+                                  - Properties changed
+                                    - Modified property: services
+                                      - Items changed
+                                        - Properties changed
+                                          - Modified property: chargingTriggerInfo
+                                            - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                          - Modified property: prices
+                                            - Items changed
+                                              - Properties changed
+                                                - Modified property: customers
+                                                  - Properties changed
+                                                    - Modified property: rate
+                                                      - MaxLength changed from 6 to 8
+                                                      - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '^\d{1}\.\d{6}$'
+                                                - Modified property: interval
+                                                  - MinItems changed from 1 to 0
+                                                  - MaxItems changed from 1 to null
+                                - Modified property: identification
+                                  - Properties changed
+                                    - Modified property: creditCard
+                                      - Properties changed
+                                        - Modified property: additionalInfo
+                                          - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                    - Modified property: product
+                                      - Properties changed
+                                        - Modified property: additionalInfo
+                                          - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                - Modified property: interest
+                                  - Properties changed
+                                    - Modified property: instalmentRates
+                                      - Items changed
+                                        - Properties changed
+                                          - Modified property: applications
+                                            - Items changed
+                                              - Properties changed
+                                                - Modified property: customers
+                                                  - Properties changed
+                                                    - Modified property: rate
+                                                      - MaxLength changed from 6 to 8
+                                                      - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '^\d{1}\.\d{6}$'
+                                                - Modified property: indexer
+                                                  - Properties changed
+                                                    - Modified property: rate
+                                                      - MaxLength changed from 6 to 8
+                                                      - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '^\d{1}\.\d{6}$'
+                                          - Modified property: maximumRate
+                                            - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '^\d{1}\.\d{6}$'
+                                          - Modified property: minimumRate
+                                            - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '^\d{1}\.\d{6}$'
+                                          - Modified property: rate
+                                            - Pattern changed from '(^[0-9](\.[0-9]{2})|NA)$' to '^\d{1}\.\d{6}$'
+                                    - Modified property: otherCredits
+                                      - Items changed
+                                        - Properties changed
+                                          - Modified property: additionalInfo
+                                            - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                    - Modified property: rates
+                                      - Items changed
+                                        - Properties changed
+                                          - Modified property: applications
+                                            - Items changed
+                                              - Properties changed
+                                                - Modified property: customers
+                                                  - Properties changed
+                                                    - Modified property: rate
+                                                      - MaxLength changed from 6 to 8
+                                                      - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '^\d{1}\.\d{6}$'
+                                                - Modified property: indexer
+                                                  - Properties changed
+                                                    - Modified property: rate
+                                                      - MaxLength changed from 6 to 8
+                                                      - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '^\d{1}\.\d{6}$'
+                                          - Modified property: maximumRate
+                                            - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '^\d{1}\.\d{6}$'
+                                          - Modified property: minimumRate
+                                            - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '^\d{1}\.\d{6}$'
+                                          - Modified property: rate
+                                            - Pattern changed from '(^[0-9](\.[0-9]{2})|NA)$' to '^\d{1}\.\d{6}$'
+                                - Modified property: name
+                                  - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                - Modified property: rewardsProgram
+                                  - Properties changed
+                                    - Modified property: rewardProgramInfo
+                                      - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                - Modified property: termsConditions
+                                  - Properties changed
+                                    - Modified property: additionalInfo
+                                      - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                    - Modified property: closingProcessInfo
+                                      - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                    - Modified property: elegibilityCriteriaInfo
+                                      - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                    - Modified property: minimumFeeRate
+                                      - MaxLength changed from 4 to 8
+                                      - Pattern changed from '(^[0-9](\.[0-9]{2})$|^NA$)' to '^\d{1}\.\d{6}$'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+GET /business-financings
+- Modified query param: page
+  - Schema changed
+    - Format changed from '' to 'int32'
+    - Max changed from null to 2.147483647e+09
+- Modified query param: page-size
+  - Schema changed
+    - Format changed from '' to 'int32'
+    - Max changed from null to 1000
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Property 'AllOf' changed
+                    - 1 schemas deleted
+                  - Properties changed
+                    - Modified property: companies
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - 1 schemas deleted
+                        - Properties changed
+                          - Modified property: businessFinancings
+                            - Items changed
+                              - Properties changed
+                                - Modified property: fees
+                                  - Properties changed
+                                    - Modified property: services
+                                      - Items changed
+                                        - Properties changed
+                                          - Modified property: chargingTriggerInfo
+                                            - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                          - Modified property: code
+                                            - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                          - Modified property: name
+                                            - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                          - Modified property: prices
+                                            - Items changed
+                                              - Properties changed
+                                                - Modified property: customers
+                                                  - Properties changed
+                                                    - Modified property: rate
+                                                      - MaxLength changed from 6 to 8
+                                                      - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '^\d{1}\.\d{6}$'
+                                                - Modified property: interval
+                                                  - MinItems changed from 1 to 0
+                                                  - MaxItems changed from 1 to null
+                                - Modified property: interestRates
+                                  - Items changed
+                                    - Property 'AllOf' changed
+                                      - 1 schemas deleted
+                                    - Properties changed
+                                      - Modified property: applications
+                                        - Items changed
+                                          - Properties changed
+                                            - Modified property: customers
+                                              - Properties changed
+                                                - Modified property: rate
+                                                  - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '(^[0-1](\.[0-9]{2})$|^NA$)'
+                                      - Modified property: maximumRate
+                                        - MaxLength changed from 6 to null
+                                      - Modified property: minimumRate
+                                        - MaxLength changed from 6 to null
+                                - Modified property: termsConditions
+                                  - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+GET /business-invoice-financings
+- Modified query param: page
+  - Schema changed
+    - Format changed from '' to 'int32'
+    - Max changed from null to 2.147483647e+09
+- Modified query param: page-size
+  - Schema changed
+    - Format changed from '' to 'int32'
+    - Max changed from null to 1000
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Properties changed
+                    - Modified property: companies
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - 1 schemas deleted
+                        - Properties changed
+                          - Modified property: businessInvoiceFinancings
+                            - Items changed
+                              - Properties changed
+                                - Modified property: fees
+                                  - Properties changed
+                                    - Modified property: services
+                                      - Items changed
+                                        - Properties changed
+                                          - Modified property: chargingTriggerInfo
+                                            - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                          - Modified property: code
+                                            - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                          - Modified property: name
+                                            - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                          - Modified property: prices
+                                            - Items changed
+                                              - Properties changed
+                                                - Modified property: customers
+                                                  - Properties changed
+                                                    - Modified property: rate
+                                                      - MaxLength changed from 6 to 8
+                                                      - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '^\d{1}\.\d{6}$'
+                                                - Modified property: interval
+                                                  - MinItems changed from 1 to 0
+                                                  - MaxItems changed from 1 to null
+                                - Modified property: interestRates
+                                  - Items changed
+                                    - Property 'AllOf' changed
+                                      - 1 schemas deleted
+                                    - Properties changed
+                                      - Modified property: applications
+                                        - Items changed
+                                          - Properties changed
+                                            - Modified property: customers
+                                              - Properties changed
+                                                - Modified property: rate
+                                                  - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '(^[0-1](\.[0-9]{2})$|^NA$)'
+                                - Modified property: termsConditions
+                                  - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                    - Modified property: name
+                      - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+GET /business-loans
+- Modified query param: page
+  - Schema changed
+    - Format changed from '' to 'int32'
+    - Max changed from null to 2.147483647e+09
+- Modified query param: page-size
+  - Schema changed
+    - Format changed from '' to 'int32'
+    - Max changed from null to 1000
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Properties changed
+                    - Modified property: companies
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - 1 schemas deleted
+                        - Properties changed
+                          - Modified property: businessLoans
+                            - Items changed
+                              - Properties changed
+                                - Modified property: fees
+                                  - Properties changed
+                                    - Modified property: services
+                                      - Items changed
+                                        - Properties changed
+                                          - Modified property: chargingTriggerInfo
+                                            - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                          - Modified property: code
+                                            - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                          - Modified property: name
+                                            - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                          - Modified property: prices
+                                            - Items changed
+                                              - Properties changed
+                                                - Modified property: customers
+                                                  - Properties changed
+                                                    - Modified property: rate
+                                                      - MaxLength changed from 6 to 8
+                                                      - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '^\d{1}\.\d{6}$'
+                                                - Modified property: interval
+                                                  - MinItems changed from 1 to 0
+                                                  - MaxItems changed from 1 to null
+                                - Modified property: interestRates
+                                  - Items changed
+                                    - Property 'AllOf' changed
+                                      - 1 schemas deleted
+                                    - Properties changed
+                                      - Modified property: applications
+                                        - Items changed
+                                          - Properties changed
+                                            - Modified property: customers
+                                              - Properties changed
+                                                - Modified property: rate
+                                                  - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '(^[0-1](\.[0-9]{2})$|^NA$)'
+                                      - Modified property: maximumRate
+                                        - MaxLength changed from 6 to null
+                                      - Modified property: minimumRate
+                                        - MaxLength changed from 6 to null
+                                - Modified property: termsConditions
+                                  - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                          - Modified property: name
+                            - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                          - Modified property: urlComplementaryList
+                            - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                    - Modified property: name
+                      - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+GET /business-unarranged-account-overdraft
+- Modified query param: page
+  - Schema changed
+    - Format changed from '' to 'int32'
+    - Max changed from null to 2.147483647e+09
+- Modified query param: page-size
+  - Schema changed
+    - Format changed from '' to 'int32'
+    - Max changed from null to 1000
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Properties changed
+                    - Modified property: companies
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - 1 schemas deleted
+                        - Properties changed
+                          - Modified property: businessUnarrangedAccountOverdraft
+                            - Items changed
+                              - Properties changed
+                                - Modified property: fees
+                                  - Properties changed
+                                    - Modified property: services
+                                      - Items changed
+                                        - Properties changed
+                                          - Modified property: chargingTriggerInfo
+                                            - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                          - Modified property: prices
+                                            - Items changed
+                                              - Properties changed
+                                                - Modified property: customers
+                                                  - Properties changed
+                                                    - Modified property: rate
+                                                      - MaxLength changed from 6 to 8
+                                                      - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '^\d{1}\.\d{6}$'
+                                                - Modified property: interval
+                                                  - MinItems changed from 1 to 0
+                                                  - MaxItems changed from 1 to null
+                                - Modified property: interestRates
+                                  - Items changed
+                                    - Property 'AllOf' changed
+                                      - 1 schemas deleted
+                                    - Properties changed
+                                      - Modified property: applications
+                                        - Items changed
+                                          - Properties changed
+                                            - Modified property: customers
+                                              - Properties changed
+                                                - Modified property: rate
+                                                  - MaxLength changed from 6 to 8
+                                                  - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '^\d{1}\.\d{6}$'
+                                            - Modified property: indexer
+                                              - Properties changed
+                                                - Modified property: rate
+                                                  - MaxLength changed from 6 to 8
+                                                  - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '^\d{1}\.\d{6}$'
+                                      - Modified property: maximumRate
+                                        - Pattern changed from '(^[0-9](\.[0-9]{4})|NA)$' to '^\d{1}\.\d{6}$'
+                                      - Modified property: minimumRate
+                                        - Pattern changed from '(^[0-9](\.[0-9]{4})|NA)$' to '^\d{1}\.\d{6}$'
+                                - Modified property: termsConditions
+                                  - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                    - Modified property: name
+                      - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+GET /personal-accounts
+- Modified query param: page
+  - Schema changed
+    - Format changed from '' to 'int32'
+    - Max changed from null to 2.147483647e+09
+- Modified query param: page-size
+  - Schema changed
+    - Format changed from '' to 'int32'
+    - Max changed from null to 1000
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Properties changed
+                    - Modified property: companies
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - 1 schemas deleted
+                        - Properties changed
+                          - Modified property: personalAccounts
+                            - Items changed
+                              - Required changed
+                                - Deleted required property: serviceBundles
+                              - Properties changed
+                                - Modified property: additionalInfo
+                                  - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                - Modified property: fees
+                                  - Properties changed
+                                    - Modified property: otherServices
+                                      - Items changed
+                                        - Properties changed
+                                          - Modified property: chargingTriggerInfo
+                                            - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                          - Modified property: code
+                                            - Pattern changed from '' to '[\w\W\s]*'
+                                          - Modified property: name
+                                            - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                          - Modified property: prices
+                                            - Items changed
+                                              - Properties changed
+                                                - Modified property: customers
+                                                  - Properties changed
+                                                    - Modified property: rate
+                                                      - MaxLength changed from 6 to 8
+                                                      - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '^\d{1}\.\d{6}$'
+                                                - Modified property: interval
+                                                  - MinItems changed from 1 to 0
+                                                  - MaxItems changed from 1 to null
+                                    - Modified property: priorityServices
+                                      - Items changed
+                                        - Properties changed
+                                          - Modified property: chargingTriggerInfo
+                                            - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                          - Modified property: prices
+                                            - Items changed
+                                              - Properties changed
+                                                - Modified property: customers
+                                                  - Properties changed
+                                                    - Modified property: rate
+                                                      - MaxLength changed from 6 to 8
+                                                      - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '^\d{1}\.\d{6}$'
+                                                - Modified property: interval
+                                                  - MinItems changed from 1 to 0
+                                                  - MaxItems changed from 1 to null
+                                - Modified property: incomeRate
+                                  - Properties changed
+                                    - Modified property: prepaidPaymentAccount
+                                      - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                      - MinItems changed from 1 to 0
+                                      - MaxItems changed from 1 to null
+                                    - Modified property: savingAccount
+                                      - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                      - MinItems changed from 1 to 0
+                                      - MaxItems changed from 1 to null
+                                - Modified property: serviceBundles
+                                  - Items changed
+                                    - Properties changed
+                                      - Modified property: name
+                                        - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                      - Modified property: prices
+                                        - Items changed
+                                          - Properties changed
+                                            - Modified property: customers
+                                              - Properties changed
+                                                - Modified property: rate
+                                                  - MaxLength changed from 6 to 8
+                                                  - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '^\d{1}\.\d{6}$'
+                                            - Modified property: interval
+                                              - MinItems changed from 1 to 0
+                                              - MaxItems changed from 1 to null
+                                      - Modified property: services
+                                        - Items changed
+                                          - Properties changed
+                                            - Modified property: chargingTriggerInfo
+                                              - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                            - Modified property: code
+                                              - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                - Modified property: termsConditions
+                                  - Properties changed
+                                    - Modified property: closingProcessInfo
+                                      - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                    - Modified property: elegibilityCriteriaInfo
+                                      - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                    - Modified property: name
+                      - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+GET /personal-credit-cards
+- Modified query param: page
+  - Schema changed
+    - Format changed from '' to 'int32'
+    - Max changed from null to 2.147483647e+09
+- Modified query param: page-size
+  - Schema changed
+    - Format changed from '' to 'int32'
+    - Max changed from null to 1000
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Property 'AllOf' changed
+                    - 1 schemas deleted
+                  - Properties changed
+                    - Modified property: companies
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - 1 schemas deleted
+                        - Properties changed
+                          - Modified property: personalCreditCards
+                            - Items changed
+                              - Properties changed
+                                - Modified property: fees
+                                  - Properties changed
+                                    - Modified property: services
+                                      - Items changed
+                                        - Properties changed
+                                          - Modified property: chargingTriggerInfo
+                                            - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                          - Modified property: prices
+                                            - Items changed
+                                              - Properties changed
+                                                - Modified property: customers
+                                                  - Properties changed
+                                                    - Modified property: rate
+                                                      - MaxLength changed from 6 to 8
+                                                      - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '^\d{1}\.\d{6}$'
+                                                - Modified property: interval
+                                                  - MinItems changed from 1 to 0
+                                                  - MaxItems changed from 1 to null
+                                - Modified property: identification
+                                  - Properties changed
+                                    - Modified property: creditCard
+                                      - Properties changed
+                                        - Modified property: additionalInfo
+                                          - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                    - Modified property: product
+                                      - Properties changed
+                                        - Modified property: additionalInfo
+                                          - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                - Modified property: interest
+                                  - Properties changed
+                                    - Modified property: instalmentRates
+                                      - Items changed
+                                        - Properties changed
+                                          - Modified property: applications
+                                            - Items changed
+                                              - Properties changed
+                                                - Modified property: customers
+                                                  - Properties changed
+                                                    - Modified property: rate
+                                                      - MaxLength changed from 6 to 8
+                                                      - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '^\d{1}\.\d{6}$'
+                                                - Modified property: indexer
+                                                  - Properties changed
+                                                    - Modified property: rate
+                                                      - MaxLength changed from 6 to 8
+                                                      - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '^\d{1}\.\d{6}$'
+                                          - Modified property: maximumRate
+                                            - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '^\d{1}\.\d{6}$'
+                                          - Modified property: minimumRate
+                                            - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '^\d{1}\.\d{6}$'
+                                          - Modified property: rate
+                                            - Pattern changed from '(^[0-9](\.[0-9]{2})|NA)$' to '^\d{1}\.\d{6}$'
+                                    - Modified property: otherCredits
+                                      - Items changed
+                                        - Properties changed
+                                          - Modified property: additionalInfo
+                                            - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                    - Modified property: rates
+                                      - Items changed
+                                        - Properties changed
+                                          - Modified property: applications
+                                            - Items changed
+                                              - Properties changed
+                                                - Modified property: customers
+                                                  - Properties changed
+                                                    - Modified property: rate
+                                                      - MaxLength changed from 6 to 8
+                                                      - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '^\d{1}\.\d{6}$'
+                                                - Modified property: indexer
+                                                  - Properties changed
+                                                    - Modified property: rate
+                                                      - MaxLength changed from 6 to 8
+                                                      - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '^\d{1}\.\d{6}$'
+                                          - Modified property: maximumRate
+                                            - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '^\d{1}\.\d{6}$'
+                                          - Modified property: minimumRate
+                                            - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '^\d{1}\.\d{6}$'
+                                          - Modified property: rate
+                                            - Pattern changed from '(^[0-9](\.[0-9]{2})|NA)$' to '^\d{1}\.\d{6}$'
+                                - Modified property: name
+                                  - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                - Modified property: rewardsProgram
+                                  - Properties changed
+                                    - Modified property: rewardProgramInfo
+                                      - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                - Modified property: termsConditions
+                                  - Properties changed
+                                    - Modified property: additionalInfo
+                                      - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                    - Modified property: closingProcessInfo
+                                      - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                    - Modified property: elegibilityCriteriaInfo
+                                      - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                    - Modified property: minimumFeeRate
+                                      - MaxLength changed from 4 to 8
+                                      - Pattern changed from '(^[0-9](\.[0-9]{2})$|^NA$)' to '^\d{1}\.\d{6}$'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+GET /personal-financings
+- Modified query param: page
+  - Schema changed
+    - Format changed from '' to 'int32'
+    - Max changed from null to 2.147483647e+09
+- Modified query param: page-size
+  - Schema changed
+    - Format changed from '' to 'int32'
+    - Max changed from null to 1000
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Property 'AllOf' changed
+                    - 1 schemas deleted
+                  - Properties changed
+                    - Modified property: companies
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - 1 schemas deleted
+                        - Properties changed
+                          - Modified property: personalFinancings
+                            - Items changed
+                              - Properties changed
+                                - Modified property: fees
+                                  - Properties changed
+                                    - Modified property: services
+                                      - Items changed
+                                        - Properties changed
+                                          - Modified property: chargingTriggerInfo
+                                            - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                          - Modified property: code
+                                            - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                          - Modified property: name
+                                            - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                          - Modified property: prices
+                                            - Items changed
+                                              - Properties changed
+                                                - Modified property: customers
+                                                  - Properties changed
+                                                    - Modified property: rate
+                                                      - MaxLength changed from 6 to 8
+                                                      - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '^\d{1}\.\d{6}$'
+                                                - Modified property: interval
+                                                  - MinItems changed from 1 to 0
+                                                  - MaxItems changed from 1 to null
+                                - Modified property: interestRates
+                                  - Items changed
+                                    - Property 'AllOf' changed
+                                      - 1 schemas deleted
+                                    - Properties changed
+                                      - Modified property: applications
+                                        - Items changed
+                                          - Properties changed
+                                            - Modified property: customers
+                                              - Properties changed
+                                                - Modified property: rate
+                                                  - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '(^[0-1](\.[0-9]{2})$|^NA$)'
+                                      - Modified property: maximumRate
+                                        - MaxLength changed from 6 to null
+                                      - Modified property: minimumRate
+                                        - MaxLength changed from 6 to null
+                                - Modified property: termsConditions
+                                  - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+GET /personal-invoice-financings
+- Modified query param: page
+  - Schema changed
+    - Format changed from '' to 'int32'
+    - Max changed from null to 2.147483647e+09
+- Modified query param: page-size
+  - Schema changed
+    - Format changed from '' to 'int32'
+    - Max changed from null to 1000
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Properties changed
+                    - Modified property: companies
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - 1 schemas deleted
+                        - Properties changed
+                          - Modified property: personalInvoiceFinancings
+                            - Items changed
+                              - Properties changed
+                                - Modified property: fees
+                                  - Properties changed
+                                    - Modified property: services
+                                      - Items changed
+                                        - Properties changed
+                                          - Modified property: chargingTriggerInfo
+                                            - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                          - Modified property: code
+                                            - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                          - Modified property: name
+                                            - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                          - Modified property: prices
+                                            - Items changed
+                                              - Properties changed
+                                                - Modified property: customers
+                                                  - Properties changed
+                                                    - Modified property: rate
+                                                      - MaxLength changed from 6 to 8
+                                                      - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '^\d{1}\.\d{6}$'
+                                                - Modified property: interval
+                                                  - MinItems changed from 1 to 0
+                                                  - MaxItems changed from 1 to null
+                                - Modified property: interestRates
+                                  - Items changed
+                                    - Property 'AllOf' changed
+                                      - 1 schemas deleted
+                                    - Properties changed
+                                      - Modified property: applications
+                                        - Items changed
+                                          - Properties changed
+                                            - Modified property: customers
+                                              - Properties changed
+                                                - Modified property: rate
+                                                  - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '(^[0-1](\.[0-9]{2})$|^NA$)'
+                                - Modified property: termsConditions
+                                  - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                    - Modified property: name
+                      - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+GET /personal-loans
+- Modified query param: page
+  - Schema changed
+    - Format changed from '' to 'int32'
+    - Max changed from null to 2.147483647e+09
+- Modified query param: page-size
+  - Schema changed
+    - Format changed from '' to 'int32'
+    - Max changed from null to 1000
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Properties changed
+                    - Modified property: companies
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - 1 schemas deleted
+                        - Properties changed
+                          - Modified property: name
+                            - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                          - Modified property: personalLoans
+                            - Items changed
+                              - Properties changed
+                                - Modified property: fees
+                                  - Properties changed
+                                    - Modified property: services
+                                      - Items changed
+                                        - Properties changed
+                                          - Modified property: chargingTriggerInfo
+                                            - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                          - Modified property: code
+                                            - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                          - Modified property: name
+                                            - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                          - Modified property: prices
+                                            - Items changed
+                                              - Properties changed
+                                                - Modified property: customers
+                                                  - Properties changed
+                                                    - Modified property: rate
+                                                      - MaxLength changed from 6 to 8
+                                                      - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '^\d{1}\.\d{6}$'
+                                                - Modified property: interval
+                                                  - MinItems changed from 1 to 0
+                                                  - MaxItems changed from 1 to null
+                                - Modified property: interestRates
+                                  - Items changed
+                                    - Property 'AllOf' changed
+                                      - 1 schemas deleted
+                                    - Properties changed
+                                      - Modified property: applications
+                                        - Items changed
+                                          - Properties changed
+                                            - Modified property: customers
+                                              - Properties changed
+                                                - Modified property: rate
+                                                  - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '(^[0-1](\.[0-9]{2})$|^NA$)'
+                                      - Modified property: maximumRate
+                                        - MaxLength changed from 6 to null
+                                      - Modified property: minimumRate
+                                        - MaxLength changed from 6 to null
+                                - Modified property: termsConditions
+                                  - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                          - Modified property: urlComplementaryList
+                            - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                    - Modified property: name
+                      - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+GET /personal-unarranged-account-overdraft
+- Modified query param: page
+  - Schema changed
+    - Format changed from '' to 'int32'
+    - Max changed from null to 2.147483647e+09
+- Modified query param: page-size
+  - Schema changed
+    - Format changed from '' to 'int32'
+    - Max changed from null to 1000
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: brand
+                  - Properties changed
+                    - Modified property: companies
+                      - Items changed
+                        - Property 'AllOf' changed
+                          - 1 schemas deleted
+                        - Properties changed
+                          - Modified property: personalUnarrangedAccountOverdraft
+                            - Items changed
+                              - Properties changed
+                                - Modified property: fees
+                                  - Properties changed
+                                    - Modified property: priorityServices
+                                      - Items changed
+                                        - Properties changed
+                                          - Modified property: chargingTriggerInfo
+                                            - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                                          - Modified property: prices
+                                            - Items changed
+                                              - Properties changed
+                                                - Modified property: customers
+                                                  - Properties changed
+                                                    - Modified property: rate
+                                                      - MaxLength changed from 6 to 8
+                                                      - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '^\d{1}\.\d{6}$'
+                                                - Modified property: interval
+                                                  - MinItems changed from 1 to 0
+                                                  - MaxItems changed from 1 to null
+                                - Modified property: interestRates
+                                  - Items changed
+                                    - Property 'AllOf' changed
+                                      - 1 schemas deleted
+                                    - Properties changed
+                                      - Modified property: applications
+                                        - Items changed
+                                          - Properties changed
+                                            - Modified property: customers
+                                              - Properties changed
+                                                - Modified property: rate
+                                                  - MaxLength changed from 6 to 8
+                                                  - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '^\d{1}\.\d{6}$'
+                                            - Modified property: indexer
+                                              - Properties changed
+                                                - Modified property: rate
+                                                  - MaxLength changed from 6 to 8
+                                                  - Pattern changed from '(^[0-9](\.[0-9]{4})$|^NA$)' to '^\d{1}\.\d{6}$'
+                                      - Modified property: maximumRate
+                                        - Pattern changed from '(^[0-9](\.[0-9]{4})|NA)$' to '^\d{1}\.\d{6}$'
+                                      - Modified property: minimumRate
+                                        - Pattern changed from '(^[0-9](\.[0-9]{4})|NA)$' to '^\d{1}\.\d{6}$'
+                                - Modified property: termsConditions
+                                  - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+                    - Modified property: name
+                      - Pattern changed from '\w*\W*' to '[\w\W\s]*'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
