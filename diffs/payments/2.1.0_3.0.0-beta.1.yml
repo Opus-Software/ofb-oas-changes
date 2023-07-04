@@ -176,6 +176,8 @@ POST /pix/payments
         - Properties changed
           - Modified property: data
             - Properties changed
+              - New property: authorisationFlow
+              - Deleted property: authorizationFlow
               - Modified property: creditorAccount
                 - Properties changed
                   - Modified property: accountType
@@ -204,6 +206,8 @@ Segue descrição de cada valor do ENUM.
           - Properties changed
             - Modified property: data
               - Properties changed
+                - New property: authorisationFlow
+                - Deleted property: authorizationFlow
                 - Modified property: creditorAccount
                   - Properties changed
                     - Modified property: accountType
@@ -397,6 +401,8 @@ GET /pix/payments/{paymentId}
           - Properties changed
             - Modified property: data
               - Properties changed
+                - New property: authorisationFlow
+                - Deleted property: authorizationFlow
                 - Modified property: creditorAccount
                   - Properties changed
                     - Modified property: accountType
@@ -475,6 +481,14 @@ O rejectionReason FALHA_INFRAESTRUTURA não será excluído, apenas deixará de 
     - Headers changed
       - New header: x-fapi-interaction-id
 PATCH /pix/payments/{paymentId}
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Deleted property: authorizationFlow
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -483,6 +497,8 @@ PATCH /pix/payments/{paymentId}
           - Properties changed
             - Modified property: data
               - Properties changed
+                - New property: authorisationFlow
+                - Deleted property: authorizationFlow
                 - Modified property: creditorAccount
                   - Properties changed
                     - Modified property: accountType
