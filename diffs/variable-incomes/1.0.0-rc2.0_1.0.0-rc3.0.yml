@@ -2,7 +2,7 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 2
+### Modified Endpoints: 4
 -------------------------
 GET /investments/{investmentId}
 - Responses changed
@@ -25,3 +25,47 @@ Nos casos em que não houver posição para o investimento, ou seja, quantidade 
 - Data e hora da última posição: mesmo conteúdo do campo requestDateTime
 - Fator de preço: 0.00
 '
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: closingPrice
+                    - Properties changed
+                      - Modified property: amount
+                        - MaxLength changed from 20 to 21
+                        - Pattern changed from '^\d{1,15}\.\d{2,4}$' to '^-?\d{1,15}\.\d{2,4}$'
+GET /investments/{investmentId}/transactions
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: transactionUnitPrice
+                    - Properties changed
+                      - Modified property: amount
+                        - MaxLength changed from 20 to 21
+                        - Pattern changed from '^\d{1,15}\.\d{2,4}$' to '^-?\d{1,15}\.\d{2,4}$'
+GET /investments/{investmentId}/transactions-current
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: transactionUnitPrice
+                    - Properties changed
+                      - Modified property: amount
+                        - MaxLength changed from 20 to 21
+                        - Pattern changed from '^\d{1,15}\.\d{2,4}$' to '^-?\d{1,15}\.\d{2,4}$'
