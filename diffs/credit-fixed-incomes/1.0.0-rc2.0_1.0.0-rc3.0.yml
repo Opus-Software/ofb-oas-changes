@@ -2,8 +2,56 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 1
+### Modified Endpoints: 2
 -------------------------
+GET /investments/{investmentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Required changed
+                - Deleted required property: gracePeriodDate
+                - Deleted required property: issuerInstitutionCnpjNumber
+              - Properties changed
+                - Modified property: gracePeriodDate
+                  - Description changed from 'Data até a qual o cliente não poderá resgatar antecipadamente seu investimento' to 'Data até a qual o cliente não poderá resgatar antecipadamente seu investimento.
+Caso a instituição tenha a informação, o envio será obrigatório.
+'
+                - Modified property: issuerInstitutionCnpjNumber
+                  - Description changed from 'CNPJ da instituição emissora' to 'CNPJ da instituição emissora.
+Caso a instituição tenha a informação, o envio será obrigatório.
+'
+                - Modified property: remuneration
+                  - Required changed
+                    - Deleted required property: calculation
+                    - Deleted required property: ratePeriodicity
+                    - Deleted required property: rateType
+                  - Properties changed
+                    - Modified property: calculation
+                      - Description changed from 'Base de cálculo (dias úteis ou dias corridos).
+  1. dias úteis
+  2. dias corridos
+' to 'Base de cálculo (dias úteis ou dias corridos).
+  1. dias úteis
+  2. dias corridos.
+Caso a instituição tenha a informação, o envio será obrigatório.
+'
+                    - Modified property: ratePeriodicity
+                      - Description changed from 'Periodicidade da taxa de remuneração (mensal, anual, diário, semestral)' to 'Periodicidade da taxa de remuneração (mensal, anual, diário, semestral).
+Caso a instituição tenha a informação, o envio será obrigatório.
+'
+                    - Modified property: rateType
+                      - Description changed from 'Tipo da taxa de remuneração
+  1. LINEAR
+  2. EXPONENCIAL
+' to 'Tipo da taxa de remuneração
+  1. LINEAR
+  2. EXPONENCIAL
+Caso a instituição tenha a informação, o envio será obrigatório.
+'
 GET /investments/{investmentId}/balances
 - Description changed from 'Obtém a posição da operação de Renda Fixa Crédito identificada por investmentId.' to 'Obtém a posição da operação de Renda Fixa Crédito identificada por investmentId.
 Nos casos em que não houver posição para o investimento, ou seja, quantidade de ativos e valores monetários zerados, mas o mesmo ainda estiver no prazo de exposição (até 12 meses após a última movimentação), deve se retornar status code 200 e para o payload de retorno considerar os valores abaixo. Campos não obrigatórios não devem ser retornados: 
