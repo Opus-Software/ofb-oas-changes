@@ -620,7 +620,6 @@ components:
         - productType
         - productSubType
         - contractDate
-        - contractAmount
         - instalmentPeriodicity
         - amortizationScheduled
         - interestRates
@@ -696,7 +695,7 @@ components:
           maxLength: 20
           minLength: 4
           example: '1000.0400'
-          description: Valor contratado da operação. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais. Nos casos em que não houver este valor explícito no contrato do produto, enviar como 0.00.
+          description: Valor contratado da operação. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.
         currency:
           type: string
           maxLength: 3
@@ -775,8 +774,10 @@ components:
       type: object
       description: Conjunto de informações referentes às garantias que avalizam a operação de crédito contratada
       required:
+        - currency
         - warrantyType
         - warrantySubType
+        - warrantyAmount
       properties:
         currency:
           type: string
