@@ -930,6 +930,8 @@ components:
       type: object
       description: Conjunto de informações referentes às garantias que avalizam a operação de crédito contratada
       required:
+        - currency
+        - warrantyAmount
         - warrantyType
         - warrantySubType
       properties:
@@ -1001,7 +1003,6 @@ components:
         - productType
         - productSubType
         - contractDate
-        - contractAmount
         - instalmentPeriodicity
         - instalmentPeriodicityAdditionalInfo
         - amortizationScheduled
@@ -1074,7 +1075,7 @@ components:
           description: |
             Data de liquidação da operação.
         contractAmount:
-          description: Valor contratado da operação. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais. Nos casos em que não houver este valor explícito no contrato do produto, enviar como 0.00.
+          description: Valor contratado da operação. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.
           type: string
           pattern: '^-?\d{1,15}\.\d{2,4}$'
           maxLength: 21
