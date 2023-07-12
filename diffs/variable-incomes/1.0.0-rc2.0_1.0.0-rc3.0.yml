@@ -2,9 +2,23 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 4
+### Modified Endpoints: 6
 -------------------------
+GET /investments
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: investmentId
+                    - Description changed from 'Identifica de forma única  o relacionamento do cliente com o produto, mantendo as regras de imutabilidade dentro da instituição transmissora.' to 'Identifica de forma única o relacionamento do cliente com o produto, mantendo as regras de imutabilidade dentro da instituição transmissora. Nos casos em que o cliente, após completar 12 meses da última movimentação e com quantidade de ativos zerada (cliente não tem mais posse do produto sob custódia da transmissora), compre novamente o ativo que já investiu em períodos passados, manter o mesmo investmentId anteriormente utilizado.'
 GET /investments/{investmentId}
+- Modified path param: investmentId
+  - Description changed from 'Identifica de forma única  o relacionamento do cliente com o produto, mantendo as regras de imutabilidade dentro da instituição transmissora.' to 'Identifica de forma única o relacionamento do cliente com o produto, mantendo as regras de imutabilidade dentro da instituição transmissora. Nos casos em que o cliente, após completar 12 meses da última movimentação e com quantidade de ativos zerada (cliente não tem mais posse do produto sob custódia da transmissora), compre novamente o ativo que já investiu em períodos passados, manter o mesmo investmentId anteriormente utilizado.'
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -25,6 +39,8 @@ Nos casos em que não houver posição para o investimento, ou seja, quantidade 
 - Data e hora da última posição: mesmo conteúdo do campo requestDateTime
 - Fator de preço: 0.00
 '
+- Modified path param: investmentId
+  - Description changed from 'Identifica de forma única  o relacionamento do cliente com o produto, mantendo as regras de imutabilidade dentro da instituição transmissora.' to 'Identifica de forma única o relacionamento do cliente com o produto, mantendo as regras de imutabilidade dentro da instituição transmissora. Nos casos em que o cliente, após completar 12 meses da última movimentação e com quantidade de ativos zerada (cliente não tem mais posse do produto sob custódia da transmissora), compre novamente o ativo que já investiu em períodos passados, manter o mesmo investmentId anteriormente utilizado.'
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -39,7 +55,12 @@ Nos casos em que não houver posição para o investimento, ou seja, quantidade 
                       - Modified property: amount
                         - MaxLength changed from 20 to 21
                         - Pattern changed from '^\d{1,15}\.\d{2,4}$' to '^-?\d{1,15}\.\d{2,4}$'
+GET /investments/{investmentId}/broker-notes/{brokerNoteId}
+- Modified path param: investmentId
+  - Description changed from 'Identifica de forma única  o relacionamento do cliente com o produto, mantendo as regras de imutabilidade dentro da instituição transmissora.' to 'Identifica de forma única o relacionamento do cliente com o produto, mantendo as regras de imutabilidade dentro da instituição transmissora. Nos casos em que o cliente, após completar 12 meses da última movimentação e com quantidade de ativos zerada (cliente não tem mais posse do produto sob custódia da transmissora), compre novamente o ativo que já investiu em períodos passados, manter o mesmo investmentId anteriormente utilizado.'
 GET /investments/{investmentId}/transactions
+- Modified path param: investmentId
+  - Description changed from 'Identifica de forma única  o relacionamento do cliente com o produto, mantendo as regras de imutabilidade dentro da instituição transmissora.' to 'Identifica de forma única o relacionamento do cliente com o produto, mantendo as regras de imutabilidade dentro da instituição transmissora. Nos casos em que o cliente, após completar 12 meses da última movimentação e com quantidade de ativos zerada (cliente não tem mais posse do produto sob custódia da transmissora), compre novamente o ativo que já investiu em períodos passados, manter o mesmo investmentId anteriormente utilizado.'
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -55,6 +76,8 @@ GET /investments/{investmentId}/transactions
                         - MaxLength changed from 20 to 21
                         - Pattern changed from '^\d{1,15}\.\d{2,4}$' to '^-?\d{1,15}\.\d{2,4}$'
 GET /investments/{investmentId}/transactions-current
+- Modified path param: investmentId
+  - Description changed from 'Identifica de forma única  o relacionamento do cliente com o produto, mantendo as regras de imutabilidade dentro da instituição transmissora.' to 'Identifica de forma única o relacionamento do cliente com o produto, mantendo as regras de imutabilidade dentro da instituição transmissora. Nos casos em que o cliente, após completar 12 meses da última movimentação e com quantidade de ativos zerada (cliente não tem mais posse do produto sob custódia da transmissora), compre novamente o ativo que já investiu em períodos passados, manter o mesmo investmentId anteriormente utilizado.'
 - Responses changed
   - Modified response: 200
     - Content changed
