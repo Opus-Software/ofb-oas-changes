@@ -2,7 +2,7 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 2
+### Modified Endpoints: 3
 -------------------------
 GET /contracts/{contractId}
 - Responses changed
@@ -17,6 +17,22 @@ GET /contracts/{contractId}
               - Properties changed
                 - Modified property: contractAmount
                   - Description changed from 'Valor contratado da operação. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.' to 'Valor contratado da operação. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais. Nos casos em que não houver este valor explícito no contrato do produto, enviar como 0.00.'
+GET /contracts/{contractId}/payments
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: releases
+                  - Items changed
+                    - Required changed
+                      - New required property: paymentId
+                    - Properties changed
+                      - Modified property: paymentId
+                        - Description changed from 'Identificador de pagamento de responsabilidade de cada Instituição transmissora.' to 'Código ou identificador único prestado pela instituição para representar o pagamento individual.'
 GET /contracts/{contractId}/warranties
 - Responses changed
   - Modified response: 200
