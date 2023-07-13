@@ -1,10 +1,10 @@
 ﻿openapi: 3.0.0
 info:
-  title: APIs Admin do Open Banking Brasil
+  title: APIs Admin do Open Finance Brasil
   description: As API's administrativas são recursos que podem ser consumidos apenas pelo diretório para avaliação e controle da qualidade dos serviços fornecidos pelas instituições financeiras
   version: 2.0.0
   contact:
-    email: "apiteam@swagger.io"
+    url: 'https://servicedesk.openbankingbrasil.org.br/Login.jsp?navLanguage=pt-BR'
 servers:
   - url: 'http://api.banco.com.br/open-banking/admin/v1'
 tags:
@@ -18,6 +18,8 @@ paths:
       description: "Obtém as métricas de disponibilidade das APIs"
       operationId: "getMetrics"
       parameters:
+        - $ref: "#/components/parameters/page"
+        - $ref: "#/components/parameters/pageSize"
         - in: query
           name: period
           schema:
@@ -222,10 +224,10 @@ components:
           properties:
             currentDay:
               type: integer
-              description: Tempo médio de resposta para chamadas no dia atual.
+              description: Tempo médio de resposta em milissegundos para chamadas no dia atual.
             previousDays:
               type: array
-              description: Tempo médio de resposta para chamadas nos dias anteriores. O primeiro item do array é referente a ontem, e assim por diante. Devem ser retornados no máximo sete dias caso estejam disponíveis.
+              description: Tempo médio de resposta em milissegundos para chamadas nos dias anteriores. O primeiro item do array é referente a ontem, e assim por diante. Devem ser retornados no máximo sete dias caso estejam disponíveis.
               items:
                 type: integer
         highPriority:
@@ -237,10 +239,10 @@ components:
           properties:
             currentDay:
               type: integer
-              description: Tempo médio de resposta para chamadas no dia atual.
+              description: Tempo médio de resposta em milissegundos para chamadas no dia atual.
             previousDays:
               type: array
-              description: Tempo médio de resposta para chamadas nos dias anteriores. O primeiro item do array é referente a ontem, e assim por diante. Devem ser retornados no máximo sete dias caso estejam disponíveis.
+              description: Tempo médio de resposta em milissegundos para chamadas nos dias anteriores. O primeiro item do array é referente a ontem, e assim por diante. Devem ser retornados no máximo sete dias caso estejam disponíveis.
               items:
                 type: integer
         mediumPriority:
@@ -252,10 +254,10 @@ components:
           properties:
             currentDay:
               type: integer
-              description: Tempo médio de resposta para chamadas no dia atual.
+              description: Tempo médio de resposta em milissegundos para chamadas no dia atual.
             previousDays:
               type: array
-              description: Tempo médio de resposta para chamadas nos dias anteriores. O primeiro item do array é referente a ontem, e assim por diante. Devem ser retornados no máximo sete dias caso estejam disponíveis.
+              description: Tempo médio de resposta em milissegundos para chamadas nos dias anteriores. O primeiro item do array é referente a ontem, e assim por diante. Devem ser retornados no máximo sete dias caso estejam disponíveis.
               items:
                 type: integer
         unattended:
@@ -267,10 +269,10 @@ components:
           properties:
             currentDay:
               type: integer
-              description: Tempo médio de resposta para chamadas no dia atual.
+              description: Tempo médio de resposta em milissegundos para chamadas no dia atual.
             previousDays:
               type: array
-              description: Tempo médio de resposta para chamadas nos dias anteriores. O primeiro item do array é referente a ontem, e assim por diante. Devem ser retornados no máximo sete dias caso estejam disponíveis.
+              description: Tempo médio de resposta em milissegundos para chamadas nos dias anteriores. O primeiro item do array é referente a ontem, e assim por diante. Devem ser retornados no máximo sete dias caso estejam disponíveis.
               items:
                 type: integer
     AverageTPSMetrics:
@@ -364,3 +366,25 @@ components:
       required:
         - totalRecords
         - totalPages
+  parameters:
+    page:
+      name: page
+      in: query
+      description: Número da página que está sendo requisitada (o valor da primeira página é 1).
+      schema:
+        type: integer
+        format: int32​
+        default: 1
+        minimum: 1
+        maximum: 2147483647
+    pageSize:
+      name: page-size
+      in: query
+      description: Quantidade total de registros por páginas.
+      schema:
+        type: integer
+        format: int32​
+        default: 25
+        minimum: 1
+        maximum: 1000
+        
