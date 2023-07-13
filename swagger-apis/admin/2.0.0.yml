@@ -39,22 +39,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseMetricsList'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '405':
-          $ref: '#/components/responses/MethodNotAllowed'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '504':
-          $ref: '#/components/responses/GatewayTimeout'
-        '529':
-          $ref: '#/components/responses/SiteIsOverloaded'
-        default:
-          $ref: '#/components/responses/Default'
 components:
   schemas:
     ResponseMetricsList:
@@ -180,7 +164,6 @@ components:
               description: Número de chamadas não autenticadas no dia atual.
             previousDays:
               type: array
-              maxItems: 7
               description: Número de chamadas não autenticadas nos dias anteriores. O primeiro item do array é referente a ontem, e assim por diante. Devem ser retornados no máximo sete dias caso estejam disponíveis.
               items:
                 type: integer
@@ -196,7 +179,6 @@ components:
               description: Número de chamadas no dia atual para o nível de alta prioridade.
             previousDays:
               type: array
-              maxItems: 7
               description: Número de chamadas nos dias anteriores para o nível de alta prioridade. O primeiro item do array é referente a ontem, e assim por diante. Devem ser retornados no máximo sete dias caso estejam disponíveis.
               items:
                 type: integer
@@ -212,7 +194,6 @@ components:
               description: Número de chamadas no dia atual para o nível de média prioridade.
             previousDays:
               type: array
-              maxItems: 7
               description: Número de chamadas nos dias anteriores para o nível de média prioridade. O primeiro item do array é referente a ontem, e assim por diante. Devem ser retornados no máximo sete dias caso estejam disponíveis.
               items:
                 type: integer
@@ -228,7 +209,6 @@ components:
               type: integer
             previousDays:
               type: array
-              maxItems: 7
               description: Número de chamadas nos dias anteriores para o nível não acompanhado. O primeiro item do array é referente a ontem, e assim por diante. Devem ser retornados no máximo sete dias caso estejam disponíveis.
               items:
                 type: integer
@@ -252,7 +232,6 @@ components:
               description: Tempo médio de resposta em milissegundos para chamadas no dia atual.
             previousDays:
               type: array
-              maxItems: 7
               description: Tempo médio de resposta em milissegundos para chamadas nos dias anteriores. O primeiro item do array é referente a ontem, e assim por diante. Devem ser retornados no máximo sete dias caso estejam disponíveis.
               items:
                 type: integer
@@ -268,7 +247,6 @@ components:
               description: Tempo médio de resposta em milissegundos para chamadas no dia atual.
             previousDays:
               type: array
-              maxItems: 7
               description: Tempo médio de resposta em milissegundos para chamadas nos dias anteriores. O primeiro item do array é referente a ontem, e assim por diante. Devem ser retornados no máximo sete dias caso estejam disponíveis.
               items:
                 type: integer
@@ -284,7 +262,6 @@ components:
               description: Tempo médio de resposta em milissegundos para chamadas no dia atual.
             previousDays:
               type: array
-              maxItems: 7
               description: Tempo médio de resposta em milissegundos para chamadas nos dias anteriores. O primeiro item do array é referente a ontem, e assim por diante. Devem ser retornados no máximo sete dias caso estejam disponíveis.
               items:
                 type: integer
@@ -300,7 +277,6 @@ components:
               description: Tempo médio de resposta em milissegundos para chamadas no dia atual.
             previousDays:
               type: array
-              maxItems: 7
               description: Tempo médio de resposta em milissegundos para chamadas nos dias anteriores. O primeiro item do array é referente a ontem, e assim por diante. Devem ser retornados no máximo sete dias caso estejam disponíveis.
               items:
                 type: integer
@@ -315,7 +291,6 @@ components:
           description: Número médio de chamadas por segundo no dia.
         previousDays:
           type: array
-          maxItems: 7
           description: Número médio de chamadas por segundo nos dias anteriores. O primeiro item do array é referente a ontem, e assim por diante. Devem ser retornados no máximo sete dias caso estejam disponíveis.
           items:
             type: integer
@@ -330,7 +305,6 @@ components:
           description: Pico de chamadas por segundo no dia.
         previousDays:
           type: array
-          maxItems: 7
           description: Pico de chamadas por segundo nos dias anteriores. O primeiro item do array é referente a ontem, e assim por diante. Devem ser retornados no máximo sete dias caso estejam disponíveis.
           items:
             type: integer
@@ -345,7 +319,6 @@ components:
           description: Número de chamadas com erro no dia atual.
         previousDays:
           type: array
-          maxItems: 7
           description: Número de chamadas com erro nos dias anteriores. O primeiro item do array é referente a ontem, e assim por diante. Devem ser retornados no máximo sete dias caso estejam disponíveis.
           items:
             type: integer
@@ -360,7 +333,6 @@ components:
           description: Número de chamadas rejeitadas no dia atual.
         previousDays:
           type: array
-          maxItems: 7
           description: Número de chamadas rejeitadas nos dias anteriores. O primeiro item do array é referente a ontem, e assim por diante. Devem ser retornados no máximo sete dias caso estejam disponíveis.
           items:
             type: integer
@@ -403,98 +375,6 @@ components:
       required:
         - totalRecords
         - totalPages
-    ResponseErrorMetaSingle:
-      type: object
-      required:
-        - errors
-      properties:
-        errors:
-          type: array
-          minItems: 1
-          maxItems: 13
-          items:
-            type: object
-            required:
-              - code
-              - title
-              - detail
-            properties:
-              code:
-                description: Código de erro específico do endpoint
-                type: string
-                pattern: '[\w\W\s]*'
-                maxLength: 255
-              title:
-                description: Título legível por humanos deste erro específico
-                type: string
-                pattern: '[\w\W\s]*'
-                maxLength: 255
-              detail:
-                description: Descrição legível por humanos deste erro específico
-                type: string
-                pattern: '[\w\W\s]*'
-                maxLength: 2048
-        meta:
-          type: object
-          description: Meta informações referente à API requisitada.
-          required:
-            - requestDateTime
-          properties:
-            requestDateTime:
-              description: 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.'
-              type: string
-              maxLength: 20
-              format: date-time
-              example: '2021-05-21T08:30:00Z'
-    ResponseError:
-      type: object
-      required:
-        - errors
-      properties:
-        errors:
-          type: array
-          minItems: 1
-          maxItems: 13
-          items:
-            type: object
-            required:
-              - code
-              - title
-              - detail
-            properties:
-              code:
-                description: Código de erro específico do endpoint
-                type: string
-                pattern: '[\w\W\s]*'
-                maxLength: 255
-              title:
-                description: Título legível por humanos deste erro específico
-                type: string
-                pattern: '[\w\W\s]*'
-                maxLength: 255
-              detail:
-                description: Descrição legível por humanos deste erro específico
-                type: string
-                pattern: '[\w\W\s]*'
-                maxLength: 2048
-        meta:
-          type: object
-          description: Meta informações referente à API requisitada.
-          required:
-            - totalRecords
-            - totalPages
-            - requestDateTime
-          properties:
-            totalRecords:
-              type: integer
-              format: int32
-              description: Número total de registros no resultado
-              example: 1
-            totalPages:
-              type: integer
-              format: int32
-              description: Número total de páginas no resultado
-              example: 1
   parameters:
     page:
       name: page
@@ -516,53 +396,4 @@ components:
         default: 25
         minimum: 1
         maximum: 1000
-  responses:
-    BadRequest:
-      description: A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.​
-      content:
-        application/json; charset=utf-8:
-          schema:
-            $ref: '#/components/schemas/ResponseError'
-    NotFound:
-      description: O recurso solicitado não existe ou não foi implementado.
-      content:
-        application/json; charset=utf-8:
-          schema:
-            $ref: '#/components/schemas/ResponseError'
-    MethodNotAllowed:
-      description: O consumidor tentou acessar o recurso com um método não suportado.
-      content:
-        application/json; charset=utf-8:
-          schema:
-            $ref: '#/components/schemas/ResponseError'
-    TooManyRequests:
-      description: A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido.
-      content:
-        application/json; charset=utf-8:
-          schema:
-            $ref: '#/components/schemas/ResponseError'
-    InternalServerError:
-      description: Ocorreu um erro no gateway da API ou no microsserviço.
-      content:
-        application/json; charset=utf-8:
-          schema:
-            $ref: '#/components/schemas/ResponseError'
-    GatewayTimeout:
-      description: GATEWAY TIMEOUT - A requisição não foi atendida dentro do tempo limite estabelecido.
-      content:
-        application/json; charset=utf-8:
-          schema:
-            $ref: '#/components/schemas/ResponseError'
-    SiteIsOverloaded:
-      description: O site está sobrecarregado e a operação foi recusada, pois foi atingido o limite máximo de TPS global, neste momento.
-      content:
-        application/json; charset=utf-8:
-          schema:
-            $ref: '#/components/schemas/ResponseErrorMetaSingle'
-    Default:
-      description: '\-'
-      content:
-        application/json; charset=utf-8:
-          schema:
-            $ref: '#/components/schemas/ResponseError'
         
