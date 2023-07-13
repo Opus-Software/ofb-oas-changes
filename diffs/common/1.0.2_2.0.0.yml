@@ -13,6 +13,22 @@ GET /outages
   - Schema changed
     - Format changed from '' to 'int32'
     - Max changed from null to 1000
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - MaxLength changed from null to 2000
+                - Modified property: last
+                  - MaxLength changed from null to 2000
+                - Modified property: next
+                  - MaxLength changed from null to 2000
+                - Modified property: self
+                  - MaxLength changed from null to 2000
 GET /status
 - Modified query param: page
   - Schema changed
@@ -22,3 +38,35 @@ GET /status
   - Schema changed
     - Format changed from '' to 'int32'
     - Max changed from null to 1000
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: status
+                  - Items changed
+                    - Properties changed
+                      - Modified property: detectionTime
+                        - MaxLength changed from null to 20
+                      - Modified property: expectedResolutionTime
+                        - MaxLength changed from null to 20
+                      - Modified property: explanation
+                        - MaxLength changed from null to 2000
+                      - Modified property: unavailableEndpoints
+                        - Items changed
+                          - MaxLength changed from null to 2000
+                      - Modified property: updateTime
+                        - MaxLength changed from null to 20
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - MaxLength changed from null to 2000
+                - Modified property: last
+                  - MaxLength changed from null to 2000
+                - Modified property: next
+                  - MaxLength changed from null to 2000
+                - Modified property: self
+                  - MaxLength changed from null to 2000
