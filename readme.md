@@ -7,6 +7,7 @@
 | OAS | Base | Revision | Breaking changes only | Full Diff |
 | --- | --- | --- | --- | --- |
 | accounts | [1.0.3](swagger-apis/accounts/1.0.3.yml) | [2.0.1](swagger-apis/accounts/2.0.1.yml) | [YAML](diffs/accounts/1.0.3_2.0.1-breaking-only.yml) | [YAML](diffs/accounts/1.0.3_2.0.1.yml) |
+|  | [2.0.1](swagger-apis/accounts/2.0.1.yml) | [2.1.0-rc.1](swagger-apis/accounts/2.1.0-rc.1.yml) | [YAML](diffs/accounts/2.0.1_2.1.0-rc.1-breaking-only.yml) | [YAML](diffs/accounts/2.0.1_2.1.0-rc.1.yml) |
 | acquiring-services | [1.0.0](swagger-apis/acquiring-services/1.0.0.yml) |  |  |  |
 | admin | [1.0.2](swagger-apis/admin/1.0.2.yml) | [2.0.0](swagger-apis/admin/2.0.0.yml) | [YAML](diffs/admin/1.0.2_2.0.0-breaking-only.yml) | [YAML](diffs/admin/1.0.2_2.0.0.yml) |
 | bank-fixed-incomes | [1.0.0-rc3.0](swagger-apis/bank-fixed-incomes/1.0.0-rc3.0.yml) |  |  |  |
@@ -61,6 +62,7 @@
 |  | [1.0.3](swagger-apis/accounts/1.0.3.yml) | [2.0.0-RC1.0](swagger-apis/accounts/2.0.0-RC1.0.yml) | [YAML](diffs/accounts/1.0.3_2.0.0-RC1.0.yml) |
 |  | [2.0.0-RC1.0](swagger-apis/accounts/2.0.0-RC1.0.yml) | [2.0.0](swagger-apis/accounts/2.0.0.yml) | [YAML](diffs/accounts/2.0.0-RC1.0_2.0.0.yml) |
 |  | [2.0.0](swagger-apis/accounts/2.0.0.yml) | [2.0.1](swagger-apis/accounts/2.0.1.yml) | [YAML](diffs/accounts/2.0.0_2.0.1.yml) |
+|  | [2.0.1](swagger-apis/accounts/2.0.1.yml) | [2.1.0-rc.1](swagger-apis/accounts/2.1.0-rc.1.yml) | [YAML](diffs/accounts/2.0.1_2.1.0-rc.1.yml) |
 | acquiring-services | [1.0.0-rc1.0](swagger-apis/acquiring-services/1.0.0-rc1.0.yml) | [1.0.0-rc2.0](swagger-apis/acquiring-services/1.0.0-rc2.0.yml) | [YAML](diffs/acquiring-services/1.0.0-rc1.0_1.0.0-rc2.0.yml) |
 |  | [1.0.0-rc2.0](swagger-apis/acquiring-services/1.0.0-rc2.0.yml) | [1.0.0](swagger-apis/acquiring-services/1.0.0.yml) | [YAML](diffs/acquiring-services/1.0.0-rc2.0_1.0.0.yml) |
 | admin | [1.0.0-rc5.1](swagger-apis/admin/1.0.0-rc5.1.yml) | [1.0.0-rc5.2](swagger-apis/admin/1.0.0-rc5.2.yml) | [YAML](diffs/admin/1.0.0-rc5.1_1.0.0-rc5.2.yml) |
