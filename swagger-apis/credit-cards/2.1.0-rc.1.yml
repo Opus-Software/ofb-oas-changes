@@ -798,15 +798,6 @@ components:
 
             [Restrição] O campo é obrigatório caso isLimitFlexible for igual a false.
           example: BRL
-        limitAmountReason:
-          type: string
-          pattern: '[\w\W\s]*'
-          maxLength: 200
-          description: |
-            Razão pela qual o valor total do limite informado está igual a zero.
-
-            [Restrição] Campo de preenchimento obrigatório quando limitAmount for igual a 0.00.
-          example: O perfil do cliente passou por uma análise e o limite precisou ser zerado
     CreditCardsUsedAmount:
       type: object
       description: Valor utilizado do limite informado
@@ -972,12 +963,11 @@ components:
 
             [Restrição] Preenchimento obrigatório quando selecionado no campo outros tipos de crédito "OUTROS".
         chargeIdentificator:
-          type: number
-          format: integer
-          description: Número da parcela que está sendo informada.
-          minimum: 1
-          maximum: 999
-          example: 12
+          type: string
+          maxLength: 50
+          pattern: '[\w\W\s]*'
+          example: PARCELA_1
+          description: Identificador da parcela que está sendo informada. Campo de livre preenchimento
         chargeNumber:
           type: number
           format: integer
