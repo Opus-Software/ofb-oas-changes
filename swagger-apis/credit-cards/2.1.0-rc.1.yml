@@ -741,7 +741,7 @@ components:
           description: Campo de preenchimento obrigatório se selecionada a opção 'OUTRAS' em lineName.
         isLimitFlexible:
           type: boolean
-          description: 'Indica se a operação de crédito é: com limite flexível (true) ou com limite (false).'
+          description: True= Indica que a conta cartão possui limite total flexível ou “sem limite”. False = Indica que a conta cartão possui limite predeterminado exibido no canal para o cliente.
           example: true
         limitAmount:
           $ref: '#/components/schemas/CreditCardsLimitAmount'
@@ -772,7 +772,7 @@ components:
     CreditCardsLimitAmount:
       type: object
       description: |
-        Valor total do limite informado.
+        Valor total do limite concedido.
       required:
         - amount
         - currency
@@ -798,6 +798,15 @@ components:
 
             [Restrição] O campo é obrigatório caso isLimitFlexible for igual a false.
           example: BRL
+        limitAmountReason:
+          type: string
+          pattern: '[\w\W\s]*'
+          maxLength: 200
+          description: |
+            Razão pela qual o valor total do limite informado está igual a zero.
+
+            [Restrição] Campo de preenchimento obrigatório quando limitAmount for igual a 0.00.
+          example: O perfil do cliente passou por uma análise e o limite precisou ser zerado
     CreditCardsUsedAmount:
       type: object
       description: Valor utilizado do limite informado
@@ -963,11 +972,12 @@ components:
 
             [Restrição] Preenchimento obrigatório quando selecionado no campo outros tipos de crédito "OUTROS".
         chargeIdentificator:
-          type: string
-          maxLength: 50
-          pattern: '[\w\W\s]*'
-          example: PARCELA_1
-          description: Identificador da parcela que está sendo informada. Campo de livre preenchimento
+          type: number
+          format: integer
+          description: Número da parcela que está sendo informada.
+          minimum: 1
+          maximum: 999
+          example: 12
         chargeNumber:
           type: number
           format: integer
