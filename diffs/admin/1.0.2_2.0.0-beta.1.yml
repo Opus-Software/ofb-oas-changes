@@ -1,0 +1,129 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 1
+-------------------------
+GET /metrics
+- Modified query param: page
+  - Schema changed
+    - Format changed from '' to 'int32​'
+    - Max changed from null to 2.147483647e+09
+- Modified query param: page-size
+  - Schema changed
+    - Format changed from '' to 'int32​'
+    - Max changed from null to 1000
+- Responses changed
+  - New response: 400
+  - New response: 404
+  - New response: 405
+  - New response: 429
+  - New response: 500
+  - New response: 504
+  - New response: 529
+  - New response: default
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: availability
+                  - Properties changed
+                    - Modified property: downtime
+                      - Properties changed
+                        - Modified property: endpoints
+                          - Properties changed
+                            - Modified property: url
+                              - MaxLength changed from null to 2000
+                              - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                    - Modified property: uptime
+                      - Properties changed
+                        - Modified property: endpoints
+                          - Properties changed
+                            - Modified property: uptimeRate
+                              - MinLength changed from 0 to 8
+                              - MaxLength changed from null to 8
+                              - Pattern changed from '' to '^\d{1}\.\d{6}$'
+                            - Modified property: url
+                              - MaxLength changed from null to 2000
+                              - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                        - Modified property: generalUptimeRate
+                          - MinLength changed from 0 to 8
+                          - MaxLength changed from null to 8
+                          - Pattern changed from '' to '^\d{1}\.\d{6}$'
+                - Modified property: averageResponse
+                  - Properties changed
+                    - Modified property: highPriority
+                      - Properties changed
+                        - Modified property: previousDays
+                          - MaxItems changed from null to 7
+                    - Modified property: mediumPriority
+                      - Properties changed
+                        - Modified property: previousDays
+                          - MaxItems changed from null to 7
+                    - Modified property: unattended
+                      - Properties changed
+                        - Modified property: previousDays
+                          - MaxItems changed from null to 7
+                    - Modified property: unauthenticated
+                      - Properties changed
+                        - Modified property: previousDays
+                          - MaxItems changed from null to 7
+                - Modified property: averageTps
+                  - Properties changed
+                    - Modified property: previousDays
+                      - MaxItems changed from null to 7
+                - Modified property: errors
+                  - Properties changed
+                    - Modified property: previousDays
+                      - MaxItems changed from null to 7
+                - Modified property: invocations
+                  - Properties changed
+                    - Modified property: highPriority
+                      - Properties changed
+                        - Modified property: previousDays
+                          - MaxItems changed from null to 7
+                    - Modified property: mediumPriority
+                      - Properties changed
+                        - Modified property: previousDays
+                          - MaxItems changed from null to 7
+                    - Modified property: unattended
+                      - Properties changed
+                        - Modified property: previousDays
+                          - MaxItems changed from null to 7
+                    - Modified property: unauthenticated
+                      - Properties changed
+                        - Modified property: previousDays
+                          - MaxItems changed from null to 7
+                - Modified property: peakTps
+                  - Properties changed
+                    - Modified property: previousDays
+                      - MaxItems changed from null to 7
+                - Modified property: rejections
+                  - Properties changed
+                    - Modified property: previousDays
+                      - MaxItems changed from null to 7
+                - Modified property: requestTime
+                  - MaxLength changed from null to 20
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Example changed from 'https://api.banco.com.br/open-banking/admin/v1/<resource>' to 'https://api.banco.com.br/open-banking/admin/v1/resource'
+                  - MaxLength changed from null to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Example changed from 'https://api.banco.com.br/open-banking/admin/v1/<resource>' to 'https://api.banco.com.br/open-banking/admin/v1/resource'
+                  - MaxLength changed from null to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - MaxLength changed from null to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - MaxLength changed from null to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Example changed from 'https://api.banco.com.br/open-banking/admin/v1/<resource>' to 'https://api.banco.com.br/open-banking/admin/v1/resource'
+                  - MaxLength changed from null to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
