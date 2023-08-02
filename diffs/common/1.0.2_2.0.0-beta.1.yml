@@ -1,0 +1,116 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 2
+-------------------------
+GET /outages
+- Modified query param: page
+  - Schema changed
+    - Format changed from '' to 'int32'
+    - Max changed from null to 2.147483647e+09
+- Modified query param: page-size
+  - Schema changed
+    - Format changed from '' to 'int32'
+    - Max changed from null to 1000
+- Responses changed
+  - New response: 400
+  - New response: 404
+  - New response: 405
+  - New response: 429
+  - New response: 500
+  - New response: 504
+  - New response: 529
+  - New response: default
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - MaxItems changed from null to 1000
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Example changed from 'https://api.banco.com.br/open-banking/channels/v1/<resource>' to 'https://api.banco.com.br/open-banking/channels/v1/resource'
+                  - MaxLength changed from null to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Example changed from 'https://api.banco.com.br/open-banking/channels/v1/<resource>' to 'https://api.banco.com.br/open-banking/channels/v1/resource'
+                  - MaxLength changed from null to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - MaxLength changed from null to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - MaxLength changed from null to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Example changed from 'https://api.banco.com.br/open-banking/channels/v1/<resource>' to 'https://api.banco.com.br/open-banking/channels/v1/resource'
+                  - MaxLength changed from null to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+GET /status
+- Modified query param: page
+  - Schema changed
+    - Format changed from '' to 'int32'
+    - Max changed from null to 2.147483647e+09
+- Modified query param: page-size
+  - Schema changed
+    - Format changed from '' to 'int32'
+    - Max changed from null to 1000
+- Responses changed
+  - New response: 400
+  - New response: 404
+  - New response: 405
+  - New response: 429
+  - New response: 500
+  - New response: 504
+  - New response: 529
+  - New response: default
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: status
+                  - MaxItems changed from null to 1000
+                  - Items changed
+                    - Properties changed
+                      - Modified property: detectionTime
+                        - MaxLength changed from null to 20
+                        - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+                      - Modified property: expectedResolutionTime
+                        - MaxLength changed from null to 20
+                        - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+                      - Modified property: explanation
+                        - MaxLength changed from null to 2000
+                        - Pattern changed from '' to '[\w\W\s]*'
+                      - Modified property: unavailableEndpoints
+                        - MaxItems changed from null to 1000
+                        - Items changed
+                          - MaxLength changed from null to 2000
+                      - Modified property: updateTime
+                        - MaxLength changed from null to 20
+                        - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Example changed from 'https://api.banco.com.br/open-banking/channels/v1/<resource>' to 'https://api.banco.com.br/open-banking/channels/v1/resource'
+                  - MaxLength changed from null to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Example changed from 'https://api.banco.com.br/open-banking/channels/v1/<resource>' to 'https://api.banco.com.br/open-banking/channels/v1/resource'
+                  - MaxLength changed from null to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - MaxLength changed from null to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - MaxLength changed from null to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Example changed from 'https://api.banco.com.br/open-banking/channels/v1/<resource>' to 'https://api.banco.com.br/open-banking/channels/v1/resource'
+                  - MaxLength changed from null to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
