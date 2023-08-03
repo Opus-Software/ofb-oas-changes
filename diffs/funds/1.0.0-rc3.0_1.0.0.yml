@@ -2,7 +2,7 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 1
+### Modified Endpoints: 3
 -------------------------
 GET /investments/{investmentId}/balances
 - Responses changed
@@ -15,3 +15,13 @@ GET /investments/{investmentId}/balances
               - Properties changed
                 - Modified property: netAmount
                   - Description changed from 'Valor do investimento atualizado na data de referência, posterior a dedução de impostos (IOF e IR) e taxa de saída, caso a instituição considere este valor na composição do saldo líquido.' to 'Valor do investimento atualizado na data de referência, posterior a dedução de impostos (IOF e IR) e taxa de saída, caso a instituição considere este valor na composição do saldo líquido. Este valor considera o valor bloqueado (blockedAmount).'
+GET /investments/{investmentId}/transactions
+- New query param: fromTransactionConversionDate
+- New query param: toTransactionConversionDate
+- Deleted query param: fromTransactionDate
+- Deleted query param: toTransactionDate
+GET /investments/{investmentId}/transactions-current
+- New query param: fromTransactionConversionDate
+- New query param: toTransactionConversionDate
+- Deleted query param: fromTransactionDate
+- Deleted query param: toTransactionDate
