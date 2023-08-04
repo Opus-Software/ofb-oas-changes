@@ -4,8 +4,20 @@ GET /broker-notes/{brokerNoteId}
 ### Deleted Endpoints: 1
 ------------------------
 GET /investments/{investmentId}/broker-notes/{brokerNoteId}  
-### Modified Endpoints: 2
+### Modified Endpoints: 3
 -------------------------
+GET /investments/{investmentId}/balances
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: blockedBalance
+                    - Description changed from 'Valor não disponível para movimentação naquele momento por qualquer motivo (bloqueio judicial, bloqueio em garantia, entre outros).' to 'Valor não disponível para movimentação naquele momento por qualquer motivo (bloqueio judicial, bloqueio em garantia, entre outros). Prazo de carência não é considerado como bloqueio.'
 GET /investments/{investmentId}/transactions
 - Responses changed
   - Modified response: 200
