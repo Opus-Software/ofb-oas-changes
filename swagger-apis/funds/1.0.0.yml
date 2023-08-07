@@ -215,8 +215,8 @@ paths:
         - $ref: '#/components/parameters/page'
         - $ref: '#/components/parameters/pageSize'
         - $ref: '#/components/parameters/pagination-key'
-        - $ref: '#/components/parameters/fromTransactionConversionDate'
-        - $ref: '#/components/parameters/toTransactionConversionDate'
+        - $ref: '#/components/parameters/fromTransactionDate'
+        - $ref: '#/components/parameters/toTransactionDate'
       responses:
         '200':
           $ref: '#/components/responses/OKResponseFundsTransactions'
@@ -268,8 +268,8 @@ paths:
         - $ref: '#/components/parameters/page'
         - $ref: '#/components/parameters/pageSize'
         - $ref: '#/components/parameters/pagination-key'
-        - $ref: '#/components/parameters/fromTransactionConversionDateCurrent'
-        - $ref: '#/components/parameters/toTransactionConversionDateCurrent'
+        - $ref: '#/components/parameters/fromTransactionDateCurrent'
+        - $ref: '#/components/parameters/toTransactionDateCurrent'
       responses:
         '200':
           $ref: '#/components/responses/OKResponseFundsTransactionsCurrent'
@@ -1380,12 +1380,12 @@ components:
         type: string
         maxLength: 2048
         pattern: '[\w\W\s]*'
-    fromTransactionConversionDate:
-      name: fromTransactionConversionDate
+    fromTransactionDate:
+      name: fromTransactionDate
       description: |
         Data inicial de filtragem.
 
-        [Restrição] Deve obrigatoriamente ser enviado caso o campo toTransactionConversionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
+        [Restrição] Deve obrigatoriamente ser enviado caso o campo toTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
       required: false
       in: query
       schema:
@@ -1393,12 +1393,12 @@ components:
         maxLength: 10
         format: date
         example: '2021-05-21'
-    toTransactionConversionDate:
-      name: toTransactionConversionDate
+    toTransactionDate:
+      name: toTransactionDate
       description: |
         Data final de filtragem.
 
-        [Restrição] Deve obrigatoriamente ser enviado caso o campo fromTransactionConversionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
+        [Restrição] Deve obrigatoriamente ser enviado caso o campo fromTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
       required: false
       in: query
       schema:
@@ -1406,12 +1406,12 @@ components:
         maxLength: 10
         format: date
         example: '2021-05-21'
-    fromTransactionConversionDateCurrent:
-      name: fromTransactionConversionDate
+    fromTransactionDateCurrent:
+      name: fromTransactionDate
       description: |
         Data inicial de filtragem. O período máximo utilizado no filtro é de 7 dias inclusive (D-6).
 
-        [Restrição] Deve obrigatoriamente ser enviado caso o campo toTransactionConversionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
+        [Restrição] Deve obrigatoriamente ser enviado caso o campo toTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
       required: false
       in: query
       schema:
@@ -1419,12 +1419,12 @@ components:
         maxLength: 10
         format: date
         example: '2021-05-21'
-    toTransactionConversionDateCurrent:
-      name: toTransactionConversionDate
+    toTransactionDateCurrent:
+      name: toTransactionDate
       description: |
         Data final de filtragem. O período máximo utilizado no filtro é de 7 dias inclusive (D-6).
 
-        [Restrição] Deve obrigatoriamente ser enviado caso o campo fromTransactionConversionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
+        [Restrição] Deve obrigatoriamente ser enviado caso o campo fromTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
       required: false
       in: query
       schema:
