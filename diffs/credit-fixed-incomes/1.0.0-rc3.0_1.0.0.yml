@@ -2,8 +2,18 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 3
+### Modified Endpoints: 4
 -------------------------
+GET /investments
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: links
+              - Properties changed
+                - New property: last
 GET /investments/{investmentId}/balances
 - Responses changed
   - Modified response: 200
@@ -13,8 +23,6 @@ GET /investments/{investmentId}/balances
           - Properties changed
             - Modified property: data
               - Properties changed
-                - Modified property: blockedBalance
-                  - Description changed from 'Valor não disponível para movimentação naquele momento por qualquer motivo (bloqueio judicial, bloqueio em garantia, entre outros).' to 'Valor não disponível para movimentação naquele momento por qualquer motivo (bloqueio judicial, bloqueio em garantia, entre outros). Prazo de carência não é considerado como bloqueio.'
                 - Modified property: postFixedIndexerPercentage
                   - MinLength changed from 0 to 8
                 - Modified property: preFixedRate
