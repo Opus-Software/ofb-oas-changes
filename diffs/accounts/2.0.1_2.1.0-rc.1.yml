@@ -31,6 +31,16 @@ GET /accounts/{accountId}/transactions
                 - Properties changed
                   - New property: transactionDateTime
                   - Deleted property: transactionDate
+                  - Modified property: completedAuthorisedPaymentType
+                    - Description changed from 'Indicador da transação: 
+- Transação efetivada
+- Lançamento futuro
+' to 'Indicador da transação: 
+  - Transação efetivada: a transação atinge esse status quando o "transactionId" torna-se imutável;
+  - Lançamento futuro: a transação será efetivada em momento futuro, ou seja, o "transactionId" pode mudar;
+  - Transação processando: a transação está em processamento, ou seja, o "transactionId" pode mudar.
+'
+                    - New enum values: [TRANSACAO_PROCESSANDO]
                   - Modified property: partieCnpjCpf
                     - Description changed from 'Identificação da pessoa envolvida na transação: pagador ou recebedor (Preencher com o CPF ou CNPJ, sem formatação)
 ' to 'Identificação da pessoa envolvida na transação: pagador ou recebedor (Preencher com o CPF ou CNPJ, sem formatação). Exceção a obrigatoriedade de envio: Tipo de transação TED quando se tratar de Transferência entre Reservas (STR0004) e Recebimento de recursos judiciais (STR0051R2).
@@ -53,6 +63,16 @@ GET /accounts/{accountId}/transactions-current
                 - Properties changed
                   - New property: transactionDateTime
                   - Deleted property: transactionDate
+                  - Modified property: completedAuthorisedPaymentType
+                    - Description changed from 'Indicador da transação: 
+- Transação efetivada
+- Lançamento futuro
+' to 'Indicador da transação: 
+  - Transação efetivada: a transação atinge esse status quando o "transactionId" torna-se imutável;
+  - Lançamento futuro: a transação será efetivada em momento futuro, ou seja, o "transactionId" pode mudar;
+  - Transação processando: a transação está em processamento, ou seja, o "transactionId" pode mudar.
+'
+                    - New enum values: [TRANSACAO_PROCESSANDO]
                   - Modified property: partieCnpjCpf
                     - Description changed from 'Identificação da pessoa envolvida na transação: pagador ou recebedor (Preencher com o CPF ou CNPJ, sem formatação)
 ' to 'Identificação da pessoa envolvida na transação: pagador ou recebedor (Preencher com o CPF ou CNPJ, sem formatação). Exceção a obrigatoriedade de envio: Tipo de transação TED quando se tratar de Transferência entre Reservas (STR0004) e Recebimento de recursos judiciais (STR0051R2).
