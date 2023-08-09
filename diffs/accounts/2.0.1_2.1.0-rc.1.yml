@@ -45,6 +45,11 @@ GET /accounts/{accountId}/transactions
                     - Description changed from 'Identificação da pessoa envolvida na transação: pagador ou recebedor (Preencher com o CPF ou CNPJ, sem formatação)
 ' to 'Identificação da pessoa envolvida na transação: pagador ou recebedor (Preencher com o CPF ou CNPJ, sem formatação). Exceção a obrigatoriedade de envio: Tipo de transação TED quando se tratar de Transferência entre Reservas (STR0004) e Recebimento de recursos judiciais (STR0051R2).
 '
+                  - Modified property: transactionId
+                    - Description changed from 'Código ou identificador único prestado pela instituição que mantém a conta para representar a transação individual.' to 'Código ou identificador único prestado pela instituição que mantém a conta para representar a transação individual. 
+O ideal é que o `transactionId` seja imutável. 
+No entanto, o `transactionId` deve obedecer, no mínimo, as regras de imutabilidade propostas conforme tabela “Data de imutabilidade por tipo de transação” presente nas orientações desta API.
+'
                   - Modified property: transactionName
                     - Description changed from 'Campo livre que corresponde ao identificador da transação na instituição financeira' to 'Literal usada na instituição financeira para identificar a transação. A informação apresentada precisa ser a mesma utilizada nos canais eletrônicos da instituição (extrato).'
                     - MaxLength changed from 60 to 200
@@ -76,6 +81,11 @@ GET /accounts/{accountId}/transactions-current
                   - Modified property: partieCnpjCpf
                     - Description changed from 'Identificação da pessoa envolvida na transação: pagador ou recebedor (Preencher com o CPF ou CNPJ, sem formatação)
 ' to 'Identificação da pessoa envolvida na transação: pagador ou recebedor (Preencher com o CPF ou CNPJ, sem formatação). Exceção a obrigatoriedade de envio: Tipo de transação TED quando se tratar de Transferência entre Reservas (STR0004) e Recebimento de recursos judiciais (STR0051R2).
+'
+                  - Modified property: transactionId
+                    - Description changed from 'Código ou identificador único prestado pela instituição que mantém a conta para representar a transação individual.' to 'Código ou identificador único prestado pela instituição que mantém a conta para representar a transação individual. 
+O ideal é que o `transactionId` seja imutável. 
+No entanto, o `transactionId` deve obedecer, no mínimo, as regras de imutabilidade propostas conforme tabela “Data de imutabilidade por tipo de transação” presente nas orientações desta API.
 '
                   - Modified property: transactionName
                     - Description changed from 'Campo livre que corresponde ao identificador da transação na instituição financeira' to 'Literal usada na instituição financeira para identificar a transação. A informação apresentada precisa ser a mesma utilizada nos canais eletrônicos da instituição (extrato).'
