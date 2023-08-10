@@ -1,0 +1,29 @@
+﻿### New Endpoints: 1
+--------------------
+POST /enrollments/{versionApi}/enrollments/{enrollmentId}  
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 2
+-------------------------
+POST /payments/{versionApi}/consents/{consentId}
+- Modified path param: versionApi
+  - Schema changed
+    - Pattern changed from '^urn:[a-zA-Z0-9][a-zA-Z0-9\-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$' to '^v([1-9][0-9]?|10)$'
+- Request body changed
+  - Description changed from 'Payload para criação do consentimento para iniciação do pagamento.' to 'Payload enviado para notificar a alteração no estado do consentimento.'
+  - Content changed
+    - New media type: application/json
+    - Deleted media type: application/jwt
+- Security changed
+  - Deleted security requirements: OAuth2ClientCredentials
+POST /payments/{versionApi}/pix/payments/{paymentId}
+- Modified path param: versionApi
+  - Schema changed
+    - Pattern changed from '^urn:[a-zA-Z0-9][a-zA-Z0-9\-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$' to '^v([1-9][0-9]?|10)$'
+- Request body changed
+  - Description changed from 'Payload para criação do consentimento para iniciação do pagamento.' to 'Payload enviado para notificar a alteração no estado do pagamento.'
+  - Content changed
+    - New media type: application/json
+    - Deleted media type: application/jwt
+- Security changed
+  - Deleted security requirements: OAuth2ClientCredentials
