@@ -407,32 +407,14 @@ paths:
         content:
           application/jwt:
             schema:
-              $ref: '#/components/schemas/RiskSignals'
+              $ref: '#/components/schemas/ConsentAuthorization'
       responses:
         '204':
           $ref: '#/components/responses/204EnrollmentsRiskSignals'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFound'
-        '405':
-          $ref: '#/components/responses/MethodNotAllowed'
-        '406':
-          $ref: '#/components/responses/NotAcceptable'
-        '415':
-          $ref: '#/components/responses/UnsupportedMediaType'
         '422':
           $ref: '#/components/responses/UnprocessableEntityEnrollmentRiskSignals'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '529':
-          $ref: '#/components/responses/SiteIsOverloaded'
       security:
         - OAuth2ClientCredentials:
             - payments
@@ -645,12 +627,15 @@ components:
               code:
                 type: string
                 enum:
+                  - RP_INVALIDA
                   - STATUS_VINCULO_INVALIDO
                 example: STATUS_VINCULO_INVALIDO
                 description: |
                   Códigos de erros previstos:
 
-                  - STATUS_VINCULO_INVALIDO: O status do vínculo de conta é incompatível com a operação.
+                  • RP_INVALIDA: O identificador da Relying Party informado não pode ser verificado.
+                  
+                  • STATUS_VINCULO_INVALIDO: O status do vínculo de conta é tal que não permite o registro de nova credencial.
               title:
                 type: string
                 maxLength: 255
@@ -659,7 +644,9 @@ components:
                 description: |
                   Título específico do erro reportado, de acordo com o código enviado:
 
-                  - STATUS_VINCULO_INVALIDO: Status do vínculo de conta inválido.
+                  • RP_INVALIDA: Relying party inválida.
+                  
+                  • STATUS_VINCULO_INVALIDO: Status do vínculo de conta inválido.
               detail:
                 type: string
                 maxLength: 2048
@@ -668,7 +655,9 @@ components:
                 description: |
                   Descrição específica do erro de acordo com o código reportado:
 
-                  - STATUS_VINCULO_INVALIDO: O status do vínculo de conta é incompatível com a operação.
+                  • RP_INVALIDA: O identificador da Relying Party informado não pode ser verificado.
+                  
+                  • STATUS_VINCULO_INVALIDO: O status do vínculo de conta é tal que não permite o registro de nova credencial.
         meta:
           $ref: '#/components/schemas/Meta'
     422ResponseErrorRiskSignals:
@@ -975,27 +964,6 @@ components:
               $ref: '#/components/schemas/BusinessEntity'
             debtorAccount:
               $ref: '#/components/schemas/DebtorAccount'
-    RiskSignals:
-      type: object
-      required:
-        - data
-      properties:
-        data:
-          type: object
-          description: Informa a integridade do dispositivo e app
-          properties:
-            integrity:
-              type: object
-              description: Informa a integridade do dispositivo e app
-              properties:
-                appRecognitionVerdict:
-                  type: string
-                  description: Informa a integridade do dispositivo e app
-                deviceRecognitionVerdict:
-                  type: string
-                  description: Informa a integridade do dispositivo e app
-
-
     ConsentAuthorization:
       type: object
       required:
@@ -1134,16 +1102,16 @@ components:
                       type: string
                       format: bytes
                       description: Nome de usuário que foi enviado durante a criação da credencial.
-                    clientExtensionResults:
-                      type: object
-                      description: Estrutura para extensão de resultados 
-                      properties:
-                        additionalProp1:
-                          type: string
-                          description: Propriedade adicional.
-                        additionalProp2:
-                          type: string
-                          description: Propriedade adicional.
+                clientExtensionResults:
+                  type: object
+                  description: Estrutura para extensão de resultados 
+                  properties:
+                    additionalProp1:
+                      type: string
+                      description: Propriedade adicional.
+                    additionalProp2:
+                      type: string
+                      description: Propriedade adicional.
     DebtorAccount:
       type: object
       description: |
