@@ -32,7 +32,6 @@
 |  | [2.0.1](swagger-apis/invoice-financings/2.0.1.yml) | [2.1.1-rc.1](swagger-apis/invoice-financings/2.1.1-rc.1.yml) | [YAML](diffs/invoice-financings/2.0.1_2.1.1-rc.1-breaking-only.yml) | [YAML](diffs/invoice-financings/2.0.1_2.1.1-rc.1.yml) |
 | loans | [1.0.4](swagger-apis/loans/1.0.4.yml) | [2.0.1](swagger-apis/loans/2.0.1.yml) | [YAML](diffs/loans/1.0.4_2.0.1-breaking-only.yml) | [YAML](diffs/loans/1.0.4_2.0.1.yml) |
 |  | [2.0.1](swagger-apis/loans/2.0.1.yml) | [2.1.1-rc.1](swagger-apis/loans/2.1.1-rc.1.yml) | [YAML](diffs/loans/2.0.1_2.1.1-rc.1-breaking-only.yml) | [YAML](diffs/loans/2.0.1_2.1.1-rc.1.yml) |
-| opendata-loans | [1.0.0](swagger-apis/opendata-loans/1.0.0.yml) |  |  |  |
 | participants | [1.0.0](swagger-apis/participants/1.0.0.yml) |  |  |  |
 | payments | [1.0.1](swagger-apis/payments/1.0.1.yml) | [1.1.0-rc1.0](swagger-apis/payments/1.1.0-rc1.0.yml) | [YAML](diffs/payments/1.0.1_1.1.0-rc1.0-breaking-only.yml) | [YAML](diffs/payments/1.0.1_1.1.0-rc1.0.yml) |
 |  | [1.1.0-rc1.0](swagger-apis/payments/1.1.0-rc1.0.yml) | [1.2.0](swagger-apis/payments/1.2.0.yml) | [YAML](diffs/payments/1.1.0-rc1.0_1.2.0-breaking-only.yml) | [YAML](diffs/payments/1.1.0-rc1.0_1.2.0.yml) |
@@ -44,7 +43,7 @@
 |  | [2.0.0-beta1](swagger-apis/products-services/2.0.0-beta1.yml) | [3.0.0](swagger-apis/products-services/3.0.0.yml) | [YAML](diffs/products-services/2.0.0-beta1_3.0.0-breaking-only.yml) | [YAML](diffs/products-services/2.0.0-beta1_3.0.0.yml) |
 | resources | [1.0.2](swagger-apis/resources/1.0.2.yml) | [2.0.1](swagger-apis/resources/2.0.1.yml) | [YAML](diffs/resources/1.0.2_2.0.1-breaking-only.yml) | [YAML](diffs/resources/1.0.2_2.0.1.yml) |
 |  | [2.0.1](swagger-apis/resources/2.0.1.yml) | [2.1.0](swagger-apis/resources/2.1.0.yml) | [YAML](diffs/resources/2.0.1_2.1.0-breaking-only.yml) | [YAML](diffs/resources/2.0.1_2.1.0.yml) |
-| treasure-titles | [1.0.0](swagger-apis/treasure-titles/1.0.0.yml) |  |  |  |
+| treasure-titles | [1.0.1](swagger-apis/treasure-titles/1.0.1.yml) |  |  |  |
 | unarranged-accounts-overdraft | [1.0.4](swagger-apis/unarranged-accounts-overdraft/1.0.4.yml) | [2.0.1](swagger-apis/unarranged-accounts-overdraft/2.0.1.yml) | [YAML](diffs/unarranged-accounts-overdraft/1.0.4_2.0.1-breaking-only.yml) | [YAML](diffs/unarranged-accounts-overdraft/1.0.4_2.0.1.yml) |
 |  | [2.0.1](swagger-apis/unarranged-accounts-overdraft/2.0.1.yml) | [2.1.1-rc.1](swagger-apis/unarranged-accounts-overdraft/2.1.1-rc.1.yml) | [YAML](diffs/unarranged-accounts-overdraft/2.0.1_2.1.1-rc.1-breaking-only.yml) | [YAML](diffs/unarranged-accounts-overdraft/2.0.1_2.1.1-rc.1.yml) |
 | variable-incomes | [1.0.1](swagger-apis/variable-incomes/1.0.1.yml) |  |  |  |
@@ -180,8 +179,6 @@
 |  | [2.0.0](swagger-apis/loans/2.0.0.yml) | [2.0.1](swagger-apis/loans/2.0.1.yml) | [YAML](diffs/loans/2.0.0_2.0.1.yml) |
 |  | [2.0.1](swagger-apis/loans/2.0.1.yml) | [2.1.0-rc.1](swagger-apis/loans/2.1.0-rc.1.yml) | [YAML](diffs/loans/2.0.1_2.1.0-rc.1.yml) |
 |  | [2.1.0-rc.1](swagger-apis/loans/2.1.0-rc.1.yml) | [2.1.1-rc.1](swagger-apis/loans/2.1.1-rc.1.yml) | [YAML](diffs/loans/2.1.0-rc.1_2.1.1-rc.1.yml) |
-| opendata-loans | [1.0.0-beta.1](swagger-apis/opendata-loans/1.0.0-beta.1.yml) | [1.0.0-beta.1​ ](swagger-apis/opendata-loans/1.0.0-beta.1​ .yml) | [YAML](diffs/opendata-loans/1.0.0-beta.1_1.0.0-beta.1​ .yml) |
-|  | [1.0.0-beta.1​ ](swagger-apis/opendata-loans/1.0.0-beta.1​ .yml) | [1.0.0](swagger-apis/opendata-loans/1.0.0.yml) | [YAML](diffs/opendata-loans/1.0.0-beta.1​ _1.0.0.yml) |
 | participants | [1.0.0](swagger-apis/participants/1.0.0.yml) |  |  |
 | payments | [1.0.0-rc1.0](swagger-apis/payments/1.0.0-rc1.0.yml) | [1.0.0-rc2.0](swagger-apis/payments/1.0.0-rc2.0.yml) | [YAML](diffs/payments/1.0.0-rc1.0_1.0.0-rc2.0.yml) |
 |  | [1.0.0-rc2.0](swagger-apis/payments/1.0.0-rc2.0.yml) | [1.0.0-rc3.0](swagger-apis/payments/1.0.0-rc3.0.yml) | [YAML](diffs/payments/1.0.0-rc2.0_1.0.0-rc3.0.yml) |
@@ -232,6 +229,7 @@
 | treasure-titles | [1.0.0-rc1.0](swagger-apis/treasure-titles/1.0.0-rc1.0.yml) | [1.0.0-rc2.0](swagger-apis/treasure-titles/1.0.0-rc2.0.yml) | [YAML](diffs/treasure-titles/1.0.0-rc1.0_1.0.0-rc2.0.yml) |
 |  | [1.0.0-rc2.0](swagger-apis/treasure-titles/1.0.0-rc2.0.yml) | [1.0.0-rc3.0](swagger-apis/treasure-titles/1.0.0-rc3.0.yml) | [YAML](diffs/treasure-titles/1.0.0-rc2.0_1.0.0-rc3.0.yml) |
 |  | [1.0.0-rc3.0](swagger-apis/treasure-titles/1.0.0-rc3.0.yml) | [1.0.0](swagger-apis/treasure-titles/1.0.0.yml) | [YAML](diffs/treasure-titles/1.0.0-rc3.0_1.0.0.yml) |
+|  | [1.0.0](swagger-apis/treasure-titles/1.0.0.yml) | [1.0.1](swagger-apis/treasure-titles/1.0.1.yml) | [YAML](diffs/treasure-titles/1.0.0_1.0.1.yml) |
 | unarranged-accounts-overdraft | [1.0.0-rc6.5](swagger-apis/unarranged-accounts-overdraft/1.0.0-rc6.5.yml) | [1.0.0-rc6.6](swagger-apis/unarranged-accounts-overdraft/1.0.0-rc6.6.yml) | [YAML](diffs/unarranged-accounts-overdraft/1.0.0-rc6.5_1.0.0-rc6.6.yml) |
 |  | [1.0.0-rc6.6](swagger-apis/unarranged-accounts-overdraft/1.0.0-rc6.6.yml) | [1.0.0-rc6.7](swagger-apis/unarranged-accounts-overdraft/1.0.0-rc6.7.yml) | [YAML](diffs/unarranged-accounts-overdraft/1.0.0-rc6.6_1.0.0-rc6.7.yml) |
 |  | [1.0.0-rc6.7](swagger-apis/unarranged-accounts-overdraft/1.0.0-rc6.7.yml) | [1.0.0](swagger-apis/unarranged-accounts-overdraft/1.0.0.yml) | [YAML](diffs/unarranged-accounts-overdraft/1.0.0-rc6.7_1.0.0.yml) |
@@ -267,6 +265,7 @@
 | opendata-creditcards | [1.0.0](swagger-apis/opendata-creditcards/1.0.0.yml) |  |  |  |
 | opendata-financings | [1.0.0](swagger-apis/opendata-financings/1.0.0.yml) |  |  |  |
 | opendata-invoicefinancings | [1.0.0](swagger-apis/opendata-invoicefinancings/1.0.0.yml) |  |  |  |
+| opendata-loans | [1.0.0](swagger-apis/opendata-loans/1.0.0.yml) |  |  |  |
 | opendata-unarranged | [1.0.0](swagger-apis/opendata-unarranged/1.0.0.yml) |  |  |  |
 
 ### All revisions
@@ -280,4 +279,6 @@
 | opendata-creditcards | [1.0.0-beta.1](swagger-apis/opendata-creditcards/1.0.0-beta.1.yml) | [1.0.0](swagger-apis/opendata-creditcards/1.0.0.yml) | [YAML](diffs/opendata-creditcards/1.0.0-beta.1_1.0.0.yml) |
 | opendata-financings | [1.0.0-beta.1](swagger-apis/opendata-financings/1.0.0-beta.1.yml) | [1.0.0](swagger-apis/opendata-financings/1.0.0.yml) | [YAML](diffs/opendata-financings/1.0.0-beta.1_1.0.0.yml) |
 | opendata-invoicefinancings | [1.0.0-beta.1](swagger-apis/opendata-invoicefinancings/1.0.0-beta.1.yml) | [1.0.0](swagger-apis/opendata-invoicefinancings/1.0.0.yml) | [YAML](diffs/opendata-invoicefinancings/1.0.0-beta.1_1.0.0.yml) |
+| opendata-loans | [1.0.0-beta.1](swagger-apis/opendata-loans/1.0.0-beta.1.yml) | [1.0.0-beta.1​ ](swagger-apis/opendata-loans/1.0.0-beta.1​ .yml) | [YAML](diffs/opendata-loans/1.0.0-beta.1_1.0.0-beta.1​ .yml) |
+|  | [1.0.0-beta.1​ ](swagger-apis/opendata-loans/1.0.0-beta.1​ .yml) | [1.0.0](swagger-apis/opendata-loans/1.0.0.yml) | [YAML](diffs/opendata-loans/1.0.0-beta.1​ _1.0.0.yml) |
 | opendata-unarranged | [1.0.0-beta.1](swagger-apis/opendata-unarranged/1.0.0-beta.1.yml) | [1.0.0](swagger-apis/opendata-unarranged/1.0.0.yml) | [YAML](diffs/opendata-unarranged/1.0.0-beta.1_1.0.0.yml) |
