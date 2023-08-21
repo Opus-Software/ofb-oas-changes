@@ -20,16 +20,18 @@ servers:
   - url:  'https://apih.banco.com.br/open-banking/webhook/v1'
     description: Servidor de Homologação
 tags:
-  - name: Payments - Consents and PIX Payments
-    description: Notificações de mudanças de estados de consentimentos e do pagamento.
-  - name: No redirect - Enrollment Id Notification
-    description: Notificações de mudanças de estados do vínculo de conta com a instituição.
+  - name: Consent Notification
+    description: Notificações de mudanças de estados de consentimentos da API de Iniciação de Pagamentos.
+  - name: Pix Payment Notification
+    description: 'Notificações de mudanças de estados do pagamento: Arranjo Pix da API de Iniciação de Pagamentos.'
+  - name: Enrollment Id Notification
+    description: 'Notificações de mudanças de estados do vínculo de conta da API - Pagamentos sem Redirecionamento.'
     
 paths:
   '/payments/{versionApi}/consents/{consentId}':
     post:
       tags:
-        - Payments - Consents and PIX Payments
+        - Consent Notification
       summary: Notificações de mudanças de estados de consentimentos da API de Iniciação de Pagamentos.
       operationId: consentNotification
       description: Notificações de mudanças de estados de consentimentos da API de Iniciação de Pagamentos.
@@ -50,7 +52,7 @@ paths:
   '/payments/{versionApi}/pix/payments/{paymentId}':
     post:
       tags:
-        - Payments - Consents and PIX Payments
+        - Pix Payment Notification
       summary: 'Notificações de mudanças de estados do pagamento: Arranjo Pix da API de Iniciação de Pagamentos.'
       operationId: pixPaymentNotification
       description: 'Notificações de mudanças de estados do pagamento: Arranjo Pix da API de Iniciação de Pagamentos.'
@@ -71,7 +73,7 @@ paths:
   '/enrollments/{versionApi}/enrollments/{enrollmentId}':
     post:
       tags:
-        - No redirect - Enrollment Id Notification
+        - Enrollment Id Notification
       summary: Notificações de mudanças de estados do vínculo de conta da API - Pagamentos sem Redirecionamento.
       operationId: enrollmentIdNotification
       description: Notificações de mudanças de estados do vínculo de conta da API - Pagamentos sem Redirecionamento.
