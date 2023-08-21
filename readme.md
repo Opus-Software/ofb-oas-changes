@@ -21,6 +21,7 @@
 |  | [2.0.1](swagger-apis/credit-cards/2.0.1.yml) | [2.1.0-rc.2](swagger-apis/credit-cards/2.1.0-rc.2.yml) | [YAML](diffs/credit-cards/2.0.1_2.1.0-rc.2-breaking-only.yml) | [YAML](diffs/credit-cards/2.0.1_2.1.0-rc.2.yml) |
 | credit-fixed-incomes | [1.0.1](swagger-apis/credit-fixed-incomes/1.0.1.yml) |  |  |  |
 | customers | [1.0.3](swagger-apis/customers/1.0.3.yml) | [2.0.1](swagger-apis/customers/2.0.1.yml) | [YAML](diffs/customers/1.0.3_2.0.1-breaking-only.yml) | [YAML](diffs/customers/1.0.3_2.0.1.yml) |
+| enrollments | [1.0.0-rc.1](swagger-apis/enrollments/ 1.0.0-rc.1.yml) |  |  |  |
 | exchange | [1.0.0](swagger-apis/exchange/1.0.0.yml) |  |  |  |
 | exchanges | [1.0.0-rc1.0](swagger-apis/exchanges/1.0.0-rc1.0.yml) |  |  |  |
 | financings | [1.0.4](swagger-apis/financings/1.0.4.yml) | [2.0.1](swagger-apis/financings/2.0.1.yml) | [YAML](diffs/financings/1.0.4_2.0.1-breaking-only.yml) | [YAML](diffs/financings/1.0.4_2.0.1.yml) |
@@ -133,6 +134,8 @@
 |  | [1.0.3](swagger-apis/customers/1.0.3.yml) | [2.0.0-RC1.0](swagger-apis/customers/2.0.0-RC1.0.yml) | [YAML](diffs/customers/1.0.3_2.0.0-RC1.0.yml) |
 |  | [2.0.0-RC1.0](swagger-apis/customers/2.0.0-RC1.0.yml) | [2.0.0](swagger-apis/customers/2.0.0.yml) | [YAML](diffs/customers/2.0.0-RC1.0_2.0.0.yml) |
 |  | [2.0.0](swagger-apis/customers/2.0.0.yml) | [2.0.1](swagger-apis/customers/2.0.1.yml) | [YAML](diffs/customers/2.0.0_2.0.1.yml) |
+| enrollments | [1.0.0-beta.1](swagger-apis/enrollments/1.0.0-beta.1.yml) | [1.0.0-rc.1](swagger-apis/enrollments/ 1.0.0-rc.1.yml) | [YAML](diffs/enrollments/1.0.0-beta.1_ 1.0.0-rc.1.yml) |
+|  | [1.0.0-rc.1](swagger-apis/enrollments/ 1.0.0-rc.1.yml) | [1.0.0-rc.1](swagger-apis/enrollments/1.0.0-rc.1.yml) | [YAML](diffs/enrollments/ 1.0.0-rc.1_1.0.0-rc.1.yml) |
 | exchange | [1.0.0-rc1.0](swagger-apis/exchange/1.0.0-rc1.0.yml) | [1.0.0-rc2.0](swagger-apis/exchange/1.0.0-rc2.0.yml) | [YAML](diffs/exchange/1.0.0-rc1.0_1.0.0-rc2.0.yml) |
 |  | [1.0.0-rc2.0](swagger-apis/exchange/1.0.0-rc2.0.yml) | [1.0.0](swagger-apis/exchange/1.0.0.yml) | [YAML](diffs/exchange/1.0.0-rc2.0_1.0.0.yml) |
 | exchanges | [1.0.0-rc1.0](swagger-apis/exchanges/1.0.0-rc1.0.yml) |  |  |
@@ -260,7 +263,6 @@
 
 | OAS | Base | Revision | Breaking changes only | Full Diff |
 | --- | --- | --- | --- | --- |
-| enrollments | [1.0.0-rc.1](swagger-apis/enrollments/ 1.0.0-rc.1.yml) |  |  |  |
 | exchanges-aguardando-definicao | [1.0.0-rc1.0](swagger-apis/exchanges-aguardando-definicao/1.0.0-rc1.0.yml) |  |  |  |
 | opendata-accounts | [1.0.0](swagger-apis/opendata-accounts/1.0.0.yml) |  |  |  |
 | opendata-creditcards | [1.0.0](swagger-apis/opendata-creditcards/1.0.0.yml) |  |  |  |
@@ -273,8 +275,6 @@
 
 | OAS | Base | Revision | Full Diff |
 | --- | --- | --- | --- |
-| enrollments | [1.0.0-beta.1](swagger-apis/enrollments/1.0.0-beta.1.yml) | [1.0.0-rc.1](swagger-apis/enrollments/ 1.0.0-rc.1.yml) | [YAML](diffs/enrollments/1.0.0-beta.1_ 1.0.0-rc.1.yml) |
-|  | [1.0.0-rc.1](swagger-apis/enrollments/ 1.0.0-rc.1.yml) | [1.0.0-rc.1](swagger-apis/enrollments/1.0.0-rc.1.yml) | [YAML](diffs/enrollments/ 1.0.0-rc.1_1.0.0-rc.1.yml) |
 | exchanges-aguardando-definicao | [1.0.0-rc1.0](swagger-apis/exchanges-aguardando-definicao/1.0.0-rc1.0.yml) |  |  |
 | opendata-accounts | [1.0.0-beta.1](swagger-apis/opendata-accounts/1.0.0-beta.1.yml) | [1.0.0](swagger-apis/opendata-accounts/1.0.0.yml) | [YAML](diffs/opendata-accounts/1.0.0-beta.1_1.0.0.yml) |
 | opendata-creditcards | [1.0.0-beta.1](swagger-apis/opendata-creditcards/1.0.0-beta.1.yml) | [1.0.0](swagger-apis/opendata-creditcards/1.0.0.yml) | [YAML](diffs/opendata-creditcards/1.0.0-beta.1_1.0.0.yml) |
