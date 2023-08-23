@@ -438,8 +438,11 @@ POST /pix/payments
       - Schema changed
         - Properties changed
           - Modified property: data
+            - Required changed
+              - New required property: consentId
             - Properties changed
               - New property: authorisationFlow
+              - New property: consentId
               - Modified property: creditorAccount
                 - Properties changed
                   - Modified property: accountType
@@ -479,6 +482,27 @@ no exercício de atividades da instituição, não podendo ser móvel ou transit
             - Modified property: data
               - Properties changed
                 - New property: authorisationFlow
+                - Modified property: consentId
+                  - Description changed from 'Identificador único do consentimento criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN
+seja um identificador de recurso persistente e independente da localização.
+Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição transnmissora (bancoex)
+- o identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+' to 'Identificador único do consentimento criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN
+seja um identificador de recurso persistente e independente da localização.
+Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição transnmissora (bancoex)
+- o identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).  
+[Restrição] Este campo é de preenchimento obrigatório quando o valor do campo authorisationFlow for igual a FIDO_FLOW.
+'
                 - Modified property: creditorAccount
                   - Properties changed
                     - Modified property: accountType
@@ -769,6 +793,8 @@ O rejectionReason FALHA_INFRAESTRUTURA não será excluído, apenas deixará de 
 '
         - Schema changed
           - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+- Security changed
+  - New security requirements: NonRedirectAuthorizationCode
 GET /pix/payments/{paymentId}
 - Modified header param: x-fapi-interaction-id
   - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
