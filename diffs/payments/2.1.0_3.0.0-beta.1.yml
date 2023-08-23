@@ -210,6 +210,8 @@ Segue descrição de cada valor do ENUM.
 - SVGS - Savings - Conta de Poupança.
 - TRAN - TransactingAccount - Conta de Pagamento pré-paga.
 '
+- Security changed
+  - Deleted security requirements: NonRedirectAuthorizationCode
 POST /pix/payments
 - Modified header param: x-fapi-interaction-id
   - Required changed from false to true
@@ -219,8 +221,11 @@ POST /pix/payments
       - Schema changed
         - Properties changed
           - Modified property: data
+            - Required changed
+              - Deleted required property: consentId
             - Properties changed
               - New property: authorisationFlow
+              - Deleted property: consentId
               - Modified property: creditorAccount
                 - Properties changed
                   - Modified property: accountType
