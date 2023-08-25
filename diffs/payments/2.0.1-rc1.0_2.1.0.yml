@@ -11,8 +11,6 @@ POST /pix/payments
       - Schema changed
         - Properties changed
           - Modified property: data
-            - Required changed
-              - New required property: consentId
             - Properties changed
               - New property: consentId
 - Responses changed
@@ -22,6 +20,8 @@ POST /pix/payments
         - Schema changed
           - Properties changed
             - Modified property: data
+              - Required changed
+                - Deleted required property: consentId
               - Properties changed
                 - Modified property: consentId
                   - Description changed from 'Identificador único do consentimento criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.
@@ -42,7 +42,7 @@ Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
 - o identificador associado ao namespace da instituição transnmissora (bancoex)
 - o identificador específico dentro do namespace (C1DD33123).
 Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
-[Restrição] Este campo é de preenchimento obrigatório quando o valor do campo authorisationFlow for igual a FIDO_FLOW.
+[Restrição] Este campo é de preenchimento obrigatório quando o fluxo de autorização for NonRedirectAuthorizationCode.
 '
 - Security changed
   - New security requirements: NonRedirectAuthorizationCode
