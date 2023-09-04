@@ -1,0 +1,1274 @@
+﻿### New Endpoints: 1
+--------------------
+POST /consents/{consentId}/authorise  
+### Deleted Endpoints: 1
+------------------------
+POST /consents/{consentId}/authorize  
+### Modified Endpoints: 7
+-------------------------
+POST /enrollments
+- Description changed from 'Método para criar um novo vínculo de conta que será utilizado na ativação de um consentimento sem redirecionamento do usuário ao ambiente da detentora.' to 'Método para criar um novo vínculo de conta. Retorna um enrollment em status AWAITING_RISK_SIGNALS.  
+'
+- Modified header param: x-fapi-auth-date
+  - Description changed from 'Data em que o usuário logou pela última vez com o receptor. Representada de acordo com a [RFC7231](https://tools.ietf.org/html/rfc7231).Exemplo: Sun, 10 Sep 2017 19:43:31 UTC' to 'Data em que o usuário logou pela última vez com a iniciadora. Representada de acordo com a [RFC7231](https://tools.ietf.org/html/rfc7231).Exemplo: Sun, 10 Sep 2017 19:43:31 UTC'
+- Modified header param: x-fapi-customer-ip-address
+  - Description changed from 'O endereço IP do usuário se estiver atualmente logado com o receptor.' to 'O endereço IP do usuário se estiver atualmente logado com a iniciadora.'
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: enrollmentId
+                  - Description changed from 'Identificador único do vínculo de conta criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN
+seja um identificador de recurso persistente e independente da localização.
+Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição transnmissora (bancoex)
+- o identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+' to 'Identificador único do vínculo de conta criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN
+seja um identificador de recurso persistente e independente da localização.
+Considerando a string urn:bancoex:C1DD33123 como exemplo para enrollmentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição detentora de conta (bancoex)
+- o identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+'
+                - Modified property: status
+                  - Description changed from 'Status do vínculo de conta:
+• AWAITING_AUTHORISATION: Vínculo de conta criado e aguando autorização no ambiente da dentora de conta.
+• AWAITING_ENROLLMENT: Vínculo de conta autorizado no ambiente da detentora e aguardando o vínculo de credenciais (FIDO2).
+• AUTHORISED: Vínculo de conta pronto para uso.
+• REVOKED: Vínculo de conta revogado.
+• REJECTED: Vínculo de conta rejeitado.
+' to 'Status do vínculo de conta:
+• AWAITING_RISK_SIGNALS: Vínculo de conta criado e aguardando envio dos sinais de risco para a dentora.
+• AWAITING_ACCOUNT_HOLDER_VALIDATION: Vínculo de conta aguardando autorização no ambiente da detentora.
+• AWAITING_ENROLLMENT: Vínculo de conta autorizado no ambiente da detentora e aguardando o vínculo de credenciais (FIDO2).
+• AUTHORISED: Vínculo de conta pronto para uso.
+• REVOKED: Vínculo de conta revogado.
+• REJECTED: Vínculo de conta rejeitado.
+'
+                  - New enum values: [AWAITING_RISK_SIGNALS AWAITING_ACCOUNT_HOLDER_VALIDATION]
+                  - Deleted enum values: [AWAITING_AUTHORISATION]
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 400
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 401
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 403
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 404
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 405
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 406
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 415
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 422
+    - Description changed from 'A solicitação foi bem formada, mas não pôde ser processada devido à lógica de negócios específica da solicitação.' to 'A solicitação foi bem-formada, mas não pôde ser processada devido à lógica de negócios específica da solicitação.'
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: detail
+                    - Description changed from 'Descrição específica do erro de acordo com o código reportado:
+• PERMISSOES_INVALIDAS: As permissões associadas ao vínculo de conta não contêm "PAYMENTS_INITIATE" ou contém valores não suportados para esta operação.  
+• CONTA_INVALIDA: A conta informada inexiste ou não é compatível com o fluxo de não-redirecionamento.
+' to 'Descrição específica do erro de acordo com o código reportado:
+• PERMISSOES_INVALIDAS: As permissões associadas ao vínculo de conta não contêm "PAYMENTS_INITIATE" ou contêm valores não suportados para esta operação.  
+• CONTA_INVALIDA: A conta informada inexiste ou não é compatível com o fluxo de não-redirecionamento.
+'
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 429
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 500
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+GET /enrollments/{enrollmentId}
+- Description changed from 'Método para consultar um novo vínculo de conta para iniciação de pagamento sem redirecionamento.' to 'Método para consultar um vínculo de conta para iniciação de pagamento sem redirecionamento.'
+- Modified path param: enrollmentId
+  - Description changed from 'Identificador único do vínculo de conta criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN
+seja um identificador de recurso persistente e independente da localização.
+Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição transnmissora (bancoex)
+- o identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+' to 'Identificador único do vínculo de conta criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN
+seja um identificador de recurso persistente e independente da localização.
+Considerando a string urn:bancoex:C1DD33123 como exemplo para enrollmentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição detentora de conta (bancoex)
+- o identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+'
+  - Schema changed
+    - Description changed from 'Identificador único do vínculo de conta criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN
+seja um identificador de recurso persistente e independente da localização.
+Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição transnmissora (bancoex)
+- o identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+' to 'Identificador único do vínculo de conta criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN
+seja um identificador de recurso persistente e independente da localização.
+Considerando a string urn:bancoex:C1DD33123 como exemplo para enrollmentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição detentora de conta (bancoex)
+- o identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+'
+- Modified header param: x-fapi-auth-date
+  - Description changed from 'Data em que o usuário logou pela última vez com o receptor. Representada de acordo com a [RFC7231](https://tools.ietf.org/html/rfc7231).Exemplo: Sun, 10 Sep 2017 19:43:31 UTC' to 'Data em que o usuário logou pela última vez com a iniciadora. Representada de acordo com a [RFC7231](https://tools.ietf.org/html/rfc7231).Exemplo: Sun, 10 Sep 2017 19:43:31 UTC'
+- Modified header param: x-fapi-customer-ip-address
+  - Description changed from 'O endereço IP do usuário se estiver atualmente logado com o receptor.' to 'O endereço IP do usuário se estiver atualmente logado com a iniciadora.'
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Required changed
+                - Deleted required property: debtorAccount
+              - Properties changed
+                - Modified property: cancellation
+                  - Properties changed
+                    - Modified property: reason
+                      - Property 'OneOf' changed
+                        - 2 schemas added
+                        - 2 schemas deleted
+                - Modified property: debtorAccount
+                  - Property 'AllOf' changed
+                    - 2 schemas added
+                  - Type changed from 'object' to ''
+                  - Description changed from 'Objeto que contém a identificação da conta de origem do pagador.  
+As informações quanto à conta de origem do pagador poderão ser trazidas no vínculo para a detentora, caso a iniciadora tenha coletado essas informações do cliente. Do contrário, será coletada na detentora e trazida para a iniciadora como resposta à criação do vínculo.
+' to ''
+                  - Required changed
+                    - Deleted required property: accountType
+                    - Deleted required property: ispb
+                    - Deleted required property: number
+                  - Properties changed
+                    - Deleted property: accountType
+                    - Deleted property: ispb
+                    - Deleted property: issuer
+                    - Deleted property: number
+                - Modified property: enrollmentId
+                  - Description changed from 'Identificador único do vínculo de conta criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN
+seja um identificador de recurso persistente e independente da localização.
+Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição transnmissora (bancoex)
+- o identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+' to 'Identificador único do vínculo de conta criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN
+seja um identificador de recurso persistente e independente da localização.
+Considerando a string urn:bancoex:C1DD33123 como exemplo para enrollmentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição detentora de conta (bancoex)
+- o identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+'
+                - Modified property: status
+                  - Description changed from 'Status do vínculo de conta:
+• AWAITING_AUTHORISATION: Vínculo de conta criado e aguando autorização no ambiente da dentora de conta.
+• AWAITING_ENROLLMENT: Vínculo de conta autorizado no ambiente da detentora e aguardando o vínculo de credenciais (FIDO2).
+• AUTHORISED: Vínculo de conta pronto para uso.
+• REVOKED: Vínculo de conta revogado.
+• REJECTED: Vínculo de conta rejeitado.
+' to 'Status do vínculo de conta:
+• AWAITING_RISK_SIGNALS: Vínculo de conta criado e aguardando envio dos sinais de risco para a dentora.
+• AWAITING_ACCOUNT_HOLDER_VALIDATION: Vínculo de conta aguardando autorização no ambiente da detentora.
+• AWAITING_ENROLLMENT: Vínculo de conta autorizado no ambiente da detentora e aguardando o vínculo de credenciais (FIDO2).
+• AUTHORISED: Vínculo de conta pronto para uso.
+• REVOKED: Vínculo de conta revogado.
+• REJECTED: Vínculo de conta rejeitado.
+'
+                  - New enum values: [AWAITING_RISK_SIGNALS AWAITING_ACCOUNT_HOLDER_VALIDATION]
+                  - Deleted enum values: [AWAITING_AUTHORISATION]
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 400
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 401
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 403
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 404
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 405
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 406
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 429
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 500
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+PATCH /enrollments/{enrollmentId}
+- Description changed from 'Método para revogar ou rejeitar um vínculo de conta. Após a execução com sucesso deste método irreversível, o vínculo de conta
+não poderá mais ser utilizado para autenticação nem autorização de iniciação de pagamentos.
+Os conceitos de revogação e rejeição estão associados à máquina de estados do vínculo de conta\:
+• Revogação: Cancelamento de um vínculo de conta no status "AUTHORISED";
+• Rejeição: Cancealemento do vínculo de conta nos status "AWATING_AUTHORISATION" e "AWATING_ENROLLMENT".
+Cabe ao cliente desta API distinguir entre os dois cenários para determinar o motivo adequado.
+' to 'Método para revogar ou rejeitar um vínculo de conta. Após a execução com sucesso deste método irreversível, o vínculo de conta
+não poderá mais ser utilizado para autenticação nem autorização de iniciação de pagamentos.
+Os conceitos de revogação e rejeição estão associados à máquina de estados do vínculo de conta\:
+• Revogação: Cancelamento de um vínculo de conta no status "AUTHORISED";
+• Rejeição: Cancelamento do vínculo de conta nos status "AWATING_RISK_SIGNALS", "AWATING_ENROLLMENT" e "AWAITING_ACCOUNT_HOLDER_VALIDATION"
+Cabe ao cliente desta API distinguir entre os dois cenários para determinar o motivo adequado.
+'
+- Modified path param: enrollmentId
+  - Description changed from 'Identificador único do vínculo de conta criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN
+seja um identificador de recurso persistente e independente da localização.
+Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição transnmissora (bancoex)
+- o identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+' to 'Identificador único do vínculo de conta criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN
+seja um identificador de recurso persistente e independente da localização.
+Considerando a string urn:bancoex:C1DD33123 como exemplo para enrollmentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição detentora de conta (bancoex)
+- o identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+'
+  - Schema changed
+    - Description changed from 'Identificador único do vínculo de conta criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN
+seja um identificador de recurso persistente e independente da localização.
+Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição transnmissora (bancoex)
+- o identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+' to 'Identificador único do vínculo de conta criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN
+seja um identificador de recurso persistente e independente da localização.
+Considerando a string urn:bancoex:C1DD33123 como exemplo para enrollmentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição detentora de conta (bancoex)
+- o identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+'
+- Modified header param: x-fapi-auth-date
+  - Description changed from 'Data em que o usuário logou pela última vez com o receptor. Representada de acordo com a [RFC7231](https://tools.ietf.org/html/rfc7231).Exemplo: Sun, 10 Sep 2017 19:43:31 UTC' to 'Data em que o usuário logou pela última vez com a iniciadora. Representada de acordo com a [RFC7231](https://tools.ietf.org/html/rfc7231).Exemplo: Sun, 10 Sep 2017 19:43:31 UTC'
+- Modified header param: x-fapi-customer-ip-address
+  - Description changed from 'O endereço IP do usuário se estiver atualmente logado com o receptor.' to 'O endereço IP do usuário se estiver atualmente logado com a iniciadora.'
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: cancellation
+                - Properties changed
+                  - Modified property: reason
+                    - Property 'OneOf' changed
+                      - 2 schemas added
+                      - 2 schemas deleted
+- Responses changed
+  - Modified response: 204
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 400
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 401
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 403
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 404
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 405
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 406
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 422
+    - Description changed from 'A solicitação foi bem formada, mas não pôde ser processada devido à lógica de negócios específica da solicitação.' to 'A solicitação foi bem-formada, mas não pôde ser processada devido à lógica de negócios específica da solicitação.'
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Description changed from 'Códigos de erros previstos na criação do vínculo de conta:
+• STATUS_INVALIDO: O status do vínculo de conta não permite cancelamento.
+• MOTIVO_REJEICAO: A rejeição do vínculo de conta deve estar associada a um motivo de rejeição.
+• REJEITADO_OUTRO_SEM_DETALHES: O uso do motivo REJEITADO_OUTRO, deve estar acompanhado de descrição (additionalInformation).
+• MOTIVO_REVOGACAO: A revogação do vínculo de conta deve estar associada a um motivo de revogação.
+• REVOGADO_OUTRO_SEM_DETALHES: O uso do motivo REVOGADO_OUTRO deve estar acompanhado de descrição (additionalInformation)
+' to 'Códigos de erros previstos no cancelamento do vínculo de conta:
+• STATUS_INVALIDO: O status do vínculo de conta não permite cancelamento.
+• MOTIVO_REJEICAO: A rejeição do vínculo de conta exige um motivo associado.
+• REJEITADO_OUTRO_SEM_DETALHES: O uso do motivo REJEITADO_OUTRO, deve estar acompanhado de descrição (additionalInformation).
+• MOTIVO_REVOGACAO: A revogação do vínculo de conta exige um motivo associado.
+• REVOGADO_OUTRO_SEM_DETALHES: O uso do motivo REVOGADO_OUTRO deve estar acompanhado de descrição (additionalInformation)
+'
+                    - New enum values: [MOTIVO_REJEICAO REJEITADO_OUTRO_SEM_DETALHES MOTIVO_REVOGACAO REVOGADO_OUTRO_SEM_DETALHES]
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 429
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 500
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+POST /enrollments/{enrollmentId}/fido-registration
+- Description changed from 'O vínculo de conta deve estar no status "AWAITING_ENROLLMENT". 
+Após o registro com sucesso, o vínculo de conta deve transitar ao status "AUTHORISED".
+A falha de verificação da credencial FIDO2 deve causar a revogação do vínculo de conta por parte da detentora, uma vez que não é possível reusar um mesmo "challenge" para mais de um registro.
+' to 'O vínculo de conta deve estar no status "AWAITING_ENROLLMENT". 
+Após o registro com sucesso, o vínculo de conta deve transitar ao status "AUTHORISED".
+A falha de verificação da credencial FIDO2 deve causar a rejeição do vínculo de conta por parte da detentora, uma vez que não é possível reusar um mesmo "challenge" para mais de um registro.
+'
+- Modified path param: enrollmentId
+  - Description changed from 'Identificador único do vínculo de conta criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN
+seja um identificador de recurso persistente e independente da localização.
+Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição transnmissora (bancoex)
+- o identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+' to 'Identificador único do vínculo de conta criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN
+seja um identificador de recurso persistente e independente da localização.
+Considerando a string urn:bancoex:C1DD33123 como exemplo para enrollmentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição detentora de conta (bancoex)
+- o identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+'
+  - Schema changed
+    - Description changed from 'Identificador único do vínculo de conta criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN
+seja um identificador de recurso persistente e independente da localização.
+Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição transnmissora (bancoex)
+- o identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+' to 'Identificador único do vínculo de conta criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN
+seja um identificador de recurso persistente e independente da localização.
+Considerando a string urn:bancoex:C1DD33123 como exemplo para enrollmentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição detentora de conta (bancoex)
+- o identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+'
+- Modified header param: x-fapi-auth-date
+  - Description changed from 'Data em que o usuário logou pela última vez com o receptor. Representada de acordo com a [RFC7231](https://tools.ietf.org/html/rfc7231).Exemplo: Sun, 10 Sep 2017 19:43:31 UTC' to 'Data em que o usuário logou pela última vez com a iniciadora. Representada de acordo com a [RFC7231](https://tools.ietf.org/html/rfc7231).Exemplo: Sun, 10 Sep 2017 19:43:31 UTC'
+- Modified header param: x-fapi-customer-ip-address
+  - Description changed from 'O endereço IP do usuário se estiver atualmente logado com o receptor.' to 'O endereço IP do usuário se estiver atualmente logado com a iniciadora.'
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+- Responses changed
+  - Modified response: 204
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 400
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 401
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 403
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 404
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 405
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 406
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 415
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 422
+    - Description changed from 'A solicitação foi bem formada, mas não pôde ser processada devido à lógica de negócios específica da solicitação.
+A falha de verificação da credencial FIDO2 deve causar a revogação do vínculo de conta por parte da detentora, uma vez que não é possível reusar um mesmo "challenge" para mais de um registro.
+' to 'A solicitação foi bem-formada, mas não pôde ser processada devido à lógica de negócios específica da solicitação.
+A falha de verificação da credencial FIDO2 deve causar a rejeição do vínculo de conta por parte da detentora, uma vez que não é possível reusar um mesmo "challenge" para mais de um registro.
+'
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Description changed from 'Códigos de erros previstos:
+• STATUS_VINCULO_INVALIDO: O status do vínculo de conta é tal que não permite o registro de nova credencial.
+• ORIGEM_FIDO_INVALIDA: O valor contido no campo response.clientDataJSON.origin não pode ser verificado. 
+• RP_INVALIDA: O valor contido no campo response.attestationObject.authData.rpIdHash não pode ser verificado.
+• CHALLENGE_INVALIDO: O campo response.clientDataJSON.challenge possui valor codificado diferente do valor gerado pelo servidor.
+• PUBLIC_KEY_INVALIDA: A chave pública enviada é incompatível com as definições do servidor FIDO2.
+• EXTENSION_INVALIDA: As extensões extraídas são incompatíveis com as diretrizes de segurança do servidor FIDO2.
+' to 'Códigos de erros previstos:
+• STATUS_VINCULO_INVALIDO: O status do vínculo de conta é tal que não permite o registro de nova credencial.
+• ORIGEM_FIDO_INVALIDA: O valor contido no campo [response.clientDataJSON.origin](https://www.w3.org/TR/webauthn-2/#dom-authenticatorresponse-clientdatajson) não pode ser verificado. 
+• RP_INVALIDA: O valor contido no campo [data.response.attestationObject.authData.rpIdHash](https://www.w3.org/TR/webauthn-2/#sctn-authenticator-data) não pode ser verificado. 
+• CHALLENGE_INVALIDO: O campo [response.clientDataJSON.challenge](https://www.w3.org/TR/webauthn-2/#dom-authenticatorresponse-clientdatajson) possui valor codificado diferente do valor gerado pelo servidor.
+• PUBLIC_KEY_INVALIDA: A chave pública enviada é incompatível com as definições do servidor FIDO2.
+• EXTENSION_INVALIDA: As extensões extraídas são incompatíveis com as diretrizes de segurança do servidor FIDO2.
+'
+                  - Modified property: detail
+                    - Description changed from 'Descrição específica do erro de acordo com o código reportado:
+• STATUS_VINCULO_INVALIDO: O status do vínculo de conta é tal que não permite o registro de nova credencial.
+• ORIGEM_FIDO_INVALIDA: O valor contido no campo response.clientDataJSON.origin não pode ser verificado.
+• RP_INVALIDA: O valor contido no campo response.attestationObject.authData.rpIdHash não pode ser verificado.
+• CHALLENGE_INVALIDO: O campo response.clientDataJSON.challenge possui valor codificado diferente do valor gerado pelo servidor.
+• PUBLIC_KEY_INVALIDA: A chave pública enviada é incompatível com as definições do servidor FIDO2.
+• EXTENSION_INVALIDA: As extensões extraídas são incompatíveis com as diretrizes de segurança do servidor FIDO2.
+' to 'Descrição específica do erro de acordo com o código reportado:
+• STATUS_VINCULO_INVALIDO: O status do vínculo de conta é tal que não permite o registro de nova credencial.
+• ORIGEM_FIDO_INVALIDA: O valor contido no campo [response.clientDataJSON.origin](https://www.w3.org/TR/webauthn-2/#dom-authenticatorresponse-clientdatajson) não pode ser verificado.
+• RP_INVALIDA: O valor contido no campo [response.attestationObject.authData.rpIdHash](https://www.w3.org/TR/webauthn-2/#sctn-authenticator-data) não pode ser verificado.
+• CHALLENGE_INVALIDO: O campo [response.clientDataJSON.challenge](https://www.w3.org/TR/webauthn-2/#dom-authenticatorresponse-clientdatajson) possui valor codificado diferente do valor gerado pelo servidor.
+• PUBLIC_KEY_INVALIDA: A chave pública enviada é incompatível com as definições do servidor FIDO2.
+• EXTENSION_INVALIDA: As extensões extraídas são incompatíveis com as diretrizes de segurança do servidor FIDO2.
+'
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 429
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 500
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+POST /enrollments/{enrollmentId}/fido-registration-options
+- Modified path param: enrollmentId
+  - Description changed from 'Identificador único do vínculo de conta criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN
+seja um identificador de recurso persistente e independente da localização.
+Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição transnmissora (bancoex)
+- o identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+' to 'Identificador único do vínculo de conta criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN
+seja um identificador de recurso persistente e independente da localização.
+Considerando a string urn:bancoex:C1DD33123 como exemplo para enrollmentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição detentora de conta (bancoex)
+- o identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+'
+  - Schema changed
+    - Description changed from 'Identificador único do vínculo de conta criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN
+seja um identificador de recurso persistente e independente da localização.
+Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição transnmissora (bancoex)
+- o identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+' to 'Identificador único do vínculo de conta criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN
+seja um identificador de recurso persistente e independente da localização.
+Considerando a string urn:bancoex:C1DD33123 como exemplo para enrollmentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição detentora de conta (bancoex)
+- o identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+'
+- Modified header param: x-fapi-auth-date
+  - Description changed from 'Data em que o usuário logou pela última vez com o receptor. Representada de acordo com a [RFC7231](https://tools.ietf.org/html/rfc7231).Exemplo: Sun, 10 Sep 2017 19:43:31 UTC' to 'Data em que o usuário logou pela última vez com a iniciadora. Representada de acordo com a [RFC7231](https://tools.ietf.org/html/rfc7231).Exemplo: Sun, 10 Sep 2017 19:43:31 UTC'
+- Modified header param: x-fapi-customer-ip-address
+  - Description changed from 'O endereço IP do usuário se estiver atualmente logado com o receptor.' to 'O endereço IP do usuário se estiver atualmente logado com a iniciadora.'
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: enrollmentId
+                  - Description changed from 'Identificador único do vínculo de conta criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN
+seja um identificador de recurso persistente e independente da localização.
+Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição transnmissora (bancoex)
+- o identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+' to 'Identificador único do vínculo de conta criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN
+seja um identificador de recurso persistente e independente da localização.
+Considerando a string urn:bancoex:C1DD33123 como exemplo para enrollmentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição detentora de conta (bancoex)
+- o identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+'
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 400
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 401
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 403
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 404
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 405
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 406
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 415
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 422
+    - Description changed from 'A solicitação foi bem formada, mas não pôde ser processada devido à lógica de negócios específica da solicitação.' to 'A solicitação foi bem-formada, mas não pôde ser processada devido à lógica de negócios específica da solicitação.'
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 429
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 500
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+POST /enrollments/{enrollmentId}/fido-sign-options
+- Description changed from 'Método para obter os parâmetros para autenticação a partir de uma credencial FIDO2 previamente registrada. Um novo challenge deve ser criado a cada chamada.
+Os parâmetros da resposta devem ser compatíveis com a definição [W3C](https://www.w3.org/TR/webauthn-2/#dictionary-assertion-options)
+' to 'Método para obter os parâmetros para autenticação a partir de uma credencial FIDO2 previamente registrada. Um novo challenge deve ser criado a cada chamada.
+Os parâmetros da resposta devem ser compatíveis com a [definição W3C](https://www.w3.org/TR/webauthn-2/#dictionary-assertion-options)
+'
+- Modified path param: enrollmentId
+  - Description changed from 'Identificador único do vínculo de conta criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN
+seja um identificador de recurso persistente e independente da localização.
+Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição transnmissora (bancoex)
+- o identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+' to 'Identificador único do vínculo de conta criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN
+seja um identificador de recurso persistente e independente da localização.
+Considerando a string urn:bancoex:C1DD33123 como exemplo para enrollmentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição detentora de conta (bancoex)
+- o identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+'
+  - Schema changed
+    - Description changed from 'Identificador único do vínculo de conta criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN
+seja um identificador de recurso persistente e independente da localização.
+Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição transnmissora (bancoex)
+- o identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+' to 'Identificador único do vínculo de conta criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN
+seja um identificador de recurso persistente e independente da localização.
+Considerando a string urn:bancoex:C1DD33123 como exemplo para enrollmentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição detentora de conta (bancoex)
+- o identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+'
+- Modified header param: x-fapi-auth-date
+  - Description changed from 'Data em que o usuário logou pela última vez com o receptor. Representada de acordo com a [RFC7231](https://tools.ietf.org/html/rfc7231).Exemplo: Sun, 10 Sep 2017 19:43:31 UTC' to 'Data em que o usuário logou pela última vez com a iniciadora. Representada de acordo com a [RFC7231](https://tools.ietf.org/html/rfc7231).Exemplo: Sun, 10 Sep 2017 19:43:31 UTC'
+- Modified header param: x-fapi-customer-ip-address
+  - Description changed from 'O endereço IP do usuário se estiver atualmente logado com o receptor.' to 'O endereço IP do usuário se estiver atualmente logado com a iniciadora.'
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: consentId
+                - Description changed from 'O consentId é o identificador único do consentimento e deverá ser um URN - Uniform Resource Name.  
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource 
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN 
+seja um identificador de recurso persistente e independente da localização.  
+Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição transnmissora (bancoex) 
+- o identificador específico dentro do namespace (C1DD33123).  
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+' to 'O consentId é o identificador único do consentimento e deverá ser um URN - Uniform Resource Name.  
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource 
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN 
+seja um identificador de recurso persistente e independente da localização.  
+Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição detentora de conta (bancoex) 
+- o identificador específico dentro do namespace (C1DD33123).  
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+'
+- Responses changed
+  - Modified response: 201
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 400
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 401
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 403
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 404
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 405
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 406
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 415
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 422
+    - Description changed from 'A solicitação foi bem formada, mas não pôde ser processada devido à lógica de negócios específica da solicitação.' to 'A solicitação foi bem-formada, mas não pôde ser processada devido à lógica de negócios específica da solicitação.'
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Description changed from 'Códigos de erros previstos:
+• RP_INVALIDA: O identificador da Relying Party informado não pode ser verificado.
+• STATUS_VINCULO_INVALIDO: O status do vínculo de conta é tal que não permite o registro de nova credencial. 
+• STATUS_CONSENTIMENTO_INVALIDO: O status do consentimento não permite autorização.
+' to 'Códigos de erros previstos:
+• RP_INVALIDA: O identificador da Relying Party informado não pode ser verificado.
+• STATUS_VINCULO_INVALIDO: O status do vínculo de conta é tal que não permite assinatura. 
+• STATUS_CONSENTIMENTO_INVALIDO: O status do consentimento não permite autorização.
+'
+                  - Modified property: detail
+                    - Description changed from 'Descrição específica do erro de acordo com o código reportado:
+• RP_INVALIDA: O identificador da Relying Party informado não pode ser verificado.
+• STATUS_VINCULO_INVALIDO: O status do vínculo de conta é tal que não permite o registro de nova credencial. 
+• STATUS_CONSENTIMENTO_INVALIDO: O status do consentimento não permite autorização.
+' to 'Descrição específica do erro de acordo com o código reportado:
+• RP_INVALIDA: O identificador da Relying Party informado não pode ser verificado.
+• STATUS_VINCULO_INVALIDO: O status do vínculo de conta é tal que não permite assinatura. 
+• STATUS_CONSENTIMENTO_INVALIDO: O status do consentimento não permite autorização.
+'
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 429
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 500
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+POST /enrollments/{enrollmentId}/risk-signals
+- Description changed from 'Autorização de um consentimento de pagamentos a partir do access token emitido pela jornada sem redirecionamento e envio de sinais de risco.
+O consentimento de pagamento deve transitar ao status "AUTHORISED" na execução com sucesso deste método.
+Em caso de falha, o status do consentimento do pagamento transitará par o status "REJECTED".
+' to 'Envio de sinais de risco para iniciação do vínculo de dispositivo, o status do enrollment deve estar em `AWAITING_RISK_SIGNALS`. Após recebimento com sucesso dos sinais, o status do enrollment deve transitar para `AWAITING_ACCOUNT_HOLDER_VALIDATION`.
+'
+- Modified path param: enrollmentId
+  - Description changed from 'Identificador único do vínculo de conta criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN
+seja um identificador de recurso persistente e independente da localização.
+Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição transnmissora (bancoex)
+- o identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+' to 'Identificador único do vínculo de conta criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN
+seja um identificador de recurso persistente e independente da localização.
+Considerando a string urn:bancoex:C1DD33123 como exemplo para enrollmentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição detentora de conta (bancoex)
+- o identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+'
+  - Schema changed
+    - Description changed from 'Identificador único do vínculo de conta criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN
+seja um identificador de recurso persistente e independente da localização.
+Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição transnmissora (bancoex)
+- o identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+' to 'Identificador único do vínculo de conta criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN
+seja um identificador de recurso persistente e independente da localização.
+Considerando a string urn:bancoex:C1DD33123 como exemplo para enrollmentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição detentora de conta (bancoex)
+- o identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+'
+- Modified header param: x-fapi-auth-date
+  - Description changed from 'Data em que o usuário logou pela última vez com o receptor. Representada de acordo com a [RFC7231](https://tools.ietf.org/html/rfc7231).Exemplo: Sun, 10 Sep 2017 19:43:31 UTC' to 'Data em que o usuário logou pela última vez com a iniciadora. Representada de acordo com a [RFC7231](https://tools.ietf.org/html/rfc7231).Exemplo: Sun, 10 Sep 2017 19:43:31 UTC'
+- Modified header param: x-fapi-customer-ip-address
+  - Description changed from 'O endereço IP do usuário se estiver atualmente logado com o receptor.' to 'O endereço IP do usuário se estiver atualmente logado com a iniciadora.'
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Required changed
+              - New required property: userTimeZoneOffset
+              - Deleted required property: userTimeZone
+            - Properties changed
+              - New property: geolocation
+              - New property: isCallInProgress
+              - New property: userTimeZoneOffset
+              - Deleted property: isCallingProgress
+              - Deleted property: latitudeLongitude
+              - Deleted property: userTimeZone
+              - Modified property: accountTenure
+                - Format changed from '' to 'date'
+                - Description changed from 'Tempo que o cliente fez cadastro no ITP.' to 'Data de cadastro do cliente na iniciadora.'
+                - Example changed from null to '2023-09-01'
+                - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+              - Modified property: elapsedTimeSinceBoot
+                - Description changed from 'Indica por quanto tempo o dispositivo está ligado.' to 'Indica por quanto tempo (em milissegundos) o dispositivo está ligado.'
+              - Modified property: integrity
+                - Description changed from 'Informa a integridade do dispositivo e app' to 'Informa a integridade do dispositivo e app.  
+No Android, conforme documentação [Play API Integrity](https://developer.android.com/google/play/integrity/overview?hl=pt-br).  
+No iOS, conforme documentação [App Attest](https://developer.apple.com/documentation/devicecheck/establishing_your_app_s_integrity).
+'
+              - Modified property: isRootedDevice
+                - Description changed from 'Indica se o dispositivo sofreu processo de “root”.' to 'Indica se o dispositivo atualmente está com permissão de “root”.'
+              - Modified property: isUsbConnected
+                - Description changed from 'Indica se o dispositivo está conectado em um USB de um computador.' to 'Indica se o dispositivo está conectado a outro dispositivo via USB.'
+              - Modified property: language
+                - Description changed from 'Idioma configurado no dispositivo.' to 'Indica o idioma do dispositivo no formato ISO 639-1.'
+                - Example changed from null to 'pt'
+              - Modified property: screenBrightness
+                - Type changed from 'integer' to 'number'
+                - Format changed from '' to 'double'
+                - Description changed from 'Indica o nível de brilho da tela do dispositivo.' to 'Indica o nível de brilho da tela do dispositivo.  
+Em dispositivos Android o valor é um inteiro, entre 0 e 255, inclusive;  
+Em dispositivos iOS o valor é um ponto flutuante entre 0.0 e 1.0.
+'
+              - Modified property: screenDimensions
+                - Type changed from 'string' to 'object'
+                - Description changed from 'Tamanho de tela do dispositivo' to 'Dimensões da tela do dispositivo'
+                - Required changed
+                  - New required property: height
+                  - New required property: width
+                - Properties changed
+                  - New property: height
+                  - New property: width
+- Responses changed
+  - Modified response: 204
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 400
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 401
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 403
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 404
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 405
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 406
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 415
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 422
+    - Description changed from 'A solicitação foi bem formada, mas não pôde ser processada devido à lógica de negócios específica da solicitação.' to 'A solicitação foi bem-formada, mas não pôde ser processada devido à lógica de negócios específica da solicitação.'
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 429
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+  - Modified response: 500
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+' to 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+'
+        - Schema changed
+          - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+Servers changed
+- New server: https://mtls-api.banco.com.br/open-banking/enrollments/v1
+- New server: https://mtls-api.hml.banco.com.br/open-banking/enrollments/v1
+- Deleted server: https://mtls-api.banco.com.br/open-banking/enrollments/v2
+- Deleted server: https://mtls-api.hml.banco.com.br/open-banking/enrollments/v2
