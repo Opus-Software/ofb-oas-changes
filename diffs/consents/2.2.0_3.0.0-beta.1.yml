@@ -4,9 +4,12 @@
 ------------------------
 GET /consents/{consentId}/extends  
 POST /consents/{consentId}/extends  
-### Modified Endpoints: 2
+### Modified Endpoints: 3
 -------------------------
 POST /consents
+- Modified header param: Authorization
+  - Schema changed
+    - MinLength changed from 1 to 0
 - Request body changed
   - Content changed
     - Modified media type: application/json
@@ -26,7 +29,14 @@ POST /consents
               - Properties changed
                 - Modified property: expirationDateTime
                   - Description changed from 'Data e hora de expiração da permissão. De preenchimento obrigatório, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format). Para consentimentos com prazo indeterminado, é esperado preenchimento com `2300-01-01T00:00:00Z`.' to 'Data e hora de expiração da permissão. De preenchimento obrigatório, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).'
+DELETE /consents/{consentId}
+- Modified header param: Authorization
+  - Schema changed
+    - MinLength changed from 1 to 0
 GET /consents/{consentId}
+- Modified header param: Authorization
+  - Schema changed
+    - MinLength changed from 1 to 0
 - Responses changed
   - Modified response: 200
     - Content changed
