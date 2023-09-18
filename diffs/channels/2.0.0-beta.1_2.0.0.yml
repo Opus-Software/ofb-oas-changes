@@ -73,6 +73,8 @@ GET /banking-agents
                                                 - Deleted property: ibgeCode
                                                 - Deleted property: postCode
                                                 - Deleted property: townName
+                                      - Modified property: services
+                                        - MaxItems changed from null to 20
                     - Modified property: name
                       - Example changed from 'Organização A' to null
                       - Pattern changed from '\w*\W*' to ''
@@ -131,7 +133,6 @@ GET /branches
                                     - Modified property: standards
                                       - Description changed from 'Lista disponibilidade padrão da depêndencia por dias da semana' to ''
                                       - MinItems changed from 1 to 0
-                                      - MaxItems changed from 7 to null
                                       - Items changed
                                         - Type changed from 'object' to ''
                                         - Properties changed
@@ -190,7 +191,6 @@ GET /branches
                                 - Modified property: services
                                   - Description changed from 'Traz a relação de serviços disponbilizados pelo Canal de Atendimento' to ''
                                   - MinItems changed from 1 to 0
-                                  - MaxItems changed from 20 to null
                                   - Items changed
                                     - Properties changed
                                       - Modified property: additionalInfo
@@ -244,9 +244,11 @@ GET /electronic-channels
                         - Properties changed
                           - Deleted property: cnpjNumber
                           - Modified property: electronicChannels
+                            - MaxItems changed from null to 4
                             - Items changed
                               - Properties changed
                                 - Modified property: services
+                                  - MaxItems changed from null to 20
                                   - Items changed
                                     - Properties changed
                                       - Modified property: additionalInfo
@@ -320,6 +322,7 @@ GET /phone-channels
 * `OUVIDORIA` 
 * `OUTROS`' to 'Tipo de canal telefônico de atendimento'
                                 - Modified property: services
+                                  - MaxItems changed from null to 20
                                   - Items changed
                                     - Properties changed
                                       - Modified property: additionalInfo
@@ -372,7 +375,6 @@ GET /shared-automated-teller-machines
                           - Deleted property: name
                           - Deleted property: urlComplementaryList
                           - Modified property: sharedAutomatedTellerMachines
-                            - MaxItems changed from 1 to null
                             - Items changed
                               - Properties changed
                                 - Modified property: availability
