@@ -1,1 +1,148 @@
-﻿failed to load base spec from "/data/4.0.0-beta.1.yml" with error converting YAML to JSON: yaml: line 1503: did not find expected key
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 4
+-------------------------
+POST /consents
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: payment
+                - Properties changed
+                  - Modified property: schedule
+                    - Property 'OneOf' changed
+                      - 1 schemas added
+                      - 5 schemas deleted
+                    - Type changed from 'object' to ''
+                    - Description changed from '[Restrição] Mutuamente excludente com o campo date. 
+Este campo é obrigatório no caso de agendamento. 
+Neste caso, o campo date não deve ser informado.
+' to ''
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: payment
+                  - Properties changed
+                    - Modified property: schedule
+                      - Property 'OneOf' changed
+                        - 1 schemas added
+                        - 5 schemas deleted
+                      - Type changed from 'object' to ''
+                      - Description changed from '[Restrição] Mutuamente excludente com o campo date. 
+Este campo é obrigatório no caso de agendamento. 
+Neste caso, o campo date não deve ser informado.
+' to ''
+GET /consents/{consentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: payment
+                  - Properties changed
+                    - Modified property: schedule
+                      - Property 'OneOf' changed
+                        - 1 schemas added
+                        - 5 schemas deleted
+                      - Type changed from 'object' to ''
+                      - Description changed from '[Restrição] Mutuamente excludente com o campo date. 
+Este campo é obrigatório no caso de agendamento. 
+Neste caso, o campo date não deve ser informado.
+' to ''
+POST /pix/payments
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Type changed from 'array' to 'object'
+              - Description changed from '' to 'Objeto contendo dados do pagamento e da conta do recebedor (creditor).'
+              - Items changed
+                - Schema deleted
+              - Required changed
+                - New required property: cnpjInitiator
+                - New required property: creationDateTime
+                - New required property: creditorAccount
+                - New required property: debtorAccount
+                - New required property: endToEndId
+                - New required property: localInstrument
+                - New required property: payment
+                - New required property: paymentId
+                - New required property: status
+                - New required property: statusUpdateDateTime
+              - Properties changed
+                - New property: authorisationFlow
+                - New property: cnpjInitiator
+                - New property: consentId
+                - New property: creationDateTime
+                - New property: creditorAccount
+                - New property: debtorAccount
+                - New property: endToEndId
+                - New property: ibgeTownCode
+                - New property: localInstrument
+                - New property: payment
+                - New property: paymentId
+                - New property: proxy
+                - New property: rejectionReason
+                - New property: remittanceInformation
+                - New property: status
+                - New property: statusUpdateDateTime
+                - New property: transactionIdentification
+GET /pix/payments/{paymentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Type changed from 'array' to 'object'
+              - Description changed from '' to 'Objeto contendo dados do pagamento e da conta do recebedor (creditor).'
+              - Items changed
+                - Schema deleted
+              - Required changed
+                - New required property: cnpjInitiator
+                - New required property: consentId
+                - New required property: creationDateTime
+                - New required property: creditorAccount
+                - New required property: debtorAccount
+                - New required property: endToEndId
+                - New required property: localInstrument
+                - New required property: payment
+                - New required property: paymentId
+                - New required property: status
+                - New required property: statusUpdateDateTime
+              - Properties changed
+                - New property: authorisationFlow
+                - New property: cancellation
+                - New property: cnpjInitiator
+                - New property: consentId
+                - New property: creationDateTime
+                - New property: creditorAccount
+                - New property: debtorAccount
+                - New property: endToEndId
+                - New property: ibgeTownCode
+                - New property: localInstrument
+                - New property: payment
+                - New property: paymentId
+                - New property: proxy
+                - New property: rejectionReason
+                - New property: remittanceInformation
+                - New property: status
+                - New property: statusUpdateDateTime
+                - New property: transactionIdentification

@@ -1,1 +1,153 @@
-﻿failed to load revision spec from "/data/4.0.0-beta.1.yml" with error converting YAML to JSON: yaml: line 1503: did not find expected key
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 4
+-------------------------
+POST /consents
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: payment
+                - Properties changed
+                  - Modified property: schedule
+                    - Property 'OneOf' changed
+                      - 5 schemas added
+                      - 1 schemas deleted
+                    - Type changed from '' to 'object'
+                    - Description changed from '' to '[Restrição] Mutuamente excludente com o campo date. 
+Este campo é obrigatório no caso de agendamento. 
+Neste caso, o campo date não deve ser informado.
+'
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: payment
+                  - Properties changed
+                    - Modified property: schedule
+                      - Property 'OneOf' changed
+                        - 5 schemas added
+                        - 1 schemas deleted
+                      - Type changed from '' to 'object'
+                      - Description changed from '' to '[Restrição] Mutuamente excludente com o campo date. 
+Este campo é obrigatório no caso de agendamento. 
+Neste caso, o campo date não deve ser informado.
+'
+GET /consents/{consentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: payment
+                  - Properties changed
+                    - Modified property: schedule
+                      - Property 'OneOf' changed
+                        - 5 schemas added
+                        - 1 schemas deleted
+                      - Type changed from '' to 'object'
+                      - Description changed from '' to '[Restrição] Mutuamente excludente com o campo date. 
+Este campo é obrigatório no caso de agendamento. 
+Neste caso, o campo date não deve ser informado.
+'
+POST /pix/payments
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Type changed from 'object' to 'array'
+              - Description changed from 'Objeto contendo dados do pagamento e da conta do recebedor (creditor).' to ''
+              - Items changed
+                - Schema added
+              - Required changed
+                - Deleted required property: cnpjInitiator
+                - Deleted required property: creationDateTime
+                - Deleted required property: creditorAccount
+                - Deleted required property: debtorAccount
+                - Deleted required property: endToEndId
+                - Deleted required property: localInstrument
+                - Deleted required property: payment
+                - Deleted required property: paymentId
+                - Deleted required property: status
+                - Deleted required property: statusUpdateDateTime
+              - Properties changed
+                - Deleted property: authorisationFlow
+                - Deleted property: cnpjInitiator
+                - Deleted property: consentId
+                - Deleted property: creationDateTime
+                - Deleted property: creditorAccount
+                - Deleted property: debtorAccount
+                - Deleted property: endToEndId
+                - Deleted property: ibgeTownCode
+                - Deleted property: localInstrument
+                - Deleted property: payment
+                - Deleted property: paymentId
+                - Deleted property: proxy
+                - Deleted property: rejectionReason
+                - Deleted property: remittanceInformation
+                - Deleted property: status
+                - Deleted property: statusUpdateDateTime
+                - Deleted property: transactionIdentification
+GET /pix/payments/{paymentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Type changed from 'object' to 'array'
+              - Description changed from 'Objeto contendo dados do pagamento e da conta do recebedor (creditor).' to ''
+              - Items changed
+                - Schema added
+              - Required changed
+                - Deleted required property: cnpjInitiator
+                - Deleted required property: consentId
+                - Deleted required property: creationDateTime
+                - Deleted required property: creditorAccount
+                - Deleted required property: debtorAccount
+                - Deleted required property: endToEndId
+                - Deleted required property: localInstrument
+                - Deleted required property: payment
+                - Deleted required property: paymentId
+                - Deleted required property: status
+                - Deleted required property: statusUpdateDateTime
+              - Properties changed
+                - Deleted property: authorisationFlow
+                - Deleted property: cancellation
+                - Deleted property: cnpjInitiator
+                - Deleted property: consentId
+                - Deleted property: creationDateTime
+                - Deleted property: creditorAccount
+                - Deleted property: debtorAccount
+                - Deleted property: endToEndId
+                - Deleted property: ibgeTownCode
+                - Deleted property: localInstrument
+                - Deleted property: payment
+                - Deleted property: paymentId
+                - Deleted property: proxy
+                - Deleted property: rejectionReason
+                - Deleted property: remittanceInformation
+                - Deleted property: status
+                - Deleted property: statusUpdateDateTime
+                - Deleted property: transactionIdentification
+Servers changed
+- New server: https://api.banco.com.br/open-banking/payments/v4
+- New server: https://apih.banco.com.br/open-banking/payments/v4
+- Deleted server: https://api.banco.com.br/open-banking/payments/v3
+- Deleted server: https://apih.banco.com.br/open-banking/payments/v3
