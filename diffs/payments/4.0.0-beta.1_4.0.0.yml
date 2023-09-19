@@ -1,1 +1,160 @@
-﻿No endpoint changes
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 5
+-------------------------
+POST /consents
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: payment
+                - Properties changed
+                  - Modified property: schedule
+                    - Property 'OneOf' changed
+                      - 1 schemas added
+                      - 5 schemas deleted
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: payment
+                  - Properties changed
+                    - Modified property: schedule
+                      - Property 'OneOf' changed
+                        - 1 schemas added
+                        - 5 schemas deleted
+            - Modified property: links
+              - Properties changed
+                - Modified property: self
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v4/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+GET /consents/{consentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: payment
+                  - Properties changed
+                    - Modified property: schedule
+                      - Property 'OneOf' changed
+                        - 1 schemas added
+                        - 5 schemas deleted
+            - Modified property: links
+              - Properties changed
+                - Modified property: self
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v4/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+POST /pix/payments
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Type changed from 'array' to 'object'
+              - Description changed from '' to 'Objeto contendo dados do pagamento e da conta do recebedor (creditor).'
+              - Items changed
+                - Schema deleted
+              - Required changed
+                - New required property: cnpjInitiator
+                - New required property: creationDateTime
+                - New required property: creditorAccount
+                - New required property: debtorAccount
+                - New required property: endToEndId
+                - New required property: localInstrument
+                - New required property: payment
+                - New required property: paymentId
+                - New required property: status
+                - New required property: statusUpdateDateTime
+              - Properties changed
+                - New property: authorisationFlow
+                - New property: cnpjInitiator
+                - New property: consentId
+                - New property: creationDateTime
+                - New property: creditorAccount
+                - New property: debtorAccount
+                - New property: endToEndId
+                - New property: ibgeTownCode
+                - New property: localInstrument
+                - New property: payment
+                - New property: paymentId
+                - New property: proxy
+                - New property: rejectionReason
+                - New property: remittanceInformation
+                - New property: status
+                - New property: statusUpdateDateTime
+                - New property: transactionIdentification
+            - Modified property: links
+              - Properties changed
+                - Modified property: self
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v4/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+GET /pix/payments/{paymentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Type changed from 'array' to 'object'
+              - Description changed from '' to 'Objeto contendo dados do pagamento e da conta do recebedor (creditor).'
+              - Items changed
+                - Schema deleted
+              - Required changed
+                - New required property: cnpjInitiator
+                - New required property: consentId
+                - New required property: creationDateTime
+                - New required property: creditorAccount
+                - New required property: debtorAccount
+                - New required property: endToEndId
+                - New required property: localInstrument
+                - New required property: payment
+                - New required property: paymentId
+                - New required property: status
+                - New required property: statusUpdateDateTime
+              - Properties changed
+                - New property: authorisationFlow
+                - New property: cancellation
+                - New property: cnpjInitiator
+                - New property: consentId
+                - New property: creationDateTime
+                - New property: creditorAccount
+                - New property: debtorAccount
+                - New property: endToEndId
+                - New property: ibgeTownCode
+                - New property: localInstrument
+                - New property: payment
+                - New property: paymentId
+                - New property: proxy
+                - New property: rejectionReason
+                - New property: remittanceInformation
+                - New property: status
+                - New property: statusUpdateDateTime
+                - New property: transactionIdentification
+            - Modified property: links
+              - Properties changed
+                - Modified property: self
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v4/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+PATCH /pix/payments/{paymentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: links
+              - Properties changed
+                - Modified property: self
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v4/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
