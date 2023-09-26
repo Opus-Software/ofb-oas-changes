@@ -19,6 +19,29 @@ Mais informações, acesse Especificações de APIs > Padrões > Paginação.
   - Required changed from false to true
 - Responses changed
   - New response: 202
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: resourceId
+                    - Description changed from 'Identifica o recurso reportado pelo participante do Open Finance, no caso de:
+Contas de depósito à vista, de poupança ou de pagamento pré-paga : corresponde ao accountId;
+Conta de pagamento pós-paga: corresponde ao creditCardAccountId;
+Empréstimos, Financiamentos, Direitos creditórios descontados e Adiantamento a depositantes: corresponde ao contractId.
+Renda Fixa Crédito, Renda Fixa Bancária, Renda Variável, Títulos do Tesouro Direto e Fundos de Investimentos: corresponde ao investmentId
+' to 'Identifica o recurso reportado pelo participante do Open Finance, no caso de:
+- Contas de depósito à vista, de poupança ou de pagamento pré-paga : corresponde ao accountId;
+- Conta de pagamento pós-paga: corresponde ao  creditCardAccountId;
+- Empréstimos, Financiamentos, Direitos creditórios descontados e Adiantamento a depositantes: corresponde ao contractId
+- Renda Fixa Bancária, Renda Fixa Crédito, Renda Variável, Título do Tesouro Direto e Fundo de Investimento: corresponde ao investmentId;
+- Câmbio: corresponde ao operationId.
+'
+                  - Modified property: type
+                    - New enum values: [EXCHANGE]
 Servers changed
 - New server: https://api.banco.com.br/open-banking/resources/v3
 - New server: https://apih.banco.com.br/open-banking/resources/v3
