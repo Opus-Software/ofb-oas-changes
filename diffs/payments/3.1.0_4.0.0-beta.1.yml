@@ -60,6 +60,36 @@ Este campo é obrigatório no caso de agendamento.
 Neste caso, o campo date não deve ser informado.
 '
 POST /pix/payments
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Type changed from 'object' to 'array'
+            - Description changed from 'Objeto contendo dados do pagamento e do recebedor (creditor).' to ''
+            - MinItems changed from 0 to 1
+            - Items changed
+              - Schema added
+            - Required changed
+              - Deleted required property: cnpjInitiator
+              - Deleted required property: creditorAccount
+              - Deleted required property: endToEndId
+              - Deleted required property: localInstrument
+              - Deleted required property: payment
+            - Properties changed
+              - Deleted property: authorisationFlow
+              - Deleted property: cnpjInitiator
+              - Deleted property: consentId
+              - Deleted property: creditorAccount
+              - Deleted property: endToEndId
+              - Deleted property: ibgeTownCode
+              - Deleted property: localInstrument
+              - Deleted property: payment
+              - Deleted property: proxy
+              - Deleted property: qrCode
+              - Deleted property: remittanceInformation
+              - Deleted property: transactionIdentification
 - Responses changed
   - Modified response: 201
     - Content changed

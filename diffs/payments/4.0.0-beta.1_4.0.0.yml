@@ -1,1 +1,98 @@
-﻿No changes
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 3
+-------------------------
+POST /consents
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: payment
+                - Properties changed
+                  - Modified property: schedule
+                    - Property 'OneOf' changed
+                      - Schema #/components/schemas/ScheduleCustom modified
+                        - Properties changed
+                          - Modified property: custom
+                            - Properties changed
+                              - Modified property: dates
+                                - Example changed from null to [2023-08-23 2023-08-30 2023-09-01 2023-09-03 2023-12-10]
+                                - Items changed
+                                  - Example changed from [2023-08-23 2023-09-26] to null
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: payment
+                  - Properties changed
+                    - Modified property: schedule
+                      - Property 'OneOf' changed
+                        - Schema #/components/schemas/ScheduleCustom modified
+                          - Properties changed
+                            - Modified property: custom
+                              - Properties changed
+                                - Modified property: dates
+                                  - Example changed from null to [2023-08-23 2023-08-30 2023-09-01 2023-09-03 2023-12-10]
+                                  - Items changed
+                                    - Example changed from [2023-08-23 2023-09-26] to null
+GET /consents/{consentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: payment
+                  - Properties changed
+                    - Modified property: schedule
+                      - Property 'OneOf' changed
+                        - Schema #/components/schemas/ScheduleCustom modified
+                          - Properties changed
+                            - Modified property: custom
+                              - Properties changed
+                                - Modified property: dates
+                                  - Example changed from null to [2023-08-23 2023-08-30 2023-09-01 2023-09-03 2023-12-10]
+                                  - Items changed
+                                    - Example changed from [2023-08-23 2023-09-26] to null
+POST /pix/payments
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Type changed from 'array' to 'object'
+            - Description changed from '' to 'Objeto contendo dados do pagamento e do recebedor (creditor).'
+            - MinItems changed from 1 to 0
+            - Items changed
+              - Schema deleted
+            - Required changed
+              - New required property: cnpjInitiator
+              - New required property: creditorAccount
+              - New required property: endToEndId
+              - New required property: localInstrument
+              - New required property: payment
+            - Properties changed
+              - New property: authorisationFlow
+              - New property: cnpjInitiator
+              - New property: consentId
+              - New property: creditorAccount
+              - New property: endToEndId
+              - New property: ibgeTownCode
+              - New property: localInstrument
+              - New property: payment
+              - New property: proxy
+              - New property: qrCode
+              - New property: remittanceInformation
+              - New property: transactionIdentification
