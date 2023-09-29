@@ -5,6 +5,14 @@
 ### Modified Endpoints: 1
 -------------------------
 GET /metrics
+- Modified query param: period
+  - Description changed from 'Período a ser consultado
+  * `CURRENT` - Métricas do dia atual.
+  * `ALL` - Métricas de todo o período disponível (últimos 7 dias).
+' to 'Período a ser consultado
+  * `CURRENT` - Métricas do dia atual.
+  * `ALL` - Métricas de todo o período disponível.
+'
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -28,6 +36,8 @@ GET /metrics
                         - Description changed from 'Número de chamadas com erro nos dias anteriores. O primeiro item do array é referente a ontem, e assim por diante. Devem ser retornados no máximo sete dias caso estejam disponíveis.' to 'Número de chamadas com erro nos dias anteriores. O primeiro item do array é referente ao dia anterior ao corrente, e assim por diante. Devem ser retornados no máximo sete dias caso estejam disponíveis.'
                   - Modified property: invocations
                     - Properties changed
+                      - Modified property: currentDay
+                        - Description changed from 'Número de chamadas no dia atual.' to 'Número de chamadas não autenticadas no dia atual.'
                       - Modified property: previousDays
                         - Description changed from 'Número de chamadas não autenticadas nos dias anteriores. O primeiro item do array é referente a ontem, e assim por diante. Devem ser retornados no máximo sete dias caso estejam disponíveis.' to 'Número de chamadas nos dias anteriores. O primeiro item do array é referente ao dia anterior ao corrente, e assim por diante. Devem ser retornados no máximo sete dias caso estejam disponíveis.​'
                   - Modified property: peakTps
