@@ -6,6 +6,12 @@ PATCH /pix/payments/consents/{consentId}
 ### Modified Endpoints: 5
 -------------------------
 POST /consents
+- Modified header param: Authorization
+  - Schema changed
+    - MinLength changed from 0 to 1
+- Modified header param: x-idempotency-key
+  - Schema changed
+    - MinLength changed from 0 to 1
 - Request body changed
   - Content changed
     - Modified media type: application/jwt
@@ -43,6 +49,12 @@ Este campo é obrigatório no caso de agendamento.
 Neste caso, o campo date não deve ser informado.
 '
 GET /consents/{consentId}
+- Modified path param: consentId
+  - Schema changed
+    - MinLength changed from 0 to 1
+- Modified header param: Authorization
+  - Schema changed
+    - MinLength changed from 0 to 1
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -62,6 +74,12 @@ Este campo é obrigatório no caso de agendamento.
 Neste caso, o campo date não deve ser informado.
 '
 POST /pix/payments
+- Modified header param: Authorization
+  - Schema changed
+    - MinLength changed from 0 to 1
+- Modified header param: x-idempotency-key
+  - Schema changed
+    - MinLength changed from 0 to 1
 - Request body changed
   - Content changed
     - Modified media type: application/jwt
@@ -133,6 +151,9 @@ POST /pix/payments
                 - Deleted property: statusUpdateDateTime
                 - Deleted property: transactionIdentification
 GET /pix/payments/{paymentId}
+- Modified header param: Authorization
+  - Schema changed
+    - MinLength changed from 0 to 1
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -188,6 +209,9 @@ O cancelamento de pagamento agendado (SCHD) pode ser enviado até 23:59 (Horári
 - Caso receba um 422, a iniciadora deve fazer uma requisição GET no pagamento para verificar a situação atual dele, bem como detalhes associados.
 O cancelamento de pagamento agendado (SCHD) pode ser enviado até 23:59 (Horário de Brasília) do dia anterior à data de efetivação do pagamento.
 '
+- Modified header param: Authorization
+  - Schema changed
+    - MinLength changed from 0 to 1
 - Responses changed
   - Modified response: 200
     - Content changed
