@@ -17,8 +17,8 @@ info:
     - Credenciais: As credenciais (authorization_code) geradas na autorização do consentimento devem ser utilizadas para criação dos pagamentos subsequentes utilizando o mecanismo de refresh, caso necessário. Maiores informações através do link [[PT] Open Finance Brasil Financial-grade API Security Profile 1.0 Implementers Draft 3 - Área do Desenvolvedor -Open Finance Brasil - Área do Desenvolvedor (atlassian.net)](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/82051180/PT+Open+Finance+Brasil+Financial-grade+API+Security+Profile+1.0+Implementers+Draft+3#7.2.2.-Servidor-de-autorização)
 
     ## Regras do arranjo Pix
-    No contexto da API de Pagamentos Automáticos, os payloads de mensagem que trafegam tanto por parte da instituição iniciadora de transação de pagamento quanto por parte da instituição detentora de conta devem estar assinados. 
-    Para o processo de assinatura destes payloads, as instituições devem seguir as especificações de segurança publicadas no Portal do desenvolvedor.
+    A implementação e o uso da API de Pagamentos Automáticos (Pix) devem seguir as regras do arranjo Pix do Banco Central, que podem ser encontradas no link abaixo:  
+    [Banco Central do Brasil](https://www.bcb.gov.br/estabilidadefinanceira/pix?modalAberto=regulamentacao_pix)
 
     ## Controle de acesso
     - Os endpoints de consulta de pagamentos GET /pix/recurring-payments/{recurringPaymentId} e GET /pix/recurring-payments devem suportar acesso a partir de access_token emitido por meio de um grant_type do tipo client credentials, como opção do uso do token vinculado ao consentimento (hybrid flow).
@@ -117,13 +117,15 @@ info:
     email: gt-interfaces@openbankingbr.org
     url: 'https://openbanking-brasil.github.io/areadesenvolvedor/'
 servers:
-  - url: 'https://api.banco.com.br/open-banking/blablabla/v1'
+  - url: 'https://api.banco.com.br/open-banking/automatic-payments/v1'
     description: Servidor de Produção
-  - url: 'https://apih.banco.com.br/open-banking/blablabla/v1'
+  - url: 'https://apih.banco.com.br/open-banking/automatic-payments/v1'
     description: Servidor de Homologação
 tags:
   - name: Recurring Consents
+    description: Métodos para criação e gestão de consentimento
   - name: Recurring Payments
+    description: Métodos para criação e gestão de pagamentos
 paths:
   /recurring-consents:
     post:
@@ -536,39 +538,39 @@ components:
                   - NAO_INFORMADO
                 example: DATA_PAGAMENTO_INVALIDA
                 description: |
-                  Códigos de erros previstos na criação de consentimento para a iniciação de pagamentos: 
-                  - DATA_PAGAMENTO_INVALIDA: Data de pagamento inválida.
-                  - DETALHE_PAGAMENTO_INVALIDO: Detalhe do pagamento inválido.
-                  - PARAMETRO_NAO_INFORMADO: Parâmetro não informado.
-                  - PARAMETRO_INVALIDO: Parâmetro inválido.
-                  - ERRO_IDEMPOTENCIA: Erro idempotência.
-                  - NAO_INFORMADO: Não informado.
+                  Códigos de erros previstos na criação de consentimento para a iniciação de pagamentos:   
+                  - DATA_PAGAMENTO_INVALIDA: Data de pagamento inválida.  
+                  - DETALHE_PAGAMENTO_INVALIDO: Detalhe do pagamento inválido.  
+                  - PARAMETRO_NAO_INFORMADO: Parâmetro não informado.  
+                  - PARAMETRO_INVALIDO: Parâmetro inválido.  
+                  - ERRO_IDEMPOTENCIA: Erro idempotência.  
+                  - NAO_INFORMADO: Não informado.  
               title:
                 type: string
                 maxLength: 255
                 pattern: '[\w\W\s]*'
-                example: Forma de pagamento inválida.
+                example: Data de pagamento inválida.
                 description: |
-                  Título específico do erro reportado, de acordo com o código enviado:
-                  • DATA_PAGAMENTO_INVALIDA: Data de pagamento inválida.
-                  • DETALHE_PAGAMENTO_INVALIDO: Detalhe do pagamento inválido.
-                  • PARAMETRO_NAO_INFORMADO: Parâmetro não informado.
-                  • PARAMETRO_INVALIDO: Parâmetro inválido.
-                  • ERRO_IDEMPOTENCIA: Erro idempotência.
-                  • NAO_INFORMADO: Não informado.   
+                  Título específico do erro reportado, de acordo com o código enviado:  
+                  • DATA_PAGAMENTO_INVALIDA: Data de pagamento inválida.  
+                  • DETALHE_PAGAMENTO_INVALIDO: Detalhe do pagamento inválido.  
+                  • PARAMETRO_NAO_INFORMADO: Parâmetro não informado.  
+                  • PARAMETRO_INVALIDO: Parâmetro inválido.  
+                  • ERRO_IDEMPOTENCIA: Erro idempotência.  
+                  • NAO_INFORMADO: Não informado.     
               detail:
                 type: string
                 maxLength: 2048
                 pattern: '[\w\W\s]*'
-                example: 'Forma de pagamento [Modalidade] não suportada.'
+                example: Data de pagamento inválida para a forma de pagamento selecionada.
                 description: |
-                  Descrição específica do erro de acordo com o código reportado:
-                  • DATA_PAGAMENTO_INVALIDA: Data de pagamento inválida para a forma de pagamento selecionada.
-                  • DETALHE_PAGAMENTO_INVALIDO: Parâmetro [nome_campo] não obedece às regras de negócio.
-                  • PARAMETRO_NAO_INFORMADO: Parâmetro [nome_campo] obrigatório não informado.
-                  • PARAMETRO_INVALIDO: Parâmetro [nome_campo] não obedece as regras de formatação esperadas.
-                  • ERRO_IDEMPOTENCIA: Conteúdo da mensagem (claim data) diverge do conteúdo associado a esta chave de idempotência (x-idempotency-key).
-                  • NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta.
+                  Descrição específica do erro de acordo com o código reportado:  
+                  • DATA_PAGAMENTO_INVALIDA: Data de pagamento inválida para a forma de pagamento selecionada.  
+                  • DETALHE_PAGAMENTO_INVALIDO: Parâmetro [nome_campo] não obedece às regras de negócio.  
+                  • PARAMETRO_NAO_INFORMADO: Parâmetro [nome_campo] obrigatório não informado.  
+                  • PARAMETRO_INVALIDO: Parâmetro [nome_campo] não obedece as regras de formatação esperadas.  
+                  • ERRO_IDEMPOTENCIA: Conteúdo da mensagem (claim data) diverge do conteúdo associado a esta chave de idempotência (x-idempotency-key).  
+                  • NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta.  
         meta:
           $ref: '#/components/schemas/Meta'
     422ResponseErrorCreateConsent:
@@ -2488,7 +2490,7 @@ components:
                       - DETENTORA
                     example: INICIADORA
                     description: |
-                      Quem iniciou a solicitação de revogação 
+                      Quem iniciou a solicitação de revogação  
                       - INICIADORA
                       - USUARIO
                       - DETENTORA
@@ -2499,9 +2501,9 @@ components:
                     - DETENTORA
                   example: DETENTORA
                   description: |
-                    Canal onde iniciou-se o processo de revogação 
-                    - INICIADORA
-                    - DETENTORA
+                    Canal onde iniciou-se o processo de revogação   
+                    - INICIADORA  
+                    - DETENTORA  
                 revokedAt:
                   type: string
                   format: date-time
@@ -2525,10 +2527,10 @@ components:
                         - REVOGADO_RECEBEDOR
                       example: REVOGADO_RECEBEDOR
                       description: |
-                        Define o código da razão pela qual o consentimento foi rejeitado
-                        • NAO_INFORMADO
-                        • REVOGADO_USUARIO
-                        • REVOGADO_RECEBEDOR
+                        Define o código da razão pela qual o consentimento foi rejeitado   
+                        • NAO_INFORMADO   
+                        • REVOGADO_USUARIO   
+                        • REVOGADO_RECEBEDOR    
                     detail:
                       type: string
                       pattern: '[\w\W\s]*'
