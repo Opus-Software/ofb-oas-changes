@@ -2,7 +2,7 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 1
+### Modified Endpoints: 2
 -------------------------
 GET /contracts/{contractId}
 - Responses changed
@@ -28,4 +28,19 @@ Para o público PF (pessoa física) o campo é de envio obrigatório para contra
 - Em contratos anteriores a 2011 (para o público PJ);
 - Em contratos anteriores a 2019 para os casos de operações de crédito rural (ambos os públicos PF e PJ);
 - Público PJ de médio ou grande porte.
+'
+GET /contracts/{contractId}/warranties
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: warrantyAmount
+                    - Description changed from 'Valor original da garantia. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.
+' to 'Valor original da garantia. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.
+[Restrição] Nos casos em que warrantyType for igual a "GARANTIA_FIDEJUSSORIA“ pode ser enviado o valor 0.00.
 '
