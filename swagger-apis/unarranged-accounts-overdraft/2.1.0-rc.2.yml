@@ -2,10 +2,10 @@
 info:
   title: API Unarranged-accounts-overdraft - Open Finance Brasil
   description: |
-    API de informações de operações de adiantamento a depositantes do Open Finance Brasil – Fase 2.
-    API que retorna informações de operações de crédito do tipo adiantamento a depositantes mantidas nas instituições transmissoras por seus clientes, incluindo dados como denominação, modalidade, número do contrato, tarifas, prazo, prestações, pagamentos, amortizações, garantias, encargos e taxas de juros remuneratórios.\
+    API de informações de operações de adiantamento a depositantes do Open Finance Brasil –Fase 2. 
+    API que retorna informações de operações de crédito do tipo adiantamento a depositantes, mantidas nas instituições transmissoras por seus clientes, incluindo dados como denominação, modalidade, número do contrato, tarifas, prazo, prestações, pagamentos (ao menos para os últimos 12 meses), amortizações, garantias, encargos e taxas de juros remuneratórios.\
     Não possui segregação entre pessoa natural e pessoa jurídica.\
-    Requer consentimento do cliente para todos os `endpoints`.
+    Requer consentimento do cliente para todos os endpoints.
 
     # Orientações
     A `Role`  do diretório de participantes relacionada à presente API é a `DADOS`.\
@@ -949,6 +949,8 @@ components:
         warrantyAmount:
           description: |
             Valor original da garantia. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.
+
+            [Restrição] Nos casos em que warrantyType for igual a "GARANTIA_FIDEJUSSORIA“ pode ser enviado o valor 0.00.
           type: string
           pattern: '^-?\d{1,15}\.\d{2,4}$'
           maxLength: 21
