@@ -49,6 +49,26 @@ O prazo máximo para o consentimento deverá ser de dois anos, contando a partir
 Este campo é obrigatório no caso de agendamento. 
 Neste caso, o campo date não deve ser informado.
 '
+                - Modified property: status
+                  - Description changed from 'Retorna o estado do consentimento, o qual no momento de sua criação será AWAITING_AUTHORISATION.
+Este estado será alterado depois da autorização do consentimento na detentora da conta do pagador (Debtor) para AUTHORISED ou REJECTED. 
+O consentimento fica no estado CONSUMED após ocorrer a iniciação do pagamento referente ao consentimento.  
+Em caso de consentimento expirado a detentora deverá retornar o status REJECTED.  
+Estados possíveis:  
+AWAITING_AUTHORISATION - Aguardando autorização  
+AUTHORISED - Autorizado   
+REJECTED - Rejeitado  
+CONSUMED - Consumido 
+' to 'Retorna o estado do consentimento, o qual no momento de sua criação será AWAITING_AUTHORISATION. Na situação de múltiplas alçadas PARTIALLY_ACCEPTED, indica que consentimento precisa da confirmação de mais autorizadores. Este estado será alterado depois da(s) autorização(ões) do(s) consentimento(s) na detentora da conta do pagador (Debtor) para AUTHORISED ou REJECTED. O consentimento fica no estado CONSUMED após ocorrer a iniciação do pagamento referente ao consentimento.
+Em caso de consentimento expirado a detentora deverá retornar o status REJECTED.
+Estados possíveis:
+AWAITING_AUTHORISATION - Aguardando autorização
+PARTIALLY_ACCEPTED – Aguardando múltiplas alçadas
+AUTHORISED - Autorizado
+REJECTED - Rejeitado
+CONSUMED - Consumido
+'
+                  - New enum values: [PARTIALLY_ACCEPTED]
 GET /consents/{consentId}
 - Modified path param: consentId
   - Schema changed
@@ -75,6 +95,26 @@ GET /consents/{consentId}
 Este campo é obrigatório no caso de agendamento. 
 Neste caso, o campo date não deve ser informado.
 '
+                - Modified property: status
+                  - Description changed from 'Retorna o estado do consentimento, o qual no momento de sua criação será AWAITING_AUTHORISATION.
+Este estado será alterado depois da autorização do consentimento na detentora da conta do pagador (Debtor) para AUTHORISED ou REJECTED. 
+O consentimento fica no estado CONSUMED após ocorrer a iniciação do pagamento referente ao consentimento.  
+Em caso de consentimento expirado a detentora deverá retornar o status REJECTED.  
+Estados possíveis:  
+AWAITING_AUTHORISATION - Aguardando autorização  
+AUTHORISED - Autorizado   
+REJECTED - Rejeitado  
+CONSUMED - Consumido 
+' to 'Retorna o estado do consentimento, o qual no momento de sua criação será AWAITING_AUTHORISATION. Na situação de múltiplas alçadas PARTIALLY_ACCEPTED, indica que consentimento precisa da confirmação de mais autorizadores. Este estado será alterado depois da(s) autorização(ões) do(s) consentimento(s) na detentora da conta do pagador (Debtor) para AUTHORISED ou REJECTED. O consentimento fica no estado CONSUMED após ocorrer a iniciação do pagamento referente ao consentimento.
+Em caso de consentimento expirado a detentora deverá retornar o status REJECTED.
+Estados possíveis:
+AWAITING_AUTHORISATION - Aguardando autorização
+PARTIALLY_ACCEPTED – Aguardando múltiplas alçadas
+AUTHORISED - Autorizado
+REJECTED - Rejeitado
+CONSUMED - Consumido
+'
+                  - New enum values: [PARTIALLY_ACCEPTED]
 POST /pix/payments
 - Modified header param: Authorization
   - Schema changed
