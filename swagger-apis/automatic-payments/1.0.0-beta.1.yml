@@ -68,81 +68,51 @@ info:
         &ensp;2.1.6 Saldo do usuário: Valida se a conta selecionada possui saldo suficiente para realizar o pagamento (SALDO_INSUFICIENTE);  
         &ensp;2.1.7 Limites da transação: Valida se o valor ultrapassa o limite estabelecido [na instituição/no arranjo/outro] para permitir a realização de transações pelo cliente (VALOR_ACIMA_LIMITE);  
 
-    3. **Demais validações executadas durante o processamento assíncrono do consentimento pela detentora, poderão ser consultados pela iniciadora através dos endpoints GET /recurring-consents/{consentld} previstos com retorno HTTP Code 200 - OK com status REVOKED e revocationReason conforme abaixo (detalhamento adicional na documentação técnica da API).**  
-      3.1 **Demais validações durante o processamento assíncrono:**  
-        &ensp;3.1.1 Nao informado: Validações não explicitamente informadas (ex. suspeita de fraude) (NAO_INFORMADO);  
-        &ensp;3.1.2 Revogado pelo recebedor: O usuário recebedor solicitou explicitamente ao iniciador a revogação do consentimento (ex: término de contrato) (REVOGADO_RECEBEDOR);  
-        &ensp;3.1.3 Revogado pelo pagador: O usuário pagador solicitou explicitamente a revogação do consentimento (REVOGADO_USUARIO).  
+    3. **Validações na criação do pagamento - Síncrono (_POST /pix/recurring-payments_)**  
+      3.1 **Casos de erro relacionados às permissões de segurança para acesso à API (ex. certificado, access_token, jwt, assinatura)**  
+        &ensp;3.1.1 Validação de Certificado: Valida utilização de certificado correto durante processo de DCR - HTTP Code 401 (INVALID_CLIENT);  
+        &ensp;3.1.2 Validação de Access_Token: Verifica se Access_Token utilizado está correto - HTTP Code 401 (UNAUTHORIZED);  
+        &ensp;3.1.3 Validação de assinatura da mensagem: Valida se assinatura das mensagens enviadas está correta – HTTP Code 400 (BAD_SIGNATURE);  
+        &ensp;3.1.4 Validação de Claims (exceto data);  
+          &emsp;3.1.4.1 Valida se dados (aud, iss, iat e jti) são válidos - HTTP status code 403 – (INVALID_CLIENT);  
+          &emsp;3.1.4.2 Valida reuso de jti - HTTP Code 403 (INVALID_CLIENT).  
+      3.2 **Casos de erro sintáticos e semânticos, previstos com retorno HTTP Code 422 - Unprocessable Entity (detalhamento adicional na documentação técnica da API):**  
+        &ensp;3.2.1 Sintáticos  
+          &emsp;3.2.1.1 Envio de campos obrigatórios: Valida se todos os campos obrigatórios são informados (PARAMETRO_NAO_INFORMADO);  
+          &emsp;3.2.1.2 Formatação de parâmetros: Valida se parâmetros informados obedecem a formatação especificada (PARAMETRO_INVALIDO).  
+        &ensp;3.2.2 Semânticos  
+          &emsp;3.2.2.1 Saldo do usuário: Valida se a conta selecionada possui saldo suficiente para realizar o pagamento (SALDO_INSUFICIENTE);  
+          &emsp;3.2.2.2 Limites da transação: Valida se valor (ou quantidade de transações) ultrapassa faixa de limite parametrizada na detentora na conta do cliente pagador (VALOR_ACIMA_LIMITE);  
+          &emsp;3.2.2.3 Valor informado: Valida se valor enviado é válido para o consentimento associado ao pagamento (VALOR_INVALIDO);  
+          &emsp;3.2.2.4 Status Consentimento: Valida se status de consentimento é diferente de “AUTHORISED” (CONSENTIMENTO_INVALIDO);  
+          &emsp;3.2.2.5 Demais validações não explicitamente informadas (ex. suspeita de fraude): (NAO_INFORMADO);  
+          &emsp;3.2.2.6 Divergência entre pagamento e consentimento: Valida se dados do pagamento são diferentes dos dados do consentimento (PAGAMENTO_DIVERGENTE_CONSENTIMENTO)  
+          &emsp;3.2.2.7 Recusado pela detentora: Valida se pagamento foi recusado pela detentora (PAGAMENTO_RECUSADO_DETENTORA), com a descrição do motivo de recusa;  
+          &emsp;3.2.2.8 Detalhes do pagamento: Valida se determinado parâmetro informado obedece as regras de negócio (DETALHE_PAGAMENTO_INVALIDO);  
+          &emsp;3.2.2.9 Pagamento recusado no Sistema de Pagamentos Instantâneos (SPI) (PAGAMENTO_RECUSADO_SPI);  
+          &emsp;3.2.2.10 Idempotência: Valida se há divergência entre chave de idempotência e informações enviadas (ERRO_IDEMPOTENCIA);  
+          &emsp;3.2.2.11 Limite valor excedido por período: Foi atingido o valor limite permitido pelo usuário por um determinado período de tempo no consentimento do pagamento (LIMITE_PERIODO_VALOR_EXCEDIDO);  
+          &emsp;3.2.2.12 Limite quantidade excedida por período: A quantidade de cobranças atingiu o limite determinado pelo usuário na criação do consentimento (LIMITE_PERIODO_QUANTIDADE_EXCEDIDO).  
 
-    4. **Validações na criação do pagamento - Síncrono (_POST /pix/recurring-payments_)**  
-      4.1 **Casos de erro relacionados às permissões de segurança para acesso à API (ex. certificado, access_token, jwt, assinatura)**  
+    4. **Validações na consulta do pagamento (_GET /pix/recurring-payments/{recurringPaymentId}_ e _GET /pix/recurring-payments_)**  
+      4.1 **Casos de erro relacionados às permissões de segurança para acesso à API (ex. certificado, access_token)**  
         &ensp;4.1.1 Validação de Certificado: Valida utilização de certificado correto durante processo de DCR - HTTP Code 401 (INVALID_CLIENT);  
-        &ensp;4.1.2 Validação de Access_Token: Verifica se Access_Token utilizado está correto - HTTP Code 401 (UNAUTHORIZED);  
-        &ensp;4.1.3 Validação de assinatura da mensagem: Valida se assinatura das mensagens enviadas está correta – HTTP Code 400 (BAD_SIGNATURE);  
-        &ensp;4.1.4 Validação de Claims (exceto data);  
-          &emsp;4.1.4.1 Valida se dados (aud, iss, iat e jti) são válidos - HTTP status code 403 – (INVALID_CLIENT);  
-          &emsp;4.1.4.2 Valida reuso de jti - HTTP Code 403 (INVALID_CLIENT).  
-      4.2 **Casos de erro sintáticos e semânticos, previstos com retorno HTTP Code 422 - Unprocessable Entity (detalhamento adicional na documentação técnica da API):**  
-        &ensp;4.2.1 Sintáticos  
-          &emsp;4.2.1.1 Envio de campos obrigatórios: Valida se todos os campos obrigatórios são informados (PARAMETRO_NAO_INFORMADO);  
-          &emsp;4.2.1.2 Formatação de parâmetros: Valida se parâmetros informados obedecem a formatação especificada (PARAMETRO_INVALIDO).  
-        &ensp;4.2.2 Semânticos  
-          &emsp;4.2.2.1 Saldo do usuário: Valida se a conta selecionada possui saldo suficiente para realizar o pagamento (SALDO_INSUFICIENTE);  
-          &emsp;4.2.2.2 Limites da transação: Valida se valor (ou quantidade de transações) ultrapassa faixa de limite parametrizada na detentora na conta do cliente pagador (VALOR_ACIMA_LIMITE);  
-          &emsp;4.2.2.3 Valor informado: Valida se valor enviado é válido para o consentimento associado ao pagamento (VALOR_INVALIDO);  
-          &emsp;4.2.2.4 Status Consentimento: Valida se status de consentimento é diferente de “AUTHORISED” (CONSENTIMENTO_INVALIDO);  
-          &emsp;4.2.2.5 Demais validações não explicitamente informadas (ex. suspeita de fraude): (NAO_INFORMADO);  
-          &emsp;4.2.2.6 Divergência entre pagamento e consentimento: Valida se dados do pagamento são diferentes dos dados do consentimento (PAGAMENTO_DIVERGENTE_CONSENTIMENTO)  
-          &emsp;4.2.2.7 Recusado pela detentora: Valida se pagamento foi recusado pela detentora (PAGAMENTO_RECUSADO_DETENTORA), com a descrição do motivo de recusa;  
-          &emsp;4.2.2.8 Detalhes do pagamento: Valida se determinado parâmetro informado obedece as regras de negócio (DETALHE_PAGAMENTO_INVALIDO);  
-          &emsp;4.2.2.9 Pagamento recusado no Sistema de Pagamentos Instantâneos (SPI) (PAGAMENTO_RECUSADO_SPI);  
-          &emsp;4.2.2.10 Idempotência: Valida se há divergência entre chave de idempotência e informações enviadas (ERRO_IDEMPOTENCIA);  
-          &emsp;4.2.2.11 Limite valor excedido por período: Foi atingido o valor limite permitido pelo usuário por um determinado período de tempo no consentimento do pagamento (LIMITE_PERIODO_VALOR_EXCEDIDO);  
-          &emsp;4.2.2.12 Limite quantidade excedida por período: A quantidade de cobranças atingiu o limite determinado pelo usuário na criação do consentimento (LIMITE_PERIODO_QUANTIDADE_EXCEDIDO).  
+        &ensp;4.1.2 Validações de Access_Token: Verifica se Access_Token utilizado está correto - HTTP Code 401 (UNAUTHORIZED).
 
-    5. **Validações na consulta do pagamento (_GET /pix/recurring-payments/{recurringPaymentId}_ e _GET /pix/recurring-payments_)**  
-      5.1 **Casos de erro relacionados às permissões de segurança para acesso à API (ex. certificado, access_token)**  
-        &ensp;5.1.1 Validação de Certificado: Valida utilização de certificado correto durante processo de DCR - HTTP Code 401 (INVALID_CLIENT);  
-        &ensp;5.1.2 Validações de Access_Token: Verifica se Access_Token utilizado está correto - HTTP Code 401 (UNAUTHORIZED).
-
-    6. **Demais validações executadas durante o processamento assíncrono do pagamento pela detentora, poderão ser consultados pela iniciadora através dos endpoints _GET /pix/recurring-payments/{recurringPaymentId}_ e _GET /pix/recurring-payments_ previstos com retorno HTTP Code 200 - OK com status RJCT (Rejected) e rejectionReason conforme abaixo (detalhamento adicional na documentação técnica da API):**  
-      6.1 **Demais validações durante o processamento assíncrono:**  
-        &ensp;6.1.1 - Saldo do usuário: Valida se a conta selecionada possui saldo suficiente para realizar o pagamento (SALDO_INSUFICIENTE);  
-        &ensp;6.1.2 - Limites da transação: Valida se valor (ou quantidade de transações) ultrapassa faixa de limite parametrizada na detentora (VALOR_ACIMA_LIMITE);  
-        &ensp;6.1.3 - Valor informado: Valida se valor enviado é válido para o consentimento do pagamento (VALOR_INVALIDO);  
-        &ensp;6.1.4 - Demais validações não explicitamente informadas (ex. suspeita de fraude): (NAO_INFORMADO);  
-        &ensp;6.1.5 - Divergência entre pagamento e consentimento: Valida se dados do pagamento são diferentes dos dados do consentimento (PAGAMENTO_DIVERGENTE_CONSENTIMENTO);  
-        &ensp;6.1.6 - Recusado pela detentora: Valida se pagamento foi recusado pela detentora (PAGAMENTO_RECUSADO_DETENTORA), com a descrição do motivo de recusa;  
-        &ensp;6.1.7 - Pagamento recusado no Sistema de Pagamentos Instantâneos (SPI) (PAGAMENTO_RECUSADO_SPI);  
-        &ensp;6.1.8 - Erro de infraestrutura na consulta ao SPI: Ocorreu uma falha de infraestrutura durante a consulta ao SPI(FALHA_INFRAESTRUTURA_SPI);  
-        &ensp;6.1.9 - Erro de infraestrutura na consulta ao ICP: Ocorreu uma falha de infraestrutura durante a consulta ao ICP (FALHA_INFRAESTRUTURA_ICP);  
-        &ensp;6.1.10 - Erro de infraestrutura na comunicação com o PSP do recebedor: Ocorreu uma falha de infraestrutura durante a comunicação com o PSP do recebedor (FALHA_INFRAESTRUTURA_PSP_RECEBEDOR);  
-        &ensp;6.1.11 - Erro de infraestrutura interno na detentora: Ocorreu uma falha de infraestrutura interna na detentora durante o processamento do pagamento (FALHA_INFRAESTRUTURA_DETENTORA);  
-        &ensp;6.1.12 - Status Consentimento: Valida se status de consentimento é diferente de “AUTHORISED” (CONSENTIMENTO_INVALIDO);  
-        &ensp;6.1.13 - Chave pix não elegível: A chave enviada pelo usuário não atende os critérios de elegibilidade para utilização (CHAVE_PIX_NAO_ELEGIVEL_SWEEPING);  
-
-    ## Validações para elegibilidade ao Sweeping accounts
-
-    Afim de garantir a mesma titularidade e aumentar a segurança das transações do produto Sweeping Accounts, as validações abaixo devem ser realizadas pela detetora de conta e opcionalmente pela iniciadora.
-
-    - A detentora DEVE usar a API Consultar Vinculo (link da API) do arranjo Pix e validar em momento de transação: 
-      - Se o valor do atributo `Entry.Owner.TaxIdNumber` pertence ao mesmo CPF/CNPJ (radical) informado no consentimento (recurring consents) 
-      - Se o valor do atributo `Entry.KeyOwnershipDate` é superior a 24h 
-      - Se o valor do atributo `Entry.Owner.Account`.OpeningDate é superior a 7 dias, de modo a evitar que contas criadas especificamente para uso indevido do sweeping accounts impactem o ecossistema ▪ 
-    - Caso seja encontrado problema em qualquer uma das validações, deve ser retornado um erro no rejectionReason do API GET /pix/recurring-payments/{recurringPaymentId}
-      - CODE: CHAVE_PIX_NAO_ELEGIVEL_SWEEPING 
-      - Details: Chave pix não elegível a Sweeping
-
-    ## Validações antifraude do Sweeping accounts
-
-    - Afim de garantir a mesma titularidade e aumentar a segurança das transações do produto Sweeping Accounts, as validações abaixo devem ser realizadas pela detetora de conta e opcionalmente pela iniciadora.
-    - A detentora DEVE usar a API Consultar Vinculo ([DICT API](https://www.bcb.gov.br/content/estabilidadefinanceira/pix/API-DICT-2.0.0.html)) do arranjo Pix e validar no momento de transação ao menos os atributos abaixo mencionados:
-      - se o valor dos atributos de fraude abaixo são iguais a 0, de modo a evitar que contas criadas especificamente para uso indevido do Sweeping accounts impactem o ecossistema 
-        - OwnerStatistics.Spi.FraudMarkers.ApplicationFrauds.d90
-        - OwnerStatistics.Spi.FraudMarkers.MuleAccounts.d90
-        - OwnerStatistics.Spi.FraudMarkers.ScammerAccounts.d90
-        - OwnerStatistics.Spi.FraudMarkers.OtherFrauds.d90
-        - OwnerStatistics.Spi.FraudMarkers.UnknownFrauds.d90
+    5. **Demais validações executadas durante o processamento assíncrono do pagamento pela detentora, poderão ser consultados pela iniciadora através dos endpoints _GET /pix/recurring-payments/{recurringPaymentId}_ e _GET /pix/recurring-payments_ previstos com retorno HTTP Code 200 - OK com status RJCT (Rejected) e rejectionReason conforme abaixo (detalhamento adicional na documentação técnica da API):**  
+      5.1 **Demais validações durante o processamento assíncrono:**  
+        &ensp;5.1.1 - Saldo do usuário: Valida se a conta selecionada possui saldo suficiente para realizar o pagamento (SALDO_INSUFICIENTE);  
+        &ensp;5.1.2 - Limites da transação: Valida se valor (ou quantidade de transações) ultrapassa faixa de limite parametrizada na detentora (VALOR_ACIMA_LIMITE);  
+        &ensp;5.1.3 - Valor informado: Valida se valor enviado é válido para o consentimento do pagamento (VALOR_INVALIDO);  
+        &ensp;5.1.4 - Demais validações não explicitamente informadas (ex. suspeita de fraude): (NAO_INFORMADO);  
+        &ensp;5.1.5 - Divergência entre pagamento e consentimento: Valida se dados do pagamento são diferentes dos dados do consentimento (PAGAMENTO_DIVERGENTE_CONSENTIMENTO);  
+        &ensp;5.1.6 - Recusado pela detentora: Valida se pagamento foi recusado pela detentora (PAGAMENTO_RECUSADO_DETENTORA), com a descrição do motivo de recusa;  
+        &ensp;5.1.7 - Pagamento recusado no Sistema de Pagamentos Instantâneos (SPI) (PAGAMENTO_RECUSADO_SPI);  
+        &ensp;5.1.8 - Erro de infraestrutura na consulta ao SPI: Ocorreu uma falha de infraestrutura durante a consulta ao SPI(FALHA_INFRAESTRUTURA_SPI);  
+        &ensp;5.1.9 - Erro de infraestrutura na consulta ao ICP: Ocorreu uma falha de infraestrutura durante a consulta ao ICP (FALHA_INFRAESTRUTURA_ICP);  
+        &ensp;5.1.10 - Erro de infraestrutura na comunicação com o PSP do recebedor: Ocorreu uma falha de infraestrutura durante a comunicação com o PSP do recebedor (FALHA_INFRAESTRUTURA_PSP_RECEBEDOR);  
+        &ensp;5.1.11 - Erro de infraestrutura interno na detentora: Ocorreu uma falha de infraestrutura interna na detentora durante o processamento do pagamento (FALHA_INFRAESTRUTURA_DETENTORA);  
+        &ensp;5.1.12 - Status Consentimento: Valida se status de consentimento é diferente de “AUTHORISED” (CONSENTIMENTO_INVALIDO);  
   version: 1.0.0-beta.1
   license:
     name: Apache 2.0
@@ -1069,155 +1039,6 @@ components:
             Campo condicional utilizado para identificar o fluxo de autorização em que o pagamento foi solicitado.
             
             [Restrição] Se CIBA ou FIDO, preenchimento obrigatório. Caso o campo não esteja presente no payload, subentende-se que o fluxo de autorização utilizado é o HYBRID_FLOW.
-        riskSignals:
-          $ref: '#/components/schemas/RiskSignals'
-    RiskSignals:
-      type: object
-      description: |
-        Sinais de risco para iniciação de pagamentos automáticos
-
-        [Restrição] Deve ser enviado quando o consentimento for para o produto Sweeping Accounts (O objeto "/data/recurringConfiguration/sweeping" usado no oneOf)
-      properties:
-        manual:
-          type: object
-          required:
-            - deviceId
-            - isRootedDevice
-            - screenBrightness
-            - elapsedTimeSinceBoot
-            - osVersion
-            - userTimeZoneOffset
-            - language
-            - screenDimensions
-            - accountTenure
-          description: |
-            Representa a coleta de sinais de risco com a presença do usuário
-            
-            [Restrição] Obrigatório de ser enviado quando a transação ocorrer na presença do usuário
-          properties:
-            deviceId:
-              type: string
-              description: ID único do dispositivo gerado pela plataforma.
-              example: 00000000-54b3-e7c7-0000-000046bffd97
-            isRootedDevice:
-              type: boolean
-              description: Indica se o dispositivo atualmente está com permissão de “root”.
-              example: false
-            screenBrightness:
-              type: number
-              format: double
-              description: |
-                Indica o nível de brilho da tela do dispositivo.  
-                Em dispositivos Android o valor é um inteiro, entre 0 e 255, inclusive;  
-                Em dispositivos iOS o valor é um ponto flutuante entre 0.0 e 1.0.
-            elapsedTimeSinceBoot:
-              type: integer
-              format: int64
-              description: Indica por quanto tempo (em milissegundos) o dispositivo está ligado.
-            osVersion:
-              type: string
-              description: Versão do sistema operacional.
-            userTimeZoneOffset:
-              type: string
-              description: |
-                Indica a configuração de fuso horário do dispositivo do usuário, com o formato UTC offset: ±hh[:mm]
-            language:
-              type: string
-              description: Indica o idioma do dispositivo no formato ISO 639-1.
-            screenDimensions:
-              type: object
-              description: Dimensões da tela do dispositivo
-              required:
-                - height
-                - width
-              properties:
-                height:
-                  type: integer
-                  description: Altura da tela, em pixels.
-                width:
-                  type: integer
-                  description: Largura da tela, em pixels.
-            accountTenure:
-              type: string
-              format: date
-              pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
-              description: Data de cadastro do cliente na iniciadora.
-            geolocation:
-              type: object
-              description: Dados de geolocalização do cliente enquanto logado na iniciadora
-              properties:
-                latitude:
-                  type: number
-                  format: double
-                  description: Coordenada latitudial do cliente enquanto logado na iniciadora
-                longitude:
-                  type: number
-                  format: double
-                  description: Coordenada longitudinal do cliente enquanto logado na iniciadora
-                type:
-                  type: string
-                  description: |
-                    Tipo de mecanismo utilizado na geração da geolocalização
-                  enum:
-                    - COARSE
-                    - FINE
-                    - INFERRED
-            isCallInProgress:
-              type: boolean
-              description: |
-                Indica chamada ativa no momento do vínculo.
-
-                [Restrição] Caso o sinal de risco esteja disponível (cliente permitiu que fosse coletado), o mesmo deverá ser enviado
-            isDevModeEnabled:
-              type: boolean
-              description: Indica se o dispositivo está em modo de desenvolvedor.
-            isMockGPS:
-              type: boolean
-              description: Indica se o dispositivo está usando um GPS falso.
-            isEmulated:
-              type: boolean
-              description: Indica se o dispositivo é emulado ou real.
-            isMonkeyRunner:
-              type: boolean
-              description: Indica o uso do MonkeyRunner.
-            isCharging:
-              type: boolean
-              description: Indica se a bateria do dispositivo está sendo carregada.
-            antennaInformation:
-              type: string
-              description: Indica em qual antena o dispositivo está conectado.
-            isUsbConnected:
-              type: boolean
-              description: Indica se o dispositivo está conectado a outro dispositivo via USB.
-            integrity:
-              type: object
-              properties:
-                appRecognitionVerdict:
-                  type: string
-                  description: Informa a integridade do app
-                deviceRecognitionVerdict:
-                  type: string
-                  description: Informa a integridade do dispositivo
-        automatic:
-          type: object
-          required:
-            - lastLoginDateTime
-            - pixKeyRegistrationDateTime
-          description: |
-            Representa a coleta de sinais de risco com a presença do usuário
-
-            [Restrição] Obrigatório de ser enviado quando a transação não ocorrer na presença do usuário
-          properties:
-            lastLoginDateTime:
-              type: string
-              format: date-time
-              description: Data e hora do último login do cliente na iniciadora
-              pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
-            pixKeyRegistrationDateTime:
-              type: string
-              format: date-time
-              description: Data e hora de cadastro da chave Pix do recebedor na iniciadora
-              pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
     PostCreditorAccount:
       type: object
       description: |
