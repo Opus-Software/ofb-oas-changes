@@ -392,11 +392,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/ResponseError'
       security:
-        - NonRedirectAuthorizationCode:
+        - OAuth2AuthorizationCode:
             - openid
+            - 'recurringConsent:recurringConsentId'
             - recurringPayments
-            - 'enrollment:enrollmentId'
-            - nrp-consent
     get:
       tags:
         - Recurring Payments
@@ -593,7 +592,6 @@ components:
                   - PARAMETRO_INVALIDO
                   - ERRO_IDEMPOTENCIA
                   - NAO_INFORMADO
-                  - FUNCIONALIDADE_NAO_HABILITADA
                 example: DATA_PAGAMENTO_INVALIDA
                 description: |
                   Códigos de erros previstos na criação de consentimento para a iniciação de pagamentos:
@@ -601,9 +599,8 @@ components:
                   - DETALHE_PAGAMENTO_INVALIDO: Detalhe do pagamento inválido.
                   - PARAMETRO_NAO_INFORMADO: Parâmetro não informado.
                   - PARAMETRO_INVALIDO: Parâmetro inválido.
-                  - ERRO_IDEMPOTENCIA: Erro idempotência. 
-                  - NAO_INFORMADO: Não informado. 
-                  - FUNCIONALIDADE_NAO_HABILITADA: A detentora de conta não oferece o serviço nessa modalidade. 
+                  - ERRO_IDEMPOTENCIA: Erro idempotência.
+                  - NAO_INFORMADO: Não informado.
               title:
                 type: string
                 maxLength: 255
@@ -617,7 +614,6 @@ components:
                   - PARAMETRO_INVALIDO: Parâmetro inválido.
                   - ERRO_IDEMPOTENCIA: Erro idempotência.
                   - NAO_INFORMADO: Não informado.
-                  - FUNCIONALIDADE_NAO_HABILITADA: A detentora de conta não oferece o serviço nessa modalidade. 
               detail:
                 type: string
                 maxLength: 2048
@@ -631,7 +627,6 @@ components:
                   - PARAMETRO_INVALIDO: Parâmetro [nome_campo] não obedece as regras de formatação esperadas.
                   - ERRO_IDEMPOTENCIA: Conteúdo da mensagem (claim data) diverge do conteúdo associado a esta chave de idempotência (x-idempotency-key).
                   - NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta.
-                  - FUNCIONALIDADE_NAO_HABILITADA: A detentora de conta não oferece o serviço nessa modalidade. 
         meta:
           $ref: '#/components/schemas/Meta'
     422ResponseErrorCreateConsent:
@@ -981,6 +976,7 @@ components:
             - creditors
             - startDateTime
             - expirationDateTime
+            - debtorAccount
             - recurringConfiguration
           properties:
             loggedUser:
@@ -1888,6 +1884,8 @@ components:
           description: Definição da configuração de recorrência para pagamentos automáticos
           required:
             - contractId
+            - amount
+            - transactionLimit
             - period
             - contractDebtor
           properties:
@@ -2775,6 +2773,7 @@ components:
         - cnpjInitiator
         - payment
         - creditorAccount
+        - debtorAccount
       properties:
         recurringPaymentId:
           type: string
@@ -3030,17 +3029,6 @@ components:
             recurringPayments: Escopo necessário para acesso à API Automatic Payments.
             openid: Indica que a autorização está sendo realizada utilizando o protocolo definido pela openid.
             'recurringConsent:recurringConsentId': Escopo contendo o identificador único do consentimento criado para a iniciação de pagamento solicitada
-    NonRedirectAuthorizationCode:
-      type: oauth2
-      flows: 
-        authorizationCode:
-          authorizationUrl: 'https://authserver.example/token'
-          tokenUrl: 'https://authserver.example/token'
-          scopes:
-            recurringPayments: Escopo necessário para acesso à API Automatic Payments.
-            openid: Indica que a autorização está sendo realizada utilizando o protocolo definido pela openid.
-            'enrollment:enrollmentId': Permite realizar atualização de um registro com a permissão do cliente.
-            nrp-consents: Consentimento para pagamentos sem redirecionamento.
   responses:
     BadRequest:
       description: 'A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.'
