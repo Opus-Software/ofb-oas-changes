@@ -392,10 +392,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ResponseError'
       security:
-        - OAuth2AuthorizationCode:
+        - NonRedirectAuthorizationCode:
             - openid
-            - 'recurringConsent:recurringConsentId'
             - recurringPayments
+            - 'enrollment:enrollmentId'
+            - nrp-consent
     get:
       tags:
         - Recurring Payments
@@ -507,8 +508,10 @@ paths:
       description: |
         Esse endpoint deve ser usado para cancelar as transações que estejam em uma das seguintes situações: 
         Agendada com sucesso (SCHD), retida para análise (PDNG). Caso a requisição seja bem sucedida, a transação vai para a situação CANC. 
+        
         Caso o status do pagamento seja diferente de SCHD/PDNG ou alguma outra regra de negócio impeça o cancelamento, a requisição PATCH retorna 
         HTTP Status 422 com o code PAGAMENTO_NAO_PERMITE_CANCELAMENTO. 
+        
         Caso receba um 422, a iniciadora deve fazer uma requisição GET no pagamento para verificar a situação atual dele, bem como detalhes associados. 
 
         [Restrição] Para o Pix Automático (“recurringConfiguration” igual a “automatic”) tanto o recebedor quanto o pagador poderão realizar o 
@@ -592,6 +595,7 @@ components:
                   - PARAMETRO_INVALIDO
                   - ERRO_IDEMPOTENCIA
                   - NAO_INFORMADO
+                  - FUNCIONALIDADE_NAO_HABILITADA
                 example: DATA_PAGAMENTO_INVALIDA
                 description: |
                   Códigos de erros previstos na criação de consentimento para a iniciação de pagamentos:
@@ -599,8 +603,9 @@ components:
                   - DETALHE_PAGAMENTO_INVALIDO: Detalhe do pagamento inválido.
                   - PARAMETRO_NAO_INFORMADO: Parâmetro não informado.
                   - PARAMETRO_INVALIDO: Parâmetro inválido.
-                  - ERRO_IDEMPOTENCIA: Erro idempotência.
-                  - NAO_INFORMADO: Não informado.
+                  - ERRO_IDEMPOTENCIA: Erro idempotência. 
+                  - NAO_INFORMADO: Não informado. 
+                  - FUNCIONALIDADE_NAO_HABILITADA: A detentora de conta não oferece o serviço nessa modalidade. 
               title:
                 type: string
                 maxLength: 255
@@ -614,6 +619,7 @@ components:
                   - PARAMETRO_INVALIDO: Parâmetro inválido.
                   - ERRO_IDEMPOTENCIA: Erro idempotência.
                   - NAO_INFORMADO: Não informado.
+                  - FUNCIONALIDADE_NAO_HABILITADA: A detentora de conta não oferece o serviço nessa modalidade. 
               detail:
                 type: string
                 maxLength: 2048
@@ -627,6 +633,7 @@ components:
                   - PARAMETRO_INVALIDO: Parâmetro [nome_campo] não obedece as regras de formatação esperadas.
                   - ERRO_IDEMPOTENCIA: Conteúdo da mensagem (claim data) diverge do conteúdo associado a esta chave de idempotência (x-idempotency-key).
                   - NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta.
+                  - FUNCIONALIDADE_NAO_HABILITADA: A detentora de conta não oferece o serviço nessa modalidade. 
         meta:
           $ref: '#/components/schemas/Meta'
     422ResponseErrorCreateConsent:
@@ -976,7 +983,6 @@ components:
             - creditors
             - startDateTime
             - expirationDateTime
-            - debtorAccount
             - recurringConfiguration
           properties:
             loggedUser:
@@ -1884,8 +1890,6 @@ components:
           description: Definição da configuração de recorrência para pagamentos automáticos
           required:
             - contractId
-            - amount
-            - transactionLimit
             - period
             - contractDebtor
           properties:
@@ -2773,7 +2777,6 @@ components:
         - cnpjInitiator
         - payment
         - creditorAccount
-        - debtorAccount
       properties:
         recurringPaymentId:
           type: string
@@ -3029,6 +3032,17 @@ components:
             recurringPayments: Escopo necessário para acesso à API Automatic Payments.
             openid: Indica que a autorização está sendo realizada utilizando o protocolo definido pela openid.
             'recurringConsent:recurringConsentId': Escopo contendo o identificador único do consentimento criado para a iniciação de pagamento solicitada
+    NonRedirectAuthorizationCode:
+      type: oauth2
+      flows: 
+        authorizationCode:
+          authorizationUrl: 'https://authserver.example/token'
+          tokenUrl: 'https://authserver.example/token'
+          scopes:
+            recurringPayments: Escopo necessário para acesso à API Automatic Payments.
+            openid: Indica que a autorização está sendo realizada utilizando o protocolo definido pela openid.
+            'enrollment:enrollmentId': Permite realizar atualização de um registro com a permissão do cliente.
+            nrp-consents: Consentimento para pagamentos sem redirecionamento.
   responses:
     BadRequest:
       description: 'A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.'
