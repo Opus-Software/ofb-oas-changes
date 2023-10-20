@@ -346,7 +346,7 @@ paths:
         required: true
       responses:
         '201':
-          $ref: '#/components/responses/201RecurringPaymentsIdPost'
+          $ref: '#/components/responses/200RecurringPaymentsIdPost'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -878,6 +878,7 @@ components:
         - endToEndId
         - date
         - payment
+        - creditorAccount
         - cnpjInitiator
         - ibgeTownCode
         - localInstrument
@@ -2745,6 +2746,7 @@ components:
         - status
         - cnpjInitiator
         - payment
+        - creditorAccount
         - localInstrument
       properties:
         recurringPaymentId:
@@ -2892,6 +2894,7 @@ components:
         - status
         - cnpjInitiator
         - payment
+        - creditorAccount
       properties:
         recurringPaymentId:
           type: string
@@ -3386,7 +3389,7 @@ components:
         application/jwt:
           schema:
             $ref: '#/components/schemas/ResponseRecurringPaymentsIdRead'
-    201RecurringPaymentsIdPost:
+    200RecurringPaymentsIdPost:
       description: Dados de iniciação de pagamento Pix obtidos com sucesso.
       headers:
         x-fapi-interaction-id:
