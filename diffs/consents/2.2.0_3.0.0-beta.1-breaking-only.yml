@@ -9,6 +9,15 @@ POST /consents/{consentId}/extends
 POST /consents
 - Modified header param: x-fapi-interaction-id
   - Required changed from false to true
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: expirationDateTime
+                - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
 - Responses changed
   - Modified response: 201
     - Content changed
@@ -18,6 +27,13 @@ POST /consents
             - Modified property: data
               - Required changed
                 - Deleted required property: expirationDateTime
+              - Properties changed
+                - Modified property: creationDateTime
+                  - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+                - Modified property: expirationDateTime
+                  - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+                - Modified property: statusUpdateDateTime
+                  - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
   - Modified response: 400
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -323,12 +339,18 @@ GET /consents/{consentId}
               - Required changed
                 - Deleted required property: expirationDateTime
               - Properties changed
+                - Modified property: creationDateTime
+                  - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+                - Modified property: expirationDateTime
+                  - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
                 - Modified property: rejection
                   - Properties changed
                     - Modified property: reason
                       - Properties changed
                         - Modified property: additionalInformation
                           - Pattern changed from '[\w\W\s]*' to '^(?!\s)[\w\W\s]*[^\s]$'
+                - Modified property: statusUpdateDateTime
+                  - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
   - Modified response: 400
     - Content changed
       - Modified media type: application/json; charset=utf-8
