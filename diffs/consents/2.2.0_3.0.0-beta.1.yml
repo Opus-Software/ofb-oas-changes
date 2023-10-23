@@ -19,13 +19,17 @@ POST /consents
       - Schema changed
         - Properties changed
           - Modified property: data
+            - Required changed
+              - Deleted required property: expirationDateTime
             - Properties changed
               - Modified property: businessEntity
                 - Description changed from 'Titular, pessoa jurídica a quem se referem os dados que são objeto de compartilhamento.' to 'Titular, pessoa jurídica a quem se referem os dados que são objeto de compartilhamento.
 É obrigatório que o número do CNPJ utilizado seja um número válido. A transmissora pode utilizar algoritmos de validação de documento para garantir que se trata de um documento válido, como por exemplo: Cálculo de DV módulo 11 para o CNPJ.
 '
               - Modified property: expirationDateTime
-                - Description changed from 'Data e hora de expiração da permissão. De preenchimento obrigatório, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format). Para consentimentos com prazo indeterminado, preencher com valor `2300-01-01T00:00:00Z`.' to 'Data e hora de expiração da permissão. De preenchimento obrigatório, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).'
+                - Description changed from 'Data e hora de expiração da permissão. De preenchimento obrigatório, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format). Para consentimentos com prazo indeterminado, preencher com valor `2300-01-01T00:00:00Z`.' to 'Data e hora de expiração da permissão. Reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format). 
+[Restrição] De preenchimento obrigatório nos casos em que houver validade determinada. Em casos de consentimento com prazo indeterminado o campo não deve ser enviado.
+'
               - Modified property: loggedUser
                 - Description changed from 'Usuário (pessoa natural) que encontra-se logado na instituição receptora e que iniciará o processo de consentimento para compartilhamento de dados.' to 'Usuário (pessoa natural) que encontra-se logado na instituição receptora e que iniciará o processo de consentimento para compartilhamento de dados.
 É obrigatório que o número do documento utilizado seja um número válido e pertencente ao usuário logado. A transmissora pode utilizar algoritmos de validação de documento para garantir que se trata de um documento válido, como por exemplo: Cálculo de DV módulo 11 para o CPF.
@@ -40,9 +44,13 @@ POST /consents
         - Schema changed
           - Properties changed
             - Modified property: data
+              - Required changed
+                - Deleted required property: expirationDateTime
               - Properties changed
                 - Modified property: expirationDateTime
-                  - Description changed from 'Data e hora de expiração da permissão. De preenchimento obrigatório, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format). Para consentimentos com prazo indeterminado, é esperado preenchimento com `2300-01-01T00:00:00Z`.' to 'Data e hora de expiração da permissão. De preenchimento obrigatório, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).'
+                  - Description changed from 'Data e hora de expiração da permissão. De preenchimento obrigatório, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format). Para consentimentos com prazo indeterminado, é esperado preenchimento com `2300-01-01T00:00:00Z`.' to 'Data e hora de expiração da permissão. Reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format). 
+[Restrição] De preenchimento obrigatório nos casos em que houver validade determinada. Em casos de consentimento com prazo indeterminado o campo não deve ser enviado.
+'
                 - Modified property: permissions
                   - Items changed
                     - New enum values: [EXCHANGES_READ]
