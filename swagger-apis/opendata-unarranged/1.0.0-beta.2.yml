@@ -137,7 +137,6 @@ components:
       properties:
         data:
           type: array
-          description: Conjunto de informações referente ao produto Adiantamento a Depositantes.
           minItems: 1
           items:
             $ref: '#/components/schemas/BusinessUnarrangedAccountOverdraftData'
@@ -172,7 +171,7 @@ components:
           example: 'https://empresaa1.com/business_unarranged_account_overdraft'
     BusinessUnarrangedAccountOverdraftFee:
       type: object
-      description: Objeto que reúne informações de tarifas de serviços.
+      description: Objeto que reúne informações de tarifas de serviços
       properties:
         services:
           type: array
@@ -340,7 +339,6 @@ components:
       properties:
         data:
           type: array
-          description: Conjunto de informações referente ao produto Adiantamento a Depositantes.
           minItems: 1
           items:
             $ref: '#/components/schemas/PersonalUnarrangedAccountOverdraftData'
@@ -374,7 +372,6 @@ components:
           example: 'https://empresaa1.com/personal_unarranged_account_overdraft'
     Participant:
         type: object
-        description: Conjunto de informações relativas ao participante do Open Finance que oferta este produto.
         required:
           - brand
           - name
@@ -414,15 +411,15 @@ components:
             example: 'https://empresadaorganizacaoa.com/complementarylist'
     PersonalUnarrangedAccountOverdraftFee:
       type: object
-      description: Objeto que reúne informações de tarifas de serviços.
+      description: Objeto que reúne informações de tarifas de serviços
       properties:
         priorityServices:
           type: array
-          description: Lista das Tarifas cobradas sobre Serviços Prioritários
+          maxItems: 20
           items:
             $ref: '#/components/schemas/UnarrangedAccountOverdraftService'
-          maxItems: 20
           minItems: 1
+          description: Lista das Tarifas cobradas sobre Serviços Prioritários
     Price:
       type: object
       required:
@@ -499,7 +496,6 @@ components:
           $ref:  "#/components/schemas/Currency"
     Customer:
       type: object
-      description: Informações relevantes para o cliente.
       required:
         - rate
       x-regulatory-required:
@@ -548,7 +544,6 @@ components:
       example: 'SEM_INDEXADOR_TAXA'
     Links:
       type: object
-      description: Referências para outros recursos da API requisitada.
       properties:
         self:
           type: string
@@ -587,7 +582,6 @@ components:
           example: 'https://api.banco.com.br/open-banking/opendata-unarranged/v1/resource'
     Meta:
       type: object
-      description: Meta informações referente à API requisitada.
       properties:
         totalRecords:
           type: integer
