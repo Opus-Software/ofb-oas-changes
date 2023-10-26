@@ -87,6 +87,36 @@ info:
     - A instituição transmissora deve validar o preenchimento correto desses agrupamentos no momento da geração do consentimento.
     - Caso a instiuição receptora envie permissões divergentes ao agrupamento especificado na tabela, a transmissora deve rejeitar o pedido da receptora dando retorno HTTP Status Code 400.
     - A transmissora deve retornar, da lista de permissions requisitadas, apenas o subconjunto de permissions por ela suportada, removendo da lista as permissions de produtos não suportados e retornando HTTP Status Code 201. Caso não restem permissões funcionais, a instituição transmissora deve retornar o erro HTTP Code "422 Unprocessable Entity".
+    - O endpoint `POST /consents/{consentId}/extends` é utilizado para renovação de consentimento ativo do cliente. 
+    Ou seja, quando a receptora recebe pedido de renovação de consentimento com status ainda ativo para a transmissora, ela deve requisitar este endpoint.
+    - Apenas consentimentos autorizados (status AUTHORISED) podem ser renovados pelo uso do endpoint `POST /consents/{consentId}/extends`.
+    Essa renovação é feita exclusivamente via backende resulta em:
+      - Alteração do `expirationDateTime` do consentimento vigente;
+      - Persistência de informações para listar histórico de alterações que podem ser acessadas via endpoint `GET /consents/{consentId}/extends`.
+    - A data de expiração `2300-01-01T00:00:00Z` (`expirationDateTime= 2300-01-01T00:00:00Z`) é a representação técnica de um consentimento com prazo de expiração indeterminado. 
+    Ou seja, sempre que o cliente escolher prazo indeterminado para expiração de consentimento, a instituição receptora deve preencher `expirationDateTime= 2300-01-01T00:00:00Z` e assim informá-la para à instituição transmissora. 
+    De igual forma, a instituição transmissora deve entender e representar consentimento com `expirationDateTime= 2300-01-01T00:00:00Z` como um consentimento com prazo de expiração indeterminado.
+    - Os consentimentos em estado expirado ou cancelado não podem ser renovados sem redirecionamento. 
+    Ou seja, não é possível utilizar o endpoint `POST /consents/{consentId}/extends` para consentimentos nesses estados (status REJECTED). 
+    A transmissora deve retornar status de erro 422 (`ESTADO_CONSENTIMENTO_INVALIDO`) para requisições que não seguem essa definição.
+    - A renovação de consentimento (`POST /consents/{consentId}/extends`) deve ser possível por apenas um cliente logado. 
+    Não deve ser possível quando o consentimento foi criado demandando aprovações por múltiplas alçadas. 
+    A transmissora deve retornar status de erro 422 (`DEPENDE_MULTIPLA_ALCADA`) para requisições que não seguem essa definição.
+    - A renovação de consentimento (`POST /consents/{consentId}/extends`) deve ser possível para consentimento para o qual foi emitido um refresh token opaco. 
+    Não deve ser possível quando o consentimento está vinculado a um refresh token do tipo JWT (com prazo não prorrogável). 
+    A transmissora deve retornar status de erro 422 (`REFRESH_TOKEN_JWT`) para requisições que não seguem essa definição.
+    - A renovação de consentimento (`POST /consents/{consentId}/extends`) deve ocorrer apenas até o período de 12 meses após a data de requisição (`current_datetime<= expirationDateTime<= current_datetime+12meses`), ou com prazo de expiração indeterminado (`expirationDateTime=2300-01-01T00:00:00Z`). 
+    A transmissora deve retornar status de erro 422 (`DATA_EXPIRACAO_INVALIDA`) para requisições que não seguem essa definição.
+    - A renovação de consentimento (`POST /consents/{consentId}/extends`) sempre aumenta a data de expiração final do consentimento em relação à data de expiração vigente. 
+    Ou seja, um consentimento com prazo de expiração para 6 meses no futuro não pode ter sua data de expiração alterada para apenas 3 meses no futuro. 
+    A transmissora deve retornar status de erro 422 (`DATA_EXPIRACAO_INVALIDA`) para requisições que não seguem essa definição.
+    - A renovação de consentimento ativo do cliente somente poderá ser aceita pela transmissora para um usuário logado na receptora, identificado por seu documento (`loggedUser`; `businessEntity` quando aplicável) e permitido a partir de token de acesso (informado no cabeçalho `Authorization`) conseguido anteriormente durante a criação e confirmação do consentimento vigente. 
+    A transmissora deve validar documento fornecido (`loggedUser`; `businessEntity` quando aplicável) e token de acesso para executar a renovação de consentimento. Caso a transmissora detecte que trata-se de acesso inválido por questões de segurança, é esperado status de erro 401 ou 403.
+    - Após a renovação de consentimento (`POST /consents/{consentId}/extends`) a transmissora deve garantir que a data de expiração do refresh token opaco, ao qual o consentimento está associado, seja:
+      - sem expiração: refresh token permanece ativo, desde que o consentimento associado permaneça ativo (status AUTHORIZED);
+      - com expiração: desde que, no mínimo, a nova data de expiração do refreshtoken seja igual à nova data do consentimento.
+    - A lista do payload de resposta do endpoint de histórico de renovações feitas (`GET /consents/{consentId}/extends`) deve ser entregue em ordem decrescente pela data de requisição (`data[].requestDateTime`). 
+    Dessa forma, o primeiro item da lista apresentará a mesma data de expiração do consentimento vigente, pois foi a última renovação feita.
   version: 2.2.0
   license:
     name: Apache 2.0
@@ -295,7 +325,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ResponseError'
       security:
-        - OAuth2ClientCredentials:
+        - OAuth2Security:
             - consents
     post:
       tags:
@@ -351,7 +381,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ResponseError'
       security:
-        - OAuth2Security:
+        - OAuth2AuthorizationCode:
           - openid
           - 'consent:consentId'
 components:
@@ -484,7 +514,7 @@ components:
                 - ACCOUNTS_OVERDRAFT_LIMITS_READ
                 - RESOURCES_READ
             expirationDateTime:
-              description: Data e hora de expiração da permissão. De preenchimento obrigatório, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format). Para consentimentos com prazo indeterminado, preencher com valor `2300-01-01T00:00:00Z`.
+              description: Data e hora de expiração da permissão. De preenchimento obrigatório, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format).
               type: string
               maxLength: 20
               format: date-time
@@ -654,7 +684,7 @@ components:
                 - ACCOUNTS_OVERDRAFT_LIMITS_READ
                 - RESOURCES_READ
             expirationDateTime:
-              description: Data e hora de expiração da permissão. De preenchimento obrigatório, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format). Para consentimentos com prazo indeterminado, é esperado preenchimento com `2300-01-01T00:00:00Z`.
+              description: Data e hora de expiração da permissão. De preenchimento obrigatório, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format).
               type: string
               format: date-time
               example: '2021-05-21T08:30:00Z'
@@ -975,32 +1005,36 @@ components:
                   - DEPENDE_MULTIPLA_ALCADA
                   - REFRESH_TOKEN_JWT
                   - ESTADO_CONSENTIMENTO_INVALIDO
+                  - DATA_EXPIRACAO_INVALIDA
                 example: DEPENDE_MULTIPLA_ALCADA
                 description: |
-                 Códigos de erros previstos na durante o processo de extensão do consentimento:  
-                  • DEPENDE_MULTIPLA_ALCADA: Necessário aprovação de múltipla alçada.  
-                  • REFRESH_TOKEN_JWT: Refresh token não pode ser expandido.  
-                  • ESTADO_CONSENTIMENTO_INVALIDO: Estado inválido do consentimento.  
+                 Códigos de erros previstos na durante o processo de extensão do consentimento:
+                  - DEPENDE_MULTIPLA_ALCADA: Necessário aprovação de múltipla alçada.
+                  - REFRESH_TOKEN_JWT: Refresh token não pode ser expandido.
+                  - ESTADO_CONSENTIMENTO_INVALIDO: Estado inválido do consentimento.
+                  - DATA_EXPIRACAO_INVALIDA: Nova data para expiração do consentimento é inválida.
               title:
                 type: string
                 maxLength: 255
                 pattern: '[\w\W\s]*'
                 example: Necessário aprovação de múltipla alçada.
                 description: |
-                  Título específico do erro reportado, de acordo com o código enviado:  
-                  • DEPENDE_MULTIPLA_ALCADA: Necessário aprovação de múltipla alçada.  
-                  • REFRESH_TOKEN_JWT: Refresh token não pode ser expandido.  
-                  • ESTADO_CONSENTIMENTO_INVALIDO: Estado inválido do consentimento.  
+                  Título específico do erro reportado, de acordo com o código enviado:
+                  - DEPENDE_MULTIPLA_ALCADA: Necessário aprovação de múltipla alçada.
+                  - REFRESH_TOKEN_JWT: Refresh token não pode ser expandido.
+                  - ESTADO_CONSENTIMENTO_INVALIDO: Estado inválido do consentimento.
+                  - DATA_EXPIRACAO_INVALIDA: Nova data para expiração do consentimento é inválida.
               detail:
                 type: string
                 maxLength: 2048
                 pattern: '[\w\W\s]*'
                 example: O consentimento informado não pode ser renovado sem redirecionamento porque depende de múltipla alçada para aprovação.
                 description: |
-                  Título específico do erro reportado, de acordo com o código enviado:  
-                  • DEPENDE_MULTIPLA_ALCADA: O consentimento informado não pode ser renovado sem redirecionamento porque depende de múltipla alçada para aprovação.  
-                  • REFRESH_TOKEN_JWT: O consentimento informado não pode ser renovado sem redirecionamento porque está vinculado a um refresh token JWT e não pode ter seu prazo de validade alterado.  
-                  • ESTADO_CONSENTIMENTO_INVALIDO: O consentimento informado não pode ser.  
+                  Título específico do erro reportado, de acordo com o código enviado:
+                  - DEPENDE_MULTIPLA_ALCADA: O consentimento informado não pode ser renovado sem redirecionamento porque depende de múltipla alçada para aprovação.
+                  - REFRESH_TOKEN_JWT: O consentimento informado não pode ser renovado sem redirecionamento porque está vinculado a um refresh token JWT e não pode ter seu prazo de validade alterado.
+                  - ESTADO_CONSENTIMENTO_INVALIDO: O consentimento informado não pode ser renovado sem redirecionamento porque está em um estado que não permite a renovação.
+                  - DATA_EXPIRACAO_INVALIDA: O consentimento informado não pode ser renovado pois a nova data de expiração não segue a convenção do ecossistema.
         meta:
           $ref: '#/components/schemas/Meta'
     LoggedUser:
@@ -1195,6 +1229,16 @@ components:
           tokenUrl: 'https://authserver.example/token'
           scopes:
             consents: Criação do consentimento.
+    OAuth2AuthorizationCode:
+      type: oauth2
+      description: Fluxo OAuthnecessário para que a receptora tenha acesso aos endpoints de consentimento na instituição transmissora. Requer o processo de redirecionamento e autenticação do usuário.
+      flows:
+        authorizationCode:
+          authorizationUrl: 'https://authserver.example/code'
+          tokenUrl: 'https://authserver.example/token'
+          scopes:
+            openid: Indica que a autorização está sendo realizada utilizando o protocolo definido pela openid.
+            'consent:consentId': Escopo contendo o identificador único do consentimento criado para compartilhamento de dados solicitada.
   responses:
     UnsupportedMediaType:
       description: O formato do payload não é um formato suportado.
@@ -1257,9 +1301,9 @@ components:
           schema:
             $ref: '#/components/schemas/ResponseError'
     UnprocessableEntityConsents:
-      description: 'Seguir as orientações presentes na descrição da API, item 1.3 e seus subitens.'
+      description: 'A sintaxe da requisição está correta, mas não foi possível processar as instruções presentes.'
       content:
-        application/jwt:
+        application/json; charset=utf-8:
           schema:
             $ref: '#/components/schemas/422ResponseErrorCreateConsent'
           examples:
