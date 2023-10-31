@@ -1553,7 +1553,7 @@ components:
             platform:
               type: string
               description: |
-                Indica a plataforma em que o usuário está utilizando a credencial FIDO2. 
+                Indica a plataforma em que o usuário criará a nova credencial FIDO2. 
                 Este campo permite que o servidor FIDO inclua extensões de acordo com a plataforma utilizada.
               enum:
                 - ANDROID
@@ -1725,16 +1725,13 @@ components:
           type: string
           description: 'Indica os tipos de autenticadores suportados (ex: Sistema Operacional ou Cross-Platform como uma chave USB)'
           example: platform, cross-platform
-        userVerification:
+        requireResidentKey:
           type: string
           description: Indica o tipo de "discoverability" da credencial.
           example: discouraged, preferred, required
-        requireResidentKey:
+        userVerification:
           type: boolean
           description: Indica o requisito de verificação do usuário.
-        residentKey:
-          type: string
-          description: Replicar a descrição do campo requireResidentKey
     FidoRelyingParty:
       type: object
       required:
