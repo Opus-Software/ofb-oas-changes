@@ -600,6 +600,18 @@ Informações mais detalhadas sobre a construção de namespaces devem ser consu
   - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser "espelhado" pela transmissora (server) no cabeçalho de resposta.' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser "espelhado" pela transmissora (server) no cabeçalho de resposta.'
 - Responses changed
   - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: expirationDateTime
+                    - Description changed from 'Data e hora de expiração da permissão. De preenchimento obrigatório, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format), utilizado apenas para consulta de alterações históricas de extensão do consentimento.' to 'Data e hora de expiração da permissão. Reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format), utilizado apenas para consulta de alterações históricas de extensão do consentimento.
+[Restrição] De preenchimento obrigatório nos casos em que houver validade determinada.
+Em casos de consentimento com prazo indeterminada o campo não deve ser preenchido.
+'
     - Headers changed
       - Modified header: x-fapi-interaction-id
         - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação.  
