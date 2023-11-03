@@ -149,6 +149,9 @@ info:
     A transmissora deve retornar status de erro 422 (DEPENDE_MULTIPLA_ALCADA) para requisições que necessitam de múltipla alçada.
     - Para consentimentos Pessoa Natural apenas o loggedUser criador do consentimento consegue renovar sem redirecionamento (`POST /consents/{consentId}/extends`).
     A transmissora deve retornar status de erro 403 para requisições que não seguem essa definição.
+    - A renovação de consentimento (`POST /consents/{consentId}/extends`) deve ser possível para consentimento para o qual foi emitido um refresh token opaco. 
+    Não deve ser possível quando o consentimento está vinculado a um refresh token do tipo JWT (com prazo não prorrogável). 
+    A transmissora deve retornar status de erro 422 (`REFRESH_TOKEN_JWT`) para requisições que não seguem essa definição.
     - A renovação de consentimento (`POST /consents/{consentId}/extends`) deve ocorrer apenas até o período de 12 meses após a data de requisição (`current_datetime<= expirationDateTime<= current_datetime+12meses`), ou com prazo de expiração indeterminado (`expirationDateTime=2300-01-01T00:00:00Z`). 
     A transmissora deve retornar status de erro 422 (`DATA_EXPIRACAO_INVALIDA`) para requisições que não seguem essa definição.
     - A renovação de consentimento (`POST /consents/{consentId}/extends`) sempre aumenta a data de expiração final do consentimento em relação à data de expiração vigente. 
@@ -333,11 +336,7 @@ paths:
         - Consents
       summary: Obter detalhes de extensões feitas no consentimento identificado por consentId.
       operationId: consentsGetConsentsConsentIdExtends
-      description: |
-        Método para obter histórico de extensões de consentimento identificado por consentId.
-
-        IMPORTANTE: A lista do payload de resposta deve ser entregue em ordem decrescente pela data de requisição (`data[].requestDateTime`). 
-        Dessa forma, o primeiro item da lista apresentará a mesma data de expiração do consentimento vigente, pois foi a última renovação feita.
+      description: Método para obter detalhes de extensões consentimento identificado por consentId.
       parameters:
         - $ref: '#/components/parameters/ConsentId'
         - $ref: '#/components/parameters/AuthorizationExtends'
@@ -382,7 +381,7 @@ paths:
         - Consents
       summary: Renovar consentimento identificado por consentId.
       operationId: consentsPostConsentsConsentIdExtends
-      description: Método utilizado para renovação de consentimento do cliente. O consentimento só pode ser renovado caso esteja ativo (status `AUTHORISED`) e tenha alçada simples de aprovação (não dependa de múltiplos aprovadores).
+      description: Método para renovar consentimento identificado por consentId, exceto casos com múltiplas alçadas. Nos casos de múltiplas alçadas, a transmissora deve retornar o status 422.
       parameters:
         - $ref: '#/components/parameters/ConsentId'
         - $ref: '#/components/parameters/AuthorizationExtends'
@@ -481,8 +480,20 @@ components:
       type: object
       description: Meta informações referente à API requisitada.
       required:
+        - totalRecords
+        - totalPages
         - requestDateTime
       properties:
+        totalRecords:
+          type: integer
+          format: int32
+          description: Número total de registros no resultado
+          example: 1
+        totalPages:
+          type: integer
+          format: int32
+          description: Número total de páginas no resultado
+          example: 1
         requestDateTime:
           description: 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.'
           type: string
@@ -999,12 +1010,7 @@ components:
               - requestDateTime
             properties:
               expirationDateTime:
-                description: |
-                  Data e hora de expiração da permissão. Reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format), utilizado apenas para consulta de alterações históricas de extensão do consentimento.
-
-                  [Restrição] De preenchimento obrigatório nos casos em que houver validade determinada.
-
-                  Em casos de consentimento com prazo indeterminada o campo não deve ser preenchido.
+                description: Data e hora de expiração da permissão. De preenchimento obrigatório, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format), utilizado apenas para consulta de alterações históricas de extensão do consentimento.
                 type: string
                 format: date-time
                 pattern: '(^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$)'
@@ -1018,36 +1024,6 @@ components:
                 format: date-time
                 example: '2021-05-21T08:30:00Z'
                 maxLength: 20
-              previousExpirationDateTime:
-                description: |
-                  Data e hora de expiração anteriores a renovação. Reflete a data limite anterior de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format).
-
-                  [Restrição] De preenchimento obrigatório nos casos em que houver validade determinada. Em casos de consentimento com prazo indeterminado, ou renovações feitas com a v2.2.0 em que não exista persistência dessa informação, o campo não deve ser preenchido.
-                type: string
-                format: date-time
-                pattern: '(^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$)'
-                maxLength: 20
-                example: '2023-10-18T18:30:00Z'
-              xFapiCustomerIpAddress:
-                description: |
-                  O endereço IP do usuário logado com o receptor que solicitou a renovação sem redirecionamento.
-
-                  [Restrição] De preenchimento obrigatório a partir da v3.0.0. Opcional para renovações feitas com a v2.2.0 quando não existir persistência dessa informação.
-                type: string
-                pattern: '^(?!\s)[\w\W\s]*[^\s]$'
-                minLength: 1
-                maxLength: 100
-                example: '172.217.22.14'
-              xCustomerUserAgent:
-                description: |
-                  Indica o user-agent que o usuário utilizou quando solicitou a renovação sem redirecionamento.
-
-                  [Restrição] De preenchimento obrigatório a partir da v3.0.0. Opcional para renovações feitas com a v2.2.0 quando não existir persistência dessa informação.
-                type: string
-                pattern: '^(?!\s)[\w\W\s]*[^\s]$'
-                minLength: 1
-                maxLength: 100
-                example: Mozilla/5.0 (iPhone14,6; U; CPU iPhone OS 15_4 like Mac OS X)
         links:
           $ref: '#/components/schemas/Links'
         meta:
@@ -1105,12 +1081,14 @@ components:
                 type: string
                 enum:
                   - DEPENDE_MULTIPLA_ALCADA
+                  - REFRESH_TOKEN_JWT
                   - ESTADO_CONSENTIMENTO_INVALIDO
                   - DATA_EXPIRACAO_INVALIDA
                 example: DEPENDE_MULTIPLA_ALCADA
                 description: |
                  Códigos de erros previstos na durante o processo de extensão do consentimento:
                   - DEPENDE_MULTIPLA_ALCADA: Necessário aprovação de múltipla alçada.
+                  - REFRESH_TOKEN_JWT: Refresh token não pode ser expandido.
                   - ESTADO_CONSENTIMENTO_INVALIDO: Estado inválido do consentimento.
                   - DATA_EXPIRACAO_INVALIDA: Nova data para expiração do consentimento é inválida.
               title:
@@ -1121,6 +1099,7 @@ components:
                 description: |
                   Título específico do erro reportado, de acordo com o código enviado:
                   - DEPENDE_MULTIPLA_ALCADA: Necessário aprovação de múltipla alçada.
+                  - REFRESH_TOKEN_JWT: Refresh token não pode ser expandido.
                   - ESTADO_CONSENTIMENTO_INVALIDO: Estado inválido do consentimento.
                   - DATA_EXPIRACAO_INVALIDA: Nova data para expiração do consentimento é inválida.
               detail:
@@ -1131,6 +1110,7 @@ components:
                 description: |
                   Título específico do erro reportado, de acordo com o código enviado:
                   - DEPENDE_MULTIPLA_ALCADA: O consentimento informado não pode ser renovado sem redirecionamento porque depende de múltipla alçada para aprovação.
+                  - REFRESH_TOKEN_JWT: O consentimento informado não pode ser renovado sem redirecionamento porque está vinculado a um refresh token JWT e não pode ter seu prazo de validade alterado.
                   - ESTADO_CONSENTIMENTO_INVALIDO: O consentimento informado não pode ser renovado sem redirecionamento porque está em um estado que não permite a renovação.
                   - DATA_EXPIRACAO_INVALIDA: O consentimento informado não pode ser renovado pois a nova data de expiração não segue a convenção do ecossistema.
         meta:
