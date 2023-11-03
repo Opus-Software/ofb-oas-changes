@@ -1,0 +1,73 @@
+﻿### New Endpoints: 1
+--------------------
+POST /enrollments/{enrollmentId}/risk-signals  
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 5
+-------------------------
+POST /consents/{consentId}/authorize
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Required changed
+              - New required property: fidoAssertion
+            - Properties changed
+              - New property: fidoAssertion
+GET /enrollments/{enrollmentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Property 'AllOf' changed
+            - 4 schemas deleted
+          - Type changed from '' to 'object'
+          - Required changed
+            - New required property: data
+            - New required property: links
+            - New required property: meta
+          - Properties changed
+            - New property: data
+            - New property: links
+            - New property: meta
+PATCH /enrollments/{enrollmentId}
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Property 'AllOf' changed
+          - 2 schemas deleted
+        - Type changed from '' to 'object'
+        - Required changed
+          - New required property: data
+        - Properties changed
+          - New property: data
+POST /enrollments/{enrollmentId}/fido-registration-options
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: pubKeyCredParams
+                  - Items changed
+                    - Properties changed
+                      - Modified property: alg
+                        - Example changed from '-7 (ES256)' to -7
+POST /enrollments/{enrollmentId}/fido-sign-options
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Property 'AllOf' changed
+          - 2 schemas deleted
+        - Type changed from '' to 'object'
+        - Required changed
+          - New required property: data
+        - Properties changed
+          - New property: data

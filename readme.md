@@ -316,8 +316,7 @@
 | OAS | Base | Revision | Full Diff |
 | --- | --- | --- | --- |
 | automatic-payments | [1.0.0-beta.1](swagger-apis/automatic-payments/1.0.0-beta.1.yml) | [1.0.0-beta.2](swagger-apis/automatic-payments/1.0.0-beta.2.yml) | [YAML](diffs/automatic-payments/1.0.0-beta.1_1.0.0-beta.2.yml) |
-| enrollments | [1.0.0-beta.1](swagger-apis/enrollments/1.0.0-beta.1.yml) | [1.0.0-rc.1](swagger-apis/enrollments/ 1.0.0-rc.1.yml) | [YAML](diffs/enrollments/1.0.0-beta.1_ 1.0.0-rc.1.yml) |
-|  | [1.0.0-rc.1](swagger-apis/enrollments/ 1.0.0-rc.1.yml) | [1.0.0-rc.1](swagger-apis/enrollments/1.0.0-rc.1.yml) | [YAML](diffs/enrollments/ 1.0.0-rc.1_1.0.0-rc.1.yml) |
+| enrollments | [1.0.0-beta.1](swagger-apis/enrollments/1.0.0-beta.1.yml) | [1.0.0-rc.1](swagger-apis/enrollments/1.0.0-rc.1.yml) | [YAML](diffs/enrollments/1.0.0-beta.1_1.0.0-rc.1.yml) |
 |  | [1.0.0-rc.1](swagger-apis/enrollments/1.0.0-rc.1.yml) | [1.0.0-rc.2](swagger-apis/enrollments/1.0.0-rc.2.yml) | [YAML](diffs/enrollments/1.0.0-rc.1_1.0.0-rc.2.yml) |
 |  | [1.0.0-rc.2](swagger-apis/enrollments/1.0.0-rc.2.yml) | [1.0.0-rc.3](swagger-apis/enrollments/1.0.0-rc.3.yml) | [YAML](diffs/enrollments/1.0.0-rc.2_1.0.0-rc.3.yml) |
 |  | [1.0.0-rc.3](swagger-apis/enrollments/1.0.0-rc.3.yml) | [1.0.0](swagger-apis/enrollments/1.0.0.yml) | [YAML](diffs/enrollments/1.0.0-rc.3_1.0.0.yml) |
