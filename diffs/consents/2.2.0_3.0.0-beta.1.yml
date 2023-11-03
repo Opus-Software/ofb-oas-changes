@@ -576,6 +576,10 @@ Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de respos
                 - Deleted property: totalPages
                 - Deleted property: totalRecords
 GET /consents/{consentId}/extends
+- Description changed from 'Método para obter detalhes de extensões consentimento identificado por consentId.' to 'Método para obter histórico de extensões de consentimento identificado por consentId.
+IMPORTANTE: A lista do payload de resposta deve ser entregue em ordem decrescente pela data de requisição (`data[].requestDateTime`). 
+Dessa forma, o primeiro item da lista apresentará a mesma data de expiração do consentimento vigente, pois foi a última renovação feita.
+'
 - Modified path param: consentId
   - Description changed from 'O consentId é o identificador único do consentimento e deverá ser um URN - Uniform Resource Name.  
 Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource 
@@ -752,6 +756,7 @@ Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de respos
                 - Deleted property: totalPages
                 - Deleted property: totalRecords
 POST /consents/{consentId}/extends
+- Description changed from 'Método para renovar consentimento identificado por consentId, exceto casos com múltiplas alçadas. Nos casos de múltiplas alçadas, a transmissora deve retornar o status 422.' to 'Método utilizado para renovação de consentimento do cliente. O consentimento só pode ser renovado caso esteja ativo (status `AUTHORISED`) e tenha alçada simples de aprovação (não dependa de múltiplos aprovadores).'
 - Modified path param: consentId
   - Description changed from 'O consentId é o identificador único do consentimento e deverá ser um URN - Uniform Resource Name.  
 Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource 
