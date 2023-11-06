@@ -31,6 +31,10 @@ POST /pix/recurring-payments
             - Required changed
               - New required property: creditorAccount
             - Properties changed
+              - New property: automatic
+              - Modified property: riskSignals
+                - Properties changed
+                  - Deleted property: automatic
               - Modified property: transactionIdentification
                 - Description changed from 'Trata-se de um identificador de transação que deve ser retransmitido intacto pelo PSP do pagador ao gerar a ordem de pagamento. 
 Essa informação permitirá ao recebedor identificar e correlacionar a transferência, quando recebida, com a apresentação das instruções ao pagador. 
@@ -180,6 +184,7 @@ GET /recurring-consents/{recurringConsentId}
           - Properties changed
             - Modified property: data
               - Properties changed
+                - New property: RiskSignals
                 - Modified property: recurringConfiguration
                   - Properties changed
                     - Modified property: recurringConfiguration
@@ -193,6 +198,19 @@ GET /recurring-consents/{recurringConsentId}
                                     - Modified property: name
                                       - Description changed from 'Em caso de pessoa natural deve ser informado o nome completo do titular da conta do recebedor.' to 'Em caso de pessoa natural deve ser informado o nome completo do titular devedor do contrato.'
 PATCH /recurring-consents/{recurringConsentId}
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Property 'OneOf' changed
+              - Schema #/components/schemas/ConsentRejection modified
+                - Properties changed
+                  - New property: riskSignals
+              - Schema #/components/schemas/ConsentRevocation modified
+                - Properties changed
+                  - New property: riskSignals
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -201,6 +219,7 @@ PATCH /recurring-consents/{recurringConsentId}
           - Properties changed
             - Modified property: data
               - Properties changed
+                - New property: RiskSignals
                 - Modified property: recurringConfiguration
                   - Properties changed
                     - Modified property: recurringConfiguration
