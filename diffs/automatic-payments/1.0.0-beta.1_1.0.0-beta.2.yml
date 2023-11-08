@@ -2,51 +2,23 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 4
+### Modified Endpoints: 7
 -------------------------
+GET /pix/recurring-payments
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
 POST /pix/recurring-payments
-- Responses changed
-  - Modified response: 422
-    - Content changed
-      - Modified media type: application/jwt
-        - Schema changed
-          - Properties changed
-            - Modified property: errors
-              - Items changed
-                - Properties changed
-                  - Modified property: detail
-                    - Description changed from 'Descrição específica do erro de acordo com o código reportado:
-- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento.
-- VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente.
-- VALOR_INVALIDO: O valor enviado não é válido para o QR Code informado.
-- LIMITE_PERIODO_VALOR_EXCEDIDO: A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
-- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO: A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
-- CONSENTIMENTO_INVALIDO: Consentimento inválido (status diferente de "AUTHORISED" ou está expirado).
-- PARAMETRO_NAO_INFORMADO: Parâmetro não informado.
-- PARAMETRO_INVALIDO: Parâmetro inválido.
-- NAO_INFORMADO: Não informado pela detentora de conta.
-- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento.
-- DETALHE_PAGAMENTO_INVALIDO: Detalhe do pagamento inválido.
-- PAGAMENTO_RECUSADO_DETENTORA: Pagamento recusado pela detentora de conta.
-- PAGAMENTO_RECUSADO_SPI: Pagamento recusado no Sistema de Pagamentos Instantâneos (SPI).
-- ERRO_IDEMPOTENCIA: Erro idempotência.
-' to 'Descrição específica do erro de acordo com o código reportado:
-- SALDO_INSUFICIENTE: Esta conta não possui saldo suficiente para realizar o pagamento.
-- VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente.
-- VALOR_INVALIDO: O valor enviado não é válido para o QR Code informado.
-- LIMITE_PERIODO_VALOR_EXCEDIDO: A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
-- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO: A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
-- CONSENTIMENTO_INVALIDO: Consentimento inválido (status não é "authorised" ou está expirado).
-- PARAMETRO_NAO_INFORMADO: Parâmetro não informado.
-- PARAMETRO_INVALIDO: Parâmetro inválido.
-- NAO_INFORMADO: Não informado pela detentora de conta.
-- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento.
-- DETALHE_PAGAMENTO_INVALIDO: Detalhe do pagamento inválido.
-- PAGAMENTO_RECUSADO_DETENTORA: Pagamento recusado pela detentora de conta.
-- PAGAMENTO_RECUSADO_SPI: Pagamento recusado no Sistema de Pagamentos Instantâneos (SPI).
-- ERRO_IDEMPOTENCIA: Erro idempotência.
-'
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+GET /pix/recurring-payments/{recurringPaymentId}
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
+PATCH /pix/recurring-payments/{recurringPaymentId}
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
 POST /recurring-consents
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
 - Request body changed
   - Content changed
     - Modified media type: application/jwt
@@ -64,12 +36,6 @@ POST /recurring-consents
                             - Properties changed
                               - Modified property: name
                                 - Description changed from 'Em caso de pessoa natural deve ser informado o nome completo do titular da conta do recebedor.' to 'Em caso de pessoa natural deve ser informado o nome completo do titular devedor do contrato.'
-                  - Schema #/components/schemas/PostSweeping modified
-                    - Properties changed
-                      - Modified property: sweeping
-                        - Required changed
-                          - Deleted required property: amount
-                          - Deleted required property: transactionLimit
 - Responses changed
   - Modified response: 201
     - Content changed
@@ -84,6 +50,10 @@ POST /recurring-consents
                   - Properties changed
                     - Deleted property: recurringConfiguration
 GET /recurring-consents/{recurringConsentId}
+- Modified header param: x-fapi-auth-date
+  - Description changed from 'Data em que o usuário logou pela última vez com o receptor. Representada de acordo com a [RFC7231](https://tools.ietf.org/html/rfc7231).Exemplo: Sun, 10 Sep 2017 19:43:31 UTC' to 'Data em que o usuário logou pela última vez com o iniciador. Representada de acordo com a [RFC7231](https://tools.ietf.org/html/rfc7231).Exemplo: Sun, 10 Sep 2017 19:43:31 UTC'
+- Modified header param: x-fapi-customer-ip-address
+  - Description changed from 'O endereço IP do usuário se estiver atualmente logado com o receptor.' to 'O endereço IP do usuário se estiver atualmente logado com o iniciador.'
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -99,6 +69,12 @@ GET /recurring-consents/{recurringConsentId}
                   - Properties changed
                     - Deleted property: recurringConfiguration
 PATCH /recurring-consents/{recurringConsentId}
+- Modified header param: x-fapi-auth-date
+  - Description changed from 'Data em que o usuário logou pela última vez com o receptor. Representada de acordo com a [RFC7231](https://tools.ietf.org/html/rfc7231).Exemplo: Sun, 10 Sep 2017 19:43:31 UTC' to 'Data em que o usuário logou pela última vez com o iniciador. Representada de acordo com a [RFC7231](https://tools.ietf.org/html/rfc7231).Exemplo: Sun, 10 Sep 2017 19:43:31 UTC'
+- Modified header param: x-fapi-customer-ip-address
+  - Description changed from 'O endereço IP do usuário se estiver atualmente logado com o receptor.' to 'O endereço IP do usuário se estiver atualmente logado com o iniciador.'
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
 - Request body changed
   - Content changed
     - Modified media type: application/jwt
