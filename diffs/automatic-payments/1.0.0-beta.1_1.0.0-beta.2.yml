@@ -2,59 +2,10 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 7
+### Modified Endpoints: 4
 -------------------------
-GET /pix/recurring-payments
-- Responses changed
-  - Modified response: 200
-    - Content changed
-      - Modified media type: application/jwt
-        - Schema changed
-          - Properties changed
-            - Modified property: data
-              - Items changed
-                - Properties changed
-                  - Modified property: transactionIdentification
-                    - Description changed from 'Trata-se de um identificador de transação que deve ser retransmitido intacto pelo PSP do pagador ao gerar a ordem de pagamento. 
-Essa informação permitirá ao recebedor identificar e correlacionar a transferência, quando recebida, com a apresentação das instruções ao pagador. 
-Os caracteres permitidos no contexto do Pix para o campo txid (EMV 62-05) são:Letras minúsculas, de 'a' a 'z' Letras maiúsculas, de 'A' a 'z' Dígitos decimais, de '0' a '9'.
-' to 'Trata-se de um identificador de transação que deve ser retransmitido intacto pelo PSP do pagador ao gerar a ordem de pagamento. Essa informação permitirá ao recebedor identificar e correlacionar a transferência, quando recebida, com a apresentação das instruções ao pagador. 
-'z'Dígitos decimais, de '0' a '9'
-'
 POST /pix/recurring-payments
-- Request body changed
-  - Content changed
-    - Modified media type: application/jwt
-      - Schema changed
-        - Properties changed
-          - Modified property: data
-            - Required changed
-              - New required property: creditorAccount
-            - Properties changed
-              - Modified property: transactionIdentification
-                - Description changed from 'Trata-se de um identificador de transação que deve ser retransmitido intacto pelo PSP do pagador ao gerar a ordem de pagamento. 
-Essa informação permitirá ao recebedor identificar e correlacionar a transferência, quando recebida, com a apresentação das instruções ao pagador. 
-Os caracteres permitidos no contexto do Pix para o campo txid (EMV 62-05) são:Letras minúsculas, de 'a' a 'z' Letras maiúsculas, de 'A' a 'z' Dígitos decimais, de '0' a '9'.
-' to 'Trata-se de um identificador de transação que deve ser retransmitido intacto pelo PSP do pagador ao gerar a ordem de pagamento. Essa informação permitirá ao recebedor identificar e correlacionar a transferência, quando recebida, com a apresentação das instruções ao pagador. 
-'z'Dígitos decimais, de '0' a '9'
-'
 - Responses changed
-  - Modified response: 201
-    - Content changed
-      - Modified media type: application/jwt
-        - Schema changed
-          - Properties changed
-            - Modified property: data
-              - Required changed
-                - New required property: creditorAccount
-              - Properties changed
-                - Modified property: transactionIdentification
-                  - Description changed from 'Trata-se de um identificador de transação que deve ser retransmitido intacto pelo PSP do pagador ao gerar a ordem de pagamento. 
-Essa informação permitirá ao recebedor identificar e correlacionar a transferência, quando recebida, com a apresentação das instruções ao pagador. 
-Os caracteres permitidos no contexto do Pix para o campo txid (EMV 62-05) são:Letras minúsculas, de 'a' a 'z' Letras maiúsculas, de 'A' a 'z' Dígitos decimais, de '0' a '9'.
-' to 'Trata-se de um identificador de transação que deve ser retransmitido intacto pelo PSP do pagador ao gerar a ordem de pagamento. Essa informação permitirá ao recebedor identificar e correlacionar a transferência, quando recebida, com a apresentação das instruções ao pagador. 
-'z'Dígitos decimais, de '0' a '9'
-'
   - Modified response: 422
     - Content changed
       - Modified media type: application/jwt
@@ -97,42 +48,6 @@ Os caracteres permitidos no contexto do Pix para o campo txid (EMV 62-05) são:L
 '
 - Security changed
   - Deleted security requirements: OAuth2AuthorizationCode
-GET /pix/recurring-payments/{recurringPaymentId}
-- Responses changed
-  - Modified response: 200
-    - Content changed
-      - Modified media type: application/jwt
-        - Schema changed
-          - Properties changed
-            - Modified property: data
-              - Required changed
-                - New required property: creditorAccount
-              - Properties changed
-                - Modified property: transactionIdentification
-                  - Description changed from 'Trata-se de um identificador de transação que deve ser retransmitido intacto pelo PSP do pagador ao gerar a ordem de pagamento. 
-Essa informação permitirá ao recebedor identificar e correlacionar a transferência, quando recebida, com a apresentação das instruções ao pagador. 
-Os caracteres permitidos no contexto do Pix para o campo txid (EMV 62-05) são:Letras minúsculas, de 'a' a 'z' Letras maiúsculas, de 'A' a 'z' Dígitos decimais, de '0' a '9'.
-' to 'Trata-se de um identificador de transação que deve ser retransmitido intacto pelo PSP do pagador ao gerar a ordem de pagamento. Essa informação permitirá ao recebedor identificar e correlacionar a transferência, quando recebida, com a apresentação das instruções ao pagador. 
-'z'Dígitos decimais, de '0' a '9'
-'
-PATCH /pix/recurring-payments/{recurringPaymentId}
-- Responses changed
-  - Modified response: 200
-    - Content changed
-      - Modified media type: application/jwt
-        - Schema changed
-          - Properties changed
-            - Modified property: data
-              - Required changed
-                - New required property: creditorAccount
-              - Properties changed
-                - Modified property: transactionIdentification
-                  - Description changed from 'Trata-se de um identificador de transação que deve ser retransmitido intacto pelo PSP do pagador ao gerar a ordem de pagamento. 
-Essa informação permitirá ao recebedor identificar e correlacionar a transferência, quando recebida, com a apresentação das instruções ao pagador. 
-Os caracteres permitidos no contexto do Pix para o campo txid (EMV 62-05) são:Letras minúsculas, de 'a' a 'z' Letras maiúsculas, de 'A' a 'z' Dígitos decimais, de '0' a '9'.
-' to 'Trata-se de um identificador de transação que deve ser retransmitido intacto pelo PSP do pagador ao gerar a ordem de pagamento. Essa informação permitirá ao recebedor identificar e correlacionar a transferência, quando recebida, com a apresentação das instruções ao pagador. 
-'z'Dígitos decimais, de '0' a '9'
-'
 POST /recurring-consents
 - Request body changed
   - Content changed
@@ -160,17 +75,10 @@ POST /recurring-consents
             - Modified property: data
               - Properties changed
                 - Modified property: recurringConfiguration
+                  - Property 'OneOf' changed
+                    - 3 schemas added
                   - Properties changed
-                    - Modified property: recurringConfiguration
-                      - Property 'OneOf' changed
-                        - Schema #/components/schemas/Automatic modified
-                          - Properties changed
-                            - Modified property: automatic
-                              - Properties changed
-                                - Modified property: contractDebtor
-                                  - Properties changed
-                                    - Modified property: name
-                                      - Description changed from 'Em caso de pessoa natural deve ser informado o nome completo do titular da conta do recebedor.' to 'Em caso de pessoa natural deve ser informado o nome completo do titular devedor do contrato.'
+                    - Deleted property: recurringConfiguration
 GET /recurring-consents/{recurringConsentId}
 - Responses changed
   - Modified response: 200
@@ -182,17 +90,10 @@ GET /recurring-consents/{recurringConsentId}
               - Properties changed
                 - New property: RiskSignals
                 - Modified property: recurringConfiguration
+                  - Property 'OneOf' changed
+                    - 3 schemas added
                   - Properties changed
-                    - Modified property: recurringConfiguration
-                      - Property 'OneOf' changed
-                        - Schema #/components/schemas/Automatic modified
-                          - Properties changed
-                            - Modified property: automatic
-                              - Properties changed
-                                - Modified property: contractDebtor
-                                  - Properties changed
-                                    - Modified property: name
-                                      - Description changed from 'Em caso de pessoa natural deve ser informado o nome completo do titular da conta do recebedor.' to 'Em caso de pessoa natural deve ser informado o nome completo do titular devedor do contrato.'
+                    - Deleted property: recurringConfiguration
 PATCH /recurring-consents/{recurringConsentId}
 - Request body changed
   - Content changed
@@ -217,14 +118,7 @@ PATCH /recurring-consents/{recurringConsentId}
               - Properties changed
                 - New property: RiskSignals
                 - Modified property: recurringConfiguration
+                  - Property 'OneOf' changed
+                    - 3 schemas added
                   - Properties changed
-                    - Modified property: recurringConfiguration
-                      - Property 'OneOf' changed
-                        - Schema #/components/schemas/Automatic modified
-                          - Properties changed
-                            - Modified property: automatic
-                              - Properties changed
-                                - Modified property: contractDebtor
-                                  - Properties changed
-                                    - Modified property: name
-                                      - Description changed from 'Em caso de pessoa natural deve ser informado o nome completo do titular da conta do recebedor.' to 'Em caso de pessoa natural deve ser informado o nome completo do titular devedor do contrato.'
+                    - Deleted property: recurringConfiguration
