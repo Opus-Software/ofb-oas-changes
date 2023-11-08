@@ -55,13 +55,6 @@ POST /consents
                     - New enum values: [EXCHANGES_READ]
                 - Modified property: statusUpdateDateTime
                   - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
-            - Modified property: meta
-              - Required changed
-                - Deleted required property: totalPages
-                - Deleted required property: totalRecords
-              - Properties changed
-                - Deleted property: totalPages
-                - Deleted property: totalRecords
     - Headers changed
       - Modified header: x-fapi-interaction-id
         - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação.  
@@ -443,13 +436,6 @@ Informações mais detalhadas sobre a construção de namespaces devem ser consu
                           - Pattern changed from '[\w\W\s]*' to '^(?!\s)[\w\W\s]*[^\s]$'
                 - Modified property: statusUpdateDateTime
                   - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
-            - Modified property: meta
-              - Required changed
-                - Deleted required property: totalPages
-                - Deleted required property: totalRecords
-              - Properties changed
-                - Deleted property: totalPages
-                - Deleted property: totalRecords
     - Headers changed
       - Modified header: x-fapi-interaction-id
         - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação.  
@@ -625,21 +611,11 @@ Informações mais detalhadas sobre a construção de namespaces devem ser consu
             - Modified property: data
               - Items changed
                 - Properties changed
-                  - New property: previousExpirationDateTime
-                  - New property: xCustomerUserAgent
-                  - New property: xFapiCustomerIpAddress
                   - Modified property: expirationDateTime
                     - Description changed from 'Data e hora de expiração da permissão. De preenchimento obrigatório, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format), utilizado apenas para consulta de alterações históricas de extensão do consentimento.' to 'Data e hora de expiração da permissão. Reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format), utilizado apenas para consulta de alterações históricas de extensão do consentimento.
 [Restrição] De preenchimento obrigatório nos casos em que houver validade determinada.
 Em casos de consentimento com prazo indeterminada o campo não deve ser preenchido.
 '
-            - Modified property: meta
-              - Required changed
-                - Deleted required property: totalPages
-                - Deleted required property: totalRecords
-              - Properties changed
-                - Deleted property: totalPages
-                - Deleted property: totalRecords
     - Headers changed
       - Modified header: x-fapi-interaction-id
         - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação.  
@@ -803,33 +779,8 @@ Informações mais detalhadas sobre a construção de namespaces devem ser consu
 '
 - Modified header param: x-fapi-interaction-id
   - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser "espelhado" pela transmissora (server) no cabeçalho de resposta.' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser "espelhado" pela transmissora (server) no cabeçalho de resposta.'
-- Request body changed
-  - Content changed
-    - Modified media type: application/json
-      - Schema changed
-        - Properties changed
-          - Modified property: data
-            - Required changed
-              - Deleted required property: expirationDateTime
-            - Properties changed
-              - Modified property: expirationDateTime
-                - Description changed from 'Data e hora de expiração da permissão. De preenchimento obrigatório, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format). Para consentimentos com prazo indeterminado, preencher com valor '2300-01-01T00:00:00Z'. Esse valor deve ser refletido no expirationDateTime do consentimento relacionado.' to 'Data e hora de expiração da permissão. Reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).
-[Restrição] De preenchimento obrigatório nos casos em que houver validade determinada.
-Em casos de consentimento com prazo indeterminada o campo não deve ser preenchido.
-'
 - Responses changed
   - Modified response: 201
-    - Content changed
-      - Modified media type: application/json
-        - Schema changed
-          - Properties changed
-            - Modified property: meta
-              - Required changed
-                - Deleted required property: totalPages
-                - Deleted required property: totalRecords
-              - Properties changed
-                - Deleted property: totalPages
-                - Deleted property: totalRecords
     - Headers changed
       - Modified header: x-fapi-interaction-id
         - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação.  
@@ -963,13 +914,6 @@ Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de respos
 - ESTADO_CONSENTIMENTO_INVALIDO: Estado inválido do consentimento.
 - DATA_EXPIRACAO_INVALIDA: Nova data para expiração do consentimento é inválida.
 '
-            - Modified property: meta
-              - Required changed
-                - Deleted required property: totalPages
-                - Deleted required property: totalRecords
-              - Properties changed
-                - Deleted property: totalPages
-                - Deleted property: totalRecords
   - Modified response: 429
     - Content changed
       - Modified media type: application/json; charset=utf-8
