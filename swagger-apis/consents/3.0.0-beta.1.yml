@@ -397,7 +397,7 @@ paths:
         - Consents
       summary: Renovar consentimento identificado por consentId.
       operationId: consentsPostConsentsConsentIdExtends
-      description: Método utilizado para renovação de consentimento do cliente. O consentimento só pode ser renovado caso esteja ativo (status AUTHORISED) e tenha alçada simples de aprovação (não dependa de múltiplos aprovadores).  A alteração de data efetuada pela renovação deve ser refletida também na consulta do método _GET/consents/{consentId}_.
+      description: Método utilizado para renovação de consentimento do cliente. O consentimento só pode ser renovado caso esteja ativo (status `AUTHORISED`) e tenha alçada simples de aprovação (não dependa de múltiplos aprovadores).
       parameters:
         - $ref: '#/components/parameters/ConsentId'
         - $ref: '#/components/parameters/AuthorizationExtends'
@@ -504,18 +504,6 @@ components:
           maxLength: 20
           format: date-time
           example: '2021-05-21T08:30:00Z'
-    MetaError:
-      type: object
-      description: Meta informações referente à API requisitada.
-      required:
-        - requestDateTime
-      properties:
-        requestDateTime:
-          description: 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.'
-          type: string
-          maxLength: 20
-          format: date-time
-          example: '2021-05-21T08:30:00Z'
     CreateConsent:
       type: object
       required:
@@ -526,8 +514,6 @@ components:
           required:
             - permissions
             - loggedUser
-          x-regulatory-required:
-            - permissions
             - expirationDateTime
           properties:
             loggedUser:
@@ -582,14 +568,10 @@ components:
                 - ACCOUNTS_OVERDRAFT_LIMITS_READ
                 - RESOURCES_READ
             expirationDateTime:
-              description: |
-                Data e hora de expiração da permissão. Reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format). 
-
-                [Restrição] De preenchimento obrigatório nos casos em que houver validade determinada. Em casos de consentimento com prazo indeterminado o campo não deve ser enviado.
+              description: 'Data e hora de expiração da permissão. De preenchimento obrigatório, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).'
               type: string
               maxLength: 20
               format: date-time
-              pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
               example: '2021-05-21T08:30:00Z'
     CreateConsentExtends:
       type: object
@@ -676,8 +658,6 @@ components:
             - status
             - statusUpdateDateTime
             - permissions
-          x-regulatory-required:
-            - permissions
             - expirationDateTime
           properties:
             consentId:
@@ -699,7 +679,6 @@ components:
               description: 'Data e hora em que o recurso foi criado. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).'
               type: string
               format: date-time
-              pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
               example: '2021-05-21T08:30:00Z'
               maxLength: 20
             status:
@@ -714,7 +693,6 @@ components:
               description: 'Data e hora em que o recurso foi atualizado. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).'
               type: string
               format: date-time
-              pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
               example: '2021-05-21T08:30:00Z'
               maxLength: 20
             permissions:
@@ -765,13 +743,9 @@ components:
                 - ACCOUNTS_OVERDRAFT_LIMITS_READ
                 - RESOURCES_READ
             expirationDateTime:
-              description: |
-                Data e hora de expiração da permissão. Reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format). 
-
-                [Restrição] De preenchimento obrigatório nos casos em que houver validade determinada. Em casos de consentimento com prazo indeterminado o campo não deve ser enviado.
+              description: 'Data e hora de expiração da permissão. De preenchimento obrigatório, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).'
               type: string
               format: date-time
-              pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
               example: '2021-05-21T08:30:00Z'
               maxLength: 20
         links:
@@ -899,9 +873,7 @@ components:
             - status
             - statusUpdateDateTime
             - permissions
-          x-regulatory-required: 
-            - permissions
-            - expirationDateTime​
+            - expirationDateTime
           properties:
             consentId:
               description: |
@@ -922,7 +894,6 @@ components:
               description: 'Data e hora em que o recurso foi criado. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).'
               type: string
               format: date-time
-              pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
               example: '2021-05-21T08:30:00Z'
               maxLength: 20
             status:
@@ -937,7 +908,6 @@ components:
               description: 'Data e hora em que o recurso foi atualizado. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).'
               type: string
               format: date-time
-              pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
               example: '2021-05-21T08:30:00Z'
               maxLength: 20
             permissions:
@@ -988,13 +958,9 @@ components:
                 - ACCOUNTS_OVERDRAFT_LIMITS_READ
                 - RESOURCES_READ
             expirationDateTime:
-              description: |
-                Data e hora de expiração da permissão. Reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).  
-
-                [Restrição] De preenchimento obrigatório nos casos em que houver validade determinada. Em casos de consentimento com prazo indeterminado o campo não deve ser preenchido.
+              description: 'Data e hora de expiração da permissão. De preenchimento obrigatório, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).'
               type: string
               format: date-time
-              pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
               example: '2021-05-21T08:30:00Z'
               maxLength: 20
             rejection:
@@ -1112,7 +1078,7 @@ components:
                 pattern: '[\w\W\s]*'
                 maxLength: 2048
         meta:
-          $ref: '#/components/schemas/MetaError'
+          $ref: '#/components/schemas/Meta'
     422ResponseErrorCreateConsent:
       type: object
       required:
@@ -1183,28 +1149,8 @@ components:
         - document
       properties:
         document:
-          $ref: '#/components/schemas/LoggedUserDocumentExtends'
+          $ref: '#/components/schemas/LoggedUserDocument'
     LoggedUserDocument:
-      type: object
-      required:
-        - identification
-        - rel
-      x-regulatory-required:
-        - identification
-      properties:
-        identification:
-          type: string
-          maxLength: 11
-          description: Número do documento de identificação oficial do usuário.
-          example: '11111111111'
-          pattern: '^\d{11}$'
-        rel:
-          type: string
-          maxLength: 3
-          description: Tipo do documento de identificação oficial do usuário.
-          example: CPF
-          pattern: '^[A-Z]{3}$'
-    LoggedUserDocumentExtends:
       type: object
       required:
         - identification
@@ -1243,28 +1189,8 @@ components:
         - document
       properties:
         document:
-          $ref: '#/components/schemas/BusinessEntityDocumentExtends'
+          $ref: '#/components/schemas/BusinessEntityDocument'
     BusinessEntityDocument:
-      type: object
-      required:
-        - identification
-        - rel
-      x-regulatory-required:
-        - identification
-      properties:
-        identification:
-          type: string
-          maxLength: 14
-          description: Número do documento de identificação oficial do titular pessoa jurídica.
-          example: '11111111111111'
-          pattern: '^\d{14}$'
-        rel:
-          type: string
-          maxLength: 4
-          description: Tipo do documento de identificação oficial do titular pessoa jurídica.
-          example: CNPJ
-          pattern: '^[A-Z]{4}$'
-    BusinessEntityDocumentExtends:
       type: object
       required:
         - identification
@@ -1525,8 +1451,20 @@ components:
                 type: object
                 description: Meta informações referente a API requisitada.
                 required:
+                  - totalRecords
+                  - totalPages
                   - requestDateTime
                 properties:
+                  totalRecords:
+                    type: integer
+                    format: int32
+                    description: Número total de registros no resultado
+                    example: 1
+                  totalPages:
+                    type: integer
+                    format: int32
+                    description: Número total de páginas no resultado
+                    example: 1
                   requestDateTime:
                     description: 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.'
                     type: string
