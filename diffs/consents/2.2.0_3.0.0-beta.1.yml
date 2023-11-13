@@ -22,10 +22,7 @@ POST /consents
 É obrigatório que o número do CNPJ utilizado seja um número válido. A transmissora pode utilizar algoritmos de validação de documento para garantir que se trata de um documento válido, como por exemplo: Cálculo de DV módulo 11 para o CNPJ.
 '
               - Modified property: expirationDateTime
-                - Description changed from 'Data e hora de expiração da permissão. De preenchimento obrigatório, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format).' to 'Data e hora de expiração da permissão. Reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format). 
-[Restrição] De preenchimento obrigatório nos casos em que houver validade determinada. Em casos de consentimento com prazo indeterminado o campo não deve ser enviado.
-'
-                - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+                - Description changed from 'Data e hora de expiração da permissão. De preenchimento obrigatório, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format).' to 'Data e hora de expiração da permissão. De preenchimento obrigatório, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).'
               - Modified property: loggedUser
                 - Description changed from 'Usuário (pessoa natural) que encontra-se logado na instituição receptora e que iniciará o processo de consentimento para compartilhamento de dados.' to 'Usuário (pessoa natural) que encontra-se logado na instituição receptora e que iniciará o processo de consentimento para compartilhamento de dados.
 É obrigatório que o número do documento utilizado seja um número válido e pertencente ao usuário logado. A transmissora pode utilizar algoritmos de validação de documento para garantir que se trata de um documento válido, como por exemplo: Cálculo de DV módulo 11 para o CPF.
@@ -43,18 +40,11 @@ POST /consents
               - Required changed
                 - Deleted required property: expirationDateTime
               - Properties changed
-                - Modified property: creationDateTime
-                  - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
                 - Modified property: expirationDateTime
-                  - Description changed from 'Data e hora de expiração da permissão. De preenchimento obrigatório, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format).' to 'Data e hora de expiração da permissão. Reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format). 
-[Restrição] De preenchimento obrigatório nos casos em que houver validade determinada. Em casos de consentimento com prazo indeterminado o campo não deve ser enviado.
-'
-                  - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+                  - Description changed from 'Data e hora de expiração da permissão. De preenchimento obrigatório, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format).' to 'Data e hora de expiração da permissão. De preenchimento obrigatório, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).'
                 - Modified property: permissions
                   - Items changed
                     - New enum values: [EXCHANGES_READ]
-                - Modified property: statusUpdateDateTime
-                  - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
             - Modified property: meta
               - Required changed
                 - Deleted required property: totalPages
@@ -190,18 +180,6 @@ Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de respos
                 - Deleted property: totalPages
                 - Deleted property: totalRecords
   - Modified response: 504
-    - Content changed
-      - Modified media type: application/json; charset=utf-8
-        - Schema changed
-          - Properties changed
-            - Modified property: meta
-              - Required changed
-                - Deleted required property: totalPages
-                - Deleted required property: totalRecords
-              - Properties changed
-                - Deleted property: totalPages
-                - Deleted property: totalRecords
-  - Modified response: 529
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
@@ -367,18 +345,6 @@ Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de respos
               - Properties changed
                 - Deleted property: totalPages
                 - Deleted property: totalRecords
-  - Modified response: 529
-    - Content changed
-      - Modified media type: application/json; charset=utf-8
-        - Schema changed
-          - Properties changed
-            - Modified property: meta
-              - Required changed
-                - Deleted required property: totalPages
-                - Deleted required property: totalRecords
-              - Properties changed
-                - Deleted property: totalPages
-                - Deleted property: totalRecords
   - Modified response: default
     - Content changed
       - Modified media type: application/json
@@ -425,13 +391,8 @@ Informações mais detalhadas sobre a construção de namespaces devem ser consu
               - Required changed
                 - Deleted required property: expirationDateTime
               - Properties changed
-                - Modified property: creationDateTime
-                  - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
                 - Modified property: expirationDateTime
-                  - Description changed from 'Data e hora de expiração da permissão. De preenchimento obrigatório, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format). Para consentimentos com prazo indeterminado, é esperado preenchimento com `2300-01-01T00:00:00Z`.' to 'Data e hora de expiração da permissão. Reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).  
-[Restrição] De preenchimento obrigatório nos casos em que houver validade determinada. Em casos de consentimento com prazo indeterminado o campo não deve ser preenchido.
-'
-                  - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+                  - Description changed from 'Data e hora de expiração da permissão. De preenchimento obrigatório, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format). Para consentimentos com prazo indeterminado, é esperado preenchimento com `2300-01-01T00:00:00Z`.' to 'Data e hora de expiração da permissão. De preenchimento obrigatório, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).'
                 - Modified property: permissions
                   - Items changed
                     - New enum values: [EXCHANGES_READ]
@@ -441,8 +402,6 @@ Informações mais detalhadas sobre a construção de namespaces devem ser consu
                       - Properties changed
                         - Modified property: additionalInformation
                           - Pattern changed from '[\w\W\s]*' to '^(?!\s)[\w\W\s]*[^\s]$'
-                - Modified property: statusUpdateDateTime
-                  - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
             - Modified property: meta
               - Required changed
                 - Deleted required property: totalPages
@@ -554,18 +513,6 @@ Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de respos
                 - Deleted property: totalPages
                 - Deleted property: totalRecords
   - Modified response: 504
-    - Content changed
-      - Modified media type: application/json; charset=utf-8
-        - Schema changed
-          - Properties changed
-            - Modified property: meta
-              - Required changed
-                - Deleted required property: totalPages
-                - Deleted required property: totalRecords
-              - Properties changed
-                - Deleted property: totalPages
-                - Deleted property: totalRecords
-  - Modified response: 529
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
@@ -755,18 +702,6 @@ Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de respos
               - Properties changed
                 - Deleted property: totalPages
                 - Deleted property: totalRecords
-  - Modified response: 529
-    - Content changed
-      - Modified media type: application/json; charset=utf-8
-        - Schema changed
-          - Properties changed
-            - Modified property: meta
-              - Required changed
-                - Deleted required property: totalPages
-                - Deleted required property: totalRecords
-              - Properties changed
-                - Deleted property: totalPages
-                - Deleted property: totalRecords
   - Modified response: default
     - Content changed
       - Modified media type: application/json
@@ -780,7 +715,7 @@ Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de respos
                 - Deleted property: totalPages
                 - Deleted property: totalRecords
 POST /consents/{consentId}/extends
-- Description changed from 'Método para renovar consentimento identificado por consentId, exceto casos com múltiplas alçadas. Nos casos de múltiplas alçadas, a transmissora deve retornar o status 422.' to 'Método utilizado para renovação de consentimento do cliente. O consentimento só pode ser renovado caso esteja ativo (status AUTHORISED) e tenha alçada simples de aprovação (não dependa de múltiplos aprovadores).  A alteração de data efetuada pela renovação deve ser refletida também na consulta do método _GET/consents/{consentId}_.'
+- Description changed from 'Método para renovar consentimento identificado por consentId, exceto casos com múltiplas alçadas. Nos casos de múltiplas alçadas, a transmissora deve retornar o status 422.' to 'Método utilizado para renovação de consentimento do cliente. O consentimento só pode ser renovado caso esteja ativo (status `AUTHORISED`) e tenha alçada simples de aprovação (não dependa de múltiplos aprovadores).'
 - Modified path param: consentId
   - Description changed from 'O consentId é o identificador único do consentimento e deverá ser um URN - Uniform Resource Name.  
 Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource 
@@ -995,18 +930,6 @@ Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de respos
                 - Deleted property: totalPages
                 - Deleted property: totalRecords
   - Modified response: 504
-    - Content changed
-      - Modified media type: application/json; charset=utf-8
-        - Schema changed
-          - Properties changed
-            - Modified property: meta
-              - Required changed
-                - Deleted required property: totalPages
-                - Deleted required property: totalRecords
-              - Properties changed
-                - Deleted property: totalPages
-                - Deleted property: totalRecords
-  - Modified response: 529
     - Content changed
       - Modified media type: application/json; charset=utf-8
         - Schema changed
