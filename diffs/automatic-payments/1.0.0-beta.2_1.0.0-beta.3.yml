@@ -2,33 +2,8 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 4
+### Modified Endpoints: 1
 -------------------------
-PATCH /pix/recurring-payments/{recurringPaymentId}
-POST /recurring-consents
-- Responses changed
-  - Modified response: 201
-    - Content changed
-      - Modified media type: application/jwt
-        - Schema changed
-          - Properties changed
-            - Modified property: data
-              - Properties changed
-                - Modified property: debtorAccount
-                  - Properties changed
-                    - Deleted property: overdraftLimit
-GET /recurring-consents/{recurringConsentId}
-- Responses changed
-  - Modified response: 200
-    - Content changed
-      - Modified media type: application/jwt
-        - Schema changed
-          - Properties changed
-            - Modified property: data
-              - Properties changed
-                - Modified property: debtorAccount
-                  - Properties changed
-                    - Deleted property: overdraftLimit
 PATCH /recurring-consents/{recurringConsentId}
 - Request body changed
   - Content changed
@@ -37,26 +12,15 @@ PATCH /recurring-consents/{recurringConsentId}
         - Properties changed
           - Modified property: data
             - Property 'OneOf' changed
-              - Schema #/components/schemas/ConsentRejection modified
-                - Properties changed
-                  - New property: automatic
-                  - New property: creditors
-                  - New property: expirationDateTime
-                  - New property: startDateTime
               - Schema #/components/schemas/ConsentRevocation modified
                 - Properties changed
                   - New property: automatic
                   - New property: creditors
                   - New property: expirationDateTime
                   - New property: startDateTime
-- Responses changed
-  - Modified response: 200
-    - Content changed
-      - Modified media type: application/jwt
-        - Schema changed
-          - Properties changed
-            - Modified property: data
-              - Properties changed
-                - Modified property: debtorAccount
-                  - Properties changed
-                    - Deleted property: overdraftLimit
+              - Schema #/components/schemas/ConsentRejection modified
+                - Properties changed
+                  - New property: automatic
+                  - New property: creditors
+                  - New property: expirationDateTime
+                  - New property: startDateTime
