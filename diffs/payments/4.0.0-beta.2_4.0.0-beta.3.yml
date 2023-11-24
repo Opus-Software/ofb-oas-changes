@@ -16,6 +16,27 @@ POST /consents
                 - Properties changed
                   - Modified property: schedule
                     - Property 'OneOf' changed
+                      - Schema #/components/schemas/ScheduleCustom modified
+                        - Properties changed
+                          - Modified property: custom
+                            - Properties changed
+                              - Modified property: dates
+                                - MinItems changed from 0 to 2
+                                - MaxItems changed from null to 730
+                      - Schema #/components/schemas/ScheduleSingle modified
+                        - Properties changed
+                          - Modified property: single
+                            - Properties changed
+                              - Modified property: date
+                                - Description changed from 'Define a data alvo da liquidação do pagamento. 
+O fuso horário de Brasília deve ser utilizado para criação e racionalização sobre os dados deste campo.
+Observação: Esse campo deverá sempre ser no mínimo D+1 corrido, ou seja, a data imediatamente posterior em relação a data do consentimento considerando o fuso horário de Brasília e deverá ser no máximo D+365 corridos a partir da data do consentimento considerando o fuso horário de Brasília
+' to 'Define a data alvo da liquidação do pagamento.
+O fuso horário de Brasília deve ser utilizado para criação e racionalização sobre os dados deste campo.
+[Restrição] Esse campo deverá sempre ser no mínimo D+1 corrido, ou seja, a data imediatamente posterior em 
+relação a data do consentimento considerando o fuso horário de Brasília e deverá ser no máximo D+730 corridos a 
+partir da data do consentimento, também considerando o fuso horário de Brasília.
+'
                       - Schema #/components/schemas/ScheduleDaily modified
                         - Properties changed
                           - Modified property: daily
@@ -40,27 +61,6 @@ POST /consents
                                 - Example changed from 36 to 24
                                 - Min changed from 1 to 2
                                 - Max changed from 2.147483647e+09 to 24
-                      - Schema #/components/schemas/ScheduleCustom modified
-                        - Properties changed
-                          - Modified property: custom
-                            - Properties changed
-                              - Modified property: dates
-                                - MinItems changed from 0 to 2
-                                - MaxItems changed from null to 730
-                      - Schema #/components/schemas/ScheduleSingle modified
-                        - Properties changed
-                          - Modified property: single
-                            - Properties changed
-                              - Modified property: date
-                                - Description changed from 'Define a data alvo da liquidação do pagamento. 
-O fuso horário de Brasília deve ser utilizado para criação e racionalização sobre os dados deste campo.
-Observação: Esse campo deverá sempre ser no mínimo D+1 corrido, ou seja, a data imediatamente posterior em relação a data do consentimento considerando o fuso horário de Brasília e deverá ser no máximo D+365 corridos a partir da data do consentimento considerando o fuso horário de Brasília
-' to 'Define a data alvo da liquidação do pagamento.
-O fuso horário de Brasília deve ser utilizado para criação e racionalização sobre os dados deste campo.
-[Restrição] Esse campo deverá sempre ser no mínimo D+1 corrido, ou seja, a data imediatamente posterior em 
-relação a data do consentimento considerando o fuso horário de Brasília e deverá ser no máximo D+730 corridos a 
-partir da data do consentimento, também considerando o fuso horário de Brasília.
-'
                     - Description changed from '[Restrição] Mutuamente excludente com o campo date. 
 Este campo é obrigatório no caso de agendamento. 
 Neste caso, o campo date não deverá ser informado. 
@@ -83,6 +83,14 @@ Agendamento de pagamento único deve utilizar exclusivamente o objeto "single".
                   - Properties changed
                     - Modified property: schedule
                       - Property 'OneOf' changed
+                        - Schema #/components/schemas/ScheduleWeekly modified
+                          - Properties changed
+                            - Modified property: weekly
+                              - Properties changed
+                                - Modified property: quantity
+                                  - Description changed from '' to 'Define a quantidade de pagamentos que serão enviados para liquidação.'
+                                  - Min changed from 1 to 2
+                                  - Max changed from 2.147483647e+09 to 104
                         - Schema #/components/schemas/ScheduleMonthly modified
                           - Properties changed
                             - Modified property: monthly
@@ -120,14 +128,6 @@ partir da data do consentimento, também considerando o fuso horário de Brasíl
                                   - Description changed from '' to 'Define a quantidade de pagamentos que serão enviados para liquidação.'
                                   - Min changed from 1 to 2
                                   - Max changed from 2.147483647e+09 to 730
-                        - Schema #/components/schemas/ScheduleWeekly modified
-                          - Properties changed
-                            - Modified property: weekly
-                              - Properties changed
-                                - Modified property: quantity
-                                  - Description changed from '' to 'Define a quantidade de pagamentos que serão enviados para liquidação.'
-                                  - Min changed from 1 to 2
-                                  - Max changed from 2.147483647e+09 to 104
                       - Description changed from '[Restrição] Mutuamente excludente com o campo date. 
 Este campo é obrigatório no caso de agendamento. 
 Neste caso, o campo date não deve ser informado.
@@ -150,22 +150,6 @@ GET /consents/{consentId}
                   - Properties changed
                     - Modified property: schedule
                       - Property 'OneOf' changed
-                        - Schema #/components/schemas/ScheduleWeekly modified
-                          - Properties changed
-                            - Modified property: weekly
-                              - Properties changed
-                                - Modified property: quantity
-                                  - Description changed from '' to 'Define a quantidade de pagamentos que serão enviados para liquidação.'
-                                  - Min changed from 1 to 2
-                                  - Max changed from 2.147483647e+09 to 104
-                        - Schema #/components/schemas/ScheduleMonthly modified
-                          - Properties changed
-                            - Modified property: monthly
-                              - Properties changed
-                                - Modified property: quantity
-                                  - Example changed from 36 to 24
-                                  - Min changed from 1 to 2
-                                  - Max changed from 2.147483647e+09 to 24
                         - Schema #/components/schemas/ScheduleCustom modified
                           - Properties changed
                             - Modified property: custom
@@ -195,6 +179,22 @@ partir da data do consentimento, também considerando o fuso horário de Brasíl
                                   - Description changed from '' to 'Define a quantidade de pagamentos que serão enviados para liquidação.'
                                   - Min changed from 1 to 2
                                   - Max changed from 2.147483647e+09 to 730
+                        - Schema #/components/schemas/ScheduleWeekly modified
+                          - Properties changed
+                            - Modified property: weekly
+                              - Properties changed
+                                - Modified property: quantity
+                                  - Description changed from '' to 'Define a quantidade de pagamentos que serão enviados para liquidação.'
+                                  - Min changed from 1 to 2
+                                  - Max changed from 2.147483647e+09 to 104
+                        - Schema #/components/schemas/ScheduleMonthly modified
+                          - Properties changed
+                            - Modified property: monthly
+                              - Properties changed
+                                - Modified property: quantity
+                                  - Example changed from 36 to 24
+                                  - Min changed from 1 to 2
+                                  - Max changed from 2.147483647e+09 to 24
                       - Description changed from '[Restrição] Mutuamente excludente com o campo date. 
 Este campo é obrigatório no caso de agendamento. 
 Neste caso, o campo date não deve ser informado.
