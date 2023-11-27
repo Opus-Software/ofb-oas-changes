@@ -1,0 +1,102 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 3
+-------------------------
+GET /accounts/{accountId}/balances
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Required changed
+                - New required property: updateDateTime
+              - Properties changed
+                - New property: updateDateTime
+GET /accounts/{accountId}/transactions
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Required changed
+                  - New required property: transactionDateTime
+                  - New required property: transactionId
+                - Properties changed
+                  - New property: transactionDateTime
+                  - Modified property: completedAuthorisedPaymentType
+                    - Description changed from 'Indicador da transação: 
+- Transação efetivada
+- Lançamento futuro
+' to 'Indicador da transação: 
+  - Transação efetivada: a transação atinge esse status quando o `transactionId` torna-se imutável;
+  - Lançamento futuro: a transação será efetivada em momento futuro, ou seja, o `transactionId` pode mudar;
+  - Transação processando: a transação está em processamento, ou seja, o `transactionId` pode mudar.
+'
+                    - New enum values: [TRANSACAO_PROCESSANDO]
+                  - Modified property: partieCnpjCpf
+                    - Description changed from 'Identificação da pessoa envolvida na transação: pagador ou recebedor (Preencher com o CPF ou CNPJ, sem formatação)
+' to 'Identificação da pessoa envolvida na transação: pagador ou recebedor (Preencher com o CPF ou CNPJ, sem formatação). Com a IN BCB nº 371, a partir de 02/05/23, o envio das informações de identificação de contraparte tornou-se obrigatória para transações de pagamento. Para maiores detalhes, favor consultar a página `Orientações - Contas`.
+'
+                  - Modified property: transactionDate
+                    - Description changed from 'Se indicador de transação:
+TRANSACAO_EFETIVADA - corresponde a data de lançamento da transação
+LANCAMENTO_FUTURO - corresponde a data prevista de efetivação da transação
+' to 'Se indicador de transação: TRANSACAO_EFETIVADA - corresponde a data de lançamento da transação LANCAMENTO_FUTURO - corresponde a data prevista de efetivação da transação.
+'
+                  - Modified property: transactionId
+                    - Description changed from 'Código ou identificador único prestado pela instituição que mantém a conta para representar a transação individual.' to 'Código ou identificador único prestado pela instituição que mantém a conta para representar a transação individual. 
+O ideal é que o `transactionId` seja imutável. 
+No entanto, o `transactionId` deve obedecer, no mínimo, as regras de imutabilidade propostas conforme tabela “Data de imutabilidade por tipo de transação” presente nas orientações desta API.
+'
+                  - Modified property: transactionName
+                    - Description changed from 'Campo livre que corresponde ao identificador da transação na instituição financeira' to 'Literal usada na instituição financeira para identificar a transação. A informação apresentada precisa ser a mesma utilizada nos canais eletrônicos da instituição (extrato).'
+                    - MaxLength changed from 60 to 200
+GET /accounts/{accountId}/transactions-current
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Required changed
+                  - New required property: transactionDateTime
+                  - New required property: transactionId
+                - Properties changed
+                  - New property: transactionDateTime
+                  - Modified property: completedAuthorisedPaymentType
+                    - Description changed from 'Indicador da transação: 
+- Transação efetivada
+- Lançamento futuro
+' to 'Indicador da transação: 
+  - Transação efetivada: a transação atinge esse status quando o `transactionId` torna-se imutável;
+  - Lançamento futuro: a transação será efetivada em momento futuro, ou seja, o `transactionId` pode mudar;
+  - Transação processando: a transação está em processamento, ou seja, o `transactionId` pode mudar.
+'
+                    - New enum values: [TRANSACAO_PROCESSANDO]
+                  - Modified property: partieCnpjCpf
+                    - Description changed from 'Identificação da pessoa envolvida na transação: pagador ou recebedor (Preencher com o CPF ou CNPJ, sem formatação)
+' to 'Identificação da pessoa envolvida na transação: pagador ou recebedor (Preencher com o CPF ou CNPJ, sem formatação). Com a IN BCB nº 371, a partir de 02/05/23, o envio das informações de identificação de contraparte tornou-se obrigatória para transações de pagamento. Para maiores detalhes, favor consultar a página `Orientações - Contas`.
+'
+                  - Modified property: transactionDate
+                    - Description changed from 'Se indicador de transação:
+TRANSACAO_EFETIVADA - corresponde a data de lançamento da transação
+LANCAMENTO_FUTURO - corresponde a data prevista de efetivação da transação
+' to 'Se indicador de transação: TRANSACAO_EFETIVADA - corresponde a data de lançamento da transação LANCAMENTO_FUTURO - corresponde a data prevista de efetivação da transação.
+'
+                  - Modified property: transactionId
+                    - Description changed from 'Código ou identificador único prestado pela instituição que mantém a conta para representar a transação individual.' to 'Código ou identificador único prestado pela instituição que mantém a conta para representar a transação individual. 
+O ideal é que o `transactionId` seja imutável. 
+No entanto, o `transactionId` deve obedecer, no mínimo, as regras de imutabilidade propostas conforme tabela “Data de imutabilidade por tipo de transação” presente nas orientações desta API.
+'
+                  - Modified property: transactionName
+                    - Description changed from 'Campo livre que corresponde ao identificador da transação na instituição financeira' to 'Literal usada na instituição financeira para identificar a transação. A informação apresentada precisa ser a mesma utilizada nos canais eletrônicos da instituição (extrato).'
+                    - MaxLength changed from 60 to 200
