@@ -2,8 +2,31 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 3
+### Modified Endpoints: 7
 -------------------------
+GET /pix/recurring-payments
+- Security changed
+  - Modified security requirements: OAuth2ClientCredentials
+    - Scheme OAuth2ClientCredentials Added scopes: [recurring-payments]
+    - Scheme OAuth2ClientCredentials Deleted scopes: [recurringPayments]
+POST /pix/recurring-payments
+- Security changed
+  - Modified security requirements: NonRedirectAuthorizationCode
+    - Scheme NonRedirectAuthorizationCode Added scopes: [recurring-payments]
+    - Scheme NonRedirectAuthorizationCode Deleted scopes: [recurringPayments]
+  - Modified security requirements: OAuth2AuthorizationCode
+    - Scheme OAuth2AuthorizationCode Added scopes: [recurring-payments recurring-consent:recurringConsentId]
+    - Scheme OAuth2AuthorizationCode Deleted scopes: [recurringPayments recurringConsent:recurringConsentId]
+GET /pix/recurring-payments/{recurringPaymentId}
+- Security changed
+  - Modified security requirements: OAuth2ClientCredentials
+    - Scheme OAuth2ClientCredentials Added scopes: [recurring-payments]
+    - Scheme OAuth2ClientCredentials Deleted scopes: [recurringPayments]
+PATCH /pix/recurring-payments/{recurringPaymentId}
+- Security changed
+  - Modified security requirements: OAuth2ClientCredentials
+    - Scheme OAuth2ClientCredentials Added scopes: [recurring-payments]
+    - Scheme OAuth2ClientCredentials Deleted scopes: [recurringPayments]
 POST /recurring-consents
 - Request body changed
   - Content changed
@@ -44,6 +67,10 @@ POST /recurring-consents
                               - Description changed from 'Valor da transação com 2 casas decimais.' to 'Valor máximo a ser atingido pelo somatório de todas as transações que utilizam o consentimento autorizado pelo cliente. Caso o valor seja superado, a detentora de conta deve negar a transação solicitada pela iniciadora.'
                             - Modified property: transactionLimit
                               - Description changed from 'Valor da transação com 2 casas decimais.' to 'Valor máximo para cada transação de pagamento associada a esse consentimento. Caso valor do pagamento seja maior que esse limite, a detentora de contas deve rejeitar a transação de pagamento.'
+- Security changed
+  - Modified security requirements: OAuth2ClientCredentials
+    - Scheme OAuth2ClientCredentials Added scopes: [recurring-payments]
+    - Scheme OAuth2ClientCredentials Deleted scopes: [recurringPayments]
 GET /recurring-consents/{recurringConsentId}
 - Responses changed
   - Modified response: 200
@@ -65,6 +92,10 @@ GET /recurring-consents/{recurringConsentId}
                               - Description changed from 'Valor da transação com 2 casas decimais.' to 'Valor máximo a ser atingido pelo somatório de todas as transações que utilizam o consentimento autorizado pelo cliente. Caso o valor seja superado, a detentora de conta deve negar a transação solicitada pela iniciadora.'
                             - Modified property: transactionLimit
                               - Description changed from 'Valor da transação com 2 casas decimais.' to 'Valor máximo para cada transação de pagamento associada a esse consentimento. Caso valor do pagamento seja maior que esse limite, a detentora de contas deve rejeitar a transação de pagamento.'
+- Security changed
+  - Modified security requirements: OAuth2ClientCredentials
+    - Scheme OAuth2ClientCredentials Added scopes: [recurring-payments]
+    - Scheme OAuth2ClientCredentials Deleted scopes: [recurringPayments]
 PATCH /recurring-consents/{recurringConsentId}
 - Responses changed
   - Modified response: 200
@@ -86,3 +117,7 @@ PATCH /recurring-consents/{recurringConsentId}
                               - Description changed from 'Valor da transação com 2 casas decimais.' to 'Valor máximo a ser atingido pelo somatório de todas as transações que utilizam o consentimento autorizado pelo cliente. Caso o valor seja superado, a detentora de conta deve negar a transação solicitada pela iniciadora.'
                             - Modified property: transactionLimit
                               - Description changed from 'Valor da transação com 2 casas decimais.' to 'Valor máximo para cada transação de pagamento associada a esse consentimento. Caso valor do pagamento seja maior que esse limite, a detentora de contas deve rejeitar a transação de pagamento.'
+- Security changed
+  - Modified security requirements: OAuth2ClientCredentials
+    - Scheme OAuth2ClientCredentials Added scopes: [recurring-payments]
+    - Scheme OAuth2ClientCredentials Deleted scopes: [recurringPayments]
