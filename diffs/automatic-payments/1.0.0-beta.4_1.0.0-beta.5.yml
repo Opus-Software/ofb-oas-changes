@@ -305,6 +305,9 @@ POST /recurring-consents
         - Properties changed
           - Modified property: data
             - Properties changed
+              - Modified property: debtorAccount
+                - Required changed
+                  - Deleted required property: issuer
               - Modified property: recurringConfiguration
                 - Property 'OneOf' changed
                   - Schema #/components/schemas/PostSweeping modified
@@ -321,6 +324,10 @@ POST /recurring-consents
           - Properties changed
             - Modified property: data
               - Properties changed
+                - Modified property: debtorAccount
+                  - Required changed
+                    - Deleted required property: ibgeTownCode
+                    - Deleted required property: issuer
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
                     - Schema #/components/schemas/Sweeping modified
@@ -399,6 +406,10 @@ GET /recurring-consents/{recurringConsentId}
           - Properties changed
             - Modified property: data
               - Properties changed
+                - Modified property: debtorAccount
+                  - Required changed
+                    - Deleted required property: ibgeTownCode
+                    - Deleted required property: issuer
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
                     - Schema #/components/schemas/Sweeping modified
@@ -407,6 +418,12 @@ GET /recurring-consents/{recurringConsentId}
                           - Properties changed
                             - New property: totalAllowedAmount
                             - Deleted property: amount
+                - Modified property: riskSignals
+                  - Description changed from 'Sinais de risco para iniciação de pagamentos automáticos
+[Restrição] Deve ser enviado quando o consentimento for para o produto Sweeping Accounts (O objeto "/data/recurringConfiguration/sweeping" usado no oneOf)
+' to 'Sinais de risco para iniciação de pagamentos automáticos
+[Restrição] Deve ser enviado quando o consentimento for para o produto Pix Automático (O objeto "/data/recurringConfiguration/automatic" usado no oneOf). Só estará presente após a primeira edição do consentimento de longa duração.
+'
     - Headers changed
       - Modified header: x-fapi-interaction-id
         - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
@@ -463,6 +480,29 @@ GET /recurring-consents/{recurringConsentId}
 PATCH /recurring-consents/{recurringConsentId}
 - Modified header param: x-fapi-interaction-id
   - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora. Caso não recebido ou recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retornar na resposta de erro. O iniciador deve acatar o valor recebido do detentor.'
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Property 'OneOf' changed
+              - Schema #/components/schemas/ConsentRejection modified
+                - Properties changed
+                  - Modified property: riskSignals
+                    - Description changed from 'Sinais de risco para iniciação de pagamentos automáticos
+[Restrição] Deve ser enviado quando o consentimento for para o produto Sweeping Accounts (O objeto "/data/recurringConfiguration/sweeping" usado no oneOf)
+' to 'Sinais de risco para iniciação de pagamentos automáticos
+[Restrição] Deve ser enviado quando o consentimento for para o produto Pix Automático (O objeto "/data/recurringConfiguration/automatic" usado no oneOf). Só estará presente após a primeira edição do consentimento de longa duração.
+'
+              - Schema #/components/schemas/ConsentRevocation modified
+                - Properties changed
+                  - Modified property: riskSignals
+                    - Description changed from 'Sinais de risco para iniciação de pagamentos automáticos
+[Restrição] Deve ser enviado quando o consentimento for para o produto Sweeping Accounts (O objeto "/data/recurringConfiguration/sweeping" usado no oneOf)
+' to 'Sinais de risco para iniciação de pagamentos automáticos
+[Restrição] Deve ser enviado quando o consentimento for para o produto Pix Automático (O objeto "/data/recurringConfiguration/automatic" usado no oneOf). Só estará presente após a primeira edição do consentimento de longa duração.
+'
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -471,6 +511,10 @@ PATCH /recurring-consents/{recurringConsentId}
           - Properties changed
             - Modified property: data
               - Properties changed
+                - Modified property: debtorAccount
+                  - Required changed
+                    - Deleted required property: ibgeTownCode
+                    - Deleted required property: issuer
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
                     - Schema #/components/schemas/Sweeping modified
@@ -479,6 +523,12 @@ PATCH /recurring-consents/{recurringConsentId}
                           - Properties changed
                             - New property: totalAllowedAmount
                             - Deleted property: amount
+                - Modified property: riskSignals
+                  - Description changed from 'Sinais de risco para iniciação de pagamentos automáticos
+[Restrição] Deve ser enviado quando o consentimento for para o produto Sweeping Accounts (O objeto "/data/recurringConfiguration/sweeping" usado no oneOf)
+' to 'Sinais de risco para iniciação de pagamentos automáticos
+[Restrição] Deve ser enviado quando o consentimento for para o produto Pix Automático (O objeto "/data/recurringConfiguration/automatic" usado no oneOf). Só estará presente após a primeira edição do consentimento de longa duração.
+'
     - Headers changed
       - Modified header: x-fapi-interaction-id
         - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
