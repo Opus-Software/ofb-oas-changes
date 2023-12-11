@@ -9,6 +9,8 @@ POST /consents
 - Modified header param: Authorization
   - Schema changed
     - MinLength changed from 1 to 0
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora. Caso não recebido ou recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retornar na resposta de erro. O iniciador deve acatar o valor recebido do detentor.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
 - Modified header param: x-idempotency-key
   - Schema changed
     - MinLength changed from 1 to 0
@@ -40,6 +42,19 @@ POST /consents
 '
                   - Modified property: schedule
                     - Property 'OneOf' changed
+                      - Schema #/components/schemas/ScheduleCustom modified
+                        - Properties changed
+                          - Modified property: custom
+                            - Required changed
+                              - Deleted required property: additionalInformation
+                            - Properties changed
+                              - Deleted property: additionalInformation
+                              - Modified property: dates
+                                - Example changed from [2023-08-23 2023-09-26] to [2023-08-23 2023-08-30 2023-09-01 2023-09-03 2023-12-10]
+                                - MinItems changed from 2 to 0
+                                - MaxItems changed from 730 to null
+                                - Items changed
+                                  - Example changed from '2023-08-23' to null
                       - Schema #/components/schemas/ScheduleSingle modified
                         - Properties changed
                           - Modified property: single
@@ -78,19 +93,6 @@ Observação: Esse campo deverá sempre ser no mínimo D+1 corrido, ou seja, a d
                                 - Example changed from 24 to 36
                                 - Min changed from 2 to 1
                                 - Max changed from 24 to 2.147483647e+09
-                      - Schema #/components/schemas/ScheduleCustom modified
-                        - Properties changed
-                          - Modified property: custom
-                            - Required changed
-                              - Deleted required property: additionalInformation
-                            - Properties changed
-                              - Deleted property: additionalInformation
-                              - Modified property: dates
-                                - Example changed from [2023-08-23 2023-09-26] to [2023-08-23 2023-08-30 2023-09-01 2023-09-03 2023-12-10]
-                                - MinItems changed from 2 to 0
-                                - MaxItems changed from 730 to null
-                                - Items changed
-                                  - Example changed from '2023-08-23' to null
                     - Description changed from '[Restrição] Mutuamente excludente com o campo date. 
 Este campo é obrigatório no caso de agendamento. 
 Neste caso, o campo date não deverá ser informado. 
@@ -217,6 +219,8 @@ GET /consents/{consentId}
 - Modified header param: Authorization
   - Schema changed
     - MinLength changed from 1 to 0
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora. Caso não recebido ou recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retornar na resposta de erro. O iniciador deve acatar o valor recebido do detentor.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
 - Responses changed
   - New response: 429
   - Modified response: 200
@@ -331,6 +335,8 @@ POST /pix/payments
 - Modified header param: Authorization
   - Schema changed
     - MinLength changed from 1 to 0
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora. Caso não recebido ou recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retornar na resposta de erro. O iniciador deve acatar o valor recebido do detentor.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
 - Modified header param: x-idempotency-key
   - Schema changed
     - MinLength changed from 1 to 0
@@ -522,6 +528,8 @@ GET /pix/payments/{paymentId}
 - Modified header param: Authorization
   - Schema changed
     - MinLength changed from 1 to 0
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora. Caso não recebido ou recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retornar na resposta de erro. O iniciador deve acatar o valor recebido do detentor.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
 - Responses changed
   - New response: 429
   - Modified response: 200
@@ -581,6 +589,8 @@ O cancelamento de pagamento agendado (SCHD) pode ser enviado até 23:59 (Horári
 - Modified header param: Authorization
   - Schema changed
     - MinLength changed from 1 to 0
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID RFC4122 usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora. Caso não recebido ou recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retornar na resposta de erro. O iniciador deve acatar o valor recebido do detentor.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
 - Responses changed
   - New response: 429
   - Modified response: 200
