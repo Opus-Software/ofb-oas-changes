@@ -42,6 +42,20 @@ POST /consents
 '
                   - Modified property: schedule
                     - Property 'OneOf' changed
+                      - Schema #/components/schemas/ScheduleSingle modified
+                        - Properties changed
+                          - Modified property: single
+                            - Properties changed
+                              - Modified property: date
+                                - Description changed from 'Define a data alvo da liquidação do pagamento.
+O fuso horário de Brasília deve ser utilizado para criação e racionalização sobre os dados deste campo.
+[Restrição] Esse campo deverá sempre ser no mínimo D+1 corrido, ou seja, a data imediatamente posterior em 
+relação a data do consentimento considerando o fuso horário de Brasília e deverá ser no máximo D+730 corridos a 
+partir da data do consentimento, também considerando o fuso horário de Brasília.
+' to 'Define a data alvo da liquidação do pagamento. 
+O fuso horário de Brasília deve ser utilizado para criação e racionalização sobre os dados deste campo.
+Observação: Esse campo deverá sempre ser no mínimo D+1 corrido, ou seja, a data imediatamente posterior em relação a data do consentimento considerando o fuso horário de Brasília e deverá ser no máximo D+365 corridos a partir da data do consentimento considerando o fuso horário de Brasília
+'
                       - Schema #/components/schemas/ScheduleDaily modified
                         - Properties changed
                           - Modified property: daily
@@ -79,20 +93,6 @@ POST /consents
                                 - MaxItems changed from 730 to null
                                 - Items changed
                                   - Example changed from '2023-08-23' to null
-                      - Schema #/components/schemas/ScheduleSingle modified
-                        - Properties changed
-                          - Modified property: single
-                            - Properties changed
-                              - Modified property: date
-                                - Description changed from 'Define a data alvo da liquidação do pagamento.
-O fuso horário de Brasília deve ser utilizado para criação e racionalização sobre os dados deste campo.
-[Restrição] Esse campo deverá sempre ser no mínimo D+1 corrido, ou seja, a data imediatamente posterior em 
-relação a data do consentimento considerando o fuso horário de Brasília e deverá ser no máximo D+730 corridos a 
-partir da data do consentimento, também considerando o fuso horário de Brasília.
-' to 'Define a data alvo da liquidação do pagamento. 
-O fuso horário de Brasília deve ser utilizado para criação e racionalização sobre os dados deste campo.
-Observação: Esse campo deverá sempre ser no mínimo D+1 corrido, ou seja, a data imediatamente posterior em relação a data do consentimento considerando o fuso horário de Brasília e deverá ser no máximo D+365 corridos a partir da data do consentimento considerando o fuso horário de Brasília
-'
                     - Description changed from '[Restrição] Mutuamente excludente com o campo date. 
 Este campo é obrigatório no caso de agendamento. 
 Neste caso, o campo date não deverá ser informado. 
@@ -132,6 +132,28 @@ Neste caso, o campo date não deve ser informado.
 '
                     - Modified property: schedule
                       - Property 'OneOf' changed
+                        - Schema #/components/schemas/ScheduleSingle modified
+                          - Properties changed
+                            - Modified property: single
+                              - Properties changed
+                                - Modified property: date
+                                  - Description changed from 'Define a data alvo da liquidação do pagamento.
+O fuso horário de Brasília deve ser utilizado para criação e racionalização sobre os dados deste campo.
+[Restrição] Esse campo deverá sempre ser no mínimo D+1 corrido, ou seja, a data imediatamente posterior em 
+relação a data do consentimento considerando o fuso horário de Brasília e deverá ser no máximo D+730 corridos a 
+partir da data do consentimento, também considerando o fuso horário de Brasília.
+' to 'Define a data alvo da liquidação do pagamento. 
+O fuso horário de Brasília deve ser utilizado para criação e racionalização sobre os dados deste campo.
+Observação: Esse campo deverá sempre ser no mínimo D+1 corrido, ou seja, a data imediatamente posterior em relação a data do consentimento considerando o fuso horário de Brasília e deverá ser no máximo D+365 corridos a partir da data do consentimento considerando o fuso horário de Brasília
+'
+                        - Schema #/components/schemas/ScheduleDaily modified
+                          - Properties changed
+                            - Modified property: daily
+                              - Properties changed
+                                - Modified property: quantity
+                                  - Description changed from 'Define a quantidade de pagamentos que serão enviados para liquidação.' to ''
+                                  - Min changed from 2 to 1
+                                  - Max changed from 730 to 2.147483647e+09
                         - Schema #/components/schemas/ScheduleWeekly modified
                           - Properties changed
                             - Modified property: weekly
@@ -161,28 +183,6 @@ Neste caso, o campo date não deve ser informado.
                                   - MaxItems changed from 730 to null
                                   - Items changed
                                     - Example changed from '2023-08-23' to null
-                        - Schema #/components/schemas/ScheduleSingle modified
-                          - Properties changed
-                            - Modified property: single
-                              - Properties changed
-                                - Modified property: date
-                                  - Description changed from 'Define a data alvo da liquidação do pagamento.
-O fuso horário de Brasília deve ser utilizado para criação e racionalização sobre os dados deste campo.
-[Restrição] Esse campo deverá sempre ser no mínimo D+1 corrido, ou seja, a data imediatamente posterior em 
-relação a data do consentimento considerando o fuso horário de Brasília e deverá ser no máximo D+730 corridos a 
-partir da data do consentimento, também considerando o fuso horário de Brasília.
-' to 'Define a data alvo da liquidação do pagamento. 
-O fuso horário de Brasília deve ser utilizado para criação e racionalização sobre os dados deste campo.
-Observação: Esse campo deverá sempre ser no mínimo D+1 corrido, ou seja, a data imediatamente posterior em relação a data do consentimento considerando o fuso horário de Brasília e deverá ser no máximo D+365 corridos a partir da data do consentimento considerando o fuso horário de Brasília
-'
-                        - Schema #/components/schemas/ScheduleDaily modified
-                          - Properties changed
-                            - Modified property: daily
-                              - Properties changed
-                                - Modified property: quantity
-                                  - Description changed from 'Define a quantidade de pagamentos que serão enviados para liquidação.' to ''
-                                  - Min changed from 2 to 1
-                                  - Max changed from 730 to 2.147483647e+09
                       - Description changed from '[Restrição] Mutuamente excludente com o campo date. 
 Este campo é obrigatório no caso de agendamento. 
 Neste caso, o campo date não deverá ser informado. 
