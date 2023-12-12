@@ -85,6 +85,16 @@ POST /pix/recurring-payments
               - New required property: document
             - Properties changed
               - New property: document
+              - Modified property: riskSignals
+                - Properties changed
+                  - Modified property: automatic
+                    - Required changed
+                      - Deleted required property: pixKeyRegistrationDateTime
+                    - Properties changed
+                      - Modified property: pixKeyRegistrationDateTime
+                        - Description changed from 'Data e hora de cadastro da chave Pix do recebedor na iniciadora' to 'Data e hora de cadastro da chave Pix do recebedor na iniciadora
+[Restrição] Campo obrigatório a ser enviado, caso o valor do campo "/data/localInstrument" sejaigual a "DICT" ou "INIC".
+'
 - Responses changed
   - Modified response: 201
     - Content changed
@@ -314,12 +324,12 @@ POST /recurring-consents
                 - Property 'OneOf' changed
                   - 1 schemas added
                   - 1 schemas deleted
-                  - Schema #/components/schemas/Automatic modified
-                    - Required changed
-                      - New required property: automatic
                   - Schema #/components/schemas/Vrp modified
                     - Required changed
                       - New required property: vrp
+                  - Schema #/components/schemas/Automatic modified
+                    - Required changed
+                      - New required property: automatic
 - Responses changed
   - Modified response: 201
     - Content changed
@@ -428,9 +438,6 @@ GET /recurring-consents/{recurringConsentId}
                     - Deleted required property: issuer
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
-                    - Schema #/components/schemas/Automatic modified
-                      - Required changed
-                        - New required property: automatic
                     - Schema #/components/schemas/Sweeping modified
                       - Required changed
                         - New required property: sweeping
@@ -442,6 +449,9 @@ GET /recurring-consents/{recurringConsentId}
                     - Schema #/components/schemas/Vrp modified
                       - Required changed
                         - New required property: vrp
+                    - Schema #/components/schemas/Automatic modified
+                      - Required changed
+                        - New required property: automatic
                 - Modified property: riskSignals
                   - Description changed from 'Sinais de risco para iniciação de pagamentos automáticos
 [Restrição] Deve ser enviado quando o consentimento for para o produto Sweeping Accounts (O objeto "/data/recurringConfiguration/sweeping" usado no oneOf)
@@ -543,6 +553,9 @@ PATCH /recurring-consents/{recurringConsentId}
                     - Deleted required property: issuer
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
+                    - Schema #/components/schemas/Vrp modified
+                      - Required changed
+                        - New required property: vrp
                     - Schema #/components/schemas/Automatic modified
                       - Required changed
                         - New required property: automatic
@@ -554,9 +567,6 @@ PATCH /recurring-consents/{recurringConsentId}
                           - Properties changed
                             - New property: totalAllowedAmount
                             - Deleted property: amount
-                    - Schema #/components/schemas/Vrp modified
-                      - Required changed
-                        - New required property: vrp
                 - Modified property: riskSignals
                   - Description changed from 'Sinais de risco para iniciação de pagamentos automáticos
 [Restrição] Deve ser enviado quando o consentimento for para o produto Sweeping Accounts (O objeto "/data/recurringConfiguration/sweeping" usado no oneOf)
