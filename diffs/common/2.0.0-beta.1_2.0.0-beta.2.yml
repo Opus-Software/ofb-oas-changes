@@ -23,8 +23,10 @@ GET /outages
                 - Modified property: self
                   - Example changed from 'https://api.banco.com.br/open-banking/channels/v1/resource' to 'https://api.banco.com.br/open-banking/channels/v2/resource'
 GET /status
+- Description changed from ' descrição referente ao código de status retornado pelas APIs' to 'Descrição do status da implementação das APIs do OFB'
 - Responses changed
   - Modified response: 200
+    - Description changed from 'código de status retornado pelas APIs' to 'Descrição do status da implementação das APIs do OFB'
     - Content changed
       - Modified media type: application/json
         - Schema changed
@@ -34,6 +36,19 @@ GET /status
                 - Modified property: status
                   - Items changed
                     - Properties changed
+                      - Modified property: code
+                        - Description changed from 'Condição atual da API:
+  * `OK` - A implementação é totalmente funcional
+  * `PARTIAL_FAILURE` - Um ou mais endpoints estão indisponíveis
+  * `UNAVAILABLE` - A implementação completa está indisponível
+  * `SCHEDULED_OUTAGE` - Uma interrupção anunciada está em vigor
+' to 'Condição atual da Implementação das APIs do OFB:
+- OK - A implementação de todas as APIs foi concluída e está totalmente funcional 
+- UNAVAILABLE - Uma ou mais APIs estão indisponíveis 
+- PARTIAL_FAILURE - Um ou mais endpoints estão indisponíveis 
+- SCHEDULED_OUTAGE - Uma interrupção programada (anunciada pelo endpoint /outages) está em vigor 
+A hierarquia de `data/status/code`, em casos concomitantes, segue a ordem conforme os bullets acima (OK, UNAVAILABLE, PARTIAL_FAILURE, SCHEDULED_OUTAGE)”
+'
                       - Modified property: unavailableEndpoints
                         - Example changed from [https://api.banco.com.br/open-banking/channels/v1/electronic-channels] to [https://api.banco.com.br/open-banking/channels/v2/electronic-channels]
             - Modified property: links
