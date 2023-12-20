@@ -43,6 +43,7 @@
 | opendata-accounts | [1.0.0](swagger-apis/opendata-accounts/1.0.0.yml) |  |  |  |
 | opendata-creditcards | [1.0.0](swagger-apis/opendata-creditcards/1.0.0.yml) |  |  |  |
 | opendata-financings | [1.0.0](swagger-apis/opendata-financings/1.0.0.yml) |  |  |  |
+| opendata-invoicefinancings | [1.0.0](swagger-apis/opendata-invoicefinancings/1.0.0.yml) |  |  |  |
 | opendata-loans | [1.0.0](swagger-apis/opendata-loans/1.0.0.yml) |  |  |  |
 | opendata-unarranged | [1.0.0](swagger-apis/opendata-unarranged/1.0.0.yml) |  |  |  |
 | participants | [1.0.0](swagger-apis/participants/1.0.0.yml) |  |  |  |
@@ -241,6 +242,8 @@
 |  | [1.0.0-beta.2](swagger-apis/opendata-creditcards/1.0.0-beta.2.yml) | [1.0.0](swagger-apis/opendata-creditcards/1.0.0.yml) | [YAML](diffs/opendata-creditcards/1.0.0-beta.2_1.0.0.yml) |
 | opendata-financings | [1.0.0-beta.1](swagger-apis/opendata-financings/1.0.0-beta.1.yml) | [1.0.0-beta.2](swagger-apis/opendata-financings/1.0.0-beta.2.yml) | [YAML](diffs/opendata-financings/1.0.0-beta.1_1.0.0-beta.2.yml) |
 |  | [1.0.0-beta.2](swagger-apis/opendata-financings/1.0.0-beta.2.yml) | [1.0.0](swagger-apis/opendata-financings/1.0.0.yml) | [YAML](diffs/opendata-financings/1.0.0-beta.2_1.0.0.yml) |
+| opendata-invoicefinancings | [1.0.0-beta.1](swagger-apis/opendata-invoicefinancings/1.0.0-beta.1.yml) | [1.0.0-beta.2](swagger-apis/opendata-invoicefinancings/1.0.0-beta.2.yml) | [YAML](diffs/opendata-invoicefinancings/1.0.0-beta.1_1.0.0-beta.2.yml) |
+|  | [1.0.0-beta.2](swagger-apis/opendata-invoicefinancings/1.0.0-beta.2.yml) | [1.0.0](swagger-apis/opendata-invoicefinancings/1.0.0.yml) | [YAML](diffs/opendata-invoicefinancings/1.0.0-beta.2_1.0.0.yml) |
 | opendata-loans | [1.0.0-beta.1](swagger-apis/opendata-loans/1.0.0-beta.1.yml) | [1.0.0-beta.1​ ](swagger-apis/opendata-loans/1.0.0-beta.1​ .yml) | [YAML](diffs/opendata-loans/1.0.0-beta.1_1.0.0-beta.1​ .yml) |
 |  | [1.0.0-beta.1​ ](swagger-apis/opendata-loans/1.0.0-beta.1​ .yml) | [1.0.0-beta.2](swagger-apis/opendata-loans/1.0.0-beta.2.yml) | [YAML](diffs/opendata-loans/1.0.0-beta.1​ _1.0.0-beta.2.yml) |
 |  | [1.0.0-beta.2](swagger-apis/opendata-loans/1.0.0-beta.2.yml) | [1.0.0](swagger-apis/opendata-loans/1.0.0.yml) | [YAML](diffs/opendata-loans/1.0.0-beta.2_1.0.0.yml) |
@@ -342,12 +345,9 @@
 | OAS | Base | Revision | Breaking changes only | Full Diff |
 | --- | --- | --- | --- | --- |
 | exchanges-aguardando-definicao | [1.0.0-rc1.0](swagger-apis/exchanges-aguardando-definicao/1.0.0-rc1.0.yml) |  |  |  |
-| opendata-invoicefinancings | [1.0.0](swagger-apis/opendata-invoicefinancings/1.0.0.yml) |  |  |  |
 
 ### All revisions
 
 | OAS | Base | Revision | Full Diff |
 | --- | --- | --- | --- |
 | exchanges-aguardando-definicao | [1.0.0-rc1.0](swagger-apis/exchanges-aguardando-definicao/1.0.0-rc1.0.yml) |  |  |
-| opendata-invoicefinancings | [1.0.0-beta.1](swagger-apis/opendata-invoicefinancings/1.0.0-beta.1.yml) | [1.0.0-beta.2](swagger-apis/opendata-invoicefinancings/1.0.0-beta.2.yml) | [YAML](diffs/opendata-invoicefinancings/1.0.0-beta.1_1.0.0-beta.2.yml) |
-|  | [1.0.0-beta.2](swagger-apis/opendata-invoicefinancings/1.0.0-beta.2.yml) | [1.0.0](swagger-apis/opendata-invoicefinancings/1.0.0.yml) | [YAML](diffs/opendata-invoicefinancings/1.0.0-beta.2_1.0.0.yml) |
