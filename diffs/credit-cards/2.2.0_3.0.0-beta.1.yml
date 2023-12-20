@@ -5,6 +5,12 @@
 ### Modified Endpoints: 7
 -------------------------
 GET /accounts
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.'
+  - Required changed from true to false
+  - Schema changed
+    - Example changed from 'd78fc4e5-37ca-4da3-adf2-9b082bf92280' to null
+    - Pattern changed from '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -23,7 +29,21 @@ GET /accounts
                   - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
                 - Modified property: self
                   - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to ''
+        - Required changed from true to false
+        - Schema changed
+          - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.'
+          - Example changed from 'd78fc4e5-37ca-4da3-adf2-9b082bf92280' to null
+          - Pattern changed from '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
 GET /accounts/{creditCardAccountId}
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.'
+  - Required changed from true to false
+  - Schema changed
+    - Example changed from 'd78fc4e5-37ca-4da3-adf2-9b082bf92280' to null
+    - Pattern changed from '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -42,7 +62,21 @@ GET /accounts/{creditCardAccountId}
                   - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
                 - Modified property: self
                   - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to ''
+        - Required changed from true to false
+        - Schema changed
+          - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.'
+          - Example changed from 'd78fc4e5-37ca-4da3-adf2-9b082bf92280' to null
+          - Pattern changed from '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
 GET /accounts/{creditCardAccountId}/bills
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.'
+  - Required changed from true to false
+  - Schema changed
+    - Example changed from 'd78fc4e5-37ca-4da3-adf2-9b082bf92280' to null
+    - Pattern changed from '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -61,7 +95,21 @@ GET /accounts/{creditCardAccountId}/bills
                   - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
                 - Modified property: self
                   - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to ''
+        - Required changed from true to false
+        - Schema changed
+          - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.'
+          - Example changed from 'd78fc4e5-37ca-4da3-adf2-9b082bf92280' to null
+          - Pattern changed from '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
 GET /accounts/{creditCardAccountId}/bills/{billId}/transactions
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.'
+  - Required changed from true to false
+  - Schema changed
+    - Example changed from 'd78fc4e5-37ca-4da3-adf2-9b082bf92280' to null
+    - Pattern changed from '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -90,9 +138,23 @@ A partir de 31/01/2024 é esperado que o campo seja preenchido com informações
                   - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
                 - Modified property: self
                   - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to ''
+        - Required changed from true to false
+        - Schema changed
+          - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.'
+          - Example changed from 'd78fc4e5-37ca-4da3-adf2-9b082bf92280' to null
+          - Pattern changed from '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
 GET /accounts/{creditCardAccountId}/limits
 - New query param: page
 - New query param: page-size
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.'
+  - Required changed from true to false
+  - Schema changed
+    - Example changed from 'd78fc4e5-37ca-4da3-adf2-9b082bf92280' to null
+    - Pattern changed from '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -111,7 +173,21 @@ GET /accounts/{creditCardAccountId}/limits
                   - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
                 - Modified property: self
                   - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to ''
+        - Required changed from true to false
+        - Schema changed
+          - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.'
+          - Example changed from 'd78fc4e5-37ca-4da3-adf2-9b082bf92280' to null
+          - Pattern changed from '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
 GET /accounts/{creditCardAccountId}/transactions
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.'
+  - Required changed from true to false
+  - Schema changed
+    - Example changed from 'd78fc4e5-37ca-4da3-adf2-9b082bf92280' to null
+    - Pattern changed from '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -140,7 +216,21 @@ A partir de 31/01/2024 é esperado que o campo seja preenchido com informações
                   - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
                 - Modified property: self
                   - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to ''
+        - Required changed from true to false
+        - Schema changed
+          - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.'
+          - Example changed from 'd78fc4e5-37ca-4da3-adf2-9b082bf92280' to null
+          - Pattern changed from '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
 GET /accounts/{creditCardAccountId}/transactions-current
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.'
+  - Required changed from true to false
+  - Schema changed
+    - Example changed from 'd78fc4e5-37ca-4da3-adf2-9b082bf92280' to null
+    - Pattern changed from '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -169,3 +259,11 @@ A partir de 31/01/2024 é esperado que o campo seja preenchido com informações
                   - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
                 - Modified property: self
                   - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to ''
+        - Required changed from true to false
+        - Schema changed
+          - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.'
+          - Example changed from 'd78fc4e5-37ca-4da3-adf2-9b082bf92280' to null
+          - Pattern changed from '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
