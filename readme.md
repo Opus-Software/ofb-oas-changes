@@ -244,8 +244,7 @@
 |  | [1.0.0-beta.2](swagger-apis/opendata-financings/1.0.0-beta.2.yml) | [1.0.0](swagger-apis/opendata-financings/1.0.0.yml) | [YAML](diffs/opendata-financings/1.0.0-beta.2_1.0.0.yml) |
 | opendata-invoicefinancings | [1.0.0-beta.1](swagger-apis/opendata-invoicefinancings/1.0.0-beta.1.yml) | [1.0.0-beta.2](swagger-apis/opendata-invoicefinancings/1.0.0-beta.2.yml) | [YAML](diffs/opendata-invoicefinancings/1.0.0-beta.1_1.0.0-beta.2.yml) |
 |  | [1.0.0-beta.2](swagger-apis/opendata-invoicefinancings/1.0.0-beta.2.yml) | [1.0.0](swagger-apis/opendata-invoicefinancings/1.0.0.yml) | [YAML](diffs/opendata-invoicefinancings/1.0.0-beta.2_1.0.0.yml) |
-| opendata-loans | [1.0.0-beta.1](swagger-apis/opendata-loans/1.0.0-beta.1.yml) | [1.0.0-beta.1​ ](swagger-apis/opendata-loans/1.0.0-beta.1​ .yml) | [YAML](diffs/opendata-loans/1.0.0-beta.1_1.0.0-beta.1​ .yml) |
-|  | [1.0.0-beta.1​ ](swagger-apis/opendata-loans/1.0.0-beta.1​ .yml) | [1.0.0-beta.2](swagger-apis/opendata-loans/1.0.0-beta.2.yml) | [YAML](diffs/opendata-loans/1.0.0-beta.1​ _1.0.0-beta.2.yml) |
+| opendata-loans | [1.0.0-beta.1](swagger-apis/opendata-loans/1.0.0-beta.1.yml) | [1.0.0-beta.2](swagger-apis/opendata-loans/1.0.0-beta.2.yml) | [YAML](diffs/opendata-loans/1.0.0-beta.1_1.0.0-beta.2.yml) |
 |  | [1.0.0-beta.2](swagger-apis/opendata-loans/1.0.0-beta.2.yml) | [1.0.0](swagger-apis/opendata-loans/1.0.0.yml) | [YAML](diffs/opendata-loans/1.0.0-beta.2_1.0.0.yml) |
 | opendata-unarranged | [1.0.0-beta.1](swagger-apis/opendata-unarranged/1.0.0-beta.1.yml) | [1.0.0-beta.2](swagger-apis/opendata-unarranged/1.0.0-beta.2.yml) | [YAML](diffs/opendata-unarranged/1.0.0-beta.1_1.0.0-beta.2.yml) |
 |  | [1.0.0-beta.2](swagger-apis/opendata-unarranged/1.0.0-beta.2.yml) | [1.0.0](swagger-apis/opendata-unarranged/1.0.0.yml) | [YAML](diffs/opendata-unarranged/1.0.0-beta.2_1.0.0.yml) |
@@ -337,17 +336,3 @@
 |  | [1.0.0-beta1](swagger-apis/webhook/1.0.0-beta1.yml) | [1.0.0](swagger-apis/webhook/1.0.0.yml) | [YAML](diffs/webhook/1.0.0-beta1_1.0.0.yml) |
 |  | [1.0.0](swagger-apis/webhook/1.0.0.yml) | [1.1.0](swagger-apis/webhook/1.1.0.yml) | [YAML](diffs/webhook/1.0.0_1.1.0.yml) |
 |  | [1.1.0](swagger-apis/webhook/1.1.0.yml) | [1.2.0](swagger-apis/webhook/1.2.0.yml) | [YAML](diffs/webhook/1.1.0_1.2.0.yml) |
-
-## Deprecated APIs
-
-### Majors/Minors
-
-| OAS | Base | Revision | Breaking changes only | Full Diff |
-| --- | --- | --- | --- | --- |
-| exchanges-aguardando-definicao | [1.0.0-rc1.0](swagger-apis/exchanges-aguardando-definicao/1.0.0-rc1.0.yml) |  |  |  |
-
-### All revisions
-
-| OAS | Base | Revision | Full Diff |
-| --- | --- | --- | --- |
-| exchanges-aguardando-definicao | [1.0.0-rc1.0](swagger-apis/exchanges-aguardando-definicao/1.0.0-rc1.0.yml) |  |  |
