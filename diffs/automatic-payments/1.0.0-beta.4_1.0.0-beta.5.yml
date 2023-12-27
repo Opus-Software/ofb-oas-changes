@@ -324,12 +324,12 @@ POST /recurring-consents
                 - Property 'OneOf' changed
                   - 1 schemas added
                   - 1 schemas deleted
-                  - Schema #/components/schemas/Vrp modified
-                    - Required changed
-                      - New required property: vrp
                   - Schema #/components/schemas/Automatic modified
                     - Required changed
                       - New required property: automatic
+                  - Schema #/components/schemas/Vrp modified
+                    - Required changed
+                      - New required property: vrp
 - Responses changed
   - Modified response: 201
     - Content changed
@@ -438,9 +438,6 @@ GET /recurring-consents/{recurringConsentId}
                     - Deleted required property: issuer
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
-                    - Schema #/components/schemas/Vrp modified
-                      - Required changed
-                        - New required property: vrp
                     - Schema #/components/schemas/Automatic modified
                       - Required changed
                         - New required property: automatic
@@ -452,6 +449,9 @@ GET /recurring-consents/{recurringConsentId}
                           - Properties changed
                             - New property: totalAllowedAmount
                             - Deleted property: amount
+                    - Schema #/components/schemas/Vrp modified
+                      - Required changed
+                        - New required property: vrp
                 - Modified property: riskSignals
                   - Description changed from 'Sinais de risco para iniciação de pagamentos automáticos
 [Restrição] Deve ser enviado quando o consentimento for para o produto Sweeping Accounts (O objeto "/data/recurringConfiguration/sweeping" usado no oneOf)
@@ -521,7 +521,7 @@ PATCH /recurring-consents/{recurringConsentId}
         - Properties changed
           - Modified property: data
             - Property 'OneOf' changed
-              - Schema #/components/schemas/ConsentRejection modified
+              - Schema #/components/schemas/ConsentRevocation modified
                 - Properties changed
                   - Modified property: riskSignals
                     - Description changed from 'Sinais de risco para iniciação de pagamentos automáticos
@@ -529,7 +529,7 @@ PATCH /recurring-consents/{recurringConsentId}
 ' to 'Sinais de risco para iniciação de pagamentos automáticos
 [Restrição] Deve ser enviado quando o consentimento for para o produto Pix Automático (O objeto "/data/recurringConfiguration/automatic" usado no oneOf). Só estará presente após a primeira edição do consentimento de longa duração.
 '
-              - Schema #/components/schemas/ConsentRevocation modified
+              - Schema #/components/schemas/ConsentRejection modified
                 - Properties changed
                   - Modified property: riskSignals
                     - Description changed from 'Sinais de risco para iniciação de pagamentos automáticos
@@ -553,9 +553,6 @@ PATCH /recurring-consents/{recurringConsentId}
                     - Deleted required property: issuer
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
-                    - Schema #/components/schemas/Vrp modified
-                      - Required changed
-                        - New required property: vrp
                     - Schema #/components/schemas/Automatic modified
                       - Required changed
                         - New required property: automatic
@@ -567,6 +564,9 @@ PATCH /recurring-consents/{recurringConsentId}
                           - Properties changed
                             - New property: totalAllowedAmount
                             - Deleted property: amount
+                    - Schema #/components/schemas/Vrp modified
+                      - Required changed
+                        - New required property: vrp
                 - Modified property: riskSignals
                   - Description changed from 'Sinais de risco para iniciação de pagamentos automáticos
 [Restrição] Deve ser enviado quando o consentimento for para o produto Sweeping Accounts (O objeto "/data/recurringConfiguration/sweeping" usado no oneOf)
