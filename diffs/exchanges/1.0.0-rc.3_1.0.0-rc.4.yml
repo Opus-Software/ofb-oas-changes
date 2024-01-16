@@ -29,6 +29,7 @@ GET /operations/{operationId}
             - Modified property: data
               - Properties changed
                 - New property: intermediaryInstitutionName
+                - Deleted property: foreignPartie
                 - Deleted property: intemediaryInstitutionName
 GET /operations/{operationId}/events
 - Modified header param: x-fapi-interaction-id
@@ -38,3 +39,57 @@ GET /operations/{operationId}/events
     - Example changed from null to 'd78fc4e5-37ca-4da3-adf2-9b082bf92280'
     - MaxLength changed from 100 to 36
     - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: eventType
+                    - Description changed from 'Para o campo domínio:
+1 - Contratação no Mercado Primário.  
+2 - Alteração de Operação Cambial no Mercado Primário.  
+3 - Cancelamento de Operação Cambial no Mercado Primário.  
+4 - Liquidação de Operação Cambial no Mercado Primário.  
+5 - Baixa de Valor a Liquidar de Operação Cambial no Mercado Primário.  
+6 - Restabelecimento de Baixa de Valor a Liquidar de Operação Cambial no Mercado Primário.  
+O evento está relacionado ao tipo de contratação.
+' to 'Para o campo domínio:
+1 - Contratação no Mercado Primário.  
+2 - Alteração de Operação Cambial no Mercado Primário.  
+3 - Cancelamento de Operação Cambial no Mercado Primário.  
+4 - Liquidação de Operação Cambial no Mercado Primário.  
+5 - Baixa de Valor a Liquidar de Operação Cambial no Mercado Primário.  
+6 - Restabelecimento de Baixa de Valor a Liquidar de Operação Cambial no Mercado Primário.  
+9 - Anulação de Operação Cambial no Mercado Primário (utilizado, por exemplo, na anulação de um evento de liquidação/cancelamento).  
+Obs.: Códigos seguem o layout de mensageria enviada pelas instituições ao Banco Central.  
+O evento está relacionado ao tipo de contratação.
+'
+                    - New enum values: [9]
+                  - Modified property: foreignPartie
+                    - Type changed from 'array' to 'object'
+                    - Description changed from 'Lista para envio de informações de parte envolvida.
+[Restrição] Lista de preenchimento opcional pelas participantes quando o campo 'deliveryForeignCurrency ' for igual EM ESPÉCIE E/OU CHEQUES DE VIAGEM. 
+Caso a instituição possua a informação, ela é de envio obrigatório. 
+Caso a informação seja atualizada posteriormente a contratação, ela deve ser enviada através de eventos.
+' to 'Lista para envio de informações de parte envolvida.
+[Restrição] Lista de preenchimento opcional pelas participantes quando:
+- O campo `deliveryForeignCurrency` for igual a ESPECIE_CHEQUES_VIAGEM ou CARTAO_PREPAGO.
+- O campo `eventType` for diferente de "4 - Liquidação de Operação Cambial no Mercado Primário."
+Caso a instituição possua a informação, ela é de envio obrigatório. Caso a informação seja atualizada
+posteriormente à contratação, ela deve ser enviada através de eventos.
+'
+                    - MinItems changed from 1 to 0
+                    - Items changed
+                      - Schema deleted
+                    - Required changed
+                      - New required property: foreignPartieCountryCode
+                      - New required property: foreignPartieName
+                      - New required property: relationshipCode
+                    - Properties changed
+                      - New property: foreignPartieCountryCode
+                      - New property: foreignPartieName
+                      - New property: relationshipCode
