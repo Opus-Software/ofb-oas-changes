@@ -25,6 +25,25 @@ Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de respos
           - Example changed from '73cac523-d3ae-2289-b106-330a6218710d' to 'd78fc4e5-37ca-4da3-adf2-9b082bf92280'
           - MaxLength changed from 100 to 36
           - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+  - Modified response: 422
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Description changed from 'Código de erro específico do endpoint' to '- SEM_PERMISSOES_FUNCIONAIS_RESTANTES
+- INFORMACOES_PJ_NAO_INFORMADAS
+- PERMISSOES_PJ_INCORRETAS
+- PERMISSAO_PF_PJ_EM_CONJUNTO
+- COMBINACAO_PERMISSOES_INCORRETA
+'
+                    - New enum values: [SEM_PERMISSOES_FUNCIONAIS_RESTANTES INFORMACOES_PJ_NAO_INFORMADAS PERMISSOES_PJ_INCORRETAS PERMISSAO_PF_PJ_EM_CONJUNTO COMBINACAO_PERMISSOES_INCORRETA]
+                    - Example changed from null to 'SEM_PERMISSOES_FUNCIONAIS_RESTANTES'
+                    - MaxLength changed from 255 to null
+                    - Pattern changed from '[\w\W\s]*' to ''
 DELETE /consents/{consentId}
 - Modified header param: x-fapi-interaction-id
   - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser "espelhado" pela transmissora (server) no cabeçalho de resposta.' to 'Um UUID RFC4122 usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.'
@@ -46,6 +65,21 @@ Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de respos
           - Example changed from '85bac523-d3ae-2289-b106-330a6218710d' to 'd78fc4e5-37ca-4da3-adf2-9b082bf92280'
           - MaxLength changed from 100 to 36
           - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+  - Modified response: 422
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Description changed from 'Código de erro específico do endpoint' to '- CONSENTIMENTO_EM_STATUS_REJEITADO
+'
+                    - New enum values: [CONSENTIMENTO_EM_STATUS_REJEITADO]
+                    - Example changed from null to 'CONSENTIMENTO_EM_STATUS_REJEITADO'
+                    - MaxLength changed from 255 to null
+                    - Pattern changed from '[\w\W\s]*' to ''
 GET /consents/{consentId}
 - Modified header param: x-fapi-interaction-id
   - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser "espelhado" pela transmissora (server) no cabeçalho de resposta.' to 'Um UUID RFC4122 usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.'
@@ -56,6 +90,32 @@ GET /consents/{consentId}
     - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
 - Responses changed
   - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: rejection
+                  - Properties changed
+                    - Modified property: reason
+                      - Properties changed
+                        - Modified property: code
+                          - Description changed from 'Define o código da razão pela qual o consentimento foi rejeitado.
+- CONSENT_EXPIRED – consentimento que ultrapassou o tempo limite para autorização.   
+- CUSTOMER_MANUALLY_REJECTED – cliente efetuou a rejeição do consentimento manualmente através de interação nas instituições participantes.   
+- CUSTOMER_MANUALLY_REVOKED – cliente efetuou a revogação após a autorização do consentimento.   
+- CONSENT_MAX_DATE_REACHED – consentimento que ultrapassou o tempo limite de compartilhamento.   
+- CONSENT_TECHNICAL_ISSUE – consentimento que foi rejeitado devido a um problema técnico que impossibilita seu uso pela instituição receptora, por exemplo: falha associada a troca do AuthCode pelo AccessToken, durante o processo de Hybid Flow.   
+- INTERNAL_SECURITY_REASON – consentimento que foi rejeitado devido as políticas de segurança aplicada pela instituição transmissora.
+' to 'Define o código da razão pela qual o consentimento foi rejeitado.
+- CONSENT_EXPIRED – consentimento que ultrapassou o tempo limite para autorização.   
+- CUSTOMER_MANUALLY_REJECTED – cliente efetuou a rejeição do consentimento manualmente através de interação nas instituições participantes.   
+- CUSTOMER_MANUALLY_REVOKED – cliente efetuou a revogação após a autorização do consentimento.   
+- CONSENT_MAX_DATE_REACHED – consentimento que ultrapassou o tempo limite de compartilhamento.   
+- CONSENT_TECHNICAL_ISSUE – consentimento que foi rejeitado devido a um problema técnico que impossibilita seu uso pela instituição receptora, por exemplo: falha associada a troca do AuthCode pelo AccessToken, durante o processo de Hybrid Flow.   
+- INTERNAL_SECURITY_REASON – consentimento que foi rejeitado devido as políticas de segurança aplicada pela instituição transmissora.
+'
     - Headers changed
       - Modified header: x-fapi-interaction-id
         - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação.  
