@@ -285,7 +285,8 @@
 |  | [4.0.0-beta.2](swagger-apis/payments/4.0.0-beta.2.yml) | [4.0.0-beta.3](swagger-apis/payments/4.0.0-beta.3.yml) | [YAML](diffs/payments/4.0.0-beta.2_4.0.0-beta.3.yml) |
 |  | [4.0.0-beta.3](swagger-apis/payments/4.0.0-beta.3.yml) | [4.0.0-beta.4](swagger-apis/payments/4.0.0-beta.4.yml) | [YAML](diffs/payments/4.0.0-beta.3_4.0.0-beta.4.yml) |
 |  | [4.0.0-beta.4](swagger-apis/payments/4.0.0-beta.4.yml) | [4.0.0-beta.5](swagger-apis/payments/4.0.0-beta.5.yml) | [YAML](diffs/payments/4.0.0-beta.4_4.0.0-beta.5.yml) |
-|  | [4.0.0-beta.5](swagger-apis/payments/4.0.0-beta.5.yml) | [4.0.0](swagger-apis/payments/4.0.0.yml) | [YAML](diffs/payments/4.0.0-beta.5_4.0.0.yml) |
+|  | [4.0.0-beta.5](swagger-apis/payments/4.0.0-beta.5.yml) | [4.0.0-rc.1](swagger-apis/payments/4.0.0-rc.1.yml) | [YAML](diffs/payments/4.0.0-beta.5_4.0.0-rc.1.yml) |
+|  | [4.0.0-rc.1](swagger-apis/payments/4.0.0-rc.1.yml) | [4.0.0](swagger-apis/payments/4.0.0.yml) | [YAML](diffs/payments/4.0.0-rc.1_4.0.0.yml) |
 | pension | [1.0.0-rc1.0](swagger-apis/pension/1.0.0-rc1.0.yml) | [1.0.0-rc2.0](swagger-apis/pension/1.0.0-rc2.0.yml) | [YAML](diffs/pension/1.0.0-rc1.0_1.0.0-rc2.0.yml) |
 |  | [1.0.0-rc2.0](swagger-apis/pension/1.0.0-rc2.0.yml) | [1.0.0-rc3.0](swagger-apis/pension/1.0.0-rc3.0.yml) | [YAML](diffs/pension/1.0.0-rc2.0_1.0.0-rc3.0.yml) |
 |  | [1.0.0-rc3.0](swagger-apis/pension/1.0.0-rc3.0.yml) | [1.0.0](swagger-apis/pension/1.0.0.yml) | [YAML](diffs/pension/1.0.0-rc3.0_1.0.0.yml) |
