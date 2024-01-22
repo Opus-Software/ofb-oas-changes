@@ -65,6 +65,8 @@ paths:
           $ref: '#/components/responses/UnsupportedMediaType'
         '422':
           $ref: '#/components/responses/UnprocessableEntityEnrollment'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
         '529':
@@ -107,6 +109,8 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
         '529':
@@ -230,6 +234,8 @@ paths:
           $ref: '#/components/responses/NotAcceptable'
         '422':
           $ref: '#/components/responses/UnprocessableEntityEnrollmentCancel'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
         '529':
@@ -286,6 +292,8 @@ paths:
           $ref: '#/components/responses/UnsupportedMediaType'
         '422':
           $ref: '#/components/responses/UnprocessableEntityEnrollmentFidoRegistrationOptions'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
         '529':
@@ -345,6 +353,8 @@ paths:
           $ref: '#/components/responses/UnsupportedMediaType'
         '422':
           $ref: '#/components/responses/UnprocessableEntityEnrollmentFidoRegistration'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
         '529':
@@ -430,6 +440,8 @@ paths:
           $ref: '#/components/responses/UnsupportedMediaType'
         '422':
           $ref: '#/components/responses/UnprocessableEntityEnrollmentFidoSignOptions'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
         '529':
@@ -485,6 +497,8 @@ paths:
           $ref: '#/components/responses/UnsupportedMediaType'
         '422':
           $ref: '#/components/responses/UnprocessableEntityEnrollmentRiskSignals'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
         '529':
@@ -542,6 +556,8 @@ paths:
           $ref: '#/components/responses/UnsupportedMediaType'
         '422':
           $ref: '#/components/responses/UnprocessableEntityConsentsAuthorization'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
         '529':
@@ -562,7 +578,7 @@ components:
   headers:
     xFapiInteractionId:
       description: |
-        Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser "espelhado" pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora.
+        A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
       schema:
         $ref: '#/components/schemas/XFapiInteractionId'
   schemas:
@@ -2080,12 +2096,9 @@ components:
           $ref: '#/components/schemas/Meta'
     XFapiInteractionId:
       type: string
-      format: uuid
-      minLength: 1
-      maxLength: 36
-      pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
-      example: d78fc4e5-37ca-4da3-adf2-9b082bf92280
-      description: Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser "espelhado" pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora.
+      pattern: '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
+      maxLength: 100
+      description: 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
   parameters:
     consentId:
       name: consentId
@@ -2163,15 +2176,13 @@ components:
     xFapiInteractionId:
       name: x-fapi-interaction-id
       in: header
-      description: Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser "espelhado" pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora.
+      description: 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.'
       required: true
       schema:
         type: string
-        format: uuid
+        pattern: '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
         minLength: 1
-        maxLength: 36
-        pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
-        example: d78fc4e5-37ca-4da3-adf2-9b082bf92280
+        maxLength: 100
     XIdempotencyKey:
       name: x-idempotency-key
       in: header
@@ -2217,7 +2228,7 @@ components:
       headers:
         x-fapi-interaction-id:
           description: |
-            Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser "espelhado" pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora.
+            A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
           schema:
             $ref: '#/components/schemas/XFapiInteractionId'
     Forbidden:
@@ -2229,7 +2240,7 @@ components:
       headers:
         x-fapi-interaction-id:
           description: |
-            Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser "espelhado" pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora.
+            A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
           schema:
             $ref: '#/components/schemas/XFapiInteractionId'
     ForbiddenEnrollments:
@@ -2243,7 +2254,7 @@ components:
       headers:
         x-fapi-interaction-id:
           description: |
-            Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser "espelhado" pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora.
+            A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
           schema:
             $ref: '#/components/schemas/XFapiInteractionId'
     InternalServerError:
@@ -2255,7 +2266,7 @@ components:
       headers:
         x-fapi-interaction-id:
           description: |
-            Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser "espelhado" pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora.
+            A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
           schema:
             $ref: '#/components/schemas/XFapiInteractionId'
     MethodNotAllowed:
@@ -2267,7 +2278,7 @@ components:
       headers:
         x-fapi-interaction-id:
           description: |
-            Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser "espelhado" pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora.
+            A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
           schema:
             $ref: '#/components/schemas/XFapiInteractionId'
     NotAcceptable:
@@ -2279,7 +2290,7 @@ components:
       headers:
         x-fapi-interaction-id:
           description: |
-            Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser "espelhado" pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora.
+            A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
           schema:
             $ref: '#/components/schemas/XFapiInteractionId'
     NotFound:
@@ -2291,7 +2302,7 @@ components:
       headers:
         x-fapi-interaction-id:
           description: |
-            Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser "espelhado" pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora.
+            A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
           schema:
             $ref: '#/components/schemas/XFapiInteractionId'
     SiteIsOverloaded:
@@ -2300,6 +2311,25 @@ components:
         application/json; charset=utf-8:
           schema:
             $ref: '#/components/schemas/ResponseError'
+    TooManyRequests:
+      description: 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido'
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/ResponseError'
+      headers:
+        x-fapi-interaction-id:
+          description: |
+            A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+          schema:
+            $ref: '#/components/schemas/XFapiInteractionId'
+        Retry-After:
+          description: |
+            Cabeçalho que indica o tempo (em segundos) que o cliente deverá aguardar para realizar uma nova tentativa de chamada. Este cabeçalho deverá estar presente quando o código HTTP de retorno for 429 Too many requests.
+          schema:
+            description: |
+              Cabeçalho que indica o tempo (em segundos) que o cliente deverá aguardar para realizar uma nova tentativa de chamada. Este cabeçalho deverá estar presente quando o código HTTP de retorno for 429 Too many requests.
+            type: integer
     UnprocessableEntityConsentsAuthorization:
       description: 'A solicitação foi bem-formada, mas não pôde ser processada devido à lógica de negócios específica da solicitação.'
       content:
@@ -2384,7 +2414,7 @@ components:
       headers:
         x-fapi-interaction-id:
           description: |
-            Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser "espelhado" pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora.
+            A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
           schema:
             $ref: '#/components/schemas/XFapiInteractionId'
     UnsupportedMediaType:
@@ -2396,7 +2426,7 @@ components:
       headers:
         x-fapi-interaction-id:
           description: |
-            Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser "espelhado" pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora.
+            A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
           schema:
             $ref: '#/components/schemas/XFapiInteractionId'
     201EnrollmentsCreated:
@@ -2404,7 +2434,7 @@ components:
       headers:
         x-fapi-interaction-id:
           description: |
-            Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser "espelhado" pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora.
+            A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
           schema:
             $ref: '#/components/schemas/XFapiInteractionId'
       content:
