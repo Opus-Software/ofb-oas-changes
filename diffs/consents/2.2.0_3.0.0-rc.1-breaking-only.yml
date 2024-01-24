@@ -1,0 +1,716 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: 1
+------------------------
+GET /consents/{consentId}/extends  
+### Modified Endpoints: 4
+-------------------------
+POST /consents
+- Modified header param: x-fapi-interaction-id
+  - Required changed from false to true
+  - Schema changed
+    - Format changed from '' to 'uuid'
+    - MaxLength changed from 100 to 36
+    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: expirationDateTime
+                - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Required changed
+                - Deleted required property: expirationDateTime
+              - Properties changed
+                - Modified property: creationDateTime
+                  - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+                - Modified property: expirationDateTime
+                  - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+                - Modified property: statusUpdateDateTime
+                  - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Schema changed
+          - Format changed from '' to 'uuid'
+          - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 415
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 422
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - MaxLength changed from 255 to null
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 504
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 529
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+DELETE /consents/{consentId}
+- Modified header param: x-fapi-interaction-id
+  - Required changed from false to true
+  - Schema changed
+    - Format changed from '' to 'uuid'
+    - MaxLength changed from 100 to 36
+    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+- Responses changed
+  - Modified response: 204
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Schema changed
+          - Format changed from '' to 'uuid'
+          - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 504
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 529
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+GET /consents/{consentId}
+- Modified header param: x-fapi-interaction-id
+  - Required changed from false to true
+  - Schema changed
+    - Format changed from '' to 'uuid'
+    - MaxLength changed from 100 to 36
+    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Required changed
+                - Deleted required property: expirationDateTime
+              - Properties changed
+                - Modified property: creationDateTime
+                  - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+                - Modified property: expirationDateTime
+                  - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+                - Modified property: rejection
+                  - Properties changed
+                    - Modified property: reason
+                      - Properties changed
+                        - Modified property: additionalInformation
+                          - Pattern changed from '[\w\W\s]*' to '^(?!\s)[\w\W\s]*[^\s]$'
+                - Modified property: statusUpdateDateTime
+                  - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Schema changed
+          - Format changed from '' to 'uuid'
+          - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 504
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 529
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+POST /consents/{consentId}/extends
+- Modified header param: x-fapi-interaction-id
+  - Schema changed
+    - Format changed from '' to 'uuid'
+    - MaxLength changed from 100 to 36
+    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Schema changed
+          - Format changed from '' to 'uuid'
+          - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 415
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 422
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Deleted enum values: [REFRESH_TOKEN_JWT]
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 504
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 529
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords

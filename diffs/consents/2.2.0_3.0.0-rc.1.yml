@@ -1,0 +1,933 @@
+﻿### New Endpoints: 1
+--------------------
+GET /consents/{consentId}/extensions  
+### Deleted Endpoints: 1
+------------------------
+GET /consents/{consentId}/extends  
+### Modified Endpoints: 4
+-------------------------
+POST /consents
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UUID RFC4122 usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.'
+  - Required changed from false to true
+  - Schema changed
+    - Format changed from '' to 'uuid'
+    - Example changed from null to 'd78fc4e5-37ca-4da3-adf2-9b082bf92280'
+    - MaxLength changed from 100 to 36
+    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Required changed
+              - Deleted required property: expirationDateTime
+            - Properties changed
+              - Modified property: businessEntity
+                - Description changed from 'Titular, pessoa jurídica a quem se referem os dados que são objeto de compartilhamento.' to 'Titular, pessoa jurídica a quem se referem os dados que são objeto de compartilhamento.
+É obrigatório que o número do CNPJ utilizado seja um número válido. A transmissora pode utilizar algoritmos de validação de documento para garantir que se trata de um documento válido, como por exemplo: Cálculo de DV módulo 11 para o CNPJ.
+'
+              - Modified property: expirationDateTime
+                - Description changed from 'Data e hora de expiração da permissão. De preenchimento obrigatório, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format).' to 'Data e hora de expiração da permissão. Reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format). 
+[Restrição] De preenchimento obrigatório nos casos em que houver validade determinada. Em casos de consentimento com prazo indeterminado o campo não deve ser enviado.
+'
+                - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+              - Modified property: loggedUser
+                - Description changed from 'Usuário (pessoa natural) que encontra-se logado na instituição receptora e que iniciará o processo de consentimento para compartilhamento de dados.' to 'Usuário (pessoa natural) que encontra-se logado na instituição receptora e que iniciará o processo de consentimento para compartilhamento de dados.
+É obrigatório que o número do documento utilizado seja um número válido e pertencente ao usuário logado. A transmissora pode utilizar algoritmos de validação de documento para garantir que se trata de um documento válido, como por exemplo: Cálculo de DV módulo 11 para o CPF.
+'
+              - Modified property: permissions
+                - Items changed
+                  - New enum values: [EXCHANGES_READ]
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Required changed
+                - Deleted required property: expirationDateTime
+              - Properties changed
+                - Modified property: creationDateTime
+                  - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+                - Modified property: expirationDateTime
+                  - Description changed from 'Data e hora de expiração da permissão. De preenchimento obrigatório, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format).' to 'Data e hora de expiração da permissão. Reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format). 
+[Restrição] De preenchimento obrigatório nos casos em que houver validade determinada. Em casos de consentimento com prazo indeterminado o campo não deve ser enviado.
+'
+                  - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+                - Modified property: permissions
+                  - Items changed
+                    - New enum values: [EXCHANGES_READ]
+                - Modified property: statusUpdateDateTime
+                  - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+            - Modified property: links
+              - Properties changed
+                - Deleted property: first
+                - Deleted property: last
+                - Deleted property: next
+                - Deleted property: prev
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação.  
+Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.          
+' to 'Um UUID RFC4122 usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.         
+'
+        - Schema changed
+          - Format changed from '' to 'uuid'
+          - Example changed from '73cac523-d3ae-2289-b106-330a6218710d' to 'd78fc4e5-37ca-4da3-adf2-9b082bf92280'
+          - MaxLength changed from 100 to 36
+          - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 415
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 422
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Description changed from 'Código de erro específico do endpoint' to '- SEM_PERMISSOES_FUNCIONAIS_RESTANTES
+- INFORMACOES_PJ_NAO_INFORMADAS
+- PERMISSOES_PJ_INCORRETAS
+- PERMISSAO_PF_PJ_EM_CONJUNTO
+- COMBINACAO_PERMISSOES_INCORRETA
+'
+                    - New enum values: [SEM_PERMISSOES_FUNCIONAIS_RESTANTES INFORMACOES_PJ_NAO_INFORMADAS PERMISSOES_PJ_INCORRETAS PERMISSAO_PF_PJ_EM_CONJUNTO COMBINACAO_PERMISSOES_INCORRETA]
+                    - Example changed from null to 'SEM_PERMISSOES_FUNCIONAIS_RESTANTES'
+                    - MaxLength changed from 255 to null
+                    - Pattern changed from '[\w\W\s]*' to ''
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 504
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 529
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+DELETE /consents/{consentId}
+- Modified path param: consentId
+  - Description changed from 'O consentId é o identificador único do consentimento e deverá ser um URN - Uniform Resource Name.  
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource 
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN 
+seja um identificador de recurso persistente e independente da localização.  
+Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+- namespace(urn)
+- identificador associado ao namespace da instituição transnmissora (bancoex)
+- identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+' to 'O consentId é o identificador único do consentimento e deverá ser um URN - Uniform Resource Name.  
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource 
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN 
+seja um identificador de recurso persistente e independente da localização.  
+Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição transnmissora (bancoex)
+- o identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+'
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UUID RFC4122 usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.'
+  - Required changed from false to true
+  - Schema changed
+    - Format changed from '' to 'uuid'
+    - Example changed from null to 'd78fc4e5-37ca-4da3-adf2-9b082bf92280'
+    - MaxLength changed from 100 to 36
+    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+- Responses changed
+  - New response: 422
+  - Modified response: 204
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação.  
+Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.          
+' to 'Um UUID RFC4122 usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.        
+'
+        - Schema changed
+          - Format changed from '' to 'uuid'
+          - Example changed from '85bac523-d3ae-2289-b106-330a6218710d' to 'd78fc4e5-37ca-4da3-adf2-9b082bf92280'
+          - MaxLength changed from 100 to 36
+          - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 504
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 529
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+GET /consents/{consentId}
+- Modified path param: consentId
+  - Description changed from 'O consentId é o identificador único do consentimento e deverá ser um URN - Uniform Resource Name.  
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource 
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN 
+seja um identificador de recurso persistente e independente da localização.  
+Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+- namespace(urn)
+- identificador associado ao namespace da instituição transnmissora (bancoex)
+- identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+' to 'O consentId é o identificador único do consentimento e deverá ser um URN - Uniform Resource Name.  
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource 
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN 
+seja um identificador de recurso persistente e independente da localização.  
+Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição transnmissora (bancoex)
+- o identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+'
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.' to 'Um UUID RFC4122 usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.'
+  - Required changed from false to true
+  - Schema changed
+    - Format changed from '' to 'uuid'
+    - Example changed from null to 'd78fc4e5-37ca-4da3-adf2-9b082bf92280'
+    - MaxLength changed from 100 to 36
+    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Required changed
+                - Deleted required property: expirationDateTime
+              - Properties changed
+                - Modified property: creationDateTime
+                  - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+                - Modified property: expirationDateTime
+                  - Description changed from 'Data e hora de expiração da permissão. De preenchimento obrigatório, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format). Para consentimentos com prazo indeterminado, é esperado preenchimento com `2300-01-01T00:00:00Z`.' to 'Data e hora de expiração da permissão. Reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).  
+[Restrição] De preenchimento obrigatório nos casos em que houver validade determinada. Em casos de consentimento com prazo indeterminado o campo não deve ser preenchido.
+'
+                  - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+                - Modified property: permissions
+                  - Items changed
+                    - New enum values: [EXCHANGES_READ]
+                - Modified property: rejection
+                  - Properties changed
+                    - Modified property: reason
+                      - Properties changed
+                        - Modified property: additionalInformation
+                          - Pattern changed from '[\w\W\s]*' to '^(?!\s)[\w\W\s]*[^\s]$'
+                        - Modified property: code
+                          - Description changed from 'Define o código da razão pela qual o consentimento foi rejeitado.
+- CONSENT_EXPIRED – consentimento que ultrapassou o tempo limite para autorização.   
+- CUSTOMER_MANUALLY_REJECTED – cliente efetuou a rejeição do consentimento manualmente através de interação nas instituições participantes.   
+- CUSTOMER_MANUALLY_REVOKED – cliente efetuou a revogação após a autorização do consentimento.   
+- CONSENT_MAX_DATE_REACHED – consentimento que ultrapassou o tempo limite de compartilhamento.   
+- CONSENT_TECHNICAL_ISSUE – consentimento que foi rejeitado devido a um problema técnico que impossibilita seu uso pela instituição receptora, por exemplo: falha associada a troca do AuthCode pelo AccessToken, durante o processo de Hybid Flow.   
+- INTERNAL_SECURITY_REASON – consentimento que foi rejeitado devido as políticas de segurança aplicada pela instituição transmissora.
+' to 'Define o código da razão pela qual o consentimento foi rejeitado.
+- CONSENT_EXPIRED – consentimento que ultrapassou o tempo limite para autorização.   
+- CUSTOMER_MANUALLY_REJECTED – cliente efetuou a rejeição do consentimento manualmente através de interação nas instituições participantes.   
+- CUSTOMER_MANUALLY_REVOKED – cliente efetuou a revogação após a autorização do consentimento.   
+- CONSENT_MAX_DATE_REACHED – consentimento que ultrapassou o tempo limite de compartilhamento.   
+- CONSENT_TECHNICAL_ISSUE – consentimento que foi rejeitado devido a um problema técnico que impossibilita seu uso pela instituição receptora, por exemplo: falha associada a troca do AuthCode pelo AccessToken, durante o processo de Hybrid Flow.   
+- INTERNAL_SECURITY_REASON – consentimento que foi rejeitado devido as políticas de segurança aplicada pela instituição transmissora.
+'
+                - Modified property: statusUpdateDateTime
+                  - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+            - Modified property: links
+              - Properties changed
+                - Deleted property: first
+                - Deleted property: last
+                - Deleted property: next
+                - Deleted property: prev
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação.  
+Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.          
+' to 'Um UUID RFC4122 usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.        
+'
+        - Schema changed
+          - Format changed from '' to 'uuid'
+          - Example changed from '92cac523-d3ae-2289-b106-330a6218710d' to 'd78fc4e5-37ca-4da3-adf2-9b082bf92280'
+          - MaxLength changed from 100 to 36
+          - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 504
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 529
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+POST /consents/{consentId}/extends
+- Description changed from 'Método para renovar consentimento identificado por consentId, exceto casos com múltiplas alçadas. Nos casos de múltiplas alçadas, a transmissora deve retornar o status 422.' to 'Método utilizado para renovação de consentimento do cliente. O consentimento só pode ser renovado caso esteja ativo (status AUTHORISED) e tenha alçada simples de aprovação (não dependa de múltiplos aprovadores).  A alteração de data efetuada pela renovação deve ser refletida também na consulta do método _GET/consents/{consentId}_.'
+- Modified path param: consentId
+  - Description changed from 'O consentId é o identificador único do consentimento e deverá ser um URN - Uniform Resource Name.  
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource 
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN 
+seja um identificador de recurso persistente e independente da localização.  
+Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+- namespace(urn)
+- identificador associado ao namespace da instituição transnmissora (bancoex)
+- identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+' to 'O consentId é o identificador único do consentimento e deverá ser um URN - Uniform Resource Name.  
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource 
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN 
+seja um identificador de recurso persistente e independente da localização.  
+Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição transnmissora (bancoex)
+- o identificador específico dentro do namespace (C1DD33123).
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+'
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser "espelhado" pela transmissora (server) no cabeçalho de resposta.' to 'Um UUID RFC4122 usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.'
+  - Schema changed
+    - Format changed from '' to 'uuid'
+    - Example changed from null to 'd78fc4e5-37ca-4da3-adf2-9b082bf92280'
+    - MaxLength changed from 100 to 36
+    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Required changed
+              - Deleted required property: expirationDateTime
+            - Properties changed
+              - Modified property: expirationDateTime
+                - Description changed from 'Data e hora de expiração da permissão. De preenchimento obrigatório, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format). Para consentimentos com prazo indeterminado, preencher com valor '2300-01-01T00:00:00Z'. Esse valor deve ser refletido no expirationDateTime do consentimento relacionado.' to 'Data e hora de expiração da permissão. Reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).
+[Restrição] De preenchimento obrigatório nos casos em que houver validade determinada.
+Em casos de consentimento com prazo indeterminada o campo não deve ser preenchido.
+'
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: links
+              - Properties changed
+                - Deleted property: first
+                - Deleted property: last
+                - Deleted property: next
+                - Deleted property: prev
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação.  
+Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.          
+' to 'Um UUID RFC4122 usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.          
+'
+        - Schema changed
+          - Format changed from '' to 'uuid'
+          - Example changed from '73cac523-d3ae-2289-b106-330a6218710d' to 'd78fc4e5-37ca-4da3-adf2-9b082bf92280'
+          - MaxLength changed from 100 to 36
+          - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 415
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 422
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Description changed from 'Códigos de erros previstos na durante o processo de extensão do consentimento:
+ - DEPENDE_MULTIPLA_ALCADA: Necessário aprovação de múltipla alçada.
+ - REFRESH_TOKEN_JWT: Refresh token não pode ser expandido.
+ - ESTADO_CONSENTIMENTO_INVALIDO: Estado inválido do consentimento.
+ - DATA_EXPIRACAO_INVALIDA: Nova data para expiração do consentimento é inválida.
+' to 'Códigos de erros previstos na durante o processo de extensão do consentimento:
+ - DEPENDE_MULTIPLA_ALCADA: Necessário aprovação de múltipla alçada.
+ - ESTADO_CONSENTIMENTO_INVALIDO: Estado inválido do consentimento.
+ - DATA_EXPIRACAO_INVALIDA: Nova data para expiração do consentimento é inválida.
+'
+                    - Deleted enum values: [REFRESH_TOKEN_JWT]
+                  - Modified property: detail
+                    - Description changed from 'Título específico do erro reportado, de acordo com o código enviado:
+- DEPENDE_MULTIPLA_ALCADA: O consentimento informado não pode ser renovado sem redirecionamento porque depende de múltipla alçada para aprovação.
+- REFRESH_TOKEN_JWT: O consentimento informado não pode ser renovado sem redirecionamento porque está vinculado a um refresh token JWT e não pode ter seu prazo de validade alterado.
+- ESTADO_CONSENTIMENTO_INVALIDO: O consentimento informado não pode ser renovado sem redirecionamento porque está em um estado que não permite a renovação.
+- DATA_EXPIRACAO_INVALIDA: O consentimento informado não pode ser renovado pois a nova data de expiração não segue a convenção do ecossistema.
+' to 'Título específico do erro reportado, de acordo com o código enviado:
+- DEPENDE_MULTIPLA_ALCADA: O consentimento informado não pode ser renovado sem redirecionamento porque depende de múltipla alçada para aprovação.
+- ESTADO_CONSENTIMENTO_INVALIDO: O consentimento informado não pode ser renovado sem redirecionamento porque está em um estado que não permite a renovação.
+- DATA_EXPIRACAO_INVALIDA: O consentimento informado não pode ser renovado pois a nova data de expiração não segue a convenção do ecossistema.
+'
+                  - Modified property: title
+                    - Description changed from 'Título específico do erro reportado, de acordo com o código enviado:
+- DEPENDE_MULTIPLA_ALCADA: Necessário aprovação de múltipla alçada.
+- REFRESH_TOKEN_JWT: Refresh token não pode ser expandido.
+- ESTADO_CONSENTIMENTO_INVALIDO: Estado inválido do consentimento.
+- DATA_EXPIRACAO_INVALIDA: Nova data para expiração do consentimento é inválida.
+' to 'Título específico do erro reportado, de acordo com o código enviado:
+- DEPENDE_MULTIPLA_ALCADA: Necessário aprovação de múltipla alçada.
+- ESTADO_CONSENTIMENTO_INVALIDO: Estado inválido do consentimento.
+- DATA_EXPIRACAO_INVALIDA: Nova data para expiração do consentimento é inválida.
+'
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 504
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 529
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+Servers changed
+- New server: https://api.banco.com.br/open-banking/consents/v3
+- New server: https://apih.banco.com.br/open-banking/consents/v3
+- Deleted server: https://api.banco.com.br/open-banking/consents/v2
+- Deleted server: https://apih.banco.com.br/open-banking/consents/v2
