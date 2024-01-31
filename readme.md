@@ -60,7 +60,7 @@
 |  | [2.0.0-beta1](swagger-apis/products-services/2.0.0-beta1.yml) | [3.0.0](swagger-apis/products-services/3.0.0.yml) | [YAML](diffs/products-services/2.0.0-beta1_3.0.0-breaking-only.yml) | [YAML](diffs/products-services/2.0.0-beta1_3.0.0.yml) |
 | resources | [1.0.2](swagger-apis/resources/1.0.2.yml) | [2.0.1](swagger-apis/resources/2.0.1.yml) | [YAML](diffs/resources/1.0.2_2.0.1-breaking-only.yml) | [YAML](diffs/resources/1.0.2_2.0.1.yml) |
 |  | [2.0.1](swagger-apis/resources/2.0.1.yml) | [2.1.0](swagger-apis/resources/2.1.0.yml) | [YAML](diffs/resources/2.0.1_2.1.0-breaking-only.yml) | [YAML](diffs/resources/2.0.1_2.1.0.yml) |
-|  | [2.1.0](swagger-apis/resources/2.1.0.yml) | [3.0.0-beta.3](swagger-apis/resources/3.0.0-beta.3.yml) | [YAML](diffs/resources/2.1.0_3.0.0-beta.3-breaking-only.yml) | [YAML](diffs/resources/2.1.0_3.0.0-beta.3.yml) |
+|  | [2.1.0](swagger-apis/resources/2.1.0.yml) | [3.0.0-rc.1](swagger-apis/resources/3.0.0-rc.1.yml) | [YAML](diffs/resources/2.1.0_3.0.0-rc.1-breaking-only.yml) | [YAML](diffs/resources/2.1.0_3.0.0-rc.1.yml) |
 | treasure-titles | [1.0.1](swagger-apis/treasure-titles/1.0.1.yml) |  |  |  |
 | unarranged-accounts-overdraft | [1.0.4](swagger-apis/unarranged-accounts-overdraft/1.0.4.yml) | [2.0.1](swagger-apis/unarranged-accounts-overdraft/2.0.1.yml) | [YAML](diffs/unarranged-accounts-overdraft/1.0.4_2.0.1-breaking-only.yml) | [YAML](diffs/unarranged-accounts-overdraft/1.0.4_2.0.1.yml) |
 |  | [2.0.1](swagger-apis/unarranged-accounts-overdraft/2.0.1.yml) | [2.1.1-rc.1](swagger-apis/unarranged-accounts-overdraft/2.1.1-rc.1.yml) | [YAML](diffs/unarranged-accounts-overdraft/2.0.1_2.1.1-rc.1-breaking-only.yml) | [YAML](diffs/unarranged-accounts-overdraft/2.0.1_2.1.1-rc.1.yml) |
@@ -325,6 +325,7 @@
 |  | [2.1.0](swagger-apis/resources/2.1.0.yml) | [3.0.0-beta.1](swagger-apis/resources/3.0.0-beta.1.yml) | [YAML](diffs/resources/2.1.0_3.0.0-beta.1.yml) |
 |  | [3.0.0-beta.1](swagger-apis/resources/3.0.0-beta.1.yml) | [3.0.0-beta.2](swagger-apis/resources/3.0.0-beta.2.yml) | [YAML](diffs/resources/3.0.0-beta.1_3.0.0-beta.2.yml) |
 |  | [3.0.0-beta.2](swagger-apis/resources/3.0.0-beta.2.yml) | [3.0.0-beta.3](swagger-apis/resources/3.0.0-beta.3.yml) | [YAML](diffs/resources/3.0.0-beta.2_3.0.0-beta.3.yml) |
+|  | [3.0.0-beta.3](swagger-apis/resources/3.0.0-beta.3.yml) | [3.0.0-rc.1](swagger-apis/resources/3.0.0-rc.1.yml) | [YAML](diffs/resources/3.0.0-beta.3_3.0.0-rc.1.yml) |
 | treasure-titles | [1.0.0-rc1.0](swagger-apis/treasure-titles/1.0.0-rc1.0.yml) | [1.0.0-rc2.0](swagger-apis/treasure-titles/1.0.0-rc2.0.yml) | [YAML](diffs/treasure-titles/1.0.0-rc1.0_1.0.0-rc2.0.yml) |
 |  | [1.0.0-rc2.0](swagger-apis/treasure-titles/1.0.0-rc2.0.yml) | [1.0.0-rc3.0](swagger-apis/treasure-titles/1.0.0-rc3.0.yml) | [YAML](diffs/treasure-titles/1.0.0-rc2.0_1.0.0-rc3.0.yml) |
 |  | [1.0.0-rc3.0](swagger-apis/treasure-titles/1.0.0-rc3.0.yml) | [1.0.0](swagger-apis/treasure-titles/1.0.0.yml) | [YAML](diffs/treasure-titles/1.0.0-rc3.0_1.0.0.yml) |
