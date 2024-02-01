@@ -123,7 +123,8 @@
 |  | [1.0.1](swagger-apis/channels/1.0.1.yml) | [1.0.2](swagger-apis/channels/1.0.2.yml) | [YAML](diffs/channels/1.0.1_1.0.2.yml) |
 |  | [1.0.2](swagger-apis/channels/1.0.2.yml) | [2.0.0-beta.1](swagger-apis/channels/2.0.0-beta.1.yml) | [YAML](diffs/channels/1.0.2_2.0.0-beta.1.yml) |
 |  | [2.0.0-beta.1](swagger-apis/channels/2.0.0-beta.1.yml) | [2.0.0-rc.1](swagger-apis/channels/2.0.0-rc.1.yml) | [YAML](diffs/channels/2.0.0-beta.1_2.0.0-rc.1.yml) |
-|  | [2.0.0-rc.1](swagger-apis/channels/2.0.0-rc.1.yml) | [2.0.0](swagger-apis/channels/2.0.0.yml) | [YAML](diffs/channels/2.0.0-rc.1_2.0.0.yml) |
+|  | [2.0.0-rc.1](swagger-apis/channels/2.0.0-rc.1.yml) | [2.0.0-rc.2](swagger-apis/channels/2.0.0-rc.2.yml) | [YAML](diffs/channels/2.0.0-rc.1_2.0.0-rc.2.yml) |
+|  | [2.0.0-rc.2](swagger-apis/channels/2.0.0-rc.2.yml) | [2.0.0](swagger-apis/channels/2.0.0.yml) | [YAML](diffs/channels/2.0.0-rc.2_2.0.0.yml) |
 |  | [2.0.0](swagger-apis/channels/2.0.0.yml) | [3.0.0](swagger-apis/channels/3.0.0.yml) | [YAML](diffs/channels/2.0.0_3.0.0.yml) |
 | common | [1.0.0-rc5.1](swagger-apis/common/1.0.0-rc5.1.yml) | [1.0.0-rc5.2](swagger-apis/common/1.0.0-rc5.2.yml) | [YAML](diffs/common/1.0.0-rc5.1_1.0.0-rc5.2.yml) |
 |  | [1.0.0-rc5.2](swagger-apis/common/1.0.0-rc5.2.yml) | [1.0.0-rc5](swagger-apis/common/1.0.0-rc5.yml) | [YAML](diffs/common/1.0.0-rc5.2_1.0.0-rc5.yml) |
