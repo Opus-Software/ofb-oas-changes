@@ -673,6 +673,15 @@ POST /enrollments/{enrollmentId}/fido-registration-options
     - Example changed from null to 'd78fc4e5-37ca-4da3-adf2-9b082bf92280'
     - MaxLength changed from 100 to 36
     - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: rp
+                - Description changed from 'Identificador único da Relying Party.' to 'Identificador único da Relying Party, que corresponde ao valor do CN do certificado de transporte da iniciadora.'
 - Responses changed
   - Deleted response: 429
   - Modified response: 201
@@ -686,6 +695,10 @@ POST /enrollments/{enrollmentId}/fido-registration-options
                   - Items changed
                     - Properties changed
                       - Deleted property: transports
+                - Modified property: user
+                  - Properties changed
+                    - Modified property: id
+                      - Description changed from 'Identificador único do usuário sob registro.' to 'Identificador único do usuário sob registro em formato base64. A conversão deste valor para o formato original (BufferSource ou ArrayBuffer) não deve ultrapassar 64 bytes.'
     - Headers changed
       - Modified header: x-fapi-interaction-id
         - Description changed from 'A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
@@ -823,6 +836,15 @@ POST /enrollments/{enrollmentId}/fido-sign-options
     - Example changed from null to 'd78fc4e5-37ca-4da3-adf2-9b082bf92280'
     - MaxLength changed from 100 to 36
     - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: rp
+                - Description changed from 'Identificador único da Relying Party.' to 'Identificador único da Relying Party, que corresponde ao valor do CN do certificado de transporte da iniciadora.'
 - Responses changed
   - Deleted response: 429
   - Modified response: 201
