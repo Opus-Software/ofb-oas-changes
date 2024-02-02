@@ -12,6 +12,29 @@ POST /consents/{consentId}/authorise
     - Example changed from null to 'd78fc4e5-37ca-4da3-adf2-9b082bf92280'
     - MaxLength changed from 100 to 36
     - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: fidoAssertion
+                - Properties changed
+                  - Modified property: id
+                    - Description changed from 'Identificador da credencial.' to 'Identificador da credencial. Deve ser o valor em formato base64url do campo rawId da chave pública utilizada no processo de autenticação.'
+                  - Modified property: rawId
+                    - Description changed from 'Identificador da credencial. Pode ser igual ao campo id.' to 'Identificador da credencial. Para envio à detentora de conta, o valor deste atributo deve ser idêntico ao valor do atributo id.'
+                  - Modified property: response
+                    - Properties changed
+                      - Modified property: authenticatorData
+                        - Description changed from 'Representa a estrutura de dados do autenticador.' to 'Representa a estrutura de dados do autenticador. Deve ser enviado no formato base64url para a detentora de conta.'
+                      - Modified property: clientDataJSON
+                        - Description changed from 'Agrega as informações do aplicativo que gerou a credencial.' to 'Agrega as informações do aplicativo que gerou a credencial. Deve ser enviado no formato base64url para a detentora de conta.'
+                      - Modified property: signature
+                        - Description changed from 'Sequencia de bytes contendo a assinatura.' to 'Sequência de bytes contendo a assinatura. Deve ser enviado no formato base64url para a detentora de conta.'
+                      - Modified property: userHandle
+                        - Description changed from 'Nome de usuário que foi enviado durante a criação da credencial.' to 'Nome de usuário que foi enviado durante a criação da credencial. Deve ser enviado no formato base64url para a detentora de conta.'
 - Responses changed
   - Deleted response: 429
   - Modified response: 204
@@ -533,6 +556,23 @@ POST /enrollments/{enrollmentId}/fido-registration
     - Example changed from null to 'd78fc4e5-37ca-4da3-adf2-9b082bf92280'
     - MaxLength changed from 100 to 36
     - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: id
+                - Description changed from 'Identificador da credencial.' to 'Identificador da credencial. Deve ser o valor em formato base64url do campo rawId da chave pública criada no processo de registro do dispositivo.'
+              - Modified property: rawId
+                - Description changed from 'Identificador da credencial. Pode ser igual ao campo id.' to 'Identificador da credencial. Para envio ao detentor, o valor deste atributo deve ser idêntico ao valor do atributo id.'
+              - Modified property: response
+                - Properties changed
+                  - Modified property: attestationObject
+                    - Description changed from 'Agrega as informações da chave pública da credencial.' to 'Agrega as informações da chave pública da credencial. Deve ser enviado em formato base64url para o detentor.'
+                  - Modified property: clientDataJSON
+                    - Description changed from 'Agrega as informações do aplicativo que gerou a credencial.' to 'Agrega as informações do aplicativo que gerou a credencial. Deve ser enviado em formato base64url para o detentor.'
 - Responses changed
   - Deleted response: 429
   - Modified response: 204
@@ -688,13 +728,24 @@ POST /enrollments/{enrollmentId}/fido-registration-options
     - Content changed
       - Modified media type: application/jwt
         - Schema changed
+          - Required changed
+            - Deleted required property: links
           - Properties changed
+            - Deleted property: links
             - Modified property: data
               - Properties changed
+                - Modified property: challenge
+                  - Description changed from 'Sequência de bytes aleatórios gerados pelo servidor FIDO2, codificados em base64.' to 'Sequência de bytes aleatórios gerados pelo servidor FIDO2. Deve ser o valor em formato base64url.'
                 - Modified property: excludeCredentials
                   - Items changed
                     - Properties changed
                       - Deleted property: transports
+                - Modified property: rp
+                  - Properties changed
+                    - Modified property: id
+                      - Description changed from 'Identificador único da Relying Party.' to 'Identificador único da Relying Party. Esse campo deve ser preenchido com o valor que é enviado na requisição no campo /data/rp.'
+                    - Modified property: name
+                      - Description changed from 'Nome amigável da Relying Party para exibição aos usuários.' to 'Nome amigável da Relying Party para exibição aos usuários. Pode ser obtido através do Software Statement Assertion, atributo software_client_name.'
                 - Modified property: user
                   - Properties changed
                     - Modified property: id
@@ -851,7 +902,10 @@ POST /enrollments/{enrollmentId}/fido-sign-options
     - Content changed
       - Modified media type: application/jwt
         - Schema changed
+          - Required changed
+            - Deleted required property: links
           - Properties changed
+            - Deleted property: links
             - Modified property: data
               - Properties changed
                 - Modified property: allowCredentials
