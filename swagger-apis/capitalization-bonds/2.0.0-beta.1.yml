@@ -3,7 +3,7 @@ info:
   title: API Capitalization-bonds - Open Finance Brasil
   description: |
     As APIs descritas neste documento é referente a API de Capitalização da fase OpenInsurance do Open Finance Brasil.
-  version: 2.0.0-beta-1
+  version: 2.0.0-beta.1
   license:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0'
@@ -473,7 +473,7 @@ components:
           example: Informações adicionais
         minimum:
           type: string
-          pattern: '^(\d{1,16}\.\d{2,4})$|^(NA)$'
+          pattern: '^(\d{1,16}\.\d{2,4})$'
           description: |
             Condicional: Quando modalidade for igual 'TRADICIONAL'
             Valor mínimo correspondente ao pagamento efetuado pelo subscritor à sociedade de capitalização.
@@ -481,7 +481,7 @@ components:
           example: '1.2222'
         maximum:
           type: string
-          pattern: '^(\d{1,16}\.\d{2,4})$|^(NA)$'
+          pattern: '^(\d{1,16}\.\d{2,4})$'
           description: |
             Condicional: Quando modalidade for igual 'TRADICIONAL'
             Valor máximo correspondente ao pagamento efetuado pelo subscritor à sociedade de capitalização.
@@ -504,7 +504,7 @@ components:
         - periodExtensionOption
       properties:
         suspensionMonths:
-          type: number
+          type: integer
           description: 'Conforme manual SUSEP: Prazo máximo (contínuo ou intermitente) em meses que o título fica suspenso por atraso de pagamento, antes de ser cancelado (não aplicável a pagamento único).'
           example: 10
         periodExtensionOption:
@@ -609,8 +609,7 @@ components:
           maxLength: 200
           example: Informações adicionais
         quantity:
-          type: number
-          format: integer
+          type: integer
           description: Número da quantidade de sorteios previstos ao longo da vigência.
           example: 10000
         prizeMultiplier:
