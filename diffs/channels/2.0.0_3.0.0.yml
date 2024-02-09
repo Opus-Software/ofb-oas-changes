@@ -5,284 +5,291 @@
 ### Modified Endpoints: 5
 -------------------------
 GET /banking-agents
+- Deleted query param: page
+- Deleted query param: page-size
 - Responses changed
+  - Deleted response: 400
+  - Deleted response: 404
+  - Deleted response: 405
+  - Deleted response: 429
+  - Deleted response: 500
+  - Deleted response: 504
+  - Deleted response: 529
+  - Deleted response: default
   - Modified response: 200
     - Content changed
       - Modified media type: application/json
         - Schema changed
+          - Example changed from null to map[data:map[brand:map[companies:[map[cnpjNumber:45086338000178 contractors:[map[bankingAgents:[map[identification:map[cnpjNumber:02345876000299 corporationName:Empresa Correspondente A groupName:Grupo Master isUnderestablishment:true] locations:[map[availability:map[exception:Exceto feriados municipais, estaduais e nacionais isPublicAccessAllowed:true standards:[map[closingTime:16:00:57Z openingTime:10:00:57Z weekday:SEGUNDA_FEIRA] map[closingTime:16:00:57Z openingTime:10:00:57Z weekday:TERCA_FEIRA] map[closingTime:16:00:57Z openingTime:10:00:57Z weekday:QUARTA_FEIRA] map[closingTime:16:00:57Z openingTime:10:00:57Z weekday:QUINTA_FEIRA] map[closingTime:16:00:57Z openingTime:10:00:57Z weekday:SEXTA_FEIRA]]] phones:[map[areaCode:14 countryCallingCode:55 number:35721199 type:FIXO] map[areaCode:14 countryCallingCode:55 number:997865532 type:MOVEL]] postalAddress:map[additionalInfo:Loja B. address:Av Tasuko Ykeda, 25 country:Brasil countryCode:BRA countrySubDivision:SP districtName:Centro geographicCoordinates:map[latitude:-90.8365180 longitude:-180.836519] ibgeCode:3550308 postCode:17500001 townName:Marília]] map[availability:map[exception:Exceto feriados municipais, estaduais e nacionais isPublicAccessAllowed:true standards:[map[closingTime:16:00:57Z openingTime:10:00:57Z weekday:SEGUNDA_FEIRA] map[closingTime:16:00:57Z openingTime:10:00:57Z weekday:TERCA_FEIRA] map[closingTime:16:00:57Z openingTime:10:00:57Z weekday:QUARTA_FEIRA] map[closingTime:16:00:57Z openingTime:10:00:57Z weekday:QUINTA_FEIRA] map[closingTime:16:00:57Z openingTime:10:00:57Z weekday:SEXTA_FEIRA]]] phones:[map[areaCode:14 countryCallingCode:55 number:64721199 type:FIXO]] postalAddress:map[additionalInfo:Loja 2. address:R Yroshima Takasi, 72 country:Brasil countryCode:BRA countrySubDivision:SP districtName:Altos da Colina geographicCoordinates:map[latitude:-90.8365180 longitude:-180.836519] ibgeCode:3550308 postCode:17526760 townName:Marília]] map[availability:map[exception:Exceto feriados municipais, estaduais e nacionais isPublicAccessAllowed:true standards:[map[closingTime:16:00:57Z openingTime:10:00:57Z weekday:SEGUNDA_FEIRA] map[closingTime:16:00:57Z openingTime:10:00:57Z weekday:TERCA_FEIRA] map[closingTime:16:00:57Z openingTime:10:00:57Z weekday:QUARTA_FEIRA] map[closingTime:16:00:57Z openingTime:10:00:57Z weekday:QUINTA_FEIRA] map[closingTime:16:00:57Z openingTime:10:00:57Z weekday:SEXTA_FEIRA]]] postalAddress:map[additionalInfo:Loja B. address:Al Nasso Origami, 15, bloco A country:Brasil countryCode:BRA countrySubDivision:SP districtName:Centro geographicCoordinates:map[latitude:-90.8365180 longitude:-180.836519] ibgeCode:3550308 postCode:17500001 townName:Marília]]] services:[map[additionalInfo:NA code:RECEBE_ENCAMINHA_PROPOSTAS_ABERTURA_CONTAS name:RECEPCAO_ENCAMINHAMENTO_PROPOSTAS_ABERTURA_CONTAS_DEPOSITOS_VISTA_PRAZO_POUPANCA_MANTIDOS_INSTITUICAO_CONTRATANTE] map[additionalInfo:NA code:REALIZA_RECEBIMENTOS_PAGAMENTOS_TRANSFERENCIAS_ELETRONICAS name:REALIZACAO_RECEBIMENTOS_PAGAMENTOS_TRANSFERENCIAS_ELETRONICAS_VISANDO_MOVIMENTACAO_CONTAS_DEPOSITOS_TITULARIDADE_CLIENTES_MANTIDAS_INSTITUICAO_CONTRATANTE] map[additionalInfo:NA code:RECEBIMENTOS_PAGAMENTOS_QUALQUER_NATUREZA_EXECUCAO_CONTRATOS_CONVENIO name:RECEBIMENTOS_PAGAMENTOS_QUALQUER_NATUREZA_OUTRAS_ATIVIDADES_DECORRENTES_EXECUCAO_CONTRATOS_CONVENIOS_PRESTACAO_SERVICOS]]]] cnpjNumber:99558332000137 name:Empresa Contratante 1]] name:Empresa A1]] name:Organização A]] links:map[first:https://api.banco.com.br/open-banking/channels/v1/banking-agents last:https://api.banco.com.br/open-banking/channels/v1/banking-agents next:null prev:null self:https://api.banco.com.br/open-banking/channels/v1/banking-agents] meta:map[totalPages:1 totalRecords:1]]
           - Properties changed
             - Modified property: data
+              - Type changed from 'array' to 'object'
+              - MinItems changed from 1 to 0
+              - Items changed
+                - Schema deleted
+              - Required changed
+                - New required property: brand
               - Properties changed
-                - Modified property: brand
-                  - Properties changed
-                    - Modified property: companies
-                      - Items changed
-                        - Property 'AllOf' changed
-                          - Schema #/components/schemas/CNPJ modified
-                            - Properties changed
-                              - Modified property: cnpjNumber
-                                - Pattern changed from '^(\d{14})$' to '^(\d{14})$|^NA$'
-                        - Properties changed
-                          - Modified property: contractors
-                            - Items changed
-                              - Property 'AllOf' changed
-                                - Schema #/components/schemas/CNPJ modified
-                                  - Properties changed
-                                    - Modified property: cnpjNumber
-                                      - Pattern changed from '^(\d{14})$' to '^(\d{14})$|^NA$'
-                              - Properties changed
-                                - Modified property: bankingAgents
-                                  - Items changed
-                                    - Properties changed
-                                      - Modified property: identification
-                                        - Property 'AllOf' changed
-                                          - Schema #/components/schemas/CNPJ modified
-                                            - Properties changed
-                                              - Modified property: cnpjNumber
-                                                - Pattern changed from '^(\d{14})$' to '^(\d{14})$|^NA$'
-                                      - Modified property: locations
-                                        - Items changed
-                                          - Properties changed
-                                            - Modified property: phones
-                                              - Items changed
-                                                - Required changed
-                                                  - Deleted required property: areaCode
-                                                  - Deleted required property: countryCallingCode
-                                                  - Deleted required property: number
-                                                  - Deleted required property: type
-                                            - Modified property: postalAddress
-                                              - Property 'AllOf' changed
-                                                - Schema #/components/schemas/PostalAddress modified
-                                                  - Properties changed
-                                                    - Modified property: additionalInfo
-                                                      - Description changed from 'Complemento' to 'Alguns logradouros ainda necessitam ser especificados por meio de complemento'
-                                                    - Modified property: geographicCoordinates
-                                                      - Properties changed
-                                                        - Modified property: latitude
-                                                          - MaxLength changed from 11 to 13
-                                                          - Pattern changed from '^-?\d{1,2}\.\d{1,9}$|^NA$' to '^-?\d{1,2}\.\d{1,9}$'
-                                                        - Modified property: longitude
-                                                          - MaxLength changed from 11 to 13
-                                                          - Pattern changed from '^-?\d{1,3}\.\d{1,8}$|^NA$' to '^-?\d{1,3}\.\d{1,8}$'
-                                                    - Modified property: ibgeCode
-                                                      - Pattern changed from '\d{7}|^NA$' to '^\d{7}$'
+                - New property: brand
+            - Modified property: links
+              - Description changed from 'Referências para outros recursos da API requisitada' to ''
+              - Properties changed
+                - Modified property: first
+                  - Example changed from 'https://api.banco.com.br/open-banking/channels/v2/resource' to 'https://api.banco.com.br/open-banking/channels/v1/<resource>'
+                  - MinLength changed from 5 to 0
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: last
+                  - Example changed from 'https://api.banco.com.br/open-banking/channels/v2/resource' to 'https://api.banco.com.br/open-banking/channels/v1/<resource>'
+                  - MinLength changed from 5 to 0
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: next
+                  - Example changed from 'https://api.banco.com.br/open-banking/channels/v2/resource' to null
+                  - MinLength changed from 5 to 0
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: prev
+                  - Example changed from 'https://api.banco.com.br/open-banking/channels/v2/resource' to null
+                  - MinLength changed from 5 to 0
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: self
+                  - Example changed from 'https://api.banco.com.br/open-banking/channels/v2/resource' to 'https://api.banco.com.br/open-banking/channels/v1/<resource>'
+                  - MinLength changed from 5 to 0
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+            - Modified property: meta
+              - Description changed from 'Meta informações referente à API requisitada' to ''
 GET /branches
+- Deleted query param: page
+- Deleted query param: page-size
 - Responses changed
+  - Deleted response: 400
+  - Deleted response: 404
+  - Deleted response: 405
+  - Deleted response: 429
+  - Deleted response: 500
+  - Deleted response: 504
+  - Deleted response: 529
+  - Deleted response: default
   - Modified response: 200
     - Content changed
       - Modified media type: application/json
         - Schema changed
-          - Example changed from map[data:map[brand:map[companies:[map[branches:[map[availability:map[exception:Exceto feriados municipais, estaduais e nacionais isPublicAccessAllowed:true standards:[map[closingTime:16:00:57Z openingTime:10:00:57Z weekday:SEGUNDA_FEIRA] map[closingTime:16:00:57Z openingTime:10:00:57Z weekday:TERCA_FEIRA] map[closingTime:16:00:57Z openingTime:10:00:57Z weekday:QUARTA_FEIRA] map[closingTime:16:00:57Z openingTime:10:00:57Z weekday:QUINTA_FEIRA] map[closingTime:16:00:57Z openingTime:10:00:57Z weekday:SEXTA_FEIRA]]] identification:map[checkDigit:9 code:0001 name:Marília openingDate:2010-01-02 relatedBranch:0001 type:AGENCIA] phones:[map[areaCode:14 countryCallingCode:55 number:35721199 type:FIXO] map[areaCode:14 countryCallingCode:55 number:997865532 type:MOVEL]] postalAddress:map[additionalInfo:Loja B address:Av Naburo Ykesaki, 1270 country:Brasil countryCode:BRA countrySubDivision:SP districtName:Centro geographicCoordinates:map[latitude:-90.8365180 longitude:-180.836519] ibgeCode:3550308 postCode:17500-001 townName:Marília] services:[map[additionalInfo:Renegociação, Previdência Privada code:RECEBE_PAGA_QUALQUER_NATUREZA name:RECEBIMENTOS_PAGAMENTOS_QUALQUER_NATUREZA] map[additionalInfo:Renegociação, Previdência Privada code:ABRE_CONTA_DEPOSITO_OU_PRE_PAGA name:ABERTURA_CONTAS_DEPOSITOS_OU_PAGAMENTO_PRE_PAGA]]]] cnpjNumber:45086338000178 name:Empresa A1 urlComplementaryList:https://empresaa1.com/branches-banking]] name:Organização A]] links:map[first:https://api.banco.com.br/open-banking/channels/v1/branches last:https://api.banco.com.br/open-banking/channels/v1/branches next:null prev:null self:https://api.banco.com.br/open-banking/channels/v1/branches] meta:map[totalPages:1 totalRecords:1]] to map[data:map[brand:map[companies:[map[branches:[map[availability:map[exception:Exceto feriados municipais, estaduais e nacionais isPublicAccessAllowed:true standards:[map[closingTime:16:00:57Z openingTime:10:00:57Z weekday:SEGUNDA_FEIRA] map[closingTime:16:00:57Z openingTime:10:00:57Z weekday:TERCA_FEIRA] map[closingTime:16:00:57Z openingTime:10:00:57Z weekday:QUARTA_FEIRA] map[closingTime:16:00:57Z openingTime:10:00:57Z weekday:QUINTA_FEIRA] map[closingTime:16:00:57Z openingTime:10:00:57Z weekday:SEXTA_FEIRA]]] identification:map[checkDigit:9 code:0001 name:Marília openingDate:2010-01-02 relatedBranch:0001 type:AGENCIA] phones:[map[areaCode:14 countryCallingCode:55 number:35721199 type:FIXO] map[areaCode:14 countryCallingCode:55 number:997865532 type:MOVEL]] postalAddress:map[additionalInfo:Loja B address:Av Naburo Ykesaki, 1270 country:Brasil countryCode:BRA countrySubDivision:SP districtName:Centro geographicCoordinates:map[latitude:-90.8365180 longitude:-180.836519] ibgeCode:3550308 postCode:17500-001 townName:Marília] services:[map[code:RECEBE_PAGA_QUALQUER_NATUREZA name:RECEBIMENTOS_PAGAMENTOS_QUALQUER_NATUREZA] map[additionalInfo:Renegociação code:OUTROS_PRODUTOS_SERVICOS name:OUTROS_PRODUTOS_SERVICOS]]]] cnpjNumber:45086338000178 name:Empresa A1 urlComplementaryList:https://empresaa1.com/branches-banking]] name:Organização A]] links:map[first:https://api.banco.com.br/open-banking/channels/v1/branches last:https://api.banco.com.br/open-banking/channels/v1/branches next:null prev:null self:https://api.banco.com.br/open-banking/channels/v1/branches] meta:map[totalPages:1 totalRecords:1]]
+          - Example changed from null to map[data:map[brand:map[companies:[map[branches:[map[availability:map[exception:Exceto feriados municipais, estaduais e nacionais isPublicAccessAllowed:true standards:[map[closingTime:16:00:57Z openingTime:10:00:57Z weekday:SEGUNDA_FEIRA] map[closingTime:16:00:57Z openingTime:10:00:57Z weekday:TERCA_FEIRA] map[closingTime:16:00:57Z openingTime:10:00:57Z weekday:QUARTA_FEIRA] map[closingTime:16:00:57Z openingTime:10:00:57Z weekday:QUINTA_FEIRA] map[closingTime:16:00:57Z openingTime:10:00:57Z weekday:SEXTA_FEIRA]]] identification:map[checkDigit:9 code:0001 name:Marília openingDate:2010-01-02 relatedBranch:0001 type:AGENCIA] phones:[map[areaCode:14 countryCallingCode:55 number:35721199 type:FIXO] map[areaCode:14 countryCallingCode:55 number:997865532 type:MOVEL]] postalAddress:map[additionalInfo:Loja B address:Av Naburo Ykesaki, 1270 country:Brasil countryCode:BRA countrySubDivision:SP districtName:Centro geographicCoordinates:map[latitude:-90.8365180 longitude:-180.836519] ibgeCode:3550308 postCode:17500-001 townName:Marília] services:[map[code:RECEBE_PAGA_QUALQUER_NATUREZA name:RECEBIMENTOS_PAGAMENTOS_QUALQUER_NATUREZA] map[additionalInfo:Renegociação code:OUTROS_PRODUTOS_SERVICOS name:OUTROS_PRODUTOS_SERVICOS]]]] cnpjNumber:45086338000178 name:Empresa A1 urlComplementaryList:https://empresaa1.com/branches-banking]] name:Organização A]] links:map[first:https://api.banco.com.br/open-banking/channels/v1/branches last:https://api.banco.com.br/open-banking/channels/v1/branches next:null prev:null self:https://api.banco.com.br/open-banking/channels/v1/branches] meta:map[totalPages:1 totalRecords:1]]
           - Properties changed
             - Modified property: data
+              - Type changed from 'array' to 'object'
+              - Description changed from 'Conjunto de informações referente as dependências próprias da instituição.' to ''
+              - MinItems changed from 1 to 0
+              - Items changed
+                - Schema deleted
+              - Required changed
+                - New required property: brand
               - Properties changed
-                - Modified property: brand
-                  - Properties changed
-                    - Modified property: companies
-                      - Description changed from 'Lista de contratantes' to 'Companies traz uma lista de todas as instuituições da Marca.'
-                      - MinItems changed from 0 to 1
-                      - Items changed
-                        - Property 'AllOf' changed
-                          - Schema #/components/schemas/CNPJ modified
-                            - Properties changed
-                              - Modified property: cnpjNumber
-                                - Pattern changed from '^(\d{14})$' to '^(\d{14})$|^NA$'
-                        - Properties changed
-                          - Modified property: branches
-                            - Description changed from '' to 'Lista de Dependências de uma Instituição'
-                            - MinItems changed from 0 to 1
-                            - Items changed
-                              - Properties changed
-                                - Modified property: availability
-                                  - Properties changed
-                                    - Modified property: exception
-                                      - Description changed from '' to 'Em campo texto devem ser registradas todas as Exceções para o não atendimento.'
-                                    - Modified property: isPublicAccessAllowed
-                                      - Description changed from '' to 'Indica se a instalação da Dependência tem acesso restrito a clientes.'
-                                    - Modified property: standards
-                                      - Description changed from '' to 'Lista disponibilidade padrão da depêndencia por dias da semana'
-                                      - MinItems changed from 0 to 1
-                                      - MaxItems changed from null to 7
-                                      - Items changed
-                                        - Properties changed
-                                          - Modified property: closingTime
-                                            - Pattern changed from '^(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)|Z$' to '^(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)|Z$|^NA$'
-                                          - Modified property: openingTime
-                                            - Pattern changed from '^(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)|Z$' to '^(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)|Z$|^NA$'
-                                - Modified property: identification
-                                  - Properties changed
-                                    - Modified property: checkDigit
-                                      - Description changed from '' to 'Dígito verificador do código da dependência'
-                                      - Pattern changed from '^\d{1}$' to '\w*\W*'
-                                    - Modified property: code
-                                      - Description changed from '' to 'Código identificador da dependência'
-                                      - Pattern changed from '^\d{4}$' to '^\d{4}$|^NA$'
-                                    - Modified property: name
-                                      - Description changed from '' to 'Nome da dependência'
-                                    - Modified property: openingDate
-                                      - Description changed from '' to 'Data de abertura da dependência (uma string com data conforme especificação RFC-3339. p.ex. 2014-03-19)'
-                                    - Modified property: relatedBranch
-                                      - Description changed from '' to 'Código da agência vinculada ao Posto de Atendimento - se aplicável'
-                                      - Pattern changed from '^\d{4}$|^NA$' to '^\d{4}$'
-                                    - Modified property: type
-                                      - Description changed from 'Tipo da dependência, segundo a regulamentação do Bacen,  na Resolução Nº 4072, de 26 de abril de 2012: Agência é a dependência destinada ao atendimento aos clientes e ao público em geral no exercício de atividades da instituição, não podendo ser móvel ou transitória; Dependência de instituições financeiras e demais instituições, autorizadas a funcionar pelo Banco Central do Brasil, destinada à prática das atividades para as quais a instituição esteja regularmente habilitada. Posto de Atendimento é a dependência subordinada a agência  ou à sede da instituição financeira, destinada ao atendimento ao público no exercício de uma ou mais de suas atividades, podendo ser fixo ou móvel. Segundo Art.15. Os Postos de Atendimento Bancário (PAB), Postos Avançados de Atendimento (PAA), Postos de Atendimento Transitórios (PAT), Postos de Compra de Ouro (PCO), Postos de Atendimento Cooperativo (PAC), Postos de Atendimento de Microcrédito (PAM), Postos Bancários de Arrecadação e Pagamento (PAP) e os Postos de Câmbio atualmente em funcionamento serão considerados PA. Posto de Atendimento Eletrônico é a dependência constituída por um ou mais terminais de autoatendimento, subordinada a agência ou à sede da instituição, destinada à prestação de serviços por meio eletrônico, podendo ser fixo ou móvel, permanente ou transitório Unidade Administrativa Desmembrada (UAD) segundo a Resolução 4072 , BCB, 2012, no Art. 8º "... é dependência destinada à execução de atividades administrativas da instituição, vedado o atendimento ao público"
-' to ' > Tipo da dependência, segundo a regulamentação do Bacen,  na Resolução Nº 4072, de 26 de abril de 2012: Dependência de instituições financeiras e demais instituições, autorizadas a funcionar pelo Banco Central do Brasil, destinada à prática das atividades para as quais a instituição esteja regularmente habilitada. 
-* `AGENCIA`: Agência é a dependência destinada ao atendimento aos clientes, ao público em geral e aos associados de cooperativas de crédito, no exercício de atividades da instituição, não podendo ser móvel ou transitória; 
-* `POSTO_ATENDIMENTO`: Posto de Atendimento é a dependência subordinada a agência  ou à sede da instituição financeira, destinada ao atendimento ao público no exercício de uma ou mais de suas atividades, podendo ser fixo ou móvel. Segundo Art.15. Os Postos de Atendimento Bancário (PAB), Postos Avançados de Atendimento (PAA), Postos de Atendimento Transitórios (PAT), Postos de Compra de Ouro (PCO), Postos de Atendimento Cooperativo (PAC), Postos de Atendimento de Microcrédito (PAM), Postos Bancários de Arrecadação e Pagamento (PAP) e os Postos de Câmbio atualmente em funcionamento serão considerados PA. 
-* `POSTO_ATENDIMENTO_ELETRONICO`: Posto de Atendimento Eletrônico é a dependência constituída por um ou mais terminais de autoatendimento, subordinada a agência ou à sede da instituição, destinada à prestação de serviços por meio eletrônico, podendo ser fixo ou móvel, permanente ou transitório 
-* `UNIDADE_ADMINISTRATIVA_DESMEMBRADA `: Unidade Administrativa Desmembrada (UAD) segundo a Resolução 4072 , BCB, 2012, no Art. 8º "... é dependência destinada à execução de atividades administrativas da instituição, vedado o atendimento ao público"'
-                                - Modified property: phones
-                                  - Description changed from '' to 'Lista de telefones da Dependência'
-                                  - MinItems changed from 0 to 1
-                                  - Items changed
-                                    - Property 'AllOf' changed
-                                      - 1 schemas added
-                                    - Required changed
-                                      - Deleted required property: areaCode
-                                      - Deleted required property: countryCallingCode
-                                      - Deleted required property: number
-                                    - Properties changed
-                                      - Deleted property: areaCode
-                                      - Deleted property: countryCallingCode
-                                      - Deleted property: number
-                                      - Deleted property: type
-                                - Modified property: postalAddresses
-                                  - Property 'AllOf' changed
-                                    - Schema #/components/schemas/PostalAddress modified
-                                      - Properties changed
-                                        - Modified property: additionalInfo
-                                          - Description changed from 'Complemento' to 'Alguns logradouros ainda necessitam ser especificados por meio de complemento'
-                                        - Modified property: geographicCoordinates
-                                          - Properties changed
-                                            - Modified property: latitude
-                                              - MaxLength changed from 11 to 13
-                                              - Pattern changed from '^-?\d{1,2}\.\d{1,9}$|^NA$' to '^-?\d{1,2}\.\d{1,9}$'
-                                            - Modified property: longitude
-                                              - MaxLength changed from 11 to 13
-                                              - Pattern changed from '^-?\d{1,3}\.\d{1,8}$|^NA$' to '^-?\d{1,3}\.\d{1,8}$'
-                                        - Modified property: ibgeCode
-                                          - Pattern changed from '\d{7}|^NA$' to '^\d{7}$'
-                                - Modified property: services
-                                  - Description changed from '' to 'Traz a relação de serviços disponbilizados pelo Canal de Atendimento'
-                                  - MinItems changed from 0 to 1
-                                  - MaxItems changed from null to 20
-                                  - Items changed
-                                    - Properties changed
-                                      - Modified property: additionalInfo
-                                        - Description changed from 'Texto livre para complementar informação relativa ao Serviço disponível, quando for selecionada a opção p preenchida a opção 'OUTROS_PRODUTOS_SERVICOS'' to 'Texto livre para complementar informação relativa ao Serviço disponível, quando for selecionada a opção 'OUTROS_PRODUTOS_SERVICOS''
-                                      - Modified property: code
-                                        - Description changed from '' to 'Código dos Serviços efetivamente prestados pelo Canal de Atendimento'
-                                      - Modified property: name
-                                        - Description changed from '' to 'Nome dos Serviços efetivamente prestados pelo Canal de Atendimento'
-                          - Modified property: cnpjNumber
-                            - Pattern changed from '^(\d{14})$' to '^(\d{14})$|^NA$'
-                    - Modified property: name
-                      - Description changed from 'Nome da marca selecionada pela Organização proprietária da dependência (titular).' to 'Nome da Marca reportada pelo participante do Open Banking. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes.'
+                - New property: brand
+            - Modified property: links
+              - Description changed from 'Referências para outros recursos da API requisitada' to ''
+              - Properties changed
+                - Modified property: first
+                  - Example changed from 'https://api.banco.com.br/open-banking/channels/v2/resource' to 'https://api.banco.com.br/open-banking/channels/v1/<resource>'
+                  - MinLength changed from 5 to 0
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: last
+                  - Example changed from 'https://api.banco.com.br/open-banking/channels/v2/resource' to 'https://api.banco.com.br/open-banking/channels/v1/<resource>'
+                  - MinLength changed from 5 to 0
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: next
+                  - Example changed from 'https://api.banco.com.br/open-banking/channels/v2/resource' to null
+                  - MinLength changed from 5 to 0
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: prev
+                  - Example changed from 'https://api.banco.com.br/open-banking/channels/v2/resource' to null
+                  - MinLength changed from 5 to 0
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: self
+                  - Example changed from 'https://api.banco.com.br/open-banking/channels/v2/resource' to 'https://api.banco.com.br/open-banking/channels/v1/<resource>'
+                  - MinLength changed from 5 to 0
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+            - Modified property: meta
+              - Description changed from 'Meta informações referente à API requisitada' to ''
 GET /electronic-channels
+- Deleted query param: page
+- Deleted query param: page-size
 - Responses changed
+  - Deleted response: 400
+  - Deleted response: 404
+  - Deleted response: 405
+  - Deleted response: 429
+  - Deleted response: 500
+  - Deleted response: 504
+  - Deleted response: 529
+  - Deleted response: default
   - Modified response: 200
     - Content changed
       - Modified media type: application/json
         - Schema changed
+          - Example changed from null to map[data:map[brand:map[companies:[map[cnpjNumber:45086338000178 electronicChannels:[map[identification:map[additionalInfo:NA type:INTERNET_BANKING urls:[https://empresaa1.com/internet-banking]] services:[map[additionalInfo:NA code:ABRE_CONTA_DEPOSITO_OU_PRE_PAGA name:ABERTURA_CONTAS_DEPOSITOS_OU_PAGAMENTO_PRE_PAGA] map[additionalInfo:NA code:SEGUROS name:SEGUROS]]]] name:Empresa A1 urlComplementaryList:https://empresaa1.com/branches-banking]] name:Organização A]] links:map[first:https://api.banco.com.br/open-banking/channels/v1/electronic-channels last:https://api.banco.com.br/open-banking/channels/v1/electronic-channels next:null prev:null self:https://api.banco.com.br/open-banking/channels/v1/electronic-channels] meta:map[totalPages:1 totalRecords:1]]
           - Properties changed
             - Modified property: data
+              - Type changed from 'array' to 'object'
+              - Description changed from 'Conjunto de informações referente aos canais eletrônicos de atendimento da instituição' to ''
+              - MinItems changed from 1 to 0
+              - Items changed
+                - Schema deleted
+              - Required changed
+                - New required property: brand
               - Properties changed
-                - Modified property: brand
-                  - Properties changed
-                    - Modified property: companies
-                      - Items changed
-                        - Property 'AllOf' changed
-                          - Schema #/components/schemas/CNPJ modified
-                            - Properties changed
-                              - Modified property: cnpjNumber
-                                - Pattern changed from '^(\d{14})$' to '^(\d{14})$|^NA$'
-                        - Properties changed
-                          - Modified property: electronicChannels
-                            - Items changed
-                              - Properties changed
-                                - Modified property: services
-                                  - Items changed
-                                    - Properties changed
-                                      - Modified property: additionalInfo
-                                        - Description changed from 'Texto livre para complementar informação relativa ao Serviço disponível, quando for selecionada a opção p preenchida a opção 'OUTROS_PRODUTOS_SERVICOS'' to 'Texto livre para complementar informação relativa ao Serviço disponível, quando for selecionada a opção 'OUTROS_PRODUTOS_SERVICOS''
+                - New property: brand
+            - Modified property: links
+              - Description changed from 'Referências para outros recursos da API requisitada' to ''
+              - Properties changed
+                - Modified property: first
+                  - Example changed from 'https://api.banco.com.br/open-banking/channels/v2/resource' to 'https://api.banco.com.br/open-banking/channels/v1/<resource>'
+                  - MinLength changed from 5 to 0
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: last
+                  - Example changed from 'https://api.banco.com.br/open-banking/channels/v2/resource' to 'https://api.banco.com.br/open-banking/channels/v1/<resource>'
+                  - MinLength changed from 5 to 0
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: next
+                  - Example changed from 'https://api.banco.com.br/open-banking/channels/v2/resource' to null
+                  - MinLength changed from 5 to 0
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: prev
+                  - Example changed from 'https://api.banco.com.br/open-banking/channels/v2/resource' to null
+                  - MinLength changed from 5 to 0
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: self
+                  - Example changed from 'https://api.banco.com.br/open-banking/channels/v2/resource' to 'https://api.banco.com.br/open-banking/channels/v1/<resource>'
+                  - MinLength changed from 5 to 0
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+            - Modified property: meta
+              - Description changed from 'Meta informações referente à API requisitada' to ''
 GET /phone-channels
+- Deleted query param: page
+- Deleted query param: page-size
 - Responses changed
+  - Deleted response: 400
+  - Deleted response: 404
+  - Deleted response: 405
+  - Deleted response: 429
+  - Deleted response: 500
+  - Deleted response: 504
+  - Deleted response: 529
+  - Deleted response: default
   - Modified response: 200
     - Content changed
       - Modified media type: application/json
         - Schema changed
-          - Example changed from map[data:map[brand:map[companies:[map[cnpjNumber:45086338000178 name:Empresa A1 phoneChannels:[map[identification:map[additionalInfo:NA phones:[map[additionalInfo:NA areaCode:14 countryCallingCode:55 number:3572-1199] map[additionalInfo:NA areaCode:14 countryCallingCode:55 number:99786-5532]] type:CENTRAL_TELEFONICA] services:[map[additionalInfo:NA code:ABRE_CONTA_DEPOSITO_OU_PRE_PAGA name:ABERTURA_CONTAS_DEPOSITOS_OU_PAGAMENTO_PRE_PAGA] map[additionalInfo:NA code:RECEBE_PAGA_QUALQUER_NATUREZA name:RECEBIMENTOS_PAGAMENTOS_QUALQUER_NATUREZA]]] map[identification:map[additionalInfo:NA phones:[map[additionalInfo:DDI '55'; DDD '11', 40044828, 'Para clientes no exterior' areaCode:14 countryCallingCode:55 number:4004-4828] map[additionalInfo:DDI ' ', DDD ' ', 40044828, 'Para regiões metropolitanas' areaCode:14 countryCallingCode:55 number:4004-4828] map[additionalInfo:DDI ' ', DDD ' ', 40044828, 'Para demais localidades' areaCode:14 countryCallingCode:55 number:4004-4828]] type:SAC] services:[map[additionalInfo:NA code:RECLAMACOES name:RECLAMACOES] map[additionalInfo:NA code:INFORMACOES name:INFORMACOES] map[additionalInfo:NA code:CANCELAMENTO name:CANCELAMENTO]]] map[identification:map[additionalInfo:NA phones:[map[additionalInfo:DDI '55'; DDD '11', 40045555, 'Para clientes no exterior' areaCode:14 countryCallingCode:55 number:4004-5555] map[additionalInfo:DDI ' ', DDD ' ', 40045555, 'Para regiões metropolitanas' areaCode:14 countryCallingCode:55 number:4004-5555] map[additionalInfo:DDI ' ', DDD ' ', 40045555, 'Para demais localidades' areaCode:14 countryCallingCode:55 number:4004-5555]] type:OUVIDORIA] services:[map[additionalInfo:NA code:RECLAMACOES name:RECLAMACOES] map[additionalInfo:NA code:INFORMACOES name:INFORMACOES]]]] urlComplementaryList:https://empresaa1.com/branches-banking]] name:Organização A]] links:map[first:https://api.banco.com.br/open-banking/channels/v1/phone-channels last:https://api.banco.com.br/open-banking/channels/v1/phone-channels next:null prev:null self:https://api.banco.com.br/open-banking/channels/v1/phone-channels] meta:map[totalPages:1 totalRecords:1]] to map[data:map[brand:map[companies:[map[cnpjNumber:45086338000178 name:Empresa A1 phoneChannels:[map[identification:map[phones:[map[additionalInfo:NA areaCode:14 countryCallingCode:55 number:35721199] map[additionalInfo:NA areaCode:14 countryCallingCode:55 number:997865532]] type:CENTRAL_TELEFONICA] services:[map[code:ABRE_CONTA_DEPOSITO_OU_PRE_PAGA name:ABERTURA_CONTAS_DEPOSITOS_OU_PAGAMENTO_PRE_PAGA] map[code:RECEBE_PAGA_QUALQUER_NATUREZA name:RECEBIMENTOS_PAGAMENTOS_QUALQUER_NATUREZA] map[additionalInfo:Atendimento em outros idiomas code:OUTROS_PRODUTOS_SERVICOS name:OUTROS_PRODUTOS_SERVICOS]]] map[identification:map[phones:[map[additionalInfo:DDI '55'; DDD '11', 40044828, 'Para clientes no exterior' areaCode:14 countryCallingCode:55 number:40044828] map[additionalInfo:DDI ' ', DDD ' ', 40044828, 'Para regiões metropolitanas' areaCode:14 countryCallingCode:55 number:40044828] map[additionalInfo:DDI ' ', DDD ' ', 40044828, 'Para demais localidades' areaCode:14 countryCallingCode:55 number:40044828]] type:SAC] services:[map[code:RECLAMACOES name:RECLAMACOES] map[code:INFORMACOES name:INFORMACOES] map[code:CANCELAMENTO name:CANCELAMENTO]]] map[identification:map[phones:[map[additionalInfo:DDI '55'; DDD '11', 40045555, 'Para clientes no exterior' areaCode:14 countryCallingCode:55 number:40045555] map[additionalInfo:DDI ' ', DDD ' ', 40045555, 'Para regiões metropolitanas' areaCode:14 countryCallingCode:55 number:40045555] map[additionalInfo:DDI ' ', DDD ' ', 40045555, 'Para demais localidades' areaCode:14 countryCallingCode:55 number:40045555]] type:OUVIDORIA] services:[map[code:RECLAMACOES name:RECLAMACOES] map[code:INFORMACOES name:INFORMACOES]]] map[identification:map[additionalInfo:Receptivo phones:[map[additionalInfo:DDI '55'; DDD '11', 40043277, 'Para clientes no metropolitanas' areaCode:NA countryCallingCode:55 number:40043277] map[additionalInfo:DDI ' ', DDD ' ', 40043277, 'Para regiões localidades' areaCode:NA countryCallingCode:NA number:40043277]] type:OUTROS] services:[map[additionalInfo:Previdência Privada code:OUTROS_PRODUTOS_SERVICOS name:OUTROS_PRODUTOS_SERVICOS]]]] urlComplementaryList:https://empresaa1.com/branches-banking]] name:Organização A]] links:map[first:https://api.banco.com.br/open-banking/channels/v1/phone-channels last:https://api.banco.com.br/open-banking/channels/v1/phone-channels next:null prev:null self:https://api.banco.com.br/open-banking/channels/v1/phone-channels] meta:map[totalPages:1 totalRecords:1]]
+          - Example changed from null to map[data:map[brand:map[companies:[map[cnpjNumber:45086338000178 name:Empresa A1 phoneChannels:[map[identification:map[phones:[map[additionalInfo:NA areaCode:14 countryCallingCode:55 number:35721199] map[additionalInfo:NA areaCode:14 countryCallingCode:55 number:997865532]] type:CENTRAL_TELEFONICA] services:[map[code:ABRE_CONTA_DEPOSITO_OU_PRE_PAGA name:ABERTURA_CONTAS_DEPOSITOS_OU_PAGAMENTO_PRE_PAGA] map[code:RECEBE_PAGA_QUALQUER_NATUREZA name:RECEBIMENTOS_PAGAMENTOS_QUALQUER_NATUREZA] map[additionalInfo:Atendimento em outros idiomas code:OUTROS_PRODUTOS_SERVICOS name:OUTROS_PRODUTOS_SERVICOS]]] map[identification:map[phones:[map[additionalInfo:DDI '55'; DDD '11', 40044828, 'Para clientes no exterior' areaCode:14 countryCallingCode:55 number:40044828] map[additionalInfo:DDI ' ', DDD ' ', 40044828, 'Para regiões metropolitanas' areaCode:14 countryCallingCode:55 number:40044828] map[additionalInfo:DDI ' ', DDD ' ', 40044828, 'Para demais localidades' areaCode:14 countryCallingCode:55 number:40044828]] type:SAC] services:[map[code:RECLAMACOES name:RECLAMACOES] map[code:INFORMACOES name:INFORMACOES] map[code:CANCELAMENTO name:CANCELAMENTO]]] map[identification:map[phones:[map[additionalInfo:DDI '55'; DDD '11', 40045555, 'Para clientes no exterior' areaCode:14 countryCallingCode:55 number:40045555] map[additionalInfo:DDI ' ', DDD ' ', 40045555, 'Para regiões metropolitanas' areaCode:14 countryCallingCode:55 number:40045555] map[additionalInfo:DDI ' ', DDD ' ', 40045555, 'Para demais localidades' areaCode:14 countryCallingCode:55 number:40045555]] type:OUVIDORIA] services:[map[code:RECLAMACOES name:RECLAMACOES] map[code:INFORMACOES name:INFORMACOES]]] map[identification:map[additionalInfo:Receptivo phones:[map[additionalInfo:DDI '55'; DDD '11', 40043277, 'Para clientes no metropolitanas' areaCode:NA countryCallingCode:55 number:40043277] map[additionalInfo:DDI ' ', DDD ' ', 40043277, 'Para regiões localidades' areaCode:NA countryCallingCode:NA number:40043277]] type:OUTROS] services:[map[additionalInfo:Previdência Privada code:OUTROS_PRODUTOS_SERVICOS name:OUTROS_PRODUTOS_SERVICOS]]]] urlComplementaryList:https://empresaa1.com/branches-banking]] name:Organização A]] links:map[first:https://api.banco.com.br/open-banking/channels/v1/phone-channels last:https://api.banco.com.br/open-banking/channels/v1/phone-channels next:null prev:null self:https://api.banco.com.br/open-banking/channels/v1/phone-channels] meta:map[totalPages:1 totalRecords:1]]
           - Properties changed
             - Modified property: data
+              - Type changed from 'array' to 'object'
+              - Description changed from 'Conjunto de informações referente aos canais telefônicos de atendimento da instituição' to ''
+              - MinItems changed from 1 to 0
+              - Items changed
+                - Schema deleted
+              - Required changed
+                - New required property: brand
               - Properties changed
-                - Modified property: brand
-                  - Properties changed
-                    - Modified property: companies
-                      - Items changed
-                        - Property 'AllOf' changed
-                          - Schema #/components/schemas/CNPJ modified
-                            - Properties changed
-                              - Modified property: cnpjNumber
-                                - Pattern changed from '^(\d{14})$' to '^(\d{14})$|^NA$'
-                        - Properties changed
-                          - Modified property: phoneChannels
-                            - MaxItems changed from 4 to null
-                            - Items changed
-                              - Properties changed
-                                - Modified property: identification
-                                  - Properties changed
-                                    - Modified property: additionalInfo
-                                      - Description changed from 'Campo de texto livre para descrever quando o tipo de canal de atendimento for Outros' to 'Campo de texto livre para descrever informações complementateres sobre canais telefônicos. De preenchimento obrigatório quando o tipo de canal de atendimento telefônico selecionado for "OUTROS"'
-                                    - Modified property: phones
-                                      - Items changed
-                                        - Properties changed
-                                          - Modified property: areaCode
-                                            - Description changed from 'Número de DDD (Discagem Direta à Distância) para  telefone de acesso ao Canal - se houver.' to 'Número de DDD (Discagem Direta à Distância) para telefone de acesso ao Canal - se houver.'
-                                            - Pattern changed from '^\d{2}$' to '^\d{2}$|^NA$'
-                                          - Modified property: countryCallingCode
-                                            - Description changed from 'Número de DDI (Discagem Direta Internacional) para  telefone de acesso ao Canal - se houver.' to 'Número de DDI (Discagem Direta Internacional) para telefone de acesso ao Canal - se houver.'
-                                            - Pattern changed from '^\d{2}$' to '^\d{2}$|^NA$'
-                                          - Modified property: number
-                                            - Description changed from 'Número de telefone de acesso ao canal. ' to 'Número de telefone de acesso ao canal.'
-                                            - Example changed from '0800-7787788' to '08007787788'
-                                            - Pattern changed from '^([0-9]{4,5})-([0-9]{4,7})$' to '^([0-9]{8,11})$|^NA$'
-                                    - Modified property: type
-                                      - Description changed from 'Tipo de canal telefônico de atendimento' to ' Tipo de canal telefônico de atendimento: 
-* `CENTRAL_TELEFONICA` 
-* `SAC` 
-* `OUVIDORIA` 
-* `OUTROS`'
-                                - Modified property: services
-                                  - Items changed
-                                    - Properties changed
-                                      - Modified property: additionalInfo
-                                        - Description changed from 'Texto livre para complementar informação relativa ao Serviço disponível, quando for selecionada a opção p preenchida a opção 'OUTROS_PRODUTOS_SERVICOS'' to 'Texto livre para complementar informação relativa ao Serviço disponível, quando for selecionada a opção 'OUTROS_PRODUTOS_SERVICOS''
+                - New property: brand
+            - Modified property: links
+              - Description changed from 'Referências para outros recursos da API requisitada' to ''
+              - Properties changed
+                - Modified property: first
+                  - Example changed from 'https://api.banco.com.br/open-banking/channels/v2/resource' to 'https://api.banco.com.br/open-banking/channels/v1/<resource>'
+                  - MinLength changed from 5 to 0
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: last
+                  - Example changed from 'https://api.banco.com.br/open-banking/channels/v2/resource' to 'https://api.banco.com.br/open-banking/channels/v1/<resource>'
+                  - MinLength changed from 5 to 0
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: next
+                  - Example changed from 'https://api.banco.com.br/open-banking/channels/v2/resource' to null
+                  - MinLength changed from 5 to 0
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: prev
+                  - Example changed from 'https://api.banco.com.br/open-banking/channels/v2/resource' to null
+                  - MinLength changed from 5 to 0
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: self
+                  - Example changed from 'https://api.banco.com.br/open-banking/channels/v2/resource' to 'https://api.banco.com.br/open-banking/channels/v1/<resource>'
+                  - MinLength changed from 5 to 0
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+            - Modified property: meta
+              - Description changed from 'Meta informações referente à API requisitada' to ''
 GET /shared-automated-teller-machines
+- Deleted query param: page
+- Deleted query param: page-size
 - Responses changed
+  - Deleted response: 400
+  - Deleted response: 404
+  - Deleted response: 405
+  - Deleted response: 429
+  - Deleted response: 500
+  - Deleted response: 504
+  - Deleted response: 529
+  - Deleted response: default
   - Modified response: 200
     - Content changed
       - Modified media type: application/json
         - Schema changed
           - Properties changed
             - Modified property: data
+              - Type changed from 'array' to 'object'
+              - Description changed from 'Conjunto de informações referente aos terminais compartilhados de autoatendimento da instituição' to ''
+              - MinItems changed from 1 to 0
+              - Items changed
+                - Schema deleted
               - Properties changed
-                - Modified property: brand
-                  - Properties changed
-                    - Modified property: companies
-                      - Items changed
-                        - Properties changed
-                          - Modified property: sharedAutomatedTellerMachines
-                            - Items changed
-                              - Properties changed
-                                - Modified property: postalAddress
-                                  - Properties changed
-                                    - Modified property: geographicCoordinates
-                                      - Properties changed
-                                        - Modified property: latitude
-                                          - MaxLength changed from 11 to 13
-                                          - Pattern changed from '^-?\d{1,2}\.\d{1,9}$|^NA$' to '^-?\d{1,2}\.\d{1,9}$'
-                                        - Modified property: longitude
-                                          - MaxLength changed from 11 to 13
-                                          - Pattern changed from '^-?\d{1,3}\.\d{1,8}$|^NA$' to '^-?\d{1,3}\.\d{1,8}$'
-                                    - Modified property: ibgeCode
-                                      - Pattern changed from '\d{7}|^NA$' to '\d{7}'
+                - New property: brand
+            - Modified property: links
+              - Description changed from 'Referências para outros recursos da API requisitada' to ''
+              - Properties changed
+                - Modified property: first
+                  - Example changed from 'https://api.banco.com.br/open-banking/channels/v2/resource' to 'https://api.banco.com.br/open-banking/channels/v1/<resource>'
+                  - MinLength changed from 5 to 0
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: last
+                  - Example changed from 'https://api.banco.com.br/open-banking/channels/v2/resource' to 'https://api.banco.com.br/open-banking/channels/v1/<resource>'
+                  - MinLength changed from 5 to 0
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: next
+                  - Example changed from 'https://api.banco.com.br/open-banking/channels/v2/resource' to null
+                  - MinLength changed from 5 to 0
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: prev
+                  - Example changed from 'https://api.banco.com.br/open-banking/channels/v2/resource' to null
+                  - MinLength changed from 5 to 0
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: self
+                  - Example changed from 'https://api.banco.com.br/open-banking/channels/v2/resource' to 'https://api.banco.com.br/open-banking/channels/v1/<resource>'
+                  - MinLength changed from 5 to 0
+                  - MaxLength changed from 2000 to null
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+            - Modified property: meta
+              - Description changed from 'Meta informações referente à API requisitada' to ''
+Servers changed
+- New server: http://api.banco.com.br/open-banking/channels/v1
+- Deleted server: http://api.banco.com.br/open-banking/channels/v2
