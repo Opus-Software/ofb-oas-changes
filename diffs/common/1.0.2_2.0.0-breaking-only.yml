@@ -19,6 +19,16 @@ GET /outages
       - Modified media type: application/json
         - Schema changed
           - Properties changed
+            - Modified property: data
+              - Items changed
+                - Type changed from '' to 'object'
+                - Properties changed
+                  - Modified property: duration
+                    - Pattern changed from '' to '^(?!\s)[\w\W\s]*[^\s]$'
+                  - Modified property: explanation
+                    - Pattern changed from '' to '^(?!\s)[\w\W\s]*[^\s]$'
+                  - Modified property: outageTime
+                    - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
             - Modified property: links
               - Properties changed
                 - Modified property: first
@@ -56,7 +66,7 @@ GET /status
                       - Modified property: expectedResolutionTime
                         - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
                       - Modified property: explanation
-                        - Pattern changed from '' to '[\w\W\s]*'
+                        - Pattern changed from '' to '^(?!\s)[\w\W\s]*[^\s]$'
                       - Modified property: updateTime
                         - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
             - Modified property: links

@@ -1,4 +1,4 @@
-﻿openapi: 3.0.0
+openapi: 3.0.0
 info:
   title: APIs OpenData do Open Finance Brasil
   description: As APIs descritas neste documento são referentes as APIs da fase OpenData do Open Finance Brasil.
@@ -6,7 +6,7 @@ info:
   contact:
     url: 'https://servicedesk.openbankingbrasil.org.br/Login.jsp?navLanguage=pt-BR'
 servers:
-  - url: 'http://api.banco.com.br/open-banking/discovery/v1'
+  - url: 'http://api.banco.com.br/open-banking/discovery/v2'
 tags:
 - name: "Discovery"
 paths:
@@ -14,15 +14,15 @@ paths:
     get:
       tags:
         - Discovery
-      summary: a descrição referente ao código de status retornado pelas APIs
-      description: " descrição referente ao código de status retornado pelas APIs"
+      summary: Descrição do status da implementação das APIs do OFB
+      description: Descrição do status da implementação das APIs do OFB
       operationId: "getStatus"
       parameters:
         - $ref: "#/components/parameters/page"
         - $ref: "#/components/parameters/pageSize"
       responses:
         '200':
-          description: código de status retornado pelas APIs
+          description: Descrição do status da implementação das APIs do OFB
           content:
             application/json:
               schema:
@@ -110,6 +110,7 @@ components:
           type: array
           maxItems: 1000
           items:
+            type: object
             required:
               - outageTime
               - duration
@@ -118,10 +119,12 @@ components:
             properties:
               outageTime:
                 type: string
+                pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
                 description: Data e hora planejada do início da indisponibilidade
                 example: '2020-07-21T08:30:00Z'
               duration:
                 type: string
+                pattern: '^(?!\s)[\w\W\s]*[^\s]$'
                 description: Duração prevista da indisponibilidade
                 example: PT2H30M
               isPartial:
@@ -130,7 +133,8 @@ components:
                 example: false
               explanation:
                 type: string
-                description: Explicação sobre os motivos da indisponibilidade.
+                pattern: '^(?!\s)[\w\W\s]*[^\s]$'
+                description: Explicação sobre os motivos da indisponibilidade, podendo a instituição indicar quais implementações estarão indisponíveis.
                 example: Atualização do API Gateway
         links:
           $ref: '#/components/schemas/Links'
@@ -144,29 +148,31 @@ components:
           description: URL da página atualmente requisitada
           pattern: '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
           maxLength: 2000
-          example: 'https://api.banco.com.br/open-banking/channels/v1/resource'
+          example: 'https://api.banco.com.br/open-banking/common/v2/resource'
         first:
           type: string
           description: URL da primeira página de registros
           pattern: '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
           maxLength: 2000
-          example: 'https://api.banco.com.br/open-banking/channels/v1/resource'
+          example: 'https://api.banco.com.br/open-banking/common/v2/resource'
         prev:
           type: string
           description: URL da página anterior de registros
           pattern: '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
           maxLength: 2000
+          example: 'https://api.banco.com.br/open-banking/common/v2/resource'
         next:
           type: string
           description: URL da próxima página de registros
           pattern: '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
           maxLength: 2000
+          example: 'https://api.banco.com.br/open-banking/common/v2/resource'
         last:
           type: string
           description: URL da última página de registros
           pattern: '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
           maxLength: 2000
-          example: 'https://api.banco.com.br/open-banking/channels/v1/resource'
+          example: 'https://api.banco.com.br/open-banking/common/v2/resource'
     Meta:
       type: object
       properties:
@@ -194,17 +200,19 @@ components:
             - PARTIAL_FAILURE
             - UNAVAILABLE
             - SCHEDULED_OUTAGE
-          description: >
-            Condição atual da API:
-              * `OK` - A implementação é totalmente funcional
-              * `PARTIAL_FAILURE` - Um ou mais endpoints estão indisponíveis
-              * `UNAVAILABLE` - A implementação completa está indisponível
-              * `SCHEDULED_OUTAGE` - Uma interrupção anunciada está em vigor
+          description: |
+            Condição atual da Implementação das APIs do OFB:
+            - OK - A implementação de todas as APIs foi concluída e está totalmente funcional 
+            - UNAVAILABLE - Uma ou mais APIs estão indisponíveis 
+            - PARTIAL_FAILURE - Um ou mais endpoints estão indisponíveis 
+            - SCHEDULED_OUTAGE - Uma interrupção programada (anunciada pelo endpoint /outages) está em vigor 
+            
+            A hierarquia de `data/status/code`, em casos concomitantes, segue a ordem conforme os bullets acima (OK, UNAVAILABLE, PARTIAL_FAILURE, SCHEDULED_OUTAGE)
           example: OK
         explanation:
           type: string
           description: Fornece uma explicação da interrupção atual que pode ser exibida para um cliente final. Será obrigatoriamente preenchido se code tiver algum valor que não seja OK
-          pattern: '[\w\W\s]*'
+          pattern: '^(?!\s)[\w\W\s]*[^\s]$'
           maxLength: 2000
           example: Retorno com Sucesso
         detectionTime:
@@ -233,7 +241,7 @@ components:
             type: string
             maxLength: 2000
           example:
-            - 'https://api.banco.com.br/open-banking/channels/v1/electronic-channels'
+            - 'https://api.banco.com.br/open-banking/common/v2/resource'
     ResponseErrorMetaSingle:
       type: object
       required:
