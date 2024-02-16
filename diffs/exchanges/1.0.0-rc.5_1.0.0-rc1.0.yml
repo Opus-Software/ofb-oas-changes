@@ -1,0 +1,594 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 3
+-------------------------
+GET /operations
+- Modified query param: page-size
+  - Description changed from 'Quantidade total de registros por páginas. 
+A transmissora deve considerar entrada como 25, caso seja informado algum valor menor pela receptora. 
+Enquanto houver mais que 25 registros a enviar, a transmissora deve considerar o mínimo por página como 25. 
+Somente a última página retornada (ou primeira, no caso de página única) pode conter menos de 25 registros. 
+Mais informações, acesse Especificações de APIs > Padrões > Paginação.
+' to 'Quantidade total de registros por páginas.'
+  - Schema changed
+    - Min changed from 25 to 1
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to 'Um UUID RFC4122 usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser "espelhado" pela transmissora (server) no cabeçalho de resposta.'
+  - Schema changed
+    - Format changed from 'uuid' to ''
+    - Example changed from 'd78fc4e5-37ca-4da3-adf2-9b082bf92280' to null
+    - MaxLength changed from 36 to 100
+    - Pattern changed from '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: requestDateTime
+              - Properties changed
+                - Deleted property: requestDateTime
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 422
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 423
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 504
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 529
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+GET /operations/{operationId}
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to 'Um UUID RFC4122 usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser "espelhado" pela transmissora (server) no cabeçalho de resposta.'
+  - Schema changed
+    - Format changed from 'uuid' to ''
+    - Example changed from 'd78fc4e5-37ca-4da3-adf2-9b082bf92280' to null
+    - MaxLength changed from 36 to 100
+    - Pattern changed from '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - New property: foreignPartieCountryCode
+                - New property: foreignPartieName
+                - New property: intemediaryInstitutionName
+                - New property: relationshipCode
+                - Deleted property: intermediaryInstitutionName
+            - Modified property: links
+              - Properties changed
+                - New property: first
+                - New property: last
+                - New property: next
+                - New property: prev
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+                - Deleted required property: requestDateTime
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+                - Deleted property: requestDateTime
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 422
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 423
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 504
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 529
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+GET /operations/{operationId}/events
+- Modified query param: page-size
+  - Description changed from 'Quantidade total de registros por páginas. 
+A transmissora deve considerar entrada como 25, caso seja informado algum valor menor pela receptora. 
+Enquanto houver mais que 25 registros a enviar, a transmissora deve considerar o mínimo por página como 25. 
+Somente a última página retornada (ou primeira, no caso de página única) pode conter menos de 25 registros. 
+Mais informações, acesse Especificações de APIs > Padrões > Paginação.
+' to 'Quantidade total de registros por páginas.'
+  - Schema changed
+    - Min changed from 25 to 1
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to 'Um UUID RFC4122 usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser "espelhado" pela transmissora (server) no cabeçalho de resposta.'
+  - Schema changed
+    - Format changed from 'uuid' to ''
+    - Example changed from 'd78fc4e5-37ca-4da3-adf2-9b082bf92280' to null
+    - MaxLength changed from 36 to 100
+    - Pattern changed from '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - New property: foreignPartieCountryCode
+                  - New property: foreignPartieName
+                  - New property: relationshipCode
+                  - Deleted property: foreignPartie
+                  - Modified property: eventType
+                    - Description changed from 'Para o campo domínio:
+1 - Contratação no Mercado Primário.  
+2 - Alteração de Operação Cambial no Mercado Primário.  
+3 - Cancelamento de Operação Cambial no Mercado Primário.  
+4 - Liquidação de Operação Cambial no Mercado Primário.  
+5 - Baixa de Valor a Liquidar de Operação Cambial no Mercado Primário.  
+6 - Restabelecimento de Baixa de Valor a Liquidar de Operação Cambial no Mercado Primário.  
+9 - Anulação de Operação Cambial no Mercado Primário (utilizado, por exemplo, na anulação de um evento de liquidação/cancelamento).  
+Obs.: Códigos seguem o layout de mensageria enviada pelas instituições ao Banco Central.  
+O evento está relacionado ao tipo de contratação.
+' to 'Para o campo domínio:
+1 - Contratação no Mercado Primário.  
+2 - Alteração de Operação Cambial no Mercado Primário.  
+3 - Cancelamento de Operação Cambial no Mercado Primário.  
+4 - Liquidação de Operação Cambial no Mercado Primário.  
+5 - Baixa de Valor a Liquidar de Operação Cambial no Mercado Primário.  
+6 - Restabelecimento de Baixa de Valor a Liquidar de Operação Cambial no Mercado Primário.  
+O evento está relacionado ao tipo de contratação.
+'
+                    - Deleted enum values: [9]
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: requestDateTime
+              - Properties changed
+                - Deleted property: requestDateTime
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 422
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 423
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 504
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 529
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
