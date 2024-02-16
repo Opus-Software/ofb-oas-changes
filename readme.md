@@ -15,7 +15,6 @@
 | bank-fixed-incomes | [1.0.2](swagger-apis/bank-fixed-incomes/1.0.2.yml) |  |  |  |
 | capitalization-bonds | [1.0.1](swagger-apis/capitalization-bonds/1.0.1.yml) | [2.0.0-beta.1](swagger-apis/capitalization-bonds/2.0.0-beta.1.yml) | [YAML](diffs/capitalization-bonds/1.0.1_2.0.0-beta.1-breaking-only.yml) | [YAML](diffs/capitalization-bonds/1.0.1_2.0.0-beta.1.yml) |
 | channels | [1.0.2](swagger-apis/channels/1.0.2.yml) | [2.0.0](swagger-apis/channels/2.0.0.yml) | [YAML](diffs/channels/1.0.2_2.0.0-breaking-only.yml) | [YAML](diffs/channels/1.0.2_2.0.0.yml) |
-|  | [2.0.0](swagger-apis/channels/2.0.0.yml) | [3.0.0](swagger-apis/channels/3.0.0.yml) | [YAML](diffs/channels/2.0.0_3.0.0-breaking-only.yml) | [YAML](diffs/channels/2.0.0_3.0.0.yml) |
 | common | [1.0.2](swagger-apis/common/1.0.2.yml) | [2.0.0](swagger-apis/common/2.0.0.yml) | [YAML](diffs/common/1.0.2_2.0.0-breaking-only.yml) | [YAML](diffs/common/1.0.2_2.0.0.yml) |
 | consents | [1.0.3](swagger-apis/consents/1.0.3.yml) | [2.0.1](swagger-apis/consents/2.0.1.yml) | [YAML](diffs/consents/1.0.3_2.0.1-breaking-only.yml) | [YAML](diffs/consents/1.0.3_2.0.1.yml) |
 |  | [2.0.1](swagger-apis/consents/2.0.1.yml) | [2.1.0](swagger-apis/consents/2.1.0.yml) | [YAML](diffs/consents/2.0.1_2.1.0-breaking-only.yml) | [YAML](diffs/consents/2.0.1_2.1.0.yml) |
@@ -125,7 +124,6 @@
 |  | [2.0.0-beta.1](swagger-apis/channels/2.0.0-beta.1.yml) | [2.0.0-rc.1](swagger-apis/channels/2.0.0-rc.1.yml) | [YAML](diffs/channels/2.0.0-beta.1_2.0.0-rc.1.yml) |
 |  | [2.0.0-rc.1](swagger-apis/channels/2.0.0-rc.1.yml) | [2.0.0-rc.2](swagger-apis/channels/2.0.0-rc.2.yml) | [YAML](diffs/channels/2.0.0-rc.1_2.0.0-rc.2.yml) |
 |  | [2.0.0-rc.2](swagger-apis/channels/2.0.0-rc.2.yml) | [2.0.0](swagger-apis/channels/2.0.0.yml) | [YAML](diffs/channels/2.0.0-rc.2_2.0.0.yml) |
-|  | [2.0.0](swagger-apis/channels/2.0.0.yml) | [3.0.0](swagger-apis/channels/3.0.0.yml) | [YAML](diffs/channels/2.0.0_3.0.0.yml) |
 | common | [1.0.0-rc5.1](swagger-apis/common/1.0.0-rc5.1.yml) | [1.0.0-rc5.2](swagger-apis/common/1.0.0-rc5.2.yml) | [YAML](diffs/common/1.0.0-rc5.1_1.0.0-rc5.2.yml) |
 |  | [1.0.0-rc5.2](swagger-apis/common/1.0.0-rc5.2.yml) | [1.0.0-rc5](swagger-apis/common/1.0.0-rc5.yml) | [YAML](diffs/common/1.0.0-rc5.2_1.0.0-rc5.yml) |
 |  | [1.0.0-rc5](swagger-apis/common/1.0.0-rc5.yml) | [1.0.0](swagger-apis/common/1.0.0.yml) | [YAML](diffs/common/1.0.0-rc5_1.0.0.yml) |
@@ -303,7 +301,8 @@
 |  | [4.0.0-beta.3](swagger-apis/payments/4.0.0-beta.3.yml) | [4.0.0-beta.4](swagger-apis/payments/4.0.0-beta.4.yml) | [YAML](diffs/payments/4.0.0-beta.3_4.0.0-beta.4.yml) |
 |  | [4.0.0-beta.4](swagger-apis/payments/4.0.0-beta.4.yml) | [4.0.0-beta.5](swagger-apis/payments/4.0.0-beta.5.yml) | [YAML](diffs/payments/4.0.0-beta.4_4.0.0-beta.5.yml) |
 |  | [4.0.0-beta.5](swagger-apis/payments/4.0.0-beta.5.yml) | [4.0.0-rc.1](swagger-apis/payments/4.0.0-rc.1.yml) | [YAML](diffs/payments/4.0.0-beta.5_4.0.0-rc.1.yml) |
-|  | [4.0.0-rc.1](swagger-apis/payments/4.0.0-rc.1.yml) | [4.0.0](swagger-apis/payments/4.0.0.yml) | [YAML](diffs/payments/4.0.0-rc.1_4.0.0.yml) |
+|  | [4.0.0-rc.1](swagger-apis/payments/4.0.0-rc.1.yml) | [4.0.0-rc.2](swagger-apis/payments/4.0.0-rc.2.yml) | [YAML](diffs/payments/4.0.0-rc.1_4.0.0-rc.2.yml) |
+|  | [4.0.0-rc.2](swagger-apis/payments/4.0.0-rc.2.yml) | [4.0.0](swagger-apis/payments/4.0.0.yml) | [YAML](diffs/payments/4.0.0-rc.2_4.0.0.yml) |
 | pension | [1.0.0-rc1.0](swagger-apis/pension/1.0.0-rc1.0.yml) | [1.0.0-rc2.0](swagger-apis/pension/1.0.0-rc2.0.yml) | [YAML](diffs/pension/1.0.0-rc1.0_1.0.0-rc2.0.yml) |
 |  | [1.0.0-rc2.0](swagger-apis/pension/1.0.0-rc2.0.yml) | [1.0.0-rc3.0](swagger-apis/pension/1.0.0-rc3.0.yml) | [YAML](diffs/pension/1.0.0-rc2.0_1.0.0-rc3.0.yml) |
 |  | [1.0.0-rc3.0](swagger-apis/pension/1.0.0-rc3.0.yml) | [1.0.0](swagger-apis/pension/1.0.0.yml) | [YAML](diffs/pension/1.0.0-rc3.0_1.0.0.yml) |
