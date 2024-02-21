@@ -5,6 +5,11 @@
 ### Modified Endpoints: 3
 -------------------------
 GET /accounts/{creditCardAccountId}/bills/{billId}/transactions
+- Description changed from 'Método para obter a lista de transações da conta de pagamento pós-paga identificada por creditCardAccountId e billId mantida pelo cliente na instituição transmissora. 
+A lista a retornar se refere a transações após base 2/clearing/conciliado
+' to 'Método para obter a lista de transações da conta de pagamento pós-paga identificada por creditCardAccountId e billId mantida pelo cliente na instituição transmissora. 
+A lista a retornar se refere a transações após conciliado.
+'
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -19,6 +24,10 @@ GET /accounts/{creditCardAccountId}/bills/{billId}/transactions
 ' to 'Data e hora da transação disponível para os clientes nos canais digitais da instituição. Neste momento, é obrigatório preencher com dados reais com precisão de data, hora e minuto, mesmo que a instituição não exiba para o cliente nesse nível de granularidade, em algumas situações. Dessa forma, os segundos e milissegundos podem ser preenchidos com zero (0), por exemplo: 2024-01-29T11:15:00.000Z.
 '
 GET /accounts/{creditCardAccountId}/transactions
+- Description changed from 'Método para obter a lista de transações da conta de pagamento pós-paga identificada por creditCardAccountId mantida pelo cliente na instituição transmissora.
+A lista a retornar se refere a transações após base 2/clearing/conciliado' to 'Método para obter a lista de transações histórica (últimos 12 meses, ou recorte desse período) da conta de pagamento pós-paga identificada por creditCardAccountId mantida pelo cliente na instituição transmissora. 
+A lista a retornar se refere a transações após conciliado.
+'
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -33,6 +42,9 @@ GET /accounts/{creditCardAccountId}/transactions
 ' to 'Data e hora da transação disponível para os clientes nos canais digitais da instituição. Neste momento, é obrigatório preencher com dados reais com precisão de data, hora e minuto, mesmo que a instituição não exiba para o cliente nesse nível de granularidade, em algumas situações. Dessa forma, os segundos e milissegundos podem ser preenchidos com zero (0), por exemplo: 2024-01-29T11:15:00.000Z.
 '
 GET /accounts/{creditCardAccountId}/transactions-current
+- Description changed from 'Método para obter a lista de transações recentes (últimos 7 dias) da conta de pagamento pós-paga identificada por creditCardAccountId mantida pelo cliente na instituição transmissora.' to 'Método para obter a lista de transações recentes (últimos 7 dias) da conta de pagamento pós-paga identificada por creditCardAccountId mantida pelo cliente na instituição transmissora. 
+A lista a retornar se refere a transações após conciliado.
+'
 - Responses changed
   - Modified response: 200
     - Content changed
