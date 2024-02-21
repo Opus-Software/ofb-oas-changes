@@ -17,6 +17,23 @@ POST /consents
                 - Properties changed
                   - Modified property: schedule
                     - Property 'OneOf' changed
+                      - Schema #/components/schemas/ScheduleMonthly modified
+                        - Properties changed
+                          - Modified property: monthly
+                            - Properties changed
+                              - Modified property: dayOfMonth
+                                - Description changed from 'Define o dia do mês planejado para a ocorrência das liquidações.' to ''
+                              - Modified property: quantity
+                                - Description changed from 'Define a quantidade de pagamentos que serão enviados para liquidação.' to ''
+                              - Modified property: startDate
+                                - Description changed from 'Define o início da vigência da recorrência.' to ''
+                      - Schema #/components/schemas/ScheduleCustom modified
+                        - Properties changed
+                          - Modified property: custom
+                            - Properties changed
+                              - Modified property: dates
+                                - Description changed from 'Define os dias em que estão planejadas as ocorrências das liquidações.' to ''
+                                - MaxItems changed from 60 to 730
                       - Schema #/components/schemas/ScheduleDaily modified
                         - Properties changed
                           - Modified property: daily
@@ -35,23 +52,6 @@ POST /consents
                                 - Max changed from 60 to 104
                               - Modified property: startDate
                                 - Description changed from 'Define o início da vigência da recorrência.' to ''
-                      - Schema #/components/schemas/ScheduleMonthly modified
-                        - Properties changed
-                          - Modified property: monthly
-                            - Properties changed
-                              - Modified property: dayOfMonth
-                                - Description changed from 'Define o dia do mês planejado para a ocorrência das liquidações.' to ''
-                              - Modified property: quantity
-                                - Description changed from 'Define a quantidade de pagamentos que serão enviados para liquidação.' to ''
-                              - Modified property: startDate
-                                - Description changed from 'Define o início da vigência da recorrência.' to ''
-                      - Schema #/components/schemas/ScheduleCustom modified
-                        - Properties changed
-                          - Modified property: custom
-                            - Properties changed
-                              - Modified property: dates
-                                - Description changed from 'Define os dias em que estão planejadas as ocorrências das liquidações.' to ''
-                                - MaxItems changed from 60 to 730
 - Responses changed
   - Modified response: 201
     - Content changed
@@ -77,16 +77,6 @@ O tempo do expirationDateTime é garantido com os 15 minutos do access token, se
                   - Properties changed
                     - Modified property: schedule
                       - Property 'OneOf' changed
-                        - Schema #/components/schemas/ScheduleMonthly modified
-                          - Properties changed
-                            - Modified property: monthly
-                              - Properties changed
-                                - Modified property: dayOfMonth
-                                  - Description changed from 'Define o dia do mês planejado para a ocorrência das liquidações.' to ''
-                                - Modified property: quantity
-                                  - Description changed from 'Define a quantidade de pagamentos que serão enviados para liquidação.' to ''
-                                - Modified property: startDate
-                                  - Description changed from 'Define o início da vigência da recorrência.' to ''
                         - Schema #/components/schemas/ScheduleCustom modified
                           - Properties changed
                             - Modified property: custom
@@ -110,6 +100,16 @@ O tempo do expirationDateTime é garantido com os 15 minutos do access token, se
                                   - Description changed from 'Define o dia da semana planejado para a ocorrência das liquidações.' to ''
                                 - Modified property: quantity
                                   - Max changed from 60 to 104
+                                - Modified property: startDate
+                                  - Description changed from 'Define o início da vigência da recorrência.' to ''
+                        - Schema #/components/schemas/ScheduleMonthly modified
+                          - Properties changed
+                            - Modified property: monthly
+                              - Properties changed
+                                - Modified property: dayOfMonth
+                                  - Description changed from 'Define o dia do mês planejado para a ocorrência das liquidações.' to ''
+                                - Modified property: quantity
+                                  - Description changed from 'Define a quantidade de pagamentos que serão enviados para liquidação.' to ''
                                 - Modified property: startDate
                                   - Description changed from 'Define o início da vigência da recorrência.' to ''
 GET /consents/{consentId}
@@ -138,16 +138,6 @@ O tempo do expirationDateTime é garantido com os 15 minutos do access token, se
                   - Properties changed
                     - Modified property: schedule
                       - Property 'OneOf' changed
-                        - Schema #/components/schemas/ScheduleWeekly modified
-                          - Properties changed
-                            - Modified property: weekly
-                              - Properties changed
-                                - Modified property: dayOfWeek
-                                  - Description changed from 'Define o dia da semana planejado para a ocorrência das liquidações.' to ''
-                                - Modified property: quantity
-                                  - Max changed from 60 to 104
-                                - Modified property: startDate
-                                  - Description changed from 'Define o início da vigência da recorrência.' to ''
                         - Schema #/components/schemas/ScheduleMonthly modified
                           - Properties changed
                             - Modified property: monthly
@@ -171,5 +161,15 @@ O tempo do expirationDateTime é garantido com os 15 minutos do access token, se
                               - Properties changed
                                 - Modified property: quantity
                                   - Max changed from 60 to 730
+                                - Modified property: startDate
+                                  - Description changed from 'Define o início da vigência da recorrência.' to ''
+                        - Schema #/components/schemas/ScheduleWeekly modified
+                          - Properties changed
+                            - Modified property: weekly
+                              - Properties changed
+                                - Modified property: dayOfWeek
+                                  - Description changed from 'Define o dia da semana planejado para a ocorrência das liquidações.' to ''
+                                - Modified property: quantity
+                                  - Max changed from 60 to 104
                                 - Modified property: startDate
                                   - Description changed from 'Define o início da vigência da recorrência.' to ''
