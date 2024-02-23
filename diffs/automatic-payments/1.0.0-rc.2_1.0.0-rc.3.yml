@@ -2,7 +2,7 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 1
+### Modified Endpoints: 4
 -------------------------
 GET /pix/recurring-payments
 - Responses changed
@@ -86,4 +86,67 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_PERIODO_VALOR_EXCEDIDO – A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
 - LIMITE_PERIODO_QUANTIDADE_EXCEDIDO – A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
 - TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração.
+'
+POST /recurring-consents
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: debtorAccount
+                  - Properties changed
+                    - Modified property: ibgeTownCode
+                      - Description changed from 'Campo utilizado pela iniciadora para cálculo do dia útil de liquidação do pagamento (vide especificação do endToEndId) baseado no município de cadastro do usuário pagador no detentor.
+[Restrições]
+- Campo obrigatório que deverá ser retornado quando o consentimento estiver ou passar pelo status AUTHORISED;
+- Campo obrigatório quando o oneOf utilizado do recurringConfiguration for “automatic”. 
+' to 'Campo utilizado pela iniciadora para cálculo do dia útil de liquidação do pagamento (vide especificação do endToEndId) baseado no município de cadastro do usuário pagador no detentor.
+[Restrições]
+- Objeto obrigatório que deverá ser retornado quando o consentimento estiver ou passar pelo status AUTHORISED;
+- Campo obrigatório quando o oneOf utilizado do recurringConfiguration for “automatic”. 
+'
+GET /recurring-consents/{recurringConsentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: debtorAccount
+                  - Properties changed
+                    - Modified property: ibgeTownCode
+                      - Description changed from 'Campo utilizado pela iniciadora para cálculo do dia útil de liquidação do pagamento (vide especificação do endToEndId) baseado no município de cadastro do usuário pagador no detentor.
+[Restrições]
+- Campo obrigatório que deverá ser retornado quando o consentimento estiver ou passar pelo status AUTHORISED;
+- Campo obrigatório quando o oneOf utilizado do recurringConfiguration for “automatic”. 
+' to 'Campo utilizado pela iniciadora para cálculo do dia útil de liquidação do pagamento (vide especificação do endToEndId) baseado no município de cadastro do usuário pagador no detentor.
+[Restrições]
+- Objeto obrigatório que deverá ser retornado quando o consentimento estiver ou passar pelo status AUTHORISED;
+- Campo obrigatório quando o oneOf utilizado do recurringConfiguration for “automatic”. 
+'
+PATCH /recurring-consents/{recurringConsentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: debtorAccount
+                  - Properties changed
+                    - Modified property: ibgeTownCode
+                      - Description changed from 'Campo utilizado pela iniciadora para cálculo do dia útil de liquidação do pagamento (vide especificação do endToEndId) baseado no município de cadastro do usuário pagador no detentor.
+[Restrições]
+- Campo obrigatório que deverá ser retornado quando o consentimento estiver ou passar pelo status AUTHORISED;
+- Campo obrigatório quando o oneOf utilizado do recurringConfiguration for “automatic”. 
+' to 'Campo utilizado pela iniciadora para cálculo do dia útil de liquidação do pagamento (vide especificação do endToEndId) baseado no município de cadastro do usuário pagador no detentor.
+[Restrições]
+- Objeto obrigatório que deverá ser retornado quando o consentimento estiver ou passar pelo status AUTHORISED;
+- Campo obrigatório quando o oneOf utilizado do recurringConfiguration for “automatic”. 
 '
