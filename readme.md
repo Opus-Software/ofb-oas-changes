@@ -195,7 +195,8 @@
 |  | [1.0.0-rc2.0](swagger-apis/exchange/1.0.0-rc2.0.yml) | [1.0.0](swagger-apis/exchange/1.0.0.yml) | [YAML](diffs/exchange/1.0.0-rc2.0_1.0.0.yml) |
 | exchanges | [1.0.0-rc.3](swagger-apis/exchanges/1.0.0-rc.3.yml) | [1.0.0-rc.4](swagger-apis/exchanges/1.0.0-rc.4.yml) | [YAML](diffs/exchanges/1.0.0-rc.3_1.0.0-rc.4.yml) |
 |  | [1.0.0-rc.4](swagger-apis/exchanges/1.0.0-rc.4.yml) | [1.0.0-rc.5](swagger-apis/exchanges/1.0.0-rc.5.yml) | [YAML](diffs/exchanges/1.0.0-rc.4_1.0.0-rc.5.yml) |
-|  | [1.0.0-rc.5](swagger-apis/exchanges/1.0.0-rc.5.yml) | [1.0.0-rc1.0](swagger-apis/exchanges/1.0.0-rc1.0.yml) | [YAML](diffs/exchanges/1.0.0-rc.5_1.0.0-rc1.0.yml) |
+|  | [1.0.0-rc.5](swagger-apis/exchanges/1.0.0-rc.5.yml) | [1.0.0-rc.6](swagger-apis/exchanges/1.0.0-rc.6.yml) | [YAML](diffs/exchanges/1.0.0-rc.5_1.0.0-rc.6.yml) |
+|  | [1.0.0-rc.6](swagger-apis/exchanges/1.0.0-rc.6.yml) | [1.0.0-rc1.0](swagger-apis/exchanges/1.0.0-rc1.0.yml) | [YAML](diffs/exchanges/1.0.0-rc.6_1.0.0-rc1.0.yml) |
 |  | [1.0.0-rc1.0](swagger-apis/exchanges/1.0.0-rc1.0.yml) | [1.0.0-rc2.0](swagger-apis/exchanges/1.0.0-rc2.0.yml) | [YAML](diffs/exchanges/1.0.0-rc1.0_1.0.0-rc2.0.yml) |
 | financings | [1.0.0-rc6.5](swagger-apis/financings/1.0.0-rc6.5.yml) | [1.0.0-rc6.6](swagger-apis/financings/1.0.0-rc6.6.yml) | [YAML](diffs/financings/1.0.0-rc6.5_1.0.0-rc6.6.yml) |
 |  | [1.0.0-rc6.6](swagger-apis/financings/1.0.0-rc6.6.yml) | [1.0.0-rc6.7](swagger-apis/financings/1.0.0-rc6.7.yml) | [YAML](diffs/financings/1.0.0-rc6.6_1.0.0-rc6.7.yml) |
