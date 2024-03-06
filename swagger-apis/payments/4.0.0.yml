@@ -34,8 +34,9 @@ info:
 
     ## Aprovações de múltipla alçada
 
-    Para o caso de Pix imediato, todas as aprovações necessárias devem ser realizadas nos canais da detentora até às 23:59 (horário de Brasília) da data de solicitação do pagamento.
-    Já para o caso de Pix agendado, todas as aprovações devem ser realizadas até a data/hora limite suportada pela detentora.
+    - Para o caso de pagamento imediato, todas as aprovações necessárias devem ser realizadas nos canais da detentora até às 23:59 (horário de Brasília) da data de solicitação do pagamento. 
+    Já para o caso de pagamento agendado, todas as aprovações devem ser realizadas até o exato dia anterior à data/hora prevista para primeira liquidação, respeitando a data/hora limite suportada pela detentora. 
+    Caso não seja possível aprovação, o consentimento deve ser rejeitado pelo detentor.
 
     ## Validações para pagamentos recorrentes
 
@@ -185,7 +186,11 @@ info:
       Existem dois `endpoints` para cancelamento de pagamentos, um deles é o _PATCH /pix/payments/{paymentId}_ e o outro é o _PATCH /pix/payments/consents/{consentId}_.
       - O _PATCH /pix/payments/{paymentId}_ deve ser utilizado para o cancelamento de um pagamento de forma unitária. Não deve ser utilizado para o cancelamento de todos os agendamentos recorrentes associados a um consentimento.
       - O _PATCH /pix/payments/consents/{consentId}_ deve ser utilizado no cancelamento de todas as ocorrências de pagamentos agendados presentes em uma recorrência de pagamentos. Todos os pagamentos associados ao consentimento informado e passíveis de cancelamento (ainda não liquidados, com os status PDNG e SCHD) deverão ser cancelados.
-  version: 4.0.0
+      
+      ## Quantidade máxima permitida para agendamentos recorrentes
+      A quantidade máxima de pagamentos que podem transitar do iniciador para o detentor são de 60 pagamentos, independente do modelo de recorrência definido no consentimento, respeitando o prazo máximo de dois anos para agendamentos. 
+      Caso a opção de recorrência enviada pelo iniciador não respeite a regra acima, o detentor deve retornar o erro 422 "PARAMETRO_INVALIDO" com o detalhe "Quantidade permitida de pagamentos excedida". 
+  version: 4.0.0-rc.2
   license:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0'
@@ -714,7 +719,7 @@ components:
       properties:
         data:
           type: object
-          description: Objeto contendo as informações de consentimento para a iniciação de pagamento individual.
+          description: Objeto contendo as informações de consentimento para a iniciação de pagamento.
           required:
             - loggedUser
             - creditor
@@ -1892,7 +1897,7 @@ components:
       properties:
         data:
           type: object
-          description: Objeto contendo as informações de resposta do consentimento para a iniciação de pagamento individual.
+          description: Objeto contendo as informações de consentimento para a iniciação de pagamento.
           required:
             - consentId
             - statusUpdateDateTime
@@ -1927,10 +1932,12 @@ components:
               maxLength: 20
             expirationDateTime:
               description: |
-                Data e hora em que o consentimento da iniciação de pagamento expira, devendo ser sempre o creationDateTime mais 5 minutos. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format).
-                O consentimento é criado com o status AWAITING_AUTHORISATION, e deve assumir o status AUTHORIZED ou REJECTED antes do tempo de expiração - 5 minutos. Caso o tempo seja expirado, o status deve assumir REJECTED.
-                Para o cenário em que o status assumiu AUTHORISED, o tempo máximo do expirationDateTime do consentimento deve assumir "now + 60 minutos". Este é o tempo para consumir o consentimento autorizado, mudando seu status para CONSUMED. Não é possível prorrogar este tempo e a criação de um novo consentimento será necessária para os cenários de insucesso.
-                O tempo do expirationDateTime é garantido com os 15 minutos do access token, sendo possível utilizar mais três refresh tokens até totalizar 60 minutos.
+                Data e hora em que o consentimento da iniciação de pagamento expira. 
+                Para consentimentos em status AWAITING_AUTHORISATION, deve ser sempre “creationDateTime + 5 minutos”. 
+                Após esse tempo, não sendo aprovado (seja a aprovação única ou primeiro aprovador), o consentimento deve ir para REJECTED. 
+                Para consentimentos em status PARTIALLY_ACCEPTED, deve assumir o valor da política de aprovação de cada instituição. 
+                Para consentimentos em status AUTHORISED, devem assumir o valor de “statusUpdateDateTime + 60 minutos”, sendo esse o tempo máximo permitido para o consumo do consentimento. 
+                Caso não seja consumido, deve ser movido para o status REJECTED.
               type: string
               format: date-time
               example: '2021-05-21T08:30:00Z'
@@ -1971,7 +1978,7 @@ components:
       properties:
         data:
           type: object
-          description: Objeto contendo as informações de resposta do consentimento para a iniciação de pagamento individual.
+          description: Objeto contendo as informações de consentimento para a iniciação de pagamento.
           required:
             - consentId
             - statusUpdateDateTime
@@ -2006,10 +2013,12 @@ components:
               maxLength: 20
             expirationDateTime:
               description: |
-                Data e hora em que o consentimento da iniciação de pagamento expira, devendo ser sempre o creationDateTime mais 5 minutos. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format).
-                O consentimento é criado com o status AWAITING_AUTHORISATION, e deve assumir o status AUTHORIZED ou REJECTED antes do tempo de expiração - 5 minutos. Caso o tempo seja expirado, o status deve assumir REJECTED.
-                Para o cenário em que o status assumiu AUTHORISED, o tempo máximo do expirationDateTime do consentimento deve assumir "now + 60 minutos". Este é o tempo para consumir o consentimento autorizado, mudando seu status para CONSUMED. Não é possível prorrogar este tempo e a criação de um novo consentimento será necessária para os cenários de insucesso.
-                O tempo do expirationDateTime é garantido com os 15 minutos do access token, sendo possível utilizar mais três refresh tokens até totalizar 60 minutos.
+                Data e hora em que o consentimento da iniciação de pagamento expira. 
+                Para consentimentos em status AWAITING_AUTHORISATION, deve ser sempre “creationDateTime + 5 minutos”. 
+                Após esse tempo, não sendo aprovado (seja a aprovação única ou primeiro aprovador), o consentimento deve ir para REJECTED. 
+                Para consentimentos em status PARTIALLY_ACCEPTED, deve assumir o valor da política de aprovação de cada instituição. 
+                Para consentimentos em status AUTHORISED, devem assumir o valor de “statusUpdateDateTime + 60 minutos”, sendo esse o tempo máximo permitido para o consumo do consentimento. 
+                Caso não seja consumido, deve ser movido para o status REJECTED.
               type: string
               format: date-time
               example: '2021-05-21T08:30:00Z'
@@ -2635,6 +2644,7 @@ components:
             - quantity
           properties:
             startDate:
+              description: Define o início da vigência da recorrência.
               type: string
               format: date
               pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
@@ -2645,7 +2655,7 @@ components:
               type: integer
               format: int32
               minimum: 2
-              maximum: 730
+              maximum: 60
               example: 3
     ScheduleWeekly:
       type: object
@@ -2660,6 +2670,7 @@ components:
             - quantity
           properties:
             dayOfWeek:
+              description: Define o dia da semana planejado para a ocorrência das liquidações.
               type: string
               enum:
                 - SEGUNDA_FEIRA
@@ -2671,6 +2682,7 @@ components:
                 - DOMINGO
               example: QUINTA_FEIRA
             startDate:
+              description: Define o início da vigência da recorrência.
               type: string
               format: date
               pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
@@ -2681,7 +2693,7 @@ components:
               type: integer
               format: int32
               minimum: 2
-              maximum: 104
+              maximum: 60
               example: 10
     ScheduleMonthly:
       type: object
@@ -2696,17 +2708,20 @@ components:
             - quantity
           properties:
             dayOfMonth:
+              description: Define o dia do mês planejado para a ocorrência das liquidações.
               type: integer
               minimum: 1
               maximum: 31
               example: 10
             startDate:
+              description: Define o início da vigência da recorrência.
               type: string
               format: date
               pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
               maxLength: 10
               example: '2023-08-23'
             quantity:
+              description: Define a quantidade de pagamentos que serão enviados para liquidação.
               type: integer
               format: int32
               minimum: 2
@@ -2727,8 +2742,9 @@ components:
             - additionalInformation
           properties:
             dates:
+              description: Define os dias em que estão planejadas as ocorrências das liquidações.
               type: array
-              maxItems: 730
+              maxItems: 60
               minItems: 2
               example: ['2023-08-23', '2023-09-26']
               items:
