@@ -54,7 +54,7 @@
 |  | [2.1.0](swagger-apis/payments/2.1.0.yml) | [3.0.0](swagger-apis/payments/3.0.0.yml) | [YAML](diffs/payments/2.1.0_3.0.0-breaking-only.yml) | [YAML](diffs/payments/2.1.0_3.0.0.yml) |
 |  | [3.0.0](swagger-apis/payments/3.0.0.yml) | [3.1.0](swagger-apis/payments/3.1.0.yml) | [YAML](diffs/payments/3.0.0_3.1.0-breaking-only.yml) | [YAML](diffs/payments/3.0.0_3.1.0.yml) |
 |  | [3.1.0](swagger-apis/payments/3.1.0.yml) | [4.0.0](swagger-apis/payments/4.0.0.yml) | [YAML](diffs/payments/3.1.0_4.0.0-breaking-only.yml) | [YAML](diffs/payments/3.1.0_4.0.0.yml) |
-| pension | [1.0.1](swagger-apis/pension/1.0.1.yml) | [2.0.0-beta.1](swagger-apis/pension/2.0.0-beta.1.yml) | [YAML](diffs/pension/1.0.1_2.0.0-beta.1-breaking-only.yml) | [YAML](diffs/pension/1.0.1_2.0.0-beta.1.yml) |
+| pension | [1.0.1](swagger-apis/pension/1.0.1.yml) | [2.0.0-beta.2](swagger-apis/pension/2.0.0-beta.2.yml) | [YAML](diffs/pension/1.0.1_2.0.0-beta.2-breaking-only.yml) | [YAML](diffs/pension/1.0.1_2.0.0-beta.2.yml) |
 | products-services | [1.0.2](swagger-apis/products-services/1.0.2.yml) | [2.0.0-beta1](swagger-apis/products-services/2.0.0-beta1.yml) | [YAML](diffs/products-services/1.0.2_2.0.0-beta1-breaking-only.yml) | [YAML](diffs/products-services/1.0.2_2.0.0-beta1.yml) |
 |  | [2.0.0-beta1](swagger-apis/products-services/2.0.0-beta1.yml) | [3.0.0](swagger-apis/products-services/3.0.0.yml) | [YAML](diffs/products-services/2.0.0-beta1_3.0.0-breaking-only.yml) | [YAML](diffs/products-services/2.0.0-beta1_3.0.0.yml) |
 | resources | [1.0.2](swagger-apis/resources/1.0.2.yml) | [2.0.1](swagger-apis/resources/2.0.1.yml) | [YAML](diffs/resources/1.0.2_2.0.1-breaking-only.yml) | [YAML](diffs/resources/1.0.2_2.0.1.yml) |
@@ -315,6 +315,7 @@
 |  | [1.0.0-rc3.0](swagger-apis/pension/1.0.0-rc3.0.yml) | [1.0.0](swagger-apis/pension/1.0.0.yml) | [YAML](diffs/pension/1.0.0-rc3.0_1.0.0.yml) |
 |  | [1.0.0](swagger-apis/pension/1.0.0.yml) | [1.0.1](swagger-apis/pension/1.0.1.yml) | [YAML](diffs/pension/1.0.0_1.0.1.yml) |
 |  | [1.0.1](swagger-apis/pension/1.0.1.yml) | [2.0.0-beta.1](swagger-apis/pension/2.0.0-beta.1.yml) | [YAML](diffs/pension/1.0.1_2.0.0-beta.1.yml) |
+|  | [2.0.0-beta.1](swagger-apis/pension/2.0.0-beta.1.yml) | [2.0.0-beta.2](swagger-apis/pension/2.0.0-beta.2.yml) | [YAML](diffs/pension/2.0.0-beta.1_2.0.0-beta.2.yml) |
 | products-services | [1.0.0-rc5.1](swagger-apis/products-services/1.0.0-rc5.1.yml) | [1.0.0-rc5.2](swagger-apis/products-services/1.0.0-rc5.2.yml) | [YAML](diffs/products-services/1.0.0-rc5.1_1.0.0-rc5.2.yml) |
 |  | [1.0.0-rc5.2](swagger-apis/products-services/1.0.0-rc5.2.yml) | [1.0.0-rc5](swagger-apis/products-services/1.0.0-rc5.yml) | [YAML](diffs/products-services/1.0.0-rc5.2_1.0.0-rc5.yml) |
 |  | [1.0.0-rc5](swagger-apis/products-services/1.0.0-rc5.yml) | [1.0.0](swagger-apis/products-services/1.0.0.yml) | [YAML](diffs/products-services/1.0.0-rc5_1.0.0.yml) |
