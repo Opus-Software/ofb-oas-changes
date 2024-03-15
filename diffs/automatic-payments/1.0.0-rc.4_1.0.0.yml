@@ -9,6 +9,49 @@ GET /pix/recurring-payments
   - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora.' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.'
 - Responses changed
   - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: rejectionReason
+                    - Properties changed
+                      - Modified property: detail
+                        - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente;
+- VALOR_INVALIDO: O valor enviado não é válido; 
+- NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta;
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento;
+- PAGAMENTO_RECUSADO_DETENTORA: [descrição do motivo de recusa];
+- PAGAMENTO_RECUSADO_SPI: [código de erro conforme tabela de domínios reason PACS.002];
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (status diferente de "AUTHORISED" ou está expirado);
+- FALHA_INFRAESTRUTURA_SPI: Indica uma falha no Sistema de Pagamentos Instantâneos (SPI);
+- FALHA_INFRAESTRUTURA_ICP: Indica uma falha na Infraestrutura de Chaves Públicas (ICP);
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR: Indica uma falha na infraestrutura do Prestador de Serviço de Pagamento (PSP) que recebe o pagamento;
+- FALHA_INFRAESTRUTURA_DETENTORA: indica uma falha na infraestrutura da instituição detentora das informações ou recursos;
+- LIMITE_PERIODO_VALOR_EXCEDIDO – A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO – A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+- TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração.
+' to 'Detalhe sobre o código identificador do motivo de rejeição.
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente;
+- VALOR_INVALIDO: O valor enviado não é válido; 
+- NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta;
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento;
+- PAGAMENTO_RECUSADO_DETENTORA: [descrição do motivo de recusa];
+- PAGAMENTO_RECUSADO_SPI: [código de erro conforme tabela de domínios reason PACS.002];
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (em status final);
+- FALHA_INFRAESTRUTURA_SPI: Indica uma falha no Sistema de Pagamentos Instantâneos (SPI);
+- FALHA_INFRAESTRUTURA_ICP: Indica uma falha na Infraestrutura de Chaves Públicas (ICP);
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR: Indica uma falha na infraestrutura do Prestador de Serviço de Pagamento (PSP) que recebe o pagamento;
+- FALHA_INFRAESTRUTURA_DETENTORA: indica uma falha na infraestrutura da instituição detentora das informações ou recursos;
+- LIMITE_PERIODO_VALOR_EXCEDIDO – A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO – A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+- TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração.
+'
     - Headers changed
       - Modified header: x-fapi-interaction-id
         - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora.
@@ -67,6 +110,48 @@ POST /pix/recurring-payments
   - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora.' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.'
 - Responses changed
   - Modified response: 201
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: rejectionReason
+                  - Properties changed
+                    - Modified property: detail
+                      - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente;
+- VALOR_INVALIDO: O valor enviado não é válido; 
+- NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta;
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento;
+- PAGAMENTO_RECUSADO_DETENTORA: [descrição do motivo de recusa];
+- PAGAMENTO_RECUSADO_SPI: [código de erro conforme tabela de domínios reason PACS.002];
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (status diferente de "AUTHORISED" ou está expirado);
+- FALHA_INFRAESTRUTURA_SPI: Indica uma falha no Sistema de Pagamentos Instantâneos (SPI);
+- FALHA_INFRAESTRUTURA_ICP: Indica uma falha na Infraestrutura de Chaves Públicas (ICP);
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR: Indica uma falha na infraestrutura do Prestador de Serviço de Pagamento (PSP) que recebe o pagamento;
+- FALHA_INFRAESTRUTURA_DETENTORA: indica uma falha na infraestrutura da instituição detentora das informações ou recursos;
+- TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração
+- LIMITE_PERIODO_VALOR_EXCEDIDO – A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO – A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+' to 'Detalhe sobre o código identificador do motivo de rejeição.
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente;
+- VALOR_INVALIDO: O valor enviado não é válido; 
+- NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta;
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento;
+- PAGAMENTO_RECUSADO_DETENTORA: [descrição do motivo de recusa];
+- PAGAMENTO_RECUSADO_SPI: [código de erro conforme tabela de domínios reason PACS.002];
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (em status final);
+- FALHA_INFRAESTRUTURA_SPI: Indica uma falha no Sistema de Pagamentos Instantâneos (SPI);
+- FALHA_INFRAESTRUTURA_ICP: Indica uma falha na Infraestrutura de Chaves Públicas (ICP);
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR: Indica uma falha na infraestrutura do Prestador de Serviço de Pagamento (PSP) que recebe o pagamento;
+- FALHA_INFRAESTRUTURA_DETENTORA: indica uma falha na infraestrutura da instituição detentora das informações ou recursos;
+- TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração
+- LIMITE_PERIODO_VALOR_EXCEDIDO – A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO – A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+'
     - Headers changed
       - Modified header: x-fapi-interaction-id
         - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora.
@@ -109,6 +194,113 @@ POST /pix/recurring-payments
 ' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
 '
   - Modified response: 422
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Description changed from 'Códigos de erros previstos na criação da iniciação de pagamento:
+- SALDO_INSUFICIENTE: Esta conta não possui saldo suficiente para realizar o pagamento.
+- VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente.
+- VALOR_INVALIDO: O valor enviado não é válido para o QR Code informado.
+- LIMITE_PERIODO_VALOR_EXCEDIDO: A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO: A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (status não é "authorised" ou está expirado).
+- PARAMETRO_NAO_INFORMADO: Parâmetro não informado.
+- PARAMETRO_INVALIDO: Parâmetro inválido.
+- NAO_INFORMADO: Não informada pela detentora de conta.
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento.
+- DETALHE_PAGAMENTO_INVALIDO: Detalhe do pagamento inválido.
+- PAGAMENTO_RECUSADO_DETENTORA: Pagamento recusado pela detentora de conta.
+- PAGAMENTO_RECUSADO_SPI: Pagamento recusado no Sistema de Pagamentos Instantâneos (SPI).
+- ERRO_IDEMPOTENCIA: Erro idempotência.
+' to 'Códigos de erros previstos na criação da iniciação de pagamento:
+- SALDO_INSUFICIENTE: Esta conta não possui saldo suficiente para realizar o pagamento.
+- VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente.
+- VALOR_INVALIDO: O valor enviado não é válido para o QR Code informado.
+- LIMITE_PERIODO_VALOR_EXCEDIDO: A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO: A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (em status final).
+- CONSENTIMENTO_PENDENTE_AUTORIZACAO: Consentimento pendente autorização de múltiplas alçadas (status “PARTIALLY_ACCEPTED”).
+- PARAMETRO_NAO_INFORMADO: Parâmetro não informado.
+- PARAMETRO_INVALIDO: Parâmetro inválido.
+- NAO_INFORMADO: Não informada pela detentora de conta.
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento.
+- DETALHE_PAGAMENTO_INVALIDO: Detalhe do pagamento inválido.
+- PAGAMENTO_RECUSADO_DETENTORA: Pagamento recusado pela detentora de conta.
+- PAGAMENTO_RECUSADO_SPI: Pagamento recusado no Sistema de Pagamentos Instantâneos (SPI).
+- ERRO_IDEMPOTENCIA: Erro idempotência.
+'
+                    - New enum values: [CONSENTIMENTO_PENDENTE_AUTORIZACAO]
+                  - Modified property: detail
+                    - Description changed from 'Descrição específica do erro de acordo com o código reportado:
+- SALDO_INSUFICIENTE: Esta conta não possui saldo suficiente para realizar o pagamento.
+- VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente.
+- VALOR_INVALIDO: O valor enviado não é válido para o QR Code informado.
+- LIMITE_PERIODO_VALOR_EXCEDIDO: A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO: A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (status não é "authorised" ou está expirado).
+- PARAMETRO_NAO_INFORMADO: Parâmetro não informado.
+- PARAMETRO_INVALIDO: Parâmetro inválido.
+- NAO_INFORMADO: Não informada pela detentora de conta.
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento.
+- DETALHE_PAGAMENTO_INVALIDO: Detalhe do pagamento inválido.
+- PAGAMENTO_RECUSADO_DETENTORA: Pagamento recusado pela detentora de conta.
+- PAGAMENTO_RECUSADO_SPI: Pagamento recusado no Sistema de Pagamentos Instantâneos (SPI).
+- ERRO_IDEMPOTENCIA: Erro idempotência.
+' to 'Descrição específica do erro de acordo com o código reportado:
+- SALDO_INSUFICIENTE: Esta conta não possui saldo suficiente para realizar o pagamento.
+- VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente.
+- VALOR_INVALIDO: O valor enviado não é válido para o QR Code informado.
+- LIMITE_PERIODO_VALOR_EXCEDIDO: A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO: A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (em status final).
+- CONSENTIMENTO_PENDENTE_AUTORIZACAO: Consentimento pendente autorização de múltiplas alçadas (status “PARTIALLY_ACCEPTED”).
+- PARAMETRO_NAO_INFORMADO: Parâmetro não informado.
+- PARAMETRO_INVALIDO: Parâmetro inválido.
+- NAO_INFORMADO: Não informada pela detentora de conta.
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento.
+- DETALHE_PAGAMENTO_INVALIDO: Detalhe do pagamento inválido.
+- PAGAMENTO_RECUSADO_DETENTORA: Pagamento recusado pela detentora de conta.
+- PAGAMENTO_RECUSADO_SPI: Pagamento recusado no Sistema de Pagamentos Instantâneos (SPI).
+- ERRO_IDEMPOTENCIA: Erro idempotência.
+'
+                  - Modified property: title
+                    - Description changed from 'Título específico do erro reportado, de acordo com o código enviado:
+- SALDO_INSUFICIENTE: Esta conta não possui saldo suficiente para realizar o pagamento.
+- VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente.
+- VALOR_INVALIDO: O valor enviado não é válido para o QR Code informado.
+- LIMITE_PERIODO_VALOR_EXCEDIDO: A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO: A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (status não é "authorised" ou está expirado).
+- PARAMETRO_NAO_INFORMADO: Parâmetro não informado.
+- PARAMETRO_INVALIDO: Parâmetro inválido.
+- NAO_INFORMADO: Não informada pela detentora de conta.
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento.
+- DETALHE_PAGAMENTO_INVALIDO: Detalhe do pagamento inválido.
+- PAGAMENTO_RECUSADO_DETENTORA: Pagamento recusado pela detentora de conta.
+- PAGAMENTO_RECUSADO_SPI: Pagamento recusado no Sistema de Pagamentos Instantâneos (SPI).
+- ERRO_IDEMPOTENCIA: Erro idempotência.
+' to 'Título específico do erro reportado, de acordo com o código enviado:
+- SALDO_INSUFICIENTE: Esta conta não possui saldo suficiente para realizar o pagamento.
+- VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente.
+- VALOR_INVALIDO: O valor enviado não é válido para o QR Code informado.
+- LIMITE_PERIODO_VALOR_EXCEDIDO: A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO: A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (em status final).
+- CONSENTIMENTO_PENDENTE_AUTORIZACAO: Consentimento pendente autorização de múltiplas alçadas (status “PARTIALLY_ACCEPTED”).
+- PARAMETRO_NAO_INFORMADO: Parâmetro não informado.
+- PARAMETRO_INVALIDO: Parâmetro inválido.
+- NAO_INFORMADO: Não informada pela detentora de conta.
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento.
+- DETALHE_PAGAMENTO_INVALIDO: Detalhe do pagamento inválido.
+- PAGAMENTO_RECUSADO_DETENTORA: Pagamento recusado pela detentora de conta.
+- PAGAMENTO_RECUSADO_SPI: Pagamento recusado no Sistema de Pagamentos Instantâneos (SPI).
+- ERRO_IDEMPOTENCIA: Erro idempotência.
+'
     - Headers changed
       - Modified header: x-fapi-interaction-id
         - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora.
@@ -131,6 +323,48 @@ GET /pix/recurring-payments/{recurringPaymentId}
   - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora.' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.'
 - Responses changed
   - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: rejectionReason
+                  - Properties changed
+                    - Modified property: detail
+                      - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente;
+- VALOR_INVALIDO: O valor enviado não é válido; 
+- NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta;
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento;
+- PAGAMENTO_RECUSADO_DETENTORA: [descrição do motivo de recusa];
+- PAGAMENTO_RECUSADO_SPI: [código de erro conforme tabela de domínios reason PACS.002];
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (status diferente de "AUTHORISED" ou está expirado);
+- FALHA_INFRAESTRUTURA_SPI: Indica uma falha no Sistema de Pagamentos Instantâneos (SPI);
+- FALHA_INFRAESTRUTURA_ICP: Indica uma falha na Infraestrutura de Chaves Públicas (ICP);
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR: Indica uma falha na infraestrutura do Prestador de Serviço de Pagamento (PSP) que recebe o pagamento;
+- FALHA_INFRAESTRUTURA_DETENTORA: indica uma falha na infraestrutura da instituição detentora das informações ou recursos;
+- TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração
+- LIMITE_PERIODO_VALOR_EXCEDIDO – A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO – A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+' to 'Detalhe sobre o código identificador do motivo de rejeição.
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente;
+- VALOR_INVALIDO: O valor enviado não é válido; 
+- NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta;
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento;
+- PAGAMENTO_RECUSADO_DETENTORA: [descrição do motivo de recusa];
+- PAGAMENTO_RECUSADO_SPI: [código de erro conforme tabela de domínios reason PACS.002];
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (em status final);
+- FALHA_INFRAESTRUTURA_SPI: Indica uma falha no Sistema de Pagamentos Instantâneos (SPI);
+- FALHA_INFRAESTRUTURA_ICP: Indica uma falha na Infraestrutura de Chaves Públicas (ICP);
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR: Indica uma falha na infraestrutura do Prestador de Serviço de Pagamento (PSP) que recebe o pagamento;
+- FALHA_INFRAESTRUTURA_DETENTORA: indica uma falha na infraestrutura da instituição detentora das informações ou recursos;
+- TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração
+- LIMITE_PERIODO_VALOR_EXCEDIDO – A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO – A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+'
     - Headers changed
       - Modified header: x-fapi-interaction-id
         - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora.
@@ -189,6 +423,48 @@ PATCH /pix/recurring-payments/{recurringPaymentId}
   - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora.' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.'
 - Responses changed
   - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: rejectionReason
+                  - Properties changed
+                    - Modified property: detail
+                      - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente;
+- VALOR_INVALIDO: O valor enviado não é válido; 
+- NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta;
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento;
+- PAGAMENTO_RECUSADO_DETENTORA: [descrição do motivo de recusa];
+- PAGAMENTO_RECUSADO_SPI: [código de erro conforme tabela de domínios reason PACS.002];
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (status diferente de "AUTHORISED" ou está expirado);
+- FALHA_INFRAESTRUTURA_SPI: Indica uma falha no Sistema de Pagamentos Instantâneos (SPI);
+- FALHA_INFRAESTRUTURA_ICP: Indica uma falha na Infraestrutura de Chaves Públicas (ICP);
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR: Indica uma falha na infraestrutura do Prestador de Serviço de Pagamento (PSP) que recebe o pagamento;
+- FALHA_INFRAESTRUTURA_DETENTORA: indica uma falha na infraestrutura da instituição detentora das informações ou recursos;
+- TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração
+- LIMITE_PERIODO_VALOR_EXCEDIDO – A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO – A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+' to 'Detalhe sobre o código identificador do motivo de rejeição.
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente;
+- VALOR_INVALIDO: O valor enviado não é válido; 
+- NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta;
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento;
+- PAGAMENTO_RECUSADO_DETENTORA: [descrição do motivo de recusa];
+- PAGAMENTO_RECUSADO_SPI: [código de erro conforme tabela de domínios reason PACS.002];
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (em status final);
+- FALHA_INFRAESTRUTURA_SPI: Indica uma falha no Sistema de Pagamentos Instantâneos (SPI);
+- FALHA_INFRAESTRUTURA_ICP: Indica uma falha na Infraestrutura de Chaves Públicas (ICP);
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR: Indica uma falha na infraestrutura do Prestador de Serviço de Pagamento (PSP) que recebe o pagamento;
+- FALHA_INFRAESTRUTURA_DETENTORA: indica uma falha na infraestrutura da instituição detentora das informações ou recursos;
+- TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração
+- LIMITE_PERIODO_VALOR_EXCEDIDO – A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO – A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+'
     - Headers changed
       - Modified header: x-fapi-interaction-id
         - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora.
