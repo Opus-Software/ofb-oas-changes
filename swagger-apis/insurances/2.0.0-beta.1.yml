@@ -407,7 +407,10 @@ components:
           items:
             type: string
             maxLength: 100
-          example: Informações Adicionais
+          example:
+            - Detalhar os serviços
+            - benefícios
+            - outros
         attributes:
           $ref: '#/components/schemas/PersonalCoverageItemAttributes'
       additionalProperties: false
@@ -449,7 +452,6 @@ components:
               - REEMBOLSO_DESPESAS
               - PRESTACAO_SERVICOS
               - NA
-            example: PAGAMENTO_CAPITAL_SEGURADO_VALOR_MONETARIO.
         indemnityPaymentFrequencies:
           description: Listagem de tipos de frequência de pagamento de indenização para cada combinação de modalidade/cobertura do produto.
           type: array
@@ -554,7 +556,6 @@ components:
             Indicar se a cobertura pode ser contratada isoladamente ou não:
               1. true
               2. false
-          example: true
       additionalProperties: false
     EnumPersonalIndemnityPaymentFrequencyType:
       type: string
@@ -1043,7 +1044,8 @@ components:
           maxItems: 2147483647
           items:
             type: string
-          example: Informações Adicionais
+          example:
+            - Assistance additional info.
         additionals:
           type: array
           description: Campo sem descrição na API em OPIN.
@@ -1107,7 +1109,6 @@ components:
           description: |
             1. true
             2. false
-          example: true
         portabilityGraceTime:
           $ref: '#/components/schemas/PersonalInsurancePortabilityGraceTime'
         indemnityPaymentMethods:
