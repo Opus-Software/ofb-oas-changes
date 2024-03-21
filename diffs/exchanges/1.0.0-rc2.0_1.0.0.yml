@@ -1,0 +1,150 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 3
+-------------------------
+GET /operations
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID RFC4122 usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser "espelhado" pela transmissora (server) no cabeçalho de resposta.' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.'
+  - Schema changed
+    - Format changed from '' to 'uuid'
+    - Example changed from null to 'd78fc4e5-37ca-4da3-adf2-9b082bf92280'
+    - MaxLength changed from 100 to 36
+    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+GET /operations/{operationId}
+- Description changed from 'Obtém os dados da operação de Câmbio identificada por operationId.' to 'Obtém os dados da operação de Câmbio identificada por operationId. As alterações efetuadas na operação original devem ser representadas através de eventos. A operação original não é atualizada para refletir eventuais eventos de alteração. Somente os campos `/operationOutstandingBalance` e `/dueDate` devem ser atualizados'
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID RFC4122 usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser "espelhado" pela transmissora (server) no cabeçalho de resposta.' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.'
+  - Schema changed
+    - Format changed from '' to 'uuid'
+    - Example changed from null to 'd78fc4e5-37ca-4da3-adf2-9b082bf92280'
+    - MaxLength changed from 100 to 36
+    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - New property: intermediaryInstitutionName
+                - Deleted property: foreignPartieCountryCode
+                - Deleted property: foreignPartieName
+                - Deleted property: intemediaryInstitutionName
+                - Deleted property: relationshipCode
+                - Modified property: deliveryForeignCurrency
+                  - Description changed from 'Forma de entrega da moeda estrangeira.' to 'Forma de entrega da moeda estrangeira.
+```
+|--------|-------------------------------------------------------------|
+| Código | ENUM                                                        |
+|--------|-------------------------------------------------------------|
+|   10   | CARTA_CREDITO_A_VISTA                                       |
+|   15   | CARTA_CREDITO_A_PRAZO                                       |
+|   20   | CONTA_DEPOSITO                                              |
+|   21   | CONTA_DEPOSITO_MOEDA_ESTRANGEIRA_PAIS                       |
+|   22   | CONTA_DEPOSITO_EXPORTADOR_MANTIDA_NO_EXTERIOR               |
+|   23   | CONTA_DEPOSITO_OU_PAGAMENTO_EXPORTADOR_INSTITUICAO_EXTERIOR |
+|   25   | CONVENIO_PAGAMENTOS_E_CREDITOS_RECIPROCOS                   |
+|   30   | CHEQUE                                                      |
+|   50   | ESPECIE_CHEQUES_VIAGEM                                      |
+|   55   | CARTAO_PREPAGO                                              |
+|   65   | TELETRANSMISSAO                                             |
+|   75   | TITULOS_VALORES                                             |
+|   90   | SIMBOLICA                                                   |
+|   91   | SEM_MOVIMENTACAO_VALORES                                    |
+|   99   | DEMAIS                                                      |
+|   N/A  | OUTRO_NAO_MAPEADO_OFB                                       |
+|--------|-------------------------------------------------------------|
+```
+'
+                  - New enum values: [CONTA_DEPOSITO_EXPORTADOR_MANTIDA_NO_EXTERIOR CONVENIO_PAGAMENTOS_E_CREDITOS_RECIPROCOS OUTRO_NAO_MAPEADO_OFB]
+                - Modified property: localCurrencyAdvancePercentage
+                  - Description changed from 'Percentual do valor de moeda nacional concedido ao cliente antecipadamente. p.ex. 0.014500.
+O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros(representação de porcentagem p.ex: 0.150000. Este valor representa 15%. O valor 1 representa 100%). Campos de envio obrigatório no caso de operações de câmbio com liquidação futura.
+' to 'Percentual do valor de moeda estrangeira concedido ao cliente antecipadamente. p.ex. 0.014500.
+O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros(representação de porcentagem p.ex: 0.150000. Este valor representa 15%. O valor 1 representa 100%). Campos de envio obrigatório no caso de operações de câmbio com liquidação futura.
+'
+                - Modified property: operationOutstandingBalance
+                  - Description changed from 'Valor do saldo da operação a liquidar em moeda estrangeira. Objeto de envio obrigatório nos casos de operações de câmbio com liquidação futura.' to 'Valor do saldo da operação a liquidar em moeda estrangeira. Objeto de envio obrigatório para eventos criados (eventDate) a partir de 15/04/2024 nos casos de operações de câmbio com liquidação futura.'
+            - Modified property: links
+              - Properties changed
+                - Deleted property: first
+                - Deleted property: last
+                - Deleted property: next
+                - Deleted property: prev
+GET /operations/{operationId}/events
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID RFC4122 usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser "espelhado" pela transmissora (server) no cabeçalho de resposta.' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.'
+  - Schema changed
+    - Format changed from '' to 'uuid'
+    - Example changed from null to 'd78fc4e5-37ca-4da3-adf2-9b082bf92280'
+    - MaxLength changed from 100 to 36
+    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - New property: foreignPartie
+                  - Deleted property: foreignPartieCountryCode
+                  - Deleted property: foreignPartieName
+                  - Deleted property: relationshipCode
+                  - Modified property: deliveryForeignCurrency
+                    - Description changed from 'Forma de entrega da moeda estrangeira.' to 'Forma de entrega da moeda estrangeira.
+```
+|--------|-------------------------------------------------------------|
+| Código | ENUM                                                        |
+|--------|-------------------------------------------------------------|
+|   10   | CARTA_CREDITO_A_VISTA                                       |
+|   15   | CARTA_CREDITO_A_PRAZO                                       |
+|   20   | CONTA_DEPOSITO                                              |
+|   21   | CONTA_DEPOSITO_MOEDA_ESTRANGEIRA_PAIS                       |
+|   22   | CONTA_DEPOSITO_EXPORTADOR_MANTIDA_NO_EXTERIOR               |
+|   23   | CONTA_DEPOSITO_OU_PAGAMENTO_EXPORTADOR_INSTITUICAO_EXTERIOR |
+|   25   | CONVENIO_PAGAMENTOS_E_CREDITOS_RECIPROCOS                   |
+|   30   | CHEQUE                                                      |
+|   50   | ESPECIE_CHEQUES_VIAGEM                                      |
+|   55   | CARTAO_PREPAGO                                              |
+|   65   | TELETRANSMISSAO                                             |
+|   75   | TITULOS_VALORES                                             |
+|   90   | SIMBOLICA                                                   |
+|   91   | SEM_MOVIMENTACAO_VALORES                                    |
+|   99   | DEMAIS                                                      |
+|   N/A  | OUTRO_NAO_MAPEADO_OFB                                       |
+|--------|-------------------------------------------------------------|
+```
+'
+                    - New enum values: [CONTA_DEPOSITO_EXPORTADOR_MANTIDA_NO_EXTERIOR CONVENIO_PAGAMENTOS_E_CREDITOS_RECIPROCOS OUTRO_NAO_MAPEADO_OFB]
+                  - Modified property: eventType
+                    - Description changed from 'Para o campo domínio:
+1 - Contratação no Mercado Primário.  
+2 - Alteração de Operação Cambial no Mercado Primário.  
+3 - Cancelamento de Operação Cambial no Mercado Primário.  
+4 - Liquidação de Operação Cambial no Mercado Primário.  
+5 - Baixa de Valor a Liquidar de Operação Cambial no Mercado Primário.  
+6 - Restabelecimento de Baixa de Valor a Liquidar de Operação Cambial no Mercado Primário.  
+O evento está relacionado ao tipo de contratação.
+' to 'Para o campo domínio:
+1 - Contratação no Mercado Primário.  
+2 - Alteração de Operação Cambial no Mercado Primário.  
+3 - Cancelamento de Operação Cambial no Mercado Primário.  
+4 - Liquidação de Operação Cambial no Mercado Primário.  
+5 - Baixa de Valor a Liquidar de Operação Cambial no Mercado Primário.  
+6 - Restabelecimento de Baixa de Valor a Liquidar de Operação Cambial no Mercado Primário.  
+9 - Anulação de Operação Cambial no Mercado Primário (utilizado, por exemplo, na anulação de um evento de liquidação/cancelamento).  
+Obs.: Códigos seguem o layout de mensageria enviada pelas instituições ao Banco Central.  
+O evento está relacionado ao tipo de contratação.
+'
+                    - New enum values: [9]
+                  - Modified property: localCurrencyAdvancePercentage
+                    - Description changed from 'Percentual do valor de moeda nacional concedido ao cliente antecipadamente. p.ex. 0.014500.
+O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros(representação de porcentagem p.ex: 0.150000. Este valor representa 15%. O valor 1 representa 100%). Campos de envio obrigatório no caso de operações de câmbio com liquidação futura.
+' to 'Percentual do valor de moeda estrangeira concedido ao cliente antecipadamente. p.ex. 0.014500.
+O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros(representação de porcentagem p.ex: 0.150000. Este valor representa 15%. O valor 1 representa 100%). Campos de envio obrigatório no caso de operações de câmbio com liquidação futura.
+'
