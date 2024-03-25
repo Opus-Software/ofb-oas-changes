@@ -399,8 +399,7 @@ components:
           $ref: '#/components/schemas/EnumInsurancePersonalCoverageTypePersonal'
         typeAdditionalInfos:
           type: array
-          minLength: 0
-          minItems: 1
+          minItems: 0
           maxItems: 2147483647
           description: |
             Lista de textos para complementar informação relativa ao campo type, quando for selecionada a opção 'OUTROS'.
@@ -584,9 +583,11 @@ components:
       description: |
         1. Saldamento
         2. Benefício Prolongado
+        3. Não se aplica
       enum:
         - SALDAMENTO
         - BENEFICIO_PROLONGADO
+        - NAO_APLICA
       example: SALDAMENTO
     EnumPersonalInsuranceIndemnityPaymentMethod:
       type: string
@@ -740,38 +741,7 @@ components:
           items:
             $ref: '#/components/schemas/PersonalInsuranceReclaimTableItem'
         gracePeriod:
-          description: Período de carência.
-          type: object
-          required:
-            - amount
-          x-regulatory-required:
-            - amount
-            - unit
-            - details
-          properties:
-            amount:
-              type: integer
-              format: int64
-              description: Informar o prazo de carência
-              example: 90
-              minimum: 0
-              maximum: 2147483647
-            unit:
-              type: string
-              description: |
-                Informar o critério de carência para a cobertura
-                  - Dias 
-                  - Meses
-              enum:
-                - DIAS
-                - MESES
-        details:
-          description: Descrições adicionais do período de carência.
-          type: string
-          minLength: 1
-          maxLength: 500
-          pattern: '^(?!\s)[\w\W\s]*[^\s]$'
-          example: Descrições adicionais do período de carência
+          $ref: '#/components/schemas/GracePeriod'
         differenciatedPercentage:
           description: Campo aberto (possibilidade de incluir URL)
           type: string
@@ -1182,14 +1152,7 @@ components:
           minimum: 0
           maximum: 2147483647
         unit:
-          type: string
-          description: |
-            Informar o critério de carência para a cobertura
-              - Dias 
-              - Meses
-          enum:
-            - DIAS
-            - MESES
+          $ref: '#/components/schemas/EnumGracePeriodUnit'
       additionalProperties: false
     BenefitRecalculation:
       type: object
