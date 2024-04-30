@@ -2,7 +2,7 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 5
+### Modified Endpoints: 6
 -------------------------
 GET /accounts
 - Responses changed
@@ -51,6 +51,8 @@ GET /accounts/{accountId}/balances
                     - Modified property: amount
                       - MaxLength changed from 20 to 21
                       - Pattern changed from '^\d{1,15}\.\d{2,4}$' to '^-?\d{1,15}\.\d{2,4}$'
+GET /accounts/{accountId}/overdraft-limits
+- Description changed from 'Método para obter os limites da conta de depósito à vista, poupança ou pagamento pré-paga identificada por accountId mantida pelo cliente na instituição transmissora.' to 'Método para obter os limites da conta de depósito à vista, poupança ou pagamento pré-paga identificada por accountId mantida pelo cliente na instituição transmissora. Para as instituições financeiras transmissoras que possuam contas sem limites associados devem retornar HTTP Status 200 com o objeto “data” vazio, sem nenhum atributo interno.'
 GET /accounts/{accountId}/transactions
 - Responses changed
   - Modified response: 200
