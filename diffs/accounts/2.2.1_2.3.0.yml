@@ -32,6 +32,7 @@ GET /accounts/{accountId}/balances
 GET /accounts/{accountId}/overdraft-limits
 - Description changed from 'Método para obter os limites da conta de depósito à vista, poupança ou pagamento pré-paga identificada por accountId mantida pelo cliente na instituição transmissora.' to 'Método para obter os limites da conta de depósito à vista, poupança ou pagamento pré-paga identificada por accountId mantida pelo cliente na instituição transmissora. Para as instituições financeiras transmissoras que possuam contas sem limites associados devem retornar HTTP Status 200 com o objeto “data” vazio, sem nenhum atributo interno.'
 GET /accounts/{accountId}/transactions
+- Description changed from 'Método para obter a lista de transações da conta de depósito à vista, poupança ou pagamento pré-paga identificada por accountId mantida pelo cliente na instituição transmissora.' to 'Método para obter a lista de transações da conta de depósito à vista, poupança ou pagamento pré-paga identificada por accountId mantida pelo cliente na instituição transmissora. É permitida uma consulta máxima que se estenda em 12 meses no passado mais 12 meses no futuro.'
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -44,6 +45,7 @@ GET /accounts/{accountId}/transactions
                   - Modified property: partieCompeCode
                     - Description changed from 'Código identificador atribuído pelo Banco Central do Brasil às instituições participantes do STR (Sistema de Transferência de reservas) referente à pessoa envolvida na transação. O número-código substituiu o antigo código COMPE. Todos os participantes do STR, exceto as Infraestruturas do Mercado Financeiro (IMF) e a Secretaria do Tesouro Nacional, possuem um número-código independentemente de participarem da Centralizadora da Compensação de Cheques (Compe). O campo tem a anotação “n/a” (“não se aplica”) para os participantes do STR aos quais não é atribuído um número-código' to 'Código identificador atribuído pelo Banco Central do Brasil às instituições participantes do STR (Sistema de Transferência de reservas) referente à pessoa envolvida na transação. O número-código substituiu o antigo código COMPE. Todos os participantes do STR, exceto as Infraestruturas do Mercado Financeiro (IMF) e a Secretaria do Tesouro Nacional, possuem um número-código independentemente de participarem da Centralizadora da Compensação de Cheques (Compe).'
 GET /accounts/{accountId}/transactions-current
+- Description changed from 'Método para obter a lista de transações recentes (últimos 7 dias) da conta de depósito à vista, poupança ou pagamento pré-paga identificada por accountId mantida pelo cliente na instituição transmissora.' to 'Método para obter a lista de transações da conta de depósito à vista, poupança ou pagamento pré-paga identificada por accountId mantida pelo cliente na instituição transmissora. É permitida uma consulta máxima que se estenda em 7 dias no passado mais 12 meses no futuro.'
 - Responses changed
   - Modified response: 200
     - Content changed
