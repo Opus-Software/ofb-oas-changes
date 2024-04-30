@@ -13,6 +13,15 @@ GET /contracts
     - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
 - Responses changed
   - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: ipocCode
+                    - Pattern changed from '^\d{22,67}$' to '^[\w\W]{22,67}$'
     - Headers changed
       - Modified header: x-fapi-interaction-id
         - Schema changed
@@ -35,6 +44,8 @@ GET /contracts/{contractId}
               - Properties changed
                 - Modified property: contractNumber
                   - Pattern changed from '^\d{1,100}$' to '^[\w\W]{1,100}$'
+                - Modified property: ipocCode
+                  - Pattern changed from '^\d{22,67}$' to '^[\w\W]{22,67}$'
     - Headers changed
       - Modified header: x-fapi-interaction-id
         - Schema changed
