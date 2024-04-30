@@ -55,6 +55,18 @@ GET /contracts/{contractId}/scheduled-instalments
     - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
 - Responses changed
   - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: dueInstalments
+                  - Max changed from 999 to 999999
+                - Modified property: paidInstalments
+                  - Max changed from 999 to 999999
+                - Modified property: pastDueInstalments
+                  - Max changed from 999 to 999999
     - Headers changed
       - Modified header: x-fapi-interaction-id
         - Schema changed
