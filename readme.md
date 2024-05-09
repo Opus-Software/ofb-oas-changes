@@ -202,7 +202,8 @@
 |  | [1.0.3](swagger-apis/customers/1.0.3.yml) | [2.0.0-RC1.0](swagger-apis/customers/2.0.0-RC1.0.yml) | [YAML](diffs/customers/1.0.3_2.0.0-RC1.0.yml) |
 |  | [2.0.0-RC1.0](swagger-apis/customers/2.0.0-RC1.0.yml) | [2.0.0](swagger-apis/customers/2.0.0.yml) | [YAML](diffs/customers/2.0.0-RC1.0_2.0.0.yml) |
 |  | [2.0.0](swagger-apis/customers/2.0.0.yml) | [2.0.1](swagger-apis/customers/2.0.1.yml) | [YAML](diffs/customers/2.0.0_2.0.1.yml) |
-|  | [2.0.1](swagger-apis/customers/2.0.1.yml) | [2.1.0](swagger-apis/customers/2.1.0.yml) | [YAML](diffs/customers/2.0.1_2.1.0.yml) |
+|  | [2.0.1](swagger-apis/customers/2.0.1.yml) | [2.1.0-beta.2](swagger-apis/customers/2.1.0-beta.2.yml) | [YAML](diffs/customers/2.0.1_2.1.0-beta.2.yml) |
+|  | [2.1.0-beta.2](swagger-apis/customers/2.1.0-beta.2.yml) | [2.1.0](swagger-apis/customers/2.1.0.yml) | [YAML](diffs/customers/2.1.0-beta.2_2.1.0.yml) |
 |  | [2.1.0](swagger-apis/customers/2.1.0.yml) | [2.2.0](swagger-apis/customers/2.2.0.yml) | [YAML](diffs/customers/2.1.0_2.2.0.yml) |
 | enrollments | [1.0.0-beta.1](swagger-apis/enrollments/1.0.0-beta.1.yml) | [1.0.0-rc.1](swagger-apis/enrollments/1.0.0-rc.1.yml) | [YAML](diffs/enrollments/1.0.0-beta.1_1.0.0-rc.1.yml) |
 |  | [1.0.0-rc.1](swagger-apis/enrollments/1.0.0-rc.1.yml) | [1.0.0-rc.2](swagger-apis/enrollments/1.0.0-rc.2.yml) | [YAML](diffs/enrollments/1.0.0-rc.1_1.0.0-rc.2.yml) |
