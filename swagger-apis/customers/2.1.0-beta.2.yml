@@ -696,8 +696,8 @@ components:
           $ref: '#/components/schemas/EnumAreaCode'
         number:
           type: string
-          maxLength: 13
-          pattern: '^([0-9]{6,13})$'
+          maxLength: 11
+          pattern: '^([0-9]{8,11})$'
           example: '29875132'
           description: Número de telefone do cliente
         phoneExtension:
@@ -1058,9 +1058,74 @@ components:
       type: string
       example: '19'
       description: Número de DDD (Discagem Direta à Distância) do telefone do cliente - se houver
-      maxLength: 3
-      minLength: 2
-      pattern: ^(\d{3})$
+      enum:
+        - '11'
+        - '12'
+        - '13'
+        - '14'
+        - '15'
+        - '16'
+        - '17'
+        - '18'
+        - '19'
+        - '21'
+        - '22'
+        - '24'
+        - '27'
+        - '28'
+        - '31'
+        - '32'
+        - '33'
+        - '34'
+        - '35'
+        - '37'
+        - '38'
+        - '41'
+        - '42'
+        - '43'
+        - '44'
+        - '45'
+        - '46'
+        - '47'
+        - '48'
+        - '49'
+        - '51'
+        - '53'
+        - '54'
+        - '55'
+        - '61'
+        - '62'
+        - '63'
+        - '64'
+        - '65'
+        - '66'
+        - '67'
+        - '68'
+        - '69'
+        - '71'
+        - '73'
+        - '74'
+        - '75'
+        - '77'
+        - '79'
+        - '81'
+        - '82'
+        - '83'
+        - '84'
+        - '85'
+        - '86'
+        - '87'
+        - '88'
+        - '89'
+        - '91'
+        - '92'
+        - '93'
+        - '94'
+        - '95'
+        - '96'
+        - '97'
+        - '98'
+        - '99'
     EnumCountrySubDivision:
       type: string
       description: 'Enumeração referente a cada sigla da unidade da federação que identifica o estado ou o distrito federal, no qual o endereço está localizado. p.ex. ''AC''. São consideradas apenas as siglas para os estados brasileiros'
@@ -1671,7 +1736,7 @@ components:
           description: |
             Lista de informações de empregador recebidos através de portabilidade de salário solicitada pelo cliente da transmissora à instituição detentora(s) de sua conta salário, ativos ou que já estiveram ativos,. Cada vínculo é associado a uma portabilidade de salário recebida pela transmissora.
             
-            Obs.: a portabilidade não é explicitamente encerrada, ou seja, a IF para a qual o salário foi portado não é avisado quando a conta salário se encerra ou o salário é portado para outra IF. Não é possível garantir que os dados informados sejam de uma portabilidade ativa, nem que o vínculo com o banco folha ainda exista.
+            Obs.: a portabilidade não é explicitamente encerrada, ou seja, a IF para a qual o salário foi portado não é avisado quando a conta salário se encerra ou o salário é portado para outra IF. Não é possível garantir que os dados informados sejam de uma portabilidade ativa, nem que o vínculo com o banco folha ainda exista. A transmissora terá tais informações apenas quando o pedido da portabilidade tiver sido solicitado em seus canais.
         paychecksBankLink:
           type: array
           items:
