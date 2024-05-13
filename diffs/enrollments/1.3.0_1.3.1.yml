@@ -2,8 +2,43 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 2
+### Modified Endpoints: 4
 -------------------------
+GET /enrollments/{enrollmentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: cancellation
+                  - Properties changed
+                    - Modified property: reason
+                      - Property 'OneOf' changed
+                        - Schema #1 modified
+                          - Properties changed
+                            - Modified property: rejectionReason
+                              - New enum values: [REJEITADO_TEMPO_EXPIRADO_RISK_SIGNALS]
+                              - Deleted enum values: [REJEITADO_TEMPO_EXPIRADO_AUTHORISATION]
+PATCH /enrollments/{enrollmentId}
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: cancellation
+                - Properties changed
+                  - Modified property: reason
+                    - Property 'OneOf' changed
+                      - Schema #1 modified
+                        - Properties changed
+                          - Modified property: rejectionReason
+                            - New enum values: [REJEITADO_TEMPO_EXPIRADO_RISK_SIGNALS]
+                            - Deleted enum values: [REJEITADO_TEMPO_EXPIRADO_AUTHORISATION]
 POST /enrollments/{enrollmentId}/fido-registration-options
 - Responses changed
   - Modified response: 201

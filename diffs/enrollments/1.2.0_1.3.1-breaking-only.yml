@@ -149,6 +149,20 @@ GET /enrollments/{enrollmentId}
 - Responses changed
   - Deleted response: 429
   - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: cancellation
+                  - Properties changed
+                    - Modified property: reason
+                      - Property 'OneOf' changed
+                        - Schema #1 modified
+                          - Properties changed
+                            - Modified property: rejectionReason
+                              - Deleted enum values: [REJEITADO_TEMPO_EXPIRADO_AUTHORISATION]
     - Headers changed
       - Modified header: x-fapi-interaction-id
         - Schema changed
@@ -202,6 +216,21 @@ PATCH /enrollments/{enrollmentId}
     - Format changed from '' to 'uuid'
     - MaxLength changed from 100 to 36
     - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: cancellation
+                - Properties changed
+                  - Modified property: reason
+                    - Property 'OneOf' changed
+                      - Schema #1 modified
+                        - Properties changed
+                          - Modified property: rejectionReason
+                            - Deleted enum values: [REJEITADO_TEMPO_EXPIRADO_AUTHORISATION]
 - Responses changed
   - Deleted response: 429
   - Modified response: 204
