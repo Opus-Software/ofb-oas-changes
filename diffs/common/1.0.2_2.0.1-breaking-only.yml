@@ -1,0 +1,83 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 2
+-------------------------
+GET /outages
+- Modified query param: page
+  - Schema changed
+    - Format changed from '' to 'int32'
+    - Max changed from null to 2.147483647e+09
+- Modified query param: page-size
+  - Schema changed
+    - Format changed from '' to 'int32'
+    - Max changed from null to 1000
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Type changed from '' to 'object'
+                - Properties changed
+                  - Modified property: duration
+                    - Pattern changed from '' to '^(?!\s)[\w\W\s]*[^\s]$'
+                  - Modified property: explanation
+                    - Pattern changed from '' to '^(?!\s)[\w\W\s]*[^\s]$'
+                  - Modified property: outageTime
+                    - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Format changed from '' to 'url'
+                - Modified property: last
+                  - Format changed from '' to 'url'
+                - Modified property: next
+                  - Format changed from '' to 'url'
+                - Modified property: prev
+                  - Format changed from '' to 'url'
+                - Modified property: self
+                  - Format changed from '' to 'url'
+GET /status
+- Modified query param: page
+  - Schema changed
+    - Format changed from '' to 'int32'
+    - Max changed from null to 2.147483647e+09
+- Modified query param: page-size
+  - Schema changed
+    - Format changed from '' to 'int32'
+    - Max changed from null to 1000
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: status
+                  - Items changed
+                    - Properties changed
+                      - Modified property: detectionTime
+                        - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+                      - Modified property: expectedResolutionTime
+                        - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+                      - Modified property: explanation
+                        - Pattern changed from '' to '^(?!\s)[\w\W\s]*[^\s]$'
+                      - Modified property: updateTime
+                        - Pattern changed from '' to '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Format changed from '' to 'url'
+                - Modified property: last
+                  - Format changed from '' to 'url'
+                - Modified property: next
+                  - Format changed from '' to 'url'
+                - Modified property: prev
+                  - Format changed from '' to 'url'
+                - Modified property: self
+                  - Format changed from '' to 'url'
