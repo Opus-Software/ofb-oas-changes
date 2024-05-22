@@ -12,7 +12,7 @@
 |  | [2.2.1](swagger-apis/accounts/2.2.1.yml) | [2.3.0](swagger-apis/accounts/2.3.0.yml) | [YAML](diffs/accounts/2.2.1_2.3.0-breaking-only.yml) | [YAML](diffs/accounts/2.2.1_2.3.0.yml) |
 |  | [2.3.0](swagger-apis/accounts/2.3.0.yml) | [2.4.0](swagger-apis/accounts/2.4.0.yml) | [YAML](diffs/accounts/2.3.0_2.4.0-breaking-only.yml) | [YAML](diffs/accounts/2.3.0_2.4.0.yml) |
 | acquiring-services | [1.0.0](swagger-apis/acquiring-services/1.0.0.yml) |  |  |  |
-| admin | [1.0.2](swagger-apis/admin/1.0.2.yml) | [2.0.0](swagger-apis/admin/2.0.0.yml) | [YAML](diffs/admin/1.0.2_2.0.0-breaking-only.yml) | [YAML](diffs/admin/1.0.2_2.0.0.yml) |
+| admin | [1.0.2](swagger-apis/admin/1.0.2.yml) | [2.0.1](swagger-apis/admin/2.0.1.yml) | [YAML](diffs/admin/1.0.2_2.0.1-breaking-only.yml) | [YAML](diffs/admin/1.0.2_2.0.1.yml) |
 | automatic-payments | [1.0.0](swagger-apis/automatic-payments/1.0.0.yml) |  |  |  |
 | bank-fixed-incomes | [1.0.3](swagger-apis/bank-fixed-incomes/1.0.3.yml) |  |  |  |
 | capitalization-bonds | [1.0.1](swagger-apis/capitalization-bonds/1.0.1.yml) | [2.0.0](swagger-apis/capitalization-bonds/2.0.0.yml) | [YAML](diffs/capitalization-bonds/1.0.1_2.0.0-breaking-only.yml) | [YAML](diffs/capitalization-bonds/1.0.1_2.0.0.yml) |
@@ -108,6 +108,7 @@
 |  | [2.0.0-beta.1](swagger-apis/admin/2.0.0-beta.1.yml) | [2.0.0-beta.2](swagger-apis/admin/2.0.0-beta.2.yml) | [YAML](diffs/admin/2.0.0-beta.1_2.0.0-beta.2.yml) |
 |  | [2.0.0-beta.2](swagger-apis/admin/2.0.0-beta.2.yml) | [2.0.0-rc.1](swagger-apis/admin/2.0.0-rc.1.yml) | [YAML](diffs/admin/2.0.0-beta.2_2.0.0-rc.1.yml) |
 |  | [2.0.0-rc.1](swagger-apis/admin/2.0.0-rc.1.yml) | [2.0.0](swagger-apis/admin/2.0.0.yml) | [YAML](diffs/admin/2.0.0-rc.1_2.0.0.yml) |
+|  | [2.0.0](swagger-apis/admin/2.0.0.yml) | [2.0.1](swagger-apis/admin/2.0.1.yml) | [YAML](diffs/admin/2.0.0_2.0.1.yml) |
 | automatic-payments | [1.0.0-beta.1](swagger-apis/automatic-payments/1.0.0-beta.1.yml) | [1.0.0-beta.2](swagger-apis/automatic-payments/1.0.0-beta.2.yml) | [YAML](diffs/automatic-payments/1.0.0-beta.1_1.0.0-beta.2.yml) |
 |  | [1.0.0-beta.2](swagger-apis/automatic-payments/1.0.0-beta.2.yml) | [1.0.0-beta.3](swagger-apis/automatic-payments/1.0.0-beta.3.yml) | [YAML](diffs/automatic-payments/1.0.0-beta.2_1.0.0-beta.3.yml) |
 |  | [1.0.0-beta.3](swagger-apis/automatic-payments/1.0.0-beta.3.yml) | [1.0.0-beta.4](swagger-apis/automatic-payments/1.0.0-beta.4.yml) | [YAML](diffs/automatic-payments/1.0.0-beta.3_1.0.0-beta.4.yml) |

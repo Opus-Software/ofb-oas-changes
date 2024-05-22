@@ -1,0 +1,82 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 1
+-------------------------
+GET /metrics
+- Modified query param: page
+  - Schema changed
+    - Format changed from '' to 'int32​'
+    - Max changed from null to 2.147483647e+09
+- Modified query param: page-size
+  - Schema changed
+    - Format changed from '' to 'int32​'
+    - Max changed from null to 1000
+- Modified query param: period
+  - Description changed from 'Período a ser consultado
+  * `CURRENT` - Métricas do dia atual.
+  * `ALL` - Métricas de todo o período disponível.
+' to 'Período a ser consultado
+  * `CURRENT` - Métricas do dia atual.
+  * `ALL` - Métricas de todo o período disponível (últimos 7 dias).
+'
+- Responses changed
+  - New response: 400
+  - New response: 404
+  - New response: 405
+  - New response: 429
+  - New response: 500
+  - New response: 504
+  - New response: 529
+  - New response: default
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Type changed from 'object' to 'array'
+              - Items changed
+                - Schema added
+              - Required changed
+                - Deleted required property: availability
+                - Deleted required property: averageResponse
+                - Deleted required property: averageTps
+                - Deleted required property: errors
+                - Deleted required property: invocations
+                - Deleted required property: peakTps
+                - Deleted required property: rejections
+                - Deleted required property: requestTime
+              - Properties changed
+                - Deleted property: availability
+                - Deleted property: averageResponse
+                - Deleted property: averageTps
+                - Deleted property: errors
+                - Deleted property: invocations
+                - Deleted property: peakTps
+                - Deleted property: rejections
+                - Deleted property: requestTime
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Format changed from '' to 'url'
+                  - Example changed from 'https://api.banco.com.br/open-banking/admin/v1/<resource>' to 'https://api.banco.com.br/open-banking/admin/v1/resource'
+                  - MaxLength changed from null to 2000
+                - Modified property: last
+                  - Format changed from '' to 'url'
+                  - Example changed from 'https://api.banco.com.br/open-banking/admin/v1/<resource>' to 'https://api.banco.com.br/open-banking/admin/v1/resource'
+                  - MaxLength changed from null to 2000
+                - Modified property: next
+                  - Format changed from '' to 'url'
+                  - MaxLength changed from null to 2000
+                - Modified property: prev
+                  - Format changed from '' to 'url'
+                  - MaxLength changed from null to 2000
+                - Modified property: self
+                  - Format changed from '' to 'url'
+                  - Example changed from 'https://api.banco.com.br/open-banking/admin/v1/<resource>' to 'https://api.banco.com.br/open-banking/admin/v1/resource'
+                  - MaxLength changed from null to 2000
+Servers changed
+- New server: http://api.banco.com.br/open-banking/admin/v2
+- Deleted server: http://api.banco.com.br/open-banking/admin/v1
