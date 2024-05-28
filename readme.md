@@ -51,7 +51,7 @@
 | opendata-financings | [1.0.1](swagger-apis/opendata-financings/1.0.1.yml) |  |  |  |
 | opendata-invoicefinancings | [1.0.0](swagger-apis/opendata-invoicefinancings/1.0.0.yml) |  |  |  |
 | opendata-loans | [1.0.1](swagger-apis/opendata-loans/1.0.1.yml) |  |  |  |
-| opendata-unarranged | [1.0.0](swagger-apis/opendata-unarranged/1.0.0.yml) |  |  |  |
+| opendata-unarranged | [1.0.1](swagger-apis/opendata-unarranged/1.0.1.yml) |  |  |  |
 | participants | [1.0.0](swagger-apis/participants/1.0.0.yml) |  |  |  |
 | payments | [1.0.1](swagger-apis/payments/1.0.1.yml) | [1.1.0-rc1.0](swagger-apis/payments/1.1.0-rc1.0.yml) | [YAML](diffs/payments/1.0.1_1.1.0-rc1.0-breaking-only.yml) | [YAML](diffs/payments/1.0.1_1.1.0-rc1.0.yml) |
 |  | [1.1.0-rc1.0](swagger-apis/payments/1.1.0-rc1.0.yml) | [1.2.0](swagger-apis/payments/1.2.0.yml) | [YAML](diffs/payments/1.1.0-rc1.0_1.2.0-breaking-only.yml) | [YAML](diffs/payments/1.1.0-rc1.0_1.2.0.yml) |
@@ -307,6 +307,7 @@
 |  | [1.0.0-beta.2](swagger-apis/opendata-unarranged/1.0.0-beta.2.yml) | [1.0.0-rc.1](swagger-apis/opendata-unarranged/1.0.0-rc.1.yml) | [YAML](diffs/opendata-unarranged/1.0.0-beta.2_1.0.0-rc.1.yml) |
 |  | [1.0.0-rc.1](swagger-apis/opendata-unarranged/1.0.0-rc.1.yml) | [1.0.0-rc.2](swagger-apis/opendata-unarranged/1.0.0-rc.2.yml) | [YAML](diffs/opendata-unarranged/1.0.0-rc.1_1.0.0-rc.2.yml) |
 |  | [1.0.0-rc.2](swagger-apis/opendata-unarranged/1.0.0-rc.2.yml) | [1.0.0](swagger-apis/opendata-unarranged/1.0.0.yml) | [YAML](diffs/opendata-unarranged/1.0.0-rc.2_1.0.0.yml) |
+|  | [1.0.0](swagger-apis/opendata-unarranged/1.0.0.yml) | [1.0.1](swagger-apis/opendata-unarranged/1.0.1.yml) | [YAML](diffs/opendata-unarranged/1.0.0_1.0.1.yml) |
 | participants | [1.0.0](swagger-apis/participants/1.0.0.yml) |  |  |
 | payments | [1.0.0-rc1.0](swagger-apis/payments/1.0.0-rc1.0.yml) | [1.0.0-rc2.0](swagger-apis/payments/1.0.0-rc2.0.yml) | [YAML](diffs/payments/1.0.0-rc1.0_1.0.0-rc2.0.yml) |
 |  | [1.0.0-rc2.0](swagger-apis/payments/1.0.0-rc2.0.yml) | [1.0.0-rc3.0](swagger-apis/payments/1.0.0-rc3.0.yml) | [YAML](diffs/payments/1.0.0-rc2.0_1.0.0-rc3.0.yml) |
