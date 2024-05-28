@@ -16,7 +16,7 @@
 | automatic-payments | [1.0.0](swagger-apis/automatic-payments/1.0.0.yml) |  |  |  |
 | bank-fixed-incomes | [1.0.3](swagger-apis/bank-fixed-incomes/1.0.3.yml) |  |  |  |
 | capitalization-bonds | [1.0.1](swagger-apis/capitalization-bonds/1.0.1.yml) | [2.0.0](swagger-apis/capitalization-bonds/2.0.0.yml) | [YAML](diffs/capitalization-bonds/1.0.1_2.0.0-breaking-only.yml) | [YAML](diffs/capitalization-bonds/1.0.1_2.0.0.yml) |
-| channels | [1.0.2](swagger-apis/channels/1.0.2.yml) | [2.0.0](swagger-apis/channels/2.0.0.yml) | [YAML](diffs/channels/1.0.2_2.0.0-breaking-only.yml) | [YAML](diffs/channels/1.0.2_2.0.0.yml) |
+| channels | [1.0.2](swagger-apis/channels/1.0.2.yml) | [2.0.1](swagger-apis/channels/2.0.1.yml) | [YAML](diffs/channels/1.0.2_2.0.1-breaking-only.yml) | [YAML](diffs/channels/1.0.2_2.0.1.yml) |
 | common | [1.0.2](swagger-apis/common/1.0.2.yml) | [2.0.1](swagger-apis/common/2.0.1.yml) | [YAML](diffs/common/1.0.2_2.0.1-breaking-only.yml) | [YAML](diffs/common/1.0.2_2.0.1.yml) |
 | consents | [1.0.3](swagger-apis/consents/1.0.3.yml) | [2.0.1](swagger-apis/consents/2.0.1.yml) | [YAML](diffs/consents/1.0.3_2.0.1-breaking-only.yml) | [YAML](diffs/consents/1.0.3_2.0.1.yml) |
 |  | [2.0.1](swagger-apis/consents/2.0.1.yml) | [2.1.0](swagger-apis/consents/2.1.0.yml) | [YAML](diffs/consents/2.0.1_2.1.0-breaking-only.yml) | [YAML](diffs/consents/2.0.1_2.1.0.yml) |
@@ -142,6 +142,7 @@
 |  | [2.0.0-beta.1](swagger-apis/channels/2.0.0-beta.1.yml) | [2.0.0-rc.1](swagger-apis/channels/2.0.0-rc.1.yml) | [YAML](diffs/channels/2.0.0-beta.1_2.0.0-rc.1.yml) |
 |  | [2.0.0-rc.1](swagger-apis/channels/2.0.0-rc.1.yml) | [2.0.0-rc.2](swagger-apis/channels/2.0.0-rc.2.yml) | [YAML](diffs/channels/2.0.0-rc.1_2.0.0-rc.2.yml) |
 |  | [2.0.0-rc.2](swagger-apis/channels/2.0.0-rc.2.yml) | [2.0.0](swagger-apis/channels/2.0.0.yml) | [YAML](diffs/channels/2.0.0-rc.2_2.0.0.yml) |
+|  | [2.0.0](swagger-apis/channels/2.0.0.yml) | [2.0.1](swagger-apis/channels/2.0.1.yml) | [YAML](diffs/channels/2.0.0_2.0.1.yml) |
 | common | [1.0.0-rc5.1](swagger-apis/common/1.0.0-rc5.1.yml) | [1.0.0-rc5.2](swagger-apis/common/1.0.0-rc5.2.yml) | [YAML](diffs/common/1.0.0-rc5.1_1.0.0-rc5.2.yml) |
 |  | [1.0.0-rc5.2](swagger-apis/common/1.0.0-rc5.2.yml) | [1.0.0-rc5](swagger-apis/common/1.0.0-rc5.yml) | [YAML](diffs/common/1.0.0-rc5.2_1.0.0-rc5.yml) |
 |  | [1.0.0-rc5](swagger-apis/common/1.0.0-rc5.yml) | [1.0.0](swagger-apis/common/1.0.0.yml) | [YAML](diffs/common/1.0.0-rc5_1.0.0.yml) |
