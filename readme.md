@@ -47,7 +47,7 @@
 |  | [2.0.1](swagger-apis/loans/2.0.1.yml) | [2.1.1-rc.1](swagger-apis/loans/2.1.1-rc.1.yml) | [YAML](diffs/loans/2.0.1_2.1.1-rc.1-breaking-only.yml) | [YAML](diffs/loans/2.0.1_2.1.1-rc.1.yml) |
 |  | [2.1.1-rc.1](swagger-apis/loans/2.1.1-rc.1.yml) | [2.2.0](swagger-apis/loans/2.2.0.yml) | [YAML](diffs/loans/2.1.1-rc.1_2.2.0-breaking-only.yml) | [YAML](diffs/loans/2.1.1-rc.1_2.2.0.yml) |
 | opendata-accounts | [1.0.0](swagger-apis/opendata-accounts/1.0.0.yml) |  |  |  |
-| opendata-creditcards | [1.0.0](swagger-apis/opendata-creditcards/1.0.0.yml) |  |  |  |
+| opendata-creditcards | [1.0.1](swagger-apis/opendata-creditcards/1.0.1.yml) |  |  |  |
 | opendata-financings | [1.0.0](swagger-apis/opendata-financings/1.0.0.yml) |  |  |  |
 | opendata-invoicefinancings | [1.0.0](swagger-apis/opendata-invoicefinancings/1.0.0.yml) |  |  |  |
 | opendata-loans | [1.0.0](swagger-apis/opendata-loans/1.0.0.yml) |  |  |  |
@@ -288,6 +288,7 @@
 | opendata-creditcards | [1.0.0-beta.1](swagger-apis/opendata-creditcards/1.0.0-beta.1.yml) | [1.0.0-beta.2](swagger-apis/opendata-creditcards/1.0.0-beta.2.yml) | [YAML](diffs/opendata-creditcards/1.0.0-beta.1_1.0.0-beta.2.yml) |
 |  | [1.0.0-beta.2](swagger-apis/opendata-creditcards/1.0.0-beta.2.yml) | [1.0.0-rc.1](swagger-apis/opendata-creditcards/1.0.0-rc.1.yml) | [YAML](diffs/opendata-creditcards/1.0.0-beta.2_1.0.0-rc.1.yml) |
 |  | [1.0.0-rc.1](swagger-apis/opendata-creditcards/1.0.0-rc.1.yml) | [1.0.0](swagger-apis/opendata-creditcards/1.0.0.yml) | [YAML](diffs/opendata-creditcards/1.0.0-rc.1_1.0.0.yml) |
+|  | [1.0.0](swagger-apis/opendata-creditcards/1.0.0.yml) | [1.0.1](swagger-apis/opendata-creditcards/1.0.1.yml) | [YAML](diffs/opendata-creditcards/1.0.0_1.0.1.yml) |
 | opendata-financings | [1.0.0-beta.1](swagger-apis/opendata-financings/1.0.0-beta.1.yml) | [1.0.0-beta.2](swagger-apis/opendata-financings/1.0.0-beta.2.yml) | [YAML](diffs/opendata-financings/1.0.0-beta.1_1.0.0-beta.2.yml) |
 |  | [1.0.0-beta.2](swagger-apis/opendata-financings/1.0.0-beta.2.yml) | [1.0.0-rc.1](swagger-apis/opendata-financings/1.0.0-rc.1.yml) | [YAML](diffs/opendata-financings/1.0.0-beta.2_1.0.0-rc.1.yml) |
 |  | [1.0.0-rc.1](swagger-apis/opendata-financings/1.0.0-rc.1.yml) | [1.0.0-rc.2](swagger-apis/opendata-financings/1.0.0-rc.2.yml) | [YAML](diffs/opendata-financings/1.0.0-rc.1_1.0.0-rc.2.yml) |
