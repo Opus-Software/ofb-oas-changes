@@ -1,0 +1,562 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 7
+-------------------------
+GET /pix/recurring-payments
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: document
+                    - Description changed from 'Informações do documento identificador.' to 'Informações do documento.'
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 400
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 401
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 403
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 404
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 405
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 406
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 500
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 504
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+POST /pix/recurring-payments
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..'
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: document
+                - Description changed from 'Informações do documento identificador.' to 'Informações do documento identificador do recebedor da transação.'
+                - Properties changed
+                  - Modified property: identification
+                    - Description changed from 'Número do documento de identificação oficial do titular pessoa natural ou jurídica.' to 'Número do documento de identificação oficial do recebedor pessoa natural ou jurídica. 
+O valor informado deve ser igual a um dos valores enviados na etapa de criação do consentimento (dentro do array “/data/creditors”). 
+Quando não respeitada essa regra, deve ser retornado pelo detentor, de maneira síncrona, erro HTTP 422 - PAGAMENTO_DIVERGENTE_CONSENTIMENTO
+'
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: document
+                  - Description changed from 'Informações do documento identificador.' to 'Informações do documento identificador do recebedor da transação.'
+                  - Properties changed
+                    - Modified property: identification
+                      - Description changed from 'Número do documento de identificação oficial do titular pessoa natural ou jurídica.' to 'Número do documento de identificação oficial do recebedor pessoa natural ou jurídica. 
+O valor informado deve ser igual a um dos valores enviados na etapa de criação do consentimento (dentro do array “/data/creditors”). 
+Quando não respeitada essa regra, deve ser retornado pelo detentor, de maneira síncrona, erro HTTP 422 - PAGAMENTO_DIVERGENTE_CONSENTIMENTO
+'
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 400
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 401
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 403
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 404
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 405
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 406
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 422
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 500
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 504
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+GET /pix/recurring-payments/{recurringPaymentId}
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: document
+                  - Description changed from 'Informações do documento identificador.' to 'Informações do documento identificador do recebedor da transação.'
+                  - Properties changed
+                    - Modified property: identification
+                      - Description changed from 'Número do documento de identificação oficial do titular pessoa natural ou jurídica.' to 'Número do documento de identificação oficial do recebedor pessoa natural ou jurídica. 
+O valor informado deve ser igual a um dos valores enviados na etapa de criação do consentimento (dentro do array “/data/creditors”). 
+Quando não respeitada essa regra, deve ser retornado pelo detentor, de maneira síncrona, erro HTTP 422 - PAGAMENTO_DIVERGENTE_CONSENTIMENTO
+'
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 400
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 401
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 403
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 404
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 405
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 406
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 500
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 504
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+PATCH /pix/recurring-payments/{recurringPaymentId}
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..'
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: status
+                - New enum values: [CANC]
+                - Deleted enum values: [REJECTED]
+                - Example changed from 'REJECTED' to 'CANC'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: document
+                  - Description changed from 'Informações do documento identificador.' to 'Informações do documento identificador do recebedor da transação.'
+                  - Properties changed
+                    - Modified property: identification
+                      - Description changed from 'Número do documento de identificação oficial do titular pessoa natural ou jurídica.' to 'Número do documento de identificação oficial do recebedor pessoa natural ou jurídica. 
+O valor informado deve ser igual a um dos valores enviados na etapa de criação do consentimento (dentro do array “/data/creditors”). 
+Quando não respeitada essa regra, deve ser retornado pelo detentor, de maneira síncrona, erro HTTP 422 - PAGAMENTO_DIVERGENTE_CONSENTIMENTO
+'
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 400
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 401
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 403
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 404
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 405
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 406
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 422
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 500
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 504
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+POST /recurring-consents
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..'
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: startDateTime
+                - Description changed from 'Data e hora em que o consentimento deve passar a ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format).
+[Restrição] Preenchimento obrigatório quando o consentimento de pagamento passa a valer em data (dia e hora) futura.
+' to 'Data e hora em que o consentimento deve passar a ser válido. Uma string com data e hora conforme especificação RFC- 3339, sempre com a utilização de timezone UTC(UTC time format).
+[Restrição] Caso esse campo não seja enviado pelo iniciador na requisição, o detentor deve preencher esse campo com o mesmo valor atribuído ao campo /data/creationDateTime. Caso o campo /data/startDateTime enviado seja anterior ao valor do campo /data/creationDateTime, o detentor deve substituir o valor do campo /data/startDateTime pelo valor do campo /data/creationDateTime. 
+'
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: startDateTime
+                  - Description changed from 'Data e hora em que o consentimento deve passar a ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format).
+[Restrição] Preenchimento obrigatório quando o consentimento de pagamento passa a valer em data (dia e hora) futura.
+' to 'Data e hora em que o consentimento deve passar a ser válido. Uma string com data e hora conforme especificação RFC- 3339, sempre com a utilização de timezone UTC(UTC time format).
+[Restrição] Caso esse campo não seja enviado pelo iniciador na requisição, o detentor deve preencher esse campo com o mesmo valor atribuído ao campo /data/creationDateTime. Caso o campo /data/startDateTime enviado seja anterior ao valor do campo /data/creationDateTime, o detentor deve substituir o valor do campo /data/startDateTime pelo valor do campo /data/creationDateTime. 
+'
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 400
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 401
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 403
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 404
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 405
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 406
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 422
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 500
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 504
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+GET /recurring-consents/{recurringConsentId}
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: startDateTime
+                  - Description changed from 'Data e hora em que o consentimento deve passar a ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format).
+[Restrição] Preenchimento obrigatório quando o consentimento de pagamento passa a valer em data (dia e hora) futura.
+' to 'Data e hora em que o consentimento deve passar a ser válido. Uma string com data e hora conforme especificação RFC- 3339, sempre com a utilização de timezone UTC(UTC time format).
+[Restrição] Caso esse campo não seja enviado pelo iniciador na requisição, o detentor deve preencher esse campo com o mesmo valor atribuído ao campo /data/creationDateTime. Caso o campo /data/startDateTime enviado seja anterior ao valor do campo /data/creationDateTime, o detentor deve substituir o valor do campo /data/startDateTime pelo valor do campo /data/creationDateTime. 
+'
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 400
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 401
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 403
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 404
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 405
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 406
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 500
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 504
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+PATCH /recurring-consents/{recurringConsentId}
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: startDateTime
+                  - Description changed from 'Data e hora em que o consentimento deve passar a ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format).
+[Restrição] Preenchimento obrigatório quando o consentimento de pagamento passa a valer em data (dia e hora) futura.
+' to 'Data e hora em que o consentimento deve passar a ser válido. Uma string com data e hora conforme especificação RFC- 3339, sempre com a utilização de timezone UTC(UTC time format).
+[Restrição] Caso esse campo não seja enviado pelo iniciador na requisição, o detentor deve preencher esse campo com o mesmo valor atribuído ao campo /data/creationDateTime. Caso o campo /data/startDateTime enviado seja anterior ao valor do campo /data/creationDateTime, o detentor deve substituir o valor do campo /data/startDateTime pelo valor do campo /data/creationDateTime. 
+'
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 400
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 401
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 403
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 404
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 405
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 406
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 422
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 500
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
+  - Modified response: 504
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..
+'
