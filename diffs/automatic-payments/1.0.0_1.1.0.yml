@@ -348,11 +348,13 @@ POST /recurring-consents
         - Schema changed
           - Properties changed
             - Modified property: data
+              - Required changed
+                - New required property: startDateTime
               - Properties changed
                 - Modified property: startDateTime
                   - Description changed from 'Data e hora em que o consentimento deve passar a ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format).
 [Restrição] Preenchimento obrigatório quando o consentimento de pagamento passa a valer em data (dia e hora) futura.
-' to 'Data e hora em que o consentimento deve passar a ser válido. Uma string com data e hora conforme especificação RFC- 3339, sempre com a utilização de timezone UTC(UTC time format).
+' to 'Data e hora em que o consentimento deve passar a ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format) sempre com a utilização de timezone UTC(UTC time format).
 [Restrição] Caso esse campo não seja enviado pelo iniciador na requisição, o detentor deve preencher esse campo com o mesmo valor atribuído ao campo /data/creationDateTime. Caso o campo /data/startDateTime enviado seja anterior ao valor do campo /data/creationDateTime, o detentor deve substituir o valor do campo /data/startDateTime pelo valor do campo /data/creationDateTime. 
 '
                 - Modified property: statusUpdateDateTime
@@ -429,6 +431,8 @@ GET /recurring-consents/{recurringConsentId}
         - Schema changed
           - Properties changed
             - Modified property: data
+              - Required changed
+                - New required property: startDateTime
               - Properties changed
                 - Modified property: startDateTime
                   - Description changed from 'Data e hora em que o consentimento deve passar a ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format).
@@ -499,6 +503,8 @@ PATCH /recurring-consents/{recurringConsentId}
         - Schema changed
           - Properties changed
             - Modified property: data
+              - Required changed
+                - New required property: startDateTime
               - Properties changed
                 - Modified property: startDateTime
                   - Description changed from 'Data e hora em que o consentimento deve passar a ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format).
