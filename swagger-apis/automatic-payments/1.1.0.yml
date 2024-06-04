@@ -1217,7 +1217,7 @@ components:
             lastLoginDateTime:
               type: string
               format: date-time
-              description: Data e hora da última interação do cliente com o aplicativo/sistema da instituição iniciadora.
+              description: Data e hora do último login do cliente na iniciadora
               pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
             pixKeyRegistrationDateTime:
               type: string
@@ -2532,7 +2532,7 @@ components:
       minItems: 1
       items:
         type: object
-        description: Objeto contendo os dados do recebedor (creditor). Em casos de transferências inteligentes para clientes PJ, os CNPJs informados devem possuir a mesma raiz do CNPJ enviado no campo /data/businessEntity/document/identification. Em casos de transferências inteligentes para clientes PN, deve-se aceitar apenas um item no array e este item deve conter as informações do recebedor. O CPF informado deve ser o mesmo do /data/loggedUser/document/identification. Caso alguma das regras mencionadas não sejam seguidas, o detentor deve rejeitar a solicitação (sincronamente) com o erro DETALHE_PAGAMENTO_INVALIDO, e o detalhe deve ser preenchido com a informação referente ao erro.
+        description: Objeto contendo os dados do recebedor (creditor).
         required:
           - personType
           - cpfCnpj
