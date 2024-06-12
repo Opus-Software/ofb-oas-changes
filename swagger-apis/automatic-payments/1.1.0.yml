@@ -704,7 +704,6 @@ components:
                   - PAGAMENTO_RECUSADO_DETENTORA
                   - PAGAMENTO_RECUSADO_SPI
                   - ERRO_IDEMPOTENCIA
-                  - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
                 example: SALDO_INSUFICIENTE
                 description: |
                   Códigos de erros previstos na criação da iniciação de pagamento:
@@ -723,7 +722,6 @@ components:
                   - PAGAMENTO_RECUSADO_DETENTORA: Pagamento recusado pela detentora de conta.
                   - PAGAMENTO_RECUSADO_SPI: Pagamento recusado no Sistema de Pagamentos Instantâneos (SPI).
                   - ERRO_IDEMPOTENCIA: Erro idempotência.
-                  - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: Limite total excedido
               title:
                 type: string
                 maxLength: 255
@@ -746,7 +744,6 @@ components:
                   - PAGAMENTO_RECUSADO_DETENTORA: Pagamento recusado pela detentora de conta.
                   - PAGAMENTO_RECUSADO_SPI: Pagamento recusado no Sistema de Pagamentos Instantâneos (SPI).
                   - ERRO_IDEMPOTENCIA: Erro idempotência.
-                  - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: Limite total excedido
               detail:
                 type: string
                 maxLength: 2048
@@ -769,7 +766,6 @@ components:
                   - PAGAMENTO_RECUSADO_DETENTORA: Pagamento recusado pela detentora de conta.
                   - PAGAMENTO_RECUSADO_SPI: Pagamento recusado no Sistema de Pagamentos Instantâneos (SPI).
                   - ERRO_IDEMPOTENCIA: Erro idempotência.
-                  - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.
         meta:
           $ref: '#/components/schemas/Meta'
     422ResponseErrorCreateRecurringPaymentsPaymentId:
@@ -1760,7 +1756,6 @@ components:
         - TITULARIDADE_INCONSISTENTE
         - LIMITE_PERIODO_VALOR_EXCEDIDO
         - LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
-        - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
       example: SALDO_INSUFICIENTE
       description: |
         Código identificador do motivo de rejeição.
@@ -1780,7 +1775,6 @@ components:
         - TITULARIDADE_INCONSISTENTE
         - LIMITE_PERIODO_VALOR_EXCEDIDO
         - LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
-        - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
 
         [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
     EnumPaymentCancellationReasonType:
@@ -2058,9 +2052,9 @@ components:
             - FALHA_INFRAESTRUTURA_PSP_RECEBEDOR: Indica uma falha na infraestrutura do Prestador de Serviço de Pagamento (PSP) que recebe o pagamento;
             - FALHA_INFRAESTRUTURA_DETENTORA: indica uma falha na infraestrutura da instituição detentora das informações ou recursos;
             - TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração
-            - LIMITE_PERIODO_VALOR_EXCEDIDO: A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
-            - LIMITE_PERIODO_QUANTIDADE_EXCEDIDO: A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
-            - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.
+            - LIMITE_PERIODO_VALOR_EXCEDIDO – A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+            - LIMITE_PERIODO_QUANTIDADE_EXCEDIDO – A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+            
     ConsentRevocation:
       type: object
       properties:
