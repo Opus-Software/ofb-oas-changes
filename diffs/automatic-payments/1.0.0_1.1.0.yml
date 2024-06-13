@@ -18,6 +18,83 @@ GET /pix/recurring-payments
                 - Properties changed
                   - Modified property: document
                     - Description changed from 'Informações do documento identificador.' to 'Informações do documento.'
+                  - Modified property: rejectionReason
+                    - Properties changed
+                      - Modified property: code
+                        - Description changed from 'Código identificador do motivo de rejeição.
+Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+- VALOR_INVALIDO
+- NAO_INFORMADO
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO
+- PAGAMENTO_RECUSADO_DETENTORA
+- PAGAMENTO_RECUSADO_SPI
+- CONSENTIMENTO_INVALIDO
+- FALHA_INFRAESTRUTURA_SPI
+- FALHA_INFRAESTRUTURA_ICP
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR
+- FALHA_INFRAESTRUTURA_DETENTORA
+- LIMITE_PERIODO_VALOR_EXCEDIDO
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
+- TITULARIDADE_INCONSISTENTE
+[Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
+' to 'Código identificador do motivo de rejeição.
+Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+- VALOR_INVALIDO
+- NAO_INFORMADO
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO
+- PAGAMENTO_RECUSADO_DETENTORA
+- PAGAMENTO_RECUSADO_SPI
+- CONSENTIMENTO_INVALIDO
+- FALHA_INFRAESTRUTURA_SPI
+- FALHA_INFRAESTRUTURA_ICP
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR
+- FALHA_INFRAESTRUTURA_DETENTORA
+- LIMITE_PERIODO_VALOR_EXCEDIDO
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
+- TITULARIDADE_INCONSISTENTE
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
+[Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
+'
+                        - New enum values: [LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO]
+                      - Modified property: detail
+                        - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente;
+- VALOR_INVALIDO: O valor enviado não é válido; 
+- NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta;
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento;
+- PAGAMENTO_RECUSADO_DETENTORA: [descrição do motivo de recusa];
+- PAGAMENTO_RECUSADO_SPI: [código de erro conforme tabela de domínios reason PACS.002];
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (em status final);
+- FALHA_INFRAESTRUTURA_SPI: Indica uma falha no Sistema de Pagamentos Instantâneos (SPI);
+- FALHA_INFRAESTRUTURA_ICP: Indica uma falha na Infraestrutura de Chaves Públicas (ICP);
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR: Indica uma falha na infraestrutura do Prestador de Serviço de Pagamento (PSP) que recebe o pagamento;
+- FALHA_INFRAESTRUTURA_DETENTORA: indica uma falha na infraestrutura da instituição detentora das informações ou recursos;
+- LIMITE_PERIODO_VALOR_EXCEDIDO – A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO – A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+- TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração.
+' to 'Detalhe sobre o código identificador do motivo de rejeição.
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente;
+- VALOR_INVALIDO: O valor enviado não é válido; 
+- NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta;
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento;
+- PAGAMENTO_RECUSADO_DETENTORA: [descrição do motivo de recusa];
+- PAGAMENTO_RECUSADO_SPI: [código de erro conforme tabela de domínios reason PACS.002];
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (em status final);
+- FALHA_INFRAESTRUTURA_SPI: Indica uma falha no Sistema de Pagamentos Instantâneos (SPI);
+- FALHA_INFRAESTRUTURA_ICP: Indica uma falha na Infraestrutura de Chaves Públicas (ICP);
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR: Indica uma falha na infraestrutura do Prestador de Serviço de Pagamento (PSP) que recebe o pagamento;
+- FALHA_INFRAESTRUTURA_DETENTORA: indica uma falha na infraestrutura da instituição detentora das informações ou recursos;
+- LIMITE_PERIODO_VALOR_EXCEDIDO – A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO – A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+- TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração.
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento
+'
             - Modified property: links
               - Properties changed
                 - Modified property: self
@@ -191,7 +268,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração
 - LIMITE_PERIODO_VALOR_EXCEDIDO: A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
 - LIMITE_PERIODO_QUANTIDADE_EXCEDIDO: A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
-- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.            
 '
             - Modified property: links
               - Properties changed
@@ -468,7 +545,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração
 - LIMITE_PERIODO_VALOR_EXCEDIDO: A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
 - LIMITE_PERIODO_QUANTIDADE_EXCEDIDO: A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
-- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.            
 '
             - Modified property: links
               - Properties changed
@@ -637,7 +714,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração
 - LIMITE_PERIODO_VALOR_EXCEDIDO: A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
 - LIMITE_PERIODO_QUANTIDADE_EXCEDIDO: A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
-- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.            
 '
             - Modified property: links
               - Properties changed
@@ -738,7 +815,7 @@ POST /recurring-consents
                 - Modified property: startDateTime
                   - Description changed from 'Data e hora em que o consentimento deve passar a ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format).
 [Restrição] Preenchimento obrigatório quando o consentimento de pagamento passa a valer em data (dia e hora) futura.
-' to 'Data e hora em que o consentimento deve passar a ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format) sempre com a utilização de timezone UTC(UTC time format).
+' to 'Data e hora em que o consentimento deve passar a ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format).
 [Restrição] Caso esse campo não seja enviado pelo iniciador na requisição, o detentor deve preencher esse campo com o mesmo valor atribuído ao campo /data/creationDateTime. Caso o campo /data/startDateTime enviado seja anterior ao valor do campo /data/creationDateTime, o detentor deve substituir o valor do campo /data/startDateTime pelo valor do campo /data/creationDateTime. 
 '
                 - Modified property: statusUpdateDateTime
