@@ -1,0 +1,49 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 4
+-------------------------
+GET /accounts/{creditCardAccountId}/bills/{billId}/transactions
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Required changed
+                  - Deleted required property: transactionDate
+GET /accounts/{creditCardAccountId}/limits
+- Deleted query param: pagination-key
+GET /accounts/{creditCardAccountId}/transactions
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Required changed
+                  - Deleted required property: transactionDate
+                - Properties changed
+                  - Modified property: billPostDate
+                    - Description changed from 'Data em que a transação foi inserida na fatura' to 'Data em que a transação foi inserida na fatura. Preencher o campo com a data dummy: 0001-01-01, apenas para os casos nos quais ainda não houver a data de inserção na fatura.
+'
+GET /accounts/{creditCardAccountId}/transactions-current
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Required changed
+                  - Deleted required property: transactionDate
+                - Properties changed
+                  - Modified property: billPostDate
+                    - Description changed from 'Data em que a transação foi inserida na fatura' to 'Data em que a transação foi inserida na fatura. Preencher o campo com a data dummy: 0001-01-01, apenas para os casos nos quais ainda não houver a data de inserção na fatura.
+'
