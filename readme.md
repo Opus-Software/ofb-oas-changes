@@ -96,7 +96,8 @@
 |  | [2.2.0](swagger-apis/accounts/2.2.0.yml) | [2.2.1](swagger-apis/accounts/2.2.1.yml) | [YAML](diffs/accounts/2.2.0_2.2.1.yml) |
 |  | [2.2.1](swagger-apis/accounts/2.2.1.yml) | [2.3.0](swagger-apis/accounts/2.3.0.yml) | [YAML](diffs/accounts/2.2.1_2.3.0.yml) |
 |  | [2.3.0](swagger-apis/accounts/2.3.0.yml) | [2.4.0-beta.1](swagger-apis/accounts/2.4.0-beta.1.yml) | [YAML](diffs/accounts/2.3.0_2.4.0-beta.1.yml) |
-|  | [2.4.0-beta.1](swagger-apis/accounts/2.4.0-beta.1.yml) | [2.4.0](swagger-apis/accounts/2.4.0.yml) | [YAML](diffs/accounts/2.4.0-beta.1_2.4.0.yml) |
+|  | [2.4.0-beta.1](swagger-apis/accounts/2.4.0-beta.1.yml) | [2.4.0-beta.2](swagger-apis/accounts/2.4.0-beta.2.yml) | [YAML](diffs/accounts/2.4.0-beta.1_2.4.0-beta.2.yml) |
+|  | [2.4.0-beta.2](swagger-apis/accounts/2.4.0-beta.2.yml) | [2.4.0](swagger-apis/accounts/2.4.0.yml) | [YAML](diffs/accounts/2.4.0-beta.2_2.4.0.yml) |
 | acquiring-services | [1.0.0-rc1.0](swagger-apis/acquiring-services/1.0.0-rc1.0.yml) | [1.0.0-rc2.0](swagger-apis/acquiring-services/1.0.0-rc2.0.yml) | [YAML](diffs/acquiring-services/1.0.0-rc1.0_1.0.0-rc2.0.yml) |
 |  | [1.0.0-rc2.0](swagger-apis/acquiring-services/1.0.0-rc2.0.yml) | [1.0.0](swagger-apis/acquiring-services/1.0.0.yml) | [YAML](diffs/acquiring-services/1.0.0-rc2.0_1.0.0.yml) |
 |  | [1.0.0](swagger-apis/acquiring-services/1.0.0.yml) | [1.0.1](swagger-apis/acquiring-services/1.0.1.yml) | [YAML](diffs/acquiring-services/1.0.0_1.0.1.yml) |
