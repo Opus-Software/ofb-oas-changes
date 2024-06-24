@@ -38,6 +38,7 @@
 | exchanges | [1.0.0](swagger-apis/exchanges/1.0.0.yml) |  |  |  |
 | financings | [1.0.4](swagger-apis/financings/1.0.4.yml) | [2.0.1](swagger-apis/financings/2.0.1.yml) | [YAML](diffs/financings/1.0.4_2.0.1-breaking-only.yml) | [YAML](diffs/financings/1.0.4_2.0.1.yml) |
 |  | [2.0.1](swagger-apis/financings/2.0.1.yml) | [2.1.1-rc.1](swagger-apis/financings/2.1.1-rc.1.yml) | [YAML](diffs/financings/2.0.1_2.1.1-rc.1-breaking-only.yml) | [YAML](diffs/financings/2.0.1_2.1.1-rc.1.yml) |
+|  | [2.1.1-rc.1](swagger-apis/financings/2.1.1-rc.1.yml) | [2.2.0](swagger-apis/financings/2.2.0.yml) | [YAML](diffs/financings/2.1.1-rc.1_2.2.0-breaking-only.yml) | [YAML](diffs/financings/2.1.1-rc.1_2.2.0.yml) |
 | funds | [1.0.2](swagger-apis/funds/1.0.2.yml) |  |  |  |
 | insurances | [1.0.1](swagger-apis/insurances/1.0.1.yml) | [2.0.0](swagger-apis/insurances/2.0.0.yml) | [YAML](diffs/insurances/1.0.1_2.0.0-breaking-only.yml) | [YAML](diffs/insurances/1.0.1_2.0.0.yml) |
 | investments | [1.0.1](swagger-apis/investments/1.0.1.yml) |  |  |  |
@@ -246,6 +247,7 @@
 |  | [2.1.0-rc.1](swagger-apis/financings/2.1.0-rc.1.yml) | [2.1.0-rc.2](swagger-apis/financings/2.1.0-rc.2.yml) | [YAML](diffs/financings/2.1.0-rc.1_2.1.0-rc.2.yml) |
 |  | [2.1.0-rc.2](swagger-apis/financings/2.1.0-rc.2.yml) | [2.1.0](swagger-apis/financings/2.1.0.yml) | [YAML](diffs/financings/2.1.0-rc.2_2.1.0.yml) |
 |  | [2.1.0](swagger-apis/financings/2.1.0.yml) | [2.1.1-rc.1](swagger-apis/financings/2.1.1-rc.1.yml) | [YAML](diffs/financings/2.1.0_2.1.1-rc.1.yml) |
+|  | [2.1.1-rc.1](swagger-apis/financings/2.1.1-rc.1.yml) | [2.2.0](swagger-apis/financings/2.2.0.yml) | [YAML](diffs/financings/2.1.1-rc.1_2.2.0.yml) |
 | funds | [1.0.0-rc1.0](swagger-apis/funds/1.0.0-rc1.0.yml) | [1.0.0-rc2.0](swagger-apis/funds/1.0.0-rc2.0.yml) | [YAML](diffs/funds/1.0.0-rc1.0_1.0.0-rc2.0.yml) |
 |  | [1.0.0-rc2.0](swagger-apis/funds/1.0.0-rc2.0.yml) | [1.0.0-rc3.0](swagger-apis/funds/1.0.0-rc3.0.yml) | [YAML](diffs/funds/1.0.0-rc2.0_1.0.0-rc3.0.yml) |
 |  | [1.0.0-rc3.0](swagger-apis/funds/1.0.0-rc3.0.yml) | [1.0.0](swagger-apis/funds/1.0.0.yml) | [YAML](diffs/funds/1.0.0-rc3.0_1.0.0.yml) |
