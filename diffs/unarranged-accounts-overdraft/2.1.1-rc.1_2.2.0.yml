@@ -44,6 +44,22 @@ GET /contracts/{contractId}
               - Properties changed
                 - Modified property: contractNumber
                   - Pattern changed from '^\d{1,100}$' to '^[\w\W]{1,100}$'
+                - Modified property: interestRates
+                  - Description changed from 'Objeto que traz o conjunto de informações necessárias para demonstrar a composição das taxas de juros remuneratórios da Modalidade de crédito.  
+Caso o contrato não possua taxas de juros, deve ser compartilhada uma lista vazia. Caso o contrato possua uma taxa de juros com valor 0, deve ser compartilhado um objeto com o valor 0 de forma explícita.
+' to 'Objeto que traz o conjunto de informações necessárias para demonstrar a composição das taxas de juros remuneratórios da Modalidade de crédito.  
+Caso o contrato não possua taxas de juros, deve ser compartilhada uma lista vazia. Caso o contrato possua uma taxa de juros com valor 0, deve ser compartilhado um objeto com o valor 0 de forma explícita.
+Preencher o campo não aplicável ao contrato com zeros, seguindo o pattern (0.000000).
+'
+                  - Items changed
+                    - Properties changed
+                      - Modified property: preFixedRate
+                        - Description changed from 'Taxa pré fixada aplicada sob o contrato da modalidade crédito. p.ex. 0.014500. 
+O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros(representação de porcentagem p.ex: 0.150000. Este valor representa 15%. O valor 1 representa 100%).
+' to 'Taxa pré fixada aplicada sob o contrato da modalidade crédito. p.ex. 0.014500. 
+O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros(representação de porcentagem p.ex: 0.150000. Este valor representa 15%. O valor 1 representa 100%).
+Preencher o campo não aplicável ao contrato com zeros, seguindo o pattern (0.000000).
+'
                 - Modified property: ipocCode
                   - Pattern changed from '^\d{22,67}$' to '^[\w\W]{22,67}$'
             - Modified property: links
