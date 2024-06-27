@@ -5,12 +5,6 @@
 ### Modified Endpoints: 5
 -------------------------
 GET /contracts
-- Modified header param: x-fapi-interaction-id
-  - Required changed from false to true
-  - Schema changed
-    - Format changed from '' to 'uuid'
-    - MaxLength changed from 100 to 36
-    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -35,12 +29,6 @@ GET /contracts
                 - Modified property: self
                   - Format changed from 'uri' to 'url'
 GET /contracts/{contractId}
-- Modified header param: x-fapi-interaction-id
-  - Required changed from false to true
-  - Schema changed
-    - Format changed from '' to 'uuid'
-    - MaxLength changed from 100 to 36
-    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -49,8 +37,6 @@ GET /contracts/{contractId}
           - Properties changed
             - Modified property: data
               - Properties changed
-                - Modified property: contractNumber
-                  - Pattern changed from '^\d{1,100}$' to '^[\w\W]{1,100}$'
                 - Modified property: ipocCode
                   - Pattern changed from '^\d{22,67}$' to '^[\w\W]{22,67}$'
             - Modified property: links
@@ -66,25 +52,12 @@ GET /contracts/{contractId}
                 - Modified property: self
                   - Format changed from 'uri' to 'url'
 GET /contracts/{contractId}/payments
-- Modified header param: x-fapi-interaction-id
-  - Required changed from false to true
-  - Schema changed
-    - Format changed from '' to 'uuid'
-    - MaxLength changed from 100 to 36
-    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
 - Responses changed
   - Modified response: 200
     - Content changed
       - Modified media type: application/json
         - Schema changed
           - Properties changed
-            - Modified property: data
-              - Properties changed
-                - Modified property: releases
-                  - Items changed
-                    - Properties changed
-                      - Modified property: paymentId
-                        - Pattern changed from '[\w\W\s]*' to '^[a-zA-Z0-9][a-zA-Z0-9-]{0,99}$'
             - Modified property: links
               - Properties changed
                 - Modified property: first
@@ -98,26 +71,12 @@ GET /contracts/{contractId}/payments
                 - Modified property: self
                   - Format changed from 'uri' to 'url'
 GET /contracts/{contractId}/scheduled-instalments
-- Modified header param: x-fapi-interaction-id
-  - Required changed from false to true
-  - Schema changed
-    - Format changed from '' to 'uuid'
-    - MaxLength changed from 100 to 36
-    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
 - Responses changed
   - Modified response: 200
     - Content changed
       - Modified media type: application/json
         - Schema changed
           - Properties changed
-            - Modified property: data
-              - Properties changed
-                - Modified property: dueInstalments
-                  - Max changed from 999 to 999999
-                - Modified property: paidInstalments
-                  - Max changed from 999 to 999999
-                - Modified property: pastDueInstalments
-                  - Max changed from 999 to 999999
             - Modified property: links
               - Properties changed
                 - Modified property: first
@@ -131,12 +90,6 @@ GET /contracts/{contractId}/scheduled-instalments
                 - Modified property: self
                   - Format changed from 'uri' to 'url'
 GET /contracts/{contractId}/warranties
-- Modified header param: x-fapi-interaction-id
-  - Required changed from false to true
-  - Schema changed
-    - Format changed from '' to 'uuid'
-    - MaxLength changed from 100 to 36
-    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$' to '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
 - Responses changed
   - Modified response: 200
     - Content changed

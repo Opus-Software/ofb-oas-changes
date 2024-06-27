@@ -160,7 +160,7 @@ paths:
       tags:
         - Invoice Financings
       summary: Obtém a lista de garantias vinculadas ao contrato de antecipação de recebíveis identificado por contractId
-      description: Método para obter a lista de garantias vinculadas ao contrato de antecipação de recebíveis identificado por contractId mantido pelo cliente na instituição transmissora. Para os produtos que não possuam garantias deve-se retornar HTTP Status 200 com o objeto “data” vazio, sem nenhum atributo interno.
+      description: Método para obter a lista de garantias vinculadas ao contrato de antecipação de recebíveis identificado por contractId mantido pelo cliente na instituição transmissora
       operationId: invoiceFinancingsGetContractsContractIdWarranties
       parameters:
         - $ref: '#/components/parameters/contractId'
@@ -631,7 +631,7 @@ components:
         contractNumber:
           type: string
           maxLength: 100
-          pattern: '^[\w\W]{1,100}$'
+          pattern: '^\d{1,100}$'
           example: '1324926521496'
           description: Número do contrato dado pela instituição contratante.
         ipocCode:
@@ -971,16 +971,16 @@ components:
         paidInstalments:
           type: number
           description: 'Quantidade de prestações pagas. (No caso de modalidades que não possuam parcelas, o número de prestações é igual a zero)'
-          maximum: 999999
+          maximum: 999
           example: 73
         dueInstalments:
           type: number
-          maximum: 999999
+          maximum: 999
           description: 'Quantidade de prestações a vencer.(No caso de modalidades que não possuam parcelas, o número de prestações é igual a zero)'
           example: 57
         pastDueInstalments:
           type: number
-          maximum: 999999
+          maximum: 999
           description: 'Quantidade de prestações vencidas. (No caso de modalidades que não possuam parcelas, o número de prestações é igual a zero)'
           example: 73
         balloonPayments:
@@ -1077,7 +1077,7 @@ components:
         paymentId:
           type: string
           maxLength: 100
-          pattern: '^[a-zA-Z0-9][a-zA-Z0-9-]{0,99}$'
+          pattern: '[\w\W\s]*'
           example: Parcela regular
           description: Identificador de pagamento de responsabilidade de cada Instituição transmissora.
         isOverParcelPayment:
@@ -1504,15 +1504,13 @@ components:
     xFapiInteractionId:
       name: x-fapi-interaction-id
       in: header
-      description: 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.'
-      required: true
+      description: 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.'
+      required: false
       schema:
         type: string
-        format: uuid
-        pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+        pattern: '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
         minLength: 1
-        maxLength: 36
-        example: "d78fc4e5-37ca-4da3-adf2-9b082bf92280"
+        maxLength: 100
   securitySchemes:
     OpenId:
       type: openIdConnect
