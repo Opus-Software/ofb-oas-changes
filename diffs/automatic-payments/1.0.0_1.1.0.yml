@@ -57,9 +57,10 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
 - TITULARIDADE_INCONSISTENTE
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 '
-                        - New enum values: [LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO]
+                        - New enum values: [LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO]
                       - Modified property: detail
                         - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
 - SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
@@ -93,7 +94,8 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_PERIODO_VALOR_EXCEDIDO – A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
 - LIMITE_PERIODO_QUANTIDADE_EXCEDIDO – A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
 - TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração.
-- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
 '
             - Modified property: links
               - Properties changed
@@ -232,9 +234,10 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_PERIODO_VALOR_EXCEDIDO
 - LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 '
-                      - New enum values: [LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO]
+                      - New enum values: [LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO]
                     - Modified property: detail
                       - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
 - SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
@@ -268,7 +271,8 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração
 - LIMITE_PERIODO_VALOR_EXCEDIDO: A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
 - LIMITE_PERIODO_QUANTIDADE_EXCEDIDO: A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
-- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.            
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.       
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
 '
             - Modified property: links
               - Properties changed
@@ -358,8 +362,9 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - PAGAMENTO_RECUSADO_SPI: Pagamento recusado no Sistema de Pagamentos Instantâneos (SPI).
 - ERRO_IDEMPOTENCIA: Erro idempotência.
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: Limite total excedido
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
 '
-                    - New enum values: [LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO]
+                    - New enum values: [LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO]
                   - Modified property: detail
                     - Description changed from 'Descrição específica do erro de acordo com o código reportado:
 - SALDO_INSUFICIENTE: Esta conta não possui saldo suficiente para realizar o pagamento.
@@ -429,6 +434,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - PAGAMENTO_RECUSADO_SPI: Pagamento recusado no Sistema de Pagamentos Instantâneos (SPI).
 - ERRO_IDEMPOTENCIA: Erro idempotência.
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: Limite total excedido
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: Limite de transação excedido.
 '
     - Headers changed
       - Modified header: x-fapi-interaction-id
@@ -509,9 +515,10 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_PERIODO_VALOR_EXCEDIDO
 - LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 '
-                      - New enum values: [LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO]
+                      - New enum values: [LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO]
                     - Modified property: detail
                       - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
 - SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
@@ -545,7 +552,8 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração
 - LIMITE_PERIODO_VALOR_EXCEDIDO: A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
 - LIMITE_PERIODO_QUANTIDADE_EXCEDIDO: A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
-- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.            
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.       
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
 '
             - Modified property: links
               - Properties changed
@@ -678,9 +686,10 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_PERIODO_VALOR_EXCEDIDO
 - LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 '
-                      - New enum values: [LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO]
+                      - New enum values: [LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO]
                     - Modified property: detail
                       - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
 - SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
@@ -714,7 +723,8 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração
 - LIMITE_PERIODO_VALOR_EXCEDIDO: A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
 - LIMITE_PERIODO_QUANTIDADE_EXCEDIDO: A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
-- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.            
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.       
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
 '
             - Modified property: links
               - Properties changed
