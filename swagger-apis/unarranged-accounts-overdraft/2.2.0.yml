@@ -159,7 +159,7 @@ paths:
       tags:
         - Unarranged Accounts Overdraft
       summary: Obtém a lista de garantias vinculadas ao contrato de adiantamento a depositantes identificado por contractId
-      description: Método para obter a lista de garantias vinculadas ao contrato de adiantamento a depositantes identificado por contractId mantido pelo cliente na instituição transmissora. Para os produtos que não possuam garantias deve-se retornar HTTP Status 200 com o objeto “data” vazio, sem nenhum atributo interno.
+      description: Método para obter a lista de garantias vinculadas ao contrato de adiantamento a depositantes identificado por contractId mantido pelo cliente na instituição transmissora
       operationId: unarrangedAccountsOverdraftGetContractsContractIdWarranties
       parameters:
         - $ref: '#/components/parameters/contractId'
@@ -761,16 +761,16 @@ components:
         paidInstalments:
           type: number
           description: 'Quantidade de prestações pagas. (No caso de modalidades que não possuam parcelas, o número de prestações é igual a zero)'
-          maximum: 999999
+          maximum: 999
           example: 73
         dueInstalments:
           type: number
-          maximum: 999999
+          maximum: 999
           description: 'Quantidade de prestações a vencer.(No caso de modalidades que não possuam parcelas, o número de prestações é igual a zero)'
           example: 57
         pastDueInstalments:
           type: number
-          maximum: 999999
+          maximum: 999
           description: 'Quantidade de prestações vencidas. (No caso de modalidades que não possuam parcelas, o número de prestações é igual a zero)'
           example: 73
         balloonPayments:
@@ -1020,7 +1020,7 @@ components:
           type: string
           maxLength: 100
           minLength: 1
-          pattern: '^[\w\W]{1,100}$'
+          pattern: '^\d{1,100}$'
           example: '1324926521496'
           description: Número do contrato dado pela instituição contratante.
         ipocCode:
@@ -1111,7 +1111,7 @@ components:
           maxLength: 50
           example: Informações adicionais sobre periodicidade
           description: |
-            Campo obrigatório para complementar a informação relativa à periodicidade de pagamento regular quando tiver a opção OUTROS. Preencher o campo quando não aplicável com string vazia ("").
+            Campo obrigatório para complementar a informação relativa à periodicidade de pagamento regular quando tiver a opção OUTROS. 
         firstInstalmentDueDate:
           type: string
           format: date
@@ -1153,7 +1153,7 @@ components:
           maxLength: 200
           example: Informações complementares relativa à amortização do tipo 'OUTROS'
           description: |
-            Campo obrigatório para complementar a informação relativa à amortização quando selecionada a opção OUTROS. Preencher o campo quando não aplicável com string vazia ("").
+            Campo obrigatório para complementar a informação relativa à amortização quando selecionada a opção OUTROS.
         interestRates:
           type: array
           minItems: 0
@@ -1162,7 +1162,6 @@ components:
           description: |
             Objeto que traz o conjunto de informações necessárias para demonstrar a composição das taxas de juros remuneratórios da Modalidade de crédito.  
             Caso o contrato não possua taxas de juros, deve ser compartilhada uma lista vazia. Caso o contrato possua uma taxa de juros com valor 0, deve ser compartilhado um objeto com o valor 0 de forma explícita.
-            Preencher o campo não aplicável ao contrato com zeros, seguindo o pattern (0.000000).
         contractedFees:
           type: array
           minItems: 0
@@ -1223,7 +1222,6 @@ components:
             Taxa pré fixada aplicada sob o contrato da modalidade crédito. p.ex. 0.014500. 
 
             O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros(representação de porcentagem p.ex: 0.150000. Este valor representa 15%. O valor 1 representa 100%).
-            Preencher o campo não aplicável ao contrato com zeros, seguindo o pattern (0.000000).
           example: '0.600000'
         postFixedRate:
           type: string
@@ -1478,15 +1476,13 @@ components:
     xFapiInteractionId:
       name: x-fapi-interaction-id
       in: header
-      description: 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.'
-      required: true
+      description: 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.'
+      required: false
       schema:
         type: string
-        format: uuid
-        pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+        pattern: '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
         minLength: 1
-        maxLength: 36
-        example: "d78fc4e5-37ca-4da3-adf2-9b082bf92280"
+        maxLength: 100
   securitySchemes:
     OpenId:
       type: openIdConnect
