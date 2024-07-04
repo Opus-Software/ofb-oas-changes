@@ -57,7 +57,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
 - TITULARIDADE_INCONSISTENTE
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
-- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 '
                         - New enum values: [LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO]
@@ -173,6 +173,21 @@ POST /pix/recurring-payments
 O valor informado deve ser igual a um dos valores enviados na etapa de criação do consentimento (dentro do array “/data/creditors”). 
 Quando não respeitada essa regra, deve ser retornado pelo detentor, de maneira síncrona, erro HTTP 422 - PAGAMENTO_DIVERGENTE_CONSENTIMENTO
 '
+              - Modified property: proxy
+                - Description changed from 'Chave cadastrada no DICT pertencente ao recebedor. Os tipos de chaves podem ser: telefone, e-mail, cpf/cnpj ou chave aleatória. 
+No caso de telefone celular deve ser informado no padrão E.1641. Para e-mail deve ter o formato xxxxxxxx@xxxxxxx.xxx(.xx) e no máximo 77 caracteres. 
+No caso de CPF deverá ser informado com 11 números, sem pontos ou traços. Para o caso de CNPJ deverá ser informado com 14 números, sem pontos ou traços. 
+No caso de chave aleatória deve ser informado o UUID gerado pelo DICT, conforme formato especificado na [RFC4122](https://tools.ietf.org/html/rfc4122). 
+Se informado, a detentora da conta deve validar o proxy no DICT quando localInstrument for igual a DICT e validar o campo creditorAccount. 
+Esta validação é opcional caso o localInstrument for igual a INIC.
+[Restrição] Se localInstrument for igual a DICT, o campo proxy deve ser preenchido.
+' to 'Chave cadastrada no DICT pertencente ao recebedor. Os tipos de chaves podem ser: telefone, e-mail, cpf/cnpj ou chave aleatória. 
+No caso de telefone celular deve ser informado no padrão E.1641. Para e-mail deve ter o formato xxxxxxxx@xxxxxxx.xxx(.xx) e no máximo 77 caracteres. 
+No caso de CPF deverá ser informado com 11 números, sem pontos ou traços. Para o caso de CNPJ deverá ser informado com 14 números, sem pontos ou traços. 
+No caso de chave aleatória deve ser informado o UUID gerado pelo DICT, conforme formato especificado na [RFC4122](https://tools.ietf.org/html/rfc4122).
+[Restrição] Se localInstrument for igual a DICT ou INIC, o campo proxy deve ser preenchido.
+[Restrição] Se informado, a detentora da conta deve validar o proxy no DICT (quando localInstrument for igual a DICT) e validar o objeto creditorAccount. Ação opcional caso o localInstrument for igual a INIC
+'
               - Modified property: riskSignals
                 - Properties changed
                   - Modified property: automatic
@@ -194,6 +209,21 @@ Quando não respeitada essa regra, deve ser retornado pelo detentor, de maneira 
                       - Description changed from 'Número do documento de identificação oficial do titular pessoa natural ou jurídica.' to 'Número do documento de identificação oficial do recebedor pessoa natural ou jurídica. 
 O valor informado deve ser igual a um dos valores enviados na etapa de criação do consentimento (dentro do array “/data/creditors”). 
 Quando não respeitada essa regra, deve ser retornado pelo detentor, de maneira síncrona, erro HTTP 422 - PAGAMENTO_DIVERGENTE_CONSENTIMENTO
+'
+                - Modified property: proxy
+                  - Description changed from 'Chave cadastrada no DICT pertencente ao recebedor. Os tipos de chaves podem ser: telefone, e-mail, cpf/cnpj ou chave aleatória. 
+No caso de telefone celular deve ser informado no padrão E.1641. Para e-mail deve ter o formato xxxxxxxx@xxxxxxx.xxx(.xx) e no máximo 77 caracteres. 
+No caso de CPF deverá ser informado com 11 números, sem pontos ou traços. Para o caso de CNPJ deverá ser informado com 14 números, sem pontos ou traços. 
+No caso de chave aleatória deve ser informado o UUID gerado pelo DICT, conforme formato especificado na [RFC4122](https://tools.ietf.org/html/rfc4122). 
+Se informado, a detentora da conta deve validar o proxy no DICT quando localInstrument for igual a DICT e validar o campo creditorAccount. 
+Esta validação é opcional caso o localInstrument for igual a INIC.
+[Restrição] Se localInstrument for igual a DICT, o campo proxy deve ser preenchido.
+' to 'Chave cadastrada no DICT pertencente ao recebedor. Os tipos de chaves podem ser: telefone, e-mail, cpf/cnpj ou chave aleatória. 
+No caso de telefone celular deve ser informado no padrão E.1641. Para e-mail deve ter o formato xxxxxxxx@xxxxxxx.xxx(.xx) e no máximo 77 caracteres. 
+No caso de CPF deverá ser informado com 11 números, sem pontos ou traços. Para o caso de CNPJ deverá ser informado com 14 números, sem pontos ou traços. 
+No caso de chave aleatória deve ser informado o UUID gerado pelo DICT, conforme formato especificado na [RFC4122](https://tools.ietf.org/html/rfc4122).
+[Restrição] Se localInstrument for igual a DICT ou INIC, o campo proxy deve ser preenchido.
+[Restrição] Se informado, a detentora da conta deve validar o proxy no DICT (quando localInstrument for igual a DICT) e validar o objeto creditorAccount. Ação opcional caso o localInstrument for igual a INIC
 '
                 - Modified property: rejectionReason
                   - Properties changed
@@ -234,7 +264,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_PERIODO_VALOR_EXCEDIDO
 - LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
-- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 '
                       - New enum values: [LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO]
@@ -399,6 +429,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - PAGAMENTO_RECUSADO_SPI: Pagamento recusado no Sistema de Pagamentos Instantâneos (SPI).
 - ERRO_IDEMPOTENCIA: Erro idempotência.
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
 '
                   - Modified property: title
                     - Description changed from 'Título específico do erro reportado, de acordo com o código enviado:
@@ -515,7 +546,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_PERIODO_VALOR_EXCEDIDO
 - LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
-- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 '
                       - New enum values: [LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO]
@@ -686,7 +717,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_PERIODO_VALOR_EXCEDIDO
 - LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
-- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 '
                       - New enum values: [LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO]
@@ -980,6 +1011,27 @@ GET /recurring-consents/{recurringConsentId}
 PATCH /recurring-consents/{recurringConsentId}
 - Modified header param: x-fapi-interaction-id
   - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..'
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Property 'OneOf' changed
+              - 1 schemas added
+              - Schema #/components/schemas/ConsentRevocation modified
+                - Properties changed
+                  - Deleted property: automatic
+                  - Deleted property: creditors
+                  - Deleted property: expirationDateTime
+                  - Deleted property: startDateTime
+              - Schema #/components/schemas/ConsentRejection modified
+                - Properties changed
+                  - Deleted property: automatic
+                  - Deleted property: creditors
+                  - Deleted property: expirationDateTime
+                  - Deleted property: startDateTime
+            - Description changed from 'Objeto contendo as informações de rejeição e revogação dos consentimentos' to 'Objeto contendo as informações de rejeição, revogação e edição dos consentimentos'
 - Responses changed
   - Modified response: 200
     - Content changed
