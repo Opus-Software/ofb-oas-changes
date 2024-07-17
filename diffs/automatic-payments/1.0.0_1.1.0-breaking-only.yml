@@ -16,12 +16,25 @@ GET /pix/recurring-payments
                 - Modified property: self
                   - Format changed from 'uri' to 'url'
 POST /pix/recurring-payments
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Required changed
+              - New required property: creditorAccount
 - Responses changed
   - Modified response: 201
     - Content changed
       - Modified media type: application/jwt
         - Schema changed
           - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: creditorAccount
+                  - Required changed
+                    - Deleted required property: issuer
             - Modified property: links
               - Properties changed
                 - Modified property: self
@@ -33,6 +46,11 @@ GET /pix/recurring-payments/{recurringPaymentId}
       - Modified media type: application/jwt
         - Schema changed
           - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: creditorAccount
+                  - Required changed
+                    - Deleted required property: issuer
             - Modified property: links
               - Properties changed
                 - Modified property: self
@@ -53,6 +71,11 @@ PATCH /pix/recurring-payments/{recurringPaymentId}
       - Modified media type: application/jwt
         - Schema changed
           - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: creditorAccount
+                  - Required changed
+                    - Deleted required property: issuer
             - Modified property: links
               - Properties changed
                 - Modified property: self
