@@ -14,6 +14,27 @@ GET /pix/recurring-payments
       - New header: x-fapi-interaction-id
 POST /pix/recurring-payments
 - Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: cancellation
+                  - Properties changed
+                    - Modified property: reason
+                      - Description changed from 'O preenchimento desse campo para retorno, deve ocorrer pela detentora de contas a partir do status em que o pagamento estiver no momento da solicitação do cancelamento (ex. Status de pagamento = PDNG, campo deve ser preenchido com enum CANCELADO_PENDENCIA)
+Valores possíveis:
+CANCELADO_PENDENCIA - Pagamento cancelado enquanto estava na situação PDNG
+CANCELADO_AGENDAMENTO - Pagamento cancelado enquanto estava na situação SCHD
+' to 'O preenchimento desse campo para retorno, deve ocorrer pela detentora de contas a partir do status em que o pagamento estiver no momento da solicitação do cancelamento (ex. Status de pagamento = PDNG, campo deve ser preenchido com enum CANCELADO_PENDENCIA)
+Valores possíveis:
+CANCELADO_PENDENCIA - Pagamento cancelado enquanto estava na situação PDNG
+CANCELADO_AGENDAMENTO - Pagamento cancelado enquanto estava na situação SCHD
+CANCELADO_MULTIPLAS_ALCADAS - Pagamento cancelado enquanto estava na situação PATC
+'
+                      - New enum values: [CANCELADO_MULTIPLAS_ALCADAS]
   - Modified response: 500
     - Headers changed
       - New header: x-fapi-interaction-id
@@ -29,6 +50,20 @@ GET /pix/recurring-payments/{recurringPaymentId}
           - Properties changed
             - Modified property: data
               - Properties changed
+                - Modified property: cancellation
+                  - Properties changed
+                    - Modified property: reason
+                      - Description changed from 'O preenchimento desse campo para retorno, deve ocorrer pela detentora de contas a partir do status em que o pagamento estiver no momento da solicitação do cancelamento (ex. Status de pagamento = PDNG, campo deve ser preenchido com enum CANCELADO_PENDENCIA)
+Valores possíveis:
+CANCELADO_PENDENCIA - Pagamento cancelado enquanto estava na situação PDNG
+CANCELADO_AGENDAMENTO - Pagamento cancelado enquanto estava na situação SCHD
+' to 'O preenchimento desse campo para retorno, deve ocorrer pela detentora de contas a partir do status em que o pagamento estiver no momento da solicitação do cancelamento (ex. Status de pagamento = PDNG, campo deve ser preenchido com enum CANCELADO_PENDENCIA)
+Valores possíveis:
+CANCELADO_PENDENCIA - Pagamento cancelado enquanto estava na situação PDNG
+CANCELADO_AGENDAMENTO - Pagamento cancelado enquanto estava na situação SCHD
+CANCELADO_MULTIPLAS_ALCADAS - Pagamento cancelado enquanto estava na situação PATC
+'
+                      - New enum values: [CANCELADO_MULTIPLAS_ALCADAS]
                 - Modified property: status
                   - Description changed from 'Estado atual do pagamento. O estado evolui na seguinte ordem:
 - RCVD (Received) - Indica que a requisição de pagamento foi recebida com sucesso pela detentora, mas ainda há validações a serem feitas antes de ser submetida para liquidação.
@@ -61,6 +96,27 @@ Em caso insucesso:
       - New header: x-fapi-interaction-id
 PATCH /pix/recurring-payments/{recurringPaymentId}
 - Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: cancellation
+                  - Properties changed
+                    - Modified property: reason
+                      - Description changed from 'O preenchimento desse campo para retorno, deve ocorrer pela detentora de contas a partir do status em que o pagamento estiver no momento da solicitação do cancelamento (ex. Status de pagamento = PDNG, campo deve ser preenchido com enum CANCELADO_PENDENCIA)
+Valores possíveis:
+CANCELADO_PENDENCIA - Pagamento cancelado enquanto estava na situação PDNG
+CANCELADO_AGENDAMENTO - Pagamento cancelado enquanto estava na situação SCHD
+' to 'O preenchimento desse campo para retorno, deve ocorrer pela detentora de contas a partir do status em que o pagamento estiver no momento da solicitação do cancelamento (ex. Status de pagamento = PDNG, campo deve ser preenchido com enum CANCELADO_PENDENCIA)
+Valores possíveis:
+CANCELADO_PENDENCIA - Pagamento cancelado enquanto estava na situação PDNG
+CANCELADO_AGENDAMENTO - Pagamento cancelado enquanto estava na situação SCHD
+CANCELADO_MULTIPLAS_ALCADAS - Pagamento cancelado enquanto estava na situação PATC
+'
+                      - New enum values: [CANCELADO_MULTIPLAS_ALCADAS]
   - Modified response: 500
     - Headers changed
       - New header: x-fapi-interaction-id

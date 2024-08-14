@@ -235,6 +235,20 @@ No caso de chave aleatória deve ser informado o UUID gerado pelo DICT, conforme
               - Required changed
                 - New required property: creditorAccount
               - Properties changed
+                - Modified property: cancellation
+                  - Properties changed
+                    - Modified property: reason
+                      - Description changed from 'O preenchimento desse campo para retorno, deve ocorrer pela detentora de contas a partir do status em que o pagamento estiver no momento da solicitação do cancelamento (ex. Status de pagamento = PDNG, campo deve ser preenchido com enum CANCELADO_PENDENCIA)
+Valores possíveis:
+CANCELADO_PENDENCIA - Pagamento cancelado enquanto estava na situação PDNG
+CANCELADO_AGENDAMENTO - Pagamento cancelado enquanto estava na situação SCHD
+CANCELADO_MULTIPLAS_ALCADAS - Pagamento cancelado enquanto estava na situação PATC
+' to 'O preenchimento desse campo para retorno, deve ocorrer pela detentora de contas a partir do status em que o pagamento estiver no momento da solicitação do cancelamento (ex. Status de pagamento = PDNG, campo deve ser preenchido com enum CANCELADO_PENDENCIA)
+Valores possíveis:
+CANCELADO_PENDENCIA - Pagamento cancelado enquanto estava na situação PDNG
+CANCELADO_AGENDAMENTO - Pagamento cancelado enquanto estava na situação SCHD
+'
+                      - Deleted enum values: [CANCELADO_MULTIPLAS_ALCADAS]
                 - Modified property: creditorAccount
                   - Description changed from 'Objeto que contém a identificação da conta de destino do beneficiário/recebedor.
 [Restrição] Se localInstrument for igual a MANU, o campo creditorAccount deve ser preenchido.
@@ -558,6 +572,20 @@ GET /pix/recurring-payments/{recurringPaymentId}
               - Properties changed
                 - New property: localInstrument
                 - New property: proxy
+                - Modified property: cancellation
+                  - Properties changed
+                    - Modified property: reason
+                      - Description changed from 'O preenchimento desse campo para retorno, deve ocorrer pela detentora de contas a partir do status em que o pagamento estiver no momento da solicitação do cancelamento (ex. Status de pagamento = PDNG, campo deve ser preenchido com enum CANCELADO_PENDENCIA)
+Valores possíveis:
+CANCELADO_PENDENCIA - Pagamento cancelado enquanto estava na situação PDNG
+CANCELADO_AGENDAMENTO - Pagamento cancelado enquanto estava na situação SCHD
+CANCELADO_MULTIPLAS_ALCADAS - Pagamento cancelado enquanto estava na situação PATC
+' to 'O preenchimento desse campo para retorno, deve ocorrer pela detentora de contas a partir do status em que o pagamento estiver no momento da solicitação do cancelamento (ex. Status de pagamento = PDNG, campo deve ser preenchido com enum CANCELADO_PENDENCIA)
+Valores possíveis:
+CANCELADO_PENDENCIA - Pagamento cancelado enquanto estava na situação PDNG
+CANCELADO_AGENDAMENTO - Pagamento cancelado enquanto estava na situação SCHD
+'
+                      - Deleted enum values: [CANCELADO_MULTIPLAS_ALCADAS]
                 - Modified property: creditorAccount
                   - Description changed from 'Objeto que contém a identificação da conta de destino do beneficiário/recebedor. 
 ' to 'Objeto que contém a identificação da conta de destino do beneficiário/recebedor.
@@ -754,6 +782,20 @@ PATCH /pix/recurring-payments/{recurringPaymentId}
               - Properties changed
                 - New property: localInstrument
                 - New property: proxy
+                - Modified property: cancellation
+                  - Properties changed
+                    - Modified property: reason
+                      - Description changed from 'O preenchimento desse campo para retorno, deve ocorrer pela detentora de contas a partir do status em que o pagamento estiver no momento da solicitação do cancelamento (ex. Status de pagamento = PDNG, campo deve ser preenchido com enum CANCELADO_PENDENCIA)
+Valores possíveis:
+CANCELADO_PENDENCIA - Pagamento cancelado enquanto estava na situação PDNG
+CANCELADO_AGENDAMENTO - Pagamento cancelado enquanto estava na situação SCHD
+CANCELADO_MULTIPLAS_ALCADAS - Pagamento cancelado enquanto estava na situação PATC
+' to 'O preenchimento desse campo para retorno, deve ocorrer pela detentora de contas a partir do status em que o pagamento estiver no momento da solicitação do cancelamento (ex. Status de pagamento = PDNG, campo deve ser preenchido com enum CANCELADO_PENDENCIA)
+Valores possíveis:
+CANCELADO_PENDENCIA - Pagamento cancelado enquanto estava na situação PDNG
+CANCELADO_AGENDAMENTO - Pagamento cancelado enquanto estava na situação SCHD
+'
+                      - Deleted enum values: [CANCELADO_MULTIPLAS_ALCADAS]
                 - Modified property: creditorAccount
                   - Description changed from 'Objeto que contém a identificação da conta de destino do beneficiário/recebedor. 
 ' to 'Objeto que contém a identificação da conta de destino do beneficiário/recebedor.
@@ -944,9 +986,9 @@ POST /recurring-consents
                   - Description changed from 'Objeto contendo os dados do recebedor (creditor).' to 'Objeto contendo os dados do recebedor (creditor). Em casos de transferências inteligentes para clientes PJ, os CNPJs informados devem possuir a mesma raiz do CNPJ enviado no campo /data/businessEntity/document/identification. Em casos de transferências inteligentes para clientes PN, deve-se aceitar apenas um item no array e este item deve conter as informações do recebedor. O CPF informado deve ser o mesmo do /data/loggedUser/document/identification. Caso alguma das regras mencionadas não sejam seguidas, o detentor deve rejeitar a solicitação (sincronamente) com o erro DETALHE_PAGAMENTO_INVALIDO, e o detalhe deve ser preenchido com a informação referente ao erro.'
               - Modified property: recurringConfiguration
                 - Property 'OneOf' changed
-                  - Schema #/components/schemas/Vrp modified
+                  - Schema #/components/schemas/Sweeping modified
                     - Properties changed
-                      - Modified property: vrp
+                      - Modified property: sweeping
                         - Properties changed
                           - Modified property: periodicLimits
                             - Properties changed
@@ -966,9 +1008,9 @@ POST /recurring-consents
                                 - Properties changed
                                   - Modified property: quantityLimit
                                     - Min changed from null to 1
-                  - Schema #/components/schemas/Sweeping modified
+                  - Schema #/components/schemas/Vrp modified
                     - Properties changed
-                      - Modified property: sweeping
+                      - Modified property: vrp
                         - Properties changed
                           - Modified property: periodicLimits
                             - Properties changed
@@ -1257,7 +1299,7 @@ PATCH /recurring-consents/{recurringConsentId}
           - Modified property: data
             - Property 'OneOf' changed
               - 1 schemas added
-              - Schema #/components/schemas/ConsentRejection modified
+              - Schema #/components/schemas/ConsentRevocation modified
                 - Properties changed
                   - Deleted property: automatic
                   - Deleted property: creditors
@@ -1267,7 +1309,7 @@ PATCH /recurring-consents/{recurringConsentId}
                     - Properties changed
                       - New property: isCallingProgress
                       - Deleted property: isCallInProgress
-              - Schema #/components/schemas/ConsentRevocation modified
+              - Schema #/components/schemas/ConsentRejection modified
                 - Properties changed
                   - Deleted property: automatic
                   - Deleted property: creditors
