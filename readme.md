@@ -35,7 +35,7 @@
 |  | [1.1.0](swagger-apis/enrollments/1.1.0.yml) | [1.2.0](swagger-apis/enrollments/1.2.0.yml) | [YAML](diffs/enrollments/1.1.0_1.2.0-breaking-only.yml) | [YAML](diffs/enrollments/1.1.0_1.2.0.yml) |
 |  | [1.2.0](swagger-apis/enrollments/1.2.0.yml) | [1.3.1](swagger-apis/enrollments/1.3.1.yml) | [YAML](diffs/enrollments/1.2.0_1.3.1-breaking-only.yml) | [YAML](diffs/enrollments/1.2.0_1.3.1.yml) |
 |  | [1.3.1](swagger-apis/enrollments/1.3.1.yml) | [1.4.0](swagger-apis/enrollments/1.4.0.yml) | [YAML](diffs/enrollments/1.3.1_1.4.0-breaking-only.yml) | [YAML](diffs/enrollments/1.3.1_1.4.0.yml) |
-|  | [1.4.0](swagger-apis/enrollments/1.4.0.yml) | [2.0.0-beta.1](swagger-apis/enrollments/2.0.0-beta.1.yml) | [YAML](diffs/enrollments/1.4.0_2.0.0-beta.1-breaking-only.yml) | [YAML](diffs/enrollments/1.4.0_2.0.0-beta.1.yml) |
+|  | [1.4.0](swagger-apis/enrollments/1.4.0.yml) | [2.0.0-beta.2](swagger-apis/enrollments/2.0.0-beta.2.yml) | [YAML](diffs/enrollments/1.4.0_2.0.0-beta.2-breaking-only.yml) | [YAML](diffs/enrollments/1.4.0_2.0.0-beta.2.yml) |
 | exchange | [1.0.1](swagger-apis/exchange/1.0.1.yml) |  |  |  |
 | exchanges | [1.0.0](swagger-apis/exchanges/1.0.0.yml) |  |  |  |
 | financings | [1.0.4](swagger-apis/financings/1.0.4.yml) | [2.0.1](swagger-apis/financings/2.0.1.yml) | [YAML](diffs/financings/1.0.4_2.0.1-breaking-only.yml) | [YAML](diffs/financings/1.0.4_2.0.1.yml) |
@@ -237,6 +237,7 @@
 |  | [1.3.0](swagger-apis/enrollments/1.3.0.yml) | [1.3.1](swagger-apis/enrollments/1.3.1.yml) | [YAML](diffs/enrollments/1.3.0_1.3.1.yml) |
 |  | [1.3.1](swagger-apis/enrollments/1.3.1.yml) | [1.4.0](swagger-apis/enrollments/1.4.0.yml) | [YAML](diffs/enrollments/1.3.1_1.4.0.yml) |
 |  | [1.4.0](swagger-apis/enrollments/1.4.0.yml) | [2.0.0-beta.1](swagger-apis/enrollments/2.0.0-beta.1.yml) | [YAML](diffs/enrollments/1.4.0_2.0.0-beta.1.yml) |
+|  | [2.0.0-beta.1](swagger-apis/enrollments/2.0.0-beta.1.yml) | [2.0.0-beta.2](swagger-apis/enrollments/2.0.0-beta.2.yml) | [YAML](diffs/enrollments/2.0.0-beta.1_2.0.0-beta.2.yml) |
 | exchange | [1.0.0-rc1.0](swagger-apis/exchange/1.0.0-rc1.0.yml) | [1.0.0-rc2.0](swagger-apis/exchange/1.0.0-rc2.0.yml) | [YAML](diffs/exchange/1.0.0-rc1.0_1.0.0-rc2.0.yml) |
 |  | [1.0.0-rc2.0](swagger-apis/exchange/1.0.0-rc2.0.yml) | [1.0.0](swagger-apis/exchange/1.0.0.yml) | [YAML](diffs/exchange/1.0.0-rc2.0_1.0.0.yml) |
 |  | [1.0.0](swagger-apis/exchange/1.0.0.yml) | [1.0.1](swagger-apis/exchange/1.0.1.yml) | [YAML](diffs/exchange/1.0.0_1.0.1.yml) |
