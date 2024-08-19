@@ -1,1 +1,129 @@
-﻿failed to load revision spec from "/data/4.1.0.yml" with map key "XFapiInteractionId" not found
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 6
+-------------------------
+POST /consents
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: payment
+                - Properties changed
+                  - Modified property: schedule
+                    - Property 'OneOf' changed
+                      - Schema #/components/schemas/ScheduleSingle modified
+                        - Properties changed
+                          - Modified property: single
+                            - Required changed
+                              - New required property: additionalInformation
+                            - Properties changed
+                              - New property: additionalInformation
+                      - Schema #/components/schemas/ScheduleDaily modified
+                        - Properties changed
+                          - Modified property: daily
+                            - Required changed
+                              - New required property: additionalInformation
+                            - Properties changed
+                              - New property: additionalInformation
+                      - Schema #/components/schemas/ScheduleWeekly modified
+                        - Properties changed
+                          - Modified property: weekly
+                            - Required changed
+                              - New required property: additionalInformation
+                            - Properties changed
+                              - New property: additionalInformation
+                      - Schema #/components/schemas/ScheduleMonthly modified
+                        - Properties changed
+                          - Modified property: monthly
+                            - Required changed
+                              - New required property: additionalInformation
+                            - Properties changed
+                              - New property: additionalInformation
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: links
+              - Properties changed
+                - Modified property: self
+                  - Format changed from 'uri' to 'url'
+  - Modified response: 500
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+GET /consents/{consentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: links
+              - Properties changed
+                - Modified property: self
+                  - Format changed from 'uri' to 'url'
+  - Modified response: 500
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+POST /pix/payments
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: links
+              - Properties changed
+                - Modified property: self
+                  - Format changed from 'uri' to 'url'
+  - Modified response: 500
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+PATCH /pix/payments/consents/{consentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: links
+              - Properties changed
+                - Modified property: self
+                  - Format changed from 'uri' to 'url'
+  - Modified response: 500
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+GET /pix/payments/{paymentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: links
+              - Properties changed
+                - Modified property: self
+                  - Format changed from 'uri' to 'url'
+  - Modified response: 500
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+PATCH /pix/payments/{paymentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: links
+              - Properties changed
+                - Modified property: self
+                  - Format changed from 'uri' to 'url'
+  - Modified response: 500
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
