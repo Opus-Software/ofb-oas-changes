@@ -579,7 +579,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/BusinessPostalAddress'
-          minItems: 1
+          minItems: 0
           description: Lista de endereços da pessoa jurídica
         phones:
           type: array
@@ -659,9 +659,9 @@ components:
           example: true
         email:
           type: string
+          format: email
           description: Endereço de email
           maxLength: 320
-          pattern: ^[a-z0-9.!#$&'*+\/=?^_`{|}~-]+@[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?)*$
           example: karinafernandes-81@br.inter.net
     CustomerPhone:
       type: object
@@ -693,11 +693,11 @@ components:
 
             [Restrição] O preenchimento é obrigatório quando for diferente de 55. 
         areaCode:
-          $ref: '#/components/schemas/EnumAreaCode'
+          $ref: '#/components/schemas/AreaCode'
         number:
           type: string
-          maxLength: 11
-          pattern: '^([0-9]{8,11})$'
+          maxLength: 13
+          pattern: '^([0-9]{6,13})$'
           example: '29875132'
           description: Número de telefone do cliente
         phoneExtension:
@@ -722,7 +722,7 @@ components:
           type: string
           maxLength: 150
           minLength: 2
-          pattern: '^\w{2}[\w\W\s]*$'
+          pattern: '^[\w\W\s]*$'
           example: 'Av Naburo Ykesaki, 1270'
           description: |
             Corresponde ao endereço comercial do cliente.
@@ -742,7 +742,7 @@ components:
         townName:
           type: string
           maxLength: 50
-          pattern: '^\w{2}[\w\W\s]*$'
+          pattern: '^[\w\W\s]*$'
           minLength: 2
           example: Marília
           description: |
@@ -949,9 +949,8 @@ components:
           type: string
           pattern: '^(?!\s)[\w\W\s]*[^\s]$'
           maxLength: 80
-          minLength: 2
           description: |
-            Nome do empregador conforme recebido pela comunicação de portabilidade.
+            Nome do empregador conforme recebido pela comunicação de portabilidade. O empregador pode ser pessoa natural ou pessoa jurídica, quando se tratar de pessoa jurídica, deve haver o envio da razão social.
         employerCnpjCpf:
           type: string
           pattern: '^\d{14}$|^\d{11}$'
@@ -986,16 +985,14 @@ components:
         - employerCnpjCpf
         - paycheckBankCnpj
         - paycheckBankIspb
-        - accountOpeningDate
-        - portabilityApprovalDate
+        - accountOpeningDate 
       properties:
         employerName:
           type: string
           pattern: '^(?!\s)[\w\W\s]*[^\s]$'
           maxLength: 80
-          minLength: 2
           description: |
-            Nome do empregador conforme registrado na abertura da conta salário.
+            Nome do empregador conforme registrado na abertura da conta salário. O empregador pode ser pessoa natural ou pessoa jurídica, quando se tratar de pessoa jurídica, deve haver o envio da razão social.
         employerCnpjCpf:
           type: string
           pattern: '^\d{14}$|^\d{11}$'
@@ -1054,78 +1051,13 @@ components:
 
         Conta de pagamento pré-paga - segundo CIRCULAR Nº 3.680, BCB de  2013, é a 'destinada à execução de transações de pagamento em moeda eletrônica realizadas com base em fundos denominados em reais previamente aportados'.
       example: CONTA_DEPOSITO_A_VISTA
-    EnumAreaCode:
+    AreaCode:
       type: string
       example: '19'
       description: Número de DDD (Discagem Direta à Distância) do telefone do cliente - se houver
-      enum:
-        - '11'
-        - '12'
-        - '13'
-        - '14'
-        - '15'
-        - '16'
-        - '17'
-        - '18'
-        - '19'
-        - '21'
-        - '22'
-        - '24'
-        - '27'
-        - '28'
-        - '31'
-        - '32'
-        - '33'
-        - '34'
-        - '35'
-        - '37'
-        - '38'
-        - '41'
-        - '42'
-        - '43'
-        - '44'
-        - '45'
-        - '46'
-        - '47'
-        - '48'
-        - '49'
-        - '51'
-        - '53'
-        - '54'
-        - '55'
-        - '61'
-        - '62'
-        - '63'
-        - '64'
-        - '65'
-        - '66'
-        - '67'
-        - '68'
-        - '69'
-        - '71'
-        - '73'
-        - '74'
-        - '75'
-        - '77'
-        - '79'
-        - '81'
-        - '82'
-        - '83'
-        - '84'
-        - '85'
-        - '86'
-        - '87'
-        - '88'
-        - '89'
-        - '91'
-        - '92'
-        - '93'
-        - '94'
-        - '95'
-        - '96'
-        - '97'
-        - '98'
-        - '99'
+      maxLength: 3
+      minLength: 2
+      pattern: ^(\d{2,3})$
     EnumCountrySubDivision:
       type: string
       description: 'Enumeração referente a cada sigla da unidade da federação que identifica o estado ou o distrito federal, no qual o endereço está localizado. p.ex. ''AC''. São consideradas apenas as siglas para os estados brasileiros'
@@ -1427,57 +1359,40 @@ components:
       properties:
         self:
           type: string
-          format: uri
+          format: url
           maxLength: 2000
           description: URI completo que gerou a resposta atual.
           example: 'https://api.banco.com.br/open-banking/api/v1/resource'
-          pattern: '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
         first:
           type: string
-          format: uri
+          format: url
           maxLength: 2000
           description: URI da primeira página que originou essa lista de resultados. Restrição - Obrigatório quando não for a primeira página da resposta
           example: 'https://api.banco.com.br/open-banking/api/v1/resource'
-          pattern: '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
         prev:
           type: string
-          format: uri
+          format: url
           maxLength: 2000
           description: "URI da página anterior dessa lista de resultados. Restrição - \tObrigatório quando não for a primeira página da resposta"
           example: 'https://api.banco.com.br/open-banking/api/v1/resource'
-          pattern: '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
         next:
           type: string
-          format: uri
+          format: url
           maxLength: 2000
           description: URI da próxima página dessa lista de resultados. Restrição - Obrigatório quando não for a última página da resposta
           example: 'https://api.banco.com.br/open-banking/api/v1/resource'
-          pattern: '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
         last:
           type: string
-          format: uri
+          format: url
           maxLength: 2000
           description: URI da última página dessa lista de resultados. Restrição - Obrigatório quando não for a última página da resposta
           example: 'https://api.banco.com.br/open-banking/api/v1/resource'
-          pattern: '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
     Meta:
       type: object
       description: Meta informações referente à API requisitada.
       required:
-        - totalRecords
-        - totalPages
         - requestDateTime
       properties:
-        totalRecords:
-          type: integer
-          format: int32
-          description: Número total de registros no resultado
-          example: 1
-        totalPages:
-          type: integer
-          format: int32
-          description: Número total de páginas no resultado
-          example: 1
         requestDateTime:
           description: 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.'
           type: string
@@ -1581,7 +1496,7 @@ components:
           description: |
             Nome civil completo da pessoa natural (Direito fundamental da pessoa, o nome civil é aquele atribuído à pessoa natural desde o registro de seu nascimento, com o qual será identificada por toda a sua vida, bem como após a sua morte)
 
-            [Restrição] O campo civilName deve ser obrigatoriamente preenchido quando personType for PESSOA_JURIDICA.
+            [Restrição] O campo civilName deve ser obrigatoriamente preenchido quando personType for PESSOA_NATURAL.
         socialName:
           type: string
           maxLength: 70
@@ -1732,16 +1647,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PortabilitiesReceived'
-          minItems: 0
+          minItems: 1
           description: |
             Lista de informações de empregador recebidos através de portabilidade de salário solicitada pelo cliente da transmissora à instituição detentora(s) de sua conta salário, ativos ou que já estiveram ativos,. Cada vínculo é associado a uma portabilidade de salário recebida pela transmissora.
             
-            Obs.: a portabilidade não é explicitamente encerrada, ou seja, a IF para a qual o salário foi portado não é avisado quando a conta salário se encerra ou o salário é portado para outra IF. Não é possível garantir que os dados informados sejam de uma portabilidade ativa, nem que o vínculo com o banco folha ainda exista.
+            Obs.: a portabilidade não é explicitamente encerrada, ou seja, a IF para a qual o salário foi portado não é avisado quando a conta salário se encerra ou o salário é portado para outra IF. Não é possível garantir que os dados informados sejam de uma portabilidade ativa, nem que o vínculo com o banco folha ainda exista. A transmissora terá tais informações apenas quando o pedido da portabilidade tiver sido solicitado em seus canais.
         paychecksBankLink:
           type: array
           items:
             $ref: '#/components/schemas/PaychecksBankLink'
-          minItems: 0
+          minItems: 1
           description: |
             Lista de informações de contas salário relacionadas com vínculos empregatícios, existentes ou que já existiram, firmados entre o cliente pessoa natural e um ou mais empregadores. Cada vínculo é associado a uma conta salário aberta mantida no banco-folha (instituição transmissora).
 
@@ -2137,10 +2052,13 @@ components:
         meta:
           $ref: '#/components/schemas/Meta'
     XFapiInteractionId:
+      description: Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.
       type: string
-      pattern: '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
-      maxLength: 100
-      description: 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.'
+      format: uuid
+      pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+      minLength: 1
+      maxLength: 36
+      example: d78fc4e5-37ca-4da3-adf2-9b082bf92280
   parameters:
     Authorization:
       name: Authorization
@@ -2184,13 +2102,15 @@ components:
     xFapiInteractionId:
       name: x-fapi-interaction-id
       in: header
-      description: 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.'
-      required: false
+      description: Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.
+      required: true
       schema:
         type: string
-        pattern: '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
+        format: uuid
+        pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
         minLength: 1
-        maxLength: 100
+        maxLength: 36
+        example: d78fc4e5-37ca-4da3-adf2-9b082bf92280
     page:
       name: page
       in: query
@@ -2237,6 +2157,7 @@ components:
       description: Dados sobre identificação pessoa física.
       headers:
         x-fapi-interaction-id:
+          description: Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.
           schema:
             $ref: '#/components/schemas/XFapiInteractionId'
       content:
@@ -2247,6 +2168,7 @@ components:
       description: Dados sobre qualificação da pessoa física
       headers:
         x-fapi-interaction-id:
+          description: Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.
           schema:
             $ref: '#/components/schemas/XFapiInteractionId'
       content:
@@ -2257,6 +2179,7 @@ components:
       description: Dados sobre relacionamento da pessoa física
       headers:
         x-fapi-interaction-id:
+          description: Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.
           schema:
             $ref: '#/components/schemas/XFapiInteractionId'
       content:
@@ -2267,6 +2190,7 @@ components:
       description: Dados sobre identificação pessoa jurídica
       headers:
         x-fapi-interaction-id:
+          description: Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.
           schema:
             $ref: '#/components/schemas/XFapiInteractionId'
       content:
@@ -2277,6 +2201,7 @@ components:
       description: Dados sobre qualificação pessoa jurídica
       headers:
         x-fapi-interaction-id:
+          description: Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.
           schema:
             $ref: '#/components/schemas/XFapiInteractionId'
       content:
@@ -2287,6 +2212,7 @@ components:
       description: Dados sobre relacionamento pessoa jurídica
       headers:
         x-fapi-interaction-id:
+          description: Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.
           schema:
             $ref: '#/components/schemas/XFapiInteractionId'
       content:
