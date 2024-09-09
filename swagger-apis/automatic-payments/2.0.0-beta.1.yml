@@ -162,9 +162,9 @@ info:
     email: gt-interfaces@openbankingbr.org
     url: 'https://openbanking-brasil.github.io/areadesenvolvedor/'
 servers:
-  - url: 'https://api.banco.com.br/open-banking/automatic-payments/v2'
+  - url: 'https://api.banco.com.br/open-banking/automatic-payments/v1'
     description: Servidor de Produção
-  - url: 'https://apih.banco.com.br/open-banking/automatic-payments/v2'
+  - url: 'https://apih.banco.com.br/open-banking/automatic-payments/v1'
     description: Servidor de Homologação
 tags:
   - name: Recurring Consents
@@ -980,6 +980,16 @@ components:
           maxLength: 14
           example: '50685362000135'
           description: CNPJ do Iniciador de Pagamento devidamente habilitado para a prestação de Serviço de Iniciação no Pix.
+        ibgeTownCode:
+          type: string
+          minLength: 7
+          maxLength: 7
+          pattern: '^\d{7}$'
+          example: '5300108'
+          description: |
+            O campo ibgeTownCode no arranjo Pix tem o mesmo comportamento que o campo codMun descrito no item 1.6.6 do manual do Pix.
+
+            Caso a informação referente ao município não seja enviada, o PSP do recebedor assumirá que não existem feriados estaduais e municipais no período em questão;
         authorisationFlow:
           type: string
           enum:
@@ -2187,26 +2197,20 @@ components:
               maxLength: 35
               example: XE00038166201907261559y6j6
               description: Identificador do contrato de transação
-            fixedAmount:
+            amount:
               type: string
               pattern: '^((\d{1,16}\.\d{2}))$'
               minLength: 4
               maxLength: 19
               example: '100000.12'
-              description: |
-                Valor fixo de cobrança, caso preenchido, representa um consentimento para pagamentos de valores fixos. 
-                
-                [Restrição] Excludente com o campo “/data/recurringConfiguration/automatic/maximumVariableAmount”
-            maximumVariableAmount:
+              description: Valor da transação com 2 casas decimais.
+            transactionLimit:
               type: string
               pattern: '^((\d{1,16}\.\d{2}))$'
               minLength: 4
               maxLength: 19
               example: '1000000.12'
-              description: |
-                Valor máximo permitido por cobrança, caso preenchido, representa um consentimento para pagamentos de valores variáveis. 
-                
-                [Restrição] Excludente com o campo “/data/recurringConfiguration/automatic/fixedAmount”
+              description: Valor da transação com 2 casas decimais.
             period:
               type: string
               enum:
@@ -2285,16 +2289,6 @@ components:
               $ref: '#/components/schemas/ContractDebtor'
             immediatePayment:
               $ref: '#/components/schemas/ImmediatePayment'
-            minimumVariableAmount:
-              type: string
-              pattern: ^((\d{1,16}\.\d{2}))$
-              minLength: 4
-              maxLength: 19
-              example: '100000.12'
-              description: |
-                Valor definido pelo usuário recebedor. Se o usuário pagador atribuir um valor máximo para os pagamentos daquela autorização, 
-                ele não poderá ser inferior ao piso definido pelo usuário recebedor. 
-                Não pode ser preenchido nas autorizações de valor fixo.
     ContractDebtor:
       type: object
       description: Informações sobre o cliente devedor do contrato.
@@ -2604,7 +2598,7 @@ components:
           format: uri
           maxLength: 2000
           description: URI completo que gerou a resposta atual.
-          example: 'https://api.banco.com.br/open-banking/api/v2/resource'
+          example: 'https://api.banco.com.br/open-banking/api/v1/resource'
           pattern: '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
     PaymentPix:
       type: object
@@ -3507,6 +3501,16 @@ components:
             Data e hora em que o pagamento teve o status atualizado. 
             Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), 
             sempre com a utilização de timezone UTC(UTC time format).
+        ibgeTownCode:
+          type: string
+          minLength: 7
+          maxLength: 7
+          pattern: '^\d{7}$'
+          example: '5300108'
+          description: |
+            O campo ibgeTownCode no arranjo Pix tem o mesmo comportamento que o campo codMun descrito no item 1.6.6 do manual do Pix.
+
+            1. Caso a informação referente ao município não seja enviada, o PSP do recebedor assumirá que não existem feriados estaduais e municipais no período em questão;
         status:
           $ref: '#/components/schemas/EnumPaymentStatusType'
         rejectionReason:
@@ -3665,6 +3669,16 @@ components:
             Data e hora em que o pagamento teve o status atualizado. 
             Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), 
             sempre com a utilização de timezone UTC(UTC time format).
+        ibgeTownCode:
+          type: string
+          minLength: 7
+          maxLength: 7
+          pattern: '^\d{7}$'
+          example: '5300108'
+          description: |
+            O campo ibgeTownCode no arranjo Pix tem o mesmo comportamento que o campo codMun descrito no item 1.6.6 do manual do Pix.
+
+            1. Caso a informação referente ao município não seja enviada, o PSP do recebedor assumirá que não existem feriados estaduais e municipais no período em questão;
         status:
           $ref: '#/components/schemas/EnumPaymentStatusType'
         rejectionReason:
@@ -3798,6 +3812,16 @@ components:
             Data e hora em que o pagamento teve o status atualizado. 
             Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), 
             sempre com a utilização de timezone UTC(UTC time format).
+        ibgeTownCode:
+          type: string
+          minLength: 7
+          maxLength: 7
+          pattern: '^\d{7}$'
+          example: '5300108'
+          description: |
+            O campo ibgeTownCode no arranjo Pix tem o mesmo comportamento que o campo codMun descrito no item 1.6.6 do manual do Pix.
+
+            1. Caso a informação referente ao município não seja enviada, o PSP do recebedor assumirá que não existem feriados estaduais e municipais no período em questão;
         status:
           $ref: '#/components/schemas/EnumPaymentStatusType'
         rejectionReason:
