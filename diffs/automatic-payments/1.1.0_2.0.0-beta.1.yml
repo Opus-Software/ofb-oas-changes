@@ -125,6 +125,7 @@ Em caso insucesso:
               - Properties changed
                 - Modified property: self
                   - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v1/resource' to 'https://api.banco.com.br/open-banking/api/v2/resource'
                   - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
     - Headers changed
       - Modified header: x-fapi-interaction-id
@@ -191,6 +192,7 @@ POST /pix/recurring-payments
             - Required changed
               - Deleted required property: creditorAccount
             - Properties changed
+              - Deleted property: ibgeTownCode
               - Modified property: creditorAccount
                 - Description changed from 'Objeto que contém a identificação da conta de destino do beneficiário/recebedor.
 ' to 'Objeto que contém a identificação da conta de destino do beneficiário/recebedor.
@@ -241,6 +243,7 @@ Esta validação é opcional caso o localInstrument for igual a INIC.
               - Required changed
                 - Deleted required property: creditorAccount
               - Properties changed
+                - Deleted property: ibgeTownCode
                 - Modified property: creditorAccount
                   - Description changed from 'Objeto que contém a identificação da conta de destino do beneficiário/recebedor.
 ' to 'Objeto que contém a identificação da conta de destino do beneficiário/recebedor.
@@ -378,6 +381,7 @@ Em caso insucesso:
               - Properties changed
                 - Modified property: self
                   - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v1/resource' to 'https://api.banco.com.br/open-banking/api/v2/resource'
                   - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
     - Headers changed
       - Modified header: x-fapi-interaction-id
@@ -568,6 +572,7 @@ GET /pix/recurring-payments/{recurringPaymentId}
                 - Deleted required property: creditorAccount
                 - Deleted required property: localInstrument
               - Properties changed
+                - Deleted property: ibgeTownCode
                 - Deleted property: localInstrument
                 - Deleted property: proxy
                 - Modified property: creditorAccount
@@ -667,6 +672,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
               - Properties changed
                 - Modified property: self
                   - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v1/resource' to 'https://api.banco.com.br/open-banking/api/v2/resource'
                   - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
     - Headers changed
       - Modified header: x-fapi-interaction-id
@@ -746,6 +752,7 @@ PATCH /pix/recurring-payments/{recurringPaymentId}
                 - Deleted required property: creditorAccount
                 - Deleted required property: localInstrument
               - Properties changed
+                - Deleted property: ibgeTownCode
                 - Deleted property: localInstrument
                 - Deleted property: proxy
                 - Modified property: creditorAccount
@@ -869,6 +876,7 @@ Em caso insucesso:
               - Properties changed
                 - Modified property: self
                   - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v1/resource' to 'https://api.banco.com.br/open-banking/api/v2/resource'
                   - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
     - Headers changed
       - Modified header: x-fapi-interaction-id
@@ -944,6 +952,15 @@ POST /recurring-consents
                   - Description changed from 'Objeto contendo os dados do recebedor (creditor). Em casos de transferências inteligentes para clientes PJ, os CNPJs informados devem possuir a mesma raiz do CNPJ enviado no campo /data/businessEntity/document/identification. Em casos de transferências inteligentes para clientes PN, deve-se aceitar apenas um item no array e este item deve conter as informações do recebedor. O CPF informado deve ser o mesmo do /data/loggedUser/document/identification. Caso alguma das regras mencionadas não sejam seguidas, o detentor deve rejeitar a solicitação (sincronamente) com o erro DETALHE_PAGAMENTO_INVALIDO, e o detalhe deve ser preenchido com a informação referente ao erro.' to 'Objeto contendo os dados do recebedor (creditor).'
               - Modified property: recurringConfiguration
                 - Property 'OneOf' changed
+                  - Schema #/components/schemas/Automatic modified
+                    - Properties changed
+                      - Modified property: automatic
+                        - Properties changed
+                          - New property: fixedAmount
+                          - New property: maximumVariableAmount
+                          - New property: minimumVariableAmount
+                          - Deleted property: amount
+                          - Deleted property: transactionLimit
                   - Schema #/components/schemas/Sweeping modified
                     - Properties changed
                       - Modified property: sweeping
@@ -988,15 +1005,6 @@ POST /recurring-consents
                                 - Properties changed
                                   - Modified property: quantityLimit
                                     - Min changed from 1 to null
-                  - Schema #/components/schemas/Automatic modified
-                    - Properties changed
-                      - Modified property: automatic
-                        - Properties changed
-                          - New property: fixedAmount
-                          - New property: maximumVariableAmount
-                          - New property: minimumVariableAmount
-                          - Deleted property: amount
-                          - Deleted property: transactionLimit
               - Modified property: startDateTime
                 - Description changed from 'Data e hora em que o consentimento deve passar a ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format).
 [Restrição] Caso esse campo não seja enviado pelo iniciador na requisição, o detentor deve preencher esse campo com o mesmo valor atribuído ao campo /data/creationDateTime.
@@ -1086,6 +1094,7 @@ POST /recurring-consents
               - Properties changed
                 - Modified property: self
                   - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v1/resource' to 'https://api.banco.com.br/open-banking/api/v2/resource'
                   - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
     - Headers changed
       - Modified header: x-fapi-interaction-id
@@ -1164,9 +1173,18 @@ GET /recurring-consents/{recurringConsentId}
                     - Description changed from 'Objeto contendo os dados do recebedor (creditor). Em casos de transferências inteligentes para clientes PJ, os CNPJs informados devem possuir a mesma raiz do CNPJ enviado no campo /data/businessEntity/document/identification. Em casos de transferências inteligentes para clientes PN, deve-se aceitar apenas um item no array e este item deve conter as informações do recebedor. O CPF informado deve ser o mesmo do /data/loggedUser/document/identification. Caso alguma das regras mencionadas não sejam seguidas, o detentor deve rejeitar a solicitação (sincronamente) com o erro DETALHE_PAGAMENTO_INVALIDO, e o detalhe deve ser preenchido com a informação referente ao erro.' to 'Objeto contendo os dados do recebedor (creditor).'
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
-                    - Schema #/components/schemas/Vrp modified
+                    - Schema #/components/schemas/Automatic modified
                       - Properties changed
-                        - Modified property: vrp
+                        - Modified property: automatic
+                          - Properties changed
+                            - New property: fixedAmount
+                            - New property: maximumVariableAmount
+                            - New property: minimumVariableAmount
+                            - Deleted property: amount
+                            - Deleted property: transactionLimit
+                    - Schema #/components/schemas/Sweeping modified
+                      - Properties changed
+                        - Modified property: sweeping
                           - Properties changed
                             - Modified property: periodicLimits
                               - Properties changed
@@ -1186,18 +1204,9 @@ GET /recurring-consents/{recurringConsentId}
                                   - Properties changed
                                     - Modified property: quantityLimit
                                       - Min changed from 1 to null
-                    - Schema #/components/schemas/Automatic modified
+                    - Schema #/components/schemas/Vrp modified
                       - Properties changed
-                        - Modified property: automatic
-                          - Properties changed
-                            - New property: fixedAmount
-                            - New property: maximumVariableAmount
-                            - New property: minimumVariableAmount
-                            - Deleted property: amount
-                            - Deleted property: transactionLimit
-                    - Schema #/components/schemas/Sweeping modified
-                      - Properties changed
-                        - Modified property: sweeping
+                        - Modified property: vrp
                           - Properties changed
                             - Modified property: periodicLimits
                               - Properties changed
@@ -1231,6 +1240,7 @@ GET /recurring-consents/{recurringConsentId}
               - Properties changed
                 - Modified property: self
                   - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v1/resource' to 'https://api.banco.com.br/open-banking/api/v2/resource'
                   - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
     - Headers changed
       - Modified header: x-fapi-interaction-id
@@ -1332,9 +1342,18 @@ PATCH /recurring-consents/{recurringConsentId}
                     - Description changed from 'Objeto contendo os dados do recebedor (creditor). Em casos de transferências inteligentes para clientes PJ, os CNPJs informados devem possuir a mesma raiz do CNPJ enviado no campo /data/businessEntity/document/identification. Em casos de transferências inteligentes para clientes PN, deve-se aceitar apenas um item no array e este item deve conter as informações do recebedor. O CPF informado deve ser o mesmo do /data/loggedUser/document/identification. Caso alguma das regras mencionadas não sejam seguidas, o detentor deve rejeitar a solicitação (sincronamente) com o erro DETALHE_PAGAMENTO_INVALIDO, e o detalhe deve ser preenchido com a informação referente ao erro.' to 'Objeto contendo os dados do recebedor (creditor).'
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
-                    - Schema #/components/schemas/Vrp modified
+                    - Schema #/components/schemas/Automatic modified
                       - Properties changed
-                        - Modified property: vrp
+                        - Modified property: automatic
+                          - Properties changed
+                            - New property: fixedAmount
+                            - New property: maximumVariableAmount
+                            - New property: minimumVariableAmount
+                            - Deleted property: amount
+                            - Deleted property: transactionLimit
+                    - Schema #/components/schemas/Sweeping modified
+                      - Properties changed
+                        - Modified property: sweeping
                           - Properties changed
                             - Modified property: periodicLimits
                               - Properties changed
@@ -1354,18 +1373,9 @@ PATCH /recurring-consents/{recurringConsentId}
                                   - Properties changed
                                     - Modified property: quantityLimit
                                       - Min changed from 1 to null
-                    - Schema #/components/schemas/Automatic modified
+                    - Schema #/components/schemas/Vrp modified
                       - Properties changed
-                        - Modified property: automatic
-                          - Properties changed
-                            - New property: fixedAmount
-                            - New property: maximumVariableAmount
-                            - New property: minimumVariableAmount
-                            - Deleted property: amount
-                            - Deleted property: transactionLimit
-                    - Schema #/components/schemas/Sweeping modified
-                      - Properties changed
-                        - Modified property: sweeping
+                        - Modified property: vrp
                           - Properties changed
                             - Modified property: periodicLimits
                               - Properties changed
@@ -1399,6 +1409,7 @@ PATCH /recurring-consents/{recurringConsentId}
               - Properties changed
                 - Modified property: self
                   - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v1/resource' to 'https://api.banco.com.br/open-banking/api/v2/resource'
                   - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
     - Headers changed
       - Modified header: x-fapi-interaction-id
@@ -1459,3 +1470,8 @@ PATCH /recurring-consents/{recurringConsentId}
         - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta.
 ' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.
 '
+Servers changed
+- New server: https://api.banco.com.br/open-banking/automatic-payments/v2
+- New server: https://apih.banco.com.br/open-banking/automatic-payments/v2
+- Deleted server: https://api.banco.com.br/open-banking/automatic-payments/v1
+- Deleted server: https://apih.banco.com.br/open-banking/automatic-payments/v1
