@@ -1,1 +1,36 @@
-﻿No endpoint changes
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 2
+-------------------------
+POST /enrollments
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Required changed
+                - Deleted required property: expirationDateTime
+              - Properties changed
+                - Modified property: expirationDateTime
+                  - Description changed from 'O instante de expiração deste vínculo de conta, de acordo com a regulação vigente.' to 'Data e hora definida pelo usuário em que o vínculo do dispositivo deve expirar, perdendo sua validade.
+[Restrição] Campo obrigatório que deverá ser retornado quando o vínculo de dispositivo estiver ou passar pelo estado AUTHORISED;
+'
+GET /enrollments/{enrollmentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Required changed
+                - Deleted required property: expirationDateTime
+              - Properties changed
+                - Modified property: expirationDateTime
+                  - Description changed from 'O instante de expiração deste vínculo de conta, de acordo com a regulação vigente.' to 'Data e hora definida pelo usuário em que o vínculo do dispositivo deve expirar, perdendo sua validade.
+[Restrição] Campo obrigatório que deverá ser retornado quando o vínculo de dispositivo estiver ou passar pelo estado AUTHORISED;
+'
