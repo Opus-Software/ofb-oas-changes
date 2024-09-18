@@ -5,6 +5,41 @@
 ### Modified Endpoints: 8
 -------------------------
 POST /consents/{consentId}/authorise
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: riskSignals
+                - Required changed
+                  - Deleted required property: elapsedTimeSinceBoot
+                  - Deleted required property: isRootedDevice
+                  - Deleted required property: screenBrightness
+                - Properties changed
+                  - Modified property: elapsedTimeSinceBoot
+                    - Description changed from 'Indica por quanto tempo (em milissegundos) o dispositivo está ligado.
+[Android] Informação obtida através do [link](https://developer.android.com/reference/android/os/SystemClock#elapsedRealtime%28%29).
+[iOS] Informação obtida através do [link](https://developer.apple.com/documentation/kernel/kern/).
+' to 'Indica por quanto tempo (em milissegundos) o dispositivo está ligado.
+[Android] Informação obtida através do [link](https://developer.android.com/reference/android/os/SystemClock#elapsedRealtime%28%29).
+[iOS] Informação obtida através do [link](https://developer.apple.com/documentation/kernel/kern/).
+[Restrição] Campos de envio obrigatório quando o sistema operacional utilizado pelo usuário durante a vinculação de conta ou realização do pagamento for Android ou iOS.
+'
+                  - Modified property: isRootedDevice
+                    - Description changed from 'Indica se o dispositivo atualmente está com permissão de “root”.' to 'Indica se o dispositivo atualmente está com permissão de “root”.
+[Restrição] Campos de envio obrigatório quando o sistema operacional utilizado pelo usuário durante a vinculação de conta ou realização do pagamento for Android ou iOS.
+'
+                  - Modified property: screenBrightness
+                    - Description changed from 'Indica o nível de brilho da tela do dispositivo.
+[Android] O valor é inteiro, tipicamente entre 0 a 255, podendo a faixa de valores variar de acordo com o fabricante do celular. Referência no [link](https://developer.android.com/reference/android/provider/Settings.System#SCREEN_BRIGHTNESS).
+[iOS] O valor é ponto flutuante entre “0.0” e “1.0”. Referência no [link](https://developer.apple.com/documentation/uikit/uiscreen/).
+' to 'Indica o nível de brilho da tela do dispositivo.
+[Android] O valor é inteiro, tipicamente entre 0 a 255, podendo a faixa de valores variar de acordo com o fabricante do celular. Referência no [link](https://developer.android.com/reference/android/provider/Settings.System#SCREEN_BRIGHTNESS).
+[iOS] O valor é ponto flutuante entre “0.0” e “1.0”. Referência no [link](https://developer.apple.com/documentation/uikit/uiscreen/).
+[Restrição] Campos de envio obrigatório quando o sistema operacional utilizado pelo usuário durante a vinculação de conta ou realização do pagamento for Android ou iOS.
+'
 - Responses changed
   - Modified response: 422
     - Content changed
@@ -67,6 +102,14 @@ POST /consents/{consentId}/authorise
 - ERRO_IDEMPOTENCIA: Erro idempotência.
 '
 POST /enrollments
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - New property: enrollmentName
 - Responses changed
   - Modified response: 201
     - Content changed
@@ -77,6 +120,7 @@ POST /enrollments
               - Required changed
                 - Deleted required property: expirationDateTime
               - Properties changed
+                - New property: enrollmentName
                 - Modified property: expirationDateTime
                   - Description changed from 'O instante de expiração deste vínculo de conta, de acordo com a regulação vigente.' to 'Data e hora definida pelo usuário em que o vínculo do dispositivo deve expirar, perdendo sua validade.
 [Restrição] Campo obrigatório que deverá ser retornado quando o vínculo de dispositivo estiver ou passar pelo estado AUTHORISED;
@@ -134,6 +178,7 @@ GET /enrollments/{enrollmentId}
               - Required changed
                 - Deleted required property: expirationDateTime
               - Properties changed
+                - New property: enrollmentName
                 - Modified property: expirationDateTime
                   - Description changed from 'O instante de expiração deste vínculo de conta, de acordo com a regulação vigente.' to 'Data e hora definida pelo usuário em que o vínculo do dispositivo deve expirar, perdendo sua validade.
 [Restrição] Campo obrigatório que deverá ser retornado quando o vínculo de dispositivo estiver ou passar pelo estado AUTHORISED;
@@ -270,6 +315,19 @@ POST /enrollments/{enrollmentId}/fido-registration
 '
 POST /enrollments/{enrollmentId}/fido-registration-options
 - Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: user
+                  - Properties changed
+                    - Modified property: id
+                      - Description changed from 'Identificador único do usuário sob registro em formato base64. A conversão deste valor para o formato original (BufferSource ou ArrayBuffer) não deve ultrapassar 64 bytes.' to 'Identificador único do usuário sob registro em formato base64. A conversão deste valor para o formato original (BufferSource ou ArrayBuffer) não deve ultrapassar 64 bytes. 
+O identificador único deve ser opaco, ou seja, não deve carregar pessoais sobre o usuário, por exemplo (não exaustivo) um UUID RFC4122 cumpre com os requisitos desse campo
+'
   - Modified response: 422
     - Content changed
       - Modified media type: application/jwt
@@ -363,6 +421,39 @@ POST /enrollments/{enrollmentId}/fido-sign-options
 - ERRO_IDEMPOTENCIA: Erro idempotência.
 '
 POST /enrollments/{enrollmentId}/risk-signals
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Required changed
+              - Deleted required property: elapsedTimeSinceBoot
+              - Deleted required property: isRootedDevice
+              - Deleted required property: screenBrightness
+            - Properties changed
+              - Modified property: elapsedTimeSinceBoot
+                - Description changed from 'Indica por quanto tempo (em milissegundos) o dispositivo está ligado.
+[Android] Informação obtida através do [link](https://developer.android.com/reference/android/os/SystemClock#elapsedRealtime%28%29).
+[iOS] Informação obtida através do [link](https://developer.apple.com/documentation/kernel/kern/).
+' to 'Indica por quanto tempo (em milissegundos) o dispositivo está ligado.
+[Android] Informação obtida através do [link](https://developer.android.com/reference/android/os/SystemClock#elapsedRealtime%28%29).
+[iOS] Informação obtida através do [link](https://developer.apple.com/documentation/kernel/kern/).
+[Restrição] Campos de envio obrigatório quando o sistema operacional utilizado pelo usuário durante a vinculação de conta ou realização do pagamento for Android ou iOS.
+'
+              - Modified property: isRootedDevice
+                - Description changed from 'Indica se o dispositivo atualmente está com permissão de “root”.' to 'Indica se o dispositivo atualmente está com permissão de “root”.
+[Restrição] Campos de envio obrigatório quando o sistema operacional utilizado pelo usuário durante a vinculação de conta ou realização do pagamento for Android ou iOS.
+'
+              - Modified property: screenBrightness
+                - Description changed from 'Indica o nível de brilho da tela do dispositivo.
+[Android] O valor é inteiro, tipicamente entre 0 a 255, podendo a faixa de valores variar de acordo com o fabricante do celular. Referência no [link](https://developer.android.com/reference/android/provider/Settings.System#SCREEN_BRIGHTNESS).
+[iOS] O valor é ponto flutuante entre “0.0” e “1.0”. Referência no [link](https://developer.apple.com/documentation/uikit/uiscreen/).
+' to 'Indica o nível de brilho da tela do dispositivo.
+[Android] O valor é inteiro, tipicamente entre 0 a 255, podendo a faixa de valores variar de acordo com o fabricante do celular. Referência no [link](https://developer.android.com/reference/android/provider/Settings.System#SCREEN_BRIGHTNESS).
+[iOS] O valor é ponto flutuante entre “0.0” e “1.0”. Referência no [link](https://developer.apple.com/documentation/uikit/uiscreen/).
+[Restrição] Campos de envio obrigatório quando o sistema operacional utilizado pelo usuário durante a vinculação de conta ou realização do pagamento for Android ou iOS.
+'
 - Responses changed
   - Modified response: 422
     - Content changed
