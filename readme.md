@@ -49,6 +49,7 @@
 | invoice-financings | [1.0.4](swagger-apis/invoice-financings/1.0.4.yml) | [2.0.1](swagger-apis/invoice-financings/2.0.1.yml) | [YAML](diffs/invoice-financings/1.0.4_2.0.1-breaking-only.yml) | [YAML](diffs/invoice-financings/1.0.4_2.0.1.yml) |
 |  | [2.0.1](swagger-apis/invoice-financings/2.0.1.yml) | [2.1.1-rc.1](swagger-apis/invoice-financings/2.1.1-rc.1.yml) | [YAML](diffs/invoice-financings/2.0.1_2.1.1-rc.1-breaking-only.yml) | [YAML](diffs/invoice-financings/2.0.1_2.1.1-rc.1.yml) |
 |  | [2.1.1-rc.1](swagger-apis/invoice-financings/2.1.1-rc.1.yml) | [2.2.0](swagger-apis/invoice-financings/2.2.0.yml) | [YAML](diffs/invoice-financings/2.1.1-rc.1_2.2.0-breaking-only.yml) | [YAML](diffs/invoice-financings/2.1.1-rc.1_2.2.0.yml) |
+|  | [2.2.0](swagger-apis/invoice-financings/2.2.0.yml) | [2.3.0](swagger-apis/invoice-financings/2.3.0.yml) | [YAML](diffs/invoice-financings/2.2.0_2.3.0-breaking-only.yml) | [YAML](diffs/invoice-financings/2.2.0_2.3.0.yml) |
 | loans | [1.0.4](swagger-apis/loans/1.0.4.yml) | [2.0.1](swagger-apis/loans/2.0.1.yml) | [YAML](diffs/loans/1.0.4_2.0.1-breaking-only.yml) | [YAML](diffs/loans/1.0.4_2.0.1.yml) |
 |  | [2.0.1](swagger-apis/loans/2.0.1.yml) | [2.1.1-rc.1](swagger-apis/loans/2.1.1-rc.1.yml) | [YAML](diffs/loans/2.0.1_2.1.1-rc.1-breaking-only.yml) | [YAML](diffs/loans/2.0.1_2.1.1-rc.1.yml) |
 |  | [2.1.1-rc.1](swagger-apis/loans/2.1.1-rc.1.yml) | [2.2.0](swagger-apis/loans/2.2.0.yml) | [YAML](diffs/loans/2.1.1-rc.1_2.2.0-breaking-only.yml) | [YAML](diffs/loans/2.1.1-rc.1_2.2.0.yml) |
@@ -301,6 +302,7 @@
 |  | [2.1.0-rc.2](swagger-apis/invoice-financings/2.1.0-rc.2.yml) | [2.1.0](swagger-apis/invoice-financings/2.1.0.yml) | [YAML](diffs/invoice-financings/2.1.0-rc.2_2.1.0.yml) |
 |  | [2.1.0](swagger-apis/invoice-financings/2.1.0.yml) | [2.1.1-rc.1](swagger-apis/invoice-financings/2.1.1-rc.1.yml) | [YAML](diffs/invoice-financings/2.1.0_2.1.1-rc.1.yml) |
 |  | [2.1.1-rc.1](swagger-apis/invoice-financings/2.1.1-rc.1.yml) | [2.2.0](swagger-apis/invoice-financings/2.2.0.yml) | [YAML](diffs/invoice-financings/2.1.1-rc.1_2.2.0.yml) |
+|  | [2.2.0](swagger-apis/invoice-financings/2.2.0.yml) | [2.3.0](swagger-apis/invoice-financings/2.3.0.yml) | [YAML](diffs/invoice-financings/2.2.0_2.3.0.yml) |
 | loans | [1.0.0-rc6.5](swagger-apis/loans/1.0.0-rc6.5.yml) | [1.0.0-rc6.6](swagger-apis/loans/1.0.0-rc6.6.yml) | [YAML](diffs/loans/1.0.0-rc6.5_1.0.0-rc6.6.yml) |
 |  | [1.0.0-rc6.6](swagger-apis/loans/1.0.0-rc6.6.yml) | [1.0.0-rc6.7](swagger-apis/loans/1.0.0-rc6.7.yml) | [YAML](diffs/loans/1.0.0-rc6.6_1.0.0-rc6.7.yml) |
 |  | [1.0.0-rc6.7](swagger-apis/loans/1.0.0-rc6.7.yml) | [1.0.0](swagger-apis/loans/1.0.0.yml) | [YAML](diffs/loans/1.0.0-rc6.7_1.0.0.yml) |
