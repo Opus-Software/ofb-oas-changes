@@ -138,6 +138,7 @@
 |  | [1.0.0](swagger-apis/automatic-payments/1.0.0.yml) | [1.1.0-rc.1](swagger-apis/automatic-payments/1.1.0-rc.1.yml) | [YAML](diffs/automatic-payments/1.0.0_1.1.0-rc.1.yml) |
 |  | [1.1.0-rc.1](swagger-apis/automatic-payments/1.1.0-rc.1.yml) | [1.1.0](swagger-apis/automatic-payments/1.1.0.yml) | [YAML](diffs/automatic-payments/1.1.0-rc.1_1.1.0.yml) |
 |  | [1.1.0](swagger-apis/automatic-payments/1.1.0.yml) | [2.0.0-beta.1](swagger-apis/automatic-payments/2.0.0-beta.1.yml) | [YAML](diffs/automatic-payments/1.1.0_2.0.0-beta.1.yml) |
+|  | [2.0.0-beta.1](swagger-apis/automatic-payments/2.0.0-beta.1.yml) | [2.0.0-beta.1_old](swagger-apis/automatic-payments/2.0.0-beta.1_old.yml) | [YAML](diffs/automatic-payments/2.0.0-beta.1_2.0.0-beta.1_old.yml) |
 | bank-fixed-incomes | [1.0.0-rc1.0](swagger-apis/bank-fixed-incomes/1.0.0-rc1.0.yml) | [1.0.0-rc2.0](swagger-apis/bank-fixed-incomes/1.0.0-rc2.0.yml) | [YAML](diffs/bank-fixed-incomes/1.0.0-rc1.0_1.0.0-rc2.0.yml) |
 |  | [1.0.0-rc2.0](swagger-apis/bank-fixed-incomes/1.0.0-rc2.0.yml) | [1.0.0-rc3.0](swagger-apis/bank-fixed-incomes/1.0.0-rc3.0.yml) | [YAML](diffs/bank-fixed-incomes/1.0.0-rc2.0_1.0.0-rc3.0.yml) |
 |  | [1.0.0-rc3.0](swagger-apis/bank-fixed-incomes/1.0.0-rc3.0.yml) | [1.0.0](swagger-apis/bank-fixed-incomes/1.0.0.yml) | [YAML](diffs/bank-fixed-incomes/1.0.0-rc3.0_1.0.0.yml) |
