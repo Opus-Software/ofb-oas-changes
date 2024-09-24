@@ -6,15 +6,6 @@
 -------------------------
 GET /pix/recurring-payments
 - Responses changed
-  - Modified response: 200
-    - Content changed
-      - Modified media type: application/jwt
-        - Schema changed
-          - Properties changed
-            - Modified property: links
-              - Properties changed
-                - Modified property: self
-                  - Example changed from 'https://api.banco.com.br/open-banking/api/v1/resource' to 'https://api.banco.com.br/open-banking/api/v2/resource'
   - Modified response: 500
     - Headers changed
       - Deleted header: x-fapi-interaction-id
@@ -30,7 +21,6 @@ POST /pix/recurring-payments
           - Properties changed
             - Modified property: data
               - Properties changed
-                - Deleted property: ibgeTownCode
                 - Modified property: cancellation
                   - Properties changed
                     - Modified property: reason
@@ -45,10 +35,6 @@ CANCELADO_PENDENCIA - Pagamento cancelado enquanto estava na situação PDNG
 CANCELADO_AGENDAMENTO - Pagamento cancelado enquanto estava na situação SCHD
 '
                       - Deleted enum values: [CANCELADO_MULTIPLAS_ALCADAS]
-            - Modified property: links
-              - Properties changed
-                - Modified property: self
-                  - Example changed from 'https://api.banco.com.br/open-banking/api/v1/resource' to 'https://api.banco.com.br/open-banking/api/v2/resource'
   - Modified response: 500
     - Headers changed
       - Deleted header: x-fapi-interaction-id
@@ -64,7 +50,6 @@ GET /pix/recurring-payments/{recurringPaymentId}
           - Properties changed
             - Modified property: data
               - Properties changed
-                - Deleted property: ibgeTownCode
                 - Modified property: cancellation
                   - Properties changed
                     - Modified property: reason
@@ -103,10 +88,6 @@ Em caso insucesso:
 Em caso insucesso:
 - RJCT (REJECTED) - Instrução de pagamento rejeitada.
 '
-            - Modified property: links
-              - Properties changed
-                - Modified property: self
-                  - Example changed from 'https://api.banco.com.br/open-banking/api/v1/resource' to 'https://api.banco.com.br/open-banking/api/v2/resource'
   - Modified response: 500
     - Headers changed
       - Deleted header: x-fapi-interaction-id
@@ -122,7 +103,6 @@ PATCH /pix/recurring-payments/{recurringPaymentId}
           - Properties changed
             - Modified property: data
               - Properties changed
-                - Deleted property: ibgeTownCode
                 - Modified property: cancellation
                   - Properties changed
                     - Modified property: reason
@@ -137,10 +117,6 @@ CANCELADO_PENDENCIA - Pagamento cancelado enquanto estava na situação PDNG
 CANCELADO_AGENDAMENTO - Pagamento cancelado enquanto estava na situação SCHD
 '
                       - Deleted enum values: [CANCELADO_MULTIPLAS_ALCADAS]
-            - Modified property: links
-              - Properties changed
-                - Modified property: self
-                  - Example changed from 'https://api.banco.com.br/open-banking/api/v1/resource' to 'https://api.banco.com.br/open-banking/api/v2/resource'
   - Modified response: 500
     - Headers changed
       - Deleted header: x-fapi-interaction-id
@@ -161,11 +137,7 @@ POST /recurring-consents
                     - Properties changed
                       - Modified property: automatic
                         - Properties changed
-                          - New property: fixedAmount
-                          - New property: maximumVariableAmount
                           - New property: minimumVariableAmount
-                          - Deleted property: amount
-                          - Deleted property: transactionLimit
 - Responses changed
   - Modified response: 201
     - Content changed
@@ -174,22 +146,13 @@ POST /recurring-consents
           - Properties changed
             - Modified property: data
               - Properties changed
-                - New property: authorisedAtDateTime
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
                           - Properties changed
-                            - New property: fixedAmount
-                            - New property: maximumVariableAmount
                             - New property: minimumVariableAmount
-                            - Deleted property: amount
-                            - Deleted property: transactionLimit
-            - Modified property: links
-              - Properties changed
-                - Modified property: self
-                  - Example changed from 'https://api.banco.com.br/open-banking/api/v1/resource' to 'https://api.banco.com.br/open-banking/api/v2/resource'
   - Modified response: 500
     - Headers changed
       - Deleted header: x-fapi-interaction-id
@@ -205,22 +168,13 @@ GET /recurring-consents/{recurringConsentId}
           - Properties changed
             - Modified property: data
               - Properties changed
-                - New property: authorisedAtDateTime
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
                           - Properties changed
-                            - New property: fixedAmount
-                            - New property: maximumVariableAmount
                             - New property: minimumVariableAmount
-                            - Deleted property: amount
-                            - Deleted property: transactionLimit
-            - Modified property: links
-              - Properties changed
-                - Modified property: self
-                  - Example changed from 'https://api.banco.com.br/open-banking/api/v1/resource' to 'https://api.banco.com.br/open-banking/api/v2/resource'
   - Modified response: 500
     - Headers changed
       - Deleted header: x-fapi-interaction-id
@@ -236,22 +190,13 @@ PATCH /recurring-consents/{recurringConsentId}
           - Properties changed
             - Modified property: data
               - Properties changed
-                - New property: authorisedAtDateTime
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
                           - Properties changed
-                            - New property: fixedAmount
-                            - New property: maximumVariableAmount
                             - New property: minimumVariableAmount
-                            - Deleted property: amount
-                            - Deleted property: transactionLimit
-            - Modified property: links
-              - Properties changed
-                - Modified property: self
-                  - Example changed from 'https://api.banco.com.br/open-banking/api/v1/resource' to 'https://api.banco.com.br/open-banking/api/v2/resource'
   - Modified response: 500
     - Headers changed
       - Deleted header: x-fapi-interaction-id
