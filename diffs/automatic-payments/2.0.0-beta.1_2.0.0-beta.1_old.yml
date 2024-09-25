@@ -201,6 +201,17 @@ POST /pix/recurring-payments
 O valor informado deve ser igual a um dos valores enviados na etapa de criação do consentimento (dentro do array “/data/creditors”). 
 Quando não respeitada essa regra, deve ser retornado pelo detentor, de maneira síncrona, erro HTTP 422 - PAGAMENTO_DIVERGENTE_CONSENTIMENTO
 ' to 'Número do documento de identificação oficial do titular pessoa natural ou jurídica.'
+              - Modified property: localInstrument
+                - Description changed from 'Especifica a forma de iniciação do pagamento
+- MANU - Inserção manual de dados da conta transacional
+- DICT - Inserção manual de chave Pix
+- INIC - Indica que o recebedor (creditor) contratou o Iniciador de Pagamentos especificamente para realizar iniciações de pagamento em que o beneficiário é previamente conhecido
+[Restrição] Caso consentimento associado a tentativa de pagamento seja para Pix automático (objeto “automatic” selecionado no oneOf do campo `/data/recurringConfiguration``), apenas o método MANU é permitido.
+' to 'Especifica a forma de iniciação do pagamento
+- MANU - Inserção manual de dados da conta transacional
+- DICT - Inserção manual de chave Pix
+- INIC - Indica que o recebedor (creditor) contratou o Iniciador de Pagamentos especificamente para realizar iniciações de pagamento em que o beneficiário é previamente conhecido
+'
               - Modified property: proxy
                 - Description changed from 'Chave cadastrada no DICT pertencente ao recebedor. Os tipos de chaves podem ser: telefone, e-mail, cpf/cnpj ou chave aleatória. 
 No caso de telefone celular deve ser informado no padrão E.1641. Para e-mail deve ter o formato xxxxxxxx@xxxxxxx.xxx(.xx) e no máximo 77 caracteres. 
@@ -286,6 +297,17 @@ CANCELADO_MULTIPLAS_ALCADAS - Pagamento cancelado enquanto estava na situação 
 O valor informado deve ser igual a um dos valores enviados na etapa de criação do consentimento (dentro do array “/data/creditors”). 
 Quando não respeitada essa regra, deve ser retornado pelo detentor, de maneira síncrona, erro HTTP 422 - PAGAMENTO_DIVERGENTE_CONSENTIMENTO
 ' to 'Número do documento de identificação oficial do titular pessoa natural ou jurídica.'
+                - Modified property: localInstrument
+                  - Description changed from 'Especifica a forma de iniciação do pagamento
+- MANU - Inserção manual de dados da conta transacional
+- DICT - Inserção manual de chave Pix
+- INIC - Indica que o recebedor (creditor) contratou o Iniciador de Pagamentos especificamente para realizar iniciações de pagamento em que o beneficiário é previamente conhecido
+[Restrição] Caso consentimento associado a tentativa de pagamento seja para Pix automático (objeto “automatic” selecionado no oneOf do campo `/data/recurringConfiguration``), apenas o método MANU é permitido.
+' to 'Especifica a forma de iniciação do pagamento
+- MANU - Inserção manual de dados da conta transacional
+- DICT - Inserção manual de chave Pix
+- INIC - Indica que o recebedor (creditor) contratou o Iniciador de Pagamentos especificamente para realizar iniciações de pagamento em que o beneficiário é previamente conhecido
+'
                 - Modified property: proxy
                   - Description changed from 'Chave cadastrada no DICT pertencente ao recebedor. Os tipos de chaves podem ser: telefone, e-mail, cpf/cnpj ou chave aleatória. 
 No caso de telefone celular deve ser informado no padrão E.1641. Para e-mail deve ter o formato xxxxxxxx@xxxxxxx.xxx(.xx) e no máximo 77 caracteres. 
@@ -1327,7 +1349,7 @@ PATCH /recurring-consents/{recurringConsentId}
           - Modified property: data
             - Property 'OneOf' changed
               - 1 schemas deleted
-              - Schema #/components/schemas/ConsentRevocation modified
+              - Schema #/components/schemas/ConsentRejection modified
                 - Properties changed
                   - New property: automatic
                   - New property: creditors
@@ -1337,7 +1359,7 @@ PATCH /recurring-consents/{recurringConsentId}
                     - Properties changed
                       - New property: isCallInProgress
                       - Deleted property: isCallingProgress
-              - Schema #/components/schemas/ConsentRejection modified
+              - Schema #/components/schemas/ConsentRevocation modified
                 - Properties changed
                   - New property: automatic
                   - New property: creditors
