@@ -223,9 +223,30 @@ Esta validação é opcional caso o localInstrument for igual a INIC.
                       - Modified property: lastLoginDateTime
                         - Description changed from 'Data e hora da última interação do cliente com o aplicativo/sistema da instituição iniciadora.' to 'Data e hora do último login do cliente na iniciadora'
                   - Modified property: manual
+                    - Required changed
+                      - New required property: elapsedTimeSinceBoot
+                      - New required property: isRootedDevice
+                      - New required property: screenBrightness
                     - Properties changed
                       - New property: isCallInProgress
                       - Deleted property: isCallingProgress
+                      - Modified property: elapsedTimeSinceBoot
+                        - Description changed from 'Indica por quanto tempo (em milissegundos) o dispositivo está ligado.
+[Restrição] Campos de envio obrigatório quando o sistema operacional utilizado pelo usuário durante o pagamento for Android ou iOS.
+' to 'Indica por quanto tempo (em milissegundos) o dispositivo está ligado.'
+                      - Modified property: isRootedDevice
+                        - Description changed from 'Indica se o dispositivo atualmente está com permissão de “root”.
+[Restrição] Campos de envio obrigatório quando o sistema operacional utilizado pelo usuário durante o pagamento for Android ou iOS.
+' to 'Indica se o dispositivo atualmente está com permissão de “root”.'
+                      - Modified property: screenBrightness
+                        - Description changed from 'Indica o nível de brilho da tela do dispositivo.  
+Em dispositivos Android o valor é um inteiro, entre 0 e 255, inclusive;  
+Em dispositivos iOS o valor é um ponto flutuante entre 0.0 e 1.0.
+[Restrição] Campos de envio obrigatório quando o sistema operacional utilizado pelo usuário durante o pagamento for Android ou iOS.
+' to 'Indica o nível de brilho da tela do dispositivo.  
+Em dispositivos Android o valor é um inteiro, entre 0 e 255, inclusive;  
+Em dispositivos iOS o valor é um ponto flutuante entre 0.0 e 1.0.
+'
 - Responses changed
   - Modified response: 201
     - Content changed
@@ -1300,7 +1321,7 @@ PATCH /recurring-consents/{recurringConsentId}
           - Modified property: data
             - Property 'OneOf' changed
               - 1 schemas deleted
-              - Schema #/components/schemas/ConsentRevocation modified
+              - Schema #/components/schemas/ConsentRejection modified
                 - Properties changed
                   - New property: automatic
                   - New property: creditors
@@ -1310,7 +1331,7 @@ PATCH /recurring-consents/{recurringConsentId}
                     - Properties changed
                       - New property: isCallInProgress
                       - Deleted property: isCallingProgress
-              - Schema #/components/schemas/ConsentRejection modified
+              - Schema #/components/schemas/ConsentRevocation modified
                 - Properties changed
                   - New property: automatic
                   - New property: creditors

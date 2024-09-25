@@ -22,6 +22,38 @@ GET /pix/recurring-payments
     - Headers changed
       - Deleted header: x-fapi-interaction-id
 POST /pix/recurring-payments
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: riskSignals
+                - Properties changed
+                  - Modified property: manual
+                    - Required changed
+                      - Deleted required property: elapsedTimeSinceBoot
+                      - Deleted required property: isRootedDevice
+                      - Deleted required property: screenBrightness
+                    - Properties changed
+                      - Modified property: elapsedTimeSinceBoot
+                        - Description changed from 'Indica por quanto tempo (em milissegundos) o dispositivo está ligado.' to 'Indica por quanto tempo (em milissegundos) o dispositivo está ligado.
+[Restrição] Campos de envio obrigatório quando o sistema operacional utilizado pelo usuário durante o pagamento for Android ou iOS.
+'
+                      - Modified property: isRootedDevice
+                        - Description changed from 'Indica se o dispositivo atualmente está com permissão de “root”.' to 'Indica se o dispositivo atualmente está com permissão de “root”.
+[Restrição] Campos de envio obrigatório quando o sistema operacional utilizado pelo usuário durante o pagamento for Android ou iOS.
+'
+                      - Modified property: screenBrightness
+                        - Description changed from 'Indica o nível de brilho da tela do dispositivo.  
+Em dispositivos Android o valor é um inteiro, entre 0 e 255, inclusive;  
+Em dispositivos iOS o valor é um ponto flutuante entre 0.0 e 1.0.
+' to 'Indica o nível de brilho da tela do dispositivo.  
+Em dispositivos Android o valor é um inteiro, entre 0 e 255, inclusive;  
+Em dispositivos iOS o valor é um ponto flutuante entre 0.0 e 1.0.
+[Restrição] Campos de envio obrigatório quando o sistema operacional utilizado pelo usuário durante o pagamento for Android ou iOS.
+'
 - Responses changed
   - Modified response: 201
     - Content changed
