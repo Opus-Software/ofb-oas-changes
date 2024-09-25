@@ -1103,6 +1103,9 @@ components:
           type: object
           required:
             - deviceId
+            - isRootedDevice
+            - screenBrightness
+            - elapsedTimeSinceBoot
             - osVersion
             - userTimeZoneOffset
             - language
@@ -1119,10 +1122,7 @@ components:
               example: 00000000-54b3-e7c7-0000-000046bffd97
             isRootedDevice:
               type: boolean
-              description: |
-                Indica se o dispositivo atualmente está com permissão de “root”.
-
-                [Restrição] Campos de envio obrigatório quando o sistema operacional utilizado pelo usuário durante o pagamento for Android ou iOS.
+              description: Indica se o dispositivo atualmente está com permissão de “root”.
               example: false
             screenBrightness:
               type: number
@@ -1131,15 +1131,10 @@ components:
                 Indica o nível de brilho da tela do dispositivo.  
                 Em dispositivos Android o valor é um inteiro, entre 0 e 255, inclusive;  
                 Em dispositivos iOS o valor é um ponto flutuante entre 0.0 e 1.0.
-
-                [Restrição] Campos de envio obrigatório quando o sistema operacional utilizado pelo usuário durante o pagamento for Android ou iOS.
             elapsedTimeSinceBoot:
               type: integer
               format: int64
-              description: |
-                Indica por quanto tempo (em milissegundos) o dispositivo está ligado.
-
-                [Restrição] Campos de envio obrigatório quando o sistema operacional utilizado pelo usuário durante o pagamento for Android ou iOS.
+              description: Indica por quanto tempo (em milissegundos) o dispositivo está ligado.
             osVersion:
               type: string
               description: Versão do sistema operacional.
@@ -2000,10 +1995,7 @@ components:
           minItems: 1
           items:
             type: object
-            description: |
-              Objeto contendo os dados do recebedor (creditor).
-
-              [Restrição] Caso o consentimento de longa duração seja para o produto Pix Automático (“automatic” selecionado no oneOf do objeto “/data/recurringConfiguration”), apenas um recebedor é permitido e esse deve ser pessoa jurídica.
+            description: Objeto contendo os dados do recebedor (creditor).
             properties:
               name:
                 type: string
@@ -2500,10 +2492,7 @@ components:
       minItems: 1
       items:
         type: object
-        description: |
-          Objeto contendo os dados do recebedor (creditor). Em casos de transferências inteligentes para clientes PJ, os CNPJs informados devem possuir a mesma raiz do CNPJ enviado no campo /data/businessEntity/document/identification. Em casos de transferências inteligentes para clientes PN, deve-se aceitar apenas um item no array e este item deve conter as informações do recebedor. O CPF informado deve ser o mesmo do /data/loggedUser/document/identification. Caso alguma das regras mencionadas não sejam seguidas, o detentor deve rejeitar a solicitação (sincronamente) com o erro DETALHE_PAGAMENTO_INVALIDO, e o detalhe deve ser preenchido com a informação referente ao erro.
-
-          [Restrição] Caso o consentimento de longa duração seja para o produto Pix Automático (“automatic” selecionado no oneOf do objeto “/data/recurringConfiguration”), apenas um recebedor é permitido e esse deve ser pessoa jurídica.
+        description: Objeto contendo os dados do recebedor (creditor). Em casos de transferências inteligentes para clientes PJ, os CNPJs informados devem possuir a mesma raiz do CNPJ enviado no campo /data/businessEntity/document/identification. Em casos de transferências inteligentes para clientes PN, deve-se aceitar apenas um item no array e este item deve conter as informações do recebedor. O CPF informado deve ser o mesmo do /data/loggedUser/document/identification. Caso alguma das regras mencionadas não sejam seguidas, o detentor deve rejeitar a solicitação (sincronamente) com o erro DETALHE_PAGAMENTO_INVALIDO, e o detalhe deve ser preenchido com a informação referente ao erro.
         required:
           - personType
           - cpfCnpj
