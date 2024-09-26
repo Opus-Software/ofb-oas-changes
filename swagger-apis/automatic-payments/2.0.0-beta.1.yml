@@ -2048,9 +2048,9 @@ components:
                 [Restrição] Excludente com o campo “/data/recurringConfiguration/automatic/fixedAmount”
             dayOfMonth:
               description: |
-                Dia fixo do mês que está prevista a transação. Caso consentimento seja para pagamentos trimestrais ou semestrais, o campo representa o dia do mês selecionado no campo `/data/recurringConfiguration/automatic/month` em que ocorrerá primeira cobrança.
+                Dia fixo do mês que está prevista a transação.
               
-                [Restrição] Campo deve ser enviado quando o campo `/data/recurringConfiguration/automatic/period` for igual a MENSAL, TRIMESTRAL, SEMESTRAL ou ANUAL.
+                [Restrição] Campo deve ser enviado quando o campo `/data/recurringConfiguration/automatic/period` for igual a MENSAL ou ANUAL.
               type: integer
               format: int32
               minimum: 1
@@ -2183,8 +2183,6 @@ components:
                 - SEMANAL
                 - MENSAL
                 - ANUAL
-                - SEMESTRAL
-                - TRIMESTRAL
               example: DIARIO
               description: |
                 Define a periodicidade permitida para realização de transações
@@ -2192,8 +2190,6 @@ components:
                 - SEMANAL
                 - MENSAL
                 - ANUAL
-                - SEMESTRAL
-                - TRIMESTRAL
             dayOfMonth:
               type: integer
               format: int32
@@ -2201,9 +2197,9 @@ components:
               maximum: 31
               example: 10
               description: |
-                Dia fixo do mês que está prevista a transação. Caso consentimento seja para pagamentos trimestrais ou semestrais, o campo representa o dia do mês selecionado no campo `/data/recurringConfiguration/automatic/month` em que ocorrerá primeira cobrança.
+                Dia fixo do mês que está prevista a transação.
 
-                [Restrição] Campo deve ser enviado quando o campo /data/recurringConfiguration/automatic/period for igual a MENSAL, TRIMESTRAL, SEMESTRAL ou ANUAL.
+                [Restrição] Campo deve ser enviado quando o campo `/data/recurringConfiguration/automatic/period` for igual a MENSAL ou ANUAL.
             dayOfWeek:
               type: string
               enum:
@@ -2212,8 +2208,6 @@ components:
                 - QUARTA_FEIRA
                 - QUINTA_FEIRA
                 - SEXTA_FEIRA
-                - SABADO
-                - DOMINGO
               example: 'SEGUNDA_FEIRA'
               description: |
                 Dia da semana que está prevista a transação.
@@ -2222,8 +2216,6 @@ components:
                 - QUARTA_FEIRA
                 - QUINTA_FEIRA
                 - SEXTA_FEIRA
-                - SABADO
-                - DOMINGO
 
                 [Restrição] Campo deve ser enviado quando o campo `/data/recurringConfiguration/automatic/period` for igual a SEMANAL.
             month:
@@ -2243,7 +2235,7 @@ components:
                 - DEZEMBRO
               example: 'JANEIRO'
               description: |
-                Mês previstos para ocorrer transações. Caso consentimento seja para pagamentos trimestrais ou semestrais, o campo representa o mês da primeira cobrança.
+                Mês previstos para ocorrer transações.
                 - JANEIRO
                 - FEVEREIRO
                 - MARCO
@@ -2257,7 +2249,7 @@ components:
                 - NOVEMBRO
                 - DEZEMBRO
 
-                [Restrição] Campo deve ser enviado quando o campo `/data/recurringConfiguration/automatic/period` for igual a TRIMESTRAL, SEMESTRAL ou ANUAL
+                [Restrição] Campo deve ser enviado quando o campo `/data/recurringConfiguration/automatic/period` for igual a ANUAL
             contractDebtor:
               $ref: '#/components/schemas/ContractDebtor'
             immediatePayment:
