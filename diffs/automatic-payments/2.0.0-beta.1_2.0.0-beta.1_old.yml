@@ -1032,6 +1032,50 @@ POST /recurring-consents
 ' to 'Objeto contendo os dados do recebedor (creditor).'
               - Modified property: recurringConfiguration
                 - Property 'OneOf' changed
+                  - Schema #/components/schemas/Sweeping modified
+                    - Properties changed
+                      - Modified property: sweeping
+                        - Properties changed
+                          - Modified property: periodicLimits
+                            - Properties changed
+                              - Modified property: day
+                                - Properties changed
+                                  - Modified property: quantityLimit
+                                    - Min changed from 1 to null
+                              - Modified property: month
+                                - Properties changed
+                                  - Modified property: quantityLimit
+                                    - Min changed from 1 to null
+                              - Modified property: week
+                                - Properties changed
+                                  - Modified property: quantityLimit
+                                    - Min changed from 1 to null
+                              - Modified property: year
+                                - Properties changed
+                                  - Modified property: quantityLimit
+                                    - Min changed from 1 to null
+                  - Schema #/components/schemas/Vrp modified
+                    - Properties changed
+                      - Modified property: vrp
+                        - Properties changed
+                          - Modified property: periodicLimits
+                            - Properties changed
+                              - Modified property: day
+                                - Properties changed
+                                  - Modified property: quantityLimit
+                                    - Min changed from 1 to null
+                              - Modified property: month
+                                - Properties changed
+                                  - Modified property: quantityLimit
+                                    - Min changed from 1 to null
+                              - Modified property: week
+                                - Properties changed
+                                  - Modified property: quantityLimit
+                                    - Min changed from 1 to null
+                              - Modified property: year
+                                - Properties changed
+                                  - Modified property: quantityLimit
+                                    - Min changed from 1 to null
                   - Schema #/components/schemas/Automatic modified
                     - Properties changed
                       - Modified property: automatic
@@ -1107,7 +1151,6 @@ Não pode ser preenchido nas autorizações de valor fixo.
 '
                           - Modified property: period
                             - Description changed from 'Define a periodicidade permitida para realização de transações
-- DIARIO
 - SEMANAL
 - MENSAL
 - ANUAL
@@ -1119,51 +1162,9 @@ Não pode ser preenchido nas autorizações de valor fixo.
 - MENSAL
 - ANUAL
 '
+                            - New enum values: [DIARIO]
                             - Deleted enum values: [SEMESTRAL TRIMESTRAL]
-                  - Schema #/components/schemas/Sweeping modified
-                    - Properties changed
-                      - Modified property: sweeping
-                        - Properties changed
-                          - Modified property: periodicLimits
-                            - Properties changed
-                              - Modified property: day
-                                - Properties changed
-                                  - Modified property: quantityLimit
-                                    - Min changed from 1 to null
-                              - Modified property: month
-                                - Properties changed
-                                  - Modified property: quantityLimit
-                                    - Min changed from 1 to null
-                              - Modified property: week
-                                - Properties changed
-                                  - Modified property: quantityLimit
-                                    - Min changed from 1 to null
-                              - Modified property: year
-                                - Properties changed
-                                  - Modified property: quantityLimit
-                                    - Min changed from 1 to null
-                  - Schema #/components/schemas/Vrp modified
-                    - Properties changed
-                      - Modified property: vrp
-                        - Properties changed
-                          - Modified property: periodicLimits
-                            - Properties changed
-                              - Modified property: day
-                                - Properties changed
-                                  - Modified property: quantityLimit
-                                    - Min changed from 1 to null
-                              - Modified property: month
-                                - Properties changed
-                                  - Modified property: quantityLimit
-                                    - Min changed from 1 to null
-                              - Modified property: week
-                                - Properties changed
-                                  - Modified property: quantityLimit
-                                    - Min changed from 1 to null
-                              - Modified property: year
-                                - Properties changed
-                                  - Modified property: quantityLimit
-                                    - Min changed from 1 to null
+                            - Example changed from 'SEMANAL' to 'DIARIO'
               - Modified property: startDateTime
                 - Description changed from 'Data e hora em que o consentimento deve passar a ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format).
 [Restrição] Caso esse campo não seja enviado pelo iniciador na requisição, o detentor deve preencher esse campo com o mesmo valor atribuído ao campo /data/creationDateTime.
@@ -1187,28 +1188,6 @@ Não pode ser preenchido nas autorizações de valor fixo.
 ' to 'Objeto contendo os dados do recebedor (creditor).'
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
-                    - Schema #/components/schemas/Vrp modified
-                      - Properties changed
-                        - Modified property: vrp
-                          - Properties changed
-                            - Modified property: periodicLimits
-                              - Properties changed
-                                - Modified property: day
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: month
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: week
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: year
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
@@ -1284,7 +1263,6 @@ Não pode ser preenchido nas autorizações de valor fixo.
 '
                             - Modified property: period
                               - Description changed from 'Define a periodicidade permitida para realização de transações
-- DIARIO
 - SEMANAL
 - MENSAL
 - ANUAL
@@ -1296,10 +1274,34 @@ Não pode ser preenchido nas autorizações de valor fixo.
 - MENSAL
 - ANUAL
 '
+                              - New enum values: [DIARIO]
                               - Deleted enum values: [SEMESTRAL TRIMESTRAL]
+                              - Example changed from 'SEMANAL' to 'DIARIO'
                     - Schema #/components/schemas/Sweeping modified
                       - Properties changed
                         - Modified property: sweeping
+                          - Properties changed
+                            - Modified property: periodicLimits
+                              - Properties changed
+                                - Modified property: day
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: month
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: week
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: year
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                    - Schema #/components/schemas/Vrp modified
+                      - Properties changed
+                        - Modified property: vrp
                           - Properties changed
                             - Modified property: periodicLimits
                               - Properties changed
@@ -1483,7 +1485,6 @@ Não pode ser preenchido nas autorizações de valor fixo.
 '
                             - Modified property: period
                               - Description changed from 'Define a periodicidade permitida para realização de transações
-- DIARIO
 - SEMANAL
 - MENSAL
 - ANUAL
@@ -1495,7 +1496,9 @@ Não pode ser preenchido nas autorizações de valor fixo.
 - MENSAL
 - ANUAL
 '
+                              - New enum values: [DIARIO]
                               - Deleted enum values: [SEMESTRAL TRIMESTRAL]
+                              - Example changed from 'SEMANAL' to 'DIARIO'
                     - Schema #/components/schemas/Sweeping modified
                       - Properties changed
                         - Modified property: sweeping
@@ -1651,50 +1654,6 @@ PATCH /recurring-consents/{recurringConsentId}
 ' to 'Objeto contendo os dados do recebedor (creditor).'
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
-                    - Schema #/components/schemas/Sweeping modified
-                      - Properties changed
-                        - Modified property: sweeping
-                          - Properties changed
-                            - Modified property: periodicLimits
-                              - Properties changed
-                                - Modified property: day
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: month
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: week
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: year
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                    - Schema #/components/schemas/Vrp modified
-                      - Properties changed
-                        - Modified property: vrp
-                          - Properties changed
-                            - Modified property: periodicLimits
-                              - Properties changed
-                                - Modified property: day
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: month
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: week
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: year
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
@@ -1770,7 +1729,6 @@ Não pode ser preenchido nas autorizações de valor fixo.
 '
                             - Modified property: period
                               - Description changed from 'Define a periodicidade permitida para realização de transações
-- DIARIO
 - SEMANAL
 - MENSAL
 - ANUAL
@@ -1782,7 +1740,53 @@ Não pode ser preenchido nas autorizações de valor fixo.
 - MENSAL
 - ANUAL
 '
+                              - New enum values: [DIARIO]
                               - Deleted enum values: [SEMESTRAL TRIMESTRAL]
+                              - Example changed from 'SEMANAL' to 'DIARIO'
+                    - Schema #/components/schemas/Sweeping modified
+                      - Properties changed
+                        - Modified property: sweeping
+                          - Properties changed
+                            - Modified property: periodicLimits
+                              - Properties changed
+                                - Modified property: day
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: month
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: week
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: year
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                    - Schema #/components/schemas/Vrp modified
+                      - Properties changed
+                        - Modified property: vrp
+                          - Properties changed
+                            - Modified property: periodicLimits
+                              - Properties changed
+                                - Modified property: day
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: month
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: week
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: year
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
                 - Modified property: riskSignals
                   - Properties changed
                     - New property: isCallInProgress

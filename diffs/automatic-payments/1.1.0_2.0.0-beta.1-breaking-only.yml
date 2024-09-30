@@ -70,7 +70,37 @@ PATCH /pix/recurring-payments/{recurringPaymentId}
     - Headers changed
       - Deleted header: x-fapi-interaction-id
 POST /recurring-consents
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: recurringConfiguration
+                - Property 'OneOf' changed
+                  - Schema #/components/schemas/Automatic modified
+                    - Properties changed
+                      - Modified property: automatic
+                        - Properties changed
+                          - Modified property: period
+                            - Deleted enum values: [DIARIO]
 - Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: recurringConfiguration
+                  - Property 'OneOf' changed
+                    - Schema #/components/schemas/Automatic modified
+                      - Properties changed
+                        - Modified property: automatic
+                          - Properties changed
+                            - Modified property: period
+                              - Deleted enum values: [DIARIO]
   - Modified response: 500
     - Headers changed
       - Deleted header: x-fapi-interaction-id
@@ -79,6 +109,21 @@ POST /recurring-consents
       - Deleted header: x-fapi-interaction-id
 GET /recurring-consents/{recurringConsentId}
 - Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: recurringConfiguration
+                  - Property 'OneOf' changed
+                    - Schema #/components/schemas/Automatic modified
+                      - Properties changed
+                        - Modified property: automatic
+                          - Properties changed
+                            - Modified property: period
+                              - Deleted enum values: [DIARIO]
   - Modified response: 500
     - Headers changed
       - Deleted header: x-fapi-interaction-id
@@ -87,6 +132,21 @@ GET /recurring-consents/{recurringConsentId}
       - Deleted header: x-fapi-interaction-id
 PATCH /recurring-consents/{recurringConsentId}
 - Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: recurringConfiguration
+                  - Property 'OneOf' changed
+                    - Schema #/components/schemas/Automatic modified
+                      - Properties changed
+                        - Modified property: automatic
+                          - Properties changed
+                            - Modified property: period
+                              - Deleted enum values: [DIARIO]
   - Modified response: 500
     - Headers changed
       - Deleted header: x-fapi-interaction-id
