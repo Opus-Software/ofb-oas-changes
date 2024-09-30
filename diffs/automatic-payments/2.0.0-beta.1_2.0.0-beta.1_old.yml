@@ -206,7 +206,7 @@ Quando não respeitada essa regra, deve ser retornado pelo detentor, de maneira 
 - MANU - Inserção manual de dados da conta transacional
 - DICT - Inserção manual de chave Pix
 - INIC - Indica que o recebedor (creditor) contratou o Iniciador de Pagamentos especificamente para realizar iniciações de pagamento em que o beneficiário é previamente conhecido
-[Restrição] Caso consentimento associado a tentativa de pagamento seja para Pix automático (objeto “automatic” selecionado no oneOf do campo `/data/recurringConfiguration``), apenas o método MANU é permitido.
+[Restrição] Caso consentimento associado a tentativa de pagamento seja para Pix automático (objeto “automatic” selecionado no oneOf do campo "/data/recurringConfiguration"), apenas o método MANU é permitido.
 ' to 'Especifica a forma de iniciação do pagamento
 - MANU - Inserção manual de dados da conta transacional
 - DICT - Inserção manual de chave Pix
@@ -302,7 +302,7 @@ Quando não respeitada essa regra, deve ser retornado pelo detentor, de maneira 
 - MANU - Inserção manual de dados da conta transacional
 - DICT - Inserção manual de chave Pix
 - INIC - Indica que o recebedor (creditor) contratou o Iniciador de Pagamentos especificamente para realizar iniciações de pagamento em que o beneficiário é previamente conhecido
-[Restrição] Caso consentimento associado a tentativa de pagamento seja para Pix automático (objeto “automatic” selecionado no oneOf do campo `/data/recurringConfiguration``), apenas o método MANU é permitido.
+[Restrição] Caso consentimento associado a tentativa de pagamento seja para Pix automático (objeto “automatic” selecionado no oneOf do campo "/data/recurringConfiguration"), apenas o método MANU é permitido.
 ' to 'Especifica a forma de iniciação do pagamento
 - MANU - Inserção manual de dados da conta transacional
 - DICT - Inserção manual de chave Pix
@@ -1188,28 +1188,6 @@ Não pode ser preenchido nas autorizações de valor fixo.
 ' to 'Objeto contendo os dados do recebedor (creditor).'
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
-                    - Schema #/components/schemas/Vrp modified
-                      - Properties changed
-                        - Modified property: vrp
-                          - Properties changed
-                            - Modified property: periodicLimits
-                              - Properties changed
-                                - Modified property: day
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: month
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: week
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: year
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
@@ -1302,6 +1280,28 @@ Não pode ser preenchido nas autorizações de valor fixo.
                     - Schema #/components/schemas/Sweeping modified
                       - Properties changed
                         - Modified property: sweeping
+                          - Properties changed
+                            - Modified property: periodicLimits
+                              - Properties changed
+                                - Modified property: day
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: month
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: week
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: year
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                    - Schema #/components/schemas/Vrp modified
+                      - Properties changed
+                        - Modified property: vrp
                           - Properties changed
                             - Modified property: periodicLimits
                               - Properties changed
@@ -1410,6 +1410,50 @@ GET /recurring-consents/{recurringConsentId}
 ' to 'Objeto contendo os dados do recebedor (creditor).'
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
+                    - Schema #/components/schemas/Sweeping modified
+                      - Properties changed
+                        - Modified property: sweeping
+                          - Properties changed
+                            - Modified property: periodicLimits
+                              - Properties changed
+                                - Modified property: day
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: month
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: week
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: year
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                    - Schema #/components/schemas/Vrp modified
+                      - Properties changed
+                        - Modified property: vrp
+                          - Properties changed
+                            - Modified property: periodicLimits
+                              - Properties changed
+                                - Modified property: day
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: month
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: week
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: year
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
@@ -1499,50 +1543,6 @@ Não pode ser preenchido nas autorizações de valor fixo.
                               - New enum values: [DIARIO]
                               - Deleted enum values: [SEMESTRAL TRIMESTRAL]
                               - Example changed from 'SEMANAL' to 'DIARIO'
-                    - Schema #/components/schemas/Sweeping modified
-                      - Properties changed
-                        - Modified property: sweeping
-                          - Properties changed
-                            - Modified property: periodicLimits
-                              - Properties changed
-                                - Modified property: day
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: month
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: week
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: year
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                    - Schema #/components/schemas/Vrp modified
-                      - Properties changed
-                        - Modified property: vrp
-                          - Properties changed
-                            - Modified property: periodicLimits
-                              - Properties changed
-                                - Modified property: day
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: month
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: week
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: year
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
                 - Modified property: riskSignals
                   - Properties changed
                     - New property: isCallInProgress
@@ -1616,7 +1616,7 @@ PATCH /recurring-consents/{recurringConsentId}
           - Modified property: data
             - Property 'OneOf' changed
               - 1 schemas deleted
-              - Schema #/components/schemas/ConsentRevocation modified
+              - Schema #/components/schemas/ConsentRejection modified
                 - Properties changed
                   - New property: automatic
                   - New property: creditors
@@ -1626,7 +1626,7 @@ PATCH /recurring-consents/{recurringConsentId}
                     - Properties changed
                       - New property: isCallInProgress
                       - Deleted property: isCallingProgress
-              - Schema #/components/schemas/ConsentRejection modified
+              - Schema #/components/schemas/ConsentRevocation modified
                 - Properties changed
                   - New property: automatic
                   - New property: creditors
@@ -1654,6 +1654,28 @@ PATCH /recurring-consents/{recurringConsentId}
 ' to 'Objeto contendo os dados do recebedor (creditor).'
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
+                    - Schema #/components/schemas/Vrp modified
+                      - Properties changed
+                        - Modified property: vrp
+                          - Properties changed
+                            - Modified property: periodicLimits
+                              - Properties changed
+                                - Modified property: day
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: month
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: week
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: year
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
@@ -1746,28 +1768,6 @@ Não pode ser preenchido nas autorizações de valor fixo.
                     - Schema #/components/schemas/Sweeping modified
                       - Properties changed
                         - Modified property: sweeping
-                          - Properties changed
-                            - Modified property: periodicLimits
-                              - Properties changed
-                                - Modified property: day
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: month
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: week
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: year
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                    - Schema #/components/schemas/Vrp modified
-                      - Properties changed
-                        - Modified property: vrp
                           - Properties changed
                             - Modified property: periodicLimits
                               - Properties changed
