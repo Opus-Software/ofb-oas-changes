@@ -5,7 +5,39 @@
 ### Modified Endpoints: 2
 -------------------------
 POST /consents
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: expirationDateTime
+                - Description changed from 'Data e hora de expiração da permissão. Reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format). 
+[Restrição] De preenchimento obrigatório nos casos em que houver validade determinada. Em casos de consentimento com prazo indeterminado o campo não deve ser enviado.
+' to 'Data e hora de expiração da permissão. Reflete a data limite de validade do consentimento.
+Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format).
+[Restrição] De preenchimento obrigatório nos casos em que houver validade determinada.
+Em casos de consentimento com prazo indeterminado o campo não deve ser enviado. 
+Quando preenchido, o valor do campo não pode ultrapassar 12 meses.
+'
 - Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: expirationDateTime
+                  - Description changed from 'Data e hora de expiração da permissão. Reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format). 
+[Restrição] De preenchimento obrigatório nos casos em que houver validade determinada. Em casos de consentimento com prazo indeterminado o campo não deve ser enviado.
+' to 'Data e hora de expiração da permissão. Reflete a data limite de validade do consentimento.
+Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format).
+[Restrição] De preenchimento obrigatório nos casos em que houver validade determinada.
+Em casos de consentimento com prazo indeterminado o campo não deve ser enviado. 
+Quando preenchido, o valor do campo não pode ultrapassar 12 meses.
+'
   - Modified response: 422
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -26,8 +58,11 @@ Para o erro referente a envio de data de expiração maior que um ano, diferente
 - PERMISSOES_PJ_INCORRETAS
 - PERMISSAO_PF_PJ_EM_CONJUNTO
 - COMBINACAO_PERMISSOES_INCORRETA
+- DATA_EXPIRACAO_INVALIDA
+- ERRO_NAO_MAPEADO
 A opção “ERRO_NAO_MAPEADO” só deve ser utilizada caso não haja um code especifico mapeado para o erro.
 '
+                    - New enum values: [DATA_EXPIRACAO_INVALIDA ERRO_NAO_MAPEADO]
                   - Modified property: detail
                     - Description changed from 'Descrição legível por humanos deste erro específico. Para o erro de data de expiração maior que um ano, diferente de prazo indeterminado (data vazia) ou data referente ao passado, a descrição deve deixar clara o motivo do erro não importando o code usado.' to 'Descrição legível por humanos deste erro específico.'
                   - Modified property: title
@@ -41,6 +76,17 @@ POST /consents/{consentId}/extends
           - Modified property: data
             - Required changed
               - Deleted required property: permissions
+            - Properties changed
+              - Modified property: expirationDateTime
+                - Description changed from 'Data e hora de expiração da permissão. Reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).
+[Restrição] De preenchimento obrigatório nos casos em que houver validade determinada.
+Em casos de consentimento com prazo indeterminada o campo não deve ser preenchido.
+' to 'Data e hora de expiração da permissão. Reflete a data limite de validade do consentimento.
+Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format).
+[Restrição] De preenchimento obrigatório nos casos em que houver validade determinada.
+Em casos de consentimento com prazo indeterminado o campo não deve ser enviado. 
+Quando preenchido, o valor do campo não pode ultrapassar 12 meses.
+'
 - Responses changed
   - Modified response: 201
     - Content changed
@@ -50,3 +96,55 @@ POST /consents/{consentId}/extends
             - Modified property: data
               - Required changed
                 - Deleted required property: permissions
+              - Properties changed
+                - Modified property: expirationDateTime
+                  - Description changed from 'Data e hora de expiração da permissão. Deve ser preenchido caso o consentimento tenha data limite de validade. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).
+[Restrição] Aceitar apenas data no futuro em relação à data de requisição.
+' to 'Data e hora de expiração da permissão. Reflete a data limite de validade do consentimento.
+Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format).
+[Restrição] De preenchimento obrigatório nos casos em que houver validade determinada.
+Em casos de consentimento com prazo indeterminado o campo não deve ser enviado. 
+Quando preenchido, o valor do campo não pode ultrapassar 12 meses.
+'
+  - Modified response: 422
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Description changed from 'Códigos de erros previstos na durante o processo de extensão do consentimento:
+ - DEPENDE_MULTIPLA_ALCADA: Necessário aprovação de múltipla alçada.
+ - ESTADO_CONSENTIMENTO_INVALIDO: Estado inválido do consentimento.
+ - DATA_EXPIRACAO_INVALIDA: Nova data para expiração do consentimento é inválida.
+' to 'Códigos de erros previstos na durante o processo de extensão do consentimento:
+ - DEPENDE_MULTIPLA_ALCADA: Necessário aprovação de múltipla alçada.
+ - ESTADO_CONSENTIMENTO_INVALIDO: Estado inválido do consentimento.
+ - DATA_EXPIRACAO_INVALIDA: Nova data para expiração do consentimento é inválida.
+ - ERRO_NAO_MAPEADO: Utilizado quando não houver um code de erro definido.
+'
+                    - New enum values: [ERRO_NAO_MAPEADO]
+                  - Modified property: detail
+                    - Description changed from 'Título específico do erro reportado, de acordo com o código enviado:
+- DEPENDE_MULTIPLA_ALCADA: O consentimento informado não pode ser renovado sem redirecionamento porque depende de múltipla alçada para aprovação.
+- ESTADO_CONSENTIMENTO_INVALIDO: O consentimento informado não pode ser renovado sem redirecionamento porque está em um estado que não permite a renovação.
+- DATA_EXPIRACAO_INVALIDA: O consentimento informado não pode ser renovado pois a nova data de expiração não segue a convenção do ecossistema.
+' to 'Título específico do erro reportado, de acordo com o código enviado:
+- DEPENDE_MULTIPLA_ALCADA: O consentimento informado não pode ser renovado sem redirecionamento porque depende de múltipla alçada para aprovação.
+- ESTADO_CONSENTIMENTO_INVALIDO: O consentimento informado não pode ser renovado sem redirecionamento porque está em um estado que não permite a renovação.
+- DATA_EXPIRACAO_INVALIDA: O consentimento informado não pode ser renovado pois a nova data de expiração não segue a convenção do ecossistema.
+- Utilizado quando não houver um code de erro definido. O texto deve deixar claro o motivo do erro ocorrido.
+'
+                  - Modified property: title
+                    - Description changed from 'Título específico do erro reportado, de acordo com o código enviado:
+- DEPENDE_MULTIPLA_ALCADA: Necessário aprovação de múltipla alçada.
+- ESTADO_CONSENTIMENTO_INVALIDO: Estado inválido do consentimento.
+- DATA_EXPIRACAO_INVALIDA: Nova data para expiração do consentimento é inválida.
+' to 'Título específico do erro reportado, de acordo com o código enviado:
+- DEPENDE_MULTIPLA_ALCADA: Necessário aprovação de múltipla alçada.
+- ESTADO_CONSENTIMENTO_INVALIDO: Estado inválido do consentimento.
+- DATA_EXPIRACAO_INVALIDA: Nova data para expiração do consentimento é inválida.
+- ERRO_NAO_MAPEADO: Utilizado quando não houver um code de erro definido. O texto deve deixar claro o motivo do erro ocorrido.
+'
