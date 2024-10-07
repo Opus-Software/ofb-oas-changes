@@ -41,6 +41,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - TITULARIDADE_INCONSISTENTE
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
 - LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação
+- CONSENTIMENTO_REVOGADO
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 ' to 'Código identificador do motivo de rejeição.
 Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.
@@ -61,7 +62,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - TITULARIDADE_INCONSISTENTE
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 '
-                        - Deleted enum values: [LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO]
+                        - Deleted enum values: [LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO CONSENTIMENTO_REVOGADO]
                       - Modified property: detail
                         - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
 - SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
@@ -81,6 +82,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração.
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.
 - LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+- CONSENTIMENTO_REVOGADO: O pagamento estava associado a um consentimento que foi revogado.
 ' to 'Detalhe sobre o código identificador do motivo de rejeição.
 - SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
 - VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente;
@@ -349,6 +351,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
 - LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
 - LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
+- CONSENTIMENTO_REVOGADO
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 ' to 'Código identificador do motivo de rejeição.
 Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.
@@ -369,7 +372,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 '
-                      - Deleted enum values: [LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO LIMITE_TENTATIVAS_EXCEDIDO]
+                      - Deleted enum values: [LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO LIMITE_TENTATIVAS_EXCEDIDO CONSENTIMENTO_REVOGADO]
                     - Modified property: detail
                       - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
 - SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
@@ -390,6 +393,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.       
 - LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
 - LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
+- CONSENTIMENTO_REVOGADO: O pagamento estava associado a um consentimento que foi revogado.
 ' to 'Detalhe sobre o código identificador do motivo de rejeição.
 - SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
 - VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente;
@@ -676,6 +680,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
 - LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
 - LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
+- CONSENTIMENTO_REVOGADO
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 ' to 'Código identificador do motivo de rejeição.
 Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.
@@ -696,7 +701,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 '
-                      - Deleted enum values: [LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO LIMITE_TENTATIVAS_EXCEDIDO]
+                      - Deleted enum values: [LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO LIMITE_TENTATIVAS_EXCEDIDO CONSENTIMENTO_REVOGADO]
                     - Modified property: detail
                       - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
 - SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
@@ -717,6 +722,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.       
 - LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
 - LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
+- CONSENTIMENTO_REVOGADO: O pagamento estava associado a um consentimento que foi revogado.
 ' to 'Detalhe sobre o código identificador do motivo de rejeição.
 - SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
 - VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente;
@@ -889,6 +895,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
 - LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
 - LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
+- CONSENTIMENTO_REVOGADO
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 ' to 'Código identificador do motivo de rejeição.
 Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.
@@ -909,7 +916,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 '
-                      - Deleted enum values: [LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO LIMITE_TENTATIVAS_EXCEDIDO]
+                      - Deleted enum values: [LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO LIMITE_TENTATIVAS_EXCEDIDO CONSENTIMENTO_REVOGADO]
                     - Modified property: detail
                       - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
 - SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
@@ -930,6 +937,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.       
 - LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
 - LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
+- CONSENTIMENTO_REVOGADO: O pagamento estava associado a um consentimento que foi revogado.
 ' to 'Detalhe sobre o código identificador do motivo de rejeição.
 - SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
 - VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente;
@@ -1046,6 +1054,53 @@ POST /recurring-consents
 ' to 'Objeto contendo os dados do recebedor (creditor).'
               - Modified property: recurringConfiguration
                 - Property 'OneOf' changed
+                  - Schema #/components/schemas/Sweeping modified
+                    - Properties changed
+                      - Modified property: sweeping
+                        - Required changed
+                          - Deleted required property: useOverdraftLimit
+                        - Properties changed
+                          - Deleted property: useOverdraftLimit
+                          - Modified property: periodicLimits
+                            - Properties changed
+                              - Modified property: day
+                                - Properties changed
+                                  - Modified property: quantityLimit
+                                    - Min changed from 1 to null
+                              - Modified property: month
+                                - Properties changed
+                                  - Modified property: quantityLimit
+                                    - Min changed from 1 to null
+                              - Modified property: week
+                                - Properties changed
+                                  - Modified property: quantityLimit
+                                    - Min changed from 1 to null
+                              - Modified property: year
+                                - Properties changed
+                                  - Modified property: quantityLimit
+                                    - Min changed from 1 to null
+                  - Schema #/components/schemas/Vrp modified
+                    - Properties changed
+                      - Modified property: vrp
+                        - Properties changed
+                          - Modified property: periodicLimits
+                            - Properties changed
+                              - Modified property: day
+                                - Properties changed
+                                  - Modified property: quantityLimit
+                                    - Min changed from 1 to null
+                              - Modified property: month
+                                - Properties changed
+                                  - Modified property: quantityLimit
+                                    - Min changed from 1 to null
+                              - Modified property: week
+                                - Properties changed
+                                  - Modified property: quantityLimit
+                                    - Min changed from 1 to null
+                              - Modified property: year
+                                - Properties changed
+                                  - Modified property: quantityLimit
+                                    - Min changed from 1 to null
                   - Schema #/components/schemas/Automatic modified
                     - Properties changed
                       - Modified property: automatic
@@ -1138,53 +1193,6 @@ Não pode ser preenchido nas autorizações de valor fixo.
                             - New enum values: [DIARIO]
                             - Deleted enum values: [SEMESTRAL TRIMESTRAL]
                             - Example changed from 'SEMANAL' to 'DIARIO'
-                  - Schema #/components/schemas/Sweeping modified
-                    - Properties changed
-                      - Modified property: sweeping
-                        - Required changed
-                          - Deleted required property: useOverdraftLimit
-                        - Properties changed
-                          - Deleted property: useOverdraftLimit
-                          - Modified property: periodicLimits
-                            - Properties changed
-                              - Modified property: day
-                                - Properties changed
-                                  - Modified property: quantityLimit
-                                    - Min changed from 1 to null
-                              - Modified property: month
-                                - Properties changed
-                                  - Modified property: quantityLimit
-                                    - Min changed from 1 to null
-                              - Modified property: week
-                                - Properties changed
-                                  - Modified property: quantityLimit
-                                    - Min changed from 1 to null
-                              - Modified property: year
-                                - Properties changed
-                                  - Modified property: quantityLimit
-                                    - Min changed from 1 to null
-                  - Schema #/components/schemas/Vrp modified
-                    - Properties changed
-                      - Modified property: vrp
-                        - Properties changed
-                          - Modified property: periodicLimits
-                            - Properties changed
-                              - Modified property: day
-                                - Properties changed
-                                  - Modified property: quantityLimit
-                                    - Min changed from 1 to null
-                              - Modified property: month
-                                - Properties changed
-                                  - Modified property: quantityLimit
-                                    - Min changed from 1 to null
-                              - Modified property: week
-                                - Properties changed
-                                  - Modified property: quantityLimit
-                                    - Min changed from 1 to null
-                              - Modified property: year
-                                - Properties changed
-                                  - Modified property: quantityLimit
-                                    - Min changed from 1 to null
               - Modified property: startDateTime
                 - Description changed from 'Data e hora em que o consentimento deve passar a ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format).
 [Restrição] Caso esse campo não seja enviado pelo iniciador na requisição, o detentor deve preencher esse campo com o mesmo valor atribuído ao campo /data/creationDateTime.

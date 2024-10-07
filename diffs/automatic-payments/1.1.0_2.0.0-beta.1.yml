@@ -15,6 +15,91 @@ GET /pix/recurring-payments
               - Items changed
                 - Properties changed
                   - New property: lastRetryRecurringPaymentIds
+                  - Modified property: rejectionReason
+                    - Properties changed
+                      - Modified property: code
+                        - Description changed from 'Código identificador do motivo de rejeição.
+Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+- VALOR_INVALIDO
+- NAO_INFORMADO
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO
+- PAGAMENTO_RECUSADO_DETENTORA
+- PAGAMENTO_RECUSADO_SPI
+- CONSENTIMENTO_INVALIDO
+- FALHA_INFRAESTRUTURA_SPI
+- FALHA_INFRAESTRUTURA_ICP
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR
+- FALHA_INFRAESTRUTURA_DETENTORA
+- LIMITE_PERIODO_VALOR_EXCEDIDO
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
+- TITULARIDADE_INCONSISTENTE
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação
+[Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
+' to 'Código identificador do motivo de rejeição.
+Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+- VALOR_INVALIDO
+- NAO_INFORMADO
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO
+- PAGAMENTO_RECUSADO_DETENTORA
+- PAGAMENTO_RECUSADO_SPI
+- CONSENTIMENTO_INVALIDO
+- FALHA_INFRAESTRUTURA_SPI
+- FALHA_INFRAESTRUTURA_ICP
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR
+- FALHA_INFRAESTRUTURA_DETENTORA
+- LIMITE_PERIODO_VALOR_EXCEDIDO
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
+- TITULARIDADE_INCONSISTENTE
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação
+- CONSENTIMENTO_REVOGADO
+[Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
+'
+                        - New enum values: [CONSENTIMENTO_REVOGADO]
+                      - Modified property: detail
+                        - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: Valida se o valor ultrapassa o limite estabelecido [na instituição (conta ou canal)/no arranjo] para permitir a realização de transações pelo cliente;
+- VALOR_INVALIDO: O valor enviado não é válido; 
+- NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta;
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento;
+- PAGAMENTO_RECUSADO_DETENTORA: [descrição do motivo de recusa];
+- PAGAMENTO_RECUSADO_SPI: [código de erro conforme tabela de domínios reason PACS.002];
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (em status final);
+- FALHA_INFRAESTRUTURA_SPI: Indica uma falha no Sistema de Pagamentos Instantâneos (SPI);
+- FALHA_INFRAESTRUTURA_ICP: Indica uma falha na Infraestrutura de Chaves Públicas (ICP);
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR: Indica uma falha na infraestrutura do Prestador de Serviço de Pagamento (PSP) que recebe o pagamento;
+- FALHA_INFRAESTRUTURA_DETENTORA: indica uma falha na infraestrutura da instituição detentora das informações ou recursos;
+- LIMITE_PERIODO_VALOR_EXCEDIDO – A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO – A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+- TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração.
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+' to 'Detalhe sobre o código identificador do motivo de rejeição.
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: Valida se o valor ultrapassa o limite estabelecido [na instituição (conta ou canal)/no arranjo] para permitir a realização de transações pelo cliente;
+- VALOR_INVALIDO: O valor enviado não é válido; 
+- NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta;
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento;
+- PAGAMENTO_RECUSADO_DETENTORA: [descrição do motivo de recusa];
+- PAGAMENTO_RECUSADO_SPI: [código de erro conforme tabela de domínios reason PACS.002];
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (em status final);
+- FALHA_INFRAESTRUTURA_SPI: Indica uma falha no Sistema de Pagamentos Instantâneos (SPI);
+- FALHA_INFRAESTRUTURA_ICP: Indica uma falha na Infraestrutura de Chaves Públicas (ICP);
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR: Indica uma falha na infraestrutura do Prestador de Serviço de Pagamento (PSP) que recebe o pagamento;
+- FALHA_INFRAESTRUTURA_DETENTORA: indica uma falha na infraestrutura da instituição detentora das informações ou recursos;
+- LIMITE_PERIODO_VALOR_EXCEDIDO – A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO – A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+- TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração.
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+- CONSENTIMENTO_REVOGADO: O pagamento estava associado a um consentimento que foi revogado.
+'
             - Modified property: links
               - Properties changed
                 - Modified property: self
@@ -148,9 +233,10 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
 - LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
 - LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
+- CONSENTIMENTO_REVOGADO
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 '
-                      - New enum values: [LIMITE_TENTATIVAS_EXCEDIDO]
+                      - New enum values: [LIMITE_TENTATIVAS_EXCEDIDO CONSENTIMENTO_REVOGADO]
                     - Modified property: detail
                       - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
 - SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
@@ -189,6 +275,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.       
 - LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
 - LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
+- CONSENTIMENTO_REVOGADO: O pagamento estava associado a um consentimento que foi revogado.
 '
             - Modified property: links
               - Properties changed
@@ -405,9 +492,10 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
 - LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
 - LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
+- CONSENTIMENTO_REVOGADO
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 '
-                      - New enum values: [LIMITE_TENTATIVAS_EXCEDIDO]
+                      - New enum values: [LIMITE_TENTATIVAS_EXCEDIDO CONSENTIMENTO_REVOGADO]
                     - Modified property: detail
                       - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
 - SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
@@ -446,6 +534,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.       
 - LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
 - LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
+- CONSENTIMENTO_REVOGADO: O pagamento estava associado a um consentimento que foi revogado.
 '
                 - Modified property: status
                   - Description changed from 'Estado atual do pagamento. O estado evolui na seguinte ordem:
@@ -560,9 +649,10 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
 - LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
 - LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
+- CONSENTIMENTO_REVOGADO
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 '
-                      - New enum values: [LIMITE_TENTATIVAS_EXCEDIDO]
+                      - New enum values: [LIMITE_TENTATIVAS_EXCEDIDO CONSENTIMENTO_REVOGADO]
                     - Modified property: detail
                       - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
 - SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
@@ -601,6 +691,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.       
 - LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
 - LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
+- CONSENTIMENTO_REVOGADO: O pagamento estava associado a um consentimento que foi revogado.
 '
             - Modified property: links
               - Properties changed
@@ -627,13 +718,6 @@ POST /recurring-consents
 '
               - Modified property: recurringConfiguration
                 - Property 'OneOf' changed
-                  - Schema #/components/schemas/Sweeping modified
-                    - Properties changed
-                      - Modified property: sweeping
-                        - Required changed
-                          - New required property: useOverdraftLimit
-                        - Properties changed
-                          - New property: useOverdraftLimit
                   - Schema #/components/schemas/Automatic modified
                     - Properties changed
                       - Modified property: automatic
@@ -717,6 +801,13 @@ POST /recurring-consents
                             - New enum values: [SEMESTRAL TRIMESTRAL]
                             - Deleted enum values: [DIARIO]
                             - Example changed from 'DIARIO' to 'SEMANAL'
+                  - Schema #/components/schemas/Sweeping modified
+                    - Properties changed
+                      - Modified property: sweeping
+                        - Required changed
+                          - New required property: useOverdraftLimit
+                        - Properties changed
+                          - New property: useOverdraftLimit
 - Responses changed
   - Modified response: 201
     - Content changed
