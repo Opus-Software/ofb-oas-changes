@@ -1583,16 +1583,6 @@ components:
         [Restrições]
         Este campo é de preenchimento obrigatório pela detentora quando for uma tentativa de pagamento com erro ou falha.
         Este campo é de envio obrigatório pela iniciadora quando for uma tentativa de pagamento que falhou anteriormente.
-      items:
-        type: string
-        minLength: 1
-        maxLength: 100
-        pattern: ^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$
-        example: TXpRMU9UQTROMWhZV2xSU1FUazJSMDl
-        description: |
-          Código ou identificador único informado pela instituição detentora da conta para representar a iniciação de pagamento. 
-          O recurringPaymentId deve ser diferente do endToEndId.
-          Este é o identificador que deverá ser utilizado na consulta ao status da iniciação de pagamento efetuada.
     EndToEndId:
       type: string
       minLength: 32
@@ -2090,6 +2080,16 @@ components:
                 Valor máximo permitido por cobrança, caso preenchido, representa um consentimento para pagamentos de valores variáveis. 
                 
                 [Restrição] Excludente com o campo “/data/recurringConfiguration/automatic/fixedAmount”
+            dayOfMonth:
+              description: |
+                Dia fixo do mês que está prevista a transação. Caso consentimento seja para pagamentos trimestrais ou semestrais, o campo representa o dia do mês selecionado no campo `/data/recurringConfiguration/automatic/month` em que ocorrerá primeira cobrança.
+              
+                [Restrição] Campo deve ser enviado quando o campo `/data/recurringConfiguration/automatic/period` for igual a MENSAL, TRIMESTRAL, SEMESTRAL ou ANUAL.
+              type: integer
+              format: int32
+              minimum: 1
+              maximum: 31
+              example: 10
     ConsentRevocation:
       type: object
       properties:
@@ -2227,6 +2227,38 @@ components:
                 - ANUAL
                 - SEMESTRAL
                 - TRIMESTRAL
+            dayOfMonth:
+              type: integer
+              format: int32
+              minimum: 1
+              maximum: 31
+              example: 10
+              description: |
+                Dia fixo do mês que está prevista a transação. Caso consentimento seja para pagamentos trimestrais ou semestrais, o campo representa o dia do mês selecionado no campo `/data/recurringConfiguration/automatic/month` em que ocorrerá primeira cobrança.
+
+                [Restrição] Campo deve ser enviado quando o campo /data/recurringConfiguration/automatic/period for igual a MENSAL, TRIMESTRAL, SEMESTRAL ou ANUAL.
+            dayOfWeek:
+              type: string
+              enum:
+                - SEGUNDA_FEIRA
+                - TERCA_FEIRA
+                - QUARTA_FEIRA
+                - QUINTA_FEIRA
+                - SEXTA_FEIRA
+                - SABADO
+                - DOMINGO
+              example: 'SEGUNDA_FEIRA'
+              description: |
+                Dia da semana que está prevista a transação.
+                - SEGUNDA_FEIRA
+                - TERCA_FEIRA
+                - QUARTA_FEIRA
+                - QUINTA_FEIRA
+                - SEXTA_FEIRA
+                - SABADO
+                - DOMINGO
+
+                [Restrição] Campo deve ser enviado quando o campo `/data/recurringConfiguration/automatic/period` for igual a SEMANAL.
             month:
               type: string
               enum:
@@ -2261,8 +2293,8 @@ components:
                 [Restrição] Campo deve ser enviado quando o campo `/data/recurringConfiguration/automatic/period` for igual a TRIMESTRAL, SEMESTRAL ou ANUAL
             contractDebtor:
               $ref: '#/components/schemas/ContractDebtor'
-            firstPayment:
-              $ref: '#/components/schemas/FirstPayment'
+            immediatePayment:
+              $ref: '#/components/schemas/ImmediatePayment'
             minimumVariableAmount:
               type: string
               pattern: ^((\d{1,16}\.\d{2}))$
@@ -2308,14 +2340,9 @@ components:
                 description: Tipo do documento de identificação oficial do cliente devedor do contrato.
                 example: CNPJ
                 pattern: '^[A-Z]{4}$'
-    FirstPayment:
+    ImmediatePayment:
       type: object
-      description: |
-        Definições para o primeiro pagamento. É considerado como o pagamento da adesão ao serviço pelo usuário pagador.
-
-        - A conta de crédito informada deve pertencer ao mesmo CNPJ informado no campo “/data/creditors/cpfCnpj”
-        - A conta de crédito informada no momento do primeiro pagamento deve ser a mesma informada dentro deste objeto. 
-        Caso não respeitado, o detentor deve rejeitar o pagamento com o motivo DETALHE_PAGAMENTO_INVALIDO, sincronamente (HTTP 422) ou assincronamente (HTTP 200)
+      description: Definições para transação imediata.
       required:
         - type
         - date
