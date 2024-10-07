@@ -729,32 +729,9 @@ POST /recurring-consents
                           - New property: maximumVariableAmount
                           - New property: minimumVariableAmount
                           - Deleted property: amount
+                          - Deleted property: dayOfMonth
+                          - Deleted property: dayOfWeek
                           - Deleted property: transactionLimit
-                          - Modified property: dayOfMonth
-                            - Description changed from 'Dia fixo do mês que está prevista a transação.
-[Restrição] Campo deve ser enviado quando o campo `/data/recurringConfiguration/automatic/period` for igual a MENSAL ou ANUAL.
-' to 'Dia fixo do mês que está prevista a transação. Caso consentimento seja para pagamentos trimestrais ou semestrais, o campo representa o dia do mês selecionado no campo `/data/recurringConfiguration/automatic/month` em que ocorrerá primeira cobrança.
-[Restrição] Campo deve ser enviado quando o campo /data/recurringConfiguration/automatic/period for igual a MENSAL, TRIMESTRAL, SEMESTRAL ou ANUAL.
-'
-                          - Modified property: dayOfWeek
-                            - Description changed from 'Dia da semana que está prevista a transação.
-- SEGUNDA_FEIRA
-- TERCA_FEIRA
-- QUARTA_FEIRA
-- QUINTA_FEIRA
-- SEXTA_FEIRA
-[Restrição] Campo deve ser enviado quando o campo `/data/recurringConfiguration/automatic/period` for igual a SEMANAL.
-' to 'Dia da semana que está prevista a transação.
-- SEGUNDA_FEIRA
-- TERCA_FEIRA
-- QUARTA_FEIRA
-- QUINTA_FEIRA
-- SEXTA_FEIRA
-- SABADO
-- DOMINGO
-[Restrição] Campo deve ser enviado quando o campo `/data/recurringConfiguration/automatic/period` for igual a SEMANAL.
-'
-                            - New enum values: [SABADO DOMINGO]
                           - Modified property: month
                             - Description changed from 'Mês previstos para ocorrer transações.
 - JANEIRO
@@ -835,32 +812,9 @@ POST /recurring-consents
                             - New property: maximumVariableAmount
                             - New property: minimumVariableAmount
                             - Deleted property: amount
+                            - Deleted property: dayOfMonth
+                            - Deleted property: dayOfWeek
                             - Deleted property: transactionLimit
-                            - Modified property: dayOfMonth
-                              - Description changed from 'Dia fixo do mês que está prevista a transação.
-[Restrição] Campo deve ser enviado quando o campo `/data/recurringConfiguration/automatic/period` for igual a MENSAL ou ANUAL.
-' to 'Dia fixo do mês que está prevista a transação. Caso consentimento seja para pagamentos trimestrais ou semestrais, o campo representa o dia do mês selecionado no campo `/data/recurringConfiguration/automatic/month` em que ocorrerá primeira cobrança.
-[Restrição] Campo deve ser enviado quando o campo /data/recurringConfiguration/automatic/period for igual a MENSAL, TRIMESTRAL, SEMESTRAL ou ANUAL.
-'
-                            - Modified property: dayOfWeek
-                              - Description changed from 'Dia da semana que está prevista a transação.
-- SEGUNDA_FEIRA
-- TERCA_FEIRA
-- QUARTA_FEIRA
-- QUINTA_FEIRA
-- SEXTA_FEIRA
-[Restrição] Campo deve ser enviado quando o campo `/data/recurringConfiguration/automatic/period` for igual a SEMANAL.
-' to 'Dia da semana que está prevista a transação.
-- SEGUNDA_FEIRA
-- TERCA_FEIRA
-- QUARTA_FEIRA
-- QUINTA_FEIRA
-- SEXTA_FEIRA
-- SABADO
-- DOMINGO
-[Restrição] Campo deve ser enviado quando o campo `/data/recurringConfiguration/automatic/period` for igual a SEMANAL.
-'
-                              - New enum values: [SABADO DOMINGO]
                             - Modified property: month
                               - Description changed from 'Mês previstos para ocorrer transações.
 - JANEIRO
@@ -952,32 +906,9 @@ GET /recurring-consents/{recurringConsentId}
                             - New property: maximumVariableAmount
                             - New property: minimumVariableAmount
                             - Deleted property: amount
+                            - Deleted property: dayOfMonth
+                            - Deleted property: dayOfWeek
                             - Deleted property: transactionLimit
-                            - Modified property: dayOfMonth
-                              - Description changed from 'Dia fixo do mês que está prevista a transação.
-[Restrição] Campo deve ser enviado quando o campo `/data/recurringConfiguration/automatic/period` for igual a MENSAL ou ANUAL.
-' to 'Dia fixo do mês que está prevista a transação. Caso consentimento seja para pagamentos trimestrais ou semestrais, o campo representa o dia do mês selecionado no campo `/data/recurringConfiguration/automatic/month` em que ocorrerá primeira cobrança.
-[Restrição] Campo deve ser enviado quando o campo /data/recurringConfiguration/automatic/period for igual a MENSAL, TRIMESTRAL, SEMESTRAL ou ANUAL.
-'
-                            - Modified property: dayOfWeek
-                              - Description changed from 'Dia da semana que está prevista a transação.
-- SEGUNDA_FEIRA
-- TERCA_FEIRA
-- QUARTA_FEIRA
-- QUINTA_FEIRA
-- SEXTA_FEIRA
-[Restrição] Campo deve ser enviado quando o campo `/data/recurringConfiguration/automatic/period` for igual a SEMANAL.
-' to 'Dia da semana que está prevista a transação.
-- SEGUNDA_FEIRA
-- TERCA_FEIRA
-- QUARTA_FEIRA
-- QUINTA_FEIRA
-- SEXTA_FEIRA
-- SABADO
-- DOMINGO
-[Restrição] Campo deve ser enviado quando o campo `/data/recurringConfiguration/automatic/period` for igual a SEMANAL.
-'
-                              - New enum values: [SABADO DOMINGO]
                             - Modified property: month
                               - Description changed from 'Mês previstos para ocorrer transações.
 - JANEIRO
@@ -1054,13 +985,8 @@ PATCH /recurring-consents/{recurringConsentId}
                   - Modified property: automatic
                     - Properties changed
                       - New property: maximumVariableAmount
+                      - Deleted property: dayOfMonth
                       - Deleted property: transactionLimit
-                      - Modified property: dayOfMonth
-                        - Description changed from 'Dia fixo do mês que está prevista a transação.
-[Restrição] Campo deve ser enviado quando o campo `/data/recurringConfiguration/automatic/period` for igual a MENSAL ou ANUAL.
-' to 'Dia fixo do mês que está prevista a transação. Caso consentimento seja para pagamentos trimestrais ou semestrais, o campo representa o dia do mês selecionado no campo `/data/recurringConfiguration/automatic/month` em que ocorrerá primeira cobrança.
-[Restrição] Campo deve ser enviado quando o campo `/data/recurringConfiguration/automatic/period` for igual a MENSAL, TRIMESTRAL, SEMESTRAL ou ANUAL.
-'
                   - Modified property: creditors
                     - Items changed
                       - Description changed from 'Objeto contendo os dados do recebedor (creditor).' to 'Objeto contendo os dados do recebedor (creditor).
@@ -1082,6 +1008,13 @@ PATCH /recurring-consents/{recurringConsentId}
 '
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
+                    - Schema #/components/schemas/Sweeping modified
+                      - Properties changed
+                        - Modified property: sweeping
+                          - Required changed
+                            - New required property: useOverdraftLimit
+                          - Properties changed
+                            - New property: useOverdraftLimit
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
@@ -1093,32 +1026,9 @@ PATCH /recurring-consents/{recurringConsentId}
                             - New property: maximumVariableAmount
                             - New property: minimumVariableAmount
                             - Deleted property: amount
+                            - Deleted property: dayOfMonth
+                            - Deleted property: dayOfWeek
                             - Deleted property: transactionLimit
-                            - Modified property: dayOfMonth
-                              - Description changed from 'Dia fixo do mês que está prevista a transação.
-[Restrição] Campo deve ser enviado quando o campo `/data/recurringConfiguration/automatic/period` for igual a MENSAL ou ANUAL.
-' to 'Dia fixo do mês que está prevista a transação. Caso consentimento seja para pagamentos trimestrais ou semestrais, o campo representa o dia do mês selecionado no campo `/data/recurringConfiguration/automatic/month` em que ocorrerá primeira cobrança.
-[Restrição] Campo deve ser enviado quando o campo /data/recurringConfiguration/automatic/period for igual a MENSAL, TRIMESTRAL, SEMESTRAL ou ANUAL.
-'
-                            - Modified property: dayOfWeek
-                              - Description changed from 'Dia da semana que está prevista a transação.
-- SEGUNDA_FEIRA
-- TERCA_FEIRA
-- QUARTA_FEIRA
-- QUINTA_FEIRA
-- SEXTA_FEIRA
-[Restrição] Campo deve ser enviado quando o campo `/data/recurringConfiguration/automatic/period` for igual a SEMANAL.
-' to 'Dia da semana que está prevista a transação.
-- SEGUNDA_FEIRA
-- TERCA_FEIRA
-- QUARTA_FEIRA
-- QUINTA_FEIRA
-- SEXTA_FEIRA
-- SABADO
-- DOMINGO
-[Restrição] Campo deve ser enviado quando o campo `/data/recurringConfiguration/automatic/period` for igual a SEMANAL.
-'
-                              - New enum values: [SABADO DOMINGO]
                             - Modified property: month
                               - Description changed from 'Mês previstos para ocorrer transações.
 - JANEIRO
@@ -1165,13 +1075,6 @@ PATCH /recurring-consents/{recurringConsentId}
                               - New enum values: [SEMESTRAL TRIMESTRAL]
                               - Deleted enum values: [DIARIO]
                               - Example changed from 'DIARIO' to 'SEMANAL'
-                    - Schema #/components/schemas/Sweeping modified
-                      - Properties changed
-                        - Modified property: sweeping
-                          - Required changed
-                            - New required property: useOverdraftLimit
-                          - Properties changed
-                            - New property: useOverdraftLimit
             - Modified property: links
               - Properties changed
                 - Modified property: self
