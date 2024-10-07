@@ -724,6 +724,7 @@ POST /recurring-consents
                         - Required changed
                           - New required property: isRetryAccepted
                         - Properties changed
+                          - New property: firstPayment
                           - New property: fixedAmount
                           - New property: isRetryAccepted
                           - New property: maximumVariableAmount
@@ -731,6 +732,7 @@ POST /recurring-consents
                           - Deleted property: amount
                           - Deleted property: dayOfMonth
                           - Deleted property: dayOfWeek
+                          - Deleted property: immediatePayment
                           - Deleted property: transactionLimit
                           - Modified property: month
                             - Description changed from 'Mês previstos para ocorrer transações.
@@ -801,19 +803,13 @@ POST /recurring-consents
 '
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
-                    - Schema #/components/schemas/Sweeping modified
-                      - Properties changed
-                        - Modified property: sweeping
-                          - Required changed
-                            - New required property: useOverdraftLimit
-                          - Properties changed
-                            - New property: useOverdraftLimit
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
                           - Required changed
                             - New required property: isRetryAccepted
                           - Properties changed
+                            - New property: firstPayment
                             - New property: fixedAmount
                             - New property: isRetryAccepted
                             - New property: maximumVariableAmount
@@ -821,6 +817,7 @@ POST /recurring-consents
                             - Deleted property: amount
                             - Deleted property: dayOfMonth
                             - Deleted property: dayOfWeek
+                            - Deleted property: immediatePayment
                             - Deleted property: transactionLimit
                             - Modified property: month
                               - Description changed from 'Mês previstos para ocorrer transações.
@@ -868,6 +865,13 @@ POST /recurring-consents
                               - New enum values: [SEMESTRAL TRIMESTRAL]
                               - Deleted enum values: [DIARIO]
                               - Example changed from 'DIARIO' to 'SEMANAL'
+                    - Schema #/components/schemas/Sweeping modified
+                      - Properties changed
+                        - Modified property: sweeping
+                          - Required changed
+                            - New required property: useOverdraftLimit
+                          - Properties changed
+                            - New property: useOverdraftLimit
             - Modified property: links
               - Properties changed
                 - Modified property: self
@@ -901,6 +905,7 @@ GET /recurring-consents/{recurringConsentId}
                           - Required changed
                             - New required property: isRetryAccepted
                           - Properties changed
+                            - New property: firstPayment
                             - New property: fixedAmount
                             - New property: isRetryAccepted
                             - New property: maximumVariableAmount
@@ -908,6 +913,7 @@ GET /recurring-consents/{recurringConsentId}
                             - Deleted property: amount
                             - Deleted property: dayOfMonth
                             - Deleted property: dayOfWeek
+                            - Deleted property: immediatePayment
                             - Deleted property: transactionLimit
                             - Modified property: month
                               - Description changed from 'Mês previstos para ocorrer transações.
@@ -1008,19 +1014,13 @@ PATCH /recurring-consents/{recurringConsentId}
 '
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
-                    - Schema #/components/schemas/Sweeping modified
-                      - Properties changed
-                        - Modified property: sweeping
-                          - Required changed
-                            - New required property: useOverdraftLimit
-                          - Properties changed
-                            - New property: useOverdraftLimit
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
                           - Required changed
                             - New required property: isRetryAccepted
                           - Properties changed
+                            - New property: firstPayment
                             - New property: fixedAmount
                             - New property: isRetryAccepted
                             - New property: maximumVariableAmount
@@ -1028,6 +1028,7 @@ PATCH /recurring-consents/{recurringConsentId}
                             - Deleted property: amount
                             - Deleted property: dayOfMonth
                             - Deleted property: dayOfWeek
+                            - Deleted property: immediatePayment
                             - Deleted property: transactionLimit
                             - Modified property: month
                               - Description changed from 'Mês previstos para ocorrer transações.
@@ -1075,6 +1076,13 @@ PATCH /recurring-consents/{recurringConsentId}
                               - New enum values: [SEMESTRAL TRIMESTRAL]
                               - Deleted enum values: [DIARIO]
                               - Example changed from 'DIARIO' to 'SEMANAL'
+                    - Schema #/components/schemas/Sweeping modified
+                      - Properties changed
+                        - Modified property: sweeping
+                          - Required changed
+                            - New required property: useOverdraftLimit
+                          - Properties changed
+                            - New property: useOverdraftLimit
             - Modified property: links
               - Properties changed
                 - Modified property: self
