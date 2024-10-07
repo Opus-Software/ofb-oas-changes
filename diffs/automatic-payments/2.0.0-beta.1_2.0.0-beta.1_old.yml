@@ -16,6 +16,7 @@ GET /pix/recurring-payments
             - Modified property: data
               - Items changed
                 - Properties changed
+                  - Deleted property: lastRetryRecurringPaymentIds
                   - Modified property: document
                     - Description changed from 'Informações do documento.' to 'Informações do documento identificador.'
                   - Modified property: rejectionReason
@@ -186,6 +187,7 @@ POST /pix/recurring-payments
               - Deleted required property: creditorAccount
             - Properties changed
               - Deleted property: ibgeTownCode
+              - Deleted property: lastRetryRecurringPaymentIds
               - Modified property: creditorAccount
                 - Description changed from 'Objeto que contém a identificação da conta de destino do beneficiário/recebedor.
 ' to 'Objeto que contém a identificação da conta de destino do beneficiário/recebedor.
@@ -268,6 +270,7 @@ Em dispositivos iOS o valor é um ponto flutuante entre 0.0 e 1.0.
               - Required changed
                 - Deleted required property: creditorAccount
               - Properties changed
+                - Deleted property: lastRetryRecurringPaymentIds
                 - Modified property: cancellation
                   - Properties changed
                     - Modified property: reason
@@ -345,6 +348,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
 - LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+- LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 ' to 'Código identificador do motivo de rejeição.
 Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.
@@ -365,7 +369,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 '
-                      - Deleted enum values: [LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO]
+                      - Deleted enum values: [LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO LIMITE_TENTATIVAS_EXCEDIDO]
                     - Modified property: detail
                       - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
 - SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
@@ -385,6 +389,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_PERIODO_QUANTIDADE_EXCEDIDO: A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.       
 - LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+- LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
 ' to 'Detalhe sobre o código identificador do motivo de rejeição.
 - SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
 - VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente;
@@ -499,6 +504,7 @@ Em caso insucesso:
 - ERRO_IDEMPOTENCIA: Erro idempotência.
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: Limite total excedido
 - LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+- LIMITE_TENTATIVAS_EXCEDIDO: O limite de tentativas para liquidação do pagamento permitidas pelo arranjo foi excedido.
 ' to 'Códigos de erros previstos na criação da iniciação de pagamento:
 - SALDO_INSUFICIENTE: Esta conta não possui saldo suficiente para realizar o pagamento.
 - VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente.
@@ -516,7 +522,7 @@ Em caso insucesso:
 - PAGAMENTO_RECUSADO_SPI: Pagamento recusado no Sistema de Pagamentos Instantâneos (SPI).
 - ERRO_IDEMPOTENCIA: Erro idempotência.
 '
-                    - Deleted enum values: [LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO]
+                    - Deleted enum values: [LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO LIMITE_TENTATIVAS_EXCEDIDO]
                   - Modified property: detail
                     - Description changed from 'Descrição específica do erro de acordo com o código reportado:
 - SALDO_INSUFICIENTE: Esta conta não possui saldo suficiente para realizar o pagamento.
@@ -536,6 +542,7 @@ Em caso insucesso:
 - ERRO_IDEMPOTENCIA: Erro idempotência.
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.
 - LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+- LIMITE_TENTATIVAS_EXCEDIDO: O limite de tentativas para liquidação do pagamento permitidas pelo arranjo foi excedido.
 ' to 'Descrição específica do erro de acordo com o código reportado:
 - SALDO_INSUFICIENTE: Esta conta não possui saldo suficiente para realizar o pagamento.
 - VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente.
@@ -572,6 +579,7 @@ Em caso insucesso:
 - ERRO_IDEMPOTENCIA: Erro idempotência.
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: Limite total excedido
 - LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: Limite de transação excedido.
+- LIMITE_TENTATIVAS_EXCEDIDO: O limite de tentativas para liquidação do pagamento permitidas pelo arranjo foi excedido.
 ' to 'Título específico do erro reportado, de acordo com o código enviado:
 - SALDO_INSUFICIENTE: Esta conta não possui saldo suficiente para realizar o pagamento.
 - VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente.
@@ -614,6 +622,7 @@ GET /pix/recurring-payments/{recurringPaymentId}
                 - Deleted required property: creditorAccount
                 - Deleted required property: localInstrument
               - Properties changed
+                - Deleted property: lastRetryRecurringPaymentIds
                 - Deleted property: localInstrument
                 - Deleted property: proxy
                 - Modified property: cancellation
@@ -666,6 +675,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
 - LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+- LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 ' to 'Código identificador do motivo de rejeição.
 Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.
@@ -686,7 +696,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 '
-                      - Deleted enum values: [LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO]
+                      - Deleted enum values: [LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO LIMITE_TENTATIVAS_EXCEDIDO]
                     - Modified property: detail
                       - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
 - SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
@@ -706,6 +716,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_PERIODO_QUANTIDADE_EXCEDIDO: A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.       
 - LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+- LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
 ' to 'Detalhe sobre o código identificador do motivo de rejeição.
 - SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
 - VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente;
@@ -824,6 +835,7 @@ PATCH /pix/recurring-payments/{recurringPaymentId}
                 - Deleted required property: creditorAccount
                 - Deleted required property: localInstrument
               - Properties changed
+                - Deleted property: lastRetryRecurringPaymentIds
                 - Deleted property: localInstrument
                 - Deleted property: proxy
                 - Modified property: cancellation
@@ -876,6 +888,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
 - LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+- LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 ' to 'Código identificador do motivo de rejeição.
 Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.
@@ -896,7 +909,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 '
-                      - Deleted enum values: [LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO]
+                      - Deleted enum values: [LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO LIMITE_TENTATIVAS_EXCEDIDO]
                     - Modified property: detail
                       - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
 - SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
@@ -916,6 +929,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_PERIODO_QUANTIDADE_EXCEDIDO: A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.       
 - LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+- LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
 ' to 'Detalhe sobre o código identificador do motivo de rejeição.
 - SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
 - VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente;
@@ -1032,32 +1046,13 @@ POST /recurring-consents
 ' to 'Objeto contendo os dados do recebedor (creditor).'
               - Modified property: recurringConfiguration
                 - Property 'OneOf' changed
-                  - Schema #/components/schemas/Vrp modified
-                    - Properties changed
-                      - Modified property: vrp
-                        - Properties changed
-                          - Modified property: periodicLimits
-                            - Properties changed
-                              - Modified property: day
-                                - Properties changed
-                                  - Modified property: quantityLimit
-                                    - Min changed from 1 to null
-                              - Modified property: month
-                                - Properties changed
-                                  - Modified property: quantityLimit
-                                    - Min changed from 1 to null
-                              - Modified property: week
-                                - Properties changed
-                                  - Modified property: quantityLimit
-                                    - Min changed from 1 to null
-                              - Modified property: year
-                                - Properties changed
-                                  - Modified property: quantityLimit
-                                    - Min changed from 1 to null
                   - Schema #/components/schemas/Automatic modified
                     - Properties changed
                       - Modified property: automatic
+                        - Required changed
+                          - Deleted required property: isRetryAccepted
                         - Properties changed
+                          - Deleted property: isRetryAccepted
                           - Modified property: dayOfMonth
                             - Description changed from 'Dia fixo do mês que está prevista a transação. Caso consentimento seja para pagamentos trimestrais ou semestrais, o campo representa o dia do mês selecionado no campo `/data/recurringConfiguration/automatic/month` em que ocorrerá primeira cobrança.
 [Restrição] Campo deve ser enviado quando o campo /data/recurringConfiguration/automatic/period for igual a MENSAL, TRIMESTRAL, SEMESTRAL ou ANUAL.
@@ -1146,6 +1141,31 @@ Não pode ser preenchido nas autorizações de valor fixo.
                   - Schema #/components/schemas/Sweeping modified
                     - Properties changed
                       - Modified property: sweeping
+                        - Required changed
+                          - Deleted required property: useOverdraftLimit
+                        - Properties changed
+                          - Deleted property: useOverdraftLimit
+                          - Modified property: periodicLimits
+                            - Properties changed
+                              - Modified property: day
+                                - Properties changed
+                                  - Modified property: quantityLimit
+                                    - Min changed from 1 to null
+                              - Modified property: month
+                                - Properties changed
+                                  - Modified property: quantityLimit
+                                    - Min changed from 1 to null
+                              - Modified property: week
+                                - Properties changed
+                                  - Modified property: quantityLimit
+                                    - Min changed from 1 to null
+                              - Modified property: year
+                                - Properties changed
+                                  - Modified property: quantityLimit
+                                    - Min changed from 1 to null
+                  - Schema #/components/schemas/Vrp modified
+                    - Properties changed
+                      - Modified property: vrp
                         - Properties changed
                           - Modified property: periodicLimits
                             - Properties changed
@@ -1188,10 +1208,35 @@ Não pode ser preenchido nas autorizações de valor fixo.
 ' to 'Objeto contendo os dados do recebedor (creditor).'
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
+                    - Schema #/components/schemas/Vrp modified
+                      - Properties changed
+                        - Modified property: vrp
+                          - Properties changed
+                            - Modified property: periodicLimits
+                              - Properties changed
+                                - Modified property: day
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: month
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: week
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: year
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
+                          - Required changed
+                            - Deleted required property: isRetryAccepted
                           - Properties changed
+                            - Deleted property: isRetryAccepted
                             - Modified property: dayOfMonth
                               - Description changed from 'Dia fixo do mês que está prevista a transação. Caso consentimento seja para pagamentos trimestrais ou semestrais, o campo representa o dia do mês selecionado no campo `/data/recurringConfiguration/automatic/month` em que ocorrerá primeira cobrança.
 [Restrição] Campo deve ser enviado quando o campo /data/recurringConfiguration/automatic/period for igual a MENSAL, TRIMESTRAL, SEMESTRAL ou ANUAL.
@@ -1280,29 +1325,10 @@ Não pode ser preenchido nas autorizações de valor fixo.
                     - Schema #/components/schemas/Sweeping modified
                       - Properties changed
                         - Modified property: sweeping
+                          - Required changed
+                            - Deleted required property: useOverdraftLimit
                           - Properties changed
-                            - Modified property: periodicLimits
-                              - Properties changed
-                                - Modified property: day
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: month
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: week
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: year
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                    - Schema #/components/schemas/Vrp modified
-                      - Properties changed
-                        - Modified property: vrp
-                          - Properties changed
+                            - Deleted property: useOverdraftLimit
                             - Modified property: periodicLimits
                               - Properties changed
                                 - Modified property: day
@@ -1410,6 +1436,31 @@ GET /recurring-consents/{recurringConsentId}
 ' to 'Objeto contendo os dados do recebedor (creditor).'
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
+                    - Schema #/components/schemas/Sweeping modified
+                      - Properties changed
+                        - Modified property: sweeping
+                          - Required changed
+                            - Deleted required property: useOverdraftLimit
+                          - Properties changed
+                            - Deleted property: useOverdraftLimit
+                            - Modified property: periodicLimits
+                              - Properties changed
+                                - Modified property: day
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: month
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: week
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: year
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
                     - Schema #/components/schemas/Vrp modified
                       - Properties changed
                         - Modified property: vrp
@@ -1435,7 +1486,10 @@ GET /recurring-consents/{recurringConsentId}
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
+                          - Required changed
+                            - Deleted required property: isRetryAccepted
                           - Properties changed
+                            - Deleted property: isRetryAccepted
                             - Modified property: dayOfMonth
                               - Description changed from 'Dia fixo do mês que está prevista a transação. Caso consentimento seja para pagamentos trimestrais ou semestrais, o campo representa o dia do mês selecionado no campo `/data/recurringConfiguration/automatic/month` em que ocorrerá primeira cobrança.
 [Restrição] Campo deve ser enviado quando o campo /data/recurringConfiguration/automatic/period for igual a MENSAL, TRIMESTRAL, SEMESTRAL ou ANUAL.
@@ -1521,28 +1575,6 @@ Não pode ser preenchido nas autorizações de valor fixo.
                               - New enum values: [DIARIO]
                               - Deleted enum values: [SEMESTRAL TRIMESTRAL]
                               - Example changed from 'SEMANAL' to 'DIARIO'
-                    - Schema #/components/schemas/Sweeping modified
-                      - Properties changed
-                        - Modified property: sweeping
-                          - Properties changed
-                            - Modified property: periodicLimits
-                              - Properties changed
-                                - Modified property: day
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: month
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: week
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: year
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
                 - Modified property: riskSignals
                   - Properties changed
                     - New property: isCallInProgress
@@ -1654,54 +1686,13 @@ PATCH /recurring-consents/{recurringConsentId}
 ' to 'Objeto contendo os dados do recebedor (creditor).'
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
-                    - Schema #/components/schemas/Sweeping modified
-                      - Properties changed
-                        - Modified property: sweeping
-                          - Properties changed
-                            - Modified property: periodicLimits
-                              - Properties changed
-                                - Modified property: day
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: month
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: week
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: year
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                    - Schema #/components/schemas/Vrp modified
-                      - Properties changed
-                        - Modified property: vrp
-                          - Properties changed
-                            - Modified property: periodicLimits
-                              - Properties changed
-                                - Modified property: day
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: month
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: week
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: year
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
+                          - Required changed
+                            - Deleted required property: isRetryAccepted
                           - Properties changed
+                            - Deleted property: isRetryAccepted
                             - Modified property: dayOfMonth
                               - Description changed from 'Dia fixo do mês que está prevista a transação. Caso consentimento seja para pagamentos trimestrais ou semestrais, o campo representa o dia do mês selecionado no campo `/data/recurringConfiguration/automatic/month` em que ocorrerá primeira cobrança.
 [Restrição] Campo deve ser enviado quando o campo /data/recurringConfiguration/automatic/period for igual a MENSAL, TRIMESTRAL, SEMESTRAL ou ANUAL.
@@ -1787,6 +1778,53 @@ Não pode ser preenchido nas autorizações de valor fixo.
                               - New enum values: [DIARIO]
                               - Deleted enum values: [SEMESTRAL TRIMESTRAL]
                               - Example changed from 'SEMANAL' to 'DIARIO'
+                    - Schema #/components/schemas/Sweeping modified
+                      - Properties changed
+                        - Modified property: sweeping
+                          - Required changed
+                            - Deleted required property: useOverdraftLimit
+                          - Properties changed
+                            - Deleted property: useOverdraftLimit
+                            - Modified property: periodicLimits
+                              - Properties changed
+                                - Modified property: day
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: month
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: week
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: year
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                    - Schema #/components/schemas/Vrp modified
+                      - Properties changed
+                        - Modified property: vrp
+                          - Properties changed
+                            - Modified property: periodicLimits
+                              - Properties changed
+                                - Modified property: day
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: month
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: week
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: year
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
                 - Modified property: riskSignals
                   - Properties changed
                     - New property: isCallInProgress
