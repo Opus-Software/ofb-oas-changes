@@ -58,9 +58,10 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
 - LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação
 - CONSENTIMENTO_REVOGADO
+- LIMITE_TENTATIVAS_EXCEDIDO
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 '
-                        - New enum values: [CONSENTIMENTO_REVOGADO]
+                        - New enum values: [CONSENTIMENTO_REVOGADO LIMITE_TENTATIVAS_EXCEDIDO]
                       - Modified property: detail
                         - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
 - SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
@@ -99,6 +100,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.
 - LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
 - CONSENTIMENTO_REVOGADO: O pagamento estava associado a um consentimento que foi revogado.
+- LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido
 '
             - Modified property: links
               - Properties changed
@@ -405,7 +407,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - ERRO_IDEMPOTENCIA: Erro idempotência.
 - LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: Limite total excedido
 - LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: Limite de transação excedido.
-- LIMITE_TENTATIVAS_EXCEDIDO: O limite de tentativas para liquidação do pagamento permitidas pelo arranjo foi excedido.
+- LIMITE_DE_TENTATIVAS_EXCEDIDO: O limite de tentativas para liquidação do pagamento permitidas pelo arranjo foi excedido.
 '
   - Modified response: 500
     - Headers changed
@@ -803,13 +805,6 @@ POST /recurring-consents
 '
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
-                    - Schema #/components/schemas/Sweeping modified
-                      - Properties changed
-                        - Modified property: sweeping
-                          - Required changed
-                            - New required property: useOverdraftLimit
-                          - Properties changed
-                            - New property: useOverdraftLimit
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
@@ -872,6 +867,13 @@ POST /recurring-consents
                               - New enum values: [SEMESTRAL TRIMESTRAL]
                               - Deleted enum values: [DIARIO]
                               - Example changed from 'DIARIO' to 'SEMANAL'
+                    - Schema #/components/schemas/Sweeping modified
+                      - Properties changed
+                        - Modified property: sweeping
+                          - Required changed
+                            - New required property: useOverdraftLimit
+                          - Properties changed
+                            - New property: useOverdraftLimit
             - Modified property: links
               - Properties changed
                 - Modified property: self
@@ -899,6 +901,13 @@ GET /recurring-consents/{recurringConsentId}
 '
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
+                    - Schema #/components/schemas/Sweeping modified
+                      - Properties changed
+                        - Modified property: sweeping
+                          - Required changed
+                            - New required property: useOverdraftLimit
+                          - Properties changed
+                            - New property: useOverdraftLimit
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
@@ -961,13 +970,6 @@ GET /recurring-consents/{recurringConsentId}
                               - New enum values: [SEMESTRAL TRIMESTRAL]
                               - Deleted enum values: [DIARIO]
                               - Example changed from 'DIARIO' to 'SEMANAL'
-                    - Schema #/components/schemas/Sweeping modified
-                      - Properties changed
-                        - Modified property: sweeping
-                          - Required changed
-                            - New required property: useOverdraftLimit
-                          - Properties changed
-                            - New property: useOverdraftLimit
             - Modified property: links
               - Properties changed
                 - Modified property: self
