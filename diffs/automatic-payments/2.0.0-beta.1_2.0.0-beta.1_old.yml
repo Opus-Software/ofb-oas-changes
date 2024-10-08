@@ -1056,79 +1056,8 @@ POST /recurring-consents
 ' to 'Objeto contendo os dados do recebedor (creditor).'
               - Modified property: recurringConfiguration
                 - Property 'OneOf' changed
-                  - 1 schemas added
-                  - 1 schemas deleted
-                  - Schema #/components/schemas/Automatic modified
-                    - Properties changed
-                      - Modified property: automatic
-                        - Required changed
-                          - Deleted required property: isRetryAccepted
-                        - Properties changed
-                          - New property: dayOfMonth
-                          - New property: dayOfWeek
-                          - New property: immediatePayment
-                          - Deleted property: firstPayment
-                          - Deleted property: isRetryAccepted
-                          - Modified property: fixedAmount
-                            - Description changed from 'Valor fixo de cobrança, caso preenchido, representa um consentimento para pagamentos de valores fixos, ou não sujeitos a alteração durante a vigência do consentimento. 
-[Restrição] Excludente com o campo “/data/recurringConfiguration/automatic/maximumVariableAmount”
-' to 'Valor fixo de cobrança, caso preenchido, representa um consentimento para pagamentos de valores fixos. 
-[Restrição] Excludente com o campo “/data/recurringConfiguration/automatic/maximumVariableAmount”
-'
-                          - Modified property: minimumVariableAmount
-                            - Description changed from 'Valor definido pelo usuário recebedor. 
-Se o usuário pagador atribuir um valor máximo para os pagamentos daquela autorização, ele não poderá ser inferior ao valor mínimo (piso) definido pelo usuário recebedor. 
-Não pode ser preenchido nas autorizações de valor fixo.
-' to 'Valor definido pelo usuário recebedor. Se o usuário pagador atribuir um valor máximo para os pagamentos daquela autorização, 
-ele não poderá ser inferior ao piso definido pelo usuário recebedor. 
-Não pode ser preenchido nas autorizações de valor fixo.
-'
-                          - Modified property: month
-                            - Description changed from 'Mês previstos para ocorrer transações. Caso consentimento seja para pagamentos trimestrais ou semestrais, o campo representa o mês da primeira cobrança.
-- JANEIRO
-- FEVEREIRO
-- MARCO
-- ABRIL
-- MAIO
-- JUNHO
-- JULHO
-- AGOSTO
-- SETEMBRO
-- OUTUBRO
-- NOVEMBRO
-- DEZEMBRO
-[Restrição] Campo deve ser enviado quando o campo `/data/recurringConfiguration/automatic/period` for igual a TRIMESTRAL, SEMESTRAL ou ANUAL
-' to 'Mês previstos para ocorrer transações.
-- JANEIRO
-- FEVEREIRO
-- MARCO
-- ABRIL
-- MAIO
-- JUNHO
-- JULHO
-- AGOSTO
-- SETEMBRO
-- OUTUBRO
-- NOVEMBRO
-- DEZEMBRO
-[Restrição] Campo deve ser enviado quando o campo `/data/recurringConfiguration/automatic/period` for igual a ANUAL
-'
-                          - Modified property: period
-                            - Description changed from 'Define a periodicidade permitida para realização de transações
-- SEMANAL
-- MENSAL
-- ANUAL
-- SEMESTRAL
-- TRIMESTRAL
-' to 'Define a periodicidade permitida para realização de transações
-- DIARIO
-- SEMANAL
-- MENSAL
-- ANUAL
-'
-                            - New enum values: [DIARIO]
-                            - Deleted enum values: [SEMESTRAL TRIMESTRAL]
-                            - Example changed from 'SEMANAL' to 'DIARIO'
+                  - 2 schemas added
+                  - 2 schemas deleted
                   - Schema #/components/schemas/Vrp modified
                     - Properties changed
                       - Modified property: vrp
@@ -1174,64 +1103,19 @@ Não pode ser preenchido nas autorizações de valor fixo.
 ' to 'Objeto contendo os dados do recebedor (creditor).'
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
-                    - Schema #/components/schemas/Sweeping modified
-                      - Properties changed
-                        - Modified property: sweeping
-                          - Required changed
-                            - Deleted required property: useOverdraftLimit
-                          - Properties changed
-                            - Deleted property: useOverdraftLimit
-                            - Modified property: periodicLimits
-                              - Properties changed
-                                - Modified property: day
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: month
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: week
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: year
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                    - Schema #/components/schemas/Vrp modified
-                      - Properties changed
-                        - Modified property: vrp
-                          - Properties changed
-                            - Modified property: periodicLimits
-                              - Properties changed
-                                - Modified property: day
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: month
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: week
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: year
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
                           - Required changed
                             - Deleted required property: isRetryAccepted
+                            - Deleted required property: useOverdraftLimit
                           - Properties changed
                             - New property: dayOfMonth
                             - New property: dayOfWeek
                             - New property: immediatePayment
                             - Deleted property: firstPayment
                             - Deleted property: isRetryAccepted
+                            - Deleted property: useOverdraftLimit
                             - Modified property: fixedAmount
                               - Description changed from 'Valor fixo de cobrança, caso preenchido, representa um consentimento para pagamentos de valores fixos, ou não sujeitos a alteração durante a vigência do consentimento. 
 [Restrição] Excludente com o campo “/data/recurringConfiguration/automatic/maximumVariableAmount”
@@ -1292,6 +1176,53 @@ Não pode ser preenchido nas autorizações de valor fixo.
                               - New enum values: [DIARIO]
                               - Deleted enum values: [SEMESTRAL TRIMESTRAL]
                               - Example changed from 'SEMANAL' to 'DIARIO'
+                    - Schema #/components/schemas/Sweeping modified
+                      - Properties changed
+                        - Modified property: sweeping
+                          - Required changed
+                            - Deleted required property: useOverdraftLimit
+                          - Properties changed
+                            - Deleted property: useOverdraftLimit
+                            - Modified property: periodicLimits
+                              - Properties changed
+                                - Modified property: day
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: month
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: week
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: year
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                    - Schema #/components/schemas/Vrp modified
+                      - Properties changed
+                        - Modified property: vrp
+                          - Properties changed
+                            - Modified property: periodicLimits
+                              - Properties changed
+                                - Modified property: day
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: month
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: week
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: year
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
                 - Modified property: startDateTime
                   - Description changed from 'Data e hora em que o consentimento deve passar a ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format).
 [Restrição] Caso esse campo não seja enviado pelo iniciador na requisição, o detentor deve preencher esse campo com o mesmo valor atribuído ao campo /data/creationDateTime. Caso o campo /data/startDateTime enviado seja anterior ao valor do campo /data/creationDateTime, o detentor deve substituir o valor do campo /data/startDateTime pelo valor do campo /data/creationDateTime. 
@@ -1381,39 +1312,19 @@ GET /recurring-consents/{recurringConsentId}
 ' to 'Objeto contendo os dados do recebedor (creditor).'
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
-                    - Schema #/components/schemas/Vrp modified
-                      - Properties changed
-                        - Modified property: vrp
-                          - Properties changed
-                            - Modified property: periodicLimits
-                              - Properties changed
-                                - Modified property: day
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: month
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: week
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
-                                - Modified property: year
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from 1 to null
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
                           - Required changed
                             - Deleted required property: isRetryAccepted
+                            - Deleted required property: useOverdraftLimit
                           - Properties changed
                             - New property: dayOfMonth
                             - New property: dayOfWeek
                             - New property: immediatePayment
                             - Deleted property: firstPayment
                             - Deleted property: isRetryAccepted
+                            - Deleted property: useOverdraftLimit
                             - Modified property: fixedAmount
                               - Description changed from 'Valor fixo de cobrança, caso preenchido, representa um consentimento para pagamentos de valores fixos, ou não sujeitos a alteração durante a vigência do consentimento. 
 [Restrição] Excludente com o campo “/data/recurringConfiguration/automatic/maximumVariableAmount”
@@ -1481,6 +1392,28 @@ Não pode ser preenchido nas autorizações de valor fixo.
                             - Deleted required property: useOverdraftLimit
                           - Properties changed
                             - Deleted property: useOverdraftLimit
+                            - Modified property: periodicLimits
+                              - Properties changed
+                                - Modified property: day
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: month
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: week
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                                - Modified property: year
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from 1 to null
+                    - Schema #/components/schemas/Vrp modified
+                      - Properties changed
+                        - Modified property: vrp
+                          - Properties changed
                             - Modified property: periodicLimits
                               - Properties changed
                                 - Modified property: day
@@ -1615,12 +1548,14 @@ PATCH /recurring-consents/{recurringConsentId}
                         - Modified property: automatic
                           - Required changed
                             - Deleted required property: isRetryAccepted
+                            - Deleted required property: useOverdraftLimit
                           - Properties changed
                             - New property: dayOfMonth
                             - New property: dayOfWeek
                             - New property: immediatePayment
                             - Deleted property: firstPayment
                             - Deleted property: isRetryAccepted
+                            - Deleted property: useOverdraftLimit
                             - Modified property: fixedAmount
                               - Description changed from 'Valor fixo de cobrança, caso preenchido, representa um consentimento para pagamentos de valores fixos, ou não sujeitos a alteração durante a vigência do consentimento. 
 [Restrição] Excludente com o campo “/data/recurringConfiguration/automatic/maximumVariableAmount”
