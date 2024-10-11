@@ -1,1 +1,40 @@
-﻿No endpoint changes
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 2
+-------------------------
+POST /enrollments
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: expirationDateTime
+                  - Description changed from 'Data e hora definida pelo usuário em que o vínculo do dispositivo deve expirar, perdendo sua validade.
+[Restrição] Campo obrigatório que deverá ser retornado quando o vínculo de dispositivo estiver ou passar pelo estado AUTHORISED;
+' to 'Data e hora de expiração da permissão. Reflete a data limite de validade do vínculo. 
+Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format).
+[Restrição] De preenchimento obrigatório nos casos em que houver validade determinada. 
+Em casos de vínculo com prazo indeterminado, o campo não deve ser preenchido.
+'
+GET /enrollments/{enrollmentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: expirationDateTime
+                  - Description changed from 'Data e hora definida pelo usuário em que o vínculo do dispositivo deve expirar, perdendo sua validade.
+[Restrição] Campo obrigatório que deverá ser retornado quando o vínculo de dispositivo estiver ou passar pelo estado AUTHORISED;
+' to 'Data e hora de expiração da permissão. Reflete a data limite de validade do vínculo. 
+Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format).
+[Restrição] De preenchimento obrigatório nos casos em que houver validade determinada. 
+Em casos de vínculo com prazo indeterminado, o campo não deve ser preenchido.
+'
