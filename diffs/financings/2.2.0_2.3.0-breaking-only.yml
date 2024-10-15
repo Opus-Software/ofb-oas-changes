@@ -2,8 +2,20 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 2
+### Modified Endpoints: 3
 -------------------------
+GET /contracts
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: brandName
+                    - Pattern changed from '[\w\W\s]*' to '^(?!\s)[\w\W\s]*[^\s]$'
 GET /contracts/{contractId}
 - Responses changed
   - Modified response: 200
@@ -16,11 +28,33 @@ GET /contracts/{contractId}
                 - Modified property: CET
                   - MaxLength changed from 9 to 13
                   - Pattern changed from '^\d{1,2}\.\d{6}$' to '^\d{1,6}\.\d{6}$'
+                - Modified property: amortizationScheduledAdditionalInfo
+                  - Pattern changed from '[\w\W\s]*' to '^(?!\s)[\w\W\s]*[^\s]$'
+                - Modified property: contractedFees
+                  - Items changed
+                    - Properties changed
+                      - Modified property: feeCode
+                        - Pattern changed from '[\w\W\s]*' to '^(?!\s)[\w\W\s]*[^\s]$'
+                      - Modified property: feeName
+                        - Pattern changed from '[\w\W\s]*' to '^(?!\s)[\w\W\s]*[^\s]$'
                 - Modified property: contractedFinanceCharges
                   - Items changed
                     - Properties changed
+                      - Modified property: chargeAdditionalInfo
+                        - Pattern changed from '[\w\W\s]*' to '^(?!\s)[\w\W\s]*[^\s]$'
                       - Modified property: chargeRate
                         - Pattern changed from '^[01]\.\d{6}$' to '^\d{1}\.\d{6}$'
+                - Modified property: instalmentPeriodicityAdditionalInfo
+                  - Pattern changed from '[\w\W\s]*' to '^(?!\s)[\w\W\s]*[^\s]$'
+                - Modified property: interestRates
+                  - Items changed
+                    - Properties changed
+                      - Modified property: additionalInfo
+                        - Pattern changed from '[\w\W\s]*' to '^(?!\s)[\w\W\s]*[^\s]$'
+                      - Modified property: referentialRateIndexerAdditionalInfo
+                        - Pattern changed from '[\w\W\s]*' to '^(?!\s)[\w\W\s]*[^\s]$'
+                - Modified property: productName
+                  - Pattern changed from '[\w\W\s]*' to '^(?!\s)[\w\W\s]*[^\s]$'
 GET /contracts/{contractId}/payments
 - Responses changed
   - Modified response: 200
@@ -38,9 +72,18 @@ GET /contracts/{contractId}/payments
                           - Modified property: charges
                             - Items changed
                               - Properties changed
+                                - Modified property: chargeAdditionalInfo
+                                  - Pattern changed from '[\w\W\s]*' to '^(?!\s)[\w\W\s]*[^\s]$'
                                 - Modified property: chargeAmount
                                   - MaxLength changed from 20 to 21
                                   - Pattern changed from '^\d{1,15}\.\d{2,4}$' to '^-?\d{1,15}\.\d{2,4}$'
+                          - Modified property: fees
+                            - Items changed
+                              - Properties changed
+                                - Modified property: feeCode
+                                  - Pattern changed from '[\w\W\s]*' to '^(?!\s)[\w\W\s]*[^\s]$'
+                                - Modified property: feeName
+                                  - Pattern changed from '[\w\W\s]*' to '^(?!\s)[\w\W\s]*[^\s]$'
                       - Modified property: paidAmount
                         - MaxLength changed from 20 to 21
                         - Pattern changed from '^\d{1,15}\.\d{2,4}$' to '^-?\d{1,15}\.\d{2,4}$'
