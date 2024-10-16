@@ -2,7 +2,7 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 3
+### Modified Endpoints: 4
 -------------------------
 POST /consents/{consentId}/authorise
 - Description changed from 'Autorização de um consentimento de pagamentos em status `AWAITING_AUTHORISATION` a partir do access_token emitido pela jornada sem redirecionamento e envio de sinais de risco. 
@@ -18,6 +18,18 @@ Caso a detentora identifique que a conta de débito informada pelo iniciador na 
 Se o iniciador, durante a criação do consentimento, omitir a conta de débito, o detentor deve considerar a conta de débito associada ao vínculo para o preenchimento do objeto `/data/debtorAccount`, presente no consentimento, após a sua autorização.
 Os limites relacionados ao vínculo devem ser validados apenas em momento de liquidação do pagamento, independente dele ser agendado ou imediato.
 '
+- New header param: x-bcb-nfc
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: riskSignals
+                - Properties changed
+                  - New property: isCallInProgress
+                  - Deleted property: isCallingProgress
 POST /enrollments
 - Responses changed
   - Modified response: 201
@@ -52,3 +64,13 @@ Uma string com data e hora conforme especificação RFC-3339, sempre com a utili
 [Restrição] De preenchimento obrigatório nos casos em que houver validade determinada. 
 Em casos de vínculo com prazo indeterminado, o campo não deve ser preenchido.
 '
+POST /enrollments/{enrollmentId}/risk-signals
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - New property: isCallInProgress
+              - Deleted property: isCallingProgress
