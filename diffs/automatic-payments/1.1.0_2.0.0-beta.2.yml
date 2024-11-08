@@ -132,21 +132,6 @@ POST /pix/recurring-payments
 - INIC - Indica que o recebedor (creditor) contratou o Iniciador de Pagamentos especificamente para realizar iniciações de pagamento em que o beneficiário é previamente conhecido
 [Restrição] Caso consentimento associado a tentativa de pagamento seja para Pix automático (objeto “automatic” selecionado no oneOf do campo "/data/recurringConfiguration"), apenas o método MANU é permitido.
 '
-              - Modified property: proxy
-                - Description changed from 'Chave cadastrada no DICT pertencente ao recebedor. Os tipos de chaves podem ser: telefone, e-mail, cpf/cnpj ou chave aleatória. 
-No caso de telefone celular deve ser informado no padrão E.1641. Para e-mail deve ter o formato xxxxxxxx@xxxxxxx.xxx(.xx) e no máximo 77 caracteres. 
-No caso de CPF deverá ser informado com 11 números, sem pontos ou traços. Para o caso de CNPJ deverá ser informado com 14 números, sem pontos ou traços. 
-No caso de chave aleatória deve ser informado o UUID gerado pelo DICT, conforme formato especificado na [RFC4122](https://tools.ietf.org/html/rfc4122).
-[Restrição] Se localInstrument for igual a DICT ou INIC, o campo proxy deve ser preenchido.
-[Restrição] Se informado, a detentora da conta deve validar o proxy no DICT (quando localInstrument for igual a DICT) e validar o objeto creditorAccount. Ação opcional caso o localInstrument for igual a INIC
-' to 'Chave cadastrada no DICT pertencente ao recebedor. Os tipos de chaves podem ser: telefone, e-mail, cpf/cnpj ou chave aleatória. 
-No caso de telefone celular deve ser informado no padrão E.1641. Para e-mail deve ter o formato xxxxxxxx@xxxxxxx.xxx(.xx) e no máximo 77 caracteres. 
-No caso de CPF deverá ser informado com 11 números, sem pontos ou traços. Para o caso de CNPJ deverá ser informado com 14 números, sem pontos ou traços. 
-No caso de chave aleatória deve ser informado o UUID gerado pelo DICT, conforme formato especificado na [RFC4122](https://tools.ietf.org/html/rfc4122).
-[Restrição] Se localInstrument for igual a DICT ou INIC, o campo proxy deve ser preenchido.
-[Restrição] Se informado, a detentora da conta deve validar o proxy no DICT (quando localInstrument for igual a DICT) e validar o objeto creditorAccount. Ação opcional caso o localInstrument for igual a INIC
-[Restrição] Caso o campo “/data/localInstrument” seja enviado como “MANU”, o campo “/data/proxy” não deve ser informado
-'
               - Modified property: riskSignals
                 - Properties changed
                   - Modified property: manual
@@ -206,21 +191,6 @@ CANCELADO_AGENDAMENTO - Pagamento cancelado enquanto estava na situação SCHD
 - DICT - Inserção manual de chave Pix
 - INIC - Indica que o recebedor (creditor) contratou o Iniciador de Pagamentos especificamente para realizar iniciações de pagamento em que o beneficiário é previamente conhecido
 [Restrição] Caso consentimento associado a tentativa de pagamento seja para Pix automático (objeto “automatic” selecionado no oneOf do campo "/data/recurringConfiguration"), apenas o método MANU é permitido.
-'
-                - Modified property: proxy
-                  - Description changed from 'Chave cadastrada no DICT pertencente ao recebedor. Os tipos de chaves podem ser: telefone, e-mail, cpf/cnpj ou chave aleatória. 
-No caso de telefone celular deve ser informado no padrão E.1641. Para e-mail deve ter o formato xxxxxxxx@xxxxxxx.xxx(.xx) e no máximo 77 caracteres. 
-No caso de CPF deverá ser informado com 11 números, sem pontos ou traços. Para o caso de CNPJ deverá ser informado com 14 números, sem pontos ou traços. 
-No caso de chave aleatória deve ser informado o UUID gerado pelo DICT, conforme formato especificado na [RFC4122](https://tools.ietf.org/html/rfc4122).
-[Restrição] Se localInstrument for igual a DICT ou INIC, o campo proxy deve ser preenchido.
-[Restrição] Se informado, a detentora da conta deve validar o proxy no DICT (quando localInstrument for igual a DICT) e validar o objeto creditorAccount. Ação opcional caso o localInstrument for igual a INIC
-' to 'Chave cadastrada no DICT pertencente ao recebedor. Os tipos de chaves podem ser: telefone, e-mail, cpf/cnpj ou chave aleatória. 
-No caso de telefone celular deve ser informado no padrão E.1641. Para e-mail deve ter o formato xxxxxxxx@xxxxxxx.xxx(.xx) e no máximo 77 caracteres. 
-No caso de CPF deverá ser informado com 11 números, sem pontos ou traços. Para o caso de CNPJ deverá ser informado com 14 números, sem pontos ou traços. 
-No caso de chave aleatória deve ser informado o UUID gerado pelo DICT, conforme formato especificado na [RFC4122](https://tools.ietf.org/html/rfc4122).
-[Restrição] Se localInstrument for igual a DICT ou INIC, o campo proxy deve ser preenchido.
-[Restrição] Se informado, a detentora da conta deve validar o proxy no DICT (quando localInstrument for igual a DICT) e validar o objeto creditorAccount. Ação opcional caso o localInstrument for igual a INIC
-[Restrição] Caso o campo “/data/localInstrument” seja enviado como “MANU”, o campo “/data/proxy” não deve ser informado
 '
                 - Modified property: rejectionReason
                   - Properties changed
@@ -481,23 +451,6 @@ CANCELADO_AGENDAMENTO - Pagamento cancelado enquanto estava na situação SCHD
 - INIC - Indica que o recebedor (creditor) contratou o Iniciador de Pagamentos especificamente para realizar iniciações de pagamento em que o beneficiário é previamente conhecido
 [Restrição] Caso consentimento associado a tentativa de pagamento seja para Pix automático (objeto “automatic” selecionado no oneOf do campo "/data/recurringConfiguration"), apenas o método MANU é permitido.
 '
-                - Modified property: proxy
-                  - Description changed from 'Chave cadastrada no DICT pertencente ao recebedor. Os tipos de chaves podem ser: telefone, e-mail, cpf/cnpj ou chave aleatória. 
-No caso de telefone celular deve ser informado no padrão E.1641. Para e-mail deve ter o formato xxxxxxxx@xxxxxxx.xxx(.xx) e no máximo 77 caracteres. 
-No caso de CPF deverá ser informado com 11 números, sem pontos ou traços. Para o caso de CNPJ deverá ser informado com 14 números, sem pontos ou traços. 
-No caso de chave aleatória deve ser informado o UUID gerado pelo DICT, conforme formato especificado na [RFC4122](https://tools.ietf.org/html/rfc4122). 
-Se informado, a detentora da conta deve validar o proxy no DICT quando localInstrument for igual a DICT e validar o campo creditorAccount. 
-Esta validação é opcional caso o localInstrument for igual a INIC.
-[Restrição] Se localInstrument for igual a DICT, o campo proxy deve ser preenchido.
-' to 'Chave cadastrada no DICT pertencente ao recebedor. Os tipos de chaves podem ser: telefone, e-mail, cpf/cnpj ou chave aleatória. 
-No caso de telefone celular deve ser informado no padrão E.1641. Para e-mail deve ter o formato xxxxxxxx@xxxxxxx.xxx(.xx) e no máximo 77 caracteres. 
-No caso de CPF deverá ser informado com 11 números, sem pontos ou traços. Para o caso de CNPJ deverá ser informado com 14 números, sem pontos ou traços. 
-No caso de chave aleatória deve ser informado o UUID gerado pelo DICT, conforme formato especificado na [RFC4122](https://tools.ietf.org/html/rfc4122). 
-Se informado, a detentora da conta deve validar o proxy no DICT quando localInstrument for igual a DICT e validar o campo creditorAccount. 
-Esta validação é opcional caso o localInstrument for igual a INIC.
-[Restrição] Se localInstrument for igual a DICT, o campo proxy deve ser preenchido.
-[Restrição] Caso o campo “/data/localInstrument” seja enviado como “MANU”, o campo “/data/proxy” não deve ser informado
-'
                 - Modified property: rejectionReason
                   - Properties changed
                     - Modified property: code
@@ -654,23 +607,6 @@ CANCELADO_AGENDAMENTO - Pagamento cancelado enquanto estava na situação SCHD
 - DICT - Inserção manual de chave Pix
 - INIC - Indica que o recebedor (creditor) contratou o Iniciador de Pagamentos especificamente para realizar iniciações de pagamento em que o beneficiário é previamente conhecido
 [Restrição] Caso consentimento associado a tentativa de pagamento seja para Pix automático (objeto “automatic” selecionado no oneOf do campo "/data/recurringConfiguration"), apenas o método MANU é permitido.
-'
-                - Modified property: proxy
-                  - Description changed from 'Chave cadastrada no DICT pertencente ao recebedor. Os tipos de chaves podem ser: telefone, e-mail, cpf/cnpj ou chave aleatória. 
-No caso de telefone celular deve ser informado no padrão E.1641. Para e-mail deve ter o formato xxxxxxxx@xxxxxxx.xxx(.xx) e no máximo 77 caracteres. 
-No caso de CPF deverá ser informado com 11 números, sem pontos ou traços. Para o caso de CNPJ deverá ser informado com 14 números, sem pontos ou traços. 
-No caso de chave aleatória deve ser informado o UUID gerado pelo DICT, conforme formato especificado na [RFC4122](https://tools.ietf.org/html/rfc4122). 
-Se informado, a detentora da conta deve validar o proxy no DICT quando localInstrument for igual a DICT e validar o campo creditorAccount. 
-Esta validação é opcional caso o localInstrument for igual a INIC.
-[Restrição] Se localInstrument for igual a DICT, o campo proxy deve ser preenchido.
-' to 'Chave cadastrada no DICT pertencente ao recebedor. Os tipos de chaves podem ser: telefone, e-mail, cpf/cnpj ou chave aleatória. 
-No caso de telefone celular deve ser informado no padrão E.1641. Para e-mail deve ter o formato xxxxxxxx@xxxxxxx.xxx(.xx) e no máximo 77 caracteres. 
-No caso de CPF deverá ser informado com 11 números, sem pontos ou traços. Para o caso de CNPJ deverá ser informado com 14 números, sem pontos ou traços. 
-No caso de chave aleatória deve ser informado o UUID gerado pelo DICT, conforme formato especificado na [RFC4122](https://tools.ietf.org/html/rfc4122). 
-Se informado, a detentora da conta deve validar o proxy no DICT quando localInstrument for igual a DICT e validar o campo creditorAccount. 
-Esta validação é opcional caso o localInstrument for igual a INIC.
-[Restrição] Se localInstrument for igual a DICT, o campo proxy deve ser preenchido.
-[Restrição] Caso o campo “/data/localInstrument” seja enviado como “MANU”, o campo “/data/proxy” não deve ser informado
 '
                 - Modified property: rejectionReason
                   - Properties changed
