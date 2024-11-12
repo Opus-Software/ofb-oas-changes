@@ -1486,33 +1486,6 @@ Não pode ser preenchido nas autorizações de valor fixo.
     - Headers changed
       - Deleted header: x-fapi-interaction-id
 PATCH /recurring-consents/{recurringConsentId}
-- Description changed from 'Método para rejeitar, revogar ou editar um consentimento de longa duração:  
-1 - Informações sobre a revogação:
-- Caso bem sucedido, o consentimento vai para o status “REVOKED”;
-- Apenas consentimentos com status “AUTHORISED” podem ser revogados;
-- Pagamentos automáticos associados ao consentimento e que estão agendados para ocorrer até as 23:59h do próximo dia (a partir do dia de 
-solicitação da revogação) deverão ser mantidos. Pagamentos agendados para ocorrer após esse período devem ser cancelados.
-- Demais orientações referentes a revogação podem ser encontrados no header da API, tópico “Validações”, item 3.
-2 - Informações sobre a edição: 
-- Os campos que são passíveis de edição e suas regras podem ser encontrados através do [link](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/198410772);
-- A edição é possível apenas em casos de consentimento para Pix Automático (“automatic” escolhido no oneOf do objeto “recurringConfiguration”);
-- O envio do item "/data/creditors/name" atualizará o nome do recebedor em todos os elementos do array.
-3 - Informações sobre a rejeição:  
-- Caso haja necessidade de cancelamento de um consentimento ainda não autorizado, o iniciador poderá chamar o endpoint para mover o consentimento para REJECTED.
-' to 'Método para rejeitar, revogar ou editar um consentimento de longa duração:  
-1 - Informações sobre a revogação:
-- Caso bem sucedido, o consentimento vai para o status “REVOKED”;
-- Apenas consentimentos com status “AUTHORISED” podem ser revogados;
-- Pagamentos automáticos associados ao consentimento e que estão agendados para ocorrer até as 23:59h do próximo dia (a partir do dia de 
-solicitação da revogação) deverão ser mantidos. Pagamentos agendados para ocorrer após esse período devem ser cancelados.
-- Demais orientações referentes a revogação podem ser encontrados no header da API, tópico “Validações”, item 3.
-2 - Informações sobre a edição: 
-- Os campos que são passíveis de edição e suas regras podem ser encontrados através do [link](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/628195665);
-- A edição é possível apenas em casos de consentimento para Pix Automático (“automatic” escolhido no oneOf do objeto “recurringConfiguration”);
-- O envio do item "/data/creditors/name" atualizará o nome do recebedor em todos os elementos do array.
-3 - Informações sobre a rejeição:  
-- Caso haja necessidade de cancelamento de um consentimento ainda não autorizado, o iniciador poderá chamar o endpoint para mover o consentimento para REJECTED.
-'
 - Modified header param: x-fapi-interaction-id
   - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..'
 - Request body changed
@@ -1560,28 +1533,6 @@ solicitação da revogação) deverão ser mantidos. Pagamentos agendados para o
 '
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
-                    - Schema #/components/schemas/Vrp modified
-                      - Properties changed
-                        - Modified property: vrp
-                          - Properties changed
-                            - Modified property: periodicLimits
-                              - Properties changed
-                                - Modified property: day
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from null to 1
-                                - Modified property: month
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from null to 1
-                                - Modified property: week
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from null to 1
-                                - Modified property: year
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from null to 1
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
@@ -1666,6 +1617,28 @@ Não pode ser preenchido nas autorizações de valor fixo.
                           - Properties changed
                             - New property: startDateTime
                             - New property: useOverdraftLimit
+                            - Modified property: periodicLimits
+                              - Properties changed
+                                - Modified property: day
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from null to 1
+                                - Modified property: month
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from null to 1
+                                - Modified property: week
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from null to 1
+                                - Modified property: year
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from null to 1
+                    - Schema #/components/schemas/Vrp modified
+                      - Properties changed
+                        - Modified property: vrp
+                          - Properties changed
                             - Modified property: periodicLimits
                               - Properties changed
                                 - Modified property: day
