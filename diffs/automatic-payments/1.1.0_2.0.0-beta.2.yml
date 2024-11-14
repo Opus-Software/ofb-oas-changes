@@ -911,6 +911,15 @@ GET /recurring-consents/{recurringConsentId}
 '
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
+                    - Schema #/components/schemas/Sweeping modified
+                      - Properties changed
+                        - Modified property: sweeping
+                          - Required changed
+                            - New required property: startDateTime
+                            - New required property: useOverdraftLimit
+                          - Properties changed
+                            - New property: startDateTime
+                            - New property: useOverdraftLimit
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
@@ -977,15 +986,6 @@ GET /recurring-consents/{recurringConsentId}
                               - New enum values: [SEMESTRAL TRIMESTRAL]
                               - Deleted enum values: [DIARIO]
                               - Example changed from 'DIARIO' to 'SEMANAL'
-                    - Schema #/components/schemas/Sweeping modified
-                      - Properties changed
-                        - Modified property: sweeping
-                          - Required changed
-                            - New required property: startDateTime
-                            - New required property: useOverdraftLimit
-                          - Properties changed
-                            - New property: startDateTime
-                            - New property: useOverdraftLimit
             - Modified property: links
               - Properties changed
                 - Modified property: self
@@ -1035,16 +1035,11 @@ solicitação da revogação) deverão ser mantidos. Pagamentos agendados para o
                 - Properties changed
                   - New property: recurringConfiguration
                   - Deleted property: automatic
+                  - Deleted property: startDateTime
                   - Modified property: creditors
                     - Items changed
                       - Description changed from 'Objeto contendo os dados do recebedor (creditor).' to 'Objeto contendo os dados do recebedor (creditor).
 [Restrição] Caso o consentimento de longa duração seja para o produto Pix Automático (“automatic” selecionado no oneOf do objeto “/data/recurringConfiguration”), apenas um recebedor é permitido e esse deve ser pessoa jurídica.
-'
-                  - Modified property: startDateTime
-                    - Description changed from 'Data e hora em que o consentimento deve passar a ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format).
-[Restrição] Preenchimento obrigatório quando o consentimento de pagamento passa a valer em data (dia e hora) futura.
-' to 'Data e hora em que o consentimento deve passar a ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format).
-[Restrição] Caso esse campo não seja enviado pelo iniciador na requisição, o detentor deve preencher esse campo com o mesmo valor atribuído ao campo /data/creationDateTime. Caso o campo /data/startDateTime enviado seja anterior ao valor do campo /data/creationDateTime, o detentor deve substituir o valor do campo /data/startDateTime pelo valor do campo /data/creationDateTime.
 '
 - Responses changed
   - Modified response: 200
