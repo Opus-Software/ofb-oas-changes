@@ -15,6 +15,7 @@ GET /pix/recurring-payments
               - Items changed
                 - Properties changed
                   - New property: lastRetryRecurringPaymentIds
+                  - New property: paymentReference
                   - Modified property: rejectionReason
                     - Properties changed
                       - Modified property: code
@@ -121,6 +122,7 @@ POST /pix/recurring-payments
           - Modified property: data
             - Properties changed
               - New property: lastRetryRecurringPaymentIds
+              - New property: paymentReference
               - Modified property: localInstrument
                 - Description changed from 'Especifica a forma de iniciação do pagamento
 - MANU - Inserção manual de dados da conta transacional
@@ -181,6 +183,7 @@ Em dispositivos iOS o valor é um ponto flutuante entre 0.0 e 1.0.
             - Modified property: data
               - Properties changed
                 - New property: lastRetryRecurringPaymentIds
+                - New property: paymentReference
                 - Deleted property: ibgeTownCode
                 - Modified property: cancellation
                   - Properties changed
@@ -455,6 +458,7 @@ GET /pix/recurring-payments/{recurringPaymentId}
             - Modified property: data
               - Properties changed
                 - New property: lastRetryRecurringPaymentIds
+                - New property: paymentReference
                 - Deleted property: ibgeTownCode
                 - Modified property: cancellation
                   - Properties changed
@@ -629,6 +633,7 @@ PATCH /pix/recurring-payments/{recurringPaymentId}
             - Modified property: data
               - Properties changed
                 - New property: lastRetryRecurringPaymentIds
+                - New property: paymentReference
                 - Deleted property: ibgeTownCode
                 - Modified property: cancellation
                   - Properties changed
@@ -806,6 +811,15 @@ POST /recurring-consents
 '
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
+                    - Schema #/components/schemas/Sweeping modified
+                      - Properties changed
+                        - Modified property: sweeping
+                          - Required changed
+                            - New required property: startDateTime
+                            - New required property: useOverdraftLimit
+                          - Properties changed
+                            - New property: startDateTime
+                            - New property: useOverdraftLimit
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
@@ -872,15 +886,6 @@ POST /recurring-consents
                               - New enum values: [SEMESTRAL TRIMESTRAL]
                               - Deleted enum values: [DIARIO]
                               - Example changed from 'DIARIO' to 'SEMANAL'
-                    - Schema #/components/schemas/Sweeping modified
-                      - Properties changed
-                        - Modified property: sweeping
-                          - Required changed
-                            - New required property: startDateTime
-                            - New required property: useOverdraftLimit
-                          - Properties changed
-                            - New property: startDateTime
-                            - New property: useOverdraftLimit
             - Modified property: links
               - Properties changed
                 - Modified property: self
