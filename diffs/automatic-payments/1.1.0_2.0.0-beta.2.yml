@@ -5,6 +5,7 @@
 ### Modified Endpoints: 7
 -------------------------
 GET /pix/recurring-payments
+- New query param: originalRecurringPaymentId
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -986,6 +987,15 @@ GET /recurring-consents/{recurringConsentId}
 '
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
+                    - Schema #/components/schemas/Sweeping modified
+                      - Properties changed
+                        - Modified property: sweeping
+                          - Required changed
+                            - New required property: startDateTime
+                            - New required property: useOverdraftLimit
+                          - Properties changed
+                            - New property: startDateTime
+                            - New property: useOverdraftLimit
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
@@ -1052,15 +1062,6 @@ GET /recurring-consents/{recurringConsentId}
                               - New enum values: [SEMESTRAL TRIMESTRAL]
                               - Deleted enum values: [DIARIO]
                               - Example changed from 'DIARIO' to 'SEMANAL'
-                    - Schema #/components/schemas/Sweeping modified
-                      - Properties changed
-                        - Modified property: sweeping
-                          - Required changed
-                            - New required property: startDateTime
-                            - New required property: useOverdraftLimit
-                          - Properties changed
-                            - New property: startDateTime
-                            - New property: useOverdraftLimit
             - Modified property: links
               - Properties changed
                 - Modified property: self
