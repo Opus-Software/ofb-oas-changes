@@ -5,6 +5,7 @@
 ### Modified Endpoints: 7
 -------------------------
 GET /pix/recurring-payments
+- New query param: originalRecurringPaymentId
 - Modified header param: x-fapi-interaction-id
   - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja enviado pela iniciadora, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. Caso recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400 ou 422 (com o código PARAMETRO_INVALIDO). A iniciadora deve acatar o valor gerado pelo detentor e recebido na resposta.' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a detentora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP status code 400. A iniciadora deve acatar o valor recebido da detentora..'
 - Responses changed
@@ -1598,7 +1599,7 @@ solicitação da revogação) deverão ser mantidos. Pagamentos agendados para o
           - Modified property: data
             - Property 'OneOf' changed
               - 1 schemas added
-              - Schema #/components/schemas/ConsentRevocation modified
+              - Schema #/components/schemas/ConsentRejection modified
                 - Properties changed
                   - Deleted property: automatic
                   - Deleted property: creditors
@@ -1608,7 +1609,7 @@ solicitação da revogação) deverão ser mantidos. Pagamentos agendados para o
                     - Properties changed
                       - New property: isCallingProgress
                       - Deleted property: isCallInProgress
-              - Schema #/components/schemas/ConsentRejection modified
+              - Schema #/components/schemas/ConsentRevocation modified
                 - Properties changed
                   - Deleted property: automatic
                   - Deleted property: creditors
