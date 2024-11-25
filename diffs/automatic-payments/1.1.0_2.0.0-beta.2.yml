@@ -61,9 +61,10 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - CONSENTIMENTO_REVOGADO
 - LIMITE_TENTATIVAS_EXCEDIDO
 - FORA_PRAZO_PERMITIDO
+- DETALHE_TENTATIVA_INVALIDO
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 '
-                        - New enum values: [CONSENTIMENTO_REVOGADO LIMITE_TENTATIVAS_EXCEDIDO FORA_PRAZO_PERMITIDO]
+                        - New enum values: [CONSENTIMENTO_REVOGADO LIMITE_TENTATIVAS_EXCEDIDO FORA_PRAZO_PERMITIDO DETALHE_TENTATIVA_INVALIDO]
                       - Modified property: detail
                         - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
 - SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
@@ -104,6 +105,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - CONSENTIMENTO_REVOGADO: O pagamento estava associado a um consentimento que foi revogado.
 - LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido
 - FORA_PRAZO_PERMITIDO: O horário ou período da requisição não permite o agendamento pelo detentor.
+- DETALHE_TENTATIVA_INVALIDO : O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
 '
             - Modified property: links
               - Properties changed
@@ -272,9 +274,10 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
 - CONSENTIMENTO_REVOGADO
 - FORA_PRAZO_PERMITIDO
+- DETALHE_TENTATIVA_INVALIDO
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 '
-                      - New enum values: [LIMITE_TENTATIVAS_EXCEDIDO CONSENTIMENTO_REVOGADO FORA_PRAZO_PERMITIDO]
+                      - New enum values: [LIMITE_TENTATIVAS_EXCEDIDO CONSENTIMENTO_REVOGADO FORA_PRAZO_PERMITIDO DETALHE_TENTATIVA_INVALIDO]
                     - Modified property: detail
                       - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
 - SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
@@ -315,6 +318,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
 - CONSENTIMENTO_REVOGADO: O pagamento estava associado a um consentimento que foi revogado.
 - FORA_PRAZO_PERMITIDO: O horário ou período da requisição não permite o agendamento pelo detentor.
+- DETALHE_TENTATIVA_INVALIDO : O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
 '
             - Modified property: links
               - Properties changed
@@ -367,8 +371,9 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
 - LIMITE_TENTATIVAS_EXCEDIDO: O limite de tentativas para liquidação do pagamento permitidas pelo arranjo foi excedido.
 - FORA_PRAZO_PERMITIDO: O horário ou período da requisição não permite o agendamento pelo detentor.
+- DETALHE_TENTATIVA_INVALIDO: O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
 '
-                    - New enum values: [LIMITE_TENTATIVAS_EXCEDIDO FORA_PRAZO_PERMITIDO]
+                    - New enum values: [LIMITE_TENTATIVAS_EXCEDIDO FORA_PRAZO_PERMITIDO DETALHE_TENTATIVA_INVALIDO]
                   - Modified property: detail
                     - Description changed from 'Descrição específica do erro de acordo com o código reportado:
 - SALDO_INSUFICIENTE: Esta conta não possui saldo suficiente para realizar o pagamento.
@@ -408,6 +413,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
 - LIMITE_TENTATIVAS_EXCEDIDO: O limite de tentativas para liquidação do pagamento permitidas pelo arranjo foi excedido.
 - FORA_PRAZO_PERMITIDO: O horário ou período da requisição não permite o agendamento pelo detentor.
+- DETALHE_TENTATIVA_INVALIDO: O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
 '
                   - Modified property: title
                     - Description changed from 'Título específico do erro reportado, de acordo com o código enviado:
@@ -448,6 +454,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: Limite de transação excedido.
 - LIMITE_TENTATIVAS_EXCEDIDO: Limite de tentativas excedido.
 - FORA_PRAZO_PERMITIDO: Tentativa fora do prazo.
+- DETALHE_TENTATIVA_INVALIDO: Nova tentativa inválida
 '
   - Modified response: 500
     - Headers changed
@@ -554,9 +561,10 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
 - CONSENTIMENTO_REVOGADO
 - FORA_PRAZO_PERMITIDO
+- DETALHE_TENTATIVA_INVALIDO
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 '
-                      - New enum values: [LIMITE_TENTATIVAS_EXCEDIDO CONSENTIMENTO_REVOGADO FORA_PRAZO_PERMITIDO]
+                      - New enum values: [LIMITE_TENTATIVAS_EXCEDIDO CONSENTIMENTO_REVOGADO FORA_PRAZO_PERMITIDO DETALHE_TENTATIVA_INVALIDO]
                     - Modified property: detail
                       - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
 - SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
@@ -597,6 +605,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
 - CONSENTIMENTO_REVOGADO: O pagamento estava associado a um consentimento que foi revogado.
 - FORA_PRAZO_PERMITIDO: O horário ou período da requisição não permite o agendamento pelo detentor.
+- DETALHE_TENTATIVA_INVALIDO : O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
 '
                 - Modified property: status
                   - Description changed from 'Estado atual do pagamento. O estado evolui na seguinte ordem:
@@ -731,9 +740,10 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
 - CONSENTIMENTO_REVOGADO
 - FORA_PRAZO_PERMITIDO
+- DETALHE_TENTATIVA_INVALIDO
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 '
-                      - New enum values: [LIMITE_TENTATIVAS_EXCEDIDO CONSENTIMENTO_REVOGADO FORA_PRAZO_PERMITIDO]
+                      - New enum values: [LIMITE_TENTATIVAS_EXCEDIDO CONSENTIMENTO_REVOGADO FORA_PRAZO_PERMITIDO DETALHE_TENTATIVA_INVALIDO]
                     - Modified property: detail
                       - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
 - SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
@@ -774,6 +784,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
 - CONSENTIMENTO_REVOGADO: O pagamento estava associado a um consentimento que foi revogado.
 - FORA_PRAZO_PERMITIDO: O horário ou período da requisição não permite o agendamento pelo detentor.
+- DETALHE_TENTATIVA_INVALIDO : O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
 '
             - Modified property: links
               - Properties changed
