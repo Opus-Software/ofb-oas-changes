@@ -61,9 +61,10 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - CONSENTIMENTO_REVOGADO
 - LIMITE_TENTATIVAS_EXCEDIDO
 - FORA_PRAZO_PERMITIDO
+- DETALHE_TENTATIVA_INVALIDO
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 '
-                        - New enum values: [CONSENTIMENTO_REVOGADO LIMITE_TENTATIVAS_EXCEDIDO FORA_PRAZO_PERMITIDO]
+                        - New enum values: [CONSENTIMENTO_REVOGADO LIMITE_TENTATIVAS_EXCEDIDO FORA_PRAZO_PERMITIDO DETALHE_TENTATIVA_INVALIDO]
                       - Modified property: detail
                         - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
 - SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
@@ -104,6 +105,19 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - CONSENTIMENTO_REVOGADO: O pagamento estava associado a um consentimento que foi revogado.
 - LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido
 - FORA_PRAZO_PERMITIDO: O horário ou período da requisição não permite o agendamento pelo detentor.
+- DETALHE_TENTATIVA_INVALIDO : O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
+'
+                  - Modified property: transactionIdentification
+                    - Description changed from 'Trata-se de um identificador de transação que deve ser retransmitido intacto pelo PSP do pagador ao gerar a ordem de pagamento. 
+Essa informação permitirá ao recebedor identificar e correlacionar a transferência, quando recebida, com a apresentação das instruções ao pagador. 
+Os caracteres permitidos no contexto do Pix para o campo txid (EMV 62-05) são:Letras minúsculas, de 'a' a 'z' Letras maiúsculas, de 'A' a 'z' Dígitos decimais, de '0' a '9'.
+' to 'Trata-se de um identificador de transação que deve ser retransmitido intacto pelo PSP do pagador ao gerar a ordem de pagamento. 
+Essa informação permitirá ao recebedor identificar e correlacionar a transferência, quando recebida, com a apresentação das instruções ao pagador. 
+Os caracteres permitidos no contexto do Pix para o campo txid (EMV 62-05) são:Letras minúsculas, de 'a' a 'z' Letras maiúsculas, de 'A' a 'z' Dígitos decimais, de '0' a '9'.
+[Restrição] Preenchimento condicional de acordo com o conteúdo do campo “localInstrument”:
+MANU - O campo transactionIdentification não deve ser preenchido;  
+DICT - O campo transactionIdentification não deve ser preenchido;  
+INIC - O campo transactionIdentification deve ser preenchido obrigatoriamente e deve conter até 25 caracteres alfanuméricos ([a-z|A-Z|0-9]).
 '
             - Modified property: links
               - Properties changed
@@ -272,9 +286,10 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
 - CONSENTIMENTO_REVOGADO
 - FORA_PRAZO_PERMITIDO
+- DETALHE_TENTATIVA_INVALIDO
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 '
-                      - New enum values: [LIMITE_TENTATIVAS_EXCEDIDO CONSENTIMENTO_REVOGADO FORA_PRAZO_PERMITIDO]
+                      - New enum values: [LIMITE_TENTATIVAS_EXCEDIDO CONSENTIMENTO_REVOGADO FORA_PRAZO_PERMITIDO DETALHE_TENTATIVA_INVALIDO]
                     - Modified property: detail
                       - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
 - SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
@@ -315,6 +330,19 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
 - CONSENTIMENTO_REVOGADO: O pagamento estava associado a um consentimento que foi revogado.
 - FORA_PRAZO_PERMITIDO: O horário ou período da requisição não permite o agendamento pelo detentor.
+- DETALHE_TENTATIVA_INVALIDO : O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
+'
+                - Modified property: transactionIdentification
+                  - Description changed from 'Trata-se de um identificador de transação que deve ser retransmitido intacto pelo PSP do pagador ao gerar a ordem de pagamento. 
+Essa informação permitirá ao recebedor identificar e correlacionar a transferência, quando recebida, com a apresentação das instruções ao pagador. 
+Os caracteres permitidos no contexto do Pix para o campo txid (EMV 62-05) são:Letras minúsculas, de 'a' a 'z' Letras maiúsculas, de 'A' a 'z' Dígitos decimais, de '0' a '9'.
+' to 'Trata-se de um identificador de transação que deve ser retransmitido intacto pelo PSP do pagador ao gerar a ordem de pagamento. 
+Essa informação permitirá ao recebedor identificar e correlacionar a transferência, quando recebida, com a apresentação das instruções ao pagador. 
+Os caracteres permitidos no contexto do Pix para o campo txid (EMV 62-05) são:Letras minúsculas, de 'a' a 'z' Letras maiúsculas, de 'A' a 'z' Dígitos decimais, de '0' a '9'.
+[Restrição] Preenchimento condicional de acordo com o conteúdo do campo “localInstrument”:
+MANU - O campo transactionIdentification não deve ser preenchido;  
+DICT - O campo transactionIdentification não deve ser preenchido;  
+INIC - O campo transactionIdentification deve ser preenchido obrigatoriamente e deve conter até 25 caracteres alfanuméricos ([a-z|A-Z|0-9]).
 '
             - Modified property: links
               - Properties changed
@@ -367,8 +395,9 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
 - LIMITE_TENTATIVAS_EXCEDIDO: O limite de tentativas para liquidação do pagamento permitidas pelo arranjo foi excedido.
 - FORA_PRAZO_PERMITIDO: O horário ou período da requisição não permite o agendamento pelo detentor.
+- DETALHE_TENTATIVA_INVALIDO: O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
 '
-                    - New enum values: [LIMITE_TENTATIVAS_EXCEDIDO FORA_PRAZO_PERMITIDO]
+                    - New enum values: [LIMITE_TENTATIVAS_EXCEDIDO FORA_PRAZO_PERMITIDO DETALHE_TENTATIVA_INVALIDO]
                   - Modified property: detail
                     - Description changed from 'Descrição específica do erro de acordo com o código reportado:
 - SALDO_INSUFICIENTE: Esta conta não possui saldo suficiente para realizar o pagamento.
@@ -408,6 +437,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
 - LIMITE_TENTATIVAS_EXCEDIDO: O limite de tentativas para liquidação do pagamento permitidas pelo arranjo foi excedido.
 - FORA_PRAZO_PERMITIDO: O horário ou período da requisição não permite o agendamento pelo detentor.
+- DETALHE_TENTATIVA_INVALIDO: O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
 '
                   - Modified property: title
                     - Description changed from 'Título específico do erro reportado, de acordo com o código enviado:
@@ -448,6 +478,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: Limite de transação excedido.
 - LIMITE_TENTATIVAS_EXCEDIDO: Limite de tentativas excedido.
 - FORA_PRAZO_PERMITIDO: Tentativa fora do prazo.
+- DETALHE_TENTATIVA_INVALIDO: Nova tentativa inválida
 '
   - Modified response: 500
     - Headers changed
@@ -554,9 +585,10 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
 - CONSENTIMENTO_REVOGADO
 - FORA_PRAZO_PERMITIDO
+- DETALHE_TENTATIVA_INVALIDO
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 '
-                      - New enum values: [LIMITE_TENTATIVAS_EXCEDIDO CONSENTIMENTO_REVOGADO FORA_PRAZO_PERMITIDO]
+                      - New enum values: [LIMITE_TENTATIVAS_EXCEDIDO CONSENTIMENTO_REVOGADO FORA_PRAZO_PERMITIDO DETALHE_TENTATIVA_INVALIDO]
                     - Modified property: detail
                       - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
 - SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
@@ -597,6 +629,7 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
 - CONSENTIMENTO_REVOGADO: O pagamento estava associado a um consentimento que foi revogado.
 - FORA_PRAZO_PERMITIDO: O horário ou período da requisição não permite o agendamento pelo detentor.
+- DETALHE_TENTATIVA_INVALIDO : O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
 '
                 - Modified property: status
                   - Description changed from 'Estado atual do pagamento. O estado evolui na seguinte ordem:
@@ -621,6 +654,18 @@ Em caso insucesso:
 - SCHD (Scheduled) - Indica que a transação Pix foi agendada com sucesso na detentora.  
 Em caso insucesso:
 - RJCT (REJECTED) - Instrução de pagamento rejeitada.
+'
+                - Modified property: transactionIdentification
+                  - Description changed from 'Trata-se de um identificador de transação que deve ser retransmitido intacto pelo PSP do pagador ao gerar a ordem de pagamento. 
+Essa informação permitirá ao recebedor identificar e correlacionar a transferência, quando recebida, com a apresentação das instruções ao pagador. 
+Os caracteres permitidos no contexto do Pix para o campo txid (EMV 62-05) são:Letras minúsculas, de 'a' a 'z' Letras maiúsculas, de 'A' a 'z' Dígitos decimais, de '0' a '9'.
+' to 'Trata-se de um identificador de transação que deve ser retransmitido intacto pelo PSP do pagador ao gerar a ordem de pagamento. 
+Essa informação permitirá ao recebedor identificar e correlacionar a transferência, quando recebida, com a apresentação das instruções ao pagador. 
+Os caracteres permitidos no contexto do Pix para o campo txid (EMV 62-05) são:Letras minúsculas, de 'a' a 'z' Letras maiúsculas, de 'A' a 'z' Dígitos decimais, de '0' a '9'.
+[Restrição] Preenchimento condicional de acordo com o conteúdo do campo “localInstrument”:
+MANU - O campo transactionIdentification não deve ser preenchido;  
+DICT - O campo transactionIdentification não deve ser preenchido;  
+INIC - O campo transactionIdentification deve ser preenchido obrigatoriamente e deve conter até 25 caracteres alfanuméricos ([a-z|A-Z|0-9]).
 '
             - Modified property: links
               - Properties changed
@@ -731,9 +776,10 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
 - CONSENTIMENTO_REVOGADO
 - FORA_PRAZO_PERMITIDO
+- DETALHE_TENTATIVA_INVALIDO
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 '
-                      - New enum values: [LIMITE_TENTATIVAS_EXCEDIDO CONSENTIMENTO_REVOGADO FORA_PRAZO_PERMITIDO]
+                      - New enum values: [LIMITE_TENTATIVAS_EXCEDIDO CONSENTIMENTO_REVOGADO FORA_PRAZO_PERMITIDO DETALHE_TENTATIVA_INVALIDO]
                     - Modified property: detail
                       - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
 - SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
@@ -774,6 +820,19 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
 - CONSENTIMENTO_REVOGADO: O pagamento estava associado a um consentimento que foi revogado.
 - FORA_PRAZO_PERMITIDO: O horário ou período da requisição não permite o agendamento pelo detentor.
+- DETALHE_TENTATIVA_INVALIDO : O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
+'
+                - Modified property: transactionIdentification
+                  - Description changed from 'Trata-se de um identificador de transação que deve ser retransmitido intacto pelo PSP do pagador ao gerar a ordem de pagamento. 
+Essa informação permitirá ao recebedor identificar e correlacionar a transferência, quando recebida, com a apresentação das instruções ao pagador. 
+Os caracteres permitidos no contexto do Pix para o campo txid (EMV 62-05) são:Letras minúsculas, de 'a' a 'z' Letras maiúsculas, de 'A' a 'z' Dígitos decimais, de '0' a '9'.
+' to 'Trata-se de um identificador de transação que deve ser retransmitido intacto pelo PSP do pagador ao gerar a ordem de pagamento. 
+Essa informação permitirá ao recebedor identificar e correlacionar a transferência, quando recebida, com a apresentação das instruções ao pagador. 
+Os caracteres permitidos no contexto do Pix para o campo txid (EMV 62-05) são:Letras minúsculas, de 'a' a 'z' Letras maiúsculas, de 'A' a 'z' Dígitos decimais, de '0' a '9'.
+[Restrição] Preenchimento condicional de acordo com o conteúdo do campo “localInstrument”:
+MANU - O campo transactionIdentification não deve ser preenchido;  
+DICT - O campo transactionIdentification não deve ser preenchido;  
+INIC - O campo transactionIdentification deve ser preenchido obrigatoriamente e deve conter até 25 caracteres alfanuméricos ([a-z|A-Z|0-9]).
 '
             - Modified property: links
               - Properties changed
@@ -1048,6 +1107,9 @@ solicitação da revogação) deverão ser mantidos. Pagamentos agendados para o
           - Modified property: data
             - Property 'OneOf' changed
               - Schema #/components/schemas/ConsentEdition modified
+                - Required changed
+                  - New required property: creditors
+                  - New required property: riskSignals
                 - Properties changed
                   - New property: recurringConfiguration
                   - Deleted property: automatic
@@ -1056,6 +1118,12 @@ solicitação da revogação) deverão ser mantidos. Pagamentos agendados para o
                     - Items changed
                       - Description changed from 'Objeto contendo os dados do recebedor (creditor).' to 'Objeto contendo os dados do recebedor (creditor).
 [Restrição] Caso o consentimento de longa duração seja para o produto Pix Automático (“automatic” selecionado no oneOf do objeto “/data/recurringConfiguration”), apenas um recebedor é permitido e esse deve ser pessoa jurídica.
+'
+                  - Modified property: expirationDateTime
+                    - Description changed from 'Data e hora em que o consentimento deve deixar de ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format).' to 'Data e hora em que o consentimento deve deixar de ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format).
+[Restrição] 
+Caso esse campo não seja enviado, a instituição detentora deve considerar a extensão do prazo para um período indeterminado; 
+Caso enviado, esse campo deve ser, no mínimo, D+1, sendo D o dia da requisição.
 '
 - Responses changed
   - Modified response: 200

@@ -133,6 +133,17 @@ GET /recurring-consents/{recurringConsentId}
     - Headers changed
       - Deleted header: x-fapi-interaction-id
 PATCH /recurring-consents/{recurringConsentId}
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Property 'OneOf' changed
+              - Schema #/components/schemas/ConsentEdition modified
+                - Required changed
+                  - New required property: creditors
+                  - New required property: riskSignals
 - Responses changed
   - Modified response: 200
     - Content changed
