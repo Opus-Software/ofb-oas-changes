@@ -908,53 +908,9 @@ POST /recurring-consents
                             - Deleted property: dayOfMonth
                             - Deleted property: dayOfWeek
                             - Deleted property: immediatePayment
+                            - Deleted property: month
+                            - Deleted property: period
                             - Deleted property: transactionLimit
-                            - Modified property: month
-                              - Description changed from 'Mês previstos para ocorrer transações.
-- JANEIRO
-- FEVEREIRO
-- MARCO
-- ABRIL
-- MAIO
-- JUNHO
-- JULHO
-- AGOSTO
-- SETEMBRO
-- OUTUBRO
-- NOVEMBRO
-- DEZEMBRO
-[Restrição] Campo deve ser enviado quando o campo `/data/recurringConfiguration/automatic/period` for igual a ANUAL
-' to 'Mês previstos para ocorrer transações. Caso consentimento seja para pagamentos trimestrais ou semestrais, o campo representa o mês da primeira cobrança.
-- JANEIRO
-- FEVEREIRO
-- MARCO
-- ABRIL
-- MAIO
-- JUNHO
-- JULHO
-- AGOSTO
-- SETEMBRO
-- OUTUBRO
-- NOVEMBRO
-- DEZEMBRO
-[Restrição] Campo deve ser enviado quando o campo `/data/recurringConfiguration/automatic/period` for igual a TRIMESTRAL, SEMESTRAL ou ANUAL
-'
-                            - Modified property: period
-                              - Description changed from 'Define a periodicidade permitida para realização de transações
-- DIARIO
-- SEMANAL
-- MENSAL
-- ANUAL
-' to 'Define a periodicidade permitida para realização de transações
-- SEMANAL
-- MENSAL
-- ANUAL
-- SEMESTRAL
-- TRIMESTRAL
-'
-                              - New enum values: [SEMESTRAL TRIMESTRAL]
-                              - Deleted enum values: [DIARIO]
-                              - Example changed from 'DIARIO' to 'SEMANAL'
                     - Schema #/components/schemas/Sweeping modified
                       - Properties changed
                         - Modified property: sweeping
@@ -1014,53 +970,9 @@ GET /recurring-consents/{recurringConsentId}
                             - Deleted property: dayOfMonth
                             - Deleted property: dayOfWeek
                             - Deleted property: immediatePayment
+                            - Deleted property: month
+                            - Deleted property: period
                             - Deleted property: transactionLimit
-                            - Modified property: month
-                              - Description changed from 'Mês previstos para ocorrer transações.
-- JANEIRO
-- FEVEREIRO
-- MARCO
-- ABRIL
-- MAIO
-- JUNHO
-- JULHO
-- AGOSTO
-- SETEMBRO
-- OUTUBRO
-- NOVEMBRO
-- DEZEMBRO
-[Restrição] Campo deve ser enviado quando o campo `/data/recurringConfiguration/automatic/period` for igual a ANUAL
-' to 'Mês previstos para ocorrer transações. Caso consentimento seja para pagamentos trimestrais ou semestrais, o campo representa o mês da primeira cobrança.
-- JANEIRO
-- FEVEREIRO
-- MARCO
-- ABRIL
-- MAIO
-- JUNHO
-- JULHO
-- AGOSTO
-- SETEMBRO
-- OUTUBRO
-- NOVEMBRO
-- DEZEMBRO
-[Restrição] Campo deve ser enviado quando o campo `/data/recurringConfiguration/automatic/period` for igual a TRIMESTRAL, SEMESTRAL ou ANUAL
-'
-                            - Modified property: period
-                              - Description changed from 'Define a periodicidade permitida para realização de transações
-- DIARIO
-- SEMANAL
-- MENSAL
-- ANUAL
-' to 'Define a periodicidade permitida para realização de transações
-- SEMANAL
-- MENSAL
-- ANUAL
-- SEMESTRAL
-- TRIMESTRAL
-'
-                              - New enum values: [SEMESTRAL TRIMESTRAL]
-                              - Deleted enum values: [DIARIO]
-                              - Example changed from 'DIARIO' to 'SEMANAL'
                     - Schema #/components/schemas/Sweeping modified
                       - Properties changed
                         - Modified property: sweeping
@@ -1155,15 +1067,6 @@ Caso enviado, esse campo deve ser, no mínimo, D+1, sendo D o dia da requisiçã
 '
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
-                    - Schema #/components/schemas/Sweeping modified
-                      - Properties changed
-                        - Modified property: sweeping
-                          - Required changed
-                            - New required property: startDateTime
-                            - New required property: useOverdraftLimit
-                          - Properties changed
-                            - New property: startDateTime
-                            - New property: useOverdraftLimit
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
@@ -1183,53 +1086,18 @@ Caso enviado, esse campo deve ser, no mínimo, D+1, sendo D o dia da requisiçã
                             - Deleted property: dayOfMonth
                             - Deleted property: dayOfWeek
                             - Deleted property: immediatePayment
+                            - Deleted property: month
+                            - Deleted property: period
                             - Deleted property: transactionLimit
-                            - Modified property: month
-                              - Description changed from 'Mês previstos para ocorrer transações.
-- JANEIRO
-- FEVEREIRO
-- MARCO
-- ABRIL
-- MAIO
-- JUNHO
-- JULHO
-- AGOSTO
-- SETEMBRO
-- OUTUBRO
-- NOVEMBRO
-- DEZEMBRO
-[Restrição] Campo deve ser enviado quando o campo `/data/recurringConfiguration/automatic/period` for igual a ANUAL
-' to 'Mês previstos para ocorrer transações. Caso consentimento seja para pagamentos trimestrais ou semestrais, o campo representa o mês da primeira cobrança.
-- JANEIRO
-- FEVEREIRO
-- MARCO
-- ABRIL
-- MAIO
-- JUNHO
-- JULHO
-- AGOSTO
-- SETEMBRO
-- OUTUBRO
-- NOVEMBRO
-- DEZEMBRO
-[Restrição] Campo deve ser enviado quando o campo `/data/recurringConfiguration/automatic/period` for igual a TRIMESTRAL, SEMESTRAL ou ANUAL
-'
-                            - Modified property: period
-                              - Description changed from 'Define a periodicidade permitida para realização de transações
-- DIARIO
-- SEMANAL
-- MENSAL
-- ANUAL
-' to 'Define a periodicidade permitida para realização de transações
-- SEMANAL
-- MENSAL
-- ANUAL
-- SEMESTRAL
-- TRIMESTRAL
-'
-                              - New enum values: [SEMESTRAL TRIMESTRAL]
-                              - Deleted enum values: [DIARIO]
-                              - Example changed from 'DIARIO' to 'SEMANAL'
+                    - Schema #/components/schemas/Sweeping modified
+                      - Properties changed
+                        - Modified property: sweeping
+                          - Required changed
+                            - New required property: startDateTime
+                            - New required property: useOverdraftLimit
+                          - Properties changed
+                            - New property: startDateTime
+                            - New property: useOverdraftLimit
             - Modified property: links
               - Properties changed
                 - Modified property: self
