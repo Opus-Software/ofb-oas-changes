@@ -1178,33 +1178,6 @@ POST /recurring-consents
 '
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
-                    - Schema #/components/schemas/Sweeping modified
-                      - Properties changed
-                        - Modified property: sweeping
-                          - Required changed
-                            - New required property: startDateTime
-                            - New required property: useOverdraftLimit
-                          - Properties changed
-                            - New property: startDateTime
-                            - New property: useOverdraftLimit
-                            - Modified property: periodicLimits
-                              - Properties changed
-                                - Modified property: day
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from null to 1
-                                - Modified property: month
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from null to 1
-                                - Modified property: week
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from null to 1
-                                - Modified property: year
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from null to 1
                     - Schema #/components/schemas/Vrp modified
                       - Properties changed
                         - Modified property: vrp
@@ -1270,6 +1243,33 @@ Não pode ser preenchido nas autorizações de valor fixo.
 Se o usuário pagador atribuir um valor máximo para os pagamentos daquela autorização, ele não poderá ser inferior ao valor mínimo (piso) definido pelo usuário recebedor. 
 Não pode ser preenchido nas autorizações de valor fixo.
 '
+                    - Schema #/components/schemas/Sweeping modified
+                      - Properties changed
+                        - Modified property: sweeping
+                          - Required changed
+                            - New required property: startDateTime
+                            - New required property: useOverdraftLimit
+                          - Properties changed
+                            - New property: startDateTime
+                            - New property: useOverdraftLimit
+                            - Modified property: periodicLimits
+                              - Properties changed
+                                - Modified property: day
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from null to 1
+                                - Modified property: month
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from null to 1
+                                - Modified property: week
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from null to 1
+                                - Modified property: year
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from null to 1
                 - Modified property: statusUpdateDateTime
                   - Description changed from 'Data e hora em que o consentimento teve o status atualizado. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format).
 ' to 'Data e hora em que o consentimento deve passar a ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format). 
@@ -1353,28 +1353,6 @@ GET /recurring-consents/{recurringConsentId}
 '
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
-                    - Schema #/components/schemas/Vrp modified
-                      - Properties changed
-                        - Modified property: vrp
-                          - Properties changed
-                            - Modified property: periodicLimits
-                              - Properties changed
-                                - Modified property: day
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from null to 1
-                                - Modified property: month
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from null to 1
-                                - Modified property: week
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from null to 1
-                                - Modified property: year
-                                  - Properties changed
-                                    - Modified property: quantityLimit
-                                      - Min changed from null to 1
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
@@ -1427,6 +1405,28 @@ Não pode ser preenchido nas autorizações de valor fixo.
                           - Properties changed
                             - New property: startDateTime
                             - New property: useOverdraftLimit
+                            - Modified property: periodicLimits
+                              - Properties changed
+                                - Modified property: day
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from null to 1
+                                - Modified property: month
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from null to 1
+                                - Modified property: week
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from null to 1
+                                - Modified property: year
+                                  - Properties changed
+                                    - Modified property: quantityLimit
+                                      - Min changed from null to 1
+                    - Schema #/components/schemas/Vrp modified
+                      - Properties changed
+                        - Modified property: vrp
+                          - Properties changed
                             - Modified property: periodicLimits
                               - Properties changed
                                 - Modified property: day
@@ -1539,7 +1539,7 @@ solicitação da revogação) deverão ser mantidos. Pagamentos agendados para o
           - Modified property: data
             - Property 'OneOf' changed
               - 1 schemas added
-              - Schema #/components/schemas/ConsentRejection modified
+              - Schema #/components/schemas/ConsentRevocation modified
                 - Properties changed
                   - Deleted property: automatic
                   - Deleted property: creditors
@@ -1549,7 +1549,7 @@ solicitação da revogação) deverão ser mantidos. Pagamentos agendados para o
                     - Properties changed
                       - New property: isCallingProgress
                       - Deleted property: isCallInProgress
-              - Schema #/components/schemas/ConsentRevocation modified
+              - Schema #/components/schemas/ConsentRejection modified
                 - Properties changed
                   - Deleted property: automatic
                   - Deleted property: creditors
@@ -1579,49 +1579,6 @@ solicitação da revogação) deverão ser mantidos. Pagamentos agendados para o
 '
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
-                    - Schema #/components/schemas/Automatic modified
-                      - Properties changed
-                        - Modified property: automatic
-                          - Required changed
-                            - New required property: isRetryAccepted
-                            - New required property: referenceStartDateTime
-                            - New required property: useOverdraftLimit
-                          - Properties changed
-                            - New property: firstPayment
-                            - New property: interval
-                            - New property: isRetryAccepted
-                            - New property: referenceStartDateTime
-                            - New property: useOverdraftLimit
-                            - Deleted property: dayOfMonth
-                            - Deleted property: dayOfWeek
-                            - Deleted property: immediatePayment
-                            - Deleted property: month
-                            - Deleted property: period
-                            - Modified property: contractDebtor
-                              - Properties changed
-                                - Modified property: document
-                                  - Properties changed
-                                    - Modified property: identification
-                                      - Pattern changed from '^\d{14}$' to '^(?:\d{11}|\d{14})$'
-                                    - Modified property: rel
-                                      - New enum values: [CPF CNPJ]
-                                      - Example changed from 'CNPJ' to null
-                                      - MaxLength changed from 4 to null
-                                      - Pattern changed from '^[A-Z]{4}$' to ''
-                            - Modified property: fixedAmount
-                              - Description changed from 'Valor fixo de cobrança, caso preenchido, representa um consentimento para pagamentos de valores fixos. 
-[Restrição] Excludente com o campo “/data/recurringConfiguration/automatic/maximumVariableAmount”
-' to 'Valor fixo de cobrança, caso preenchido, representa um consentimento para pagamentos de valores fixos, ou não sujeitos a alteração durante a vigência do consentimento. 
-[Restrição] Excludente com o campo “/data/recurringConfiguration/automatic/maximumVariableAmount”
-'
-                            - Modified property: minimumVariableAmount
-                              - Description changed from 'Valor definido pelo usuário recebedor. Se o usuário pagador atribuir um valor máximo para os pagamentos daquela autorização, 
-ele não poderá ser inferior ao piso definido pelo usuário recebedor. 
-Não pode ser preenchido nas autorizações de valor fixo.
-' to 'Valor definido pelo usuário recebedor. 
-Se o usuário pagador atribuir um valor máximo para os pagamentos daquela autorização, ele não poderá ser inferior ao valor mínimo (piso) definido pelo usuário recebedor. 
-Não pode ser preenchido nas autorizações de valor fixo.
-'
                     - Schema #/components/schemas/Sweeping modified
                       - Properties changed
                         - Modified property: sweeping
@@ -1671,6 +1628,49 @@ Não pode ser preenchido nas autorizações de valor fixo.
                                   - Properties changed
                                     - Modified property: quantityLimit
                                       - Min changed from null to 1
+                    - Schema #/components/schemas/Automatic modified
+                      - Properties changed
+                        - Modified property: automatic
+                          - Required changed
+                            - New required property: isRetryAccepted
+                            - New required property: referenceStartDateTime
+                            - New required property: useOverdraftLimit
+                          - Properties changed
+                            - New property: firstPayment
+                            - New property: interval
+                            - New property: isRetryAccepted
+                            - New property: referenceStartDateTime
+                            - New property: useOverdraftLimit
+                            - Deleted property: dayOfMonth
+                            - Deleted property: dayOfWeek
+                            - Deleted property: immediatePayment
+                            - Deleted property: month
+                            - Deleted property: period
+                            - Modified property: contractDebtor
+                              - Properties changed
+                                - Modified property: document
+                                  - Properties changed
+                                    - Modified property: identification
+                                      - Pattern changed from '^\d{14}$' to '^(?:\d{11}|\d{14})$'
+                                    - Modified property: rel
+                                      - New enum values: [CPF CNPJ]
+                                      - Example changed from 'CNPJ' to null
+                                      - MaxLength changed from 4 to null
+                                      - Pattern changed from '^[A-Z]{4}$' to ''
+                            - Modified property: fixedAmount
+                              - Description changed from 'Valor fixo de cobrança, caso preenchido, representa um consentimento para pagamentos de valores fixos. 
+[Restrição] Excludente com o campo “/data/recurringConfiguration/automatic/maximumVariableAmount”
+' to 'Valor fixo de cobrança, caso preenchido, representa um consentimento para pagamentos de valores fixos, ou não sujeitos a alteração durante a vigência do consentimento. 
+[Restrição] Excludente com o campo “/data/recurringConfiguration/automatic/maximumVariableAmount”
+'
+                            - Modified property: minimumVariableAmount
+                              - Description changed from 'Valor definido pelo usuário recebedor. Se o usuário pagador atribuir um valor máximo para os pagamentos daquela autorização, 
+ele não poderá ser inferior ao piso definido pelo usuário recebedor. 
+Não pode ser preenchido nas autorizações de valor fixo.
+' to 'Valor definido pelo usuário recebedor. 
+Se o usuário pagador atribuir um valor máximo para os pagamentos daquela autorização, ele não poderá ser inferior ao valor mínimo (piso) definido pelo usuário recebedor. 
+Não pode ser preenchido nas autorizações de valor fixo.
+'
                 - Modified property: riskSignals
                   - Properties changed
                     - New property: isCallingProgress
