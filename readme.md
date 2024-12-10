@@ -88,7 +88,7 @@
 |  | [2.2.0](swagger-apis/unarranged-accounts-overdraft/2.2.0.yml) | [2.3.0](swagger-apis/unarranged-accounts-overdraft/2.3.0.yml) | [YAML](diffs/unarranged-accounts-overdraft/2.2.0_2.3.0-breaking-only.yml) | [YAML](diffs/unarranged-accounts-overdraft/2.2.0_2.3.0.yml) |
 |  | [2.3.0](swagger-apis/unarranged-accounts-overdraft/2.3.0.yml) | [2.4.0](swagger-apis/unarranged-accounts-overdraft/2.4.0.yml) | [YAML](diffs/unarranged-accounts-overdraft/2.3.0_2.4.0-breaking-only.yml) | [YAML](diffs/unarranged-accounts-overdraft/2.3.0_2.4.0.yml) |
 | variable-incomes | [1.0.2](swagger-apis/variable-incomes/1.0.2.yml) | [1.1.0](swagger-apis/variable-incomes/1.1.0.yml) | [YAML](diffs/variable-incomes/1.0.2_1.1.0-breaking-only.yml) | [YAML](diffs/variable-incomes/1.0.2_1.1.0.yml) |
-|  | [1.1.0](swagger-apis/variable-incomes/1.1.0.yml) | [1.2.0](swagger-apis/variable-incomes/1.2.0.yml) | [YAML](diffs/variable-incomes/1.1.0_1.2.0-breaking-only.yml) | [YAML](diffs/variable-incomes/1.1.0_1.2.0.yml) |
+|  | [1.1.0](swagger-apis/variable-incomes/1.1.0.yml) | [1.2.1](swagger-apis/variable-incomes/1.2.1.yml) | [YAML](diffs/variable-incomes/1.1.0_1.2.1-breaking-only.yml) | [YAML](diffs/variable-incomes/1.1.0_1.2.1.yml) |
 | webhook | [1.0.0-beta1](swagger-apis/webhook/1.0.0-beta1.yml) | [1.1.0](swagger-apis/webhook/1.1.0.yml) | [YAML](diffs/webhook/1.0.0-beta1_1.1.0-breaking-only.yml) | [YAML](diffs/webhook/1.0.0-beta1_1.1.0.yml) |
 |  | [1.1.0](swagger-apis/webhook/1.1.0.yml) | [1.2.0](swagger-apis/webhook/1.2.0.yml) | [YAML](diffs/webhook/1.1.0_1.2.0-breaking-only.yml) | [YAML](diffs/webhook/1.1.0_1.2.0.yml) |
 |  | [1.2.0](swagger-apis/webhook/1.2.0.yml) | [1.3.0-beta.1](swagger-apis/webhook/1.3.0-beta.1.yml) | [YAML](diffs/webhook/1.2.0_1.3.0-beta.1-breaking-only.yml) | [YAML](diffs/webhook/1.2.0_1.3.0-beta.1.yml) |
@@ -459,6 +459,7 @@
 |  | [1.0.1](swagger-apis/variable-incomes/1.0.1.yml) | [1.0.2](swagger-apis/variable-incomes/1.0.2.yml) | [YAML](diffs/variable-incomes/1.0.1_1.0.2.yml) |
 |  | [1.0.2](swagger-apis/variable-incomes/1.0.2.yml) | [1.1.0](swagger-apis/variable-incomes/1.1.0.yml) | [YAML](diffs/variable-incomes/1.0.2_1.1.0.yml) |
 |  | [1.1.0](swagger-apis/variable-incomes/1.1.0.yml) | [1.2.0](swagger-apis/variable-incomes/1.2.0.yml) | [YAML](diffs/variable-incomes/1.1.0_1.2.0.yml) |
+|  | [1.2.0](swagger-apis/variable-incomes/1.2.0.yml) | [1.2.1](swagger-apis/variable-incomes/1.2.1.yml) | [YAML](diffs/variable-incomes/1.2.0_1.2.1.yml) |
 | webhook | [1.0.0-beta.1](swagger-apis/webhook/1.0.0-beta.1.yml) | [1.0.0-beta.2](swagger-apis/webhook/1.0.0-beta.2.yml) | [YAML](diffs/webhook/1.0.0-beta.1_1.0.0-beta.2.yml) |
 |  | [1.0.0-beta.2](swagger-apis/webhook/1.0.0-beta.2.yml) | [1.0.0-beta.3](swagger-apis/webhook/1.0.0-beta.3.yml) | [YAML](diffs/webhook/1.0.0-beta.2_1.0.0-beta.3.yml) |
 |  | [1.0.0-beta.3](swagger-apis/webhook/1.0.0-beta.3.yml) | [1.0.0-rc.1](swagger-apis/webhook/1.0.0-rc.1.yml) | [YAML](diffs/webhook/1.0.0-beta.3_1.0.0-rc.1.yml) |
