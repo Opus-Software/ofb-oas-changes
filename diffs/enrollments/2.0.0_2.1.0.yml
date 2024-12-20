@@ -2,8 +2,24 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 2
+### Modified Endpoints: 3
 -------------------------
+POST /consents/{consentId}/authorise
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: fidoAssertion
+                - Properties changed
+                  - Modified property: response
+                    - Properties changed
+                      - Modified property: userHandle
+                        - Description changed from 'Nome de usuário que foi enviado durante a criação da credencial. Deve ser enviado no formato base64url para a detentora de conta.' to 'Nome de usuário que foi enviado durante a criação da credencial. Deve ser enviado no formato base64url para a detentora de conta. 
+Caso o autenticador FIDO2 não retorne este campo, a iniciadora deve enviar uma string vazia à detentora de conta.
+'
 GET /enrollments/{enrollmentId}
 - Responses changed
   - Modified response: 200
