@@ -1522,9 +1522,7 @@ components:
                     userHandle:
                       type: string
                       format: bytes
-                      description: |
-                        Nome de usuário que foi enviado durante a criação da credencial. Deve ser enviado no formato base64url para a detentora de conta. 
-                        Caso o autenticador FIDO2 não retorne este campo, a iniciadora deve enviar uma string vazia à detentora de conta.
+                      description: Nome de usuário que foi enviado durante a criação da credencial. Deve ser enviado no formato base64url para a detentora de conta.
                 clientExtensionResults:
                   type: object
                   description: Estrutura para extensão de resultados
@@ -1907,7 +1905,7 @@ components:
           description: Identificador único da Relying Party. Esse campo deve ser preenchido com o valor que é enviado na requisição no campo /data/rp.
         name:
           type: string
-          description: Nome amigável da Relying Party para exibição aos usuários. Pode ser obtido através do Software Statement Assertion, atributo software_client_name.
+          description: Nome amigável da Relying Party para exibição aos usuários. Deve ser obtido através do Software Statement Assertion, atributo software_client_name.
     FidoUser:
       type: object
       required:
@@ -1925,7 +1923,7 @@ components:
           description: Identificador do usuário human-readable.
         displayName:
           type: string
-          description: Identificador do usuário para fins de apresentação.
+          description: Identificador do usuário para fins de apresentação. Deve ser formado pelo nome social, se existente, ou nome e sobrenome do cadastro do cliente no detentor de contas.
     FidoPublicKeyCredentialCreationOptions:
       type: object
       required:
