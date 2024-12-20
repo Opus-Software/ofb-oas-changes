@@ -5,6 +5,12 @@ info:
     Família de API para permitir o pagamento sem redirecionamento via Open Finance Brasil.  
     Permite tanto o gerenciamento dos dispositivos vinculados as contas quanto a autorização de consentimentos criados via fluxo sem redirecionamento.
     
+    ## Validação de origin nos endpoints FIDO
+
+    Durante o cadastro do cliente (DCR/DCM), o software statement assertion possui um atributo nomeado software_origin_uris. 
+    Esse atributo armazena as origens permitidas para utilização do protocolo FIDO. 
+    Nas chamadas que possuem o argumento clientDataJSON (fido-registration e authorise), o atributo origin deve ser extraído do clientDataJSON e deve ser realizada a verificação se a origin do mesmo está contida no software_origin_uris informado no momento do DCR/DCM. 
+    Caso a instituição iniciadora altere ou inclua o valor do atributo software_origin_uris, será necessária realização de um novo processo de DCM com as detentoras
   version: 2.1.0
   license:
     name: Apache 2.0
@@ -2261,7 +2267,8 @@ components:
               description: |
                 Limite diário cumulativo para este vínculo de conta. Este limite não garante a autorização de iniciações de pagamento;
                 servindo como referência para a iniciadora evitar a criação de consentimentos para valores tais que, garantidamente, não serão autorizados.
-                Este campo só estará presente quando o usuário, durante a autorização do vínculo, definir um valor máximo diário diferente do seu limite Pix disponível para o dia.
+
+                [Restrição] Campo de preenchimento obrigatório pelos participantes quando o campo `status` for preenchido com os valores `AUTHORISED` ou `AWAITING_ENROLLMENT`.
             enrollmentName:
               description: |
                 [Restrição] Deve ser preenchido sempre que o usuário pagador inserir alguma informação no nome do vínculo/dispositivo tanto no iniciador como no detentor de conta
