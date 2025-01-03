@@ -2,9 +2,52 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 3
+### Modified Endpoints: 4
 -------------------------
+POST /pix/recurring-payments
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: riskSignals
+                - Properties changed
+                  - Modified property: automatic
+                    - Properties changed
+                      - Modified property: lastLoginDateTime
+                        - Description changed from 'Caso o usuário pagador tenha acesso ao ambiente da iniciadora de pagamentos, utilizar data e hora da última interação do cliente com seu aplicativo/sistema. 
+Para casos onde a iniciadora de pagamentos presta serviços a um terceiro, deve-se enviar o horário que o pagador logou na aplicação do terceiro.
+' to 'Data e hora da última interação do cliente com o aplicativo/sistema da instituição iniciadora.'
 POST /recurring-consents
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: recurringConfiguration
+                - Property 'OneOf' changed
+                  - Schema #/components/schemas/AutomaticRequest modified
+                    - Properties changed
+                      - Modified property: automatic
+                        - Properties changed
+                          - New property: month
+                          - New property: period
+                          - Deleted property: interval
+                          - Modified property: contractDebtor
+                            - Properties changed
+                              - Modified property: document
+                                - Properties changed
+                                  - Modified property: identification
+                                    - Pattern changed from '^(?:\d{11}|\d{14})$' to '^\d{14}$'
+                                  - Modified property: rel
+                                    - Deleted enum values: [CPF CNPJ]
+                                    - Example changed from null to 'CNPJ'
+                                    - MaxLength changed from null to 4
+                                    - Pattern changed from '' to '^[A-Z]{4}$'
 - Responses changed
   - Modified response: 201
     - Content changed
@@ -13,6 +56,27 @@ POST /recurring-consents
           - Properties changed
             - Modified property: data
               - Properties changed
+                - Deleted property: updatedAtDateTime
+                - Modified property: recurringConfiguration
+                  - Property 'OneOf' changed
+                    - Schema #/components/schemas/Automatic modified
+                      - Properties changed
+                        - Modified property: automatic
+                          - Properties changed
+                            - New property: month
+                            - New property: period
+                            - Deleted property: interval
+                            - Modified property: contractDebtor
+                              - Properties changed
+                                - Modified property: document
+                                  - Properties changed
+                                    - Modified property: identification
+                                      - Pattern changed from '^(?:\d{11}|\d{14})$' to '^\d{14}$'
+                                    - Modified property: rel
+                                      - Deleted enum values: [CPF CNPJ]
+                                      - Example changed from null to 'CNPJ'
+                                      - MaxLength changed from null to 4
+                                      - Pattern changed from '' to '^[A-Z]{4}$'
                 - Modified property: rejection
                   - Properties changed
                     - Modified property: reason
@@ -69,6 +133,27 @@ GET /recurring-consents/{recurringConsentId}
           - Properties changed
             - Modified property: data
               - Properties changed
+                - Deleted property: updatedAtDateTime
+                - Modified property: recurringConfiguration
+                  - Property 'OneOf' changed
+                    - Schema #/components/schemas/Automatic modified
+                      - Properties changed
+                        - Modified property: automatic
+                          - Properties changed
+                            - New property: month
+                            - New property: period
+                            - Deleted property: interval
+                            - Modified property: contractDebtor
+                              - Properties changed
+                                - Modified property: document
+                                  - Properties changed
+                                    - Modified property: identification
+                                      - Pattern changed from '^(?:\d{11}|\d{14})$' to '^\d{14}$'
+                                    - Modified property: rel
+                                      - Deleted enum values: [CPF CNPJ]
+                                      - Example changed from null to 'CNPJ'
+                                      - MaxLength changed from null to 4
+                                      - Pattern changed from '' to '^[A-Z]{4}$'
                 - Modified property: rejection
                   - Properties changed
                     - Modified property: reason
@@ -173,6 +258,10 @@ PATCH /recurring-consents/{recurringConsentId}
 - VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
 - AUTENTICACAO_DIVERGENTE : Usuário autenticado no detentor diverge do usuário autenticado no iniciador;
 '
+              - Schema #/components/schemas/ConsentEdition modified
+                - Properties changed
+                  - Deleted property: businessEntity
+                  - Deleted property: loggedUser
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -180,7 +269,30 @@ PATCH /recurring-consents/{recurringConsentId}
         - Schema changed
           - Properties changed
             - Modified property: data
+              - Required changed
+                - New required property: loggedUser
               - Properties changed
+                - Deleted property: updatedAtDateTime
+                - Modified property: recurringConfiguration
+                  - Property 'OneOf' changed
+                    - Schema #/components/schemas/Automatic modified
+                      - Properties changed
+                        - Modified property: automatic
+                          - Properties changed
+                            - New property: month
+                            - New property: period
+                            - Deleted property: interval
+                            - Modified property: contractDebtor
+                              - Properties changed
+                                - Modified property: document
+                                  - Properties changed
+                                    - Modified property: identification
+                                      - Pattern changed from '^(?:\d{11}|\d{14})$' to '^\d{14}$'
+                                    - Modified property: rel
+                                      - Deleted enum values: [CPF CNPJ]
+                                      - Example changed from null to 'CNPJ'
+                                      - MaxLength changed from null to 4
+                                      - Pattern changed from '' to '^[A-Z]{4}$'
                 - Modified property: rejection
                   - Properties changed
                     - Modified property: reason
@@ -227,4 +339,32 @@ PATCH /recurring-consents/{recurringConsentId}
 - SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
 - VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
 - AUTENTICACAO_DIVERGENTE : Usuário autenticado no detentor diverge do usuário autenticado no iniciador;
+'
+  - Modified response: 422
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Deleted enum values: [PERMISSAO_INSUFICIENTE]
+                  - Modified property: detail
+                    - Description changed from 'Descrição específica do erro de acordo com o código reportado:  
+- CONSENTIMENTO_NAO_PERMITE_CANCELAMENTO: O status do consentimento não permite a realização do cancelamento (em status "CONSUMED" ou "REJECTED")
+- CAMPO_NAO_PERMITIDO: O(s) campo(s) solicitado(s) para edição não podem ser editados.
+- PERMISSAO_INSUFICIENTE: Consentimento possui múltiplas alçadas aprovadoras e não permite a edição pelo usuário atual.
+' to 'Descrição específica do erro de acordo com o código reportado:  
+- CONSENTIMENTO_NAO_PERMITE_CANCELAMENTO: O status do consentimento não permite a realização do cancelamento (em status "CONSUMED" ou "REJECTED")
+- CAMPO_NAO_PERMITIDO: O(s) campo(s) solicitado(s) para edição não podem ser editados.
+'
+                  - Modified property: title
+                    - Description changed from 'Título específico do erro reportado, de acordo com o código enviado:  
+- CONSENTIMENTO_NAO_PERMITE_CANCELAMENTO: O status do consentimento não permite a realização do cancelamento (em status "CONSUMED" ou "REJECTED")
+- CAMPO_NAO_PERMITIDO: O(s) campo(s) solicitado(s) para edição não podem ser editados.
+- Permissão insuficiente para edição.
+' to 'Título específico do erro reportado, de acordo com o código enviado:  
+- CONSENTIMENTO_NAO_PERMITE_CANCELAMENTO: O status do consentimento não permite a realização do cancelamento (em status "CONSUMED" ou "REJECTED")
+- CAMPO_NAO_PERMITIDO: O(s) campo(s) solicitado(s) para edição não podem ser editados.
 '
