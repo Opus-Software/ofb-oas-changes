@@ -1,0 +1,171 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 7
+-------------------------
+GET /pix/recurring-payments
+- Responses changed
+  - Modified response: 500
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+  - Modified response: 504
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+POST /pix/recurring-payments
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: cancellation
+                  - Properties changed
+                    - Modified property: reason
+                      - Deleted enum values: [CANCELADO_MULTIPLAS_ALCADAS]
+  - Modified response: 500
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+  - Modified response: 504
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+GET /pix/recurring-payments/{recurringPaymentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: cancellation
+                  - Properties changed
+                    - Modified property: reason
+                      - Deleted enum values: [CANCELADO_MULTIPLAS_ALCADAS]
+  - Modified response: 500
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+  - Modified response: 504
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+PATCH /pix/recurring-payments/{recurringPaymentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: cancellation
+                  - Properties changed
+                    - Modified property: reason
+                      - Deleted enum values: [CANCELADO_MULTIPLAS_ALCADAS]
+  - Modified response: 500
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+  - Modified response: 504
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+POST /recurring-consents
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: recurringConfiguration
+                - Property 'OneOf' changed
+                  - 2 schemas added
+                  - 2 schemas deleted
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Required changed
+                - Deleted required property: startDateTime
+              - Properties changed
+                - Deleted property: startDateTime
+                - Modified property: recurringConfiguration
+                  - Property 'OneOf' changed
+                    - Schema #/components/schemas/Automatic modified
+                      - Properties changed
+                        - Modified property: automatic
+                          - Properties changed
+                            - Modified property: period
+                              - Deleted enum values: [DIARIO]
+  - Modified response: 500
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+  - Modified response: 504
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+GET /recurring-consents/{recurringConsentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Required changed
+                - Deleted required property: startDateTime
+              - Properties changed
+                - Deleted property: startDateTime
+                - Modified property: recurringConfiguration
+                  - Property 'OneOf' changed
+                    - Schema #/components/schemas/Automatic modified
+                      - Properties changed
+                        - Modified property: automatic
+                          - Properties changed
+                            - Modified property: period
+                              - Deleted enum values: [DIARIO]
+  - Modified response: 500
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+  - Modified response: 504
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+PATCH /recurring-consents/{recurringConsentId}
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Property 'OneOf' changed
+              - Schema #/components/schemas/ConsentEdition modified
+                - Required changed
+                  - New required property: creditors
+                  - New required property: riskSignals
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Required changed
+                - Deleted required property: startDateTime
+              - Properties changed
+                - Deleted property: startDateTime
+                - Modified property: recurringConfiguration
+                  - Property 'OneOf' changed
+                    - Schema #/components/schemas/Automatic modified
+                      - Properties changed
+                        - Modified property: automatic
+                          - Properties changed
+                            - Modified property: period
+                              - Deleted enum values: [DIARIO]
+  - Modified response: 500
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id
+  - Modified response: 504
+    - Headers changed
+      - Deleted header: x-fapi-interaction-id

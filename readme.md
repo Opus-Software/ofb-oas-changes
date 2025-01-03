@@ -14,9 +14,8 @@
 | acquiring-services | [1.0.1](swagger-apis/acquiring-services/1.0.1.yml) |  |  |  |
 | admin | [1.0.2](swagger-apis/admin/1.0.2.yml) | [2.0.1](swagger-apis/admin/2.0.1.yml) | [YAML](diffs/admin/1.0.2_2.0.1-breaking-only.yml) | [YAML](diffs/admin/1.0.2_2.0.1.yml) |
 | automatic-payments | [1.0.0](swagger-apis/automatic-payments/1.0.0.yml) | [1.1.0](swagger-apis/automatic-payments/1.1.0.yml) | [YAML](diffs/automatic-payments/1.0.0_1.1.0-breaking-only.yml) | [YAML](diffs/automatic-payments/1.0.0_1.1.0.yml) |
-|  | [1.1.0](swagger-apis/automatic-payments/1.1.0.yml) | [2.0.0-beta.2](swagger-apis/automatic-payments/2.0.0-beta.2.yml) | [YAML](diffs/automatic-payments/1.1.0_2.0.0-beta.2-breaking-only.yml) | [YAML](diffs/automatic-payments/1.1.0_2.0.0-beta.2.yml) |
+|  | [1.1.0](swagger-apis/automatic-payments/1.1.0.yml) | [2.0.0-rc.1](swagger-apis/automatic-payments/2.0.0-rc.1.yml) | [YAML](diffs/automatic-payments/1.1.0_2.0.0-rc.1-breaking-only.yml) | [YAML](diffs/automatic-payments/1.1.0_2.0.0-rc.1.yml) |
 | bank-fixed-incomes | [1.0.4](swagger-apis/bank-fixed-incomes/1.0.4.yml) |  |  |  |
-| batch-payments | [1.0.0-beta.1](swagger-apis/batch-payments/1.0.0-beta.1.yml) |  |  |  |
 | capitalization-bonds | [1.0.1](swagger-apis/capitalization-bonds/1.0.1.yml) | [2.0.0](swagger-apis/capitalization-bonds/2.0.0.yml) | [YAML](diffs/capitalization-bonds/1.0.1_2.0.0-breaking-only.yml) | [YAML](diffs/capitalization-bonds/1.0.1_2.0.0.yml) |
 | channels | [1.0.2](swagger-apis/channels/1.0.2.yml) | [2.0.1](swagger-apis/channels/2.0.1.yml) | [YAML](diffs/channels/1.0.2_2.0.1-breaking-only.yml) | [YAML](diffs/channels/1.0.2_2.0.1.yml) |
 | common | [1.0.2](swagger-apis/common/1.0.2.yml) | [2.0.1](swagger-apis/common/2.0.1.yml) | [YAML](diffs/common/1.0.2_2.0.1-breaking-only.yml) | [YAML](diffs/common/1.0.2_2.0.1.yml) |
@@ -148,6 +147,7 @@
 |  | [1.1.0](swagger-apis/automatic-payments/1.1.0.yml) | [2.0.0-beta.1](swagger-apis/automatic-payments/2.0.0-beta.1.yml) | [YAML](diffs/automatic-payments/1.1.0_2.0.0-beta.1.yml) |
 |  | [2.0.0-beta.1](swagger-apis/automatic-payments/2.0.0-beta.1.yml) | [2.0.0-beta.1_old](swagger-apis/automatic-payments/2.0.0-beta.1_old.yml) | [YAML](diffs/automatic-payments/2.0.0-beta.1_2.0.0-beta.1_old.yml) |
 |  | [2.0.0-beta.1_old](swagger-apis/automatic-payments/2.0.0-beta.1_old.yml) | [2.0.0-beta.2](swagger-apis/automatic-payments/2.0.0-beta.2.yml) | [YAML](diffs/automatic-payments/2.0.0-beta.1_old_2.0.0-beta.2.yml) |
+|  | [2.0.0-beta.2](swagger-apis/automatic-payments/2.0.0-beta.2.yml) | [2.0.0-rc.1](swagger-apis/automatic-payments/2.0.0-rc.1.yml) | [YAML](diffs/automatic-payments/2.0.0-beta.2_2.0.0-rc.1.yml) |
 | bank-fixed-incomes | [1.0.0-rc1.0](swagger-apis/bank-fixed-incomes/1.0.0-rc1.0.yml) | [1.0.0-rc2.0](swagger-apis/bank-fixed-incomes/1.0.0-rc2.0.yml) | [YAML](diffs/bank-fixed-incomes/1.0.0-rc1.0_1.0.0-rc2.0.yml) |
 |  | [1.0.0-rc2.0](swagger-apis/bank-fixed-incomes/1.0.0-rc2.0.yml) | [1.0.0-rc3.0](swagger-apis/bank-fixed-incomes/1.0.0-rc3.0.yml) | [YAML](diffs/bank-fixed-incomes/1.0.0-rc2.0_1.0.0-rc3.0.yml) |
 |  | [1.0.0-rc3.0](swagger-apis/bank-fixed-incomes/1.0.0-rc3.0.yml) | [1.0.0](swagger-apis/bank-fixed-incomes/1.0.0.yml) | [YAML](diffs/bank-fixed-incomes/1.0.0-rc3.0_1.0.0.yml) |
@@ -155,7 +155,6 @@
 |  | [1.0.1](swagger-apis/bank-fixed-incomes/1.0.1.yml) | [1.0.2](swagger-apis/bank-fixed-incomes/1.0.2.yml) | [YAML](diffs/bank-fixed-incomes/1.0.1_1.0.2.yml) |
 |  | [1.0.2](swagger-apis/bank-fixed-incomes/1.0.2.yml) | [1.0.3](swagger-apis/bank-fixed-incomes/1.0.3.yml) | [YAML](diffs/bank-fixed-incomes/1.0.2_1.0.3.yml) |
 |  | [1.0.3](swagger-apis/bank-fixed-incomes/1.0.3.yml) | [1.0.4](swagger-apis/bank-fixed-incomes/1.0.4.yml) | [YAML](diffs/bank-fixed-incomes/1.0.3_1.0.4.yml) |
-| batch-payments | [1.0.0-beta.1](swagger-apis/batch-payments/1.0.0-beta.1.yml) |  |  |
 | capitalization-bonds | [1.0.0-rc1.0](swagger-apis/capitalization-bonds/1.0.0-rc1.0.yml) | [1.0.0-rc2.0](swagger-apis/capitalization-bonds/1.0.0-rc2.0.yml) | [YAML](diffs/capitalization-bonds/1.0.0-rc1.0_1.0.0-rc2.0.yml) |
 |  | [1.0.0-rc2.0](swagger-apis/capitalization-bonds/1.0.0-rc2.0.yml) | [1.0.0-rc3.0](swagger-apis/capitalization-bonds/1.0.0-rc3.0.yml) | [YAML](diffs/capitalization-bonds/1.0.0-rc2.0_1.0.0-rc3.0.yml) |
 |  | [1.0.0-rc3.0](swagger-apis/capitalization-bonds/1.0.0-rc3.0.yml) | [1.0.0](swagger-apis/capitalization-bonds/1.0.0.yml) | [YAML](diffs/capitalization-bonds/1.0.0-rc3.0_1.0.0.yml) |
@@ -471,3 +470,17 @@
 |  | [1.0.0](swagger-apis/webhook/1.0.0.yml) | [1.1.0](swagger-apis/webhook/1.1.0.yml) | [YAML](diffs/webhook/1.0.0_1.1.0.yml) |
 |  | [1.1.0](swagger-apis/webhook/1.1.0.yml) | [1.2.0](swagger-apis/webhook/1.2.0.yml) | [YAML](diffs/webhook/1.1.0_1.2.0.yml) |
 |  | [1.2.0](swagger-apis/webhook/1.2.0.yml) | [1.3.0-beta.1](swagger-apis/webhook/1.3.0-beta.1.yml) | [YAML](diffs/webhook/1.2.0_1.3.0-beta.1.yml) |
+
+## Deprecated APIs
+
+### Majors/Minors
+
+| OAS | Base | Revision | Breaking changes only | Full Diff |
+| --- | --- | --- | --- | --- |
+| batch-payments | [1.0.0-beta.1](swagger-apis/batch-payments/1.0.0-beta.1.yml) |  |  |  |
+
+### All revisions
+
+| OAS | Base | Revision | Full Diff |
+| --- | --- | --- | --- |
+| batch-payments | [1.0.0-beta.1](swagger-apis/batch-payments/1.0.0-beta.1.yml) |  |  |
