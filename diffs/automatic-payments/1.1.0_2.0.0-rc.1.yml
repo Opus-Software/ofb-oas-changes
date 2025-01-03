@@ -893,9 +893,11 @@ POST /recurring-consents
                       - Properties changed
                         - Modified property: automatic
                           - Required changed
+                            - New required property: interval
                             - New required property: isRetryAccepted
                             - New required property: referenceStartDateTime
                             - New required property: useOverdraftLimit
+                            - Deleted required property: period
                           - Properties changed
                             - New property: firstPayment
                             - New property: fixedAmount
@@ -1014,9 +1016,11 @@ GET /recurring-consents/{recurringConsentId}
                       - Properties changed
                         - Modified property: automatic
                           - Required changed
+                            - New required property: interval
                             - New required property: isRetryAccepted
                             - New required property: referenceStartDateTime
                             - New required property: useOverdraftLimit
+                            - Deleted required property: period
                           - Properties changed
                             - New property: firstPayment
                             - New property: fixedAmount
@@ -1236,22 +1240,15 @@ Caso enviado, esse campo deve ser, no mínimo, D+1, sendo D o dia da requisiçã
 '
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
-                    - Schema #/components/schemas/Sweeping modified
-                      - Properties changed
-                        - Modified property: sweeping
-                          - Required changed
-                            - New required property: startDateTime
-                            - New required property: useOverdraftLimit
-                          - Properties changed
-                            - New property: startDateTime
-                            - New property: useOverdraftLimit
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
                           - Required changed
+                            - New required property: interval
                             - New required property: isRetryAccepted
                             - New required property: referenceStartDateTime
                             - New required property: useOverdraftLimit
+                            - Deleted required property: period
                           - Properties changed
                             - New property: firstPayment
                             - New property: fixedAmount
@@ -1279,6 +1276,15 @@ Caso enviado, esse campo deve ser, no mínimo, D+1, sendo D o dia da requisiçã
                                       - Example changed from 'CNPJ' to null
                                       - MaxLength changed from 4 to null
                                       - Pattern changed from '^[A-Z]{4}$' to ''
+                    - Schema #/components/schemas/Sweeping modified
+                      - Properties changed
+                        - Modified property: sweeping
+                          - Required changed
+                            - New required property: startDateTime
+                            - New required property: useOverdraftLimit
+                          - Properties changed
+                            - New property: startDateTime
+                            - New property: useOverdraftLimit
                 - Modified property: rejection
                   - Properties changed
                     - Modified property: reason
