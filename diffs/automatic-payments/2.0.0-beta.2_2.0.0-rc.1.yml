@@ -14,6 +14,11 @@ POST /recurring-consents
             - Properties changed
               - Modified property: recurringConfiguration
                 - Property 'OneOf' changed
+                  - Schema #/components/schemas/SweepingRequest modified
+                    - Properties changed
+                      - Modified property: sweeping
+                        - Required changed
+                          - Deleted required property: startDateTime
                   - Schema #/components/schemas/AutomaticRequest modified
                     - Properties changed
                       - Modified property: automatic
@@ -28,11 +33,6 @@ POST /recurring-consents
 Caso não respeitado, o detentor deve rejeitar o pagamento com o motivo DETALHE_PAGAMENTO_INVALIDO, sincronamente (HTTP 422) ou assincronamente (HTTP 200)
 ' to 'Definições para o primeiro pagamento. É considerado como o pagamento da adesão ao serviço pelo usuário pagador. Para casos em que conta recebedora e conta pagadora pertencem ao mesmo detentor, este deve garantir que a conta de crédito informada pertence ao titular do CNPJ enviado no campo “/data/creditors/cpfCnpj”. A conta de crédito informada no momento do primeiro pagamento deve ser a mesma informada dentro deste objeto. Caso não respeitado, o detentor deve rejeitar o pagamento com o motivo DETALHE_PAGAMENTO_INVALIDO, sincronamente (HTTP 422) ou assincronamente (HTTP 200). 
 '
-                  - Schema #/components/schemas/SweepingRequest modified
-                    - Properties changed
-                      - Modified property: sweeping
-                        - Required changed
-                          - Deleted required property: startDateTime
 - Responses changed
   - Modified response: 201
     - Content changed
