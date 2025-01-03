@@ -48,6 +48,13 @@ POST /recurring-consents
                                     - Example changed from null to 'CNPJ'
                                     - MaxLength changed from null to 4
                                     - Pattern changed from '' to '^[A-Z]{4}$'
+                          - Modified property: firstPayment
+                            - Description changed from 'Definições para o primeiro pagamento. É considerado como o pagamento da adesão ao serviço pelo usuário pagador.
+- A conta de crédito informada deve pertencer ao mesmo CNPJ informado no campo “/data/creditors/cpfCnpj”
+- A conta de crédito informada no momento do primeiro pagamento deve ser a mesma informada dentro deste objeto. 
+Caso não respeitado, o detentor deve rejeitar o pagamento com o motivo DETALHE_PAGAMENTO_INVALIDO, sincronamente (HTTP 422) ou assincronamente (HTTP 200)
+' to 'Definições para o primeiro pagamento. É considerado como o pagamento da adesão ao serviço pelo usuário pagador. Para casos em que conta recebedora e conta pagadora pertencem ao mesmo detentor, este deve garantir que a conta de crédito informada pertence ao titular do CNPJ enviado no campo “/data/creditors/cpfCnpj”. A conta de crédito informada no momento do primeiro pagamento deve ser a mesma informada dentro deste objeto. Caso não respeitado, o detentor deve rejeitar o pagamento com o motivo DETALHE_PAGAMENTO_INVALIDO, sincronamente (HTTP 422) ou assincronamente (HTTP 200). 
+'
 - Responses changed
   - Modified response: 201
     - Content changed
@@ -77,6 +84,13 @@ POST /recurring-consents
                                       - Example changed from null to 'CNPJ'
                                       - MaxLength changed from null to 4
                                       - Pattern changed from '' to '^[A-Z]{4}$'
+                            - Modified property: firstPayment
+                              - Description changed from 'Definições para o primeiro pagamento. É considerado como o pagamento da adesão ao serviço pelo usuário pagador.
+- A conta de crédito informada deve pertencer ao mesmo CNPJ informado no campo “/data/creditors/cpfCnpj”
+- A conta de crédito informada no momento do primeiro pagamento deve ser a mesma informada dentro deste objeto. 
+Caso não respeitado, o detentor deve rejeitar o pagamento com o motivo DETALHE_PAGAMENTO_INVALIDO, sincronamente (HTTP 422) ou assincronamente (HTTP 200)
+' to 'Definições para o primeiro pagamento. É considerado como o pagamento da adesão ao serviço pelo usuário pagador. Para casos em que conta recebedora e conta pagadora pertencem ao mesmo detentor, este deve garantir que a conta de crédito informada pertence ao titular do CNPJ enviado no campo “/data/creditors/cpfCnpj”. A conta de crédito informada no momento do primeiro pagamento deve ser a mesma informada dentro deste objeto. Caso não respeitado, o detentor deve rejeitar o pagamento com o motivo DETALHE_PAGAMENTO_INVALIDO, sincronamente (HTTP 422) ou assincronamente (HTTP 200). 
+'
                 - Modified property: rejection
                   - Properties changed
                     - Modified property: reason
@@ -154,6 +168,13 @@ GET /recurring-consents/{recurringConsentId}
                                       - Example changed from null to 'CNPJ'
                                       - MaxLength changed from null to 4
                                       - Pattern changed from '' to '^[A-Z]{4}$'
+                            - Modified property: firstPayment
+                              - Description changed from 'Definições para o primeiro pagamento. É considerado como o pagamento da adesão ao serviço pelo usuário pagador.
+- A conta de crédito informada deve pertencer ao mesmo CNPJ informado no campo “/data/creditors/cpfCnpj”
+- A conta de crédito informada no momento do primeiro pagamento deve ser a mesma informada dentro deste objeto. 
+Caso não respeitado, o detentor deve rejeitar o pagamento com o motivo DETALHE_PAGAMENTO_INVALIDO, sincronamente (HTTP 422) ou assincronamente (HTTP 200)
+' to 'Definições para o primeiro pagamento. É considerado como o pagamento da adesão ao serviço pelo usuário pagador. Para casos em que conta recebedora e conta pagadora pertencem ao mesmo detentor, este deve garantir que a conta de crédito informada pertence ao titular do CNPJ enviado no campo “/data/creditors/cpfCnpj”. A conta de crédito informada no momento do primeiro pagamento deve ser a mesma informada dentro deste objeto. Caso não respeitado, o detentor deve rejeitar o pagamento com o motivo DETALHE_PAGAMENTO_INVALIDO, sincronamente (HTTP 422) ou assincronamente (HTTP 200). 
+'
                 - Modified property: rejection
                   - Properties changed
                     - Modified property: reason
@@ -209,6 +230,10 @@ PATCH /recurring-consents/{recurringConsentId}
         - Properties changed
           - Modified property: data
             - Property 'OneOf' changed
+              - Schema #/components/schemas/ConsentEdition modified
+                - Properties changed
+                  - Deleted property: businessEntity
+                  - Deleted property: loggedUser
               - Schema #/components/schemas/ConsentRejection modified
                 - Properties changed
                   - Modified property: rejection
@@ -258,10 +283,6 @@ PATCH /recurring-consents/{recurringConsentId}
 - VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
 - AUTENTICACAO_DIVERGENTE : Usuário autenticado no detentor diverge do usuário autenticado no iniciador;
 '
-              - Schema #/components/schemas/ConsentEdition modified
-                - Properties changed
-                  - Deleted property: businessEntity
-                  - Deleted property: loggedUser
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -293,6 +314,13 @@ PATCH /recurring-consents/{recurringConsentId}
                                       - Example changed from null to 'CNPJ'
                                       - MaxLength changed from null to 4
                                       - Pattern changed from '' to '^[A-Z]{4}$'
+                            - Modified property: firstPayment
+                              - Description changed from 'Definições para o primeiro pagamento. É considerado como o pagamento da adesão ao serviço pelo usuário pagador.
+- A conta de crédito informada deve pertencer ao mesmo CNPJ informado no campo “/data/creditors/cpfCnpj”
+- A conta de crédito informada no momento do primeiro pagamento deve ser a mesma informada dentro deste objeto. 
+Caso não respeitado, o detentor deve rejeitar o pagamento com o motivo DETALHE_PAGAMENTO_INVALIDO, sincronamente (HTTP 422) ou assincronamente (HTTP 200)
+' to 'Definições para o primeiro pagamento. É considerado como o pagamento da adesão ao serviço pelo usuário pagador. Para casos em que conta recebedora e conta pagadora pertencem ao mesmo detentor, este deve garantir que a conta de crédito informada pertence ao titular do CNPJ enviado no campo “/data/creditors/cpfCnpj”. A conta de crédito informada no momento do primeiro pagamento deve ser a mesma informada dentro deste objeto. Caso não respeitado, o detentor deve rejeitar o pagamento com o motivo DETALHE_PAGAMENTO_INVALIDO, sincronamente (HTTP 422) ou assincronamente (HTTP 200). 
+'
                 - Modified property: rejection
                   - Properties changed
                     - Modified property: reason
