@@ -2,7 +2,7 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 2
+### Modified Endpoints: 3
 -------------------------
 GET /contracts
 - Responses changed
@@ -49,3 +49,35 @@ GET /contracts/{contractId}
                 - Deleted required property: productSubTypeCategory
               - Properties changed
                 - Deleted property: productSubTypeCategory
+                - Modified property: dueDate
+                  - Description changed from 'Data do último vencimento da operação, seguindo a especificação RFC-3339.
+Informação deve ser enviada caso ela exista. Especialmente para contratos repactuados, deve-se alterar a data para a do último vencimento.
+' to 'Data de vencimento Final da operação. Especificação RFC-3339.
+Informação deve ser enviada caso ela exista.
+'
+                - Modified property: interestRates
+                  - Description changed from 'Objeto que traz o conjunto de informações necessárias para demonstrar a composição das taxas de juros remuneratórios da Modalidade de crédito. Caso o contrato não possua taxas de juros, deve ser compartilhada uma lista vazia. Caso o contrato possua uma taxa de juros com valor 0, deve ser compartilhado um objeto com o valor 0 de forma explícita. Para o produto CPC (campo “productSubTypeCategory” preenchido com CREDITO_PESSOAL_CLEAN) deve-se obrigatoriamente conter a taxa nominal e efetiva (campo “taxType”) com periodicidade a.a. (ao ano), podendo, adicionalmente, também conter uma periodicidade diferente.
+' to 'Objeto que traz o conjunto de informações necessárias para demonstrar a composição das taxas de juros remuneratórios da Modalidade de crédito.  
+Caso o contrato não possua taxas de juros, deve ser compartilhada uma lista vazia. Caso o contrato possua uma taxa de juros com valor 0, deve ser compartilhado um objeto com o valor 0 de forma explícita.
+'
+                  - Items changed
+                    - Properties changed
+                      - Modified property: postFixedRate
+                        - Description changed from 'Taxa pós fixada aplicada sob o contrato da modalidade crédito. p.ex. 0.0045 .O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%). Preencher o campo não aplicável ao contrato com zeros, seguindo o pattern (0.000000). Para taxas pós fixadas necessário informar o indexador (campo referentialRateIndexerSubType).
+' to 'Taxa pós fixada aplicada sob o contrato da modalidade crédito. p.ex. 0.0045 .O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%). Preencher o campo não aplicável ao contrato com zeros, seguindo o pattern (0.000000)
+'
+                      - Modified property: referentialRateIndexerSubType
+                        - Description changed from '"Sub tipos de taxas referenciais ou indexadores, conforme Anexo 5: Taxa referencial ou Indexador (Indx), do Documento 3040.
+[Restrição] Caso no campo postFixedRate seja informado um valor aplicável ao contrato, o envio deste campo será obrigatório.”"
+' to '"Sub tipos de taxas referenciais ou indexadores, conforme Anexo 5: Taxa referencial ou Indexador (Indx), do Documento 3040"
+'
+GET /contracts/{contractId}/payments
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Deleted property: lastUpdatedcontractOutstandingBalanceDateTime
