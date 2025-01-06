@@ -1,0 +1,209 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 5
+-------------------------
+GET /contracts
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Required changed
+                  - New required property: productSubTypeCategory
+                - Properties changed
+                  - New property: productSubTypeCategory
+                  - Modified property: brandName
+                    - Pattern changed from '[\w\W\s]*' to '^(?!\s)[\w\W\s]*[^\s]$'
+                  - Modified property: ipocCode
+                    - Description changed from 'Número padronizado do contrato - IPOC (Identificação Padronizada da Operação de Crédito). Segundo DOC 3040, composta por:
+- **CNPJ da instituição:** 8 (oito) posições iniciais;
+- **Modalidade da operação:** 4 (quatro) posições;
+- **Tipo do cliente:** 1 (uma) posição( 1 = pessoa natural - CPF, 2= pessoa jurídica – CNPJ, 3 = pessoa física no exterior, 4 = pessoa jurídica no exterior, 5 = pessoa natural sem CPF e 6 = pessoa jurídica sem CNPJ);
+- **Código do cliente:** O número de posições varia conforme o tipo do cliente:
+  1. Para clientes pessoa física com CPF (tipo de cliente = 1), informar as 11 (onze) posições do CPF;
+  2. Para clientes pessoa jurídica com CNPJ (tipo de cliente = 2), informar as 8 (oito) posições iniciais do CNPJ;
+  3. Para os demais clientes (tipos de cliente 3, 4, 5 e 6), informar 14 (catorze) posições com complemento de zeros à esquerda se a identificação tiver tamanho inferior;
+- **Código do contrato:** 1 (uma) até 40 (quarenta) posições, sem complemento de caracteres.
+' to 'Número padronizado do contrato - IPOC (Identificação Padronizada da Operação de Crédito). Segundo DOC 3040, composta por:
+- **CNPJ da instituição:** 8 (oito) posições iniciais;
+- **Modalidade da operação:** 4 (quatro) posições;
+- **Tipo do cliente:** 1 (uma) posição( 1 = pessoa natural - CPF, 2= pessoa jurídica – CNPJ, 3 = pessoa física no exterior, 4 = pessoa jurídica no exterior, 5 = pessoa natural sem CPF e 6 = pessoa jurídica sem CNPJ);
+- **Código do cliente:** O número de posições varia conforme o tipo do cliente:
+  1. Para clientes pessoa física com CPF (tipo de cliente = 1), informar as 11 (onze) posições do CPF;
+  2. Para clientes pessoa jurídica com CNPJ (tipo de cliente = 2), informar as 8 (oito) posições iniciais do CNPJ;
+  3. Para os demais clientes (tipos de cliente 3, 4, 5 e 6), informar 14 (catorze) posições com complemento de zeros à esquerda se a identificação tiver tamanho inferior;
+- **Código do contrato:** 1 (uma) até 40 (quarenta) posições, sem complemento de caracteres.          
+'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Format changed from 'uri' to 'url'
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: last
+                  - Format changed from 'uri' to 'url'
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: next
+                  - Format changed from 'uri' to 'url'
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: prev
+                  - Format changed from 'uri' to 'url'
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: self
+                  - Format changed from 'uri' to 'url'
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+GET /contracts/{contractId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Required changed
+                - New required property: productSubTypeCategory
+              - Properties changed
+                - New property: productSubTypeCategory
+                - Modified property: amortizationScheduledAdditionalInfo
+                  - Pattern changed from '[\w\W\s]*' to '^(?!\s)[\w\W\s]*[^\s]$'
+                - Modified property: contractedFees
+                  - Items changed
+                    - Properties changed
+                      - Modified property: feeCode
+                        - Pattern changed from '[\w\W\s]*' to '^(?!\s)[\w\W\s]*[^\s]$'
+                      - Modified property: feeName
+                        - Pattern changed from '[\w\W\s]*' to '^(?!\s)[\w\W\s]*[^\s]$'
+                      - Modified property: feeRate
+                        - Pattern changed from '^[01]\.\d{6}$' to '^\d{1}\.\d{6}$'
+                - Modified property: contractedFinanceCharges
+                  - Items changed
+                    - Properties changed
+                      - Modified property: chargeAdditionalInfo
+                        - Pattern changed from '[\w\W\s]*' to '^(?!\s)[\w\W\s]*[^\s]$'
+                      - Modified property: chargeRate
+                        - Pattern changed from '^[01]\.\d{6}$' to '^\d{1}\.\d{6}$'
+                - Modified property: instalmentPeriodicityAdditionalInfo
+                  - Pattern changed from '[\w\W\s]*' to '^(?!\s)[\w\W\s]*[^\s]$'
+                - Modified property: interestRates
+                  - Items changed
+                    - Properties changed
+                      - Modified property: additionalInfo
+                        - Pattern changed from '[\w\W\s]*' to '^(?!\s)[\w\W\s]*[^\s]$'
+                      - Modified property: referentialRateIndexerAdditionalInfo
+                        - Pattern changed from '[\w\W\s]*' to '^(?!\s)[\w\W\s]*[^\s]$'
+                - Modified property: productName
+                  - Pattern changed from '[\w\W\s]*' to '^(?!\s)[\w\W\s]*[^\s]$'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Format changed from 'uri' to 'url'
+                - Modified property: last
+                  - Format changed from 'uri' to 'url'
+                - Modified property: next
+                  - Format changed from 'uri' to 'url'
+                - Modified property: prev
+                  - Format changed from 'uri' to 'url'
+                - Modified property: self
+                  - Format changed from 'uri' to 'url'
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+GET /contracts/{contractId}/payments
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: releases
+                  - Items changed
+                    - Properties changed
+                      - Modified property: overParcel
+                        - Properties changed
+                          - Modified property: charges
+                            - Items changed
+                              - Properties changed
+                                - Modified property: chargeAdditionalInfo
+                                  - Pattern changed from '[\w\W\s]*' to '^(?!\s)[\w\W\s]*[^\s]$'
+                                - Modified property: chargeAmount
+                                  - MaxLength changed from 20 to 21
+                                  - Pattern changed from '^\d{1,15}\.\d{2,4}$' to '^-?\d{1,15}\.\d{2,4}$'
+                          - Modified property: fees
+                            - Items changed
+                              - Properties changed
+                                - Modified property: feeCode
+                                  - Pattern changed from '[\w\W\s]*' to '^(?!\s)[\w\W\s]*[^\s]$'
+                                - Modified property: feeName
+                                  - Pattern changed from '[\w\W\s]*' to '^(?!\s)[\w\W\s]*[^\s]$'
+                      - Modified property: paidAmount
+                        - MaxLength changed from 20 to 21
+                        - Pattern changed from '^\d{1,15}\.\d{2,4}$' to '^-?\d{1,15}\.\d{2,4}$'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Format changed from 'uri' to 'url'
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: last
+                  - Format changed from 'uri' to 'url'
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: next
+                  - Format changed from 'uri' to 'url'
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: prev
+                  - Format changed from 'uri' to 'url'
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: self
+                  - Format changed from 'uri' to 'url'
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+GET /contracts/{contractId}/scheduled-instalments
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Format changed from 'uri' to 'url'
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: last
+                  - Format changed from 'uri' to 'url'
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: next
+                  - Format changed from 'uri' to 'url'
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: prev
+                  - Format changed from 'uri' to 'url'
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: self
+                  - Format changed from 'uri' to 'url'
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+GET /contracts/{contractId}/warranties
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Format changed from 'uri' to 'url'
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: last
+                  - Format changed from 'uri' to 'url'
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: next
+                  - Format changed from 'uri' to 'url'
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: prev
+                  - Format changed from 'uri' to 'url'
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
+                - Modified property: self
+                  - Format changed from 'uri' to 'url'
+                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
