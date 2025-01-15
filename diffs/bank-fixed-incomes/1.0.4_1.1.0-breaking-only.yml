@@ -2,7 +2,7 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 2
+### Modified Endpoints: 4
 -------------------------
 GET /investments/{investmentId}
 - Responses changed
@@ -30,3 +30,29 @@ GET /investments/{investmentId}/balances
                 - Modified property: preFixedRate
                   - MaxLength changed from 8 to 9
                   - Pattern changed from '^\d{1}\.\d{6}$' to '^-?\d{1}\.\d{6}$'
+GET /investments/{investmentId}/transactions
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: remunerationTransactionRate
+                    - MaxLength changed from 8 to 9
+                    - Pattern changed from '^\d{1}\.\d{6}$' to '^-?\d{1}\.\d{6}$'
+GET /investments/{investmentId}/transactions-current
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: remunerationTransactionRate
+                    - MaxLength changed from 8 to 9
+                    - Pattern changed from '^\d{1}\.\d{6}$' to '^-?\d{1}\.\d{6}$'
