@@ -685,6 +685,28 @@ INIC - O campo transactionIdentification deve ser preenchido obrigatoriamente e 
     - Headers changed
       - Deleted header: x-fapi-interaction-id
 PATCH /pix/recurring-payments/{recurringPaymentId}
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: cancellation
+                - Properties changed
+                  - Modified property: cancelledBy
+                    - Properties changed
+                      - Modified property: document
+                        - Properties changed
+                          - Modified property: identification
+                            - Description changed from 'Número do documento de identificação oficial do usuário.' to 'Número do documento de identificação oficial do pagador ou recebedor, pessoa natural ou jurídica'
+                            - Pattern changed from '^\d{11}$' to '^(?:\d{11}|\d{14})$'
+                          - Modified property: rel
+                            - Description changed from 'Tipo do documento de identificação oficial do usuário.' to 'Tipo de documento de identificação oficial do pagador ou recebedor, pessoa natural ou jurídica.'
+                            - New enum values: [CPF CNPJ]
+                            - Example changed from 'CPF' to null
+                            - MaxLength changed from 3 to null
+                            - Pattern changed from '^[A-Z]{3}$' to ''
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -1012,6 +1034,15 @@ GET /recurring-consents/{recurringConsentId}
 '
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
+                    - Schema #/components/schemas/Sweeping modified
+                      - Properties changed
+                        - Modified property: sweeping
+                          - Required changed
+                            - New required property: startDateTime
+                            - New required property: useOverdraftLimit
+                          - Properties changed
+                            - New property: startDateTime
+                            - New property: useOverdraftLimit
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
@@ -1048,15 +1079,6 @@ GET /recurring-consents/{recurringConsentId}
                                       - Example changed from 'CNPJ' to null
                                       - MaxLength changed from 4 to null
                                       - Pattern changed from '^[A-Z]{4}$' to ''
-                    - Schema #/components/schemas/Sweeping modified
-                      - Properties changed
-                        - Modified property: sweeping
-                          - Required changed
-                            - New required property: startDateTime
-                            - New required property: useOverdraftLimit
-                          - Properties changed
-                            - New property: startDateTime
-                            - New property: useOverdraftLimit
                 - Modified property: rejection
                   - Properties changed
                     - Modified property: reason
@@ -1149,76 +1171,9 @@ solicitação da revogação) deverão ser mantidos. Pagamentos agendados para o
         - Properties changed
           - Modified property: data
             - Property 'OneOf' changed
-              - Schema #/components/schemas/ConsentRejection modified
-                - Properties changed
-                  - Modified property: rejection
-                    - Properties changed
-                      - Modified property: reason
-                        - Properties changed
-                          - Modified property: code
-                            - Description changed from 'Código indicador do motivo de rejeição.
-- NAO_INFORMADO
-- FALHA_INFRAESTRUTURA
-- TEMPO_EXPIRADO_AUTORIZACAO
-- REJEITADO_USUARIO
-- CONTAS_ORIGEM_DESTINO_IGUAIS
-- CONTA_NAO_PERMITE_PAGAMENTO
-- SALDO_INSUFICIENTE
-- VALOR_ACIMA_LIMITE
-' to 'Código indicador do motivo de rejeição.
-- NAO_INFORMADO
-- FALHA_INFRAESTRUTURA
-- TEMPO_EXPIRADO_AUTORIZACAO
-- REJEITADO_USUARIO
-- CONTAS_ORIGEM_DESTINO_IGUAIS
-- CONTA_NAO_PERMITE_PAGAMENTO
-- SALDO_INSUFICIENTE
-- VALOR_ACIMA_LIMITE
-- AUTENTICACAO_DIVERGENTE
-'
-                            - New enum values: [AUTENTICACAO_DIVERGENTE]
-                          - Modified property: detail
-                            - Description changed from 'Detalhe sobre o motivo de rejeição indicado no campo `/data/rejection/reason/code`
-- NAO_INFORMADO: Não informada pela detentora de conta;
-- FALHA_INFRAESTRUTURA: [Descrição de qual falha na infraestrutura inviabilizou o processamento];
-- TEMPO_EXPIRADO_AUTORIZACAO: Consentimento expirou antes que o usuário pudesse confirmá-lo;
-- REJEITADO_USUARIO: O usuário rejeitou a autorização do consentimento;
-- CONTAS_ORIGEM_DESTINO_IGUAIS: A conta selecionada é igual à conta destino e não permite realizar esse pagamento;
-- CONTA_NAO_PERMITE_PAGAMENTO: A conta selecionada é do tipo [salario/investimento/liquidação/outros] e não permite realizar esse pagamento;
-- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
-- VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
-' to 'Detalhe sobre o motivo de rejeição indicado no campo `/data/rejection/reason/code`
-- NAO_INFORMADO: Não informada pela detentora de conta;
-- FALHA_INFRAESTRUTURA: [Descrição de qual falha na infraestrutura inviabilizou o processamento];
-- TEMPO_EXPIRADO_AUTORIZACAO: Consentimento expirou antes que o usuário pudesse confirmá-lo;
-- REJEITADO_USUARIO: O usuário rejeitou a autorização do consentimento;
-- CONTAS_ORIGEM_DESTINO_IGUAIS: A conta selecionada é igual à conta destino e não permite realizar esse pagamento;
-- CONTA_NAO_PERMITE_PAGAMENTO: A conta selecionada é do tipo [salario/investimento/liquidação/outros] e não permite realizar esse pagamento;
-- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
-- VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
-- AUTENTICACAO_DIVERGENTE : Usuário autenticado no detentor diverge do usuário autenticado no iniciador;
-'
-              - Schema #/components/schemas/ConsentEdition modified
-                - Required changed
-                  - New required property: creditors
-                  - New required property: riskSignals
-                - Properties changed
-                  - New property: businessEntity
-                  - New property: loggedUser
-                  - New property: recurringConfiguration
-                  - Deleted property: automatic
-                  - Deleted property: startDateTime
-                  - Modified property: creditors
-                    - Items changed
-                      - Description changed from 'Objeto contendo os dados do recebedor (creditor).' to 'Objeto contendo os dados do recebedor (creditor).
-[Restrição] Caso o consentimento de longa duração seja para o produto Pix Automático (“automatic” selecionado no oneOf do objeto “/data/recurringConfiguration”), apenas um recebedor é permitido e esse deve ser pessoa jurídica.
-'
-                  - Modified property: expirationDateTime
-                    - Description changed from 'Data e hora em que o consentimento deve deixar de ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format).' to 'Data e hora em que o consentimento deve deixar de ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format).
-[Restrição] 
-Caso esse campo não seja enviado, a instituição detentora deve considerar a extensão do prazo para um período indeterminado; 
-Caso enviado, esse campo deve ser, no mínimo, D+1, sendo D o dia da requisição.
-'
+              - 3 schemas deleted
+            - Properties changed
+              - New property: ConsentEdition
 - Responses changed
   - Modified response: 200
     - Content changed
