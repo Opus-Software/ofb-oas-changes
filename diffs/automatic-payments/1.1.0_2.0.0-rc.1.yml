@@ -63,9 +63,10 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_TENTATIVAS_EXCEDIDO
 - FORA_PRAZO_PERMITIDO
 - DETALHE_TENTATIVA_INVALIDO
+- DETALHE_PAGAMENTO_INVALIDO
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 '
-                        - New enum values: [CONSENTIMENTO_REVOGADO LIMITE_TENTATIVAS_EXCEDIDO FORA_PRAZO_PERMITIDO DETALHE_TENTATIVA_INVALIDO]
+                        - New enum values: [CONSENTIMENTO_REVOGADO LIMITE_TENTATIVAS_EXCEDIDO FORA_PRAZO_PERMITIDO DETALHE_TENTATIVA_INVALIDO DETALHE_PAGAMENTO_INVALIDO]
                       - Modified property: detail
                         - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
 - SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
@@ -106,7 +107,8 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - CONSENTIMENTO_REVOGADO: O pagamento estava associado a um consentimento que foi revogado.
 - LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido
 - FORA_PRAZO_PERMITIDO: O horário ou período da requisição não permite o agendamento pelo detentor.
-- DETALHE_TENTATIVA_INVALIDO : O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
+- DETALHE_TENTATIVA_INVALIDO: O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
+- DETALHE_PAGAMENTO_INVALIDO: Valida se determinado parâmetro informado obedece as regras de negócio
 '
                   - Modified property: transactionIdentification
                     - Description changed from 'Trata-se de um identificador de transação que deve ser retransmitido intacto pelo PSP do pagador ao gerar a ordem de pagamento. 
@@ -126,10 +128,19 @@ INIC - O campo transactionIdentification deve ser preenchido obrigatoriamente e 
                   - Example changed from 'https://api.banco.com.br/open-banking/api/v1/resource' to 'https://api.banco.com.br/open-banking/api/v2/resource'
   - Modified response: 500
     - Headers changed
-      - Deleted header: x-fapi-interaction-id
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client). Seu valor deve obrigatoriamente ser replicado pela detentora (server) no cabeçalho de resposta, exceto em casos de falhas estruturais que impeçam a replicação. Caso não seja possível ser replicado, não deve ser enviado.
+'
   - Modified response: 504
     - Headers changed
-      - Deleted header: x-fapi-interaction-id
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client). Seu valor deve obrigatoriamente ser replicado pela detentora (server) no cabeçalho de resposta, exceto em casos de falhas estruturais que impeçam a replicação. Caso não seja possível ser replicado, não deve ser enviado.
+'
+  - Modified response: 529
+    - Headers changed
+      - New header: x-fapi-interaction-id
 POST /pix/recurring-payments
 - Request body changed
   - Content changed
@@ -210,6 +221,19 @@ Em dispositivos iOS o valor é um ponto flutuante entre 0.0 e 1.0.
                 - Deleted property: ibgeTownCode
                 - Modified property: cancellation
                   - Properties changed
+                    - Modified property: cancelledBy
+                      - Properties changed
+                        - Modified property: document
+                          - Properties changed
+                            - Modified property: identification
+                              - Description changed from 'Número do documento do usuário pagador responsável pelo cancelamento do pagamento.' to 'Número do documento de identificação oficial do pagador ou recebedor, pessoa natural ou jurídica.'
+                              - Pattern changed from '^\d{11}$' to '^(?:\d{11}|\d{14})$'
+                            - Modified property: rel
+                              - Description changed from 'Tipo do documento do usuário pagador responsável pelo cancelamento do pagamento.' to 'Tipo de documento de identificação oficial do pagador ou recebedor, pessoa natural ou jurídica.'
+                              - New enum values: [CPF CNPJ]
+                              - Example changed from 'CPF' to null
+                              - MaxLength changed from 3 to null
+                              - Pattern changed from '^[A-Z]{3}$' to ''
                     - Modified property: reason
                       - Description changed from 'O preenchimento desse campo para retorno, deve ocorrer pela detentora de contas a partir do status em que o pagamento estiver no momento da solicitação do cancelamento (ex. Status de pagamento = PDNG, campo deve ser preenchido com enum CANCELADO_PENDENCIA)
 Valores possíveis:
@@ -294,9 +318,10 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - CONSENTIMENTO_REVOGADO
 - FORA_PRAZO_PERMITIDO
 - DETALHE_TENTATIVA_INVALIDO
+- DETALHE_PAGAMENTO_INVALIDO
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 '
-                      - New enum values: [LIMITE_TENTATIVAS_EXCEDIDO CONSENTIMENTO_REVOGADO FORA_PRAZO_PERMITIDO DETALHE_TENTATIVA_INVALIDO]
+                      - New enum values: [LIMITE_TENTATIVAS_EXCEDIDO CONSENTIMENTO_REVOGADO FORA_PRAZO_PERMITIDO DETALHE_TENTATIVA_INVALIDO DETALHE_PAGAMENTO_INVALIDO]
                     - Modified property: detail
                       - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
 - SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
@@ -337,7 +362,8 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
 - CONSENTIMENTO_REVOGADO: O pagamento estava associado a um consentimento que foi revogado.
 - FORA_PRAZO_PERMITIDO: O horário ou período da requisição não permite o agendamento pelo detentor.
-- DETALHE_TENTATIVA_INVALIDO : O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
+- DETALHE_TENTATIVA_INVALIDO: O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
+- DETALHE_PAGAMENTO_INVALIDO: Valida se determinado parâmetro informado obedece as regras de negócio.
 '
                 - Modified property: transactionIdentification
                   - Description changed from 'Trata-se de um identificador de transação que deve ser retransmitido intacto pelo PSP do pagador ao gerar a ordem de pagamento. 
@@ -489,10 +515,19 @@ INIC - O campo transactionIdentification deve ser preenchido obrigatoriamente e 
 '
   - Modified response: 500
     - Headers changed
-      - Deleted header: x-fapi-interaction-id
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client). Seu valor deve obrigatoriamente ser replicado pela detentora (server) no cabeçalho de resposta, exceto em casos de falhas estruturais que impeçam a replicação. Caso não seja possível ser replicado, não deve ser enviado.
+'
   - Modified response: 504
     - Headers changed
-      - Deleted header: x-fapi-interaction-id
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client). Seu valor deve obrigatoriamente ser replicado pela detentora (server) no cabeçalho de resposta, exceto em casos de falhas estruturais que impeçam a replicação. Caso não seja possível ser replicado, não deve ser enviado.
+'
+  - Modified response: 529
+    - Headers changed
+      - New header: x-fapi-interaction-id
 GET /pix/recurring-payments/{recurringPaymentId}
 - Responses changed
   - Modified response: 200
@@ -507,6 +542,19 @@ GET /pix/recurring-payments/{recurringPaymentId}
                 - Deleted property: ibgeTownCode
                 - Modified property: cancellation
                   - Properties changed
+                    - Modified property: cancelledBy
+                      - Properties changed
+                        - Modified property: document
+                          - Properties changed
+                            - Modified property: identification
+                              - Description changed from 'Número do documento do usuário pagador responsável pelo cancelamento do pagamento.' to 'Número do documento de identificação oficial do pagador ou recebedor, pessoa natural ou jurídica.'
+                              - Pattern changed from '^\d{11}$' to '^(?:\d{11}|\d{14})$'
+                            - Modified property: rel
+                              - Description changed from 'Tipo do documento do usuário pagador responsável pelo cancelamento do pagamento.' to 'Tipo de documento de identificação oficial do pagador ou recebedor, pessoa natural ou jurídica.'
+                              - New enum values: [CPF CNPJ]
+                              - Example changed from 'CPF' to null
+                              - MaxLength changed from 3 to null
+                              - Pattern changed from '^[A-Z]{3}$' to ''
                     - Modified property: reason
                       - Description changed from 'O preenchimento desse campo para retorno, deve ocorrer pela detentora de contas a partir do status em que o pagamento estiver no momento da solicitação do cancelamento (ex. Status de pagamento = PDNG, campo deve ser preenchido com enum CANCELADO_PENDENCIA)
 Valores possíveis:
@@ -593,9 +641,10 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - CONSENTIMENTO_REVOGADO
 - FORA_PRAZO_PERMITIDO
 - DETALHE_TENTATIVA_INVALIDO
+- DETALHE_PAGAMENTO_INVALIDO
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 '
-                      - New enum values: [LIMITE_TENTATIVAS_EXCEDIDO CONSENTIMENTO_REVOGADO FORA_PRAZO_PERMITIDO DETALHE_TENTATIVA_INVALIDO]
+                      - New enum values: [LIMITE_TENTATIVAS_EXCEDIDO CONSENTIMENTO_REVOGADO FORA_PRAZO_PERMITIDO DETALHE_TENTATIVA_INVALIDO DETALHE_PAGAMENTO_INVALIDO]
                     - Modified property: detail
                       - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
 - SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
@@ -636,7 +685,8 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
 - CONSENTIMENTO_REVOGADO: O pagamento estava associado a um consentimento que foi revogado.
 - FORA_PRAZO_PERMITIDO: O horário ou período da requisição não permite o agendamento pelo detentor.
-- DETALHE_TENTATIVA_INVALIDO : O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
+- DETALHE_TENTATIVA_INVALIDO: O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
+- DETALHE_PAGAMENTO_INVALIDO: Valida se determinado parâmetro informado obedece as regras de negócio.
 '
                 - Modified property: status
                   - Description changed from 'Estado atual do pagamento. O estado evolui na seguinte ordem:
@@ -680,11 +730,37 @@ INIC - O campo transactionIdentification deve ser preenchido obrigatoriamente e 
                   - Example changed from 'https://api.banco.com.br/open-banking/api/v1/resource' to 'https://api.banco.com.br/open-banking/api/v2/resource'
   - Modified response: 500
     - Headers changed
-      - Deleted header: x-fapi-interaction-id
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client). Seu valor deve obrigatoriamente ser replicado pela detentora (server) no cabeçalho de resposta, exceto em casos de falhas estruturais que impeçam a replicação. Caso não seja possível ser replicado, não deve ser enviado.
+'
   - Modified response: 504
     - Headers changed
-      - Deleted header: x-fapi-interaction-id
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client). Seu valor deve obrigatoriamente ser replicado pela detentora (server) no cabeçalho de resposta, exceto em casos de falhas estruturais que impeçam a replicação. Caso não seja possível ser replicado, não deve ser enviado.
+'
+  - Modified response: 529
+    - Headers changed
+      - New header: x-fapi-interaction-id
 PATCH /pix/recurring-payments/{recurringPaymentId}
+- Description changed from 'Esse endpoint deve ser usado para cancelar as transações que estejam em uma das seguintes situações: 
+Agendada com sucesso (SCHD), retida para análise (PDNG). Caso a requisição seja bem sucedida, a transação vai para a situação CANC. 
+Caso o status do pagamento seja diferente de SCHD/PDNG ou alguma outra regra de negócio impeça o cancelamento, a requisição PATCH retorna 
+HTTP Status 422 com o code PAGAMENTO_NAO_PERMITE_CANCELAMENTO. 
+Caso receba um 422, a iniciadora deve fazer uma requisição GET no pagamento para verificar a situação atual dele, bem como detalhes associados. 
+[Restrição] Para o Pix Automático (“recurringConfiguration” igual a “automatic”) tanto o recebedor quanto o pagador poderão realizar o 
+cancelamento, sendo permitido ao recebedor a solicitação de cancelamento até as 22:00 (Horário de Brasília) e ao pagador até as 23:59 
+(Horário de Brasília) do dia anterior à data de efetivação do pagamento.
+' to 'Esse endpoint deve ser usado para cancelar as transações que estejam em uma das seguintes situações: 
+Agendada com sucesso (SCHD), retida para análise (PDNG). Caso a requisição seja bem sucedida, a transação vai para a situação CANC. 
+Caso o status do pagamento seja diferente de SCHD/PDNG ou alguma outra regra de negócio impeça o cancelamento, a requisição PATCH retorna 
+HTTP Status 422 com o code PAGAMENTO_NAO_PERMITE_CANCELAMENTO. 
+Caso receba um 422, a iniciadora deve fazer uma requisição GET no pagamento para verificar a situação atual dele, bem como detalhes associados. 
+[Restrição] Para o Pix automático (“recurringConfiguration” igual a “automatic”) tanto o recebedor quanto o pagador poderão realizar o cancelamento, 
+sendo permitido ao recebedor a solicitação de cancelamento até as 22:00 (Horário de Brasília) e ao pagador até as 23:59 (Horário de Brasília) do dia anterior à data de efetivação do pagamento, 
+exceto para os casos de novas tentativas em dias subsequentes, onde apenas o recebedor pode cancelar, também até as 22:00h.
+'
 - Request body changed
   - Content changed
     - Modified media type: application/jwt
@@ -720,6 +796,19 @@ PATCH /pix/recurring-payments/{recurringPaymentId}
                 - Deleted property: ibgeTownCode
                 - Modified property: cancellation
                   - Properties changed
+                    - Modified property: cancelledBy
+                      - Properties changed
+                        - Modified property: document
+                          - Properties changed
+                            - Modified property: identification
+                              - Description changed from 'Número do documento do usuário pagador responsável pelo cancelamento do pagamento.' to 'Número do documento de identificação oficial do pagador ou recebedor, pessoa natural ou jurídica.'
+                              - Pattern changed from '^\d{11}$' to '^(?:\d{11}|\d{14})$'
+                            - Modified property: rel
+                              - Description changed from 'Tipo do documento do usuário pagador responsável pelo cancelamento do pagamento.' to 'Tipo de documento de identificação oficial do pagador ou recebedor, pessoa natural ou jurídica.'
+                              - New enum values: [CPF CNPJ]
+                              - Example changed from 'CPF' to null
+                              - MaxLength changed from 3 to null
+                              - Pattern changed from '^[A-Z]{3}$' to ''
                     - Modified property: reason
                       - Description changed from 'O preenchimento desse campo para retorno, deve ocorrer pela detentora de contas a partir do status em que o pagamento estiver no momento da solicitação do cancelamento (ex. Status de pagamento = PDNG, campo deve ser preenchido com enum CANCELADO_PENDENCIA)
 Valores possíveis:
@@ -806,9 +895,10 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - CONSENTIMENTO_REVOGADO
 - FORA_PRAZO_PERMITIDO
 - DETALHE_TENTATIVA_INVALIDO
+- DETALHE_PAGAMENTO_INVALIDO
 [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
 '
-                      - New enum values: [LIMITE_TENTATIVAS_EXCEDIDO CONSENTIMENTO_REVOGADO FORA_PRAZO_PERMITIDO DETALHE_TENTATIVA_INVALIDO]
+                      - New enum values: [LIMITE_TENTATIVAS_EXCEDIDO CONSENTIMENTO_REVOGADO FORA_PRAZO_PERMITIDO DETALHE_TENTATIVA_INVALIDO DETALHE_PAGAMENTO_INVALIDO]
                     - Modified property: detail
                       - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
 - SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
@@ -849,7 +939,8 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
 - CONSENTIMENTO_REVOGADO: O pagamento estava associado a um consentimento que foi revogado.
 - FORA_PRAZO_PERMITIDO: O horário ou período da requisição não permite o agendamento pelo detentor.
-- DETALHE_TENTATIVA_INVALIDO : O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
+- DETALHE_TENTATIVA_INVALIDO: O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
+- DETALHE_PAGAMENTO_INVALIDO: Valida se determinado parâmetro informado obedece as regras de negócio.
 '
                 - Modified property: transactionIdentification
                   - Description changed from 'Trata-se de um identificador de transação que deve ser retransmitido intacto pelo PSP do pagador ao gerar a ordem de pagamento. 
@@ -869,10 +960,19 @@ INIC - O campo transactionIdentification deve ser preenchido obrigatoriamente e 
                   - Example changed from 'https://api.banco.com.br/open-banking/api/v1/resource' to 'https://api.banco.com.br/open-banking/api/v2/resource'
   - Modified response: 500
     - Headers changed
-      - Deleted header: x-fapi-interaction-id
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client). Seu valor deve obrigatoriamente ser replicado pela detentora (server) no cabeçalho de resposta, exceto em casos de falhas estruturais que impeçam a replicação. Caso não seja possível ser replicado, não deve ser enviado.
+'
   - Modified response: 504
     - Headers changed
-      - Deleted header: x-fapi-interaction-id
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client). Seu valor deve obrigatoriamente ser replicado pela detentora (server) no cabeçalho de resposta, exceto em casos de falhas estruturais que impeçam a replicação. Caso não seja possível ser replicado, não deve ser enviado.
+'
+  - Modified response: 529
+    - Headers changed
+      - New header: x-fapi-interaction-id
 POST /recurring-consents
 - Request body changed
   - Content changed
@@ -917,7 +1017,7 @@ POST /recurring-consents
                           - Required changed
                             - New required property: interval
                             - New required property: isRetryAccepted
-                            - New required property: referenceStartDateTime
+                            - New required property: referenceStartDate
                             - New required property: useOverdraftLimit
                             - Deleted required property: period
                           - Properties changed
@@ -927,7 +1027,7 @@ POST /recurring-consents
                             - New property: isRetryAccepted
                             - New property: maximumVariableAmount
                             - New property: minimumVariableAmount
-                            - New property: referenceStartDateTime
+                            - New property: referenceStartDate
                             - New property: useOverdraftLimit
                             - Deleted property: amount
                             - Deleted property: dayOfMonth
@@ -1009,10 +1109,19 @@ POST /recurring-consents
                   - Example changed from 'https://api.banco.com.br/open-banking/api/v1/resource' to 'https://api.banco.com.br/open-banking/api/v2/resource'
   - Modified response: 500
     - Headers changed
-      - Deleted header: x-fapi-interaction-id
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client). Seu valor deve obrigatoriamente ser replicado pela detentora (server) no cabeçalho de resposta, exceto em casos de falhas estruturais que impeçam a replicação. Caso não seja possível ser replicado, não deve ser enviado.
+'
   - Modified response: 504
     - Headers changed
-      - Deleted header: x-fapi-interaction-id
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client). Seu valor deve obrigatoriamente ser replicado pela detentora (server) no cabeçalho de resposta, exceto em casos de falhas estruturais que impeçam a replicação. Caso não seja possível ser replicado, não deve ser enviado.
+'
+  - Modified response: 529
+    - Headers changed
+      - New header: x-fapi-interaction-id
 GET /recurring-consents/{recurringConsentId}
 - Responses changed
   - Modified response: 200
@@ -1040,7 +1149,7 @@ GET /recurring-consents/{recurringConsentId}
                           - Required changed
                             - New required property: interval
                             - New required property: isRetryAccepted
-                            - New required property: referenceStartDateTime
+                            - New required property: referenceStartDate
                             - New required property: useOverdraftLimit
                             - Deleted required property: period
                           - Properties changed
@@ -1050,7 +1159,7 @@ GET /recurring-consents/{recurringConsentId}
                             - New property: isRetryAccepted
                             - New property: maximumVariableAmount
                             - New property: minimumVariableAmount
-                            - New property: referenceStartDateTime
+                            - New property: referenceStartDate
                             - New property: useOverdraftLimit
                             - Deleted property: amount
                             - Deleted property: dayOfMonth
@@ -1132,10 +1241,19 @@ GET /recurring-consents/{recurringConsentId}
                   - Example changed from 'https://api.banco.com.br/open-banking/api/v1/resource' to 'https://api.banco.com.br/open-banking/api/v2/resource'
   - Modified response: 500
     - Headers changed
-      - Deleted header: x-fapi-interaction-id
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client). Seu valor deve obrigatoriamente ser replicado pela detentora (server) no cabeçalho de resposta, exceto em casos de falhas estruturais que impeçam a replicação. Caso não seja possível ser replicado, não deve ser enviado.
+'
   - Modified response: 504
     - Headers changed
-      - Deleted header: x-fapi-interaction-id
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client). Seu valor deve obrigatoriamente ser replicado pela detentora (server) no cabeçalho de resposta, exceto em casos de falhas estruturais que impeçam a replicação. Caso não seja possível ser replicado, não deve ser enviado.
+'
+  - Modified response: 529
+    - Headers changed
+      - New header: x-fapi-interaction-id
 PATCH /recurring-consents/{recurringConsentId}
 - Description changed from 'Método para rejeitar, revogar ou editar um consentimento de longa duração:  
 1 - Informações sobre a revogação:
@@ -1171,9 +1289,79 @@ solicitação da revogação) deverão ser mantidos. Pagamentos agendados para o
         - Properties changed
           - Modified property: data
             - Property 'OneOf' changed
-              - 3 schemas deleted
-            - Properties changed
-              - New property: ConsentEdition
+              - Schema #/components/schemas/ConsentEdition modified
+                - Required changed
+                  - New required property: creditors
+                - Properties changed
+                  - New property: businessEntity
+                  - New property: loggedUser
+                  - New property: recurringConfiguration
+                  - Deleted property: automatic
+                  - Deleted property: riskSignals
+                  - Deleted property: startDateTime
+                  - Modified property: creditors
+                    - Items changed
+                      - Description changed from 'Objeto contendo os dados do recebedor (creditor).' to 'Objeto contendo os dados do recebedor (creditor).
+[Restrição] Caso o consentimento de longa duração seja para o produto Pix Automático (“automatic” selecionado no oneOf do objeto “/data/recurringConfiguration”), apenas um recebedor é permitido e esse deve ser pessoa jurídica.
+'
+                  - Modified property: expirationDateTime
+                    - Description changed from 'Data e hora em que o consentimento deve deixar de ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format).' to 'Data e hora em que o consentimento deve deixar de ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format). 
+[Restrição] Caso esse campo não seja enviado, a instituição detentora deve considerar a extensão do prazo para um período indeterminado; ou; 
+Caso enviado, esse campo deve ser, no mínimo, D, sendo D o dia da requisição.
+'
+              - Schema #/components/schemas/ConsentRevocation modified
+                - Properties changed
+                  - Deleted property: riskSignals
+              - Schema #/components/schemas/ConsentRejection modified
+                - Properties changed
+                  - Deleted property: riskSignals
+                  - Modified property: rejection
+                    - Properties changed
+                      - Modified property: reason
+                        - Properties changed
+                          - Modified property: code
+                            - Description changed from 'Código indicador do motivo de rejeição.
+- NAO_INFORMADO
+- FALHA_INFRAESTRUTURA
+- TEMPO_EXPIRADO_AUTORIZACAO
+- REJEITADO_USUARIO
+- CONTAS_ORIGEM_DESTINO_IGUAIS
+- CONTA_NAO_PERMITE_PAGAMENTO
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+' to 'Código indicador do motivo de rejeição.
+- NAO_INFORMADO
+- FALHA_INFRAESTRUTURA
+- TEMPO_EXPIRADO_AUTORIZACAO
+- REJEITADO_USUARIO
+- CONTAS_ORIGEM_DESTINO_IGUAIS
+- CONTA_NAO_PERMITE_PAGAMENTO
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+- AUTENTICACAO_DIVERGENTE
+'
+                            - New enum values: [AUTENTICACAO_DIVERGENTE]
+                          - Modified property: detail
+                            - Description changed from 'Detalhe sobre o motivo de rejeição indicado no campo `/data/rejection/reason/code`
+- NAO_INFORMADO: Não informada pela detentora de conta;
+- FALHA_INFRAESTRUTURA: [Descrição de qual falha na infraestrutura inviabilizou o processamento];
+- TEMPO_EXPIRADO_AUTORIZACAO: Consentimento expirou antes que o usuário pudesse confirmá-lo;
+- REJEITADO_USUARIO: O usuário rejeitou a autorização do consentimento;
+- CONTAS_ORIGEM_DESTINO_IGUAIS: A conta selecionada é igual à conta destino e não permite realizar esse pagamento;
+- CONTA_NAO_PERMITE_PAGAMENTO: A conta selecionada é do tipo [salario/investimento/liquidação/outros] e não permite realizar esse pagamento;
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
+' to 'Detalhe sobre o motivo de rejeição indicado no campo `/data/rejection/reason/code`
+- NAO_INFORMADO: Não informada pela detentora de conta;
+- FALHA_INFRAESTRUTURA: [Descrição de qual falha na infraestrutura inviabilizou o processamento];
+- TEMPO_EXPIRADO_AUTORIZACAO: Consentimento expirou antes que o usuário pudesse confirmá-lo;
+- REJEITADO_USUARIO: O usuário rejeitou a autorização do consentimento;
+- CONTAS_ORIGEM_DESTINO_IGUAIS: A conta selecionada é igual à conta destino e não permite realizar esse pagamento;
+- CONTA_NAO_PERMITE_PAGAMENTO: A conta selecionada é do tipo [salario/investimento/liquidação/outros] e não permite realizar esse pagamento;
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
+- AUTENTICACAO_DIVERGENTE : Usuário autenticado no detentor diverge do usuário autenticado no iniciador;
+'
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -1201,7 +1389,7 @@ solicitação da revogação) deverão ser mantidos. Pagamentos agendados para o
                           - Required changed
                             - New required property: interval
                             - New required property: isRetryAccepted
-                            - New required property: referenceStartDateTime
+                            - New required property: referenceStartDate
                             - New required property: useOverdraftLimit
                             - Deleted required property: period
                           - Properties changed
@@ -1211,7 +1399,7 @@ solicitação da revogação) deverão ser mantidos. Pagamentos agendados para o
                             - New property: isRetryAccepted
                             - New property: maximumVariableAmount
                             - New property: minimumVariableAmount
-                            - New property: referenceStartDateTime
+                            - New property: referenceStartDate
                             - New property: useOverdraftLimit
                             - Deleted property: amount
                             - Deleted property: dayOfMonth
@@ -1300,7 +1488,7 @@ solicitação da revogação) deverão ser mantidos. Pagamentos agendados para o
               - Items changed
                 - Properties changed
                   - Modified property: code
-                    - New enum values: [PERMISSAO_INSUFICIENTE]
+                    - New enum values: [PERMISSAO_INSUFICIENTE DETALHE_EDICAO_INVALIDO]
                   - Modified property: detail
                     - Description changed from 'Descrição específica do erro de acordo com o código reportado:  
 - CONSENTIMENTO_NAO_PERMITE_CANCELAMENTO: O status do consentimento não permite a realização do cancelamento (em status "CONSUMED" ou "REJECTED")
@@ -1309,6 +1497,7 @@ solicitação da revogação) deverão ser mantidos. Pagamentos agendados para o
 - CONSENTIMENTO_NAO_PERMITE_CANCELAMENTO: O status do consentimento não permite a realização do cancelamento (em status "CONSUMED" ou "REJECTED")
 - CAMPO_NAO_PERMITIDO: O(s) campo(s) solicitado(s) para edição não podem ser editados.
 - PERMISSAO_INSUFICIENTE: Consentimento possui múltiplas alçadas aprovadoras e não permite a edição pelo usuário atual.
+- DETALHE_EDICAO_INVALIDO: A tentativa de edição do consentimento não respeitou as regras de negócio descritas nos campos.
 '
                   - Modified property: title
                     - Description changed from 'Título específico do erro reportado, de acordo com o código enviado:  
@@ -1318,13 +1507,23 @@ solicitação da revogação) deverão ser mantidos. Pagamentos agendados para o
 - CONSENTIMENTO_NAO_PERMITE_CANCELAMENTO: O status do consentimento não permite a realização do cancelamento (em status "CONSUMED" ou "REJECTED")
 - CAMPO_NAO_PERMITIDO: O(s) campo(s) solicitado(s) para edição não podem ser editados.
 - Permissão insuficiente para edição.
+- DETALHE_EDICAO_INVALIDO: A tentativa de edição do consentimento não respeitou as regras de negócio descritas nos campos.
 '
   - Modified response: 500
     - Headers changed
-      - Deleted header: x-fapi-interaction-id
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client). Seu valor deve obrigatoriamente ser replicado pela detentora (server) no cabeçalho de resposta, exceto em casos de falhas estruturais que impeçam a replicação. Caso não seja possível ser replicado, não deve ser enviado.
+'
   - Modified response: 504
     - Headers changed
-      - Deleted header: x-fapi-interaction-id
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client). Seu valor deve obrigatoriamente ser replicado pela detentora (server) no cabeçalho de resposta, exceto em casos de falhas estruturais que impeçam a replicação. Caso não seja possível ser replicado, não deve ser enviado.
+'
+  - Modified response: 529
+    - Headers changed
+      - New header: x-fapi-interaction-id
 Servers changed
 - New server: https://api.banco.com.br/open-banking/automatic-payments/v2
 - New server: https://apih.banco.com.br/open-banking/automatic-payments/v2

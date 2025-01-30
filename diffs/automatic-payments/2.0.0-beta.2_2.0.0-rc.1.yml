@@ -2,9 +2,414 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 4
+### Modified Endpoints: 7
 -------------------------
+GET /pix/recurring-payments
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: rejectionReason
+                    - Properties changed
+                      - Modified property: code
+                        - Description changed from 'Código identificador do motivo de rejeição.
+Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+- VALOR_INVALIDO
+- NAO_INFORMADO
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO
+- PAGAMENTO_RECUSADO_DETENTORA
+- PAGAMENTO_RECUSADO_SPI
+- CONSENTIMENTO_INVALIDO
+- FALHA_INFRAESTRUTURA_SPI
+- FALHA_INFRAESTRUTURA_ICP
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR
+- FALHA_INFRAESTRUTURA_DETENTORA
+- LIMITE_PERIODO_VALOR_EXCEDIDO
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
+- TITULARIDADE_INCONSISTENTE
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação
+- CONSENTIMENTO_REVOGADO
+- LIMITE_TENTATIVAS_EXCEDIDO
+- FORA_PRAZO_PERMITIDO
+- DETALHE_TENTATIVA_INVALIDO
+[Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
+' to 'Código identificador do motivo de rejeição.
+Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+- VALOR_INVALIDO
+- NAO_INFORMADO
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO
+- PAGAMENTO_RECUSADO_DETENTORA
+- PAGAMENTO_RECUSADO_SPI
+- CONSENTIMENTO_INVALIDO
+- FALHA_INFRAESTRUTURA_SPI
+- FALHA_INFRAESTRUTURA_ICP
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR
+- FALHA_INFRAESTRUTURA_DETENTORA
+- LIMITE_PERIODO_VALOR_EXCEDIDO
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
+- TITULARIDADE_INCONSISTENTE
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação
+- CONSENTIMENTO_REVOGADO
+- LIMITE_TENTATIVAS_EXCEDIDO
+- FORA_PRAZO_PERMITIDO
+- DETALHE_TENTATIVA_INVALIDO
+- DETALHE_PAGAMENTO_INVALIDO
+[Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
+'
+                        - New enum values: [DETALHE_PAGAMENTO_INVALIDO]
+                      - Modified property: detail
+                        - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: Valida se o valor ultrapassa o limite estabelecido [na instituição (conta ou canal)/no arranjo] para permitir a realização de transações pelo cliente;
+- VALOR_INVALIDO: O valor enviado não é válido; 
+- NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta;
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento;
+- PAGAMENTO_RECUSADO_DETENTORA: [descrição do motivo de recusa];
+- PAGAMENTO_RECUSADO_SPI: [código de erro conforme tabela de domínios reason PACS.002];
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (em status final);
+- FALHA_INFRAESTRUTURA_SPI: Indica uma falha no Sistema de Pagamentos Instantâneos (SPI);
+- FALHA_INFRAESTRUTURA_ICP: Indica uma falha na Infraestrutura de Chaves Públicas (ICP);
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR: Indica uma falha na infraestrutura do Prestador de Serviço de Pagamento (PSP) que recebe o pagamento;
+- FALHA_INFRAESTRUTURA_DETENTORA: indica uma falha na infraestrutura da instituição detentora das informações ou recursos;
+- LIMITE_PERIODO_VALOR_EXCEDIDO – A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO – A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+- TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração.
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+- CONSENTIMENTO_REVOGADO: O pagamento estava associado a um consentimento que foi revogado.
+- LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido
+- FORA_PRAZO_PERMITIDO: O horário ou período da requisição não permite o agendamento pelo detentor.
+- DETALHE_TENTATIVA_INVALIDO : O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
+' to 'Detalhe sobre o código identificador do motivo de rejeição.
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: Valida se o valor ultrapassa o limite estabelecido [na instituição (conta ou canal)/no arranjo] para permitir a realização de transações pelo cliente;
+- VALOR_INVALIDO: O valor enviado não é válido; 
+- NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta;
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento;
+- PAGAMENTO_RECUSADO_DETENTORA: [descrição do motivo de recusa];
+- PAGAMENTO_RECUSADO_SPI: [código de erro conforme tabela de domínios reason PACS.002];
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (em status final);
+- FALHA_INFRAESTRUTURA_SPI: Indica uma falha no Sistema de Pagamentos Instantâneos (SPI);
+- FALHA_INFRAESTRUTURA_ICP: Indica uma falha na Infraestrutura de Chaves Públicas (ICP);
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR: Indica uma falha na infraestrutura do Prestador de Serviço de Pagamento (PSP) que recebe o pagamento;
+- FALHA_INFRAESTRUTURA_DETENTORA: indica uma falha na infraestrutura da instituição detentora das informações ou recursos;
+- LIMITE_PERIODO_VALOR_EXCEDIDO – A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO – A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+- TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração.
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+- CONSENTIMENTO_REVOGADO: O pagamento estava associado a um consentimento que foi revogado.
+- LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido
+- FORA_PRAZO_PERMITIDO: O horário ou período da requisição não permite o agendamento pelo detentor.
+- DETALHE_TENTATIVA_INVALIDO: O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
+- DETALHE_PAGAMENTO_INVALIDO: Valida se determinado parâmetro informado obedece as regras de negócio
+'
+  - Modified response: 500
+    - Headers changed
+      - New header: x-fapi-interaction-id
+  - Modified response: 504
+    - Headers changed
+      - New header: x-fapi-interaction-id
+  - Modified response: 529
+    - Headers changed
+      - New header: x-fapi-interaction-id
+POST /pix/recurring-payments
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: cancellation
+                  - Properties changed
+                    - Modified property: cancelledBy
+                      - Properties changed
+                        - Modified property: document
+                          - Properties changed
+                            - Modified property: identification
+                              - Description changed from 'Número do documento do usuário pagador responsável pelo cancelamento do pagamento.' to 'Número do documento de identificação oficial do pagador ou recebedor, pessoa natural ou jurídica.'
+                              - Pattern changed from '^\d{11}$' to '^(?:\d{11}|\d{14})$'
+                            - Modified property: rel
+                              - Description changed from 'Tipo do documento do usuário pagador responsável pelo cancelamento do pagamento.' to 'Tipo de documento de identificação oficial do pagador ou recebedor, pessoa natural ou jurídica.'
+                              - New enum values: [CPF CNPJ]
+                              - Example changed from 'CPF' to null
+                              - MaxLength changed from 3 to null
+                              - Pattern changed from '^[A-Z]{3}$' to ''
+                - Modified property: rejectionReason
+                  - Properties changed
+                    - Modified property: code
+                      - Description changed from 'Código identificador do motivo de rejeição.
+Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+- VALOR_INVALIDO
+- NAO_INFORMADO
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO
+- PAGAMENTO_RECUSADO_DETENTORA
+- PAGAMENTO_RECUSADO_SPI
+- CONSENTIMENTO_INVALIDO
+- FALHA_INFRAESTRUTURA_SPI
+- FALHA_INFRAESTRUTURA_ICP
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR
+- FALHA_INFRAESTRUTURA_DETENTORA
+- TITULARIDADE_INCONSISTENTE
+- LIMITE_PERIODO_VALOR_EXCEDIDO
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+- LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
+- CONSENTIMENTO_REVOGADO
+- FORA_PRAZO_PERMITIDO
+- DETALHE_TENTATIVA_INVALIDO
+[Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
+' to 'Código identificador do motivo de rejeição.
+Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+- VALOR_INVALIDO
+- NAO_INFORMADO
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO
+- PAGAMENTO_RECUSADO_DETENTORA
+- PAGAMENTO_RECUSADO_SPI
+- CONSENTIMENTO_INVALIDO
+- FALHA_INFRAESTRUTURA_SPI
+- FALHA_INFRAESTRUTURA_ICP
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR
+- FALHA_INFRAESTRUTURA_DETENTORA
+- TITULARIDADE_INCONSISTENTE
+- LIMITE_PERIODO_VALOR_EXCEDIDO
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+- LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
+- CONSENTIMENTO_REVOGADO
+- FORA_PRAZO_PERMITIDO
+- DETALHE_TENTATIVA_INVALIDO
+- DETALHE_PAGAMENTO_INVALIDO
+[Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
+'
+                      - New enum values: [DETALHE_PAGAMENTO_INVALIDO]
+                    - Modified property: detail
+                      - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: Valida se o valor ultrapassa o limite estabelecido [na instituição (conta ou canal)/no arranjo] para permitir a realização de transações pelo cliente;
+- VALOR_INVALIDO: O valor enviado não é válido; 
+- NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta;
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento;
+- PAGAMENTO_RECUSADO_DETENTORA: [descrição do motivo de recusa];
+- PAGAMENTO_RECUSADO_SPI: [código de erro conforme tabela de domínios reason PACS.002];
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (em status final);
+- FALHA_INFRAESTRUTURA_SPI: Indica uma falha no Sistema de Pagamentos Instantâneos (SPI);
+- FALHA_INFRAESTRUTURA_ICP: Indica uma falha na Infraestrutura de Chaves Públicas (ICP);
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR: Indica uma falha na infraestrutura do Prestador de Serviço de Pagamento (PSP) que recebe o pagamento;
+- FALHA_INFRAESTRUTURA_DETENTORA: indica uma falha na infraestrutura da instituição detentora das informações ou recursos;
+- TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração
+- LIMITE_PERIODO_VALOR_EXCEDIDO: A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO: A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.       
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+- LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
+- CONSENTIMENTO_REVOGADO: O pagamento estava associado a um consentimento que foi revogado.
+- FORA_PRAZO_PERMITIDO: O horário ou período da requisição não permite o agendamento pelo detentor.
+- DETALHE_TENTATIVA_INVALIDO : O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
+' to 'Detalhe sobre o código identificador do motivo de rejeição.
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: Valida se o valor ultrapassa o limite estabelecido [na instituição (conta ou canal)/no arranjo] para permitir a realização de transações pelo cliente;
+- VALOR_INVALIDO: O valor enviado não é válido; 
+- NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta;
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento;
+- PAGAMENTO_RECUSADO_DETENTORA: [descrição do motivo de recusa];
+- PAGAMENTO_RECUSADO_SPI: [código de erro conforme tabela de domínios reason PACS.002];
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (em status final);
+- FALHA_INFRAESTRUTURA_SPI: Indica uma falha no Sistema de Pagamentos Instantâneos (SPI);
+- FALHA_INFRAESTRUTURA_ICP: Indica uma falha na Infraestrutura de Chaves Públicas (ICP);
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR: Indica uma falha na infraestrutura do Prestador de Serviço de Pagamento (PSP) que recebe o pagamento;
+- FALHA_INFRAESTRUTURA_DETENTORA: indica uma falha na infraestrutura da instituição detentora das informações ou recursos;
+- TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração
+- LIMITE_PERIODO_VALOR_EXCEDIDO: A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO: A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.       
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+- LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
+- CONSENTIMENTO_REVOGADO: O pagamento estava associado a um consentimento que foi revogado.
+- FORA_PRAZO_PERMITIDO: O horário ou período da requisição não permite o agendamento pelo detentor.
+- DETALHE_TENTATIVA_INVALIDO: O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
+- DETALHE_PAGAMENTO_INVALIDO: Valida se determinado parâmetro informado obedece as regras de negócio.
+'
+  - Modified response: 500
+    - Headers changed
+      - New header: x-fapi-interaction-id
+  - Modified response: 504
+    - Headers changed
+      - New header: x-fapi-interaction-id
+  - Modified response: 529
+    - Headers changed
+      - New header: x-fapi-interaction-id
+GET /pix/recurring-payments/{recurringPaymentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: cancellation
+                  - Properties changed
+                    - Modified property: cancelledBy
+                      - Properties changed
+                        - Modified property: document
+                          - Properties changed
+                            - Modified property: identification
+                              - Description changed from 'Número do documento do usuário pagador responsável pelo cancelamento do pagamento.' to 'Número do documento de identificação oficial do pagador ou recebedor, pessoa natural ou jurídica.'
+                              - Pattern changed from '^\d{11}$' to '^(?:\d{11}|\d{14})$'
+                            - Modified property: rel
+                              - Description changed from 'Tipo do documento do usuário pagador responsável pelo cancelamento do pagamento.' to 'Tipo de documento de identificação oficial do pagador ou recebedor, pessoa natural ou jurídica.'
+                              - New enum values: [CPF CNPJ]
+                              - Example changed from 'CPF' to null
+                              - MaxLength changed from 3 to null
+                              - Pattern changed from '^[A-Z]{3}$' to ''
+                - Modified property: rejectionReason
+                  - Properties changed
+                    - Modified property: code
+                      - Description changed from 'Código identificador do motivo de rejeição.
+Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+- VALOR_INVALIDO
+- NAO_INFORMADO
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO
+- PAGAMENTO_RECUSADO_DETENTORA
+- PAGAMENTO_RECUSADO_SPI
+- CONSENTIMENTO_INVALIDO
+- FALHA_INFRAESTRUTURA_SPI
+- FALHA_INFRAESTRUTURA_ICP
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR
+- FALHA_INFRAESTRUTURA_DETENTORA
+- TITULARIDADE_INCONSISTENTE
+- LIMITE_PERIODO_VALOR_EXCEDIDO
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+- LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
+- CONSENTIMENTO_REVOGADO
+- FORA_PRAZO_PERMITIDO
+- DETALHE_TENTATIVA_INVALIDO
+[Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
+' to 'Código identificador do motivo de rejeição.
+Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+- VALOR_INVALIDO
+- NAO_INFORMADO
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO
+- PAGAMENTO_RECUSADO_DETENTORA
+- PAGAMENTO_RECUSADO_SPI
+- CONSENTIMENTO_INVALIDO
+- FALHA_INFRAESTRUTURA_SPI
+- FALHA_INFRAESTRUTURA_ICP
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR
+- FALHA_INFRAESTRUTURA_DETENTORA
+- TITULARIDADE_INCONSISTENTE
+- LIMITE_PERIODO_VALOR_EXCEDIDO
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+- LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
+- CONSENTIMENTO_REVOGADO
+- FORA_PRAZO_PERMITIDO
+- DETALHE_TENTATIVA_INVALIDO
+- DETALHE_PAGAMENTO_INVALIDO
+[Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
+'
+                      - New enum values: [DETALHE_PAGAMENTO_INVALIDO]
+                    - Modified property: detail
+                      - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: Valida se o valor ultrapassa o limite estabelecido [na instituição (conta ou canal)/no arranjo] para permitir a realização de transações pelo cliente;
+- VALOR_INVALIDO: O valor enviado não é válido; 
+- NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta;
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento;
+- PAGAMENTO_RECUSADO_DETENTORA: [descrição do motivo de recusa];
+- PAGAMENTO_RECUSADO_SPI: [código de erro conforme tabela de domínios reason PACS.002];
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (em status final);
+- FALHA_INFRAESTRUTURA_SPI: Indica uma falha no Sistema de Pagamentos Instantâneos (SPI);
+- FALHA_INFRAESTRUTURA_ICP: Indica uma falha na Infraestrutura de Chaves Públicas (ICP);
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR: Indica uma falha na infraestrutura do Prestador de Serviço de Pagamento (PSP) que recebe o pagamento;
+- FALHA_INFRAESTRUTURA_DETENTORA: indica uma falha na infraestrutura da instituição detentora das informações ou recursos;
+- TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração
+- LIMITE_PERIODO_VALOR_EXCEDIDO: A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO: A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.       
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+- LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
+- CONSENTIMENTO_REVOGADO: O pagamento estava associado a um consentimento que foi revogado.
+- FORA_PRAZO_PERMITIDO: O horário ou período da requisição não permite o agendamento pelo detentor.
+- DETALHE_TENTATIVA_INVALIDO : O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
+' to 'Detalhe sobre o código identificador do motivo de rejeição.
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: Valida se o valor ultrapassa o limite estabelecido [na instituição (conta ou canal)/no arranjo] para permitir a realização de transações pelo cliente;
+- VALOR_INVALIDO: O valor enviado não é válido; 
+- NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta;
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento;
+- PAGAMENTO_RECUSADO_DETENTORA: [descrição do motivo de recusa];
+- PAGAMENTO_RECUSADO_SPI: [código de erro conforme tabela de domínios reason PACS.002];
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (em status final);
+- FALHA_INFRAESTRUTURA_SPI: Indica uma falha no Sistema de Pagamentos Instantâneos (SPI);
+- FALHA_INFRAESTRUTURA_ICP: Indica uma falha na Infraestrutura de Chaves Públicas (ICP);
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR: Indica uma falha na infraestrutura do Prestador de Serviço de Pagamento (PSP) que recebe o pagamento;
+- FALHA_INFRAESTRUTURA_DETENTORA: indica uma falha na infraestrutura da instituição detentora das informações ou recursos;
+- TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração
+- LIMITE_PERIODO_VALOR_EXCEDIDO: A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO: A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.       
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+- LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
+- CONSENTIMENTO_REVOGADO: O pagamento estava associado a um consentimento que foi revogado.
+- FORA_PRAZO_PERMITIDO: O horário ou período da requisição não permite o agendamento pelo detentor.
+- DETALHE_TENTATIVA_INVALIDO: O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
+- DETALHE_PAGAMENTO_INVALIDO: Valida se determinado parâmetro informado obedece as regras de negócio.
+'
+  - Modified response: 500
+    - Headers changed
+      - New header: x-fapi-interaction-id
+  - Modified response: 504
+    - Headers changed
+      - New header: x-fapi-interaction-id
+  - Modified response: 529
+    - Headers changed
+      - New header: x-fapi-interaction-id
 PATCH /pix/recurring-payments/{recurringPaymentId}
+- Description changed from 'Esse endpoint deve ser usado para cancelar as transações que estejam em uma das seguintes situações: 
+Agendada com sucesso (SCHD), retida para análise (PDNG). Caso a requisição seja bem sucedida, a transação vai para a situação CANC. 
+Caso o status do pagamento seja diferente de SCHD/PDNG ou alguma outra regra de negócio impeça o cancelamento, a requisição PATCH retorna 
+HTTP Status 422 com o code PAGAMENTO_NAO_PERMITE_CANCELAMENTO. 
+Caso receba um 422, a iniciadora deve fazer uma requisição GET no pagamento para verificar a situação atual dele, bem como detalhes associados. 
+[Restrição] Para o Pix Automático (“recurringConfiguration” igual a “automatic”) tanto o recebedor quanto o pagador poderão realizar o 
+cancelamento, sendo permitido ao recebedor a solicitação de cancelamento até as 22:00 (Horário de Brasília) e ao pagador até as 23:59 
+(Horário de Brasília) do dia anterior à data de efetivação do pagamento.
+' to 'Esse endpoint deve ser usado para cancelar as transações que estejam em uma das seguintes situações: 
+Agendada com sucesso (SCHD), retida para análise (PDNG). Caso a requisição seja bem sucedida, a transação vai para a situação CANC. 
+Caso o status do pagamento seja diferente de SCHD/PDNG ou alguma outra regra de negócio impeça o cancelamento, a requisição PATCH retorna 
+HTTP Status 422 com o code PAGAMENTO_NAO_PERMITE_CANCELAMENTO. 
+Caso receba um 422, a iniciadora deve fazer uma requisição GET no pagamento para verificar a situação atual dele, bem como detalhes associados. 
+[Restrição] Para o Pix automático (“recurringConfiguration” igual a “automatic”) tanto o recebedor quanto o pagador poderão realizar o cancelamento, 
+sendo permitido ao recebedor a solicitação de cancelamento até as 22:00 (Horário de Brasília) e ao pagador até as 23:59 (Horário de Brasília) do dia anterior à data de efetivação do pagamento, 
+exceto para os casos de novas tentativas em dias subsequentes, onde apenas o recebedor pode cancelar, também até as 22:00h.
+'
 - Request body changed
   - Content changed
     - Modified media type: application/jwt
@@ -27,6 +432,139 @@ PATCH /pix/recurring-payments/{recurringPaymentId}
                             - Example changed from 'CPF' to null
                             - MaxLength changed from 3 to null
                             - Pattern changed from '^[A-Z]{3}$' to ''
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: cancellation
+                  - Properties changed
+                    - Modified property: cancelledBy
+                      - Properties changed
+                        - Modified property: document
+                          - Properties changed
+                            - Modified property: identification
+                              - Description changed from 'Número do documento do usuário pagador responsável pelo cancelamento do pagamento.' to 'Número do documento de identificação oficial do pagador ou recebedor, pessoa natural ou jurídica.'
+                              - Pattern changed from '^\d{11}$' to '^(?:\d{11}|\d{14})$'
+                            - Modified property: rel
+                              - Description changed from 'Tipo do documento do usuário pagador responsável pelo cancelamento do pagamento.' to 'Tipo de documento de identificação oficial do pagador ou recebedor, pessoa natural ou jurídica.'
+                              - New enum values: [CPF CNPJ]
+                              - Example changed from 'CPF' to null
+                              - MaxLength changed from 3 to null
+                              - Pattern changed from '^[A-Z]{3}$' to ''
+                - Modified property: rejectionReason
+                  - Properties changed
+                    - Modified property: code
+                      - Description changed from 'Código identificador do motivo de rejeição.
+Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+- VALOR_INVALIDO
+- NAO_INFORMADO
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO
+- PAGAMENTO_RECUSADO_DETENTORA
+- PAGAMENTO_RECUSADO_SPI
+- CONSENTIMENTO_INVALIDO
+- FALHA_INFRAESTRUTURA_SPI
+- FALHA_INFRAESTRUTURA_ICP
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR
+- FALHA_INFRAESTRUTURA_DETENTORA
+- TITULARIDADE_INCONSISTENTE
+- LIMITE_PERIODO_VALOR_EXCEDIDO
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+- LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
+- CONSENTIMENTO_REVOGADO
+- FORA_PRAZO_PERMITIDO
+- DETALHE_TENTATIVA_INVALIDO
+[Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
+' to 'Código identificador do motivo de rejeição.
+Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+- VALOR_INVALIDO
+- NAO_INFORMADO
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO
+- PAGAMENTO_RECUSADO_DETENTORA
+- PAGAMENTO_RECUSADO_SPI
+- CONSENTIMENTO_INVALIDO
+- FALHA_INFRAESTRUTURA_SPI
+- FALHA_INFRAESTRUTURA_ICP
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR
+- FALHA_INFRAESTRUTURA_DETENTORA
+- TITULARIDADE_INCONSISTENTE
+- LIMITE_PERIODO_VALOR_EXCEDIDO
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+- LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
+- CONSENTIMENTO_REVOGADO
+- FORA_PRAZO_PERMITIDO
+- DETALHE_TENTATIVA_INVALIDO
+- DETALHE_PAGAMENTO_INVALIDO
+[Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
+'
+                      - New enum values: [DETALHE_PAGAMENTO_INVALIDO]
+                    - Modified property: detail
+                      - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: Valida se o valor ultrapassa o limite estabelecido [na instituição (conta ou canal)/no arranjo] para permitir a realização de transações pelo cliente;
+- VALOR_INVALIDO: O valor enviado não é válido; 
+- NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta;
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento;
+- PAGAMENTO_RECUSADO_DETENTORA: [descrição do motivo de recusa];
+- PAGAMENTO_RECUSADO_SPI: [código de erro conforme tabela de domínios reason PACS.002];
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (em status final);
+- FALHA_INFRAESTRUTURA_SPI: Indica uma falha no Sistema de Pagamentos Instantâneos (SPI);
+- FALHA_INFRAESTRUTURA_ICP: Indica uma falha na Infraestrutura de Chaves Públicas (ICP);
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR: Indica uma falha na infraestrutura do Prestador de Serviço de Pagamento (PSP) que recebe o pagamento;
+- FALHA_INFRAESTRUTURA_DETENTORA: indica uma falha na infraestrutura da instituição detentora das informações ou recursos;
+- TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração
+- LIMITE_PERIODO_VALOR_EXCEDIDO: A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO: A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.       
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+- LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
+- CONSENTIMENTO_REVOGADO: O pagamento estava associado a um consentimento que foi revogado.
+- FORA_PRAZO_PERMITIDO: O horário ou período da requisição não permite o agendamento pelo detentor.
+- DETALHE_TENTATIVA_INVALIDO : O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
+' to 'Detalhe sobre o código identificador do motivo de rejeição.
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: Valida se o valor ultrapassa o limite estabelecido [na instituição (conta ou canal)/no arranjo] para permitir a realização de transações pelo cliente;
+- VALOR_INVALIDO: O valor enviado não é válido; 
+- NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta;
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento;
+- PAGAMENTO_RECUSADO_DETENTORA: [descrição do motivo de recusa];
+- PAGAMENTO_RECUSADO_SPI: [código de erro conforme tabela de domínios reason PACS.002];
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (em status final);
+- FALHA_INFRAESTRUTURA_SPI: Indica uma falha no Sistema de Pagamentos Instantâneos (SPI);
+- FALHA_INFRAESTRUTURA_ICP: Indica uma falha na Infraestrutura de Chaves Públicas (ICP);
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR: Indica uma falha na infraestrutura do Prestador de Serviço de Pagamento (PSP) que recebe o pagamento;
+- FALHA_INFRAESTRUTURA_DETENTORA: indica uma falha na infraestrutura da instituição detentora das informações ou recursos;
+- TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração
+- LIMITE_PERIODO_VALOR_EXCEDIDO: A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO: A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.       
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+- LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
+- CONSENTIMENTO_REVOGADO: O pagamento estava associado a um consentimento que foi revogado.
+- FORA_PRAZO_PERMITIDO: O horário ou período da requisição não permite o agendamento pelo detentor.
+- DETALHE_TENTATIVA_INVALIDO: O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
+- DETALHE_PAGAMENTO_INVALIDO: Valida se determinado parâmetro informado obedece as regras de negócio.
+'
+  - Modified response: 500
+    - Headers changed
+      - New header: x-fapi-interaction-id
+  - Modified response: 504
+    - Headers changed
+      - New header: x-fapi-interaction-id
+  - Modified response: 529
+    - Headers changed
+      - New header: x-fapi-interaction-id
 POST /recurring-consents
 - Request body changed
   - Content changed
@@ -42,8 +580,12 @@ POST /recurring-consents
                       - Modified property: automatic
                         - Required changed
                           - New required property: interval
+                          - New required property: referenceStartDate
                           - Deleted required property: period
+                          - Deleted required property: referenceStartDateTime
                         - Properties changed
+                          - New property: referenceStartDate
+                          - Deleted property: referenceStartDateTime
                           - Modified property: firstPayment
                             - Description changed from 'Definições para o primeiro pagamento. É considerado como o pagamento da adesão ao serviço pelo usuário pagador.
 - A conta de crédito informada deve pertencer ao mesmo CNPJ informado no campo “/data/creditors/cpfCnpj”
@@ -71,8 +613,12 @@ Caso não respeitado, o detentor deve rejeitar o pagamento com o motivo DETALHE_
                         - Modified property: automatic
                           - Required changed
                             - New required property: interval
+                            - New required property: referenceStartDate
                             - Deleted required property: period
+                            - Deleted required property: referenceStartDateTime
                           - Properties changed
+                            - New property: referenceStartDate
+                            - Deleted property: referenceStartDateTime
                             - Modified property: firstPayment
                               - Description changed from 'Definições para o primeiro pagamento. É considerado como o pagamento da adesão ao serviço pelo usuário pagador.
 - A conta de crédito informada deve pertencer ao mesmo CNPJ informado no campo “/data/creditors/cpfCnpj”
@@ -127,6 +673,15 @@ Caso não respeitado, o detentor deve rejeitar o pagamento com o motivo DETALHE_
 - VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
 - AUTENTICACAO_DIVERGENTE : Usuário autenticado no detentor diverge do usuário autenticado no iniciador;
 '
+  - Modified response: 500
+    - Headers changed
+      - New header: x-fapi-interaction-id
+  - Modified response: 504
+    - Headers changed
+      - New header: x-fapi-interaction-id
+  - Modified response: 529
+    - Headers changed
+      - New header: x-fapi-interaction-id
 GET /recurring-consents/{recurringConsentId}
 - Responses changed
   - Modified response: 200
@@ -143,8 +698,12 @@ GET /recurring-consents/{recurringConsentId}
                         - Modified property: automatic
                           - Required changed
                             - New required property: interval
+                            - New required property: referenceStartDate
                             - Deleted required property: period
+                            - Deleted required property: referenceStartDateTime
                           - Properties changed
+                            - New property: referenceStartDate
+                            - Deleted property: referenceStartDateTime
                             - Modified property: firstPayment
                               - Description changed from 'Definições para o primeiro pagamento. É considerado como o pagamento da adesão ao serviço pelo usuário pagador.
 - A conta de crédito informada deve pertencer ao mesmo CNPJ informado no campo “/data/creditors/cpfCnpj”
@@ -199,6 +758,15 @@ Caso não respeitado, o detentor deve rejeitar o pagamento com o motivo DETALHE_
 - VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
 - AUTENTICACAO_DIVERGENTE : Usuário autenticado no detentor diverge do usuário autenticado no iniciador;
 '
+  - Modified response: 500
+    - Headers changed
+      - New header: x-fapi-interaction-id
+  - Modified response: 504
+    - Headers changed
+      - New header: x-fapi-interaction-id
+  - Modified response: 529
+    - Headers changed
+      - New header: x-fapi-interaction-id
 PATCH /recurring-consents/{recurringConsentId}
 - Request body changed
   - Content changed
@@ -207,9 +775,86 @@ PATCH /recurring-consents/{recurringConsentId}
         - Properties changed
           - Modified property: data
             - Property 'OneOf' changed
-              - 3 schemas deleted
-            - Properties changed
-              - New property: ConsentEdition
+              - Schema #/components/schemas/ConsentEdition modified
+                - Required changed
+                  - Deleted required property: riskSignals
+                - Properties changed
+                  - Deleted property: riskSignals
+                  - Modified property: expirationDateTime
+                    - Description changed from 'Data e hora em que o consentimento deve deixar de ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format).
+[Restrição] 
+Caso esse campo não seja enviado, a instituição detentora deve considerar a extensão do prazo para um período indeterminado; 
+Caso enviado, esse campo deve ser, no mínimo, D+1, sendo D o dia da requisição.
+' to 'Data e hora em que o consentimento deve deixar de ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format). 
+[Restrição] Caso esse campo não seja enviado, a instituição detentora deve considerar a extensão do prazo para um período indeterminado; ou; 
+Caso enviado, esse campo deve ser, no mínimo, D, sendo D o dia da requisição.
+'
+                  - Modified property: loggedUser
+                    - Properties changed
+                      - Modified property: document
+                        - Properties changed
+                          - Modified property: identification
+                            - Description changed from 'Número do documento de identificação oficial do usuário.' to 'Número do documento de identificação oficial do pagador ou recebedor, pessoa natural ou jurídica.'
+                            - Pattern changed from '^\d{11}$' to '^(?:\d{11}|\d{14})$'
+                          - Modified property: rel
+                            - Description changed from 'Tipo do documento de identificação oficial do usuário.' to 'Tipo de documento de identificação oficial do pagador ou recebedor, pessoa natural ou jurídica.'
+                            - New enum values: [CPF CNPJ]
+                            - Example changed from 'CPF' to null
+                            - MaxLength changed from 3 to null
+                            - Pattern changed from '^[A-Z]{3}$' to ''
+              - Schema #/components/schemas/ConsentRevocation modified
+                - Properties changed
+                  - Deleted property: riskSignals
+              - Schema #/components/schemas/ConsentRejection modified
+                - Properties changed
+                  - Deleted property: riskSignals
+                  - Modified property: rejection
+                    - Properties changed
+                      - Modified property: reason
+                        - Properties changed
+                          - Modified property: code
+                            - Description changed from 'Código indicador do motivo de rejeição.
+- NAO_INFORMADO
+- FALHA_INFRAESTRUTURA
+- TEMPO_EXPIRADO_AUTORIZACAO
+- REJEITADO_USUARIO
+- CONTAS_ORIGEM_DESTINO_IGUAIS
+- CONTA_NAO_PERMITE_PAGAMENTO
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+' to 'Código indicador do motivo de rejeição.
+- NAO_INFORMADO
+- FALHA_INFRAESTRUTURA
+- TEMPO_EXPIRADO_AUTORIZACAO
+- REJEITADO_USUARIO
+- CONTAS_ORIGEM_DESTINO_IGUAIS
+- CONTA_NAO_PERMITE_PAGAMENTO
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+- AUTENTICACAO_DIVERGENTE
+'
+                            - New enum values: [AUTENTICACAO_DIVERGENTE]
+                          - Modified property: detail
+                            - Description changed from 'Detalhe sobre o motivo de rejeição indicado no campo `/data/rejection/reason/code`
+- NAO_INFORMADO: Não informada pela detentora de conta;
+- FALHA_INFRAESTRUTURA: [Descrição de qual falha na infraestrutura inviabilizou o processamento];
+- TEMPO_EXPIRADO_AUTORIZACAO: Consentimento expirou antes que o usuário pudesse confirmá-lo;
+- REJEITADO_USUARIO: O usuário rejeitou a autorização do consentimento;
+- CONTAS_ORIGEM_DESTINO_IGUAIS: A conta selecionada é igual à conta destino e não permite realizar esse pagamento;
+- CONTA_NAO_PERMITE_PAGAMENTO: A conta selecionada é do tipo [salario/investimento/liquidação/outros] e não permite realizar esse pagamento;
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
+' to 'Detalhe sobre o motivo de rejeição indicado no campo `/data/rejection/reason/code`
+- NAO_INFORMADO: Não informada pela detentora de conta;
+- FALHA_INFRAESTRUTURA: [Descrição de qual falha na infraestrutura inviabilizou o processamento];
+- TEMPO_EXPIRADO_AUTORIZACAO: Consentimento expirou antes que o usuário pudesse confirmá-lo;
+- REJEITADO_USUARIO: O usuário rejeitou a autorização do consentimento;
+- CONTAS_ORIGEM_DESTINO_IGUAIS: A conta selecionada é igual à conta destino e não permite realizar esse pagamento;
+- CONTA_NAO_PERMITE_PAGAMENTO: A conta selecionada é do tipo [salario/investimento/liquidação/outros] e não permite realizar esse pagamento;
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
+- AUTENTICACAO_DIVERGENTE : Usuário autenticado no detentor diverge do usuário autenticado no iniciador;
+'
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -225,8 +870,12 @@ PATCH /recurring-consents/{recurringConsentId}
                         - Modified property: automatic
                           - Required changed
                             - New required property: interval
+                            - New required property: referenceStartDate
                             - Deleted required property: period
+                            - Deleted required property: referenceStartDateTime
                           - Properties changed
+                            - New property: referenceStartDate
+                            - Deleted property: referenceStartDateTime
                             - Modified property: firstPayment
                               - Description changed from 'Definições para o primeiro pagamento. É considerado como o pagamento da adesão ao serviço pelo usuário pagador.
 - A conta de crédito informada deve pertencer ao mesmo CNPJ informado no campo “/data/creditors/cpfCnpj”
@@ -281,3 +930,44 @@ Caso não respeitado, o detentor deve rejeitar o pagamento com o motivo DETALHE_
 - VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
 - AUTENTICACAO_DIVERGENTE : Usuário autenticado no detentor diverge do usuário autenticado no iniciador;
 '
+  - Modified response: 422
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - New enum values: [DETALHE_EDICAO_INVALIDO]
+                  - Modified property: detail
+                    - Description changed from 'Descrição específica do erro de acordo com o código reportado:  
+- CONSENTIMENTO_NAO_PERMITE_CANCELAMENTO: O status do consentimento não permite a realização do cancelamento (em status "CONSUMED" ou "REJECTED")
+- CAMPO_NAO_PERMITIDO: O(s) campo(s) solicitado(s) para edição não podem ser editados.
+- PERMISSAO_INSUFICIENTE: Consentimento possui múltiplas alçadas aprovadoras e não permite a edição pelo usuário atual.
+' to 'Descrição específica do erro de acordo com o código reportado:  
+- CONSENTIMENTO_NAO_PERMITE_CANCELAMENTO: O status do consentimento não permite a realização do cancelamento (em status "CONSUMED" ou "REJECTED")
+- CAMPO_NAO_PERMITIDO: O(s) campo(s) solicitado(s) para edição não podem ser editados.
+- PERMISSAO_INSUFICIENTE: Consentimento possui múltiplas alçadas aprovadoras e não permite a edição pelo usuário atual.
+- DETALHE_EDICAO_INVALIDO: A tentativa de edição do consentimento não respeitou as regras de negócio descritas nos campos.
+'
+                  - Modified property: title
+                    - Description changed from 'Título específico do erro reportado, de acordo com o código enviado:  
+- CONSENTIMENTO_NAO_PERMITE_CANCELAMENTO: O status do consentimento não permite a realização do cancelamento (em status "CONSUMED" ou "REJECTED")
+- CAMPO_NAO_PERMITIDO: O(s) campo(s) solicitado(s) para edição não podem ser editados.
+- Permissão insuficiente para edição.
+' to 'Título específico do erro reportado, de acordo com o código enviado:  
+- CONSENTIMENTO_NAO_PERMITE_CANCELAMENTO: O status do consentimento não permite a realização do cancelamento (em status "CONSUMED" ou "REJECTED")
+- CAMPO_NAO_PERMITIDO: O(s) campo(s) solicitado(s) para edição não podem ser editados.
+- Permissão insuficiente para edição.
+- DETALHE_EDICAO_INVALIDO: A tentativa de edição do consentimento não respeitou as regras de negócio descritas nos campos.
+'
+  - Modified response: 500
+    - Headers changed
+      - New header: x-fapi-interaction-id
+  - Modified response: 504
+    - Headers changed
+      - New header: x-fapi-interaction-id
+  - Modified response: 529
+    - Headers changed
+      - New header: x-fapi-interaction-id

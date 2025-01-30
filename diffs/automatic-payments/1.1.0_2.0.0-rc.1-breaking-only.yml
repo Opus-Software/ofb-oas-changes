@@ -2,16 +2,8 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 7
+### Modified Endpoints: 6
 -------------------------
-GET /pix/recurring-payments
-- Responses changed
-  - Modified response: 500
-    - Headers changed
-      - Deleted header: x-fapi-interaction-id
-  - Modified response: 504
-    - Headers changed
-      - Deleted header: x-fapi-interaction-id
 POST /pix/recurring-payments
 - Responses changed
   - Modified response: 201
@@ -23,14 +15,16 @@ POST /pix/recurring-payments
               - Properties changed
                 - Modified property: cancellation
                   - Properties changed
+                    - Modified property: cancelledBy
+                      - Properties changed
+                        - Modified property: document
+                          - Properties changed
+                            - Modified property: identification
+                              - Pattern changed from '^\d{11}$' to '^(?:\d{11}|\d{14})$'
+                            - Modified property: rel
+                              - MaxLength changed from 3 to null
                     - Modified property: reason
                       - Deleted enum values: [CANCELADO_MULTIPLAS_ALCADAS]
-  - Modified response: 500
-    - Headers changed
-      - Deleted header: x-fapi-interaction-id
-  - Modified response: 504
-    - Headers changed
-      - Deleted header: x-fapi-interaction-id
 GET /pix/recurring-payments/{recurringPaymentId}
 - Responses changed
   - Modified response: 200
@@ -42,14 +36,16 @@ GET /pix/recurring-payments/{recurringPaymentId}
               - Properties changed
                 - Modified property: cancellation
                   - Properties changed
+                    - Modified property: cancelledBy
+                      - Properties changed
+                        - Modified property: document
+                          - Properties changed
+                            - Modified property: identification
+                              - Pattern changed from '^\d{11}$' to '^(?:\d{11}|\d{14})$'
+                            - Modified property: rel
+                              - MaxLength changed from 3 to null
                     - Modified property: reason
                       - Deleted enum values: [CANCELADO_MULTIPLAS_ALCADAS]
-  - Modified response: 500
-    - Headers changed
-      - Deleted header: x-fapi-interaction-id
-  - Modified response: 504
-    - Headers changed
-      - Deleted header: x-fapi-interaction-id
 PATCH /pix/recurring-payments/{recurringPaymentId}
 - Request body changed
   - Content changed
@@ -76,14 +72,16 @@ PATCH /pix/recurring-payments/{recurringPaymentId}
               - Properties changed
                 - Modified property: cancellation
                   - Properties changed
+                    - Modified property: cancelledBy
+                      - Properties changed
+                        - Modified property: document
+                          - Properties changed
+                            - Modified property: identification
+                              - Pattern changed from '^\d{11}$' to '^(?:\d{11}|\d{14})$'
+                            - Modified property: rel
+                              - MaxLength changed from 3 to null
                     - Modified property: reason
                       - Deleted enum values: [CANCELADO_MULTIPLAS_ALCADAS]
-  - Modified response: 500
-    - Headers changed
-      - Deleted header: x-fapi-interaction-id
-  - Modified response: 504
-    - Headers changed
-      - Deleted header: x-fapi-interaction-id
 POST /recurring-consents
 - Request body changed
   - Content changed
@@ -124,12 +122,6 @@ POST /recurring-consents
                                       - Pattern changed from '^\d{14}$' to '^(?:\d{11}|\d{14})$'
                                     - Modified property: rel
                                       - MaxLength changed from 4 to null
-  - Modified response: 500
-    - Headers changed
-      - Deleted header: x-fapi-interaction-id
-  - Modified response: 504
-    - Headers changed
-      - Deleted header: x-fapi-interaction-id
 GET /recurring-consents/{recurringConsentId}
 - Responses changed
   - Modified response: 200
@@ -159,12 +151,6 @@ GET /recurring-consents/{recurringConsentId}
                                       - Pattern changed from '^\d{14}$' to '^(?:\d{11}|\d{14})$'
                                     - Modified property: rel
                                       - MaxLength changed from 4 to null
-  - Modified response: 500
-    - Headers changed
-      - Deleted header: x-fapi-interaction-id
-  - Modified response: 504
-    - Headers changed
-      - Deleted header: x-fapi-interaction-id
 PATCH /recurring-consents/{recurringConsentId}
 - Request body changed
   - Content changed
@@ -173,7 +159,9 @@ PATCH /recurring-consents/{recurringConsentId}
         - Properties changed
           - Modified property: data
             - Property 'OneOf' changed
-              - 3 schemas deleted
+              - Schema #/components/schemas/ConsentEdition modified
+                - Required changed
+                  - New required property: creditors
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -203,9 +191,3 @@ PATCH /recurring-consents/{recurringConsentId}
                                       - Pattern changed from '^\d{14}$' to '^(?:\d{11}|\d{14})$'
                                     - Modified property: rel
                                       - MaxLength changed from 4 to null
-  - Modified response: 500
-    - Headers changed
-      - Deleted header: x-fapi-interaction-id
-  - Modified response: 504
-    - Headers changed
-      - Deleted header: x-fapi-interaction-id

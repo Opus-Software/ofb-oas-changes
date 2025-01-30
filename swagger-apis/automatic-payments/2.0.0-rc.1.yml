@@ -149,7 +149,8 @@ info:
         &ensp;6.1.18 - Limite de transação excedido: O consentimento encontra-se autorizado e o valor solicitado para cobrança ultrapassa a faixa de limite de valor por transação parametrizado pelo usuário na criação do consentimento (LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO);  
         &ensp;6.1.19 Limite de retentativas atingido: Valida se todas as tentativas de liquidação permitidas já foram realizadas (LIMITE_TENTATIVA_EXCEDIDO);  
         &ensp;6.1.20 Fora do prazo permitido: A tentativa de agendamento foi realizada fora do horário ou período permitido e não pode ser aceita pela instituição detentora (FORA_PRAZO_PERMITIDO);  
-        &ensp;6.1.21 Detalhe tentativa inválida: Valida se os parâmetros informados condizem com a tentativa original de pagamento (DETALHE_TENTATIVA_INVALIDO).
+        &ensp;6.1.21 Detalhe tentativa inválida: Valida se os parâmetros informados condizem com a tentativa original de pagamento (DETALHE_TENTATIVA_INVALIDO);
+        &ensp;6.1.22 Detalhes do pagamento: Valida se determinado parâmetro informado obedece as regras de negócio (DETALHE_PAGAMENTO_INVALIDO).
 
     ## Validações antifraude da Transferências Inteligentes
 
@@ -177,6 +178,10 @@ info:
     ## Sobre a quantidade de consentimentos que podem ser criados
     Não há limitações relacionadas a quantidade de consentimentos que podem ser criados entre uma mesma ITP, conta de débito e titularidade. Fica a cargo da instituição iniciadora solicitar, sempre que julgar necessário para atendimento do usuário, a criação de um novo consentimento.
     
+    ## Sobre o cancelamento de novas tentativas de pagamento para o Pix Automático
+    Não é permitido ao usuário pagador o cancelamento de uma nova tentativa de pagamento, realizada pelo recebedor, quando autorizado no consentimento (campo “/data/recurringConfiguration/automatic/isRetryAccepted” como “True”) pelo usuário pagador ou quando o Iniciador precisar enviar um novo endToEndId. 
+    Aplica-se tanto para a tentativa intradia quanto para a tentativa em dias subsequentes. É permitido ao recebedor o cancelamento das novas tentativas em dias subsequentes. Aplicam-se as regras de cancelamento da tentativa original, conforme previsto na descrição do endpoint PATCH /pix/recurringPayments Pagamentos que são novas tentativas, intradia ou em dias subsequentes, podem ser identificados pela presença do campo “/data/originalRecurringPaymentId” no recurso. 
+  
   version: 2.0.0-rc.1
   license:
     name: Apache 2.0
@@ -527,9 +532,9 @@ paths:
         
         Caso receba um 422, a iniciadora deve fazer uma requisição GET no pagamento para verificar a situação atual dele, bem como detalhes associados. 
 
-        [Restrição] Para o Pix Automático (“recurringConfiguration” igual a “automatic”) tanto o recebedor quanto o pagador poderão realizar o 
-        cancelamento, sendo permitido ao recebedor a solicitação de cancelamento até as 22:00 (Horário de Brasília) e ao pagador até as 23:59 
-        (Horário de Brasília) do dia anterior à data de efetivação do pagamento.
+        [Restrição] Para o Pix automático (“recurringConfiguration” igual a “automatic”) tanto o recebedor quanto o pagador poderão realizar o cancelamento, 
+        sendo permitido ao recebedor a solicitação de cancelamento até as 22:00 (Horário de Brasília) e ao pagador até as 23:59 (Horário de Brasília) do dia anterior à data de efetivação do pagamento, 
+        exceto para os casos de novas tentativas em dias subsequentes, onde apenas o recebedor pode cancelar, também até as 22:00h.
       parameters:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/xCustomerUserAgent'
@@ -582,6 +587,11 @@ components:
     XFapiInteractionId:
       description: |
           Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta.
+      schema:
+        $ref: '#/components/schemas/XFapiInteractionId'
+    XFapiInteractionIdError:
+      description: |
+          Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client). Seu valor deve obrigatoriamente ser replicado pela detentora (server) no cabeçalho de resposta, exceto em casos de falhas estruturais que impeçam a replicação. Caso não seja possível ser replicado, não deve ser enviado.
       schema:
         $ref: '#/components/schemas/XFapiInteractionId'
     XFapiInteractionIdBadRequest:
@@ -678,6 +688,7 @@ components:
                   - CONSENTIMENTO_NAO_PERMITE_CANCELAMENTO
                   - CAMPO_NAO_PERMITIDO
                   - PERMISSAO_INSUFICIENTE
+                  - DETALHE_EDICAO_INVALIDO
                 example: CAMPO_NAO_PERMITIDO
               title:
                 type: string
@@ -689,6 +700,7 @@ components:
                   - CONSENTIMENTO_NAO_PERMITE_CANCELAMENTO: O status do consentimento não permite a realização do cancelamento (em status "CONSUMED" ou "REJECTED")
                   - CAMPO_NAO_PERMITIDO: O(s) campo(s) solicitado(s) para edição não podem ser editados.
                   - Permissão insuficiente para edição.
+                  - DETALHE_EDICAO_INVALIDO: A tentativa de edição do consentimento não respeitou as regras de negócio descritas nos campos.
               detail:
                 type: string
                 maxLength: 2048
@@ -699,6 +711,7 @@ components:
                   - CONSENTIMENTO_NAO_PERMITE_CANCELAMENTO: O status do consentimento não permite a realização do cancelamento (em status "CONSUMED" ou "REJECTED")
                   - CAMPO_NAO_PERMITIDO: O(s) campo(s) solicitado(s) para edição não podem ser editados.
                   - PERMISSAO_INSUFICIENTE: Consentimento possui múltiplas alçadas aprovadoras e não permite a edição pelo usuário atual.
+                  - DETALHE_EDICAO_INVALIDO: A tentativa de edição do consentimento não respeitou as regras de negócio descritas nos campos.
         meta:
           $ref: '#/components/schemas/Meta'
     422ResponseErrorCreatePixRecurringPayment:
@@ -1773,6 +1786,7 @@ components:
         - LIMITE_TENTATIVAS_EXCEDIDO
         - FORA_PRAZO_PERMITIDO
         - DETALHE_TENTATIVA_INVALIDO
+        - DETALHE_PAGAMENTO_INVALIDO
       example: SALDO_INSUFICIENTE
       description: |
         Código identificador do motivo de rejeição.
@@ -1798,6 +1812,7 @@ components:
         - LIMITE_TENTATIVAS_EXCEDIDO
         - FORA_PRAZO_PERMITIDO
         - DETALHE_TENTATIVA_INVALIDO
+        - DETALHE_PAGAMENTO_INVALIDO
 
         [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
     EnumRejectionReasonCode:
@@ -1824,6 +1839,7 @@ components:
         - CONSENTIMENTO_REVOGADO
         - FORA_PRAZO_PERMITIDO
         - DETALHE_TENTATIVA_INVALIDO
+        - DETALHE_PAGAMENTO_INVALIDO
       example: SALDO_INSUFICIENTE
       description: |
         Código identificador do motivo de rejeição.
@@ -1849,6 +1865,7 @@ components:
         - CONSENTIMENTO_REVOGADO
         - FORA_PRAZO_PERMITIDO
         - DETALHE_TENTATIVA_INVALIDO
+        - DETALHE_PAGAMENTO_INVALIDO
 
         [Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
     EnumPaymentCancellationReasonType:
@@ -1961,8 +1978,6 @@ components:
                 - DETENTORA
             reason:
               $ref: '#/components/schemas/ConsentRejectionReason'
-        riskSignals:
-          $ref: '#/components/schemas/RiskSignalsConsents'
     ConsentRejectionReason:
       type: object
       description: |
@@ -2048,7 +2063,8 @@ components:
             - CONSENTIMENTO_REVOGADO: O pagamento estava associado a um consentimento que foi revogado.
             - LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido
             - FORA_PRAZO_PERMITIDO: O horário ou período da requisição não permite o agendamento pelo detentor.
-            - DETALHE_TENTATIVA_INVALIDO : O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
+            - DETALHE_TENTATIVA_INVALIDO: O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
+            - DETALHE_PAGAMENTO_INVALIDO: Valida se determinado parâmetro informado obedece as regras de negócio
     RejectionReason:
       type: object
       description: |
@@ -2086,15 +2102,13 @@ components:
             - LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
             - CONSENTIMENTO_REVOGADO: O pagamento estava associado a um consentimento que foi revogado.
             - FORA_PRAZO_PERMITIDO: O horário ou período da requisição não permite o agendamento pelo detentor.
-            - DETALHE_TENTATIVA_INVALIDO : O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
+            - DETALHE_TENTATIVA_INVALIDO: O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
+            - DETALHE_PAGAMENTO_INVALIDO: Valida se determinado parâmetro informado obedece as regras de negócio.
     ConsentEdition:
       type: object
       required:
-        - riskSignals
         - creditors
       properties:
-        riskSignals:
-          $ref: '#/components/schemas/RiskSignalsConsents'
         creditors:
           type: array
           minItems: 1
@@ -2115,12 +2129,11 @@ components:
                   Em caso de pessoa jurídica deve ser informada a razão social ou o nome fantasia da conta do recebedor.
         expirationDateTime:
           description: |
-            Data e hora em que o consentimento deve deixar de ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format).
-
-            [Restrição] 
-            Caso esse campo não seja enviado, a instituição detentora deve considerar a extensão do prazo para um período indeterminado; 
+            Data e hora em que o consentimento deve deixar de ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format). 
             
-            Caso enviado, esse campo deve ser, no mínimo, D+1, sendo D o dia da requisição.
+            [Restrição] Caso esse campo não seja enviado, a instituição detentora deve considerar a extensão do prazo para um período indeterminado; ou; 
+            
+            Caso enviado, esse campo deve ser, no mínimo, D, sendo D o dia da requisição.
           type: string
           format: date-time
           example: '2021-05-21T08:30:00Z'
@@ -2243,8 +2256,6 @@ components:
                 - DETENTORA
             reason:
               $ref: '#/components/schemas/ConsentRevokedReason'
-        riskSignals:
-          $ref: '#/components/schemas/RiskSignalsConsents'
     ConsentRevokedReason:
       type: object
       description: |
@@ -2294,7 +2305,7 @@ components:
             - interval
             - contractDebtor
             - isRetryAccepted
-            - referenceStartDateTime
+            - referenceStartDate
           properties:
             contractId:
               type: string
@@ -2357,14 +2368,14 @@ components:
               type: boolean
               description: Indica se é permitido pelo cliente recebedor fazer tentativas de pagamento (extradia), conforme as regras estabelecidas no arranjo Pix.
               example: false
-            referenceStartDateTime:
+            referenceStartDate:
               type: string
-              format: date-time
-              pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+              format: date
+              pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
               description: |
                 Representa a data prevista para a primeira ocorrência de um pagamento associado a recorrência. 
                 Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format).
-              example: '2023-05-21T08:30:00Z'
+              example: '2023-05-21'
     Automatic:
       type: object
       required:
@@ -2379,7 +2390,7 @@ components:
             - contractDebtor
             - isRetryAccepted
             - useOverdraftLimit
-            - referenceStartDateTime
+            - referenceStartDate
           properties:
             contractId:
               type: string
@@ -2447,14 +2458,14 @@ components:
               default: true
               example: true
               description: Indica se o usuário pagador autorizou a utilização de limite pré-aprovado (cheque especial) na sua conta para realização de pagamentos, caso o cliente possua o produto.
-            referenceStartDateTime:
+            referenceStartDate:
               type: string
-              format: date-time
-              pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+              format: date
+              pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
               description: |
                 Representa a data prevista para a primeira ocorrência de um pagamento associado a recorrência. 
                 Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format).
-              example: '2023-05-21T08:30:00Z'
+              example: '2023-05-21'
     ContractDebtor:
       type: object
       description: Informações sobre o cliente devedor do contrato.
@@ -2934,15 +2945,15 @@ components:
                 identification:
                   type: string
                   maxLength: 11
-                  description: Número do documento do usuário pagador responsável pelo cancelamento do pagamento.
+                  description: Número do documento de identificação oficial do pagador ou recebedor, pessoa natural ou jurídica.
                   example: '11111111111'
-                  pattern: '^\d{11}$'
+                  pattern: '^(?:\d{11}|\d{14})$'
                 rel:
                   type: string
-                  maxLength: 3
-                  description: Tipo do documento do usuário pagador responsável pelo cancelamento do pagamento.
-                  example: CPF
-                  pattern: '^[A-Z]{3}$'
+                  description: Tipo de documento de identificação oficial do pagador ou recebedor, pessoa natural ou jurídica.
+                  enum:
+                    - CPF
+                    - CNPJ
     ResponseError:
       type: object
       required:
@@ -3533,9 +3544,10 @@ components:
       properties:
         data:
           description: Objeto contendo as informações de rejeição, revogação e edição dos consentimentos
-          properties:
-            ConsentEdition:
-              $ref: '#/components/schemas/ConsentEdition'
+          oneOf:
+            - $ref: '#/components/schemas/ConsentEdition'
+            - $ref: '#/components/schemas/ConsentRevocation'
+            - $ref: '#/components/schemas/ConsentRejection'
     ResponseRecurringPaymentsIdPost:
       type: object
       required:
@@ -4555,12 +4567,18 @@ components:
         application/json; charset=utf-8:
           schema:
             $ref: '#/components/schemas/ResponseError'
+      headers:
+        x-fapi-interaction-id:
+          $ref: '#/components/headers/XFapiInteractionIdError'
     GatewayTimeoutWithAdditionalProperties:
       description: A requisição não foi atendida dentro do tempo limite estabelecido
       content:
         application/json; charset=utf-8:
           schema:
             $ref: '#/components/schemas/ResponseError'
+      headers:
+        x-fapi-interaction-id:
+          $ref: '#/components/headers/XFapiInteractionIdError'
     MethodNotAllowed:
       description: O consumidor tentou acessar o recurso com um método não suportado
       content:
@@ -4594,6 +4612,9 @@ components:
         application/json; charset=utf-8:
           schema:
             $ref: '#/components/schemas/ResponseError'
+      headers:
+        x-fapi-interaction-id:
+          $ref: '#/components/headers/XFapiInteractionIdError'
     UnprocessableEntityPixRecurringPayment:
       description: 'A solicitação foi bem formada, mas não pôde ser processada devido à lógica de negócios específica da solicitação.'
       content:
