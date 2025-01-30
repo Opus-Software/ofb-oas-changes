@@ -17,6 +17,13 @@ GET /pix/recurring-payments
                 - Properties changed
                   - New property: originalRecurringPaymentId
                   - New property: paymentReference
+                  - Modified property: endToEndId
+                    - Description changed from 'Trata-se de um identificador único, gerado na instituição iniciadora de pagamento e recebido na instituição detentora de conta, permeando toda a jornada do pagamento Pix.
+[Restrição] A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+' to 'Trata-se de um identificador único, gerado na instituição iniciadora de pagamento e recebido na instituição detentora de conta, permeando toda a jornada do pagamento Pix.
+[Restrição] A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+No caso de Pix Automático, a iniciadora deverá, no que tange á composição do endToEndId, utilizar a data para a qual o Pix está sendo agendado e horário fixo 15:00 UTC, que dará para a detentora a janela de efetivação de 00:00 e 23:59 do horário de Brasília, mesmo a janela sendo, para o detentor, até as 21h.
+'
                   - Modified property: rejectionReason
                     - Properties changed
                       - Modified property: code
@@ -246,6 +253,13 @@ CANCELADO_PENDENCIA - Pagamento cancelado enquanto estava na situação PDNG
 CANCELADO_AGENDAMENTO - Pagamento cancelado enquanto estava na situação SCHD
 '
                       - Deleted enum values: [CANCELADO_MULTIPLAS_ALCADAS]
+                - Modified property: endToEndId
+                  - Description changed from 'Trata-se de um identificador único, gerado na instituição iniciadora de pagamento e recebido na instituição detentora de conta, permeando toda a jornada do pagamento Pix.
+[Restrição] A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+' to 'Trata-se de um identificador único, gerado na instituição iniciadora de pagamento e recebido na instituição detentora de conta, permeando toda a jornada do pagamento Pix.
+[Restrição] A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+No caso de Pix Automático, a iniciadora deverá, no que tange á composição do endToEndId, utilizar a data para a qual o Pix está sendo agendado e horário fixo 15:00 UTC, que dará para a detentora a janela de efetivação de 00:00 e 23:59 do horário de Brasília, mesmo a janela sendo, para o detentor, até as 21h.
+'
                 - Modified property: localInstrument
                   - Description changed from 'Especifica a forma de iniciação do pagamento
 - MANU - Inserção manual de dados da conta transacional
@@ -567,6 +581,13 @@ CANCELADO_PENDENCIA - Pagamento cancelado enquanto estava na situação PDNG
 CANCELADO_AGENDAMENTO - Pagamento cancelado enquanto estava na situação SCHD
 '
                       - Deleted enum values: [CANCELADO_MULTIPLAS_ALCADAS]
+                - Modified property: endToEndId
+                  - Description changed from 'Trata-se de um identificador único, gerado na instituição iniciadora de pagamento e recebido na instituição detentora de conta, permeando toda a jornada do pagamento Pix.
+[Restrição] A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+' to 'Trata-se de um identificador único, gerado na instituição iniciadora de pagamento e recebido na instituição detentora de conta, permeando toda a jornada do pagamento Pix.
+[Restrição] A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+No caso de Pix Automático, a iniciadora deverá, no que tange á composição do endToEndId, utilizar a data para a qual o Pix está sendo agendado e horário fixo 15:00 UTC, que dará para a detentora a janela de efetivação de 00:00 e 23:59 do horário de Brasília, mesmo a janela sendo, para o detentor, até as 21h.
+'
                 - Modified property: localInstrument
                   - Description changed from 'Especifica a forma de iniciação do pagamento
 - MANU - Inserção manual de dados da conta transacional
@@ -821,6 +842,13 @@ CANCELADO_PENDENCIA - Pagamento cancelado enquanto estava na situação PDNG
 CANCELADO_AGENDAMENTO - Pagamento cancelado enquanto estava na situação SCHD
 '
                       - Deleted enum values: [CANCELADO_MULTIPLAS_ALCADAS]
+                - Modified property: endToEndId
+                  - Description changed from 'Trata-se de um identificador único, gerado na instituição iniciadora de pagamento e recebido na instituição detentora de conta, permeando toda a jornada do pagamento Pix.
+[Restrição] A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+' to 'Trata-se de um identificador único, gerado na instituição iniciadora de pagamento e recebido na instituição detentora de conta, permeando toda a jornada do pagamento Pix.
+[Restrição] A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+No caso de Pix Automático, a iniciadora deverá, no que tange á composição do endToEndId, utilizar a data para a qual o Pix está sendo agendado e horário fixo 15:00 UTC, que dará para a detentora a janela de efetivação de 00:00 e 23:59 do horário de Brasília, mesmo a janela sendo, para o detentor, até as 21h.
+'
                 - Modified property: localInstrument
                   - Description changed from 'Especifica a forma de iniciação do pagamento
 - MANU - Inserção manual de dados da conta transacional
@@ -1289,29 +1317,6 @@ solicitação da revogação) deverão ser mantidos. Pagamentos agendados para o
         - Properties changed
           - Modified property: data
             - Property 'OneOf' changed
-              - Schema #/components/schemas/ConsentEdition modified
-                - Required changed
-                  - New required property: creditors
-                - Properties changed
-                  - New property: businessEntity
-                  - New property: loggedUser
-                  - New property: recurringConfiguration
-                  - Deleted property: automatic
-                  - Deleted property: riskSignals
-                  - Deleted property: startDateTime
-                  - Modified property: creditors
-                    - Items changed
-                      - Description changed from 'Objeto contendo os dados do recebedor (creditor).' to 'Objeto contendo os dados do recebedor (creditor).
-[Restrição] Caso o consentimento de longa duração seja para o produto Pix Automático (“automatic” selecionado no oneOf do objeto “/data/recurringConfiguration”), apenas um recebedor é permitido e esse deve ser pessoa jurídica.
-'
-                  - Modified property: expirationDateTime
-                    - Description changed from 'Data e hora em que o consentimento deve deixar de ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format).' to 'Data e hora em que o consentimento deve deixar de ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format). 
-[Restrição] Caso esse campo não seja enviado, a instituição detentora deve considerar a extensão do prazo para um período indeterminado; ou; 
-Caso enviado, esse campo deve ser, no mínimo, D, sendo D o dia da requisição.
-'
-              - Schema #/components/schemas/ConsentRevocation modified
-                - Properties changed
-                  - Deleted property: riskSignals
               - Schema #/components/schemas/ConsentRejection modified
                 - Properties changed
                   - Deleted property: riskSignals
@@ -1362,6 +1367,29 @@ Caso enviado, esse campo deve ser, no mínimo, D, sendo D o dia da requisição.
 - VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
 - AUTENTICACAO_DIVERGENTE : Usuário autenticado no detentor diverge do usuário autenticado no iniciador;
 '
+              - Schema #/components/schemas/ConsentEdition modified
+                - Required changed
+                  - New required property: creditors
+                - Properties changed
+                  - New property: businessEntity
+                  - New property: loggedUser
+                  - New property: recurringConfiguration
+                  - Deleted property: automatic
+                  - Deleted property: riskSignals
+                  - Deleted property: startDateTime
+                  - Modified property: creditors
+                    - Items changed
+                      - Description changed from 'Objeto contendo os dados do recebedor (creditor).' to 'Objeto contendo os dados do recebedor (creditor).
+[Restrição] Caso o consentimento de longa duração seja para o produto Pix Automático (“automatic” selecionado no oneOf do objeto “/data/recurringConfiguration”), apenas um recebedor é permitido e esse deve ser pessoa jurídica.
+'
+                  - Modified property: expirationDateTime
+                    - Description changed from 'Data e hora em que o consentimento deve deixar de ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format).' to 'Data e hora em que o consentimento deve deixar de ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format). 
+[Restrição] Caso esse campo não seja enviado, a instituição detentora deve considerar a extensão do prazo para um período indeterminado; ou; 
+Caso enviado, esse campo deve ser, no mínimo, D, sendo D o dia da requisição.
+'
+              - Schema #/components/schemas/ConsentRevocation modified
+                - Properties changed
+                  - Deleted property: riskSignals
 - Responses changed
   - Modified response: 200
     - Content changed
