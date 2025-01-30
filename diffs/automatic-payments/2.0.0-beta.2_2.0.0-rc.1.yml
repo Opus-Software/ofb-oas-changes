@@ -122,6 +122,8 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - DETALHE_TENTATIVA_INVALIDO: O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
 - DETALHE_PAGAMENTO_INVALIDO: Valida se determinado parâmetro informado obedece as regras de negócio
 '
+    - Headers changed
+      - New header: x-v
   - Modified response: 500
     - Headers changed
       - New header: x-fapi-interaction-id
@@ -263,6 +265,8 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - DETALHE_TENTATIVA_INVALIDO: O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
 - DETALHE_PAGAMENTO_INVALIDO: Valida se determinado parâmetro informado obedece as regras de negócio.
 '
+    - Headers changed
+      - New header: x-v
   - Modified response: 500
     - Headers changed
       - New header: x-fapi-interaction-id
@@ -404,6 +408,8 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - DETALHE_TENTATIVA_INVALIDO: O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
 - DETALHE_PAGAMENTO_INVALIDO: Valida se determinado parâmetro informado obedece as regras de negócio.
 '
+    - Headers changed
+      - New header: x-v
   - Modified response: 500
     - Headers changed
       - New header: x-fapi-interaction-id
@@ -584,6 +590,8 @@ Motivo da rejeição do pagamento. Informações complementares sobre o motivo d
 - DETALHE_TENTATIVA_INVALIDO: O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
 - DETALHE_PAGAMENTO_INVALIDO: Valida se determinado parâmetro informado obedece as regras de negócio.
 '
+    - Headers changed
+      - New header: x-v
   - Modified response: 500
     - Headers changed
       - New header: x-fapi-interaction-id
@@ -603,6 +611,11 @@ POST /recurring-consents
             - Properties changed
               - Modified property: recurringConfiguration
                 - Property 'OneOf' changed
+                  - Schema #/components/schemas/SweepingRequest modified
+                    - Properties changed
+                      - Modified property: sweeping
+                        - Required changed
+                          - Deleted required property: startDateTime
                   - Schema #/components/schemas/AutomaticRequest modified
                     - Properties changed
                       - Modified property: automatic
@@ -621,11 +634,6 @@ POST /recurring-consents
 Caso não respeitado, o detentor deve rejeitar o pagamento com o motivo DETALHE_PAGAMENTO_INVALIDO, sincronamente (HTTP 422) ou assincronamente (HTTP 200)
 ' to 'Definições para o primeiro pagamento. É considerado como o pagamento da adesão ao serviço pelo usuário pagador. Para casos em que conta recebedora e conta pagadora pertencem ao mesmo detentor, este deve garantir que a conta de crédito informada pertence ao titular do CNPJ enviado no campo “/data/creditors/cpfCnpj”. A conta de crédito informada no momento do primeiro pagamento deve ser a mesma informada dentro deste objeto. Caso não respeitado, o detentor deve rejeitar o pagamento com o motivo DETALHE_PAGAMENTO_INVALIDO, sincronamente (HTTP 422) ou assincronamente (HTTP 200). 
 '
-                  - Schema #/components/schemas/SweepingRequest modified
-                    - Properties changed
-                      - Modified property: sweeping
-                        - Required changed
-                          - Deleted required property: startDateTime
 - Responses changed
   - Modified response: 201
     - Content changed
@@ -701,6 +709,8 @@ Caso não respeitado, o detentor deve rejeitar o pagamento com o motivo DETALHE_
 - VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
 - AUTENTICACAO_DIVERGENTE : Usuário autenticado no detentor diverge do usuário autenticado no iniciador;
 '
+    - Headers changed
+      - New header: x-v
   - Modified response: 500
     - Headers changed
       - New header: x-fapi-interaction-id
@@ -786,6 +796,8 @@ Caso não respeitado, o detentor deve rejeitar o pagamento com o motivo DETALHE_
 - VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
 - AUTENTICACAO_DIVERGENTE : Usuário autenticado no detentor diverge do usuário autenticado no iniciador;
 '
+    - Headers changed
+      - New header: x-v
   - Modified response: 500
     - Headers changed
       - New header: x-fapi-interaction-id
@@ -803,36 +815,6 @@ PATCH /recurring-consents/{recurringConsentId}
         - Properties changed
           - Modified property: data
             - Property 'OneOf' changed
-              - Schema #/components/schemas/ConsentEdition modified
-                - Required changed
-                  - Deleted required property: riskSignals
-                - Properties changed
-                  - Deleted property: riskSignals
-                  - Modified property: expirationDateTime
-                    - Description changed from 'Data e hora em que o consentimento deve deixar de ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format).
-[Restrição] 
-Caso esse campo não seja enviado, a instituição detentora deve considerar a extensão do prazo para um período indeterminado; 
-Caso enviado, esse campo deve ser, no mínimo, D+1, sendo D o dia da requisição.
-' to 'Data e hora em que o consentimento deve deixar de ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format). 
-[Restrição] Caso esse campo não seja enviado, a instituição detentora deve considerar a extensão do prazo para um período indeterminado; ou; 
-Caso enviado, esse campo deve ser, no mínimo, D, sendo D o dia da requisição.
-'
-                  - Modified property: loggedUser
-                    - Properties changed
-                      - Modified property: document
-                        - Properties changed
-                          - Modified property: identification
-                            - Description changed from 'Número do documento de identificação oficial do usuário.' to 'Número do documento de identificação oficial do pagador ou recebedor, pessoa natural ou jurídica.'
-                            - Pattern changed from '^\d{11}$' to '^(?:\d{11}|\d{14})$'
-                          - Modified property: rel
-                            - Description changed from 'Tipo do documento de identificação oficial do usuário.' to 'Tipo de documento de identificação oficial do pagador ou recebedor, pessoa natural ou jurídica.'
-                            - New enum values: [CPF CNPJ]
-                            - Example changed from 'CPF' to null
-                            - MaxLength changed from 3 to null
-                            - Pattern changed from '^[A-Z]{3}$' to ''
-              - Schema #/components/schemas/ConsentRevocation modified
-                - Properties changed
-                  - Deleted property: riskSignals
               - Schema #/components/schemas/ConsentRejection modified
                 - Properties changed
                   - Deleted property: riskSignals
@@ -883,6 +865,36 @@ Caso enviado, esse campo deve ser, no mínimo, D, sendo D o dia da requisição.
 - VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
 - AUTENTICACAO_DIVERGENTE : Usuário autenticado no detentor diverge do usuário autenticado no iniciador;
 '
+              - Schema #/components/schemas/ConsentEdition modified
+                - Required changed
+                  - Deleted required property: riskSignals
+                - Properties changed
+                  - Deleted property: riskSignals
+                  - Modified property: expirationDateTime
+                    - Description changed from 'Data e hora em que o consentimento deve deixar de ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format).
+[Restrição] 
+Caso esse campo não seja enviado, a instituição detentora deve considerar a extensão do prazo para um período indeterminado; 
+Caso enviado, esse campo deve ser, no mínimo, D+1, sendo D o dia da requisição.
+' to 'Data e hora em que o consentimento deve deixar de ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format). 
+[Restrição] Caso esse campo não seja enviado, a instituição detentora deve considerar a extensão do prazo para um período indeterminado; ou; 
+Caso enviado, esse campo deve ser, no mínimo, D, sendo D o dia da requisição.
+'
+                  - Modified property: loggedUser
+                    - Properties changed
+                      - Modified property: document
+                        - Properties changed
+                          - Modified property: identification
+                            - Description changed from 'Número do documento de identificação oficial do usuário.' to 'Número do documento de identificação oficial do pagador ou recebedor, pessoa natural ou jurídica.'
+                            - Pattern changed from '^\d{11}$' to '^(?:\d{11}|\d{14})$'
+                          - Modified property: rel
+                            - Description changed from 'Tipo do documento de identificação oficial do usuário.' to 'Tipo de documento de identificação oficial do pagador ou recebedor, pessoa natural ou jurídica.'
+                            - New enum values: [CPF CNPJ]
+                            - Example changed from 'CPF' to null
+                            - MaxLength changed from 3 to null
+                            - Pattern changed from '^[A-Z]{3}$' to ''
+              - Schema #/components/schemas/ConsentRevocation modified
+                - Properties changed
+                  - Deleted property: riskSignals
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -958,6 +970,8 @@ Caso não respeitado, o detentor deve rejeitar o pagamento com o motivo DETALHE_
 - VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
 - AUTENTICACAO_DIVERGENTE : Usuário autenticado no detentor diverge do usuário autenticado no iniciador;
 '
+    - Headers changed
+      - New header: x-v
   - Modified response: 422
     - Content changed
       - Modified media type: application/jwt
