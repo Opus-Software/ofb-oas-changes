@@ -198,39 +198,16 @@ Informação deve ser enviada caso ela exista. Especialmente para contratos repa
 ' to 'Objeto que traz o conjunto de informações necessárias para demonstrar a composição das taxas de juros remuneratórios da Modalidade de crédito. Caso o contrato não possua taxas de juros, deve ser compartilhada uma lista vazia. Caso o contrato possua uma taxa de juros com valor 0, deve ser compartilhado um objeto com o valor 0 de forma explícita. Para o produto CPC (campo “productSubTypeCategory” preenchido com CREDITO_PESSOAL_CLEAN) deve-se obrigatoriamente conter a taxa nominal e efetiva (campo “taxType”) com periodicidade a.a. (ao ano), podendo, adicionalmente, também conter uma periodicidade diferente.
 '
                   - Items changed
-                    - Required changed
-                      - Deleted required property: postFixedRate
-                      - Deleted required property: preFixedRate
                     - Properties changed
                       - Modified property: postFixedRate
                         - Description changed from 'Taxa pós fixada aplicada sob o contrato da modalidade crédito. p.ex. 0.0045 .O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%). Preencher o campo não aplicável ao contrato com zeros, seguindo o pattern (0.000000).
-' to 'Taxa pós fixada aplicada sob o contrato da modalidade crédito. p.ex. 0.0045 .O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%). Para taxas pós fixadas necessário informar o indexador (campo referentialRateIndexerSubType).
-[Restrição] Este campo é de envio obrigatório caso não seja enviado o campo preFixedRate.
-'
-                      - Modified property: preFixedRate
-                        - Description changed from 'Taxa pré fixada aplicada sob o contrato da modalidade crédito. p.ex. 0.014500. O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros(representação de porcentagem p.ex: 0.150000. Este valor representa 15%. O valor 1 representa 100%). Preencher o campo não aplicável ao contrato com zeros, seguindo o pattern (0.000000).
-' to 'Taxa pré fixada aplicada sob o contrato da modalidade crédito. p.ex. 0.014500. O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros(representação de porcentagem p.ex: 0.150000. Este valor representa 15%. O valor 1 representa 100%).
-[Restrição] Este campo é de envio obrigatório caso não seja enviado o campo postFixedRate.
+' to 'Taxa pós fixada aplicada sob o contrato da modalidade crédito. p.ex. 0.0045 .O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%). Preencher o campo não aplicável ao contrato com zeros, seguindo o pattern (0.000000). Para taxas pós fixadas necessário informar o indexador (campo referentialRateIndexerSubType).
 '
                       - Modified property: referentialRateIndexerSubType
                         - Description changed from '"Sub tipos de taxas referenciais ou indexadores, conforme Anexo 5: Taxa referencial ou Indexador (Indx), do Documento 3040"
 ' to '"Sub tipos de taxas referenciais ou indexadores, conforme Anexo 5: Taxa referencial ou Indexador (Indx), do Documento 3040.
 [Restrição] Caso no campo postFixedRate seja informado um valor aplicável ao contrato, o envio deste campo será obrigatório."
 '
-            - Modified property: links
-              - Properties changed
-                - Modified property: first
-                  - Format changed from 'uri' to 'url'
-                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
-                - Modified property: last
-                  - Format changed from 'uri' to 'url'
-                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
-                - Modified property: next
-                  - Format changed from 'uri' to 'url'
-                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
-                - Modified property: prev
-                  - Format changed from 'uri' to 'url'
-                  - Pattern changed from '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$' to ''
     - Headers changed
       - New header: x-v
   - Modified response: 400
