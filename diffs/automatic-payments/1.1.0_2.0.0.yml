@@ -1,0 +1,1690 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 7
+-------------------------
+GET /pix/recurring-payments
+- New query param: originalRecurringPaymentId
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - New property: originalRecurringPaymentId
+                  - New property: paymentReference
+                  - Modified property: endToEndId
+                    - Description changed from 'Trata-se de um identificador único, gerado na instituição iniciadora de pagamento e recebido na instituição detentora de conta, permeando toda a jornada do pagamento Pix.
+[Restrição] A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+' to 'Trata-se de um identificador único, gerado na instituição iniciadora de pagamento e recebido na instituição detentora de conta, permeando toda a jornada do pagamento Pix.
+[Restrição] A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+No caso de Pix Automático, a iniciadora deverá, no que tange á composição do endToEndId, utilizar a data para a qual o Pix está sendo agendado e horário fixo 15:00 UTC, que dará para a detentora a janela de efetivação de 00:00 e 23:59 do horário de Brasília, mesmo a janela sendo, para o detentor, até as 21h.
+'
+                    - Example changed from 'E9040088820210128000800123873170' to 'E9040088820241225150000123873170'
+                  - Modified property: rejectionReason
+                    - Properties changed
+                      - Modified property: code
+                        - Description changed from 'Código identificador do motivo de rejeição.
+Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+- VALOR_INVALIDO
+- NAO_INFORMADO
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO
+- PAGAMENTO_RECUSADO_DETENTORA
+- PAGAMENTO_RECUSADO_SPI
+- CONSENTIMENTO_INVALIDO
+- FALHA_INFRAESTRUTURA_SPI
+- FALHA_INFRAESTRUTURA_ICP
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR
+- FALHA_INFRAESTRUTURA_DETENTORA
+- LIMITE_PERIODO_VALOR_EXCEDIDO
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
+- TITULARIDADE_INCONSISTENTE
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação
+[Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
+' to 'Código identificador do motivo de rejeição.
+Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+- VALOR_INVALIDO
+- NAO_INFORMADO
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO
+- PAGAMENTO_RECUSADO_DETENTORA
+- PAGAMENTO_RECUSADO_SPI
+- CONSENTIMENTO_INVALIDO
+- FALHA_INFRAESTRUTURA_SPI
+- FALHA_INFRAESTRUTURA_ICP
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR
+- FALHA_INFRAESTRUTURA_DETENTORA
+- LIMITE_PERIODO_VALOR_EXCEDIDO
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
+- TITULARIDADE_INCONSISTENTE
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação
+- CONSENTIMENTO_REVOGADO
+- LIMITE_TENTATIVAS_EXCEDIDO
+- FORA_PRAZO_PERMITIDO
+- DETALHE_TENTATIVA_INVALIDO
+- DETALHE_PAGAMENTO_INVALIDO
+[Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
+'
+                        - New enum values: [CONSENTIMENTO_REVOGADO LIMITE_TENTATIVAS_EXCEDIDO FORA_PRAZO_PERMITIDO DETALHE_TENTATIVA_INVALIDO DETALHE_PAGAMENTO_INVALIDO]
+                      - Modified property: detail
+                        - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: Valida se o valor ultrapassa o limite estabelecido [na instituição (conta ou canal)/no arranjo] para permitir a realização de transações pelo cliente;
+- VALOR_INVALIDO: O valor enviado não é válido; 
+- NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta;
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento;
+- PAGAMENTO_RECUSADO_DETENTORA: [descrição do motivo de recusa];
+- PAGAMENTO_RECUSADO_SPI: [código de erro conforme tabela de domínios reason PACS.002];
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (em status final);
+- FALHA_INFRAESTRUTURA_SPI: Indica uma falha no Sistema de Pagamentos Instantâneos (SPI);
+- FALHA_INFRAESTRUTURA_ICP: Indica uma falha na Infraestrutura de Chaves Públicas (ICP);
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR: Indica uma falha na infraestrutura do Prestador de Serviço de Pagamento (PSP) que recebe o pagamento;
+- FALHA_INFRAESTRUTURA_DETENTORA: indica uma falha na infraestrutura da instituição detentora das informações ou recursos;
+- LIMITE_PERIODO_VALOR_EXCEDIDO – A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO – A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+- TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração.
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+' to 'Detalhe sobre o código identificador do motivo de rejeição.
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: Valida se o valor ultrapassa o limite estabelecido [na instituição (conta ou canal)/no arranjo] para permitir a realização de transações pelo cliente;
+- VALOR_INVALIDO: O valor enviado não é válido; 
+- NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta;
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento;
+- PAGAMENTO_RECUSADO_DETENTORA: [descrição do motivo de recusa];
+- PAGAMENTO_RECUSADO_SPI: [código de erro conforme tabela de domínios reason PACS.002];
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (em status final);
+- FALHA_INFRAESTRUTURA_SPI: Indica uma falha no Sistema de Pagamentos Instantâneos (SPI);
+- FALHA_INFRAESTRUTURA_ICP: Indica uma falha na Infraestrutura de Chaves Públicas (ICP);
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR: Indica uma falha na infraestrutura do Prestador de Serviço de Pagamento (PSP) que recebe o pagamento;
+- FALHA_INFRAESTRUTURA_DETENTORA: indica uma falha na infraestrutura da instituição detentora das informações ou recursos;
+- LIMITE_PERIODO_VALOR_EXCEDIDO – A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO – A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+- TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração.
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+- CONSENTIMENTO_REVOGADO: O pagamento estava associado a um consentimento que foi revogado.
+- LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido
+- FORA_PRAZO_PERMITIDO: O horário ou período da requisição não permite o agendamento pelo detentor.
+- DETALHE_TENTATIVA_INVALIDO: O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
+- DETALHE_PAGAMENTO_INVALIDO: Valida se determinado parâmetro informado obedece as regras de negócio
+'
+                  - Modified property: transactionIdentification
+                    - Description changed from 'Trata-se de um identificador de transação que deve ser retransmitido intacto pelo PSP do pagador ao gerar a ordem de pagamento. 
+Essa informação permitirá ao recebedor identificar e correlacionar a transferência, quando recebida, com a apresentação das instruções ao pagador. 
+Os caracteres permitidos no contexto do Pix para o campo txid (EMV 62-05) são:Letras minúsculas, de 'a' a 'z' Letras maiúsculas, de 'A' a 'z' Dígitos decimais, de '0' a '9'.
+' to 'Trata-se de um identificador de transação que deve ser retransmitido intacto pelo PSP do pagador ao gerar a ordem de pagamento. 
+Essa informação permitirá ao recebedor identificar e correlacionar a transferência, quando recebida, com a apresentação das instruções ao pagador. 
+Os caracteres permitidos no contexto do Pix para o campo txid (EMV 62-05) são:Letras minúsculas, de 'a' a 'z' Letras maiúsculas, de 'A' a 'z' Dígitos decimais, de '0' a '9'.
+[Restrição] Preenchimento condicional de acordo com o conteúdo do campo “localInstrument”:
+MANU - O campo transactionIdentification não deve ser preenchido;  
+DICT - O campo transactionIdentification não deve ser preenchido;  
+INIC - O campo transactionIdentification deve ser preenchido obrigatoriamente e deve conter até 25 caracteres alfanuméricos ([a-z|A-Z|0-9]).
+'
+            - Modified property: links
+              - Properties changed
+                - Modified property: self
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v1/resource' to 'https://api.banco.com.br/open-banking/api/v2/resource'
+    - Headers changed
+      - New header: x-v
+  - Modified response: 500
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client). Seu valor deve obrigatoriamente ser replicado pela detentora (server) no cabeçalho de resposta, exceto em casos de falhas estruturais que impeçam a replicação. Caso não seja possível ser replicado, não deve ser enviado.
+'
+  - Modified response: 504
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client). Seu valor deve obrigatoriamente ser replicado pela detentora (server) no cabeçalho de resposta, exceto em casos de falhas estruturais que impeçam a replicação. Caso não seja possível ser replicado, não deve ser enviado.
+'
+  - Modified response: 529
+    - Headers changed
+      - New header: x-fapi-interaction-id
+POST /pix/recurring-payments
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - New property: originalRecurringPaymentId
+              - New property: paymentReference
+              - Modified property: endToEndId
+                - Example changed from 'E9040088820210128000800123873170' to 'E9040088820241225150000123873170'
+              - Modified property: localInstrument
+                - Description changed from 'Especifica a forma de iniciação do pagamento
+- MANU - Inserção manual de dados da conta transacional
+- DICT - Inserção manual de chave Pix
+- INIC - Indica que o recebedor (creditor) contratou o Iniciador de Pagamentos especificamente para realizar iniciações de pagamento em que o beneficiário é previamente conhecido
+' to 'Especifica a forma de iniciação do pagamento
+- MANU - Inserção manual de dados da conta transacional
+- DICT - Inserção manual de chave Pix
+- INIC - Indica que o recebedor (creditor) contratou o Iniciador de Pagamentos especificamente para realizar iniciações de pagamento em que o beneficiário é previamente conhecido
+[Restrição] Caso consentimento associado a tentativa de pagamento seja para Pix automático (objeto “automatic” selecionado no oneOf do campo "/data/recurringConfiguration"), apenas o método MANU é permitido.
+'
+              - Modified property: proxy
+                - Description changed from 'Chave cadastrada no DICT pertencente ao recebedor. Os tipos de chaves podem ser: telefone, e-mail, cpf/cnpj ou chave aleatória. 
+No caso de telefone celular deve ser informado no padrão E.1641. Para e-mail deve ter o formato xxxxxxxx@xxxxxxx.xxx(.xx) e no máximo 77 caracteres. 
+No caso de CPF deverá ser informado com 11 números, sem pontos ou traços. Para o caso de CNPJ deverá ser informado com 14 números, sem pontos ou traços. 
+No caso de chave aleatória deve ser informado o UUID gerado pelo DICT, conforme formato especificado na [RFC4122](https://tools.ietf.org/html/rfc4122).
+[Restrição] Se localInstrument for igual a DICT ou INIC, o campo proxy deve ser preenchido.
+[Restrição] Se informado, a detentora da conta deve validar o proxy no DICT (quando localInstrument for igual a DICT) e validar o objeto creditorAccount. Ação opcional caso o localInstrument for igual a INIC
+' to 'Chave cadastrada no DICT pertencente ao recebedor. Os tipos de chaves podem ser: telefone, e-mail, cpf/cnpj ou chave aleatória. 
+No caso de telefone celular deve ser informado no padrão E.1641. Para e-mail deve ter o formato xxxxxxxx@xxxxxxx.xxx(.xx) e no máximo 77 caracteres. 
+No caso de CPF deverá ser informado com 11 números, sem pontos ou traços. Para o caso de CNPJ deverá ser informado com 14 números, sem pontos ou traços. 
+No caso de chave aleatória deve ser informado o UUID gerado pelo DICT, conforme formato especificado na [RFC4122](https://tools.ietf.org/html/rfc4122).
+[Restrição] Se localInstrument for igual a DICT ou INIC, o campo proxy deve ser preenchido.
+[Restrição] Se informado, a detentora da conta deve validar o proxy no DICT (quando localInstrument for igual a DICT) e validar o objeto creditorAccount. Ação opcional caso o localInstrument for igual a INIC
+[Restrição] Caso o campo “/data/localInstrument” seja enviado como “MANU”, o campo “/data/proxy” não deve ser informado
+'
+              - Modified property: riskSignals
+                - Properties changed
+                  - Modified property: automatic
+                    - Properties changed
+                      - Modified property: lastLoginDateTime
+                        - Description changed from 'Data e hora da última interação do cliente com o aplicativo/sistema da instituição iniciadora.' to 'Caso o usuário pagador tenha acesso ao ambiente da iniciadora de pagamentos, utilizar data e hora da última interação do cliente com seu aplicativo/sistema. 
+Para casos onde a iniciadora de pagamentos presta serviços a um terceiro, deve-se enviar o horário que o pagador logou na aplicação do terceiro.
+'
+                  - Modified property: manual
+                    - Required changed
+                      - Deleted required property: elapsedTimeSinceBoot
+                      - Deleted required property: isRootedDevice
+                      - Deleted required property: screenBrightness
+                    - Properties changed
+                      - Modified property: elapsedTimeSinceBoot
+                        - Description changed from 'Indica por quanto tempo (em milissegundos) o dispositivo está ligado.' to 'Indica por quanto tempo (em milissegundos) o dispositivo está ligado.
+[Restrição] Campos de envio obrigatório quando o sistema operacional utilizado pelo usuário durante o pagamento for Android ou iOS.
+'
+                      - Modified property: isRootedDevice
+                        - Description changed from 'Indica se o dispositivo atualmente está com permissão de “root”.' to 'Indica se o dispositivo atualmente está com permissão de “root”.
+[Restrição] Campos de envio obrigatório quando o sistema operacional utilizado pelo usuário durante o pagamento for Android ou iOS.
+'
+                      - Modified property: screenBrightness
+                        - Description changed from 'Indica o nível de brilho da tela do dispositivo.  
+Em dispositivos Android o valor é um inteiro, entre 0 e 255, inclusive;  
+Em dispositivos iOS o valor é um ponto flutuante entre 0.0 e 1.0.
+' to 'Indica o nível de brilho da tela do dispositivo.  
+Em dispositivos Android o valor é um inteiro, entre 0 e 255, inclusive;  
+Em dispositivos iOS o valor é um ponto flutuante entre 0.0 e 1.0.
+[Restrição] Campos de envio obrigatório quando o sistema operacional utilizado pelo usuário durante o pagamento for Android ou iOS.
+'
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - New property: originalRecurringPaymentId
+                - New property: paymentReference
+                - Deleted property: ibgeTownCode
+                - Modified property: cancellation
+                  - Properties changed
+                    - Modified property: cancelledBy
+                      - Properties changed
+                        - Modified property: document
+                          - Properties changed
+                            - Modified property: identification
+                              - Description changed from 'Número do documento do usuário pagador responsável pelo cancelamento do pagamento.' to 'Número do documento de identificação oficial do pagador ou recebedor, pessoa natural ou jurídica.'
+                              - Pattern changed from '^\d{11}$' to '^(?:\d{11}|\d{14})$'
+                            - Modified property: rel
+                              - Description changed from 'Tipo do documento do usuário pagador responsável pelo cancelamento do pagamento.' to 'Tipo de documento de identificação oficial do pagador ou recebedor, pessoa natural ou jurídica.'
+                              - New enum values: [CPF CNPJ]
+                              - Example changed from 'CPF' to null
+                              - MaxLength changed from 3 to null
+                              - Pattern changed from '^[A-Z]{3}$' to ''
+                    - Modified property: reason
+                      - Description changed from 'O preenchimento desse campo para retorno, deve ocorrer pela detentora de contas a partir do status em que o pagamento estiver no momento da solicitação do cancelamento (ex. Status de pagamento = PDNG, campo deve ser preenchido com enum CANCELADO_PENDENCIA)
+Valores possíveis:
+CANCELADO_PENDENCIA - Pagamento cancelado enquanto estava na situação PDNG
+CANCELADO_AGENDAMENTO - Pagamento cancelado enquanto estava na situação SCHD
+CANCELADO_MULTIPLAS_ALCADAS - Pagamento cancelado enquanto estava na situação PATC
+' to 'O preenchimento desse campo para retorno, deve ocorrer pela detentora de contas a partir do status em que o pagamento estiver no momento da solicitação do cancelamento (ex. Status de pagamento = PDNG, campo deve ser preenchido com enum CANCELADO_PENDENCIA)
+Valores possíveis:
+CANCELADO_PENDENCIA - Pagamento cancelado enquanto estava na situação PDNG
+CANCELADO_AGENDAMENTO - Pagamento cancelado enquanto estava na situação SCHD
+'
+                      - Deleted enum values: [CANCELADO_MULTIPLAS_ALCADAS]
+                - Modified property: endToEndId
+                  - Description changed from 'Trata-se de um identificador único, gerado na instituição iniciadora de pagamento e recebido na instituição detentora de conta, permeando toda a jornada do pagamento Pix.
+[Restrição] A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+' to 'Trata-se de um identificador único, gerado na instituição iniciadora de pagamento e recebido na instituição detentora de conta, permeando toda a jornada do pagamento Pix.
+[Restrição] A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+No caso de Pix Automático, a iniciadora deverá, no que tange á composição do endToEndId, utilizar a data para a qual o Pix está sendo agendado e horário fixo 15:00 UTC, que dará para a detentora a janela de efetivação de 00:00 e 23:59 do horário de Brasília, mesmo a janela sendo, para o detentor, até as 21h.
+'
+                  - Example changed from 'E9040088820210128000800123873170' to 'E9040088820241225150000123873170'
+                - Modified property: localInstrument
+                  - Description changed from 'Especifica a forma de iniciação do pagamento
+- MANU - Inserção manual de dados da conta transacional
+- DICT - Inserção manual de chave Pix
+- INIC - Indica que o recebedor (creditor) contratou o Iniciador de Pagamentos especificamente para realizar iniciações de pagamento em que o beneficiário é previamente conhecido
+' to 'Especifica a forma de iniciação do pagamento
+- MANU - Inserção manual de dados da conta transacional
+- DICT - Inserção manual de chave Pix
+- INIC - Indica que o recebedor (creditor) contratou o Iniciador de Pagamentos especificamente para realizar iniciações de pagamento em que o beneficiário é previamente conhecido
+[Restrição] Caso consentimento associado a tentativa de pagamento seja para Pix automático (objeto “automatic” selecionado no oneOf do campo "/data/recurringConfiguration"), apenas o método MANU é permitido.
+'
+                - Modified property: proxy
+                  - Description changed from 'Chave cadastrada no DICT pertencente ao recebedor. Os tipos de chaves podem ser: telefone, e-mail, cpf/cnpj ou chave aleatória. 
+No caso de telefone celular deve ser informado no padrão E.1641. Para e-mail deve ter o formato xxxxxxxx@xxxxxxx.xxx(.xx) e no máximo 77 caracteres. 
+No caso de CPF deverá ser informado com 11 números, sem pontos ou traços. Para o caso de CNPJ deverá ser informado com 14 números, sem pontos ou traços. 
+No caso de chave aleatória deve ser informado o UUID gerado pelo DICT, conforme formato especificado na [RFC4122](https://tools.ietf.org/html/rfc4122).
+[Restrição] Se localInstrument for igual a DICT ou INIC, o campo proxy deve ser preenchido.
+[Restrição] Se informado, a detentora da conta deve validar o proxy no DICT (quando localInstrument for igual a DICT) e validar o objeto creditorAccount. Ação opcional caso o localInstrument for igual a INIC
+' to 'Chave cadastrada no DICT pertencente ao recebedor. Os tipos de chaves podem ser: telefone, e-mail, cpf/cnpj ou chave aleatória. 
+No caso de telefone celular deve ser informado no padrão E.1641. Para e-mail deve ter o formato xxxxxxxx@xxxxxxx.xxx(.xx) e no máximo 77 caracteres. 
+No caso de CPF deverá ser informado com 11 números, sem pontos ou traços. Para o caso de CNPJ deverá ser informado com 14 números, sem pontos ou traços. 
+No caso de chave aleatória deve ser informado o UUID gerado pelo DICT, conforme formato especificado na [RFC4122](https://tools.ietf.org/html/rfc4122).
+[Restrição] Se localInstrument for igual a DICT ou INIC, o campo proxy deve ser preenchido.
+[Restrição] Se informado, a detentora da conta deve validar o proxy no DICT (quando localInstrument for igual a DICT) e validar o objeto creditorAccount. Ação opcional caso o localInstrument for igual a INIC
+[Restrição] Caso o campo “/data/localInstrument” seja enviado como “MANU”, o campo “/data/proxy” não deve ser informado
+'
+                - Modified property: rejectionReason
+                  - Properties changed
+                    - Modified property: code
+                      - Description changed from 'Código identificador do motivo de rejeição.
+Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+- VALOR_INVALIDO
+- NAO_INFORMADO
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO
+- PAGAMENTO_RECUSADO_DETENTORA
+- PAGAMENTO_RECUSADO_SPI
+- CONSENTIMENTO_INVALIDO
+- FALHA_INFRAESTRUTURA_SPI
+- FALHA_INFRAESTRUTURA_ICP
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR
+- FALHA_INFRAESTRUTURA_DETENTORA
+- TITULARIDADE_INCONSISTENTE
+- LIMITE_PERIODO_VALOR_EXCEDIDO
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+[Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
+' to 'Código identificador do motivo de rejeição.
+Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+- VALOR_INVALIDO
+- NAO_INFORMADO
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO
+- PAGAMENTO_RECUSADO_DETENTORA
+- PAGAMENTO_RECUSADO_SPI
+- CONSENTIMENTO_INVALIDO
+- FALHA_INFRAESTRUTURA_SPI
+- FALHA_INFRAESTRUTURA_ICP
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR
+- FALHA_INFRAESTRUTURA_DETENTORA
+- TITULARIDADE_INCONSISTENTE
+- LIMITE_PERIODO_VALOR_EXCEDIDO
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+- LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
+- CONSENTIMENTO_REVOGADO
+- FORA_PRAZO_PERMITIDO
+- DETALHE_TENTATIVA_INVALIDO
+- DETALHE_PAGAMENTO_INVALIDO
+[Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
+'
+                      - New enum values: [LIMITE_TENTATIVAS_EXCEDIDO CONSENTIMENTO_REVOGADO FORA_PRAZO_PERMITIDO DETALHE_TENTATIVA_INVALIDO DETALHE_PAGAMENTO_INVALIDO]
+                    - Modified property: detail
+                      - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: Valida se o valor ultrapassa o limite estabelecido [na instituição (conta ou canal)/no arranjo] para permitir a realização de transações pelo cliente;
+- VALOR_INVALIDO: O valor enviado não é válido; 
+- NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta;
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento;
+- PAGAMENTO_RECUSADO_DETENTORA: [descrição do motivo de recusa];
+- PAGAMENTO_RECUSADO_SPI: [código de erro conforme tabela de domínios reason PACS.002];
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (em status final);
+- FALHA_INFRAESTRUTURA_SPI: Indica uma falha no Sistema de Pagamentos Instantâneos (SPI);
+- FALHA_INFRAESTRUTURA_ICP: Indica uma falha na Infraestrutura de Chaves Públicas (ICP);
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR: Indica uma falha na infraestrutura do Prestador de Serviço de Pagamento (PSP) que recebe o pagamento;
+- FALHA_INFRAESTRUTURA_DETENTORA: indica uma falha na infraestrutura da instituição detentora das informações ou recursos;
+- TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração
+- LIMITE_PERIODO_VALOR_EXCEDIDO: A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO: A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.       
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+' to 'Detalhe sobre o código identificador do motivo de rejeição.
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: Valida se o valor ultrapassa o limite estabelecido [na instituição (conta ou canal)/no arranjo] para permitir a realização de transações pelo cliente;
+- VALOR_INVALIDO: O valor enviado não é válido; 
+- NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta;
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento;
+- PAGAMENTO_RECUSADO_DETENTORA: [descrição do motivo de recusa];
+- PAGAMENTO_RECUSADO_SPI: [código de erro conforme tabela de domínios reason PACS.002];
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (em status final);
+- FALHA_INFRAESTRUTURA_SPI: Indica uma falha no Sistema de Pagamentos Instantâneos (SPI);
+- FALHA_INFRAESTRUTURA_ICP: Indica uma falha na Infraestrutura de Chaves Públicas (ICP);
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR: Indica uma falha na infraestrutura do Prestador de Serviço de Pagamento (PSP) que recebe o pagamento;
+- FALHA_INFRAESTRUTURA_DETENTORA: indica uma falha na infraestrutura da instituição detentora das informações ou recursos;
+- TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração
+- LIMITE_PERIODO_VALOR_EXCEDIDO: A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO: A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.       
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+- LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
+- CONSENTIMENTO_REVOGADO: O pagamento estava associado a um consentimento que foi revogado.
+- FORA_PRAZO_PERMITIDO: O horário ou período da requisição não permite o agendamento pelo detentor.
+- DETALHE_TENTATIVA_INVALIDO: O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
+- DETALHE_PAGAMENTO_INVALIDO: Valida se determinado parâmetro informado obedece as regras de negócio.
+'
+                - Modified property: transactionIdentification
+                  - Description changed from 'Trata-se de um identificador de transação que deve ser retransmitido intacto pelo PSP do pagador ao gerar a ordem de pagamento. 
+Essa informação permitirá ao recebedor identificar e correlacionar a transferência, quando recebida, com a apresentação das instruções ao pagador. 
+Os caracteres permitidos no contexto do Pix para o campo txid (EMV 62-05) são:Letras minúsculas, de 'a' a 'z' Letras maiúsculas, de 'A' a 'z' Dígitos decimais, de '0' a '9'.
+' to 'Trata-se de um identificador de transação que deve ser retransmitido intacto pelo PSP do pagador ao gerar a ordem de pagamento. 
+Essa informação permitirá ao recebedor identificar e correlacionar a transferência, quando recebida, com a apresentação das instruções ao pagador. 
+Os caracteres permitidos no contexto do Pix para o campo txid (EMV 62-05) são:Letras minúsculas, de 'a' a 'z' Letras maiúsculas, de 'A' a 'z' Dígitos decimais, de '0' a '9'.
+[Restrição] Preenchimento condicional de acordo com o conteúdo do campo “localInstrument”:
+MANU - O campo transactionIdentification não deve ser preenchido;  
+DICT - O campo transactionIdentification não deve ser preenchido;  
+INIC - O campo transactionIdentification deve ser preenchido obrigatoriamente e deve conter até 25 caracteres alfanuméricos ([a-z|A-Z|0-9]).
+'
+            - Modified property: links
+              - Properties changed
+                - Modified property: self
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v1/resource' to 'https://api.banco.com.br/open-banking/api/v2/resource'
+    - Headers changed
+      - New header: x-v
+  - Modified response: 422
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - Description changed from 'Códigos de erros previstos na criação da iniciação de pagamento:
+- SALDO_INSUFICIENTE: Esta conta não possui saldo suficiente para realizar o pagamento.
+- VALOR_ACIMA_LIMITE: Valida se o valor ultrapassa o limite estabelecido [na instituição (conta ou canal)/no arranjo] para permitir a realização de transações pelo cliente.
+- VALOR_INVALIDO: O valor enviado não é válido para o QR Code informado.
+- LIMITE_PERIODO_VALOR_EXCEDIDO: A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO: A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (em status final).
+- CONSENTIMENTO_PENDENTE_AUTORIZACAO: Consentimento pendente autorização de múltiplas alçadas (status “PARTIALLY_ACCEPTED”).
+- PARAMETRO_NAO_INFORMADO: Parâmetro não informado.
+- PARAMETRO_INVALIDO: Parâmetro inválido.
+- NAO_INFORMADO: Não informada pela detentora de conta.
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento.
+- DETALHE_PAGAMENTO_INVALIDO: Detalhe do pagamento inválido.
+- PAGAMENTO_RECUSADO_DETENTORA: Pagamento recusado pela detentora de conta.
+- PAGAMENTO_RECUSADO_SPI: Pagamento recusado no Sistema de Pagamentos Instantâneos (SPI).
+- ERRO_IDEMPOTENCIA: Erro idempotência.
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: Limite total excedido
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+' to 'Códigos de erros previstos na criação da iniciação de pagamento:
+- SALDO_INSUFICIENTE: Esta conta não possui saldo suficiente para realizar o pagamento.
+- VALOR_ACIMA_LIMITE: Valida se o valor ultrapassa o limite estabelecido [na instituição (conta ou canal)/no arranjo] para permitir a realização de transações pelo cliente.
+- VALOR_INVALIDO: O valor enviado não é válido para o QR Code informado.
+- LIMITE_PERIODO_VALOR_EXCEDIDO: A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO: A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (em status final).
+- CONSENTIMENTO_PENDENTE_AUTORIZACAO: Consentimento pendente autorização de múltiplas alçadas (status “PARTIALLY_ACCEPTED”).
+- PARAMETRO_NAO_INFORMADO: Parâmetro não informado.
+- PARAMETRO_INVALIDO: Parâmetro inválido.
+- NAO_INFORMADO: Não informada pela detentora de conta.
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento.
+- DETALHE_PAGAMENTO_INVALIDO: Detalhe do pagamento inválido.
+- PAGAMENTO_RECUSADO_DETENTORA: Pagamento recusado pela detentora de conta.
+- PAGAMENTO_RECUSADO_SPI: Pagamento recusado no Sistema de Pagamentos Instantâneos (SPI).
+- ERRO_IDEMPOTENCIA: Erro idempotência.
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: Limite total excedido
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+- LIMITE_TENTATIVAS_EXCEDIDO: O limite de tentativas para liquidação do pagamento permitidas pelo arranjo foi excedido.
+- FORA_PRAZO_PERMITIDO: O horário ou período da requisição não permite o agendamento pelo detentor.
+- DETALHE_TENTATIVA_INVALIDO: O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
+'
+                    - New enum values: [LIMITE_TENTATIVAS_EXCEDIDO FORA_PRAZO_PERMITIDO DETALHE_TENTATIVA_INVALIDO]
+                  - Modified property: detail
+                    - Description changed from 'Descrição específica do erro de acordo com o código reportado:
+- SALDO_INSUFICIENTE: Esta conta não possui saldo suficiente para realizar o pagamento.
+- VALOR_ACIMA_LIMITE: Valida se o valor ultrapassa o limite estabelecido [na instituição (conta ou canal)/no arranjo] para permitir a realização de transações pelo cliente.
+- VALOR_INVALIDO: O valor enviado não é válido para o QR Code informado.
+- LIMITE_PERIODO_VALOR_EXCEDIDO: A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO: A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (em status final).
+- CONSENTIMENTO_PENDENTE_AUTORIZACAO: Consentimento pendente autorização de múltiplas alçadas (status “PARTIALLY_ACCEPTED”).
+- PARAMETRO_NAO_INFORMADO: Parâmetro não informado.
+- PARAMETRO_INVALIDO: Parâmetro inválido.
+- NAO_INFORMADO: Não informada pela detentora de conta.
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento.
+- DETALHE_PAGAMENTO_INVALIDO: Detalhe do pagamento inválido.
+- PAGAMENTO_RECUSADO_DETENTORA: Pagamento recusado pela detentora de conta.
+- PAGAMENTO_RECUSADO_SPI: Pagamento recusado no Sistema de Pagamentos Instantâneos (SPI).
+- ERRO_IDEMPOTENCIA: Erro idempotência.
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+' to 'Descrição específica do erro de acordo com o código reportado:
+- SALDO_INSUFICIENTE: Esta conta não possui saldo suficiente para realizar o pagamento.
+- VALOR_ACIMA_LIMITE: Valida se o valor ultrapassa o limite estabelecido [na instituição (conta ou canal)/no arranjo] para permitir a realização de transações pelo cliente.
+- VALOR_INVALIDO: O valor enviado não é válido para o QR Code informado.
+- LIMITE_PERIODO_VALOR_EXCEDIDO: A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO: A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (em status final).
+- CONSENTIMENTO_PENDENTE_AUTORIZACAO: Consentimento pendente autorização de múltiplas alçadas (status “PARTIALLY_ACCEPTED”).
+- PARAMETRO_NAO_INFORMADO: Parâmetro não informado.
+- PARAMETRO_INVALIDO: Parâmetro inválido.
+- NAO_INFORMADO: Não informada pela detentora de conta.
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento.
+- DETALHE_PAGAMENTO_INVALIDO: Detalhe do pagamento inválido.
+- PAGAMENTO_RECUSADO_DETENTORA: Pagamento recusado pela detentora de conta.
+- PAGAMENTO_RECUSADO_SPI: Pagamento recusado no Sistema de Pagamentos Instantâneos (SPI).
+- ERRO_IDEMPOTENCIA: Erro idempotência.
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+- LIMITE_TENTATIVAS_EXCEDIDO: O limite de tentativas para liquidação do pagamento permitidas pelo arranjo foi excedido.
+- FORA_PRAZO_PERMITIDO: O horário ou período da requisição não permite o agendamento pelo detentor.
+- DETALHE_TENTATIVA_INVALIDO: O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
+'
+                  - Modified property: title
+                    - Description changed from 'Título específico do erro reportado, de acordo com o código enviado:
+- SALDO_INSUFICIENTE: Esta conta não possui saldo suficiente para realizar o pagamento.
+- VALOR_ACIMA_LIMITE: Valida se o valor ultrapassa o limite estabelecido [na instituição (conta ou canal)/no arranjo] para permitir a realização de transações pelo cliente.
+- VALOR_INVALIDO: O valor enviado não é válido para o QR Code informado.
+- LIMITE_PERIODO_VALOR_EXCEDIDO: A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO: A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (em status final).
+- CONSENTIMENTO_PENDENTE_AUTORIZACAO: Consentimento pendente autorização de múltiplas alçadas (status “PARTIALLY_ACCEPTED”).
+- PARAMETRO_NAO_INFORMADO: Parâmetro não informado.
+- PARAMETRO_INVALIDO: Parâmetro inválido.
+- NAO_INFORMADO: Não informada pela detentora de conta.
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento.
+- DETALHE_PAGAMENTO_INVALIDO: Detalhe do pagamento inválido.
+- PAGAMENTO_RECUSADO_DETENTORA: Pagamento recusado pela detentora de conta.
+- PAGAMENTO_RECUSADO_SPI: Pagamento recusado no Sistema de Pagamentos Instantâneos (SPI).
+- ERRO_IDEMPOTENCIA: Erro idempotência.
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: Limite total excedido
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: Limite de transação excedido.
+' to 'Título específico do erro reportado, de acordo com o código enviado:
+- SALDO_INSUFICIENTE: Esta conta não possui saldo suficiente para realizar o pagamento.
+- VALOR_ACIMA_LIMITE: Valida se o valor ultrapassa o limite estabelecido [na instituição (conta ou canal)/no arranjo] para permitir a realização de transações pelo cliente.
+- VALOR_INVALIDO: O valor enviado não é válido para o QR Code informado.
+- LIMITE_PERIODO_VALOR_EXCEDIDO: A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO: A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (em status final).
+- CONSENTIMENTO_PENDENTE_AUTORIZACAO: Consentimento pendente autorização de múltiplas alçadas (status “PARTIALLY_ACCEPTED”).
+- PARAMETRO_NAO_INFORMADO: Parâmetro não informado.
+- PARAMETRO_INVALIDO: Parâmetro inválido.
+- NAO_INFORMADO: Não informada pela detentora de conta.
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento.
+- DETALHE_PAGAMENTO_INVALIDO: Detalhe do pagamento inválido.
+- PAGAMENTO_RECUSADO_DETENTORA: Pagamento recusado pela detentora de conta.
+- PAGAMENTO_RECUSADO_SPI: Pagamento recusado no Sistema de Pagamentos Instantâneos (SPI).
+- ERRO_IDEMPOTENCIA: Erro idempotência.
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: Limite total excedido
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: Limite de transação excedido.
+- LIMITE_TENTATIVAS_EXCEDIDO: Limite de tentativas excedido.
+- FORA_PRAZO_PERMITIDO: Tentativa fora do prazo.
+- DETALHE_TENTATIVA_INVALIDO: Nova tentativa inválida
+'
+  - Modified response: 500
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client). Seu valor deve obrigatoriamente ser replicado pela detentora (server) no cabeçalho de resposta, exceto em casos de falhas estruturais que impeçam a replicação. Caso não seja possível ser replicado, não deve ser enviado.
+'
+  - Modified response: 504
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client). Seu valor deve obrigatoriamente ser replicado pela detentora (server) no cabeçalho de resposta, exceto em casos de falhas estruturais que impeçam a replicação. Caso não seja possível ser replicado, não deve ser enviado.
+'
+  - Modified response: 529
+    - Headers changed
+      - New header: x-fapi-interaction-id
+GET /pix/recurring-payments/{recurringPaymentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - New property: originalRecurringPaymentId
+                - New property: paymentReference
+                - Deleted property: ibgeTownCode
+                - Modified property: cancellation
+                  - Properties changed
+                    - Modified property: cancelledBy
+                      - Properties changed
+                        - Modified property: document
+                          - Properties changed
+                            - Modified property: identification
+                              - Description changed from 'Número do documento do usuário pagador responsável pelo cancelamento do pagamento.' to 'Número do documento de identificação oficial do pagador ou recebedor, pessoa natural ou jurídica.'
+                              - Pattern changed from '^\d{11}$' to '^(?:\d{11}|\d{14})$'
+                            - Modified property: rel
+                              - Description changed from 'Tipo do documento do usuário pagador responsável pelo cancelamento do pagamento.' to 'Tipo de documento de identificação oficial do pagador ou recebedor, pessoa natural ou jurídica.'
+                              - New enum values: [CPF CNPJ]
+                              - Example changed from 'CPF' to null
+                              - MaxLength changed from 3 to null
+                              - Pattern changed from '^[A-Z]{3}$' to ''
+                    - Modified property: reason
+                      - Description changed from 'O preenchimento desse campo para retorno, deve ocorrer pela detentora de contas a partir do status em que o pagamento estiver no momento da solicitação do cancelamento (ex. Status de pagamento = PDNG, campo deve ser preenchido com enum CANCELADO_PENDENCIA)
+Valores possíveis:
+CANCELADO_PENDENCIA - Pagamento cancelado enquanto estava na situação PDNG
+CANCELADO_AGENDAMENTO - Pagamento cancelado enquanto estava na situação SCHD
+CANCELADO_MULTIPLAS_ALCADAS - Pagamento cancelado enquanto estava na situação PATC
+' to 'O preenchimento desse campo para retorno, deve ocorrer pela detentora de contas a partir do status em que o pagamento estiver no momento da solicitação do cancelamento (ex. Status de pagamento = PDNG, campo deve ser preenchido com enum CANCELADO_PENDENCIA)
+Valores possíveis:
+CANCELADO_PENDENCIA - Pagamento cancelado enquanto estava na situação PDNG
+CANCELADO_AGENDAMENTO - Pagamento cancelado enquanto estava na situação SCHD
+'
+                      - Deleted enum values: [CANCELADO_MULTIPLAS_ALCADAS]
+                - Modified property: endToEndId
+                  - Description changed from 'Trata-se de um identificador único, gerado na instituição iniciadora de pagamento e recebido na instituição detentora de conta, permeando toda a jornada do pagamento Pix.
+[Restrição] A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+' to 'Trata-se de um identificador único, gerado na instituição iniciadora de pagamento e recebido na instituição detentora de conta, permeando toda a jornada do pagamento Pix.
+[Restrição] A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+No caso de Pix Automático, a iniciadora deverá, no que tange á composição do endToEndId, utilizar a data para a qual o Pix está sendo agendado e horário fixo 15:00 UTC, que dará para a detentora a janela de efetivação de 00:00 e 23:59 do horário de Brasília, mesmo a janela sendo, para o detentor, até as 21h.
+'
+                  - Example changed from 'E9040088820210128000800123873170' to 'E9040088820241225150000123873170'
+                - Modified property: localInstrument
+                  - Description changed from 'Especifica a forma de iniciação do pagamento
+- MANU - Inserção manual de dados da conta transacional
+- DICT - Inserção manual de chave Pix
+- INIC - Indica que o recebedor (creditor) contratou o Iniciador de Pagamentos especificamente para realizar iniciações de pagamento em que o beneficiário é previamente conhecido
+' to 'Especifica a forma de iniciação do pagamento
+- MANU - Inserção manual de dados da conta transacional
+- DICT - Inserção manual de chave Pix
+- INIC - Indica que o recebedor (creditor) contratou o Iniciador de Pagamentos especificamente para realizar iniciações de pagamento em que o beneficiário é previamente conhecido
+[Restrição] Caso consentimento associado a tentativa de pagamento seja para Pix automático (objeto “automatic” selecionado no oneOf do campo "/data/recurringConfiguration"), apenas o método MANU é permitido.
+'
+                - Modified property: proxy
+                  - Description changed from 'Chave cadastrada no DICT pertencente ao recebedor. Os tipos de chaves podem ser: telefone, e-mail, cpf/cnpj ou chave aleatória. 
+No caso de telefone celular deve ser informado no padrão E.1641. Para e-mail deve ter o formato xxxxxxxx@xxxxxxx.xxx(.xx) e no máximo 77 caracteres. 
+No caso de CPF deverá ser informado com 11 números, sem pontos ou traços. Para o caso de CNPJ deverá ser informado com 14 números, sem pontos ou traços. 
+No caso de chave aleatória deve ser informado o UUID gerado pelo DICT, conforme formato especificado na [RFC4122](https://tools.ietf.org/html/rfc4122). 
+Se informado, a detentora da conta deve validar o proxy no DICT quando localInstrument for igual a DICT e validar o campo creditorAccount. 
+Esta validação é opcional caso o localInstrument for igual a INIC.
+[Restrição] Se localInstrument for igual a DICT, o campo proxy deve ser preenchido.
+' to 'Chave cadastrada no DICT pertencente ao recebedor. Os tipos de chaves podem ser: telefone, e-mail, cpf/cnpj ou chave aleatória. 
+No caso de telefone celular deve ser informado no padrão E.1641. Para e-mail deve ter o formato xxxxxxxx@xxxxxxx.xxx(.xx) e no máximo 77 caracteres. 
+No caso de CPF deverá ser informado com 11 números, sem pontos ou traços. Para o caso de CNPJ deverá ser informado com 14 números, sem pontos ou traços. 
+No caso de chave aleatória deve ser informado o UUID gerado pelo DICT, conforme formato especificado na [RFC4122](https://tools.ietf.org/html/rfc4122). 
+Se informado, a detentora da conta deve validar o proxy no DICT quando localInstrument for igual a DICT e validar o campo creditorAccount. 
+Esta validação é opcional caso o localInstrument for igual a INIC.
+[Restrição] Se localInstrument for igual a DICT, o campo proxy deve ser preenchido.
+[Restrição] Caso o campo “/data/localInstrument” seja enviado como “MANU”, o campo “/data/proxy” não deve ser informado
+'
+                - Modified property: rejectionReason
+                  - Properties changed
+                    - Modified property: code
+                      - Description changed from 'Código identificador do motivo de rejeição.
+Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+- VALOR_INVALIDO
+- NAO_INFORMADO
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO
+- PAGAMENTO_RECUSADO_DETENTORA
+- PAGAMENTO_RECUSADO_SPI
+- CONSENTIMENTO_INVALIDO
+- FALHA_INFRAESTRUTURA_SPI
+- FALHA_INFRAESTRUTURA_ICP
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR
+- FALHA_INFRAESTRUTURA_DETENTORA
+- TITULARIDADE_INCONSISTENTE
+- LIMITE_PERIODO_VALOR_EXCEDIDO
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+[Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
+' to 'Código identificador do motivo de rejeição.
+Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+- VALOR_INVALIDO
+- NAO_INFORMADO
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO
+- PAGAMENTO_RECUSADO_DETENTORA
+- PAGAMENTO_RECUSADO_SPI
+- CONSENTIMENTO_INVALIDO
+- FALHA_INFRAESTRUTURA_SPI
+- FALHA_INFRAESTRUTURA_ICP
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR
+- FALHA_INFRAESTRUTURA_DETENTORA
+- TITULARIDADE_INCONSISTENTE
+- LIMITE_PERIODO_VALOR_EXCEDIDO
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+- LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
+- CONSENTIMENTO_REVOGADO
+- FORA_PRAZO_PERMITIDO
+- DETALHE_TENTATIVA_INVALIDO
+- DETALHE_PAGAMENTO_INVALIDO
+[Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
+'
+                      - New enum values: [LIMITE_TENTATIVAS_EXCEDIDO CONSENTIMENTO_REVOGADO FORA_PRAZO_PERMITIDO DETALHE_TENTATIVA_INVALIDO DETALHE_PAGAMENTO_INVALIDO]
+                    - Modified property: detail
+                      - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: Valida se o valor ultrapassa o limite estabelecido [na instituição (conta ou canal)/no arranjo] para permitir a realização de transações pelo cliente;
+- VALOR_INVALIDO: O valor enviado não é válido; 
+- NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta;
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento;
+- PAGAMENTO_RECUSADO_DETENTORA: [descrição do motivo de recusa];
+- PAGAMENTO_RECUSADO_SPI: [código de erro conforme tabela de domínios reason PACS.002];
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (em status final);
+- FALHA_INFRAESTRUTURA_SPI: Indica uma falha no Sistema de Pagamentos Instantâneos (SPI);
+- FALHA_INFRAESTRUTURA_ICP: Indica uma falha na Infraestrutura de Chaves Públicas (ICP);
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR: Indica uma falha na infraestrutura do Prestador de Serviço de Pagamento (PSP) que recebe o pagamento;
+- FALHA_INFRAESTRUTURA_DETENTORA: indica uma falha na infraestrutura da instituição detentora das informações ou recursos;
+- TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração
+- LIMITE_PERIODO_VALOR_EXCEDIDO: A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO: A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.       
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+' to 'Detalhe sobre o código identificador do motivo de rejeição.
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: Valida se o valor ultrapassa o limite estabelecido [na instituição (conta ou canal)/no arranjo] para permitir a realização de transações pelo cliente;
+- VALOR_INVALIDO: O valor enviado não é válido; 
+- NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta;
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento;
+- PAGAMENTO_RECUSADO_DETENTORA: [descrição do motivo de recusa];
+- PAGAMENTO_RECUSADO_SPI: [código de erro conforme tabela de domínios reason PACS.002];
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (em status final);
+- FALHA_INFRAESTRUTURA_SPI: Indica uma falha no Sistema de Pagamentos Instantâneos (SPI);
+- FALHA_INFRAESTRUTURA_ICP: Indica uma falha na Infraestrutura de Chaves Públicas (ICP);
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR: Indica uma falha na infraestrutura do Prestador de Serviço de Pagamento (PSP) que recebe o pagamento;
+- FALHA_INFRAESTRUTURA_DETENTORA: indica uma falha na infraestrutura da instituição detentora das informações ou recursos;
+- TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração
+- LIMITE_PERIODO_VALOR_EXCEDIDO: A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO: A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.       
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+- LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
+- CONSENTIMENTO_REVOGADO: O pagamento estava associado a um consentimento que foi revogado.
+- FORA_PRAZO_PERMITIDO: O horário ou período da requisição não permite o agendamento pelo detentor.
+- DETALHE_TENTATIVA_INVALIDO: O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
+- DETALHE_PAGAMENTO_INVALIDO: Valida se determinado parâmetro informado obedece as regras de negócio.
+'
+                - Modified property: status
+                  - Description changed from 'Estado atual do pagamento. O estado evolui na seguinte ordem:
+- RCVD (Received) - Indica que a requisição de pagamento foi recebida com sucesso pela detentora, mas ainda há validações a serem feitas antes de ser submetida para liquidação.
+- CANC (Cancelled) - Indica que a transação Pix pendente foi cancelada com sucesso pelo usuário antes que fosse confirmada (ACCP) ou rejeitada (RJCT) pela detentora.
+- ACCP( Accepted Customer Profile) - Indica que todas as verificações necessárias já foram realizadas pela detentora e que a transação está pronta para ser enviada para liquidação (no SPI se for Pix para outra instituição ou internamente se for para outra conta na mesma instituição).
+- ACPD (Accepted Clearing Processed) - Indica que a detentora já submeteu a transação para liquidação, mas ainda não tem a confirmação se foi liquidada ou rejeitada.
+- RJCT (Rejected) Indica que a transação foi rejeitada pela detentora ou pelo SPI.
+- ACSC (Accepted Settlement Completed Debitor Account) - Indica que a transação foi efetivada pela detentora ou pelo SPI.
+- PDNG (Pending) - Indica que a detentora reteve temporariamente a transação Pix para análise.
+- SCHD (Scheduled) - Indica que a transação Pix foi agendada com sucesso na detentora.  
+Em caso insucesso:
+- RJCT (REJECTED) - Instrução de pagamento rejeitada.
+' to 'Estado atual do pagamento. O estado evolui na seguinte ordem:
+- RCVD (Received) - Indica que a requisição de pagamento foi recebida com sucesso pela detentora, mas ainda há validações a serem feitas antes de ser submetida para liquidação.
+- CANC (Cancelled) - Indica que a transação Pix pendente foi cancelada com sucesso pelo usuário antes que fosse confirmada (ACCP) ou rejeitada (RJCT) pela detentora.
+- ACCP( Accepted Customer Profile) - Indica que todas as verificações necessárias já foram realizadas pela detentora e que a transação está pronta para ser enviada para liquidação (no SPI se for Pix para outra instituição ou internamente se for para outra conta na mesma instituição).
+- ACPD (Accepted Clearing Processed) - Indica que a detentora já submeteu a transação para liquidação, mas ainda não tem a confirmação se foi liquidada ou rejeitada.
+- RJCT (Rejected) Indica que a transação foi rejeitada pela detentora ou pelo SPI.
+- ACSC (Accepted Settlement Completed Debitor Account) - Indica que a transação foi efetivada pela detentora ou pelo SPI.
+- PDNG (Pending) - Indica que a detentora reteve temporariamente a transação Pix para análise. Não se aplica para Transferências inteligentes.
+- SCHD (Scheduled) - Indica que a transação Pix foi agendada com sucesso na detentora.  
+Em caso insucesso:
+- RJCT (REJECTED) - Instrução de pagamento rejeitada.
+'
+                - Modified property: transactionIdentification
+                  - Description changed from 'Trata-se de um identificador de transação que deve ser retransmitido intacto pelo PSP do pagador ao gerar a ordem de pagamento. 
+Essa informação permitirá ao recebedor identificar e correlacionar a transferência, quando recebida, com a apresentação das instruções ao pagador. 
+Os caracteres permitidos no contexto do Pix para o campo txid (EMV 62-05) são:Letras minúsculas, de 'a' a 'z' Letras maiúsculas, de 'A' a 'z' Dígitos decimais, de '0' a '9'.
+' to 'Trata-se de um identificador de transação que deve ser retransmitido intacto pelo PSP do pagador ao gerar a ordem de pagamento. 
+Essa informação permitirá ao recebedor identificar e correlacionar a transferência, quando recebida, com a apresentação das instruções ao pagador. 
+Os caracteres permitidos no contexto do Pix para o campo txid (EMV 62-05) são:Letras minúsculas, de 'a' a 'z' Letras maiúsculas, de 'A' a 'z' Dígitos decimais, de '0' a '9'.
+[Restrição] Preenchimento condicional de acordo com o conteúdo do campo “localInstrument”:
+MANU - O campo transactionIdentification não deve ser preenchido;  
+DICT - O campo transactionIdentification não deve ser preenchido;  
+INIC - O campo transactionIdentification deve ser preenchido obrigatoriamente e deve conter até 25 caracteres alfanuméricos ([a-z|A-Z|0-9]).
+'
+            - Modified property: links
+              - Properties changed
+                - Modified property: self
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v1/resource' to 'https://api.banco.com.br/open-banking/api/v2/resource'
+    - Headers changed
+      - New header: x-v
+  - Modified response: 500
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client). Seu valor deve obrigatoriamente ser replicado pela detentora (server) no cabeçalho de resposta, exceto em casos de falhas estruturais que impeçam a replicação. Caso não seja possível ser replicado, não deve ser enviado.
+'
+  - Modified response: 504
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client). Seu valor deve obrigatoriamente ser replicado pela detentora (server) no cabeçalho de resposta, exceto em casos de falhas estruturais que impeçam a replicação. Caso não seja possível ser replicado, não deve ser enviado.
+'
+  - Modified response: 529
+    - Headers changed
+      - New header: x-fapi-interaction-id
+PATCH /pix/recurring-payments/{recurringPaymentId}
+- Description changed from 'Esse endpoint deve ser usado para cancelar as transações que estejam em uma das seguintes situações: 
+Agendada com sucesso (SCHD), retida para análise (PDNG). Caso a requisição seja bem sucedida, a transação vai para a situação CANC. 
+Caso o status do pagamento seja diferente de SCHD/PDNG ou alguma outra regra de negócio impeça o cancelamento, a requisição PATCH retorna 
+HTTP Status 422 com o code PAGAMENTO_NAO_PERMITE_CANCELAMENTO. 
+Caso receba um 422, a iniciadora deve fazer uma requisição GET no pagamento para verificar a situação atual dele, bem como detalhes associados. 
+[Restrição] Para o Pix Automático (“recurringConfiguration” igual a “automatic”) tanto o recebedor quanto o pagador poderão realizar o 
+cancelamento, sendo permitido ao recebedor a solicitação de cancelamento até as 22:00 (Horário de Brasília) e ao pagador até as 23:59 
+(Horário de Brasília) do dia anterior à data de efetivação do pagamento.
+' to 'Esse endpoint deve ser usado para cancelar as transações que estejam em uma das seguintes situações: 
+Agendada com sucesso (SCHD), retida para análise (PDNG). Caso a requisição seja bem sucedida, a transação vai para a situação CANC. 
+Caso o status do pagamento seja diferente de SCHD/PDNG ou alguma outra regra de negócio impeça o cancelamento, a requisição PATCH retorna 
+HTTP Status 422 com o code PAGAMENTO_NAO_PERMITE_CANCELAMENTO. 
+Caso receba um 422, a iniciadora deve fazer uma requisição GET no pagamento para verificar a situação atual dele, bem como detalhes associados. 
+[Restrição] Para o Pix automático (“recurringConfiguration” igual a “automatic”) tanto o recebedor quanto o pagador poderão realizar o cancelamento, 
+sendo permitido ao recebedor a solicitação de cancelamento até as 22:00 (Horário de Brasília) e ao pagador até as 23:59 (Horário de Brasília) do dia anterior à data de efetivação do pagamento, 
+exceto para os casos de novas tentativas em dias subsequentes, onde apenas o recebedor pode cancelar, também até as 22:00h.
+'
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: cancellation
+                - Properties changed
+                  - Modified property: cancelledBy
+                    - Properties changed
+                      - Modified property: document
+                        - Properties changed
+                          - Modified property: identification
+                            - Description changed from 'Número do documento de identificação oficial do usuário.' to 'Número do documento de identificação oficial do pagador ou recebedor, pessoa natural ou jurídica'
+                            - Pattern changed from '^\d{11}$' to '^(?:\d{11}|\d{14})$'
+                          - Modified property: rel
+                            - Description changed from 'Tipo do documento de identificação oficial do usuário.' to 'Tipo de documento de identificação oficial do pagador ou recebedor, pessoa natural ou jurídica.'
+                            - New enum values: [CPF CNPJ]
+                            - Example changed from 'CPF' to null
+                            - MaxLength changed from 3 to null
+                            - Pattern changed from '^[A-Z]{3}$' to ''
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - New property: originalRecurringPaymentId
+                - New property: paymentReference
+                - Deleted property: ibgeTownCode
+                - Modified property: cancellation
+                  - Properties changed
+                    - Modified property: cancelledBy
+                      - Properties changed
+                        - Modified property: document
+                          - Properties changed
+                            - Modified property: identification
+                              - Description changed from 'Número do documento do usuário pagador responsável pelo cancelamento do pagamento.' to 'Número do documento de identificação oficial do pagador ou recebedor, pessoa natural ou jurídica.'
+                              - Pattern changed from '^\d{11}$' to '^(?:\d{11}|\d{14})$'
+                            - Modified property: rel
+                              - Description changed from 'Tipo do documento do usuário pagador responsável pelo cancelamento do pagamento.' to 'Tipo de documento de identificação oficial do pagador ou recebedor, pessoa natural ou jurídica.'
+                              - New enum values: [CPF CNPJ]
+                              - Example changed from 'CPF' to null
+                              - MaxLength changed from 3 to null
+                              - Pattern changed from '^[A-Z]{3}$' to ''
+                    - Modified property: reason
+                      - Description changed from 'O preenchimento desse campo para retorno, deve ocorrer pela detentora de contas a partir do status em que o pagamento estiver no momento da solicitação do cancelamento (ex. Status de pagamento = PDNG, campo deve ser preenchido com enum CANCELADO_PENDENCIA)
+Valores possíveis:
+CANCELADO_PENDENCIA - Pagamento cancelado enquanto estava na situação PDNG
+CANCELADO_AGENDAMENTO - Pagamento cancelado enquanto estava na situação SCHD
+CANCELADO_MULTIPLAS_ALCADAS - Pagamento cancelado enquanto estava na situação PATC
+' to 'O preenchimento desse campo para retorno, deve ocorrer pela detentora de contas a partir do status em que o pagamento estiver no momento da solicitação do cancelamento (ex. Status de pagamento = PDNG, campo deve ser preenchido com enum CANCELADO_PENDENCIA)
+Valores possíveis:
+CANCELADO_PENDENCIA - Pagamento cancelado enquanto estava na situação PDNG
+CANCELADO_AGENDAMENTO - Pagamento cancelado enquanto estava na situação SCHD
+'
+                      - Deleted enum values: [CANCELADO_MULTIPLAS_ALCADAS]
+                - Modified property: endToEndId
+                  - Description changed from 'Trata-se de um identificador único, gerado na instituição iniciadora de pagamento e recebido na instituição detentora de conta, permeando toda a jornada do pagamento Pix.
+[Restrição] A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+' to 'Trata-se de um identificador único, gerado na instituição iniciadora de pagamento e recebido na instituição detentora de conta, permeando toda a jornada do pagamento Pix.
+[Restrição] A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
+No caso de Pix Automático, a iniciadora deverá, no que tange á composição do endToEndId, utilizar a data para a qual o Pix está sendo agendado e horário fixo 15:00 UTC, que dará para a detentora a janela de efetivação de 00:00 e 23:59 do horário de Brasília, mesmo a janela sendo, para o detentor, até as 21h.
+'
+                  - Example changed from 'E9040088820210128000800123873170' to 'E9040088820241225150000123873170'
+                - Modified property: localInstrument
+                  - Description changed from 'Especifica a forma de iniciação do pagamento
+- MANU - Inserção manual de dados da conta transacional
+- DICT - Inserção manual de chave Pix
+- INIC - Indica que o recebedor (creditor) contratou o Iniciador de Pagamentos especificamente para realizar iniciações de pagamento em que o beneficiário é previamente conhecido
+' to 'Especifica a forma de iniciação do pagamento
+- MANU - Inserção manual de dados da conta transacional
+- DICT - Inserção manual de chave Pix
+- INIC - Indica que o recebedor (creditor) contratou o Iniciador de Pagamentos especificamente para realizar iniciações de pagamento em que o beneficiário é previamente conhecido
+[Restrição] Caso consentimento associado a tentativa de pagamento seja para Pix automático (objeto “automatic” selecionado no oneOf do campo "/data/recurringConfiguration"), apenas o método MANU é permitido.
+'
+                - Modified property: proxy
+                  - Description changed from 'Chave cadastrada no DICT pertencente ao recebedor. Os tipos de chaves podem ser: telefone, e-mail, cpf/cnpj ou chave aleatória. 
+No caso de telefone celular deve ser informado no padrão E.1641. Para e-mail deve ter o formato xxxxxxxx@xxxxxxx.xxx(.xx) e no máximo 77 caracteres. 
+No caso de CPF deverá ser informado com 11 números, sem pontos ou traços. Para o caso de CNPJ deverá ser informado com 14 números, sem pontos ou traços. 
+No caso de chave aleatória deve ser informado o UUID gerado pelo DICT, conforme formato especificado na [RFC4122](https://tools.ietf.org/html/rfc4122). 
+Se informado, a detentora da conta deve validar o proxy no DICT quando localInstrument for igual a DICT e validar o campo creditorAccount. 
+Esta validação é opcional caso o localInstrument for igual a INIC.
+[Restrição] Se localInstrument for igual a DICT, o campo proxy deve ser preenchido.
+' to 'Chave cadastrada no DICT pertencente ao recebedor. Os tipos de chaves podem ser: telefone, e-mail, cpf/cnpj ou chave aleatória. 
+No caso de telefone celular deve ser informado no padrão E.1641. Para e-mail deve ter o formato xxxxxxxx@xxxxxxx.xxx(.xx) e no máximo 77 caracteres. 
+No caso de CPF deverá ser informado com 11 números, sem pontos ou traços. Para o caso de CNPJ deverá ser informado com 14 números, sem pontos ou traços. 
+No caso de chave aleatória deve ser informado o UUID gerado pelo DICT, conforme formato especificado na [RFC4122](https://tools.ietf.org/html/rfc4122). 
+Se informado, a detentora da conta deve validar o proxy no DICT quando localInstrument for igual a DICT e validar o campo creditorAccount. 
+Esta validação é opcional caso o localInstrument for igual a INIC.
+[Restrição] Se localInstrument for igual a DICT, o campo proxy deve ser preenchido.
+[Restrição] Caso o campo “/data/localInstrument” seja enviado como “MANU”, o campo “/data/proxy” não deve ser informado
+'
+                - Modified property: rejectionReason
+                  - Properties changed
+                    - Modified property: code
+                      - Description changed from 'Código identificador do motivo de rejeição.
+Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+- VALOR_INVALIDO
+- NAO_INFORMADO
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO
+- PAGAMENTO_RECUSADO_DETENTORA
+- PAGAMENTO_RECUSADO_SPI
+- CONSENTIMENTO_INVALIDO
+- FALHA_INFRAESTRUTURA_SPI
+- FALHA_INFRAESTRUTURA_ICP
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR
+- FALHA_INFRAESTRUTURA_DETENTORA
+- TITULARIDADE_INCONSISTENTE
+- LIMITE_PERIODO_VALOR_EXCEDIDO
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+[Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
+' to 'Código identificador do motivo de rejeição.
+Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+- VALOR_INVALIDO
+- NAO_INFORMADO
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO
+- PAGAMENTO_RECUSADO_DETENTORA
+- PAGAMENTO_RECUSADO_SPI
+- CONSENTIMENTO_INVALIDO
+- FALHA_INFRAESTRUTURA_SPI
+- FALHA_INFRAESTRUTURA_ICP
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR
+- FALHA_INFRAESTRUTURA_DETENTORA
+- TITULARIDADE_INCONSISTENTE
+- LIMITE_PERIODO_VALOR_EXCEDIDO
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+- LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
+- CONSENTIMENTO_REVOGADO
+- FORA_PRAZO_PERMITIDO
+- DETALHE_TENTATIVA_INVALIDO
+- DETALHE_PAGAMENTO_INVALIDO
+[Restrição] Esse motivo deverá ser enviado quando o campo `/data/status` for igual a RJCT (REJECTED).
+'
+                      - New enum values: [LIMITE_TENTATIVAS_EXCEDIDO CONSENTIMENTO_REVOGADO FORA_PRAZO_PERMITIDO DETALHE_TENTATIVA_INVALIDO DETALHE_PAGAMENTO_INVALIDO]
+                    - Modified property: detail
+                      - Description changed from 'Detalhe sobre o código identificador do motivo de rejeição.
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: Valida se o valor ultrapassa o limite estabelecido [na instituição (conta ou canal)/no arranjo] para permitir a realização de transações pelo cliente;
+- VALOR_INVALIDO: O valor enviado não é válido; 
+- NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta;
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento;
+- PAGAMENTO_RECUSADO_DETENTORA: [descrição do motivo de recusa];
+- PAGAMENTO_RECUSADO_SPI: [código de erro conforme tabela de domínios reason PACS.002];
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (em status final);
+- FALHA_INFRAESTRUTURA_SPI: Indica uma falha no Sistema de Pagamentos Instantâneos (SPI);
+- FALHA_INFRAESTRUTURA_ICP: Indica uma falha na Infraestrutura de Chaves Públicas (ICP);
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR: Indica uma falha na infraestrutura do Prestador de Serviço de Pagamento (PSP) que recebe o pagamento;
+- FALHA_INFRAESTRUTURA_DETENTORA: indica uma falha na infraestrutura da instituição detentora das informações ou recursos;
+- TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração
+- LIMITE_PERIODO_VALOR_EXCEDIDO: A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO: A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.       
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+' to 'Detalhe sobre o código identificador do motivo de rejeição.
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: Valida se o valor ultrapassa o limite estabelecido [na instituição (conta ou canal)/no arranjo] para permitir a realização de transações pelo cliente;
+- VALOR_INVALIDO: O valor enviado não é válido; 
+- NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta;
+- PAGAMENTO_DIVERGENTE_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento;
+- PAGAMENTO_RECUSADO_DETENTORA: [descrição do motivo de recusa];
+- PAGAMENTO_RECUSADO_SPI: [código de erro conforme tabela de domínios reason PACS.002];
+- CONSENTIMENTO_INVALIDO: Consentimento inválido (em status final);
+- FALHA_INFRAESTRUTURA_SPI: Indica uma falha no Sistema de Pagamentos Instantâneos (SPI);
+- FALHA_INFRAESTRUTURA_ICP: Indica uma falha na Infraestrutura de Chaves Públicas (ICP);
+- FALHA_INFRAESTRUTURA_PSP_RECEBEDOR: Indica uma falha na infraestrutura do Prestador de Serviço de Pagamento (PSP) que recebe o pagamento;
+- FALHA_INFRAESTRUTURA_DETENTORA: indica uma falha na infraestrutura da instituição detentora das informações ou recursos;
+- TITULARIDADE_INCONSISTENTE: Conta atualmente não associada ao CPF/CNPJ do consentimento de longa duração
+- LIMITE_PERIODO_VALOR_EXCEDIDO: A transação não pode ser realizada pois o valor parametrizado no consentimento foi excedido.
+- LIMITE_PERIODO_QUANTIDADE_EXCEDIDO: A transação não pode ser realizada pois a quantidade parametrizada no consentimento foi excedida.
+- LIMITE_VALOR_TOTAL_CONSENTIMENTO_EXCEDIDO: O valor da transação excede o limite global do consentimento.       
+- LIMITE_VALOR_TRANSACAO_CONSENTIMENTO_EXCEDIDO: O valor da transação ultrapassar o limite de valor por transação.
+- LIMITE_TENTATIVAS_EXCEDIDO: O máximo de tentativas de liquidação permitidas pelo arranjo foi atingido.
+- CONSENTIMENTO_REVOGADO: O pagamento estava associado a um consentimento que foi revogado.
+- FORA_PRAZO_PERMITIDO: O horário ou período da requisição não permite o agendamento pelo detentor.
+- DETALHE_TENTATIVA_INVALIDO: O parâmetro [nome_do(s)_campo(s)] inseridos para a nova tentativa de pagamento não condizem com o pagamento original que falhou e não são permitidos na nova tentativa de pagamento.
+- DETALHE_PAGAMENTO_INVALIDO: Valida se determinado parâmetro informado obedece as regras de negócio.
+'
+                - Modified property: transactionIdentification
+                  - Description changed from 'Trata-se de um identificador de transação que deve ser retransmitido intacto pelo PSP do pagador ao gerar a ordem de pagamento. 
+Essa informação permitirá ao recebedor identificar e correlacionar a transferência, quando recebida, com a apresentação das instruções ao pagador. 
+Os caracteres permitidos no contexto do Pix para o campo txid (EMV 62-05) são:Letras minúsculas, de 'a' a 'z' Letras maiúsculas, de 'A' a 'z' Dígitos decimais, de '0' a '9'.
+' to 'Trata-se de um identificador de transação que deve ser retransmitido intacto pelo PSP do pagador ao gerar a ordem de pagamento. 
+Essa informação permitirá ao recebedor identificar e correlacionar a transferência, quando recebida, com a apresentação das instruções ao pagador. 
+Os caracteres permitidos no contexto do Pix para o campo txid (EMV 62-05) são:Letras minúsculas, de 'a' a 'z' Letras maiúsculas, de 'A' a 'z' Dígitos decimais, de '0' a '9'.
+[Restrição] Preenchimento condicional de acordo com o conteúdo do campo “localInstrument”:
+MANU - O campo transactionIdentification não deve ser preenchido;  
+DICT - O campo transactionIdentification não deve ser preenchido;  
+INIC - O campo transactionIdentification deve ser preenchido obrigatoriamente e deve conter até 25 caracteres alfanuméricos ([a-z|A-Z|0-9]).
+'
+            - Modified property: links
+              - Properties changed
+                - Modified property: self
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v1/resource' to 'https://api.banco.com.br/open-banking/api/v2/resource'
+    - Headers changed
+      - New header: x-v
+  - Modified response: 500
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client). Seu valor deve obrigatoriamente ser replicado pela detentora (server) no cabeçalho de resposta, exceto em casos de falhas estruturais que impeçam a replicação. Caso não seja possível ser replicado, não deve ser enviado.
+'
+  - Modified response: 504
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client). Seu valor deve obrigatoriamente ser replicado pela detentora (server) no cabeçalho de resposta, exceto em casos de falhas estruturais que impeçam a replicação. Caso não seja possível ser replicado, não deve ser enviado.
+'
+  - Modified response: 529
+    - Headers changed
+      - New header: x-fapi-interaction-id
+POST /recurring-consents
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Deleted property: startDateTime
+              - Modified property: creditors
+                - Items changed
+                  - Description changed from 'Objeto contendo os dados do recebedor (creditor). Em casos de transferências inteligentes para clientes PJ, os CNPJs informados devem possuir a mesma raiz do CNPJ enviado no campo /data/businessEntity/document/identification. Em casos de transferências inteligentes para clientes PN, deve-se aceitar apenas um item no array e este item deve conter as informações do recebedor. O CPF informado deve ser o mesmo do /data/loggedUser/document/identification. Caso alguma das regras mencionadas não sejam seguidas, o detentor deve rejeitar a solicitação (sincronamente) com o erro DETALHE_PAGAMENTO_INVALIDO, e o detalhe deve ser preenchido com a informação referente ao erro.' to 'Objeto contendo os dados do recebedor (creditor). Em casos de transferências inteligentes para clientes PJ, os CNPJs informados devem possuir a mesma raiz do CNPJ enviado no campo /data/businessEntity/document/identification. Em casos de transferências inteligentes para clientes PN, deve-se aceitar apenas um item no array e este item deve conter as informações do recebedor. O CPF informado deve ser o mesmo do /data/loggedUser/document/identification. Caso alguma das regras mencionadas não sejam seguidas, o detentor deve rejeitar a solicitação (sincronamente) com o erro DETALHE_PAGAMENTO_INVALIDO, e o detalhe deve ser preenchido com a informação referente ao erro.
+[Restrição] Caso o consentimento de longa duração seja para o produto Pix Automático (“automatic” selecionado no oneOf do objeto “/data/recurringConfiguration”), apenas um recebedor é permitido e esse deve ser pessoa jurídica.
+'
+              - Modified property: recurringConfiguration
+                - Property 'OneOf' changed
+                  - 2 schemas added
+                  - 2 schemas deleted
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Required changed
+                - Deleted required property: startDateTime
+              - Properties changed
+                - New property: authorisedAtDateTime
+                - New property: updatedAtDateTime
+                - Deleted property: startDateTime
+                - Modified property: creditors
+                  - Items changed
+                    - Description changed from 'Objeto contendo os dados do recebedor (creditor). Em casos de transferências inteligentes para clientes PJ, os CNPJs informados devem possuir a mesma raiz do CNPJ enviado no campo /data/businessEntity/document/identification. Em casos de transferências inteligentes para clientes PN, deve-se aceitar apenas um item no array e este item deve conter as informações do recebedor. O CPF informado deve ser o mesmo do /data/loggedUser/document/identification. Caso alguma das regras mencionadas não sejam seguidas, o detentor deve rejeitar a solicitação (sincronamente) com o erro DETALHE_PAGAMENTO_INVALIDO, e o detalhe deve ser preenchido com a informação referente ao erro.' to 'Objeto contendo os dados do recebedor (creditor). Em casos de transferências inteligentes para clientes PJ, os CNPJs informados devem possuir a mesma raiz do CNPJ enviado no campo /data/businessEntity/document/identification. Em casos de transferências inteligentes para clientes PN, deve-se aceitar apenas um item no array e este item deve conter as informações do recebedor. O CPF informado deve ser o mesmo do /data/loggedUser/document/identification. Caso alguma das regras mencionadas não sejam seguidas, o detentor deve rejeitar a solicitação (sincronamente) com o erro DETALHE_PAGAMENTO_INVALIDO, e o detalhe deve ser preenchido com a informação referente ao erro.
+[Restrição] Caso o consentimento de longa duração seja para o produto Pix Automático (“automatic” selecionado no oneOf do objeto “/data/recurringConfiguration”), apenas um recebedor é permitido e esse deve ser pessoa jurídica.
+'
+                - Modified property: debtorAccount
+                  - Properties changed
+                    - Deleted property: ibgeTownCode
+                - Modified property: recurringConfiguration
+                  - Property 'OneOf' changed
+                    - Schema #/components/schemas/Automatic modified
+                      - Properties changed
+                        - Modified property: automatic
+                          - Required changed
+                            - New required property: interval
+                            - New required property: isRetryAccepted
+                            - New required property: referenceStartDate
+                            - New required property: useOverdraftLimit
+                            - Deleted required property: period
+                          - Properties changed
+                            - New property: firstPayment
+                            - New property: fixedAmount
+                            - New property: interval
+                            - New property: isRetryAccepted
+                            - New property: maximumVariableAmount
+                            - New property: minimumVariableAmount
+                            - New property: referenceStartDate
+                            - New property: useOverdraftLimit
+                            - Deleted property: amount
+                            - Deleted property: dayOfMonth
+                            - Deleted property: dayOfWeek
+                            - Deleted property: immediatePayment
+                            - Deleted property: month
+                            - Deleted property: period
+                            - Deleted property: transactionLimit
+                            - Modified property: contractDebtor
+                              - Properties changed
+                                - Modified property: document
+                                  - Properties changed
+                                    - Modified property: identification
+                                      - Pattern changed from '^\d{14}$' to '^(?:\d{11}|\d{14})$'
+                                    - Modified property: rel
+                                      - New enum values: [CPF CNPJ]
+                                      - Example changed from 'CNPJ' to null
+                                      - MaxLength changed from 4 to null
+                                      - Pattern changed from '^[A-Z]{4}$' to ''
+                    - Schema #/components/schemas/Sweeping modified
+                      - Properties changed
+                        - Modified property: sweeping
+                          - Required changed
+                            - New required property: startDateTime
+                            - New required property: useOverdraftLimit
+                          - Properties changed
+                            - New property: startDateTime
+                            - New property: useOverdraftLimit
+                - Modified property: rejection
+                  - Properties changed
+                    - Modified property: reason
+                      - Properties changed
+                        - Modified property: code
+                          - Description changed from 'Código indicador do motivo de rejeição.
+- NAO_INFORMADO
+- FALHA_INFRAESTRUTURA
+- TEMPO_EXPIRADO_AUTORIZACAO
+- REJEITADO_USUARIO
+- CONTAS_ORIGEM_DESTINO_IGUAIS
+- CONTA_NAO_PERMITE_PAGAMENTO
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+' to 'Código indicador do motivo de rejeição.
+- NAO_INFORMADO
+- FALHA_INFRAESTRUTURA
+- TEMPO_EXPIRADO_AUTORIZACAO
+- REJEITADO_USUARIO
+- CONTAS_ORIGEM_DESTINO_IGUAIS
+- CONTA_NAO_PERMITE_PAGAMENTO
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+- AUTENTICACAO_DIVERGENTE
+'
+                          - New enum values: [AUTENTICACAO_DIVERGENTE]
+                        - Modified property: detail
+                          - Description changed from 'Detalhe sobre o motivo de rejeição indicado no campo `/data/rejection/reason/code`
+- NAO_INFORMADO: Não informada pela detentora de conta;
+- FALHA_INFRAESTRUTURA: [Descrição de qual falha na infraestrutura inviabilizou o processamento];
+- TEMPO_EXPIRADO_AUTORIZACAO: Consentimento expirou antes que o usuário pudesse confirmá-lo;
+- REJEITADO_USUARIO: O usuário rejeitou a autorização do consentimento;
+- CONTAS_ORIGEM_DESTINO_IGUAIS: A conta selecionada é igual à conta destino e não permite realizar esse pagamento;
+- CONTA_NAO_PERMITE_PAGAMENTO: A conta selecionada é do tipo [salario/investimento/liquidação/outros] e não permite realizar esse pagamento;
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
+' to 'Detalhe sobre o motivo de rejeição indicado no campo `/data/rejection/reason/code`
+- NAO_INFORMADO: Não informada pela detentora de conta;
+- FALHA_INFRAESTRUTURA: [Descrição de qual falha na infraestrutura inviabilizou o processamento];
+- TEMPO_EXPIRADO_AUTORIZACAO: Consentimento expirou antes que o usuário pudesse confirmá-lo;
+- REJEITADO_USUARIO: O usuário rejeitou a autorização do consentimento;
+- CONTAS_ORIGEM_DESTINO_IGUAIS: A conta selecionada é igual à conta destino e não permite realizar esse pagamento;
+- CONTA_NAO_PERMITE_PAGAMENTO: A conta selecionada é do tipo [salario/investimento/liquidação/outros] e não permite realizar esse pagamento;
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
+- AUTENTICACAO_DIVERGENTE : Usuário autenticado no detentor diverge do usuário autenticado no iniciador;
+'
+            - Modified property: links
+              - Properties changed
+                - Modified property: self
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v1/resource' to 'https://api.banco.com.br/open-banking/api/v2/resource'
+    - Headers changed
+      - New header: x-v
+  - Modified response: 500
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client). Seu valor deve obrigatoriamente ser replicado pela detentora (server) no cabeçalho de resposta, exceto em casos de falhas estruturais que impeçam a replicação. Caso não seja possível ser replicado, não deve ser enviado.
+'
+  - Modified response: 504
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client). Seu valor deve obrigatoriamente ser replicado pela detentora (server) no cabeçalho de resposta, exceto em casos de falhas estruturais que impeçam a replicação. Caso não seja possível ser replicado, não deve ser enviado.
+'
+  - Modified response: 529
+    - Headers changed
+      - New header: x-fapi-interaction-id
+GET /recurring-consents/{recurringConsentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Required changed
+                - Deleted required property: startDateTime
+              - Properties changed
+                - New property: approvalDueDate
+                - New property: authorisedAtDateTime
+                - New property: updatedAtDateTime
+                - Deleted property: startDateTime
+                - Modified property: creditors
+                  - Items changed
+                    - Description changed from 'Objeto contendo os dados do recebedor (creditor). Em casos de transferências inteligentes para clientes PJ, os CNPJs informados devem possuir a mesma raiz do CNPJ enviado no campo /data/businessEntity/document/identification. Em casos de transferências inteligentes para clientes PN, deve-se aceitar apenas um item no array e este item deve conter as informações do recebedor. O CPF informado deve ser o mesmo do /data/loggedUser/document/identification. Caso alguma das regras mencionadas não sejam seguidas, o detentor deve rejeitar a solicitação (sincronamente) com o erro DETALHE_PAGAMENTO_INVALIDO, e o detalhe deve ser preenchido com a informação referente ao erro.' to 'Objeto contendo os dados do recebedor (creditor). Em casos de transferências inteligentes para clientes PJ, os CNPJs informados devem possuir a mesma raiz do CNPJ enviado no campo /data/businessEntity/document/identification. Em casos de transferências inteligentes para clientes PN, deve-se aceitar apenas um item no array e este item deve conter as informações do recebedor. O CPF informado deve ser o mesmo do /data/loggedUser/document/identification. Caso alguma das regras mencionadas não sejam seguidas, o detentor deve rejeitar a solicitação (sincronamente) com o erro DETALHE_PAGAMENTO_INVALIDO, e o detalhe deve ser preenchido com a informação referente ao erro.
+[Restrição] Caso o consentimento de longa duração seja para o produto Pix Automático (“automatic” selecionado no oneOf do objeto “/data/recurringConfiguration”), apenas um recebedor é permitido e esse deve ser pessoa jurídica.
+'
+                - Modified property: debtorAccount
+                  - Properties changed
+                    - Modified property: ibgeTownCode
+                      - Description changed from 'Campo utilizado pela iniciadora para cálculo do dia útil de liquidação do pagamento (vide especificação do endToEndId) baseado no município de cadastro do usuário pagador no detentor.
+[Restrições]
+- Campo obrigatório quando o oneOf utilizado do recurringConfiguration for “automatic”. 
+' to 'Campo utilizado pela iniciadora para cálculo do dia útil de liquidação do pagamento (vide especificação do endToEndId) baseado no município de cadastro do usuário pagador no detentor.
+[Restrições]
+Campo de preenchimento obrigatório quando o oneOf utilizado do recurringConfiguration for “automatic”, e o consentimento passar pelo estado AUTHORISED.
+'
+                - Modified property: recurringConfiguration
+                  - Property 'OneOf' changed
+                    - Schema #/components/schemas/Automatic modified
+                      - Properties changed
+                        - Modified property: automatic
+                          - Required changed
+                            - New required property: interval
+                            - New required property: isRetryAccepted
+                            - New required property: referenceStartDate
+                            - New required property: useOverdraftLimit
+                            - Deleted required property: period
+                          - Properties changed
+                            - New property: firstPayment
+                            - New property: fixedAmount
+                            - New property: interval
+                            - New property: isRetryAccepted
+                            - New property: maximumVariableAmount
+                            - New property: minimumVariableAmount
+                            - New property: referenceStartDate
+                            - New property: useOverdraftLimit
+                            - Deleted property: amount
+                            - Deleted property: dayOfMonth
+                            - Deleted property: dayOfWeek
+                            - Deleted property: immediatePayment
+                            - Deleted property: month
+                            - Deleted property: period
+                            - Deleted property: transactionLimit
+                            - Modified property: contractDebtor
+                              - Properties changed
+                                - Modified property: document
+                                  - Properties changed
+                                    - Modified property: identification
+                                      - Pattern changed from '^\d{14}$' to '^(?:\d{11}|\d{14})$'
+                                    - Modified property: rel
+                                      - New enum values: [CPF CNPJ]
+                                      - Example changed from 'CNPJ' to null
+                                      - MaxLength changed from 4 to null
+                                      - Pattern changed from '^[A-Z]{4}$' to ''
+                    - Schema #/components/schemas/Sweeping modified
+                      - Properties changed
+                        - Modified property: sweeping
+                          - Required changed
+                            - New required property: startDateTime
+                            - New required property: useOverdraftLimit
+                          - Properties changed
+                            - New property: startDateTime
+                            - New property: useOverdraftLimit
+                - Modified property: rejection
+                  - Properties changed
+                    - Modified property: reason
+                      - Properties changed
+                        - Modified property: code
+                          - Description changed from 'Código indicador do motivo de rejeição.
+- NAO_INFORMADO
+- FALHA_INFRAESTRUTURA
+- TEMPO_EXPIRADO_AUTORIZACAO
+- REJEITADO_USUARIO
+- CONTAS_ORIGEM_DESTINO_IGUAIS
+- CONTA_NAO_PERMITE_PAGAMENTO
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+' to 'Código indicador do motivo de rejeição.
+- NAO_INFORMADO
+- FALHA_INFRAESTRUTURA
+- TEMPO_EXPIRADO_AUTORIZACAO
+- REJEITADO_USUARIO
+- CONTAS_ORIGEM_DESTINO_IGUAIS
+- CONTA_NAO_PERMITE_PAGAMENTO
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+- AUTENTICACAO_DIVERGENTE
+'
+                          - New enum values: [AUTENTICACAO_DIVERGENTE]
+                        - Modified property: detail
+                          - Description changed from 'Detalhe sobre o motivo de rejeição indicado no campo `/data/rejection/reason/code`
+- NAO_INFORMADO: Não informada pela detentora de conta;
+- FALHA_INFRAESTRUTURA: [Descrição de qual falha na infraestrutura inviabilizou o processamento];
+- TEMPO_EXPIRADO_AUTORIZACAO: Consentimento expirou antes que o usuário pudesse confirmá-lo;
+- REJEITADO_USUARIO: O usuário rejeitou a autorização do consentimento;
+- CONTAS_ORIGEM_DESTINO_IGUAIS: A conta selecionada é igual à conta destino e não permite realizar esse pagamento;
+- CONTA_NAO_PERMITE_PAGAMENTO: A conta selecionada é do tipo [salario/investimento/liquidação/outros] e não permite realizar esse pagamento;
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
+' to 'Detalhe sobre o motivo de rejeição indicado no campo `/data/rejection/reason/code`
+- NAO_INFORMADO: Não informada pela detentora de conta;
+- FALHA_INFRAESTRUTURA: [Descrição de qual falha na infraestrutura inviabilizou o processamento];
+- TEMPO_EXPIRADO_AUTORIZACAO: Consentimento expirou antes que o usuário pudesse confirmá-lo;
+- REJEITADO_USUARIO: O usuário rejeitou a autorização do consentimento;
+- CONTAS_ORIGEM_DESTINO_IGUAIS: A conta selecionada é igual à conta destino e não permite realizar esse pagamento;
+- CONTA_NAO_PERMITE_PAGAMENTO: A conta selecionada é do tipo [salario/investimento/liquidação/outros] e não permite realizar esse pagamento;
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
+- AUTENTICACAO_DIVERGENTE : Usuário autenticado no detentor diverge do usuário autenticado no iniciador;
+'
+            - Modified property: links
+              - Properties changed
+                - Modified property: self
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v1/resource' to 'https://api.banco.com.br/open-banking/api/v2/resource'
+    - Headers changed
+      - New header: x-v
+  - Modified response: 500
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client). Seu valor deve obrigatoriamente ser replicado pela detentora (server) no cabeçalho de resposta, exceto em casos de falhas estruturais que impeçam a replicação. Caso não seja possível ser replicado, não deve ser enviado.
+'
+  - Modified response: 504
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client). Seu valor deve obrigatoriamente ser replicado pela detentora (server) no cabeçalho de resposta, exceto em casos de falhas estruturais que impeçam a replicação. Caso não seja possível ser replicado, não deve ser enviado.
+'
+  - Modified response: 529
+    - Headers changed
+      - New header: x-fapi-interaction-id
+PATCH /recurring-consents/{recurringConsentId}
+- Description changed from 'Método para rejeitar, revogar ou editar um consentimento de longa duração:  
+1 - Informações sobre a revogação:
+- Caso bem sucedido, o consentimento vai para o status “REVOKED”;
+- Apenas consentimentos com status “AUTHORISED” podem ser revogados;
+- Pagamentos automáticos associados ao consentimento e que estão agendados para ocorrer até as 23:59h do próximo dia (a partir do dia de 
+solicitação da revogação) deverão ser mantidos. Pagamentos agendados para ocorrer após esse período devem ser cancelados.
+- Demais orientações referentes a revogação podem ser encontrados no header da API, tópico “Validações”, item 3.
+2 - Informações sobre a edição: 
+- Os campos que são passíveis de edição e suas regras podem ser encontrados através do [link](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/198410772);
+- A edição é possível apenas em casos de consentimento para Pix Automático (“automatic” escolhido no oneOf do objeto “recurringConfiguration”);
+- O envio do item "/data/creditors/name" atualizará o nome do recebedor em todos os elementos do array.
+3 - Informações sobre a rejeição:  
+- Caso haja necessidade de cancelamento de um consentimento ainda não autorizado, o iniciador poderá chamar o endpoint para mover o consentimento para REJECTED.
+' to 'Método para rejeitar, revogar ou editar um consentimento de longa duração:  
+1 - Informações sobre a revogação:
+- Caso bem sucedido, o consentimento vai para o status “REVOKED”;
+- Apenas consentimentos com status “AUTHORISED” podem ser revogados;
+- Pagamentos automáticos associados ao consentimento e que estão agendados para ocorrer até as 23:59h do próximo dia (a partir do dia de 
+solicitação da revogação) deverão ser mantidos. Pagamentos agendados para ocorrer após esse período devem ser cancelados.
+- Demais orientações referentes a revogação podem ser encontrados no header da API, tópico “Validações”, item 3.
+2 - Informações sobre a edição: 
+- Os campos que são passíveis de edição e suas regras podem ser encontrados através do [link](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/628195665);
+- A edição é possível apenas em casos de consentimento para Pix Automático (“automatic” escolhido no oneOf do objeto “recurringConfiguration”);
+- O envio do item "/data/creditors/name" atualizará o nome do recebedor em todos os elementos do array.
+3 - Informações sobre a rejeição:  
+- Caso haja necessidade de cancelamento de um consentimento ainda não autorizado, o iniciador poderá chamar o endpoint para mover o consentimento para REJECTED.
+'
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Property 'OneOf' changed
+              - Schema #/components/schemas/ConsentRevocation modified
+                - Properties changed
+                  - Deleted property: riskSignals
+              - Schema #/components/schemas/ConsentRejection modified
+                - Properties changed
+                  - Deleted property: riskSignals
+                  - Modified property: rejection
+                    - Properties changed
+                      - Modified property: reason
+                        - Properties changed
+                          - Modified property: code
+                            - Description changed from 'Código indicador do motivo de rejeição.
+- NAO_INFORMADO
+- FALHA_INFRAESTRUTURA
+- TEMPO_EXPIRADO_AUTORIZACAO
+- REJEITADO_USUARIO
+- CONTAS_ORIGEM_DESTINO_IGUAIS
+- CONTA_NAO_PERMITE_PAGAMENTO
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+' to 'Código indicador do motivo de rejeição.
+- NAO_INFORMADO
+- FALHA_INFRAESTRUTURA
+- TEMPO_EXPIRADO_AUTORIZACAO
+- REJEITADO_USUARIO
+- CONTAS_ORIGEM_DESTINO_IGUAIS
+- CONTA_NAO_PERMITE_PAGAMENTO
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+- AUTENTICACAO_DIVERGENTE
+'
+                            - New enum values: [AUTENTICACAO_DIVERGENTE]
+                          - Modified property: detail
+                            - Description changed from 'Detalhe sobre o motivo de rejeição indicado no campo `/data/rejection/reason/code`
+- NAO_INFORMADO: Não informada pela detentora de conta;
+- FALHA_INFRAESTRUTURA: [Descrição de qual falha na infraestrutura inviabilizou o processamento];
+- TEMPO_EXPIRADO_AUTORIZACAO: Consentimento expirou antes que o usuário pudesse confirmá-lo;
+- REJEITADO_USUARIO: O usuário rejeitou a autorização do consentimento;
+- CONTAS_ORIGEM_DESTINO_IGUAIS: A conta selecionada é igual à conta destino e não permite realizar esse pagamento;
+- CONTA_NAO_PERMITE_PAGAMENTO: A conta selecionada é do tipo [salario/investimento/liquidação/outros] e não permite realizar esse pagamento;
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
+' to 'Detalhe sobre o motivo de rejeição indicado no campo `/data/rejection/reason/code`
+- NAO_INFORMADO: Não informada pela detentora de conta;
+- FALHA_INFRAESTRUTURA: [Descrição de qual falha na infraestrutura inviabilizou o processamento];
+- TEMPO_EXPIRADO_AUTORIZACAO: Consentimento expirou antes que o usuário pudesse confirmá-lo;
+- REJEITADO_USUARIO: O usuário rejeitou a autorização do consentimento;
+- CONTAS_ORIGEM_DESTINO_IGUAIS: A conta selecionada é igual à conta destino e não permite realizar esse pagamento;
+- CONTA_NAO_PERMITE_PAGAMENTO: A conta selecionada é do tipo [salario/investimento/liquidação/outros] e não permite realizar esse pagamento;
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
+- AUTENTICACAO_DIVERGENTE : Usuário autenticado no detentor diverge do usuário autenticado no iniciador;
+'
+              - Schema #/components/schemas/ConsentEdition modified
+                - Required changed
+                  - New required property: creditors
+                  - New required property: riskSignals
+                - Properties changed
+                  - New property: businessEntity
+                  - New property: loggedUser
+                  - New property: recurringConfiguration
+                  - Deleted property: automatic
+                  - Deleted property: startDateTime
+                  - Modified property: creditors
+                    - Items changed
+                      - Description changed from 'Objeto contendo os dados do recebedor (creditor).' to 'Objeto contendo os dados do recebedor (creditor).
+[Restrição] Caso o consentimento de longa duração seja para o produto Pix Automático (“automatic” selecionado no oneOf do objeto “/data/recurringConfiguration”), apenas um recebedor é permitido e esse deve ser pessoa jurídica.
+'
+                  - Modified property: expirationDateTime
+                    - Description changed from 'Data e hora em que o consentimento deve deixar de ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format).' to 'Data e hora em que o consentimento deve deixar de ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format). 
+[Restrição] Caso esse campo não seja enviado, a instituição detentora deve considerar a extensão do prazo para um período indeterminado; ou; 
+Caso enviado, esse campo deve ser, no mínimo, D, sendo D o dia da requisição.
+'
+                  - Modified property: riskSignals
+                    - Required changed
+                      - Deleted required property: elapsedTimeSinceBoot
+                      - Deleted required property: isRootedDevice
+                      - Deleted required property: screenBrightness
+                    - Properties changed
+                      - Modified property: antennaInformation
+                        - Example changed from null to 'CellIdentityLte:{ mCi=2******60 mPci=274 mTac=5***1 mEarfcn=9510 mBands=[28] mBandwidth=2147483647 mMcc=724 mMnc=10 mAlphaLong=VIVO mAlphaShort=VIVO mAdditionalPlmns={} mCsgInfo=null}, CellIdentityLte:{ mCi=1*****01 mPci=361 mTac=3***6 mEarfcn=9410 mBands=[28]mBandwidth=2147483647 mMcc=724 mMnc=03 mAlphaLong=TIMBRASIL mAlphaShort=TIMBRASIL mAdditionalPlmns={} mCsgInfo=null}'
+                      - Modified property: deviceId
+                        - Description changed from 'ID único do dispositivo gerado pela plataforma.' to 'ID único do dispositivo gerado pela plataforma.
+[Android] Informação obtida através do [link](https://developer.android.com/reference/android/provider/Settings.Secure#ANDROID_ID).
+[iOS] Informação obtida através do [link](https://developer.apple.com/documentation/uikit/uidevice/1620059-identifierforvendor/).
+'
+                      - Modified property: elapsedTimeSinceBoot
+                        - Description changed from 'Indica por quanto tempo (em milissegundos) o dispositivo está ligado.' to 'Indica por quanto tempo (em milissegundos) o dispositivo está ligado.
+[Android] Informação obtida através do [link](https://developer.android.com/reference/android/os/SystemClock#elapsedRealtime%28%29).
+[iOS] Informação obtida através do [link](https://developer.apple.com/documentation/kernel/kern/).
+[Restrição] Campos de envio obrigatório quando o sistema operacional utilizado pelo for Android ou iOS.
+'
+                      - Modified property: geolocation
+                        - Description changed from 'Dados de geolocalização do cliente enquanto logado na iniciadora' to 'Localização do usuário, obtida com seu consentimento.
+[Android] Informação obtida através do [link](https://developers.google.com/android/reference/com/google/android/gms/location/FusedLocationProviderClient#public-abstract-tasklocation-getlastlocation) considerando as permissões necessárias.
+[iOS] Informação obtida através do [link](https://developer.apple.com/documentation/corelocation/).
+[Restrição] A ITP deve solicitar ao usuário a permissão para compartilhamento de sua localização. 
+Este campo poderá ser omitido caso o GPS esteja indisponível, isto é, sem sinal, ou em dispositivos sem o hardware necessário; ou caso o usuário negue o consentimento para coleta do dado.
+'
+                      - Modified property: integrity
+                        - Properties changed
+                          - Modified property: appRecognitionVerdict
+                            - Example changed from null to 'PLAY_RECOGNIZED'
+                          - Modified property: deviceRecognitionVerdict
+                            - Example changed from null to '[\"MEETS_DEVICE_INTEGRITY\"]'
+                      - Modified property: isCallingProgress
+                        - Description changed from 'Indica chamada ativa no momento do vínculo.
+[Restrição] Caso o sinal de risco esteja disponível (cliente permitiu que fosse coletado), o mesmo deverá ser enviado
+' to 'Indica chamada ativa no momento da solicitação.
+[Android] Informação obtida através do [link](https://developer.android.com/reference/android/media/AudioManager#getMode()).
+[iOS] Informação obtida através do [link](https://developer.apple.com/documentation/callkit/).
+[Restrição] Caso o sinal de risco esteja disponível (cliente permitiu que fosse coletado), o mesmo deverá ser enviado.
+'
+                      - Modified property: isCharging
+                        - Description changed from 'Indica se a bateria do dispositivo está sendo carregada.' to 'Indica se a bateria do dispositivo está sendo carregada.
+[Android] Informação obtida através do [link](https://developer.android.com/reference/android/os/BatteryManager).
+[iOS] Informações obtida através do [link](https://developer.apple.com/documentation/uikit/uidevice/1620045-batterymonitoringenabled/).
+'
+                      - Modified property: isMockGPS
+                        - Description changed from 'Indica se o dispositivo está usando um GPS falso.' to 'Indica se o dispositivo está usando um GPS falso. Deve ser enviado sempre que exista o campo geolocation com tipo COARSE ou FINE.
+[Android] Informação obtida através do [link](https://developer.android.com/reference/android/location/Location.html#isMock()) ou, para versões anteriores à 12, [link](https://developer.android.com/reference/android/location/Location.html#isFromMockProvider()).
+[iOS] Informação obtida através dos links: sourceInformation, [link](https://developer.apple.com/documentation/corelocation/cllocation/3861803-sourceinformation). isSimulatedBySoftware, [link](https://developer.apple.com/documentation/corelocation/cllocationsourceinformation/3861807-issimulatedbysoftware).
+'
+                      - Modified property: isRootedDevice
+                        - Description changed from 'Indica se o dispositivo atualmente está com permissão de “root”.' to 'Indica se o dispositivo atualmente está com permissão de “root”.
+[Restrição] Campos de envio obrigatório quando o sistema operacional utilizado pelo usuário for Android ou iOS.
+'
+                      - Modified property: language
+                        - Description changed from 'Indica o idioma do dispositivo no formato ISO 639-1.' to 'Indica o idioma do dispositivo no formato ISO 639-1.
+[Android] Informação obtida através do [link](https://developer.android.com/reference/java/util/Locale#getLanguage()).
+[iOS] - Informação obtida através do [link](https://developer.apple.com/documentation/foundation/locale/languagecode/).
+'
+                      - Modified property: osVersion
+                        - Description changed from 'Versão do sistema operacional.' to 'Versão do sistema operacional.
+[Android] Informação obtida através do [link](https://developer.android.com/reference/android/os/Build.VERSION#RELEASE).
+[iOS] - Informação obtida através do [link](https://developer.apple.com/documentation/uikit/uidevice/1620043-systemversion/).
+'
+                      - Modified property: screenBrightness
+                        - Description changed from 'Indica o nível de brilho da tela do dispositivo.  
+Em dispositivos Android o valor é um inteiro, entre 0 e 255, inclusive;  
+Em dispositivos iOS o valor é um ponto flutuante entre 0.0 e 1.0.
+' to 'Indica o nível de brilho da tela do dispositivo.
+[Android] O valor é inteiro, tipicamente entre 0 a 255, podendo a faixa de valores variar de acordo com o fabricante do celular. Referência no [link](https://developer.android.com/reference/android/provider/Settings.System#SCREEN_BRIGHTNESS).
+[iOS] O valor é ponto flutuante entre “0.0” e “1.0”. Referência no [link](https://developer.apple.com/documentation/kernel/kern/).
+[Restrição] Campos de envio obrigatório quando o sistema operacional utilizado pelo for Android ou iOS.
+'
+                      - Modified property: screenDimensions
+                        - Description changed from 'Dimensões da tela do dispositivo' to 'Dimensões que o aplicativo ocupa na tela do dispositivo.
+[Android] Informação obtida através do [link](https://developer.android.com/reference/android/view/WindowMetrics#getBounds()), ou, para versões anteriores à 11, [link](https://developer.android.com/reference/android/util/DisplayMetrics).
+[iOS] - Informação obtida através do [link](https://developer.apple.com/documentation/metal/mtlrasterizationratemap/3088873-screensize/).
+'
+                      - Modified property: userTimeZoneOffset
+                        - Description changed from 'Indica a configuração de fuso horário do dispositivo do usuário, com o formato UTC offset: ±hh[:mm]
+' to 'Indica a configuração de fuso horário do dispositivo do usuário, com o formato UTC offset: ±hh[:mm]. O formato especificado permite a omissão da parte correspondente aos minutos, caso esta última tenha valor zero. Assim, ambos os valores '-03:00' e '-03' são válidos e representam o mesmo fuso horário.
+[Android] Informação obtida através do [link](https://developer.android.com/reference/java/time/ZonedDateTime#getOffset()) ou, para versões anteriores à 8.0, [link](https://developer.android.com/reference/java/util/TimeZone#getOffset(long)).
+[iOS] Informação obtida através do [link](https://developer.apple.com/documentation/foundation/timezone/).
+'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Required changed
+                - Deleted required property: loggedUser
+                - Deleted required property: startDateTime
+              - Properties changed
+                - New property: approvalDueDate
+                - New property: authorisedAtDateTime
+                - New property: updatedAtDateTime
+                - Deleted property: startDateTime
+                - Modified property: creditors
+                  - Items changed
+                    - Description changed from 'Objeto contendo os dados do recebedor (creditor). Em casos de transferências inteligentes para clientes PJ, os CNPJs informados devem possuir a mesma raiz do CNPJ enviado no campo /data/businessEntity/document/identification. Em casos de transferências inteligentes para clientes PN, deve-se aceitar apenas um item no array e este item deve conter as informações do recebedor. O CPF informado deve ser o mesmo do /data/loggedUser/document/identification. Caso alguma das regras mencionadas não sejam seguidas, o detentor deve rejeitar a solicitação (sincronamente) com o erro DETALHE_PAGAMENTO_INVALIDO, e o detalhe deve ser preenchido com a informação referente ao erro.' to 'Objeto contendo os dados do recebedor (creditor). Em casos de transferências inteligentes para clientes PJ, os CNPJs informados devem possuir a mesma raiz do CNPJ enviado no campo /data/businessEntity/document/identification. Em casos de transferências inteligentes para clientes PN, deve-se aceitar apenas um item no array e este item deve conter as informações do recebedor. O CPF informado deve ser o mesmo do /data/loggedUser/document/identification. Caso alguma das regras mencionadas não sejam seguidas, o detentor deve rejeitar a solicitação (sincronamente) com o erro DETALHE_PAGAMENTO_INVALIDO, e o detalhe deve ser preenchido com a informação referente ao erro.
+[Restrição] Caso o consentimento de longa duração seja para o produto Pix Automático (“automatic” selecionado no oneOf do objeto “/data/recurringConfiguration”), apenas um recebedor é permitido e esse deve ser pessoa jurídica.
+'
+                - Modified property: debtorAccount
+                  - Properties changed
+                    - Modified property: ibgeTownCode
+                      - Description changed from 'Campo utilizado pela iniciadora para cálculo do dia útil de liquidação do pagamento (vide especificação do endToEndId) baseado no município de cadastro do usuário pagador no detentor.
+[Restrições]
+- Campo obrigatório quando o oneOf utilizado do recurringConfiguration for “automatic”. 
+' to 'Campo utilizado pela iniciadora para cálculo do dia útil de liquidação do pagamento (vide especificação do endToEndId) baseado no município de cadastro do usuário pagador no detentor.
+[Restrições]
+Campo de preenchimento obrigatório quando o oneOf utilizado do recurringConfiguration for “automatic”, e o consentimento passar pelo estado AUTHORISED.
+'
+                - Modified property: recurringConfiguration
+                  - Property 'OneOf' changed
+                    - Schema #/components/schemas/Automatic modified
+                      - Properties changed
+                        - Modified property: automatic
+                          - Required changed
+                            - New required property: interval
+                            - New required property: isRetryAccepted
+                            - New required property: referenceStartDate
+                            - New required property: useOverdraftLimit
+                            - Deleted required property: period
+                          - Properties changed
+                            - New property: firstPayment
+                            - New property: fixedAmount
+                            - New property: interval
+                            - New property: isRetryAccepted
+                            - New property: maximumVariableAmount
+                            - New property: minimumVariableAmount
+                            - New property: referenceStartDate
+                            - New property: useOverdraftLimit
+                            - Deleted property: amount
+                            - Deleted property: dayOfMonth
+                            - Deleted property: dayOfWeek
+                            - Deleted property: immediatePayment
+                            - Deleted property: month
+                            - Deleted property: period
+                            - Deleted property: transactionLimit
+                            - Modified property: contractDebtor
+                              - Properties changed
+                                - Modified property: document
+                                  - Properties changed
+                                    - Modified property: identification
+                                      - Pattern changed from '^\d{14}$' to '^(?:\d{11}|\d{14})$'
+                                    - Modified property: rel
+                                      - New enum values: [CPF CNPJ]
+                                      - Example changed from 'CNPJ' to null
+                                      - MaxLength changed from 4 to null
+                                      - Pattern changed from '^[A-Z]{4}$' to ''
+                    - Schema #/components/schemas/Sweeping modified
+                      - Properties changed
+                        - Modified property: sweeping
+                          - Required changed
+                            - New required property: startDateTime
+                            - New required property: useOverdraftLimit
+                          - Properties changed
+                            - New property: startDateTime
+                            - New property: useOverdraftLimit
+                - Modified property: rejection
+                  - Properties changed
+                    - Modified property: reason
+                      - Properties changed
+                        - Modified property: code
+                          - Description changed from 'Código indicador do motivo de rejeição.
+- NAO_INFORMADO
+- FALHA_INFRAESTRUTURA
+- TEMPO_EXPIRADO_AUTORIZACAO
+- REJEITADO_USUARIO
+- CONTAS_ORIGEM_DESTINO_IGUAIS
+- CONTA_NAO_PERMITE_PAGAMENTO
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+' to 'Código indicador do motivo de rejeição.
+- NAO_INFORMADO
+- FALHA_INFRAESTRUTURA
+- TEMPO_EXPIRADO_AUTORIZACAO
+- REJEITADO_USUARIO
+- CONTAS_ORIGEM_DESTINO_IGUAIS
+- CONTA_NAO_PERMITE_PAGAMENTO
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+- AUTENTICACAO_DIVERGENTE
+'
+                          - New enum values: [AUTENTICACAO_DIVERGENTE]
+                        - Modified property: detail
+                          - Description changed from 'Detalhe sobre o motivo de rejeição indicado no campo `/data/rejection/reason/code`
+- NAO_INFORMADO: Não informada pela detentora de conta;
+- FALHA_INFRAESTRUTURA: [Descrição de qual falha na infraestrutura inviabilizou o processamento];
+- TEMPO_EXPIRADO_AUTORIZACAO: Consentimento expirou antes que o usuário pudesse confirmá-lo;
+- REJEITADO_USUARIO: O usuário rejeitou a autorização do consentimento;
+- CONTAS_ORIGEM_DESTINO_IGUAIS: A conta selecionada é igual à conta destino e não permite realizar esse pagamento;
+- CONTA_NAO_PERMITE_PAGAMENTO: A conta selecionada é do tipo [salario/investimento/liquidação/outros] e não permite realizar esse pagamento;
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
+' to 'Detalhe sobre o motivo de rejeição indicado no campo `/data/rejection/reason/code`
+- NAO_INFORMADO: Não informada pela detentora de conta;
+- FALHA_INFRAESTRUTURA: [Descrição de qual falha na infraestrutura inviabilizou o processamento];
+- TEMPO_EXPIRADO_AUTORIZACAO: Consentimento expirou antes que o usuário pudesse confirmá-lo;
+- REJEITADO_USUARIO: O usuário rejeitou a autorização do consentimento;
+- CONTAS_ORIGEM_DESTINO_IGUAIS: A conta selecionada é igual à conta destino e não permite realizar esse pagamento;
+- CONTA_NAO_PERMITE_PAGAMENTO: A conta selecionada é do tipo [salario/investimento/liquidação/outros] e não permite realizar esse pagamento;
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
+- AUTENTICACAO_DIVERGENTE : Usuário autenticado no detentor diverge do usuário autenticado no iniciador;
+'
+            - Modified property: links
+              - Properties changed
+                - Modified property: self
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v1/resource' to 'https://api.banco.com.br/open-banking/api/v2/resource'
+    - Headers changed
+      - New header: x-v
+  - Modified response: 422
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: errors
+              - Items changed
+                - Properties changed
+                  - Modified property: code
+                    - New enum values: [PERMISSAO_INSUFICIENTE DETALHE_EDICAO_INVALIDO FALTAM_SINAIS_OBRIGATORIOS_PLATAFORMA]
+                  - Modified property: detail
+                    - Description changed from 'Descrição específica do erro de acordo com o código reportado:  
+- CONSENTIMENTO_NAO_PERMITE_CANCELAMENTO: O status do consentimento não permite a realização do cancelamento (em status "CONSUMED" ou "REJECTED")
+- CAMPO_NAO_PERMITIDO: O(s) campo(s) solicitado(s) para edição não podem ser editados.
+' to 'Descrição específica do erro de acordo com o código reportado:  
+- CONSENTIMENTO_NAO_PERMITE_CANCELAMENTO: O status do consentimento não permite a realização do cancelamento (em status "CONSUMED" ou "REJECTED")
+- CAMPO_NAO_PERMITIDO: O(s) campo(s) solicitado(s) para edição não podem ser editados.
+- PERMISSAO_INSUFICIENTE: Consentimento possui múltiplas alçadas aprovadoras e não permite a edição pelo usuário atual.
+- DETALHE_EDICAO_INVALIDO: A tentativa de edição do consentimento não respeitou as regras de negócio descritas nos campos.
+- FALTAM_SINAIS_OBRIGATORIOS_PLATAFORMA: Os sinais obrigatórios para a plataforma do usuário não foram enviados em sua totalidade.
+'
+                  - Modified property: title
+                    - Description changed from 'Título específico do erro reportado, de acordo com o código enviado:  
+- CONSENTIMENTO_NAO_PERMITE_CANCELAMENTO: O status do consentimento não permite a realização do cancelamento (em status "CONSUMED" ou "REJECTED")
+- CAMPO_NAO_PERMITIDO: O(s) campo(s) solicitado(s) para edição não podem ser editados.
+' to 'Título específico do erro reportado, de acordo com o código enviado:  
+- CONSENTIMENTO_NAO_PERMITE_CANCELAMENTO: O status do consentimento não permite a realização do cancelamento (em status "CONSUMED" ou "REJECTED")
+- CAMPO_NAO_PERMITIDO: O(s) campo(s) solicitado(s) para edição não podem ser editados.
+- Permissão insuficiente para edição.
+- DETALHE_EDICAO_INVALIDO: A tentativa de edição do consentimento não respeitou as regras de negócio descritas nos campos.
+- FALTAM_SINAIS_OBRIGATORIOS_PLATAFORMA: Os sinais obrigatórios para a plataforma do usuário não foram enviados em sua totalidade.
+'
+  - Modified response: 500
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client). Seu valor deve obrigatoriamente ser replicado pela detentora (server) no cabeçalho de resposta, exceto em casos de falhas estruturais que impeçam a replicação. Caso não seja possível ser replicado, não deve ser enviado.
+'
+  - Modified response: 504
+    - Headers changed
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client) e o seu valor deve ser “espelhado” pela detentora (server) no cabeçalho de resposta.
+' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela iniciadora (client). Seu valor deve obrigatoriamente ser replicado pela detentora (server) no cabeçalho de resposta, exceto em casos de falhas estruturais que impeçam a replicação. Caso não seja possível ser replicado, não deve ser enviado.
+'
+  - Modified response: 529
+    - Headers changed
+      - New header: x-fapi-interaction-id
+Servers changed
+- New server: https://api.banco.com.br/open-banking/automatic-payments/v2
+- New server: https://apih.banco.com.br/open-banking/automatic-payments/v2
+- Deleted server: https://api.banco.com.br/open-banking/automatic-payments/v1
+- Deleted server: https://apih.banco.com.br/open-banking/automatic-payments/v1

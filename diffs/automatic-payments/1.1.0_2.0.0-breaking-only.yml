@@ -1,0 +1,194 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 6
+-------------------------
+POST /pix/recurring-payments
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: cancellation
+                  - Properties changed
+                    - Modified property: cancelledBy
+                      - Properties changed
+                        - Modified property: document
+                          - Properties changed
+                            - Modified property: identification
+                              - Pattern changed from '^\d{11}$' to '^(?:\d{11}|\d{14})$'
+                            - Modified property: rel
+                              - MaxLength changed from 3 to null
+                    - Modified property: reason
+                      - Deleted enum values: [CANCELADO_MULTIPLAS_ALCADAS]
+GET /pix/recurring-payments/{recurringPaymentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: cancellation
+                  - Properties changed
+                    - Modified property: cancelledBy
+                      - Properties changed
+                        - Modified property: document
+                          - Properties changed
+                            - Modified property: identification
+                              - Pattern changed from '^\d{11}$' to '^(?:\d{11}|\d{14})$'
+                            - Modified property: rel
+                              - MaxLength changed from 3 to null
+                    - Modified property: reason
+                      - Deleted enum values: [CANCELADO_MULTIPLAS_ALCADAS]
+PATCH /pix/recurring-payments/{recurringPaymentId}
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: cancellation
+                - Properties changed
+                  - Modified property: cancelledBy
+                    - Properties changed
+                      - Modified property: document
+                        - Properties changed
+                          - Modified property: identification
+                            - Pattern changed from '^\d{11}$' to '^(?:\d{11}|\d{14})$'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: cancellation
+                  - Properties changed
+                    - Modified property: cancelledBy
+                      - Properties changed
+                        - Modified property: document
+                          - Properties changed
+                            - Modified property: identification
+                              - Pattern changed from '^\d{11}$' to '^(?:\d{11}|\d{14})$'
+                            - Modified property: rel
+                              - MaxLength changed from 3 to null
+                    - Modified property: reason
+                      - Deleted enum values: [CANCELADO_MULTIPLAS_ALCADAS]
+POST /recurring-consents
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: recurringConfiguration
+                - Property 'OneOf' changed
+                  - 2 schemas added
+                  - 2 schemas deleted
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Required changed
+                - Deleted required property: startDateTime
+              - Properties changed
+                - Deleted property: startDateTime
+                - Modified property: recurringConfiguration
+                  - Property 'OneOf' changed
+                    - Schema #/components/schemas/Automatic modified
+                      - Properties changed
+                        - Modified property: automatic
+                          - Required changed
+                            - Deleted required property: period
+                          - Properties changed
+                            - Deleted property: period
+                            - Modified property: contractDebtor
+                              - Properties changed
+                                - Modified property: document
+                                  - Properties changed
+                                    - Modified property: identification
+                                      - Pattern changed from '^\d{14}$' to '^(?:\d{11}|\d{14})$'
+                                    - Modified property: rel
+                                      - MaxLength changed from 4 to null
+GET /recurring-consents/{recurringConsentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Required changed
+                - Deleted required property: startDateTime
+              - Properties changed
+                - Deleted property: startDateTime
+                - Modified property: recurringConfiguration
+                  - Property 'OneOf' changed
+                    - Schema #/components/schemas/Automatic modified
+                      - Properties changed
+                        - Modified property: automatic
+                          - Required changed
+                            - Deleted required property: period
+                          - Properties changed
+                            - Deleted property: period
+                            - Modified property: contractDebtor
+                              - Properties changed
+                                - Modified property: document
+                                  - Properties changed
+                                    - Modified property: identification
+                                      - Pattern changed from '^\d{14}$' to '^(?:\d{11}|\d{14})$'
+                                    - Modified property: rel
+                                      - MaxLength changed from 4 to null
+PATCH /recurring-consents/{recurringConsentId}
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Property 'OneOf' changed
+              - Schema #/components/schemas/ConsentEdition modified
+                - Required changed
+                  - New required property: creditors
+                  - New required property: riskSignals
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Required changed
+                - Deleted required property: loggedUser
+                - Deleted required property: startDateTime
+              - Properties changed
+                - Deleted property: startDateTime
+                - Modified property: recurringConfiguration
+                  - Property 'OneOf' changed
+                    - Schema #/components/schemas/Automatic modified
+                      - Properties changed
+                        - Modified property: automatic
+                          - Required changed
+                            - Deleted required property: period
+                          - Properties changed
+                            - Deleted property: period
+                            - Modified property: contractDebtor
+                              - Properties changed
+                                - Modified property: document
+                                  - Properties changed
+                                    - Modified property: identification
+                                      - Pattern changed from '^\d{14}$' to '^(?:\d{11}|\d{14})$'
+                                    - Modified property: rel
+                                      - MaxLength changed from 4 to null
