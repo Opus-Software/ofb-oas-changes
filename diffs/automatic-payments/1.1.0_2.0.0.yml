@@ -1201,6 +1201,15 @@ Campo de preenchimento obrigatório quando o oneOf utilizado do recurringConfigu
 '
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
+                    - Schema #/components/schemas/Sweeping modified
+                      - Properties changed
+                        - Modified property: sweeping
+                          - Required changed
+                            - New required property: startDateTime
+                            - New required property: useOverdraftLimit
+                          - Properties changed
+                            - New property: startDateTime
+                            - New property: useOverdraftLimit
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
@@ -1237,15 +1246,6 @@ Campo de preenchimento obrigatório quando o oneOf utilizado do recurringConfigu
                                       - Example changed from 'CNPJ' to null
                                       - MaxLength changed from 4 to null
                                       - Pattern changed from '^[A-Z]{4}$' to ''
-                    - Schema #/components/schemas/Sweeping modified
-                      - Properties changed
-                        - Modified property: sweeping
-                          - Required changed
-                            - New required property: startDateTime
-                            - New required property: useOverdraftLimit
-                          - Properties changed
-                            - New property: startDateTime
-                            - New property: useOverdraftLimit
                 - Modified property: rejection
                   - Properties changed
                     - Modified property: reason
@@ -1339,6 +1339,8 @@ solicitação da revogação) deverão ser mantidos. Pagamentos agendados para o
 - Os campos que são passíveis de edição e suas regras podem ser encontrados através do [link](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/628195665);
 - A edição é possível apenas em casos de consentimento para Pix Automático (“automatic” escolhido no oneOf do objeto “recurringConfiguration”);
 - O envio do item "/data/creditors/name" atualizará o nome do recebedor em todos os elementos do array.
+- Caso consentimento seja de valor fixo (campo “/data/recurringConfiguration/automatic/fixedAmount” preenchido) não é permitida a edição do campo “/data/recurringConfiguration/automatic/maximumVariableAmount”.
+- Caso o recebedor tenha definido um piso para o limite a ser estipulado pelo pagador (campo “/data/recurringConfiguration/automatic/minimumVariableAmount” preenchido), o valor máximo de limite por transação definido pelo usuário pagador (campo “/data/recurringConfiguration/automatic/maximumVariableAmount”) não pode ser menor que o valor estipulado pelo recebedor.
 3 - Informações sobre a rejeição:  
 - Caso haja necessidade de cancelamento de um consentimento ainda não autorizado, o iniciador poderá chamar o endpoint para mover o consentimento para REJECTED.
 '

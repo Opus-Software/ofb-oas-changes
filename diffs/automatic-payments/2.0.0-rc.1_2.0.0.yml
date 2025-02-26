@@ -129,6 +129,35 @@ Não pode ser preenchido nas autorizações de valor fixo, ou seja, com campo �
 Não representa um valor mínimo de cobrança para o pagamento.
 '
 PATCH /recurring-consents/{recurringConsentId}
+- Description changed from 'Método para rejeitar, revogar ou editar um consentimento de longa duração:  
+1 - Informações sobre a revogação:
+- Caso bem sucedido, o consentimento vai para o status “REVOKED”;
+- Apenas consentimentos com status “AUTHORISED” podem ser revogados;
+- Pagamentos automáticos associados ao consentimento e que estão agendados para ocorrer até as 23:59h do próximo dia (a partir do dia de 
+solicitação da revogação) deverão ser mantidos. Pagamentos agendados para ocorrer após esse período devem ser cancelados.
+- Demais orientações referentes a revogação podem ser encontrados no header da API, tópico “Validações”, item 3.
+2 - Informações sobre a edição: 
+- Os campos que são passíveis de edição e suas regras podem ser encontrados através do [link](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/628195665);
+- A edição é possível apenas em casos de consentimento para Pix Automático (“automatic” escolhido no oneOf do objeto “recurringConfiguration”);
+- O envio do item "/data/creditors/name" atualizará o nome do recebedor em todos os elementos do array.
+3 - Informações sobre a rejeição:  
+- Caso haja necessidade de cancelamento de um consentimento ainda não autorizado, o iniciador poderá chamar o endpoint para mover o consentimento para REJECTED.
+' to 'Método para rejeitar, revogar ou editar um consentimento de longa duração:  
+1 - Informações sobre a revogação:
+- Caso bem sucedido, o consentimento vai para o status “REVOKED”;
+- Apenas consentimentos com status “AUTHORISED” podem ser revogados;
+- Pagamentos automáticos associados ao consentimento e que estão agendados para ocorrer até as 23:59h do próximo dia (a partir do dia de 
+solicitação da revogação) deverão ser mantidos. Pagamentos agendados para ocorrer após esse período devem ser cancelados.
+- Demais orientações referentes a revogação podem ser encontrados no header da API, tópico “Validações”, item 3.
+2 - Informações sobre a edição: 
+- Os campos que são passíveis de edição e suas regras podem ser encontrados através do [link](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/628195665);
+- A edição é possível apenas em casos de consentimento para Pix Automático (“automatic” escolhido no oneOf do objeto “recurringConfiguration”);
+- O envio do item "/data/creditors/name" atualizará o nome do recebedor em todos os elementos do array.
+- Caso consentimento seja de valor fixo (campo “/data/recurringConfiguration/automatic/fixedAmount” preenchido) não é permitida a edição do campo “/data/recurringConfiguration/automatic/maximumVariableAmount”.
+- Caso o recebedor tenha definido um piso para o limite a ser estipulado pelo pagador (campo “/data/recurringConfiguration/automatic/minimumVariableAmount” preenchido), o valor máximo de limite por transação definido pelo usuário pagador (campo “/data/recurringConfiguration/automatic/maximumVariableAmount”) não pode ser menor que o valor estipulado pelo recebedor.
+3 - Informações sobre a rejeição:  
+- Caso haja necessidade de cancelamento de um consentimento ainda não autorizado, o iniciador poderá chamar o endpoint para mover o consentimento para REJECTED.
+'
 - Responses changed
   - Modified response: 200
     - Content changed
