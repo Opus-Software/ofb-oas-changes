@@ -2,7 +2,7 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 4
+### Modified Endpoints: 7
 -------------------------
 GET /pix/recurring-payments
 - Responses changed
@@ -58,3 +58,97 @@ PATCH /pix/recurring-payments/{recurringPaymentId}
               - Properties changed
                 - Modified property: endToEndId
                   - Example changed from 'E9040088820210128000800123873170' to 'E9040088820241225150000123873170'
+POST /recurring-consents
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: recurringConfiguration
+                - Property 'OneOf' changed
+                  - Schema #/components/schemas/AutomaticRequest modified
+                    - Properties changed
+                      - Modified property: automatic
+                        - Properties changed
+                          - Modified property: minimumVariableAmount
+                            - Description changed from 'Valor definido pelo usuário recebedor. 
+Se o usuário pagador atribuir um valor máximo para os pagamentos daquela autorização, ele não poderá ser inferior ao valor mínimo (piso) definido pelo usuário recebedor. 
+Não pode ser preenchido nas autorizações de valor fixo.
+' to 'Valor definido pelo usuário recebedor. 
+Se o usuário pagador atribuir um valor máximo para os pagamentos daquela autorização (campo “maximumVariableAmount”), ele não poderá ser inferior ao piso definido pelo usuário recebedor.
+Não pode ser preenchido nas autorizações de valor fixo, ou seja, com campo “/data/recurringConfiguration/automatic/fixedAmount”. 
+Não representa um valor mínimo de cobrança para o pagamento.
+'
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: recurringConfiguration
+                  - Property 'OneOf' changed
+                    - Schema #/components/schemas/Automatic modified
+                      - Properties changed
+                        - Modified property: automatic
+                          - Properties changed
+                            - Modified property: minimumVariableAmount
+                              - Description changed from 'Valor definido pelo usuário recebedor. 
+Se o usuário pagador atribuir um valor máximo para os pagamentos daquela autorização, ele não poderá ser inferior ao valor mínimo (piso) definido pelo usuário recebedor. 
+Não pode ser preenchido nas autorizações de valor fixo.
+' to 'Valor definido pelo usuário recebedor. 
+Se o usuário pagador atribuir um valor máximo para os pagamentos daquela autorização (campo “maximumVariableAmount”), ele não poderá ser inferior ao piso definido pelo usuário recebedor.
+Não pode ser preenchido nas autorizações de valor fixo, ou seja, com campo “/data/recurringConfiguration/automatic/fixedAmount”. 
+Não representa um valor mínimo de cobrança para o pagamento.
+'
+GET /recurring-consents/{recurringConsentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: recurringConfiguration
+                  - Property 'OneOf' changed
+                    - Schema #/components/schemas/Automatic modified
+                      - Properties changed
+                        - Modified property: automatic
+                          - Properties changed
+                            - Modified property: minimumVariableAmount
+                              - Description changed from 'Valor definido pelo usuário recebedor. 
+Se o usuário pagador atribuir um valor máximo para os pagamentos daquela autorização, ele não poderá ser inferior ao valor mínimo (piso) definido pelo usuário recebedor. 
+Não pode ser preenchido nas autorizações de valor fixo.
+' to 'Valor definido pelo usuário recebedor. 
+Se o usuário pagador atribuir um valor máximo para os pagamentos daquela autorização (campo “maximumVariableAmount”), ele não poderá ser inferior ao piso definido pelo usuário recebedor.
+Não pode ser preenchido nas autorizações de valor fixo, ou seja, com campo “/data/recurringConfiguration/automatic/fixedAmount”. 
+Não representa um valor mínimo de cobrança para o pagamento.
+'
+PATCH /recurring-consents/{recurringConsentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: recurringConfiguration
+                  - Property 'OneOf' changed
+                    - Schema #/components/schemas/Automatic modified
+                      - Properties changed
+                        - Modified property: automatic
+                          - Properties changed
+                            - Modified property: minimumVariableAmount
+                              - Description changed from 'Valor definido pelo usuário recebedor. 
+Se o usuário pagador atribuir um valor máximo para os pagamentos daquela autorização, ele não poderá ser inferior ao valor mínimo (piso) definido pelo usuário recebedor. 
+Não pode ser preenchido nas autorizações de valor fixo.
+' to 'Valor definido pelo usuário recebedor. 
+Se o usuário pagador atribuir um valor máximo para os pagamentos daquela autorização (campo “maximumVariableAmount”), ele não poderá ser inferior ao piso definido pelo usuário recebedor.
+Não pode ser preenchido nas autorizações de valor fixo, ou seja, com campo “/data/recurringConfiguration/automatic/fixedAmount”. 
+Não representa um valor mínimo de cobrança para o pagamento.
+'
