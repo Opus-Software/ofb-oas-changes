@@ -17,6 +17,8 @@ GET /pix/recurring-payments
                 - Properties changed
                   - New property: originalRecurringPaymentId
                   - New property: paymentReference
+                  - Modified property: date
+                    - Description changed from 'Data em que o pagamento será realizado.' to 'Data em que o pagamento será realizado. Uma string com a utilização de timezone UTC-3 (UTC time format).'
                   - Modified property: endToEndId
                     - Description changed from 'Trata-se de um identificador único, gerado na instituição iniciadora de pagamento e recebido na instituição detentora de conta, permeando toda a jornada do pagamento Pix.
 [Restrição] A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
@@ -161,6 +163,8 @@ POST /pix/recurring-payments
             - Properties changed
               - New property: originalRecurringPaymentId
               - New property: paymentReference
+              - Modified property: date
+                - Description changed from 'Data em que o pagamento será realizado.' to 'Data em que o pagamento será realizado. Uma string com a utilização de timezone UTC-3 (UTC time format).'
               - Modified property: endToEndId
                 - Example changed from 'E9040088820210128000800123873170' to 'E9040088820241225150000123873170'
               - Modified property: localInstrument
@@ -258,6 +262,8 @@ CANCELADO_PENDENCIA - Pagamento cancelado enquanto estava na situação PDNG
 CANCELADO_AGENDAMENTO - Pagamento cancelado enquanto estava na situação SCHD
 '
                       - Deleted enum values: [CANCELADO_MULTIPLAS_ALCADAS]
+                - Modified property: date
+                  - Description changed from 'Data em que o recurso foi criado. Uma string com a utilização de timezone UTC(UTC time format).' to 'Data em que o pagamento será realizado. Uma string com a utilização de timezone UTC-3 (UTC time format).'
                 - Modified property: endToEndId
                   - Description changed from 'Trata-se de um identificador único, gerado na instituição iniciadora de pagamento e recebido na instituição detentora de conta, permeando toda a jornada do pagamento Pix.
 [Restrição] A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
@@ -589,6 +595,8 @@ CANCELADO_PENDENCIA - Pagamento cancelado enquanto estava na situação PDNG
 CANCELADO_AGENDAMENTO - Pagamento cancelado enquanto estava na situação SCHD
 '
                       - Deleted enum values: [CANCELADO_MULTIPLAS_ALCADAS]
+                - Modified property: date
+                  - Description changed from 'Data em que o pagamento será realizado.' to 'Data em que o pagamento será realizado. Uma string com a utilização de timezone UTC-3 (UTC time format).'
                 - Modified property: endToEndId
                   - Description changed from 'Trata-se de um identificador único, gerado na instituição iniciadora de pagamento e recebido na instituição detentora de conta, permeando toda a jornada do pagamento Pix.
 [Restrição] A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
@@ -853,6 +861,8 @@ CANCELADO_PENDENCIA - Pagamento cancelado enquanto estava na situação PDNG
 CANCELADO_AGENDAMENTO - Pagamento cancelado enquanto estava na situação SCHD
 '
                       - Deleted enum values: [CANCELADO_MULTIPLAS_ALCADAS]
+                - Modified property: date
+                  - Description changed from 'Data em que o recurso foi criado. Uma string com a utilização de timezone UTC(UTC time format).' to 'Data em que o pagamento será realizado. Uma string com a utilização de timezone UTC-3 (UTC time format).'
                 - Modified property: endToEndId
                   - Description changed from 'Trata-se de um identificador único, gerado na instituição iniciadora de pagamento e recebido na instituição detentora de conta, permeando toda a jornada do pagamento Pix.
 [Restrição] A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
@@ -1056,15 +1066,6 @@ POST /recurring-consents
                     - Deleted property: ibgeTownCode
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
-                    - Schema #/components/schemas/Sweeping modified
-                      - Properties changed
-                        - Modified property: sweeping
-                          - Required changed
-                            - New required property: startDateTime
-                            - New required property: useOverdraftLimit
-                          - Properties changed
-                            - New property: startDateTime
-                            - New property: useOverdraftLimit
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
@@ -1101,6 +1102,15 @@ POST /recurring-consents
                                       - Example changed from 'CNPJ' to null
                                       - MaxLength changed from 4 to null
                                       - Pattern changed from '^[A-Z]{4}$' to ''
+                    - Schema #/components/schemas/Sweeping modified
+                      - Properties changed
+                        - Modified property: sweeping
+                          - Required changed
+                            - New required property: startDateTime
+                            - New required property: useOverdraftLimit
+                          - Properties changed
+                            - New property: startDateTime
+                            - New property: useOverdraftLimit
                 - Modified property: rejection
                   - Properties changed
                     - Modified property: reason
@@ -1339,6 +1349,8 @@ solicitação da revogação) deverão ser mantidos. Pagamentos agendados para o
 - Os campos que são passíveis de edição e suas regras podem ser encontrados através do [link](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/628195665);
 - A edição é possível apenas em casos de consentimento para Pix Automático (“automatic” escolhido no oneOf do objeto “recurringConfiguration”);
 - O envio do item "/data/creditors/name" atualizará o nome do recebedor em todos os elementos do array.
+- Caso consentimento seja de valor fixo (campo “/data/recurringConfiguration/automatic/fixedAmount” preenchido) não é permitida a edição do campo “/data/recurringConfiguration/automatic/maximumVariableAmount”.
+- Caso o recebedor tenha definido um piso para o limite a ser estipulado pelo pagador (campo “/data/recurringConfiguration/automatic/minimumVariableAmount” preenchido), o valor máximo de limite por transação definido pelo usuário pagador (campo “/data/recurringConfiguration/automatic/maximumVariableAmount”) não pode ser menor que o valor estipulado pelo recebedor.
 - Caso o seja editado o prazo de expiração do consentimento e já existam pagamentos agendados para dias posteriores a nova data definida, estes pagamentos devem ser cancelados.
 3 - Informações sobre a rejeição:  
 - Caso haja necessidade de cancelamento de um consentimento ainda não autorizado, o iniciador poderá chamar o endpoint para mover o consentimento para REJECTED.
@@ -1350,6 +1362,59 @@ solicitação da revogação) deverão ser mantidos. Pagamentos agendados para o
         - Properties changed
           - Modified property: data
             - Property 'OneOf' changed
+              - Schema #/components/schemas/ConsentRevocation modified
+                - Properties changed
+                  - Deleted property: riskSignals
+              - Schema #/components/schemas/ConsentRejection modified
+                - Properties changed
+                  - Deleted property: riskSignals
+                  - Modified property: rejection
+                    - Properties changed
+                      - Modified property: reason
+                        - Properties changed
+                          - Modified property: code
+                            - Description changed from 'Código indicador do motivo de rejeição.
+- NAO_INFORMADO
+- FALHA_INFRAESTRUTURA
+- TEMPO_EXPIRADO_AUTORIZACAO
+- REJEITADO_USUARIO
+- CONTAS_ORIGEM_DESTINO_IGUAIS
+- CONTA_NAO_PERMITE_PAGAMENTO
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+' to 'Código indicador do motivo de rejeição.
+- NAO_INFORMADO
+- FALHA_INFRAESTRUTURA
+- TEMPO_EXPIRADO_AUTORIZACAO
+- REJEITADO_USUARIO
+- CONTAS_ORIGEM_DESTINO_IGUAIS
+- CONTA_NAO_PERMITE_PAGAMENTO
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+- AUTENTICACAO_DIVERGENTE
+'
+                            - New enum values: [AUTENTICACAO_DIVERGENTE]
+                          - Modified property: detail
+                            - Description changed from 'Detalhe sobre o motivo de rejeição indicado no campo `/data/rejection/reason/code`
+- NAO_INFORMADO: Não informada pela detentora de conta;
+- FALHA_INFRAESTRUTURA: [Descrição de qual falha na infraestrutura inviabilizou o processamento];
+- TEMPO_EXPIRADO_AUTORIZACAO: Consentimento expirou antes que o usuário pudesse confirmá-lo;
+- REJEITADO_USUARIO: O usuário rejeitou a autorização do consentimento;
+- CONTAS_ORIGEM_DESTINO_IGUAIS: A conta selecionada é igual à conta destino e não permite realizar esse pagamento;
+- CONTA_NAO_PERMITE_PAGAMENTO: A conta selecionada é do tipo [salario/investimento/liquidação/outros] e não permite realizar esse pagamento;
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
+' to 'Detalhe sobre o motivo de rejeição indicado no campo `/data/rejection/reason/code`
+- NAO_INFORMADO: Não informada pela detentora de conta;
+- FALHA_INFRAESTRUTURA: [Descrição de qual falha na infraestrutura inviabilizou o processamento];
+- TEMPO_EXPIRADO_AUTORIZACAO: Consentimento expirou antes que o usuário pudesse confirmá-lo;
+- REJEITADO_USUARIO: O usuário rejeitou a autorização do consentimento;
+- CONTAS_ORIGEM_DESTINO_IGUAIS: A conta selecionada é igual à conta destino e não permite realizar esse pagamento;
+- CONTA_NAO_PERMITE_PAGAMENTO: A conta selecionada é do tipo [salario/investimento/liquidação/outros] e não permite realizar esse pagamento;
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
+- AUTENTICACAO_DIVERGENTE : Usuário autenticado no detentor diverge do usuário autenticado no iniciador;
+'
               - Schema #/components/schemas/ConsentEdition modified
                 - Required changed
                   - New required property: creditors
@@ -1454,59 +1519,6 @@ Em dispositivos iOS o valor é um ponto flutuante entre 0.0 e 1.0.
 [Android] Informação obtida através do [link](https://developer.android.com/reference/java/time/ZonedDateTime#getOffset()) ou, para versões anteriores à 8.0, [link](https://developer.android.com/reference/java/util/TimeZone#getOffset(long)).
 [iOS] Informação obtida através do [link](https://developer.apple.com/documentation/foundation/timezone/).
 '
-              - Schema #/components/schemas/ConsentRevocation modified
-                - Properties changed
-                  - Deleted property: riskSignals
-              - Schema #/components/schemas/ConsentRejection modified
-                - Properties changed
-                  - Deleted property: riskSignals
-                  - Modified property: rejection
-                    - Properties changed
-                      - Modified property: reason
-                        - Properties changed
-                          - Modified property: code
-                            - Description changed from 'Código indicador do motivo de rejeição.
-- NAO_INFORMADO
-- FALHA_INFRAESTRUTURA
-- TEMPO_EXPIRADO_AUTORIZACAO
-- REJEITADO_USUARIO
-- CONTAS_ORIGEM_DESTINO_IGUAIS
-- CONTA_NAO_PERMITE_PAGAMENTO
-- SALDO_INSUFICIENTE
-- VALOR_ACIMA_LIMITE
-' to 'Código indicador do motivo de rejeição.
-- NAO_INFORMADO
-- FALHA_INFRAESTRUTURA
-- TEMPO_EXPIRADO_AUTORIZACAO
-- REJEITADO_USUARIO
-- CONTAS_ORIGEM_DESTINO_IGUAIS
-- CONTA_NAO_PERMITE_PAGAMENTO
-- SALDO_INSUFICIENTE
-- VALOR_ACIMA_LIMITE
-- AUTENTICACAO_DIVERGENTE
-'
-                            - New enum values: [AUTENTICACAO_DIVERGENTE]
-                          - Modified property: detail
-                            - Description changed from 'Detalhe sobre o motivo de rejeição indicado no campo `/data/rejection/reason/code`
-- NAO_INFORMADO: Não informada pela detentora de conta;
-- FALHA_INFRAESTRUTURA: [Descrição de qual falha na infraestrutura inviabilizou o processamento];
-- TEMPO_EXPIRADO_AUTORIZACAO: Consentimento expirou antes que o usuário pudesse confirmá-lo;
-- REJEITADO_USUARIO: O usuário rejeitou a autorização do consentimento;
-- CONTAS_ORIGEM_DESTINO_IGUAIS: A conta selecionada é igual à conta destino e não permite realizar esse pagamento;
-- CONTA_NAO_PERMITE_PAGAMENTO: A conta selecionada é do tipo [salario/investimento/liquidação/outros] e não permite realizar esse pagamento;
-- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
-- VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
-' to 'Detalhe sobre o motivo de rejeição indicado no campo `/data/rejection/reason/code`
-- NAO_INFORMADO: Não informada pela detentora de conta;
-- FALHA_INFRAESTRUTURA: [Descrição de qual falha na infraestrutura inviabilizou o processamento];
-- TEMPO_EXPIRADO_AUTORIZACAO: Consentimento expirou antes que o usuário pudesse confirmá-lo;
-- REJEITADO_USUARIO: O usuário rejeitou a autorização do consentimento;
-- CONTAS_ORIGEM_DESTINO_IGUAIS: A conta selecionada é igual à conta destino e não permite realizar esse pagamento;
-- CONTA_NAO_PERMITE_PAGAMENTO: A conta selecionada é do tipo [salario/investimento/liquidação/outros] e não permite realizar esse pagamento;
-- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
-- VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
-- AUTENTICACAO_DIVERGENTE : Usuário autenticado no detentor diverge do usuário autenticado no iniciador;
-'
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -1539,15 +1551,6 @@ Campo de preenchimento obrigatório quando o oneOf utilizado do recurringConfigu
 '
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
-                    - Schema #/components/schemas/Sweeping modified
-                      - Properties changed
-                        - Modified property: sweeping
-                          - Required changed
-                            - New required property: startDateTime
-                            - New required property: useOverdraftLimit
-                          - Properties changed
-                            - New property: startDateTime
-                            - New property: useOverdraftLimit
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
@@ -1584,6 +1587,15 @@ Campo de preenchimento obrigatório quando o oneOf utilizado do recurringConfigu
                                       - Example changed from 'CNPJ' to null
                                       - MaxLength changed from 4 to null
                                       - Pattern changed from '^[A-Z]{4}$' to ''
+                    - Schema #/components/schemas/Sweeping modified
+                      - Properties changed
+                        - Modified property: sweeping
+                          - Required changed
+                            - New required property: startDateTime
+                            - New required property: useOverdraftLimit
+                          - Properties changed
+                            - New property: startDateTime
+                            - New property: useOverdraftLimit
                 - Modified property: rejection
                   - Properties changed
                     - Modified property: reason

@@ -2,7 +2,7 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 5
+### Modified Endpoints: 7
 -------------------------
 GET /pix/recurring-payments
 - Responses changed
@@ -14,6 +14,8 @@ GET /pix/recurring-payments
             - Modified property: data
               - Items changed
                 - Properties changed
+                  - Modified property: date
+                    - Description changed from 'Data em que o pagamento será realizado.' to 'Data em que o pagamento será realizado. Uma string com a utilização de timezone UTC-3 (UTC time format).'
                   - Modified property: endToEndId
                     - Example changed from 'E9040088820210128000800123873170' to 'E9040088820241225150000123873170'
 POST /pix/recurring-payments
@@ -24,6 +26,8 @@ POST /pix/recurring-payments
         - Properties changed
           - Modified property: data
             - Properties changed
+              - Modified property: date
+                - Description changed from 'Data em que o pagamento será realizado.' to 'Data em que o pagamento será realizado. Uma string com a utilização de timezone UTC-3 (UTC time format).'
               - Modified property: endToEndId
                 - Example changed from 'E9040088820210128000800123873170' to 'E9040088820241225150000123873170'
 - Responses changed
@@ -34,6 +38,8 @@ POST /pix/recurring-payments
           - Properties changed
             - Modified property: data
               - Properties changed
+                - Modified property: date
+                  - Description changed from 'Data em que o recurso foi criado. Uma string com a utilização de timezone UTC(UTC time format).' to 'Data em que o pagamento será realizado. Uma string com a utilização de timezone UTC-3 (UTC time format).'
                 - Modified property: endToEndId
                   - Example changed from 'E9040088820210128000800123873170' to 'E9040088820241225150000123873170'
 GET /pix/recurring-payments/{recurringPaymentId}
@@ -45,6 +51,8 @@ GET /pix/recurring-payments/{recurringPaymentId}
           - Properties changed
             - Modified property: data
               - Properties changed
+                - Modified property: date
+                  - Description changed from 'Data em que o pagamento será realizado.' to 'Data em que o pagamento será realizado. Uma string com a utilização de timezone UTC-3 (UTC time format).'
                 - Modified property: endToEndId
                   - Example changed from 'E9040088820210128000800123873170' to 'E9040088820241225150000123873170'
 PATCH /pix/recurring-payments/{recurringPaymentId}
@@ -56,8 +64,80 @@ PATCH /pix/recurring-payments/{recurringPaymentId}
           - Properties changed
             - Modified property: data
               - Properties changed
+                - Modified property: date
+                  - Description changed from 'Data em que o recurso foi criado. Uma string com a utilização de timezone UTC(UTC time format).' to 'Data em que o pagamento será realizado. Uma string com a utilização de timezone UTC-3 (UTC time format).'
                 - Modified property: endToEndId
                   - Example changed from 'E9040088820210128000800123873170' to 'E9040088820241225150000123873170'
+POST /recurring-consents
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: recurringConfiguration
+                - Property 'OneOf' changed
+                  - Schema #/components/schemas/AutomaticRequest modified
+                    - Properties changed
+                      - Modified property: automatic
+                        - Properties changed
+                          - Modified property: minimumVariableAmount
+                            - Description changed from 'Valor definido pelo usuário recebedor. 
+Se o usuário pagador atribuir um valor máximo para os pagamentos daquela autorização, ele não poderá ser inferior ao valor mínimo (piso) definido pelo usuário recebedor. 
+Não pode ser preenchido nas autorizações de valor fixo.
+' to 'Valor definido pelo usuário recebedor. 
+Se o usuário pagador atribuir um valor máximo para os pagamentos daquela autorização (campo “maximumVariableAmount”), ele não poderá ser inferior ao piso definido pelo usuário recebedor.
+Não pode ser preenchido nas autorizações de valor fixo, ou seja, com campo “/data/recurringConfiguration/automatic/fixedAmount”. 
+Não representa um valor mínimo de cobrança para o pagamento.
+'
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: recurringConfiguration
+                  - Property 'OneOf' changed
+                    - Schema #/components/schemas/Automatic modified
+                      - Properties changed
+                        - Modified property: automatic
+                          - Properties changed
+                            - Modified property: minimumVariableAmount
+                              - Description changed from 'Valor definido pelo usuário recebedor. 
+Se o usuário pagador atribuir um valor máximo para os pagamentos daquela autorização, ele não poderá ser inferior ao valor mínimo (piso) definido pelo usuário recebedor. 
+Não pode ser preenchido nas autorizações de valor fixo.
+' to 'Valor definido pelo usuário recebedor. 
+Se o usuário pagador atribuir um valor máximo para os pagamentos daquela autorização (campo “maximumVariableAmount”), ele não poderá ser inferior ao piso definido pelo usuário recebedor.
+Não pode ser preenchido nas autorizações de valor fixo, ou seja, com campo “/data/recurringConfiguration/automatic/fixedAmount”. 
+Não representa um valor mínimo de cobrança para o pagamento.
+'
+GET /recurring-consents/{recurringConsentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: recurringConfiguration
+                  - Property 'OneOf' changed
+                    - Schema #/components/schemas/Automatic modified
+                      - Properties changed
+                        - Modified property: automatic
+                          - Properties changed
+                            - Modified property: minimumVariableAmount
+                              - Description changed from 'Valor definido pelo usuário recebedor. 
+Se o usuário pagador atribuir um valor máximo para os pagamentos daquela autorização, ele não poderá ser inferior ao valor mínimo (piso) definido pelo usuário recebedor. 
+Não pode ser preenchido nas autorizações de valor fixo.
+' to 'Valor definido pelo usuário recebedor. 
+Se o usuário pagador atribuir um valor máximo para os pagamentos daquela autorização (campo “maximumVariableAmount”), ele não poderá ser inferior ao piso definido pelo usuário recebedor.
+Não pode ser preenchido nas autorizações de valor fixo, ou seja, com campo “/data/recurringConfiguration/automatic/fixedAmount”. 
+Não representa um valor mínimo de cobrança para o pagamento.
+'
 PATCH /recurring-consents/{recurringConsentId}
 - Description changed from 'Método para rejeitar, revogar ou editar um consentimento de longa duração:  
 1 - Informações sobre a revogação:
@@ -83,26 +163,32 @@ solicitação da revogação) deverão ser mantidos. Pagamentos agendados para o
 - Os campos que são passíveis de edição e suas regras podem ser encontrados através do [link](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/628195665);
 - A edição é possível apenas em casos de consentimento para Pix Automático (“automatic” escolhido no oneOf do objeto “recurringConfiguration”);
 - O envio do item "/data/creditors/name" atualizará o nome do recebedor em todos os elementos do array.
+- Caso consentimento seja de valor fixo (campo “/data/recurringConfiguration/automatic/fixedAmount” preenchido) não é permitida a edição do campo “/data/recurringConfiguration/automatic/maximumVariableAmount”.
+- Caso o recebedor tenha definido um piso para o limite a ser estipulado pelo pagador (campo “/data/recurringConfiguration/automatic/minimumVariableAmount” preenchido), o valor máximo de limite por transação definido pelo usuário pagador (campo “/data/recurringConfiguration/automatic/maximumVariableAmount”) não pode ser menor que o valor estipulado pelo recebedor.
 - Caso o seja editado o prazo de expiração do consentimento e já existam pagamentos agendados para dias posteriores a nova data definida, estes pagamentos devem ser cancelados.
 3 - Informações sobre a rejeição:  
 - Caso haja necessidade de cancelamento de um consentimento ainda não autorizado, o iniciador poderá chamar o endpoint para mover o consentimento para REJECTED.
 '
-- Request body changed
-  - Content changed
-    - Modified media type: application/jwt
-      - Schema changed
-        - Properties changed
-          - Modified property: data
-            - Property 'OneOf' changed
-              - Schema #/components/schemas/ConsentEdition modified
-                - Properties changed
-                  - Modified property: loggedUser
-                    - Properties changed
-                      - Modified property: document
-                        - Properties changed
-                          - Modified property: identification
-                            - Description changed from 'Número do documento de identificação oficial do pagador ou recebedor, pessoa natural ou jurídica.' to 'Número do documento de identificação oficial do usuário logado na instituição iniciadora.'
-                            - Pattern changed from '^(?:\d{11}|\d{14})$' to '^(\d{11})$'
-                          - Modified property: rel
-                            - Description changed from 'Tipo de documento de identificação oficial do pagador ou recebedor, pessoa natural ou jurídica.' to 'Tipo do documento de identificação oficial do usuário logado na instituição iniciadora.'
-                            - Deleted enum values: [CNPJ]
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: recurringConfiguration
+                  - Property 'OneOf' changed
+                    - Schema #/components/schemas/Automatic modified
+                      - Properties changed
+                        - Modified property: automatic
+                          - Properties changed
+                            - Modified property: minimumVariableAmount
+                              - Description changed from 'Valor definido pelo usuário recebedor. 
+Se o usuário pagador atribuir um valor máximo para os pagamentos daquela autorização, ele não poderá ser inferior ao valor mínimo (piso) definido pelo usuário recebedor. 
+Não pode ser preenchido nas autorizações de valor fixo.
+' to 'Valor definido pelo usuário recebedor. 
+Se o usuário pagador atribuir um valor máximo para os pagamentos daquela autorização (campo “maximumVariableAmount”), ele não poderá ser inferior ao piso definido pelo usuário recebedor.
+Não pode ser preenchido nas autorizações de valor fixo, ou seja, com campo “/data/recurringConfiguration/automatic/fixedAmount”. 
+Não representa um valor mínimo de cobrança para o pagamento.
+'
