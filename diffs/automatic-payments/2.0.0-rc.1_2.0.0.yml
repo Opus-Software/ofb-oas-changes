@@ -87,3 +87,22 @@ solicitação da revogação) deverão ser mantidos. Pagamentos agendados para o
 3 - Informações sobre a rejeição:  
 - Caso haja necessidade de cancelamento de um consentimento ainda não autorizado, o iniciador poderá chamar o endpoint para mover o consentimento para REJECTED.
 '
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Property 'OneOf' changed
+              - Schema #/components/schemas/ConsentEdition modified
+                - Properties changed
+                  - Modified property: loggedUser
+                    - Properties changed
+                      - Modified property: document
+                        - Properties changed
+                          - Modified property: identification
+                            - Description changed from 'Número do documento de identificação oficial do pagador ou recebedor, pessoa natural ou jurídica.' to 'Número do documento de identificação oficial do usuário logado na instituição iniciadora.'
+                            - Pattern changed from '^(?:\d{11}|\d{14})$' to '^(\d{11})$'
+                          - Modified property: rel
+                            - Description changed from 'Tipo de documento de identificação oficial do pagador ou recebedor, pessoa natural ou jurídica.' to 'Tipo do documento de identificação oficial do usuário logado na instituição iniciadora.'
+                            - Deleted enum values: [CNPJ]
