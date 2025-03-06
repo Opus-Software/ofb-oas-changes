@@ -1362,6 +1362,59 @@ solicitação da revogação) deverão ser mantidos. Pagamentos agendados para o
         - Properties changed
           - Modified property: data
             - Property 'OneOf' changed
+              - Schema #/components/schemas/ConsentRevocation modified
+                - Properties changed
+                  - Deleted property: riskSignals
+              - Schema #/components/schemas/ConsentRejection modified
+                - Properties changed
+                  - Deleted property: riskSignals
+                  - Modified property: rejection
+                    - Properties changed
+                      - Modified property: reason
+                        - Properties changed
+                          - Modified property: code
+                            - Description changed from 'Código indicador do motivo de rejeição.
+- NAO_INFORMADO
+- FALHA_INFRAESTRUTURA
+- TEMPO_EXPIRADO_AUTORIZACAO
+- REJEITADO_USUARIO
+- CONTAS_ORIGEM_DESTINO_IGUAIS
+- CONTA_NAO_PERMITE_PAGAMENTO
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+' to 'Código indicador do motivo de rejeição.
+- NAO_INFORMADO
+- FALHA_INFRAESTRUTURA
+- TEMPO_EXPIRADO_AUTORIZACAO
+- REJEITADO_USUARIO
+- CONTAS_ORIGEM_DESTINO_IGUAIS
+- CONTA_NAO_PERMITE_PAGAMENTO
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+- AUTENTICACAO_DIVERGENTE
+'
+                            - New enum values: [AUTENTICACAO_DIVERGENTE]
+                          - Modified property: detail
+                            - Description changed from 'Detalhe sobre o motivo de rejeição indicado no campo `/data/rejection/reason/code`
+- NAO_INFORMADO: Não informada pela detentora de conta;
+- FALHA_INFRAESTRUTURA: [Descrição de qual falha na infraestrutura inviabilizou o processamento];
+- TEMPO_EXPIRADO_AUTORIZACAO: Consentimento expirou antes que o usuário pudesse confirmá-lo;
+- REJEITADO_USUARIO: O usuário rejeitou a autorização do consentimento;
+- CONTAS_ORIGEM_DESTINO_IGUAIS: A conta selecionada é igual à conta destino e não permite realizar esse pagamento;
+- CONTA_NAO_PERMITE_PAGAMENTO: A conta selecionada é do tipo [salario/investimento/liquidação/outros] e não permite realizar esse pagamento;
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
+' to 'Detalhe sobre o motivo de rejeição indicado no campo `/data/rejection/reason/code`
+- NAO_INFORMADO: Não informada pela detentora de conta;
+- FALHA_INFRAESTRUTURA: [Descrição de qual falha na infraestrutura inviabilizou o processamento];
+- TEMPO_EXPIRADO_AUTORIZACAO: Consentimento expirou antes que o usuário pudesse confirmá-lo;
+- REJEITADO_USUARIO: O usuário rejeitou a autorização do consentimento;
+- CONTAS_ORIGEM_DESTINO_IGUAIS: A conta selecionada é igual à conta destino e não permite realizar esse pagamento;
+- CONTA_NAO_PERMITE_PAGAMENTO: A conta selecionada é do tipo [salario/investimento/liquidação/outros] e não permite realizar esse pagamento;
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
+- AUTENTICACAO_DIVERGENTE : Usuário autenticado no detentor diverge do usuário autenticado no iniciador;
+'
               - Schema #/components/schemas/ConsentEdition modified
                 - Required changed
                   - New required property: creditors
@@ -1465,59 +1518,6 @@ Em dispositivos iOS o valor é um ponto flutuante entre 0.0 e 1.0.
 ' to 'Indica a configuração de fuso horário do dispositivo do usuário, com o formato UTC offset: ±hh[:mm]. O formato especificado permite a omissão da parte correspondente aos minutos, caso esta última tenha valor zero. Assim, ambos os valores '-03:00' e '-03' são válidos e representam o mesmo fuso horário.
 [Android] Informação obtida através do [link](https://developer.android.com/reference/java/time/ZonedDateTime#getOffset()) ou, para versões anteriores à 8.0, [link](https://developer.android.com/reference/java/util/TimeZone#getOffset(long)).
 [iOS] Informação obtida através do [link](https://developer.apple.com/documentation/foundation/timezone/).
-'
-              - Schema #/components/schemas/ConsentRevocation modified
-                - Properties changed
-                  - Deleted property: riskSignals
-              - Schema #/components/schemas/ConsentRejection modified
-                - Properties changed
-                  - Deleted property: riskSignals
-                  - Modified property: rejection
-                    - Properties changed
-                      - Modified property: reason
-                        - Properties changed
-                          - Modified property: code
-                            - Description changed from 'Código indicador do motivo de rejeição.
-- NAO_INFORMADO
-- FALHA_INFRAESTRUTURA
-- TEMPO_EXPIRADO_AUTORIZACAO
-- REJEITADO_USUARIO
-- CONTAS_ORIGEM_DESTINO_IGUAIS
-- CONTA_NAO_PERMITE_PAGAMENTO
-- SALDO_INSUFICIENTE
-- VALOR_ACIMA_LIMITE
-' to 'Código indicador do motivo de rejeição.
-- NAO_INFORMADO
-- FALHA_INFRAESTRUTURA
-- TEMPO_EXPIRADO_AUTORIZACAO
-- REJEITADO_USUARIO
-- CONTAS_ORIGEM_DESTINO_IGUAIS
-- CONTA_NAO_PERMITE_PAGAMENTO
-- SALDO_INSUFICIENTE
-- VALOR_ACIMA_LIMITE
-- AUTENTICACAO_DIVERGENTE
-'
-                            - New enum values: [AUTENTICACAO_DIVERGENTE]
-                          - Modified property: detail
-                            - Description changed from 'Detalhe sobre o motivo de rejeição indicado no campo `/data/rejection/reason/code`
-- NAO_INFORMADO: Não informada pela detentora de conta;
-- FALHA_INFRAESTRUTURA: [Descrição de qual falha na infraestrutura inviabilizou o processamento];
-- TEMPO_EXPIRADO_AUTORIZACAO: Consentimento expirou antes que o usuário pudesse confirmá-lo;
-- REJEITADO_USUARIO: O usuário rejeitou a autorização do consentimento;
-- CONTAS_ORIGEM_DESTINO_IGUAIS: A conta selecionada é igual à conta destino e não permite realizar esse pagamento;
-- CONTA_NAO_PERMITE_PAGAMENTO: A conta selecionada é do tipo [salario/investimento/liquidação/outros] e não permite realizar esse pagamento;
-- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
-- VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
-' to 'Detalhe sobre o motivo de rejeição indicado no campo `/data/rejection/reason/code`
-- NAO_INFORMADO: Não informada pela detentora de conta;
-- FALHA_INFRAESTRUTURA: [Descrição de qual falha na infraestrutura inviabilizou o processamento];
-- TEMPO_EXPIRADO_AUTORIZACAO: Consentimento expirou antes que o usuário pudesse confirmá-lo;
-- REJEITADO_USUARIO: O usuário rejeitou a autorização do consentimento;
-- CONTAS_ORIGEM_DESTINO_IGUAIS: A conta selecionada é igual à conta destino e não permite realizar esse pagamento;
-- CONTA_NAO_PERMITE_PAGAMENTO: A conta selecionada é do tipo [salario/investimento/liquidação/outros] e não permite realizar esse pagamento;
-- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
-- VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
-- AUTENTICACAO_DIVERGENTE : Usuário autenticado no detentor diverge do usuário autenticado no iniciador;
 '
 - Responses changed
   - Modified response: 200
