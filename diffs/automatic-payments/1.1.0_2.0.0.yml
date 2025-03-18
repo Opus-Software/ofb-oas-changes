@@ -1039,6 +1039,13 @@ POST /recurring-consents
                   - Description changed from 'Objeto contendo os dados do recebedor (creditor). Em casos de transferências inteligentes para clientes PJ, os CNPJs informados devem possuir a mesma raiz do CNPJ enviado no campo /data/businessEntity/document/identification. Em casos de transferências inteligentes para clientes PN, deve-se aceitar apenas um item no array e este item deve conter as informações do recebedor. O CPF informado deve ser o mesmo do /data/loggedUser/document/identification. Caso alguma das regras mencionadas não sejam seguidas, o detentor deve rejeitar a solicitação (sincronamente) com o erro DETALHE_PAGAMENTO_INVALIDO, e o detalhe deve ser preenchido com a informação referente ao erro.' to 'Objeto contendo os dados do recebedor (creditor). Em casos de transferências inteligentes para clientes PJ, os CNPJs informados devem possuir a mesma raiz do CNPJ enviado no campo /data/businessEntity/document/identification. Em casos de transferências inteligentes para clientes PN, deve-se aceitar apenas um item no array e este item deve conter as informações do recebedor. O CPF informado deve ser o mesmo do /data/loggedUser/document/identification. Caso alguma das regras mencionadas não sejam seguidas, o detentor deve rejeitar a solicitação (sincronamente) com o erro DETALHE_PAGAMENTO_INVALIDO, e o detalhe deve ser preenchido com a informação referente ao erro.
 [Restrição] Caso o consentimento de longa duração seja para o produto Pix Automático (“automatic” selecionado no oneOf do objeto “/data/recurringConfiguration”), apenas um recebedor é permitido e esse deve ser pessoa jurídica.
 '
+              - Modified property: debtorAccount
+                - Description changed from 'Objeto que contém a identificação da conta de origem do pagador.  
+As informações quanto à conta de origem do pagador poderão ser trazidas no consentimento para a detentora, caso a iniciadora tenha coletado essas informações do cliente. Do contrário, será coletada na detentora e trazida para a iniciadora como resposta à criação do pagamento.
+' to 'Objeto que contém a identificação da conta de origem do pagador. 
+Caso a ITP tenha coletado as informações de conta do usuário pagador, essas poderão ser enviadas no consentimento para a detentora neste objeto, ou; Se não coletado pelo ITP, o usuário pagador precisará definir durante a autorização do consentimento. 
+Mesmo se enviado pela ITP, o usuário pagador pode alterar durante a autorização do consentimento
+'
               - Modified property: recurringConfiguration
                 - Property 'OneOf' changed
                   - 2 schemas added
@@ -1063,10 +1070,29 @@ POST /recurring-consents
 [Restrição] Caso o consentimento de longa duração seja para o produto Pix Automático (“automatic” selecionado no oneOf do objeto “/data/recurringConfiguration”), apenas um recebedor é permitido e esse deve ser pessoa jurídica.
 '
                 - Modified property: debtorAccount
+                  - Description changed from 'Objeto que contém a identificação da conta de origem do pagador. As informações quanto à conta de origem do pagador poderão ser trazidas no consentimento para a detentora, caso a iniciadora tenha coletado essas informações do cliente. 
+Do contrário, será coletada na detentora e trazida para a iniciadora como resposta à criação do pagamento.
+[Restrições]
+- Objeto obrigatório que deverá ser retornado quando o consentimento estiver ou passar pelo status AUTHORISED;
+' to 'Objeto que contém a identificação da conta de origem do pagador. 
+Caso a ITP tenha coletado as informações de conta do usuário pagador, essas poderão ser enviadas no consentimento para a detentora neste objeto, ou; Se não coletado pelo ITP, o usuário pagador precisará definir durante a autorização do consentimento. 
+Mesmo se enviado pela ITP, o usuário pagador pode alterar durante a autorização do consentimento
+[Restrições]
+- Objeto obrigatório que deverá ser retornado quando o consentimento estiver ou passar pelo status AUTHORISED;
+'
                   - Properties changed
                     - Deleted property: ibgeTownCode
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
+                    - Schema #/components/schemas/Sweeping modified
+                      - Properties changed
+                        - Modified property: sweeping
+                          - Required changed
+                            - New required property: startDateTime
+                            - New required property: useOverdraftLimit
+                          - Properties changed
+                            - New property: startDateTime
+                            - New property: useOverdraftLimit
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
@@ -1103,15 +1129,6 @@ POST /recurring-consents
                                       - Example changed from 'CNPJ' to null
                                       - MaxLength changed from 4 to null
                                       - Pattern changed from '^[A-Z]{4}$' to ''
-                    - Schema #/components/schemas/Sweeping modified
-                      - Properties changed
-                        - Modified property: sweeping
-                          - Required changed
-                            - New required property: startDateTime
-                            - New required property: useOverdraftLimit
-                          - Properties changed
-                            - New property: startDateTime
-                            - New property: useOverdraftLimit
                 - Modified property: rejection
                   - Properties changed
                     - Modified property: reason
@@ -1207,6 +1224,16 @@ GET /recurring-consents/{recurringConsentId}
 [Restrição] Caso o consentimento de longa duração seja para o produto Pix Automático (“automatic” selecionado no oneOf do objeto “/data/recurringConfiguration”), apenas um recebedor é permitido e esse deve ser pessoa jurídica.
 '
                 - Modified property: debtorAccount
+                  - Description changed from 'Objeto que contém a identificação da conta de origem do pagador. As informações quanto à conta de origem do pagador poderão ser trazidas no consentimento para a detentora, caso a iniciadora tenha coletado essas informações do cliente. 
+Do contrário, será coletada na detentora e trazida para a iniciadora como resposta à criação do pagamento.
+[Restrições]
+- Objeto obrigatório que deverá ser retornado quando o consentimento estiver ou passar pelo status AUTHORISED;
+' to 'Objeto que contém a identificação da conta de origem do pagador. 
+Caso a ITP tenha coletado as informações de conta do usuário pagador, essas poderão ser enviadas no consentimento para a detentora neste objeto, ou; Se não coletado pelo ITP, o usuário pagador precisará definir durante a autorização do consentimento. 
+Mesmo se enviado pela ITP, o usuário pagador pode alterar durante a autorização do consentimento
+[Restrições]
+- Objeto obrigatório que deverá ser retornado quando o consentimento estiver ou passar pelo status AUTHORISED;
+'
                   - Properties changed
                     - Modified property: ibgeTownCode
                       - Description changed from 'Campo utilizado pela iniciadora para cálculo do dia útil de liquidação do pagamento (vide especificação do endToEndId) baseado no município de cadastro do usuário pagador no detentor.
@@ -1369,56 +1396,6 @@ solicitação da revogação) deverão ser mantidos. Pagamentos agendados para o
         - Properties changed
           - Modified property: data
             - Property 'OneOf' changed
-              - Schema #/components/schemas/ConsentRejection modified
-                - Properties changed
-                  - Deleted property: riskSignals
-                  - Modified property: rejection
-                    - Properties changed
-                      - Modified property: reason
-                        - Properties changed
-                          - Modified property: code
-                            - Description changed from 'Código indicador do motivo de rejeição.
-- NAO_INFORMADO
-- FALHA_INFRAESTRUTURA
-- TEMPO_EXPIRADO_AUTORIZACAO
-- REJEITADO_USUARIO
-- CONTAS_ORIGEM_DESTINO_IGUAIS
-- CONTA_NAO_PERMITE_PAGAMENTO
-- SALDO_INSUFICIENTE
-- VALOR_ACIMA_LIMITE
-' to 'Código indicador do motivo de rejeição.
-- NAO_INFORMADO
-- FALHA_INFRAESTRUTURA
-- TEMPO_EXPIRADO_AUTORIZACAO
-- REJEITADO_USUARIO
-- CONTAS_ORIGEM_DESTINO_IGUAIS
-- CONTA_NAO_PERMITE_PAGAMENTO
-- SALDO_INSUFICIENTE
-- VALOR_ACIMA_LIMITE
-- AUTENTICACAO_DIVERGENTE
-'
-                            - New enum values: [AUTENTICACAO_DIVERGENTE]
-                          - Modified property: detail
-                            - Description changed from 'Detalhe sobre o motivo de rejeição indicado no campo `/data/rejection/reason/code`
-- NAO_INFORMADO: Não informada pela detentora de conta;
-- FALHA_INFRAESTRUTURA: [Descrição de qual falha na infraestrutura inviabilizou o processamento];
-- TEMPO_EXPIRADO_AUTORIZACAO: Consentimento expirou antes que o usuário pudesse confirmá-lo;
-- REJEITADO_USUARIO: O usuário rejeitou a autorização do consentimento;
-- CONTAS_ORIGEM_DESTINO_IGUAIS: A conta selecionada é igual à conta destino e não permite realizar esse pagamento;
-- CONTA_NAO_PERMITE_PAGAMENTO: A conta selecionada é do tipo [salario/investimento/liquidação/outros] e não permite realizar esse pagamento;
-- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
-- VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
-' to 'Detalhe sobre o motivo de rejeição indicado no campo `/data/rejection/reason/code`
-- NAO_INFORMADO: Não informada pela detentora de conta;
-- FALHA_INFRAESTRUTURA: [Descrição de qual falha na infraestrutura inviabilizou o processamento];
-- TEMPO_EXPIRADO_AUTORIZACAO: Consentimento expirou antes que o usuário pudesse confirmá-lo;
-- REJEITADO_USUARIO: O usuário rejeitou a autorização do consentimento;
-- CONTAS_ORIGEM_DESTINO_IGUAIS: A conta selecionada é igual à conta destino e não permite realizar esse pagamento;
-- CONTA_NAO_PERMITE_PAGAMENTO: A conta selecionada é do tipo [salario/investimento/liquidação/outros] e não permite realizar esse pagamento;
-- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
-- VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
-- AUTENTICACAO_DIVERGENTE : Usuário autenticado no detentor diverge do usuário autenticado no iniciador;
-'
               - Schema #/components/schemas/ConsentEdition modified
                 - Required changed
                   - New required property: creditors
@@ -1526,6 +1503,56 @@ Em dispositivos iOS o valor é um ponto flutuante entre 0.0 e 1.0.
               - Schema #/components/schemas/ConsentRevocation modified
                 - Properties changed
                   - Deleted property: riskSignals
+              - Schema #/components/schemas/ConsentRejection modified
+                - Properties changed
+                  - Deleted property: riskSignals
+                  - Modified property: rejection
+                    - Properties changed
+                      - Modified property: reason
+                        - Properties changed
+                          - Modified property: code
+                            - Description changed from 'Código indicador do motivo de rejeição.
+- NAO_INFORMADO
+- FALHA_INFRAESTRUTURA
+- TEMPO_EXPIRADO_AUTORIZACAO
+- REJEITADO_USUARIO
+- CONTAS_ORIGEM_DESTINO_IGUAIS
+- CONTA_NAO_PERMITE_PAGAMENTO
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+' to 'Código indicador do motivo de rejeição.
+- NAO_INFORMADO
+- FALHA_INFRAESTRUTURA
+- TEMPO_EXPIRADO_AUTORIZACAO
+- REJEITADO_USUARIO
+- CONTAS_ORIGEM_DESTINO_IGUAIS
+- CONTA_NAO_PERMITE_PAGAMENTO
+- SALDO_INSUFICIENTE
+- VALOR_ACIMA_LIMITE
+- AUTENTICACAO_DIVERGENTE
+'
+                            - New enum values: [AUTENTICACAO_DIVERGENTE]
+                          - Modified property: detail
+                            - Description changed from 'Detalhe sobre o motivo de rejeição indicado no campo `/data/rejection/reason/code`
+- NAO_INFORMADO: Não informada pela detentora de conta;
+- FALHA_INFRAESTRUTURA: [Descrição de qual falha na infraestrutura inviabilizou o processamento];
+- TEMPO_EXPIRADO_AUTORIZACAO: Consentimento expirou antes que o usuário pudesse confirmá-lo;
+- REJEITADO_USUARIO: O usuário rejeitou a autorização do consentimento;
+- CONTAS_ORIGEM_DESTINO_IGUAIS: A conta selecionada é igual à conta destino e não permite realizar esse pagamento;
+- CONTA_NAO_PERMITE_PAGAMENTO: A conta selecionada é do tipo [salario/investimento/liquidação/outros] e não permite realizar esse pagamento;
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
+' to 'Detalhe sobre o motivo de rejeição indicado no campo `/data/rejection/reason/code`
+- NAO_INFORMADO: Não informada pela detentora de conta;
+- FALHA_INFRAESTRUTURA: [Descrição de qual falha na infraestrutura inviabilizou o processamento];
+- TEMPO_EXPIRADO_AUTORIZACAO: Consentimento expirou antes que o usuário pudesse confirmá-lo;
+- REJEITADO_USUARIO: O usuário rejeitou a autorização do consentimento;
+- CONTAS_ORIGEM_DESTINO_IGUAIS: A conta selecionada é igual à conta destino e não permite realizar esse pagamento;
+- CONTA_NAO_PERMITE_PAGAMENTO: A conta selecionada é do tipo [salario/investimento/liquidação/outros] e não permite realizar esse pagamento;
+- SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento;
+- VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido para permitir a realização de transações pelo cliente;
+- AUTENTICACAO_DIVERGENTE : Usuário autenticado no detentor diverge do usuário autenticado no iniciador;
+'
 - Responses changed
   - Modified response: 200
     - Description changed from 'Objeto contendo as informações de consentimento para a iniciação de pagamento individual.' to 'Objeto contendo as informações de consentimento para iniciação de pagamento automático.'
@@ -1559,15 +1586,6 @@ Campo de preenchimento obrigatório quando o oneOf utilizado do recurringConfigu
 '
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
-                    - Schema #/components/schemas/Sweeping modified
-                      - Properties changed
-                        - Modified property: sweeping
-                          - Required changed
-                            - New required property: startDateTime
-                            - New required property: useOverdraftLimit
-                          - Properties changed
-                            - New property: startDateTime
-                            - New property: useOverdraftLimit
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
@@ -1604,6 +1622,15 @@ Campo de preenchimento obrigatório quando o oneOf utilizado do recurringConfigu
                                       - Example changed from 'CNPJ' to null
                                       - MaxLength changed from 4 to null
                                       - Pattern changed from '^[A-Z]{4}$' to ''
+                    - Schema #/components/schemas/Sweeping modified
+                      - Properties changed
+                        - Modified property: sweeping
+                          - Required changed
+                            - New required property: startDateTime
+                            - New required property: useOverdraftLimit
+                          - Properties changed
+                            - New property: startDateTime
+                            - New property: useOverdraftLimit
                 - Modified property: rejection
                   - Properties changed
                     - Modified property: reason

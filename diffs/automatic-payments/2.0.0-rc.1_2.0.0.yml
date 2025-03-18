@@ -76,6 +76,13 @@ POST /recurring-consents
         - Properties changed
           - Modified property: data
             - Properties changed
+              - Modified property: debtorAccount
+                - Description changed from 'Objeto que contém a identificação da conta de origem do pagador.  
+As informações quanto à conta de origem do pagador poderão ser trazidas no consentimento para a detentora, caso a iniciadora tenha coletado essas informações do cliente. Do contrário, será coletada na detentora e trazida para a iniciadora como resposta à criação do pagamento.
+' to 'Objeto que contém a identificação da conta de origem do pagador. 
+Caso a ITP tenha coletado as informações de conta do usuário pagador, essas poderão ser enviadas no consentimento para a detentora neste objeto, ou; Se não coletado pelo ITP, o usuário pagador precisará definir durante a autorização do consentimento. 
+Mesmo se enviado pela ITP, o usuário pagador pode alterar durante a autorização do consentimento
+'
               - Modified property: recurringConfiguration
                 - Property 'OneOf' changed
                   - Schema #/components/schemas/AutomaticRequest modified
@@ -100,6 +107,17 @@ Não representa um valor mínimo de cobrança para o pagamento.
           - Properties changed
             - Modified property: data
               - Properties changed
+                - Modified property: debtorAccount
+                  - Description changed from 'Objeto que contém a identificação da conta de origem do pagador. As informações quanto à conta de origem do pagador poderão ser trazidas no consentimento para a detentora, caso a iniciadora tenha coletado essas informações do cliente. 
+Do contrário, será coletada na detentora e trazida para a iniciadora como resposta à criação do pagamento.
+[Restrições]
+- Objeto obrigatório que deverá ser retornado quando o consentimento estiver ou passar pelo status AUTHORISED;
+' to 'Objeto que contém a identificação da conta de origem do pagador. 
+Caso a ITP tenha coletado as informações de conta do usuário pagador, essas poderão ser enviadas no consentimento para a detentora neste objeto, ou; Se não coletado pelo ITP, o usuário pagador precisará definir durante a autorização do consentimento. 
+Mesmo se enviado pela ITP, o usuário pagador pode alterar durante a autorização do consentimento
+[Restrições]
+- Objeto obrigatório que deverá ser retornado quando o consentimento estiver ou passar pelo status AUTHORISED;
+'
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
                     - Schema #/components/schemas/Automatic modified
@@ -130,6 +148,17 @@ GET /recurring-consents/{recurringConsentId}
           - Properties changed
             - Modified property: data
               - Properties changed
+                - Modified property: debtorAccount
+                  - Description changed from 'Objeto que contém a identificação da conta de origem do pagador. As informações quanto à conta de origem do pagador poderão ser trazidas no consentimento para a detentora, caso a iniciadora tenha coletado essas informações do cliente. 
+Do contrário, será coletada na detentora e trazida para a iniciadora como resposta à criação do pagamento.
+[Restrições]
+- Objeto obrigatório que deverá ser retornado quando o consentimento estiver ou passar pelo status AUTHORISED;
+' to 'Objeto que contém a identificação da conta de origem do pagador. 
+Caso a ITP tenha coletado as informações de conta do usuário pagador, essas poderão ser enviadas no consentimento para a detentora neste objeto, ou; Se não coletado pelo ITP, o usuário pagador precisará definir durante a autorização do consentimento. 
+Mesmo se enviado pela ITP, o usuário pagador pode alterar durante a autorização do consentimento
+[Restrições]
+- Objeto obrigatório que deverá ser retornado quando o consentimento estiver ou passar pelo status AUTHORISED;
+'
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
                     - Schema #/components/schemas/Automatic modified
