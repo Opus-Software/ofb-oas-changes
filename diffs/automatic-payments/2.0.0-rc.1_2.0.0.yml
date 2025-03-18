@@ -115,6 +115,11 @@ Se o usuário pagador atribuir um valor máximo para os pagamentos daquela autor
 Não pode ser preenchido nas autorizações de valor fixo, ou seja, com campo “/data/recurringConfiguration/automatic/fixedAmount”. 
 Não representa um valor mínimo de cobrança para o pagamento.
 '
+                - Modified property: statusUpdateDateTime
+                  - Description changed from 'Data e hora em que o consentimento deve passar a ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format). 
+[Restrição] Caso esse campo não seja enviado pelo iniciador na requisição, o detentor deve preencher esse campo com o mesmo valor atribuído ao campo /data/creationDateTime. Caso o campo /data/startDateTime enviado seja anterior ao valor do campo /data/creationDateTime, o detentor deve substituir o valor do campo /data/startDateTime pelo valor do campo /data/creationDateTime
+' to 'Data e hora em que o consentimento teve o status atualizado. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format).
+'
 GET /recurring-consents/{recurringConsentId}
 - Responses changed
   - Modified response: 200
