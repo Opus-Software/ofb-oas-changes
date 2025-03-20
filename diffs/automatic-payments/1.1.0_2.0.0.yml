@@ -1051,8 +1051,9 @@ Apenas um item é permitido no array; e; O documento informado deve ser de um re
                 - Description changed from 'Objeto que contém a identificação da conta de origem do pagador.  
 As informações quanto à conta de origem do pagador poderão ser trazidas no consentimento para a detentora, caso a iniciadora tenha coletado essas informações do cliente. Do contrário, será coletada na detentora e trazida para a iniciadora como resposta à criação do pagamento.
 ' to 'Objeto que contém a identificação da conta de origem do pagador. 
-Caso a ITP tenha coletado as informações de conta do usuário pagador, essas poderão ser enviadas no consentimento para a detentora neste objeto, ou; Se não coletado pelo ITP, o usuário pagador precisará definir durante a autorização do consentimento. 
-Mesmo se enviado pela ITP, o usuário pagador pode alterar durante a autorização do consentimento
+- Caso a ITP tenha coletado as informações de conta do usuário pagador, essas poderão ser enviadas no consentimento para a detentora neste objeto, ou; 
+- Se não coletado pelo ITP, o usuário pagador precisará definir durante a autorização do consentimento. 
+- Mesmo se enviado pela ITP, o usuário pagador pode alterar durante a autorização do consentimento
 '
               - Modified property: recurringConfiguration
                 - Property 'OneOf' changed
@@ -1091,8 +1092,9 @@ Do contrário, será coletada na detentora e trazida para a iniciadora como resp
 [Restrições]
 - Objeto obrigatório que deverá ser retornado quando o consentimento estiver ou passar pelo status AUTHORISED;
 ' to 'Objeto que contém a identificação da conta de origem do pagador. 
-Caso a ITP tenha coletado as informações de conta do usuário pagador, essas poderão ser enviadas no consentimento para a detentora neste objeto, ou; Se não coletado pelo ITP, o usuário pagador precisará definir durante a autorização do consentimento. 
-Mesmo se enviado pela ITP, o usuário pagador pode alterar durante a autorização do consentimento
+- Caso a ITP tenha coletado as informações de conta do usuário pagador, essas poderão ser enviadas no consentimento para a detentora neste objeto, ou; 
+- Se não coletado pelo ITP, o usuário pagador precisará definir durante a autorização do consentimento. 
+- Mesmo se enviado pela ITP, o usuário pagador pode alterar durante a autorização do consentimento
 [Restrições]
 - Objeto obrigatório que deverá ser retornado quando o consentimento estiver ou passar pelo status AUTHORISED;
 '
@@ -1253,8 +1255,9 @@ Do contrário, será coletada na detentora e trazida para a iniciadora como resp
 [Restrições]
 - Objeto obrigatório que deverá ser retornado quando o consentimento estiver ou passar pelo status AUTHORISED;
 ' to 'Objeto que contém a identificação da conta de origem do pagador. 
-Caso a ITP tenha coletado as informações de conta do usuário pagador, essas poderão ser enviadas no consentimento para a detentora neste objeto, ou; Se não coletado pelo ITP, o usuário pagador precisará definir durante a autorização do consentimento. 
-Mesmo se enviado pela ITP, o usuário pagador pode alterar durante a autorização do consentimento
+- Caso a ITP tenha coletado as informações de conta do usuário pagador, essas poderão ser enviadas no consentimento para a detentora neste objeto, ou; 
+- Se não coletado pelo ITP, o usuário pagador precisará definir durante a autorização do consentimento. 
+- Mesmo se enviado pela ITP, o usuário pagador pode alterar durante a autorização do consentimento
 [Restrições]
 - Objeto obrigatório que deverá ser retornado quando o consentimento estiver ou passar pelo status AUTHORISED;
 '
@@ -1610,26 +1613,24 @@ Em dispositivos iOS o valor é um ponto flutuante entre 0.0 e 1.0.
 Apenas um item é permitido no array; e; O documento informado deve ser de um recebedor pessoa jurídica  
 '
                 - Modified property: debtorAccount
+                  - Description changed from 'Objeto que contém a identificação da conta de origem do pagador. As informações quanto à conta de origem do pagador poderão ser trazidas no consentimento para a detentora, caso a iniciadora tenha coletado essas informações do cliente. 
+Do contrário, será coletada na detentora e trazida para a iniciadora como resposta à criação do pagamento.
+[Restrições]
+- Objeto obrigatório que deverá ser retornado quando o consentimento estiver ou passar pelo status AUTHORISED;
+' to 'Objeto que contém a identificação da conta de origem do pagador. 
+- Caso a ITP tenha coletado as informações de conta do usuário pagador, essas poderão ser enviadas no consentimento para a detentora neste objeto, ou; 
+- Se não coletado pelo ITP, o usuário pagador precisará definir durante a autorização do consentimento. 
+- Mesmo se enviado pela ITP, o usuário pagador pode alterar durante a autorização do consentimento
+'
                   - Properties changed
-                    - Modified property: ibgeTownCode
-                      - Description changed from 'Campo utilizado pela iniciadora para cálculo do dia útil de liquidação do pagamento (vide especificação do endToEndId) baseado no município de cadastro do usuário pagador no detentor.
-[Restrições]
-- Campo obrigatório quando o oneOf utilizado do recurringConfiguration for “automatic”. 
-' to 'Campo utilizado pela iniciadora para cálculo do dia útil de liquidação do pagamento (vide especificação do endToEndId) baseado no município de cadastro do usuário pagador no detentor.
-[Restrições]
-Campo de preenchimento obrigatório quando o oneOf utilizado do recurringConfiguration for “automatic”, e o consentimento passar pelo estado AUTHORISED.
+                    - Deleted property: ibgeTownCode
+                    - Modified property: number
+                      - Description changed from 'Deve ser preenchido com o número da conta transacional do usuário pagador, com dígito verificador (se este existir), se houver valor alfanumérico, este deve ser convertido para 0.
+' to 'Deve ser preenchido com o número da conta transacional do usuário pagador, com dígito verificador (se este existir), 
+se houver valor alfanumérico, este deve ser convertido para 0.
 '
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
-                    - Schema #/components/schemas/Sweeping modified
-                      - Properties changed
-                        - Modified property: sweeping
-                          - Required changed
-                            - New required property: startDateTime
-                            - New required property: useOverdraftLimit
-                          - Properties changed
-                            - New property: startDateTime
-                            - New property: useOverdraftLimit
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
@@ -1666,6 +1667,15 @@ Campo de preenchimento obrigatório quando o oneOf utilizado do recurringConfigu
                                       - Example changed from 'CNPJ' to null
                                       - MaxLength changed from 4 to null
                                       - Pattern changed from '^[A-Z]{4}$' to ''
+                    - Schema #/components/schemas/Sweeping modified
+                      - Properties changed
+                        - Modified property: sweeping
+                          - Required changed
+                            - New required property: startDateTime
+                            - New required property: useOverdraftLimit
+                          - Properties changed
+                            - New property: startDateTime
+                            - New property: useOverdraftLimit
                 - Modified property: rejection
                   - Properties changed
                     - Modified property: reason

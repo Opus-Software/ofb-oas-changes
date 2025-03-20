@@ -95,8 +95,9 @@ Apenas um item é permitido no array; e; O documento informado deve ser de um re
                 - Description changed from 'Objeto que contém a identificação da conta de origem do pagador.  
 As informações quanto à conta de origem do pagador poderão ser trazidas no consentimento para a detentora, caso a iniciadora tenha coletado essas informações do cliente. Do contrário, será coletada na detentora e trazida para a iniciadora como resposta à criação do pagamento.
 ' to 'Objeto que contém a identificação da conta de origem do pagador. 
-Caso a ITP tenha coletado as informações de conta do usuário pagador, essas poderão ser enviadas no consentimento para a detentora neste objeto, ou; Se não coletado pelo ITP, o usuário pagador precisará definir durante a autorização do consentimento. 
-Mesmo se enviado pela ITP, o usuário pagador pode alterar durante a autorização do consentimento
+- Caso a ITP tenha coletado as informações de conta do usuário pagador, essas poderão ser enviadas no consentimento para a detentora neste objeto, ou; 
+- Se não coletado pelo ITP, o usuário pagador precisará definir durante a autorização do consentimento. 
+- Mesmo se enviado pela ITP, o usuário pagador pode alterar durante a autorização do consentimento
 '
               - Modified property: recurringConfiguration
                 - Property 'OneOf' changed
@@ -143,8 +144,9 @@ Do contrário, será coletada na detentora e trazida para a iniciadora como resp
 [Restrições]
 - Objeto obrigatório que deverá ser retornado quando o consentimento estiver ou passar pelo status AUTHORISED;
 ' to 'Objeto que contém a identificação da conta de origem do pagador. 
-Caso a ITP tenha coletado as informações de conta do usuário pagador, essas poderão ser enviadas no consentimento para a detentora neste objeto, ou; Se não coletado pelo ITP, o usuário pagador precisará definir durante a autorização do consentimento. 
-Mesmo se enviado pela ITP, o usuário pagador pode alterar durante a autorização do consentimento
+- Caso a ITP tenha coletado as informações de conta do usuário pagador, essas poderão ser enviadas no consentimento para a detentora neste objeto, ou; 
+- Se não coletado pelo ITP, o usuário pagador precisará definir durante a autorização do consentimento. 
+- Mesmo se enviado pela ITP, o usuário pagador pode alterar durante a autorização do consentimento
 [Restrições]
 - Objeto obrigatório que deverá ser retornado quando o consentimento estiver ou passar pelo status AUTHORISED;
 '
@@ -199,8 +201,9 @@ Do contrário, será coletada na detentora e trazida para a iniciadora como resp
 [Restrições]
 - Objeto obrigatório que deverá ser retornado quando o consentimento estiver ou passar pelo status AUTHORISED;
 ' to 'Objeto que contém a identificação da conta de origem do pagador. 
-Caso a ITP tenha coletado as informações de conta do usuário pagador, essas poderão ser enviadas no consentimento para a detentora neste objeto, ou; Se não coletado pelo ITP, o usuário pagador precisará definir durante a autorização do consentimento. 
-Mesmo se enviado pela ITP, o usuário pagador pode alterar durante a autorização do consentimento
+- Caso a ITP tenha coletado as informações de conta do usuário pagador, essas poderão ser enviadas no consentimento para a detentora neste objeto, ou; 
+- Se não coletado pelo ITP, o usuário pagador precisará definir durante a autorização do consentimento. 
+- Mesmo se enviado pela ITP, o usuário pagador pode alterar durante a autorização do consentimento
 [Restrições]
 - Objeto obrigatório que deverá ser retornado quando o consentimento estiver ou passar pelo status AUTHORISED;
 '
@@ -302,6 +305,23 @@ Caso alguma das regras mencionadas não sejam seguidas, o detentor deve rejeitar
 - O(s) CNPJ informado deve possuir a mesma raiz do CNPJ enviado no campo `/data/businessEntity/document/identification`
 **Regras para Pix Automático:**
 Apenas um item é permitido no array; e; O documento informado deve ser de um recebedor pessoa jurídica  
+'
+                - Modified property: debtorAccount
+                  - Description changed from 'Objeto que contém a identificação da conta de origem do pagador. As informações quanto à conta de origem do pagador poderão ser trazidas no consentimento para a detentora, caso a iniciadora tenha coletado essas informações do cliente. 
+Do contrário, será coletada na detentora e trazida para a iniciadora como resposta à criação do pagamento.
+[Restrições]
+- Objeto obrigatório que deverá ser retornado quando o consentimento estiver ou passar pelo status AUTHORISED;
+' to 'Objeto que contém a identificação da conta de origem do pagador. 
+- Caso a ITP tenha coletado as informações de conta do usuário pagador, essas poderão ser enviadas no consentimento para a detentora neste objeto, ou; 
+- Se não coletado pelo ITP, o usuário pagador precisará definir durante a autorização do consentimento. 
+- Mesmo se enviado pela ITP, o usuário pagador pode alterar durante a autorização do consentimento
+'
+                  - Properties changed
+                    - Deleted property: ibgeTownCode
+                    - Modified property: number
+                      - Description changed from 'Deve ser preenchido com o número da conta transacional do usuário pagador, com dígito verificador (se este existir), se houver valor alfanumérico, este deve ser convertido para 0.
+' to 'Deve ser preenchido com o número da conta transacional do usuário pagador, com dígito verificador (se este existir), 
+se houver valor alfanumérico, este deve ser convertido para 0.
 '
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
