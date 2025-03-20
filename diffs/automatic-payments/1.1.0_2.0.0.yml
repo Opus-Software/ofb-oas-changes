@@ -1043,10 +1043,10 @@ POST /recurring-consents
 - O CPF informado deve ser o mesmo do `/data/loggedUser/document/identification`.
 2. Para clientes pessoa jurídica: 
 - Não há limite para quantidade de itens no array; e; 
-- O(s) CNPJ informado deve possuir a mesma raiz do CNPJ enviado no campo `/data/businessEntity/document/identification`
+- O(s) CNPJ informado deve possuir a mesma raiz do CNPJ enviado no campo `/data/businessEntity/document/identification`.
 **Regras para Pix Automático:**
 - Apenas um item é permitido no array; e; 
-- O documento informado deve ser de um recebedor pessoa jurídica  
+- O documento informado deve ser de um recebedor pessoa jurídica.
 '
               - Modified property: debtorAccount
                 - Description changed from 'Objeto que contém a identificação da conta de origem do pagador.  
@@ -1083,10 +1083,10 @@ As informações quanto à conta de origem do pagador poderão ser trazidas no c
 - O CPF informado deve ser o mesmo do `/data/loggedUser/document/identification`.
 2. Para clientes pessoa jurídica: 
 - Não há limite para quantidade de itens no array; e; 
-- O(s) CNPJ informado deve possuir a mesma raiz do CNPJ enviado no campo `/data/businessEntity/document/identification`
+- O(s) CNPJ informado deve possuir a mesma raiz do CNPJ enviado no campo `/data/businessEntity/document/identification`.
 **Regras para Pix Automático:**
 - Apenas um item é permitido no array; e; 
-- O documento informado deve ser de um recebedor pessoa jurídica  
+- O documento informado deve ser de um recebedor pessoa jurídica.
 '
                 - Modified property: debtorAccount
                   - Description changed from 'Objeto que contém a identificação da conta de origem do pagador. As informações quanto à conta de origem do pagador poderão ser trazidas no consentimento para a detentora, caso a iniciadora tenha coletado essas informações do cliente. 
@@ -1104,6 +1104,15 @@ Do contrário, será coletada na detentora e trazida para a iniciadora como resp
                     - Deleted property: ibgeTownCode
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
+                    - Schema #/components/schemas/Sweeping modified
+                      - Properties changed
+                        - Modified property: sweeping
+                          - Required changed
+                            - New required property: startDateTime
+                            - New required property: useOverdraftLimit
+                          - Properties changed
+                            - New property: startDateTime
+                            - New property: useOverdraftLimit
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
@@ -1140,15 +1149,6 @@ Do contrário, será coletada na detentora e trazida para a iniciadora como resp
                                       - Example changed from 'CNPJ' to null
                                       - MaxLength changed from 4 to null
                                       - Pattern changed from '^[A-Z]{4}$' to ''
-                    - Schema #/components/schemas/Sweeping modified
-                      - Properties changed
-                        - Modified property: sweeping
-                          - Required changed
-                            - New required property: startDateTime
-                            - New required property: useOverdraftLimit
-                          - Properties changed
-                            - New property: startDateTime
-                            - New property: useOverdraftLimit
                 - Modified property: rejection
                   - Properties changed
                     - Modified property: reason
@@ -1247,10 +1247,10 @@ GET /recurring-consents/{recurringConsentId}
 - O CPF informado deve ser o mesmo do `/data/loggedUser/document/identification`.
 2. Para clientes pessoa jurídica: 
 - Não há limite para quantidade de itens no array; e; 
-- O(s) CNPJ informado deve possuir a mesma raiz do CNPJ enviado no campo `/data/businessEntity/document/identification`
+- O(s) CNPJ informado deve possuir a mesma raiz do CNPJ enviado no campo `/data/businessEntity/document/identification`.
 **Regras para Pix Automático:**
 - Apenas um item é permitido no array; e; 
-- O documento informado deve ser de um recebedor pessoa jurídica  
+- O documento informado deve ser de um recebedor pessoa jurídica.
 '
                 - Modified property: debtorAccount
                   - Description changed from 'Objeto que contém a identificação da conta de origem do pagador. As informações quanto à conta de origem do pagador poderão ser trazidas no consentimento para a detentora, caso a iniciadora tenha coletado essas informações do cliente. 
@@ -1611,10 +1611,10 @@ Em dispositivos iOS o valor é um ponto flutuante entre 0.0 e 1.0.
 - O CPF informado deve ser o mesmo do `/data/loggedUser/document/identification`.
 2. Para clientes pessoa jurídica: 
 - Não há limite para quantidade de itens no array; e; 
-- O(s) CNPJ informado deve possuir a mesma raiz do CNPJ enviado no campo `/data/businessEntity/document/identification`
+- O(s) CNPJ informado deve possuir a mesma raiz do CNPJ enviado no campo `/data/businessEntity/document/identification`.
 **Regras para Pix Automático:**
 - Apenas um item é permitido no array; e; 
-- O documento informado deve ser de um recebedor pessoa jurídica  
+- O documento informado deve ser de um recebedor pessoa jurídica.
 '
                 - Modified property: debtorAccount
                   - Description changed from 'Objeto que contém a identificação da conta de origem do pagador. As informações quanto à conta de origem do pagador poderão ser trazidas no consentimento para a detentora, caso a iniciadora tenha coletado essas informações do cliente. 
@@ -1637,6 +1637,15 @@ se houver valor alfanumérico, este deve ser convertido para 0.
 '
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
+                    - Schema #/components/schemas/Sweeping modified
+                      - Properties changed
+                        - Modified property: sweeping
+                          - Required changed
+                            - New required property: startDateTime
+                            - New required property: useOverdraftLimit
+                          - Properties changed
+                            - New property: startDateTime
+                            - New property: useOverdraftLimit
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
@@ -1673,15 +1682,6 @@ se houver valor alfanumérico, este deve ser convertido para 0.
                                       - Example changed from 'CNPJ' to null
                                       - MaxLength changed from 4 to null
                                       - Pattern changed from '^[A-Z]{4}$' to ''
-                    - Schema #/components/schemas/Sweeping modified
-                      - Properties changed
-                        - Modified property: sweeping
-                          - Required changed
-                            - New required property: startDateTime
-                            - New required property: useOverdraftLimit
-                          - Properties changed
-                            - New property: startDateTime
-                            - New property: useOverdraftLimit
                 - Modified property: rejection
                   - Properties changed
                     - Modified property: reason
