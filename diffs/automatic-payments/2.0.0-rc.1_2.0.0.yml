@@ -105,6 +105,10 @@ As informações quanto à conta de origem do pagador poderão ser trazidas no c
 - Se não coletado pelo ITP, o usuário pagador precisará definir durante a autorização do consentimento. 
 - Mesmo se enviado pela ITP, o usuário pagador pode alterar durante a autorização do consentimento.
 '
+              - Modified property: expirationDateTime
+                - Description changed from 'Data e hora em que o consentimento deve deixar de ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format).' to 'Data e hora em que o consentimento deve deixar de ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC (UTC time format).
+[Restrição] Caso o consentimento seja para Pix Automático ("automatic" selecionado no oneOf "/data/recurringConfiguration/") o horário de expiração do consentimento precisa ser às 23:59:59 (UTC).
+'
               - Modified property: recurringConfiguration
                 - Property 'OneOf' changed
                   - Schema #/components/schemas/AutomaticRequest modified
@@ -161,6 +165,10 @@ Do contrário, será coletada na detentora e trazida para a iniciadora como resp
 - Mesmo se enviado pela ITP, o usuário pagador pode alterar durante a autorização do consentimento.
 [Restrições]
 - Objeto obrigatório que deverá ser retornado quando o consentimento estiver ou passar pelo status AUTHORISED;
+'
+                - Modified property: expirationDateTime
+                  - Description changed from 'Data e hora em que o consentimento deve deixar de ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format).' to 'Data e hora em que o consentimento deve deixar de ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC (UTC time format).
+[Restrição] Caso o consentimento seja para Pix Automático ("automatic" selecionado no oneOf "/data/recurringConfiguration/") o horário de expiração do consentimento precisa ser às 23:59:59 (UTC).
 '
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
@@ -224,6 +232,10 @@ Do contrário, será coletada na detentora e trazida para a iniciadora como resp
 - Mesmo se enviado pela ITP, o usuário pagador pode alterar durante a autorização do consentimento.
 [Restrições]
 - Objeto obrigatório que deverá ser retornado quando o consentimento estiver ou passar pelo status AUTHORISED;
+'
+                - Modified property: expirationDateTime
+                  - Description changed from 'Data e hora em que o consentimento deve deixar de ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format).' to 'Data e hora em que o consentimento deve deixar de ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC (UTC time format).
+[Restrição] Caso o consentimento seja para Pix Automático ("automatic" selecionado no oneOf "/data/recurringConfiguration/") o horário de expiração do consentimento precisa ser às 23:59:59 (UTC).
 '
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
@@ -301,6 +313,14 @@ solicitação da revogação) deverão ser mantidos. Pagamentos agendados para o
  - Apenas um item é permitido no array; e; 
  - O documento informado deve ser de um recebedor pessoa jurídica.
 '
+                  - Modified property: expirationDateTime
+                    - Description changed from 'Data e hora em que o consentimento deve deixar de ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format). 
+[Restrição] Caso esse campo não seja enviado, a instituição detentora deve considerar a extensão do prazo para um período indeterminado; ou; 
+Caso enviado, esse campo deve ser, no mínimo, D, sendo D o dia da requisição.
+' to 'Data e hora em que o consentimento deve deixar de ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format). 
+[Restrição] Caso esse campo não seja enviado, a instituição detentora deve considerar a extensão do prazo para um período indeterminado; ou; 
+Caso enviado, esse campo deve ser, no mínimo, D, sendo D o dia da requisição e o horário deve ser às 23:59:59 (UTC).
+'
                   - Modified property: loggedUser
                     - Properties changed
                       - Modified property: document
@@ -354,6 +374,10 @@ Do contrário, será coletada na detentora e trazida para a iniciadora como resp
                       - Description changed from 'Deve ser preenchido com o número da conta transacional do usuário pagador, com dígito verificador (se este existir), se houver valor alfanumérico, este deve ser convertido para 0.
 ' to 'Deve ser preenchido com o número da conta transacional do usuário pagador, com dígito verificador (se este existir), 
 se houver valor alfanumérico, este deve ser convertido para 0.
+'
+                - Modified property: expirationDateTime
+                  - Description changed from 'Data e hora em que o consentimento deve deixar de ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC(UTC time format).' to 'Data e hora em que o consentimento deve deixar de ser válido. Uma string com data e hora conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), sempre com a utilização de timezone UTC (UTC time format).
+[Restrição] Caso o consentimento seja para Pix Automático ("automatic" selecionado no oneOf "/data/recurringConfiguration/") o horário de expiração do consentimento precisa ser às 23:59:59 (UTC).
 '
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
