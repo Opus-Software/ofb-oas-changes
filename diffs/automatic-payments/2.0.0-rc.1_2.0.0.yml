@@ -26,6 +26,11 @@ POST /pix/recurring-payments
         - Properties changed
           - Modified property: data
             - Properties changed
+              - Modified property: creditorAccount
+                - Description changed from 'Objeto que contém a identificação da conta de destino do beneficiário/recebedor.
+' to 'Objeto que contém a identificação da conta de destino do beneficiário/recebedor.
+[Restrição] - Se /data/paymentReference = "zero", as informações da conta de crédito enviadas (/data/creditorAccount) devem ser iguais as presentes na conta de crédito informada na criação do consentimento(`/data/recurringConfiguration/automatic/firstPayment/creditorAccount`)
+'
               - Modified property: date
                 - Description changed from 'Data em que o pagamento será realizado.' to 'Data em que o pagamento será realizado. Uma string com a utilização de timezone UTC-3 (UTC time format).'
               - Modified property: endToEndId
@@ -106,6 +111,11 @@ As informações quanto à conta de origem do pagador poderão ser trazidas no c
                     - Properties changed
                       - Modified property: automatic
                         - Properties changed
+                          - Modified property: firstPayment
+                            - Description changed from 'Definições para o primeiro pagamento. É considerado como o pagamento da adesão ao serviço pelo usuário pagador. Para casos em que conta recebedora e conta pagadora pertencem ao mesmo detentor, este deve garantir que a conta de crédito informada pertence ao titular do CNPJ enviado no campo “/data/creditors/cpfCnpj”. A conta de crédito informada no momento do primeiro pagamento deve ser a mesma informada dentro deste objeto. Caso não respeitado, o detentor deve rejeitar o pagamento com o motivo DETALHE_PAGAMENTO_INVALIDO, sincronamente (HTTP 422) ou assincronamente (HTTP 200). 
+' to 'Definições para o primeiro pagamento. É considerado como o pagamento da adesão ao serviço pelo usuário pagador.
+[Restrição] Para casos em que conta recebedora e conta pagadora pertencem ao mesmo detentor (/data/debtorAccount/ispb = /data/recurringConfiguration/automatic/firstPayment/creditorAccount/ispb), o detentor deve garantir que a conta de crédito informada pertence ao titular do CNPJ enviado no campo “/data/creditors/cpfCnpj”.
+'
                           - Modified property: minimumVariableAmount
                             - Description changed from 'Valor definido pelo usuário recebedor. 
 Se o usuário pagador atribuir um valor máximo para os pagamentos daquela autorização, ele não poderá ser inferior ao valor mínimo (piso) definido pelo usuário recebedor. 
@@ -158,6 +168,11 @@ Do contrário, será coletada na detentora e trazida para a iniciadora como resp
                       - Properties changed
                         - Modified property: automatic
                           - Properties changed
+                            - Modified property: firstPayment
+                              - Description changed from 'Definições para o primeiro pagamento. É considerado como o pagamento da adesão ao serviço pelo usuário pagador. Para casos em que conta recebedora e conta pagadora pertencem ao mesmo detentor, este deve garantir que a conta de crédito informada pertence ao titular do CNPJ enviado no campo “/data/creditors/cpfCnpj”. A conta de crédito informada no momento do primeiro pagamento deve ser a mesma informada dentro deste objeto. Caso não respeitado, o detentor deve rejeitar o pagamento com o motivo DETALHE_PAGAMENTO_INVALIDO, sincronamente (HTTP 422) ou assincronamente (HTTP 200). 
+' to 'Definições para o primeiro pagamento. É considerado como o pagamento da adesão ao serviço pelo usuário pagador.
+[Restrição] Para casos em que conta recebedora e conta pagadora pertencem ao mesmo detentor (/data/debtorAccount/ispb = /data/recurringConfiguration/automatic/firstPayment/creditorAccount/ispb), o detentor deve garantir que a conta de crédito informada pertence ao titular do CNPJ enviado no campo “/data/creditors/cpfCnpj”.
+'
                             - Modified property: minimumVariableAmount
                               - Description changed from 'Valor definido pelo usuário recebedor. 
 Se o usuário pagador atribuir um valor máximo para os pagamentos daquela autorização, ele não poderá ser inferior ao valor mínimo (piso) definido pelo usuário recebedor. 
@@ -216,6 +231,11 @@ Do contrário, será coletada na detentora e trazida para a iniciadora como resp
                       - Properties changed
                         - Modified property: automatic
                           - Properties changed
+                            - Modified property: firstPayment
+                              - Description changed from 'Definições para o primeiro pagamento. É considerado como o pagamento da adesão ao serviço pelo usuário pagador. Para casos em que conta recebedora e conta pagadora pertencem ao mesmo detentor, este deve garantir que a conta de crédito informada pertence ao titular do CNPJ enviado no campo “/data/creditors/cpfCnpj”. A conta de crédito informada no momento do primeiro pagamento deve ser a mesma informada dentro deste objeto. Caso não respeitado, o detentor deve rejeitar o pagamento com o motivo DETALHE_PAGAMENTO_INVALIDO, sincronamente (HTTP 422) ou assincronamente (HTTP 200). 
+' to 'Definições para o primeiro pagamento. É considerado como o pagamento da adesão ao serviço pelo usuário pagador.
+[Restrição] Para casos em que conta recebedora e conta pagadora pertencem ao mesmo detentor (/data/debtorAccount/ispb = /data/recurringConfiguration/automatic/firstPayment/creditorAccount/ispb), o detentor deve garantir que a conta de crédito informada pertence ao titular do CNPJ enviado no campo “/data/creditors/cpfCnpj”.
+'
                             - Modified property: minimumVariableAmount
                               - Description changed from 'Valor definido pelo usuário recebedor. 
 Se o usuário pagador atribuir um valor máximo para os pagamentos daquela autorização, ele não poderá ser inferior ao valor mínimo (piso) definido pelo usuário recebedor. 
@@ -341,6 +361,11 @@ se houver valor alfanumérico, este deve ser convertido para 0.
                       - Properties changed
                         - Modified property: automatic
                           - Properties changed
+                            - Modified property: firstPayment
+                              - Description changed from 'Definições para o primeiro pagamento. É considerado como o pagamento da adesão ao serviço pelo usuário pagador. Para casos em que conta recebedora e conta pagadora pertencem ao mesmo detentor, este deve garantir que a conta de crédito informada pertence ao titular do CNPJ enviado no campo “/data/creditors/cpfCnpj”. A conta de crédito informada no momento do primeiro pagamento deve ser a mesma informada dentro deste objeto. Caso não respeitado, o detentor deve rejeitar o pagamento com o motivo DETALHE_PAGAMENTO_INVALIDO, sincronamente (HTTP 422) ou assincronamente (HTTP 200). 
+' to 'Definições para o primeiro pagamento. É considerado como o pagamento da adesão ao serviço pelo usuário pagador.
+[Restrição] Para casos em que conta recebedora e conta pagadora pertencem ao mesmo detentor (/data/debtorAccount/ispb = /data/recurringConfiguration/automatic/firstPayment/creditorAccount/ispb), o detentor deve garantir que a conta de crédito informada pertence ao titular do CNPJ enviado no campo “/data/creditors/cpfCnpj”.
+'
                             - Modified property: minimumVariableAmount
                               - Description changed from 'Valor definido pelo usuário recebedor. 
 Se o usuário pagador atribuir um valor máximo para os pagamentos daquela autorização, ele não poderá ser inferior ao valor mínimo (piso) definido pelo usuário recebedor. 
