@@ -189,6 +189,11 @@ GET /contracts/{contractId}
                 - New property: hasInsuranceContracted
                 - New property: nextInstalmentAmount
                 - New property: productSubTypeCategory
+                - Modified property: contractAmount
+                  - Description changed from 'Valor contratado da operação. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais. Nos casos em que não houver este valor explícito no contrato do produto, enviar como 0.00' to 'Valor contratado da operação. Não incluir valores de taxas, tarifas, encargos e seguros. 
+Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais. 
+Nos casos em que não houver este valor explícito no contrato do produto, enviar como 0.00
+'
                 - Modified property: dueDate
                   - Description changed from 'Data de vencimento Final da operação. Especificação RFC-3339. Informação deve ser enviada caso ela exista.
 ' to 'Data do último vencimento da operação, seguindo a especificação RFC-3339.
@@ -400,6 +405,10 @@ GET /contracts/{contractId}/payments
             - Modified property: data
               - Properties changed
                 - New property: lastUpdatedcontractOutstandingBalanceDateTime
+                - Modified property: contractOutstandingBalance
+                  - Description changed from 'Valor necessário para o cliente liquidar a dívida.' to 'Valor necessário para o cliente liquidar a dívida, ou seja, este campo deve ser preenchido com o saldo devedor atualizado descrito no DDC (Documento Descritivo de Crédito). 
+O valor a liquidar atualizado do dia deve ser ajustado para compartilhamento pela Transmissora até às 10:00 do mesmo dia, especialmente para Crédito Pessoal Clean, escopo de Portabilidade de Crédito, pois este valor é utilizado pela Receptora em papel de Proponente para pagamento à Transmissora em papel de Credora.
+'
     - Headers changed
       - New header: x-v
   - Modified response: 400
