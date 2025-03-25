@@ -355,7 +355,7 @@ paths:
         '406':
           $ref: '#/components/responses/NotAcceptable'
         '422':
-          $ref: '#/components/responses/UnprocessableEntityPatch'
+          $ref: '#/components/responses/UnprocessableEntityRecurringConsents'
         '500':
           $ref: '#/components/responses/InternalServerError'
         '504':
@@ -571,7 +571,7 @@ paths:
         '406':
           $ref: '#/components/responses/NotAcceptable'
         '422':
-          $ref: '#/components/responses/UnprocessableEntityPixPatch'
+          $ref: '#/components/responses/UnprocessableEntityRecurringPaymentsPaymentId'
         '500':
           $ref: '#/components/responses/InternalServerError'
         '504':
@@ -701,8 +701,6 @@ components:
                   - PERMISSAO_INSUFICIENTE
                   - DETALHE_EDICAO_INVALIDO
                   - FALTAM_SINAIS_OBRIGATORIOS_PLATAFORMA
-                  - PARAMETRO_INVALIDO
-                  - PARAMETRO_NAO_INFORMADO
                 example: CAMPO_NAO_PERMITIDO
               title:
                 type: string
@@ -716,8 +714,6 @@ components:
                   - Permissão insuficiente para edição.
                   - DETALHE_EDICAO_INVALIDO: A tentativa de edição do consentimento não respeitou as regras de negócio descritas nos campos.
                   - FALTAM_SINAIS_OBRIGATORIOS_PLATAFORMA: Os sinais obrigatórios para a plataforma do usuário não foram enviados em sua totalidade.
-                  - PARAMETRO_INVALIDO: Os parâmetros informados não obedecem a formatação especificada.
-                  - PARAMETRO_NAO_INFORMADO: Algum ou todos os campos obrigatórios não foram informados
               detail:
                 type: string
                 maxLength: 2048
@@ -730,8 +726,6 @@ components:
                   - PERMISSAO_INSUFICIENTE: Consentimento possui múltiplas alçadas aprovadoras e não permite a edição pelo usuário atual.
                   - DETALHE_EDICAO_INVALIDO: A tentativa de edição do consentimento não respeitou as regras de negócio descritas nos campos.
                   - FALTAM_SINAIS_OBRIGATORIOS_PLATAFORMA: Os sinais obrigatórios para a plataforma do usuário não foram enviados em sua totalidade.
-                  - PARAMETRO_INVALIDO: Os parâmetros informados não obedecem a formatação especificada.
-                  - PARAMETRO_NAO_INFORMADO: Algum ou todos os campos obrigatórios não foram informados.
         meta:
           $ref: '#/components/schemas/Meta'
     422ResponseErrorCreatePixRecurringPayment:
@@ -1787,6 +1781,7 @@ components:
         As informações quanto à conta de origem do pagador poderão ser trazidas no consentimento para a detentora, caso a iniciadora tenha coletado essas informações do cliente. Do contrário, será coletada na detentora e trazida para a iniciadora como resposta à criação do pagamento.
       required:
         - ispb
+        - issuer
         - number
         - accountType
       properties:
@@ -5036,7 +5031,7 @@ components:
       headers:
         x-fapi-interaction-id:
           $ref: '#/components/headers/XFapiInteractionId'
-    UnprocessableEntityPixPatch:
+    UnprocessableEntityRecurringPaymentsPaymentId:
       description: Seguir as orientações presentes na descrição do endpoint
       content:
         application/jwt:
@@ -5055,7 +5050,7 @@ components:
       headers:
         x-fapi-interaction-id:
           $ref: '#/components/headers/XFapiInteractionId'
-    UnprocessableEntityPatch:
+    UnprocessableEntityRecurringConsents:
       description: Seguir as orientações presentes na descrição deste endpoint
       content:
         application/jwt:

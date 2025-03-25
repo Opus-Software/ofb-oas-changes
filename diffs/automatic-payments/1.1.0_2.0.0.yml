@@ -270,9 +270,6 @@ CANCELADO_AGENDAMENTO - Pagamento cancelado enquanto estava na situação SCHD
                       - Deleted enum values: [CANCELADO_MULTIPLAS_ALCADAS]
                 - Modified property: date
                   - Description changed from 'Data em que o recurso foi criado. Uma string com a utilização de timezone UTC(UTC time format).' to 'Data em que o pagamento será realizado. Uma string com a utilização de timezone UTC-3 (UTC time format).'
-                - Modified property: debtorAccount
-                  - Required changed
-                    - Deleted required property: issuer
                 - Modified property: endToEndId
                   - Description changed from 'Trata-se de um identificador único, gerado na instituição iniciadora de pagamento e recebido na instituição detentora de conta, permeando toda a jornada do pagamento Pix.
 [Restrição] A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
@@ -607,9 +604,6 @@ CANCELADO_AGENDAMENTO - Pagamento cancelado enquanto estava na situação SCHD
                       - Deleted enum values: [CANCELADO_MULTIPLAS_ALCADAS]
                 - Modified property: date
                   - Description changed from 'Data em que o pagamento será realizado.' to 'Data em que o pagamento será realizado. Uma string com a utilização de timezone UTC-3 (UTC time format).'
-                - Modified property: debtorAccount
-                  - Required changed
-                    - Deleted required property: issuer
                 - Modified property: endToEndId
                   - Description changed from 'Trata-se de um identificador único, gerado na instituição iniciadora de pagamento e recebido na instituição detentora de conta, permeando toda a jornada do pagamento Pix.
 [Restrição] A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
@@ -878,9 +872,6 @@ CANCELADO_AGENDAMENTO - Pagamento cancelado enquanto estava na situação SCHD
                       - Deleted enum values: [CANCELADO_MULTIPLAS_ALCADAS]
                 - Modified property: date
                   - Description changed from 'Data em que o recurso foi criado. Uma string com a utilização de timezone UTC(UTC time format).' to 'Data em que o pagamento será realizado. Uma string com a utilização de timezone UTC-3 (UTC time format).'
-                - Modified property: debtorAccount
-                  - Required changed
-                    - Deleted required property: issuer
                 - Modified property: endToEndId
                   - Description changed from 'Trata-se de um identificador único, gerado na instituição iniciadora de pagamento e recebido na instituição detentora de conta, permeando toda a jornada do pagamento Pix.
 [Restrição] A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
@@ -1677,6 +1668,15 @@ se houver valor alfanumérico, este deve ser convertido para 0.
 '
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
+                    - Schema #/components/schemas/Sweeping modified
+                      - Properties changed
+                        - Modified property: sweeping
+                          - Required changed
+                            - New required property: startDateTime
+                            - New required property: useOverdraftLimit
+                          - Properties changed
+                            - New property: startDateTime
+                            - New property: useOverdraftLimit
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
@@ -1713,15 +1713,6 @@ se houver valor alfanumérico, este deve ser convertido para 0.
                                       - Example changed from 'CNPJ' to null
                                       - MaxLength changed from 4 to null
                                       - Pattern changed from '^[A-Z]{4}$' to ''
-                    - Schema #/components/schemas/Sweeping modified
-                      - Properties changed
-                        - Modified property: sweeping
-                          - Required changed
-                            - New required property: startDateTime
-                            - New required property: useOverdraftLimit
-                          - Properties changed
-                            - New property: startDateTime
-                            - New property: useOverdraftLimit
                 - Modified property: rejection
                   - Properties changed
                     - Modified property: reason
@@ -1784,7 +1775,7 @@ se houver valor alfanumérico, este deve ser convertido para 0.
               - Items changed
                 - Properties changed
                   - Modified property: code
-                    - New enum values: [PERMISSAO_INSUFICIENTE DETALHE_EDICAO_INVALIDO FALTAM_SINAIS_OBRIGATORIOS_PLATAFORMA PARAMETRO_INVALIDO PARAMETRO_NAO_INFORMADO]
+                    - New enum values: [PERMISSAO_INSUFICIENTE DETALHE_EDICAO_INVALIDO FALTAM_SINAIS_OBRIGATORIOS_PLATAFORMA]
                   - Modified property: detail
                     - Description changed from 'Descrição específica do erro de acordo com o código reportado:  
 - CONSENTIMENTO_NAO_PERMITE_CANCELAMENTO: O status do consentimento não permite a realização do cancelamento (em status "CONSUMED" ou "REJECTED")
@@ -1795,8 +1786,6 @@ se houver valor alfanumérico, este deve ser convertido para 0.
 - PERMISSAO_INSUFICIENTE: Consentimento possui múltiplas alçadas aprovadoras e não permite a edição pelo usuário atual.
 - DETALHE_EDICAO_INVALIDO: A tentativa de edição do consentimento não respeitou as regras de negócio descritas nos campos.
 - FALTAM_SINAIS_OBRIGATORIOS_PLATAFORMA: Os sinais obrigatórios para a plataforma do usuário não foram enviados em sua totalidade.
-- PARAMETRO_INVALIDO: Os parâmetros informados não obedecem a formatação especificada.
-- PARAMETRO_NAO_INFORMADO: Algum ou todos os campos obrigatórios não foram informados.
 '
                   - Modified property: title
                     - Description changed from 'Título específico do erro reportado, de acordo com o código enviado:  
@@ -1808,8 +1797,6 @@ se houver valor alfanumérico, este deve ser convertido para 0.
 - Permissão insuficiente para edição.
 - DETALHE_EDICAO_INVALIDO: A tentativa de edição do consentimento não respeitou as regras de negócio descritas nos campos.
 - FALTAM_SINAIS_OBRIGATORIOS_PLATAFORMA: Os sinais obrigatórios para a plataforma do usuário não foram enviados em sua totalidade.
-- PARAMETRO_INVALIDO: Os parâmetros informados não obedecem a formatação especificada.
-- PARAMETRO_NAO_INFORMADO: Algum ou todos os campos obrigatórios não foram informados
 '
   - Modified response: 500
     - Headers changed
