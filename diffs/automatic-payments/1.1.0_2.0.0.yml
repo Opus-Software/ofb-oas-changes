@@ -270,6 +270,9 @@ CANCELADO_AGENDAMENTO - Pagamento cancelado enquanto estava na situação SCHD
                       - Deleted enum values: [CANCELADO_MULTIPLAS_ALCADAS]
                 - Modified property: date
                   - Description changed from 'Data em que o recurso foi criado. Uma string com a utilização de timezone UTC(UTC time format).' to 'Data em que o pagamento será realizado. Uma string com a utilização de timezone UTC-3 (UTC time format).'
+                - Modified property: debtorAccount
+                  - Required changed
+                    - Deleted required property: issuer
                 - Modified property: endToEndId
                   - Description changed from 'Trata-se de um identificador único, gerado na instituição iniciadora de pagamento e recebido na instituição detentora de conta, permeando toda a jornada do pagamento Pix.
 [Restrição] A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
@@ -604,6 +607,9 @@ CANCELADO_AGENDAMENTO - Pagamento cancelado enquanto estava na situação SCHD
                       - Deleted enum values: [CANCELADO_MULTIPLAS_ALCADAS]
                 - Modified property: date
                   - Description changed from 'Data em que o pagamento será realizado.' to 'Data em que o pagamento será realizado. Uma string com a utilização de timezone UTC-3 (UTC time format).'
+                - Modified property: debtorAccount
+                  - Required changed
+                    - Deleted required property: issuer
                 - Modified property: endToEndId
                   - Description changed from 'Trata-se de um identificador único, gerado na instituição iniciadora de pagamento e recebido na instituição detentora de conta, permeando toda a jornada do pagamento Pix.
 [Restrição] A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
@@ -872,6 +878,9 @@ CANCELADO_AGENDAMENTO - Pagamento cancelado enquanto estava na situação SCHD
                       - Deleted enum values: [CANCELADO_MULTIPLAS_ALCADAS]
                 - Modified property: date
                   - Description changed from 'Data em que o recurso foi criado. Uma string com a utilização de timezone UTC(UTC time format).' to 'Data em que o pagamento será realizado. Uma string com a utilização de timezone UTC-3 (UTC time format).'
+                - Modified property: debtorAccount
+                  - Required changed
+                    - Deleted required property: issuer
                 - Modified property: endToEndId
                   - Description changed from 'Trata-se de um identificador único, gerado na instituição iniciadora de pagamento e recebido na instituição detentora de conta, permeando toda a jornada do pagamento Pix.
 [Restrição] A detentora deve obrigatoriamente retornar o campo com o mesmo valor recebido da iniciadora.
@@ -1121,15 +1130,6 @@ Do contrário, será coletada na detentora e trazida para a iniciadora como resp
 '
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
-                    - Schema #/components/schemas/Sweeping modified
-                      - Properties changed
-                        - Modified property: sweeping
-                          - Required changed
-                            - New required property: startDateTime
-                            - New required property: useOverdraftLimit
-                          - Properties changed
-                            - New property: startDateTime
-                            - New property: useOverdraftLimit
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
@@ -1166,6 +1166,15 @@ Do contrário, será coletada na detentora e trazida para a iniciadora como resp
                                       - Example changed from 'CNPJ' to null
                                       - MaxLength changed from 4 to null
                                       - Pattern changed from '^[A-Z]{4}$' to ''
+                    - Schema #/components/schemas/Sweeping modified
+                      - Properties changed
+                        - Modified property: sweeping
+                          - Required changed
+                            - New required property: startDateTime
+                            - New required property: useOverdraftLimit
+                          - Properties changed
+                            - New property: startDateTime
+                            - New property: useOverdraftLimit
                 - Modified property: rejection
                   - Properties changed
                     - Modified property: reason
@@ -1296,6 +1305,15 @@ Campo de preenchimento obrigatório quando o oneOf utilizado do recurringConfigu
 '
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
+                    - Schema #/components/schemas/Sweeping modified
+                      - Properties changed
+                        - Modified property: sweeping
+                          - Required changed
+                            - New required property: startDateTime
+                            - New required property: useOverdraftLimit
+                          - Properties changed
+                            - New property: startDateTime
+                            - New property: useOverdraftLimit
                     - Schema #/components/schemas/Automatic modified
                       - Properties changed
                         - Modified property: automatic
@@ -1332,15 +1350,6 @@ Campo de preenchimento obrigatório quando o oneOf utilizado do recurringConfigu
                                       - Example changed from 'CNPJ' to null
                                       - MaxLength changed from 4 to null
                                       - Pattern changed from '^[A-Z]{4}$' to ''
-                    - Schema #/components/schemas/Sweeping modified
-                      - Properties changed
-                        - Modified property: sweeping
-                          - Required changed
-                            - New required property: startDateTime
-                            - New required property: useOverdraftLimit
-                          - Properties changed
-                            - New property: startDateTime
-                            - New property: useOverdraftLimit
                 - Modified property: rejection
                   - Properties changed
                     - Modified property: reason
@@ -1447,6 +1456,9 @@ solicitação da revogação) deverão ser mantidos. Pagamentos agendados para o
         - Properties changed
           - Modified property: data
             - Property 'OneOf' changed
+              - Schema #/components/schemas/ConsentRevocation modified
+                - Properties changed
+                  - Deleted property: riskSignals
               - Schema #/components/schemas/ConsentRejection modified
                 - Properties changed
                   - Deleted property: riskSignals
@@ -1610,9 +1622,6 @@ Em dispositivos iOS o valor é um ponto flutuante entre 0.0 e 1.0.
 [Android] Informação obtida através do [link](https://developer.android.com/reference/java/time/ZonedDateTime#getOffset()) ou, para versões anteriores à 8.0, [link](https://developer.android.com/reference/java/util/TimeZone#getOffset(long)).
 [iOS] Informação obtida através do [link](https://developer.apple.com/documentation/foundation/timezone/).
 '
-              - Schema #/components/schemas/ConsentRevocation modified
-                - Properties changed
-                  - Deleted property: riskSignals
 - Responses changed
   - Modified response: 200
     - Description changed from 'Objeto contendo as informações de consentimento para a iniciação de pagamento individual.' to 'Objeto contendo as informações de consentimento para iniciação de pagamento automático.'
