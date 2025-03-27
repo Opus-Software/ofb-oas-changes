@@ -12,7 +12,8 @@ info:
         &nbsp;&nbsp;- Como assinar o payload JWS: Como Assinar o Payload
     
     ## Controle de Acesso
-      Os endpoints da API de Portabilidade de Crédito devem utilizar client_credentials para solicitação do pedido de portabilidade de crédito, consulta ao pedido de portabilidade, comunicação a respeito da liquidação do contrato de empréstimo, cancelamento da portabilidade de crédito e atualização dos dados bancários.
+    - Os endpoints [GET] /portabilities/{portabilityId}, [GET] /account-data, [POST] /portabilities/{portabilityId}/payment, [PATCH] / portabilities/{portabilityId}/cancel da API de Portabilidade de crédito devem utilizar o escopo client_credentials
+    - Os endpoints [GET] /concurrency-management/{contractId} e [POST] /portabilities devem utilizar o escopo authorization_code para validar a permissions de LOANS
     
     ## Validações para Portabilidade de Crédito
     **- Validações (após o processo de DCR e obtenção de token client credential - não escopo dessa documentação):**   
@@ -118,8 +119,10 @@ paths:
         default:
           $ref: '#/components/responses/Default'
       security:
-        - OAuth2ClientCredentials:
-            - credit-portability
+        - OAuth2AuthorizationCodeLoans:
+            - openId
+            - 'consent:consentId'
+            - loans
   '/portabilities/{portabilityId}':
     get:
       tags:
@@ -163,6 +166,9 @@ paths:
           $ref: '#/components/responses/SiteIsOverloaded'
         default:
           $ref: '#/components/responses/Default'
+      security:
+        - OAuth2ClientCredentials:
+            - credit-portability
   '/portabilities/{portabilityId}/cancel':
     patch:
       tags:
@@ -214,11 +220,8 @@ paths:
         default:
           $ref: '#/components/responses/Default'
       security:
-      - NonRedirectAuthorizationCode:
-            - openid
-            - 'enrollment:enrollmentId'
-            - payments
-            - nrp-consents
+        - OAuth2ClientCredentials:
+            - credit-portability
   '/concurrency-management/{contractId}':
     get:
       tags:
@@ -266,8 +269,10 @@ paths:
         default:
           $ref: '#/components/responses/Default'
       security:
-        - OAuth2ClientCredentials:
-            - credit-portability
+        - OAuth2AuthorizationCodeLoans:
+            - openId
+            - 'consent:consentId'
+            - loans
   /account-data:
     get:
       tags:
@@ -310,6 +315,9 @@ paths:
           $ref: '#/components/responses/SiteIsOverloaded'
         default:
           $ref: '#/components/responses/Default'
+      security:
+        - OAuth2ClientCredentials:
+            - credit-portability
   /portabilities/{portabilityId}/payment:
     post:
       tags:
@@ -361,11 +369,8 @@ paths:
         default:
           $ref: '#/components/responses/Default'
       security:
-      - NonRedirectAuthorizationCode:
-            - openid
-            - 'enrollment:enrollmentId'
-            - payments
-            - nrp-consents
+        - OAuth2ClientCredentials:
+            - credit-portability
 components:
   schemas:
     RequestCreditPortability:
@@ -790,7 +795,7 @@ components:
           properties:
               portabilityId:
                 type: string
-                pattern: ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
+                pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
                 maxLength: 100
                 minLength: 1
                 example: 54d5348c-1a3f-4ff4-a8a8-d0724fb806c6
@@ -1880,7 +1885,7 @@ components:
           properties:
               portabilityId:
                 type: string
-                pattern: ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
+                pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
                 maxLength: 100
                 minLength: 1
                 example: "54d5348c-1a3f-4ff4-a8a8-d0724fb806c6"
@@ -2004,7 +2009,7 @@ components:
           properties:
               portabilityId:
                 type: string
-                pattern: ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
+                pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
                 maxLength: 100
                 minLength: 1
                 example: "54d5348c-1a3f-4ff4-a8a8-d0724fb806c6"
@@ -2074,7 +2079,7 @@ components:
           example: '2021-05-21T08:30:00Z'
     Links:
       type: object
-      description: Referências para outros recusos da API requisitada.
+      description: Referências para outros recursos da API requisitada.
       required:
         - self
       properties:
@@ -2205,7 +2210,7 @@ components:
     xFapiCustomerIpAddress:
       name: x-fapi-customer-ip-address
       in: header
-      description: O endereço IP do usuário se estiver atualmente logado com a instituição proponente.
+      description: O endereço IP do usuário se estiver atualmente logado com o receptor.
       required: false
       schema:
         type: string
@@ -2227,11 +2232,11 @@ components:
     portabilityId:
       name: portabilityId
       in: path
-      description: Identificador do contrato para todos os tipos de operação de crédito.
+      description: Identificador do pedido de portabilidade de crédito.
       required: true
       schema:
         type: string
-        pattern: '^[a-zA-Z0-9][a-zA-Z0-9-]{0,99}$'
+        pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
         maxLength: 100
   securitySchemes:
     OpenId:
@@ -2245,21 +2250,18 @@ components:
           tokenUrl: 'https://authserver.example/token'
           scopes:
             credit-portability: Escopo necessário para acesso à API Portabilidade de Crédito.
-    NonRedirectAuthorizationCode:
+    OAuth2AuthorizationCodeLoans:
       type: oauth2
-      description: Fluxo OAuth necessário para que a Instituição Proponente possa solicitar o pedido de portabilidade sem redirecionamento.
+      description: Fluxo OAuth necessário para que a receptora tenha acesso aos dados na instituição transmissora. Requer o processo de redirecionamento e autenticação do usuário a que se referem os dados.
       flows:
         authorizationCode:
-          authorizationUrl: 'https://authserver.example/token'
+          authorizationUrl: 'https://authserver.example/authorization'
           tokenUrl: 'https://authserver.example/token'
           scopes:
-            payments: Escopo necessário para acesso à  API Payment Initiation.
-            openid: Indica que a autorização está sendo realizada utilizando o protocolo definido pela openid.
-            'enrollment:enrollmentId': Permite realizar atualização de um registro com a permissão do cliente.
-            nrp-consents: Consentimento para pagamentos sem redirecionamento.      
+            loans: Escopo necessário para acesso à API Loans. O controle dos endpoints específicos é feito via permissions. 
   responses:
     POSTResponseCreditPortability:
-      description: Dados dos contratos de empréstimos obtidos com sucesso.
+      description: Dados dos contratos de empréstimo obtidos com sucesso.
       headers:
         x-fapi-interaction-id:
           description: |
@@ -2276,7 +2278,7 @@ components:
           schema:
             $ref: '#/components/schemas/POSTResponseCreditPortability'
     OKResponseConcurrancyManagement:
-      description: Dados dos contratos de empréstimos obtidos com sucesso.
+      description: Dados dos contratos de empréstimo obtidos com sucesso.
       headers:
         x-fapi-interaction-id:
           description: |
@@ -2344,7 +2346,7 @@ components:
           schema:
             $ref: '#/components/schemas/PatchResponseCreditPortabilityCancel'
     POSTResponseCreditPortabilityPayment:
-      description: Dados dos contratos de empréstimos obtidos com sucesso.
+      description: Dados dos contratos de empréstimo obtidos com sucesso.
       headers:
         x-fapi-interaction-id:
           description: |
@@ -2544,7 +2546,7 @@ components:
           schema:
             $ref: '#/components/schemas/X-V'
       content:
-        application/json; charset=utf-8:
+        application/jwt:
           schema:
             $ref: '#/components/schemas/ResponseErrorWithAbleAdditionalProperties'
     SiteIsOverloaded:
