@@ -2,10 +2,20 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 3
+### Modified Endpoints: 6
 -------------------------
+GET /account-data
+- Responses changed
+  - Deleted response: 423
+  - Deleted response: 429
+GET /credit-operations/{contractId}/portability-eligibility
+- Responses changed
+  - Deleted response: 423
+  - Deleted response: 429
 POST /portabilities
 - Responses changed
+  - Deleted response: 423
+  - Deleted response: 429
   - Modified response: 202
     - Content changed
       - Modified media type: application/jwt
@@ -18,6 +28,8 @@ POST /portabilities
                   - Deleted enum values: [CANCELED]
 GET /portabilities/{portabilityId}
 - Responses changed
+  - Deleted response: 423
+  - Deleted response: 429
   - Modified response: 200
     - Content changed
       - Modified media type: application/jwt
@@ -54,3 +66,10 @@ GET /portabilities/{portabilityId}
                   - New enum values: [CANCELLED]
                   - Deleted enum values: [CANCELED]
 PATCH /portabilities/{portabilityId}/cancel
+- Responses changed
+  - Deleted response: 423
+  - Deleted response: 429
+POST /portabilities/{portabilityId}/payment
+- Responses changed
+  - Deleted response: 423
+  - Deleted response: 429
