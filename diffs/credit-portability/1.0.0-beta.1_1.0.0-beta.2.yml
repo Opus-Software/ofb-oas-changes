@@ -8,6 +8,16 @@ GET /account-data
 - Responses changed
   - Deleted response: 423
   - Deleted response: 429
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: strCode
+                  - Required changed
+                    - Deleted required property: accountNumber
   - Modified response: 400
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -167,6 +177,7 @@ GET /credit-operations/{contractId}/portability-eligibility
             - Modified property: errors
               - MinItems changed from 1 to 0
 POST /portabilities
+- New header param: x-idempotency-key
 - Request body changed
   - Content changed
     - Modified media type: application/jwt
