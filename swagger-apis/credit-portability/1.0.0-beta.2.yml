@@ -82,7 +82,6 @@ paths:
         - $ref: '#/components/parameters/xFapiCustomerIpAddress'
         - $ref: '#/components/parameters/xFapiInteractionId'
         - $ref: '#/components/parameters/xCustomerUserAgent'
-        - $ref: '#/components/parameters/xIdempotencyKey'
       requestBody:
         content:
           application/jwt:
@@ -1592,6 +1591,7 @@ components:
                 - ispb
                 - branchCode
                 - hasfinancialAgent
+                - accountNumber
               properties:
                 ispb:
                   type: number
@@ -1668,31 +1668,8 @@ components:
             - SIMPLES
             - COMPOSTO
           example: SIMPLES
-        EnumContractReferentialRateIndexerSubType:
-          type: string
-          description: |
-            "Sub tipos de taxas referenciais ou indexadores, conforme Anexo 5: Taxa referencial ou Indexador (Indx), do Documento 3040"
-          enum:
-            - SEM_SUB_TIPO_INDEXADOR
-            - PRE_FIXADO
-            - TR_TBF
-            - TJLP
-            - LIBOR
-            - TLP
-            - OUTRAS_TAXAS_POS_FIXADAS
-            - CDI
-            - SELIC
-            - OUTRAS_TAXAS_FLUTUANTES
-            - IGPM
-            - IPCA
-            - IPCC
-            - OUTROS_INDICES_PRECO
-            - TCR_PRE
-            - TCR_POS
-            - TRFC_PRE
-            - TRFC_POS
-            - OUTROS_INDEXADORES
-          example: TJLP
+        referentialRateIndexerSubType:
+          $ref: '#/components/schemas/EnumContractReferentialRateIndexerSubType'
         taxPeriodicity:
           type: string
           description: |
@@ -1724,30 +1701,6 @@ components:
             - CREDITO_RURAL
             - OUTROS_INDEXADORES
           example: PRE_FIXADO
-        referentialRateIndexerSubType:
-          type: string
-          description: |
-            "Sub tipos de taxas referenciais ou indexadores, conforme Anexo 5: Taxa referencial ou Indexador (Indx), do Documento 3040"
-          enum:
-            - SEM_SUB_TIPO_INDEXADOR
-            - PRE_FIXADO
-            - TR_TBF
-            - TJLP
-            - LIBOR
-            - TLP
-            - OUTRAS_TAXAS_POS_FIXADAS
-            - CDI
-            - SELIC
-            - OUTRAS_TAXAS_FLUTUANTES
-            - IGPM
-            - IPCA
-            - IPCC
-            - OUTROS_INDICES_PRECO
-            - TCR_PRE
-            - TCR_POS
-            - TRFC_PRE
-            - TRFC_POS
-            - OUTROS_INDE
         referentialRateIndexerAdditionalInfo:
           type: string
           description: |
@@ -1783,6 +1736,31 @@ components:
             Texto com informações adicionais sobre a composição das taxas de juros pactuadas. 
 
             [Restrição] Caso a instituição possua a informação para compartilhamento, esta deverá ser informada.
+    EnumContractReferentialRateIndexerSubType:
+      type: string
+      description: |
+        "Sub tipos de taxas referenciais ou indexadores, conforme Anexo 5: Taxa referencial ou Indexador (Indx), do Documento 3040"
+      enum:
+        - SEM_SUB_TIPO_INDEXADOR
+        - PRE_FIXADO
+        - TR_TBF
+        - TJLP
+        - LIBOR
+        - TLP
+        - OUTRAS_TAXAS_POS_FIXADAS
+        - CDI
+        - SELIC
+        - OUTRAS_TAXAS_FLUTUANTES
+        - IGPM
+        - IPCA
+        - IPCC
+        - OUTROS_INDICES_PRECO
+        - TCR_PRE
+        - TCR_POS
+        - TRFC_PRE
+        - TRFC_POS
+        - OUTROS_INDEXADORES
+      example: TJLP
     RequestCreditPortabilityCancel:
       type: object
       required:
@@ -2162,16 +2140,6 @@ components:
         pattern: '[\w\W\s]*'
         minLength: 1
         maxLength: 100
-    xIdempotencyKey:
-      name: x-idempotency-key
-      in: header
-      description: Cabeçalho HTTP personalizado. Identificador de solicitação exclusivo para suportar a idempotência.
-      required: true
-      schema:
-        type: string
-        pattern: '^(?!\s)(.*)(\S)$'
-        minLength: 1
-        maxLength: 40
     xFapiAuthDate:
       name: x-fapi-auth-date
       in: header

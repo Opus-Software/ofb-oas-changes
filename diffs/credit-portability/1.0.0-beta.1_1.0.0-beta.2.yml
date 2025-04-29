@@ -8,16 +8,6 @@ GET /account-data
 - Responses changed
   - Deleted response: 423
   - Deleted response: 429
-  - Modified response: 200
-    - Content changed
-      - Modified media type: application/jwt
-        - Schema changed
-          - Properties changed
-            - Modified property: data
-              - Properties changed
-                - Modified property: strCode
-                  - Required changed
-                    - Deleted required property: accountNumber
   - Modified response: 400
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -177,7 +167,6 @@ GET /credit-operations/{contractId}/portability-eligibility
             - Modified property: errors
               - MinItems changed from 1 to 0
 POST /portabilities
-- New header param: x-idempotency-key
 - Request body changed
   - Content changed
     - Modified media type: application/jwt
@@ -187,6 +176,16 @@ POST /portabilities
             - Properties changed
               - Modified property: customerContact
                 - MinItems changed from 1 to 0
+              - Modified property: proposedContract
+                - Properties changed
+                  - Modified property: interestRates
+                    - Items changed
+                      - Properties changed
+                        - Deleted property: EnumContractReferentialRateIndexerSubType
+                        - Modified property: referentialRateIndexerSubType
+                          - New enum values: [OUTROS_INDEXADORES]
+                          - Deleted enum values: [OUTROS_INDE]
+                          - Example changed from null to 'TJLP'
 - Responses changed
   - Deleted response: 423
   - Deleted response: 429
@@ -305,6 +304,15 @@ GET /portabilities/{portabilityId}
                 - Modified property: proposedContract
                   - Required changed
                     - Deleted required property: installmentPeriodicityAdditionalInfo
+                  - Properties changed
+                    - Modified property: interestRates
+                      - Items changed
+                        - Properties changed
+                          - Deleted property: EnumContractReferentialRateIndexerSubType
+                          - Modified property: referentialRateIndexerSubType
+                            - New enum values: [OUTROS_INDEXADORES]
+                            - Deleted enum values: [OUTROS_INDE]
+                            - Example changed from null to 'TJLP'
                 - Modified property: rejection
                   - Description changed from 'Objeto contendo detalhes do cancelamento do pedido de portabilidade de crédito junto a Instituição Credora.
 [RESTRIÇÃO] Campo de preenchimento obrigatório quando `status` for igual a `REJECTED` ou `CANCELED`
