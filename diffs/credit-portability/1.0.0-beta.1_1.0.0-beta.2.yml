@@ -314,8 +314,12 @@ GET /portabilities/{portabilityId}
                   - MinItems changed from 1 to 0
                 - Modified property: proposedContract
                   - Required changed
+                    - New required property: CET
+                    - Deleted required property: cet
                     - Deleted required property: installmentPeriodicityAdditionalInfo
                   - Properties changed
+                    - New property: CET
+                    - Deleted property: cet
                     - Modified property: interestRates
                       - Items changed
                         - Properties changed
@@ -446,6 +450,14 @@ PATCH /portabilities/{portabilityId}/cancel
 Ao utilizar essa opção, é fortemente recomendável enviar um ticket para o GT de Portabilidade de Crédito como sugestão para estrutura Open Finance para discussão e mapeamento em futuras versões.
 [RESTRIÇÃO] Campo de preenchimento obrigatório quando campo `type` for igual a `OUTROS`.
 '
+              - Modified property: rejectedBy
+                - Description changed from 'Informar usuário responsável pela rejeição da proposta, onde:
+`PROPONETE ` - Indica que o pedido de portabilidade de crédito foi rejeitado pela proponente, seja porque a proponente rejeitou a liquidação que excedeu em 15% o valor do contrato original, entre outras possibilidades.
+`USUARIO` - Indica que o cliente cancelou o pedido de portabilidade de crédito.
+' to 'Informar usuário responsável pela rejeição da proposta, onde:
+`PROPONENTE ` - Indica que o pedido de portabilidade de crédito foi rejeitado pela proponente, seja porque a proponente rejeitou a liquidação que excedeu em 15% o valor do contrato original, entre outras possibilidades.
+`USUARIO` - Indica que o cliente cancelou o pedido de portabilidade de crédito.
+'
 - Responses changed
   - Deleted response: 423
   - Deleted response: 429
@@ -464,6 +476,14 @@ Ao utilizar essa opção, é fortemente recomendável enviar um ticket para o GT
 ' to 'Informação adicional sobre rejeição de portabilidade de crédito. 
 Ao utilizar essa opção, é fortemente recomendável enviar um ticket para o GT de Portabilidade de Crédito como sugestão para estrutura Open Finance para discussão e mapeamento em futuras versões.
 [RESTRIÇÃO] Campo de preenchimento obrigatório quando campo `type` for igual a `OUTROS`.
+'
+                - Modified property: rejectedBy
+                  - Description changed from 'Informar usuário responsável pela rejeição da proposta, onde:
+`PROPONETE ` - Indica que o pedido de portabilidade de crédito foi rejeitado pela proponente, seja porque a proponente rejeitou a liquidação que excedeu em 15% o valor do contrato original, entre outras possibilidades.
+`USUARIO` - Indica que o cliente cancelou o pedido de portabilidade de crédito.
+' to 'Informar usuário responsável pela rejeição da proposta, onde:
+`PROPONENTE ` - Indica que o pedido de portabilidade de crédito foi rejeitado pela proponente, seja porque a proponente rejeitou a liquidação que excedeu em 15% o valor do contrato original, entre outras possibilidades.
+`USUARIO` - Indica que o cliente cancelou o pedido de portabilidade de crédito.
 '
   - Modified response: 400
     - Content changed
