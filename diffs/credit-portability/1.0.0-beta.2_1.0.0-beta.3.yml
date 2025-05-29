@@ -2,7 +2,7 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 1
+### Modified Endpoints: 2
 -------------------------
 GET /portabilities/{portabilityId}
 - Responses changed
@@ -18,3 +18,21 @@ GET /portabilities/{portabilityId}
                 - Modified property: statusReason
                   - Properties changed
                     - Deleted property: paymentIssueDetail
+PATCH /portabilities/{portabilityId}/cancel
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Required changed
+              - New required property: rejectedBy
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Required changed
+                - New required property: rejectedBy
