@@ -2,7 +2,7 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 2
+### Modified Endpoints: 3
 -------------------------
 GET /portabilities/{portabilityId}
 - Responses changed
@@ -36,3 +36,31 @@ PATCH /portabilities/{portabilityId}/cancel
             - Modified property: data
               - Required changed
                 - New required property: rejectedBy
+POST /portabilities/{portabilityId}/payment
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: transactionId
+                - Description changed from 'Identificador da transação utilizada para Proponente liquidar portabilidade de crédito com a Credora.
+No contexto de STR0047, utilizar o valor do campo de retorno NumCtrlSTR (Numero de Controle da STR)".
+' to 'Identificador da transação utilizada para proponente liquidar a portabilidade de crédito com a credora.
+No contexto da STR0052, utilizar o valor do campo de retorno NumCtrlSTR (Numero de Controle da STR)
+'
+- Responses changed
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: transactionId
+                  - Description changed from 'Identificador da transação utilizada para Proponente liquidar portabilidade de crédito com a Credora.
+No contexto de STR0047, utilizar o valor do campo de retorno NumCtrlSTR (Numero de Controle da STR)".
+' to 'Identificador da transação utilizada para proponente liquidar a portabilidade de crédito com a credora.
+No contexto da STR0052, utilizar o valor do campo de retorno NumCtrlSTR (Numero de Controle da STR)
+'
