@@ -1,8 +1,9 @@
-﻿### New Endpoints: None
------------------------
+﻿### New Endpoints: 1
+--------------------
+GET /accounts/{accountId}/reserved_balances  
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 1
+### Modified Endpoints: 3
 -------------------------
 GET /accounts/{accountId}
 - Responses changed
@@ -20,3 +21,27 @@ GET /accounts/{accountId}
 ' to 'Dígito da conta. 
 [Restrição] Obrigatoriamente deve ser preenchido quando o campo "type" for diferente de conta pré-paga. Nos casos em que a conta pré-paga possua dígito, o envio é obrigatório
 '
+GET /accounts/{accountId}/transactions
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: type
+                    - New enum values: [TRANSFERENCIA_SALDO_RESERVADO]
+GET /accounts/{accountId}/transactions-current
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: type
+                    - New enum values: [TRANSFERENCIA_SALDO_RESERVADO]
