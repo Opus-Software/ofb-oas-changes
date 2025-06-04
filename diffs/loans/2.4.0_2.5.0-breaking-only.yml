@@ -11,6 +11,11 @@ GET /contracts
       - Modified media type: application/json
         - Schema changed
           - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: brandName
+                    - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
             - Modified property: links
               - Properties changed
                 - Modified property: first
@@ -188,11 +193,34 @@ GET /contracts/{contractId}
           - Properties changed
             - Modified property: data
               - Properties changed
+                - Modified property: amortizationScheduledAdditionalInfo
+                  - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
+                - Modified property: contractedFees
+                  - Items changed
+                    - Properties changed
+                      - Modified property: feeCode
+                        - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
+                      - Modified property: feeName
+                        - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
+                - Modified property: contractedFinanceCharges
+                  - Items changed
+                    - Properties changed
+                      - Modified property: chargeAdditionalInfo
+                        - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
+                - Modified property: instalmentPeriodicityAdditionalInfo
+                  - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
                 - Modified property: interestRates
                   - Items changed
                     - Required changed
                       - Deleted required property: postFixedRate
                       - Deleted required property: preFixedRate
+                    - Properties changed
+                      - Modified property: additionalInfo
+                        - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
+                      - Modified property: referentialRateIndexerAdditionalInfo
+                        - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
+                - Modified property: productName
+                  - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
             - Modified property: links
               - Properties changed
                 - Modified property: first
@@ -372,6 +400,25 @@ GET /contracts/{contractId}/payments
       - Modified media type: application/json
         - Schema changed
           - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: releases
+                  - Items changed
+                    - Properties changed
+                      - Modified property: overParcel
+                        - Properties changed
+                          - Modified property: charges
+                            - Items changed
+                              - Properties changed
+                                - Modified property: chargeAdditionalInfo
+                                  - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
+                          - Modified property: fees
+                            - Items changed
+                              - Properties changed
+                                - Modified property: feeCode
+                                  - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
+                                - Modified property: feeName
+                                  - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
             - Modified property: links
               - Properties changed
                 - Modified property: first
