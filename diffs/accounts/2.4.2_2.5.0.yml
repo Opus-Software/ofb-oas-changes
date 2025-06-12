@@ -3,8 +3,24 @@
 GET /accounts/{accountId}/reserved_balances  
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 3
+### Modified Endpoints: 5
 -------------------------
+GET /accounts
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Required changed
+                  - Deleted required property: checkDigit
+                - Properties changed
+                  - Modified property: checkDigit
+                    - Description changed from 'Dígito da conta' to 'Dígito da conta
+[Restrição] Obrigatoriamente deve ser preenchido quando o campo `type` for diferente de conta pré-paga. Nos casos em que a conta pré-paga possua dígito, o envio é obrigatório.
+'
 GET /accounts/{accountId}
 - Responses changed
   - Modified response: 200
@@ -20,6 +36,20 @@ GET /accounts/{accountId}
                   - Description changed from 'Dígito da conta
 ' to 'Dígito da conta. 
 [Restrição] Obrigatoriamente deve ser preenchido quando o campo "type" for diferente de conta pré-paga. Nos casos em que a conta pré-paga possua dígito, o envio é obrigatório
+'
+GET /accounts/{accountId}/balances
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - New property: hasReservedBalance
+                - Modified property: availableAmount
+                  - Description changed from 'Saldo disponível para utilização imediata. No caso de conta de depósito a vista, sem considerar cheque especial e investimentos atrelados a conta. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.' to 'Saldo disponível para utilização imediata. Não considera cheque especial, investimentos automáticos atrelados a conta e nem reserva de saldo. 
+Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.
 '
 GET /accounts/{accountId}/transactions
 - Responses changed
