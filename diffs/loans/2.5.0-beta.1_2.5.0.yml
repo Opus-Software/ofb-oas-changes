@@ -2,7 +2,7 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 4
+### Modified Endpoints: 3
 -------------------------
 GET /contracts
 - Responses changed
@@ -85,11 +85,6 @@ Para o produto CPC (campo `productSubTypeCategory` preenchido com `CREDITO_PESSO
                         - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
                       - Modified property: referentialRateIndexerAdditionalInfo
                         - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
-                - Modified property: nextInstalmentAmount
-                  - Description changed from 'Informa o valor da próxima parcela à vencer. Para contratos liquidados, retornar zero, seguindo o pattern.   [Restrição]   O envio do campo será obrigatório para CPC (campo “productSubTypeCategory” preenchido com CREDITO_PESSOAL_CLEAN).
-' to 'Informa o valor de face da próxima parcela à vencer. Para contratos liquidados, retornar zero, seguindo o pattern.  
-[Restrição]  O envio do campo será obrigatório para CPC (campo “productSubTypeCategory” preenchido com `CREDITO_PESSOAL_CLEAN`).
-'
                 - Modified property: productName
                   - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
                 - Modified property: productSubTypeCategory
@@ -105,23 +100,7 @@ As orientações a seguir devem ser observadas para o correto preenchimento dest
                   - Description changed from 'Data de liquidação da operação.
 ' to 'Data de liquidação da operação. Data do cancelamento do contrato para casos em que não há saldo devedor restante. No caso de cancelamento com saldo devedor, a data só deve ser preenchida quando o mesmo for liquidado.
 '
-            - Modified property: links
-              - Properties changed
-                - Deleted property: first
-                - Deleted property: last
-                - Deleted property: next
-                - Deleted property: prev
-            - Modified property: meta
-              - Required changed
-                - Deleted required property: totalPages
-                - Deleted required property: totalRecords
-              - Properties changed
-                - Deleted property: totalPages
-                - Deleted property: totalRecords
 GET /contracts/{contractId}/payments
-- Deleted query param: page
-- Deleted query param: page-size
-- Deleted query param: pagination-key
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -130,8 +109,11 @@ GET /contracts/{contractId}/payments
           - Properties changed
             - Modified property: data
               - Properties changed
-                - New property: lastUpdatedContractOutstandingBalance
-                - Deleted property: lastUpdatedcontractOutstandingBalanceDateTime
+                - Modified property: lastUpdatedcontractOutstandingBalanceDateTime
+                  - Description changed from 'Data e hora da última atualização do valor do campo contractOutstandingBalance, conforme especificação RFC-3339, formato UTC. [Restrição] O envio do campo será obrigatório para CPC (campo “productSubTypeCategory” preenchido com CREDITO_PESSOAL_CLEAN).
+' to 'Data e hora da última atualização do valor do campo contractOutstandingBalance, conforme especificação RFC-3339, formato UTC. 
+[Restrição] O envio do campo será obrigatório para CPC (campo “productSubTypeCategory” preenchido com CREDITO_PESSOAL_CLEAN na identificação da operação, no endpoint /contracts/{contractId}).
+'
                 - Modified property: releases
                   - Items changed
                     - Properties changed
@@ -160,39 +142,3 @@ Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimai
 ' to 'Valor total que falta para o cliente liquidar o contrato, considerando o somatório total de todas as parcelas a vencer e vencidas, bem como todas as taxas, tarifas e encargos das parcelas. Nos casos de contrato com taxas pós-fixadas, considerar apenas valores pré-fixados, visto que o cálculo pós-fixado ocorre apenas em momento futuro, e que o valor está sujeito às variações de seu indexador. 
 [Restrição] O envio do campo será obrigatório para CPC (campo “productSubTypeCategory” preenchido com CREDITO_PESSOAL_CLEAN na identificação da operação, no endpoint /contracts/{contractId}).
 '
-            - Modified property: links
-              - Properties changed
-                - Deleted property: first
-                - Deleted property: last
-                - Deleted property: next
-                - Deleted property: prev
-            - Modified property: meta
-              - Required changed
-                - Deleted required property: totalPages
-                - Deleted required property: totalRecords
-              - Properties changed
-                - Deleted property: totalPages
-                - Deleted property: totalRecords
-GET /contracts/{contractId}/scheduled-instalments
-- Deleted query param: page
-- Deleted query param: page-size
-- Deleted query param: pagination-key
-- Responses changed
-  - Modified response: 200
-    - Content changed
-      - Modified media type: application/json
-        - Schema changed
-          - Properties changed
-            - Modified property: links
-              - Properties changed
-                - Deleted property: first
-                - Deleted property: last
-                - Deleted property: next
-                - Deleted property: prev
-            - Modified property: meta
-              - Required changed
-                - Deleted required property: totalPages
-                - Deleted required property: totalRecords
-              - Properties changed
-                - Deleted property: totalPages
-                - Deleted property: totalRecords
