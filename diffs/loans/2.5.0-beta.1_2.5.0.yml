@@ -48,6 +48,9 @@ Deve-se ter apenas a representação alfanumérica do CNPJ, sem máscara.
 [Restrição] Informação adicional específica para quando o productSubType for igual a CREDITO_PESSOAL_COM_CONSIGNACAO
 '
                   - Pattern changed from '^\d{14}$' to '^[0-9A-Z]{12}[0-9]{2}$'
+                - Modified property: contractDate
+                  - Description changed from 'Data de contratação da operação de crédito. Especificação RFC-3339' to 'Data de contratação da operação de crédito. Especificação RFC-3339. Para produtos rotativos, productSubType `CHEQUE_ESPECIAL` e `CONTA_GARANTIDA`, caso tenha-se múltiplas contratações do mesmo produto, deve-se enviar à última data disponível.
+'
                 - Modified property: contractedFees
                   - Items changed
                     - Properties changed
@@ -60,6 +63,11 @@ Deve-se ter apenas a representação alfanumérica do CNPJ, sem máscara.
                     - Properties changed
                       - Modified property: chargeAdditionalInfo
                         - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
+                - Modified property: dueDate
+                  - Description changed from 'Data do último vencimento da operação, seguindo a especificação RFC-3339.
+Informação deve ser enviada caso ela exista. Especialmente para contratos repactuados, deve-se alterar a data para a do último vencimento.
+' to 'Data do último vencimento da operação, seguindo a especificação RFC-3339. Informação deve ser enviada caso ela exista. Especialmente para contratos repactuados, deve-se alterar a data para a do último vencimento. Para produtos rotativos, productSubType `CHEQUE_ESPECIAL` e `CONTA_GARANTIDA`, o campo representa a data fim da renovação para contratos ativos ou data do cancelamento para contratos cancelados ou vencidos.
+'
                 - Modified property: instalmentPeriodicityAdditionalInfo
                   - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
                 - Modified property: interestRates
@@ -87,6 +95,10 @@ As orientações a seguir devem ser observadas para o correto preenchimento dest
 * O enum `CONSIGNADO_SIAPE`, **que engloba todos os contratos consignados sob a regulamentação do Sistema Integrado de Administração de Recursos Humanos (Siape), apresentando informações de servidores estatutários, temporários, celetistas (CLT), entre outros**, será de envio obrigatório, a partir do início do piloto para crédito consignado;
 * Contratos liquidados até a entrada em produção (go live) da versão 2.5.0 poderão ser preenchidos com a opção OUTRO;
 * As demais submodalidades devem ser classificadas na opção `OUTRO`.
+'
+                - Modified property: settlementDate
+                  - Description changed from 'Data de liquidação da operação.
+' to 'Data de liquidação da operação. Data do cancelamento do contrato para casos em que não há saldo devedor restante. No caso de cancelamento com saldo devedor, a data só deve ser preenchida quando o mesmo for liquidado.
 '
 GET /contracts/{contractId}/payments
 - Responses changed
@@ -119,6 +131,11 @@ GET /contracts/{contractId}/payments
                                   - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
                                 - Modified property: feeName
                                   - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
+                      - Modified property: paidAmount
+                        - Description changed from 'Valor do pagamento referente ao  contrato da modalidade de crédito consultada.
+Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.
+' to 'Valor do pagamento referente ao contrato da modalidade de crédito consultada . Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais. Se encargos e taxas foram pagos juntos da parcela, a soma total deve ser adicionada ao valor da parcela neste campo. Caso o pagamento de taxas e encargos tenham sido feitos a parte, devem ser listados no campo ovelParcel.
+'
                 - Modified property: totalRemainingAmount
                   - Description changed from 'Valor total que falta para o cliente liquidar o contrato, considerando o somatório total de todas as parcelas a vencer e vencidas, bem como todas as taxas, tarifas e encargos das parcelas. Nos casos de contrato com taxas pós-fixadas, considerar apenas valores pré-fixados, visto que o cálculo pós-fixado ocorre apenas em momento futuro, e que o valor está sujeito às variações de seu indexador. 
 [Restrição] O envio do campo será obrigatório para CPC (campo “productSubTypeCategory” preenchido com CREDITO_PESSOAL_CLEAN).

@@ -222,6 +222,9 @@ Deve-se ter apenas a representação alfanumérica do CNPJ, sem máscara.
 Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais. 
 Nos casos em que não houver este valor explícito no contrato do produto, enviar como 0.00
 '
+                - Modified property: contractDate
+                  - Description changed from 'Data de contratação da operação de crédito. Especificação RFC-3339' to 'Data de contratação da operação de crédito. Especificação RFC-3339. Para produtos rotativos, productSubType `CHEQUE_ESPECIAL` e `CONTA_GARANTIDA`, caso tenha-se múltiplas contratações do mesmo produto, deve-se enviar à última data disponível.
+'
                 - Modified property: contractedFees
                   - Items changed
                     - Properties changed
@@ -236,8 +239,7 @@ Nos casos em que não houver este valor explícito no contrato do produto, envia
                         - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
                 - Modified property: dueDate
                   - Description changed from 'Data de vencimento Final da operação. Especificação RFC-3339. Informação deve ser enviada caso ela exista.
-' to 'Data do último vencimento da operação, seguindo a especificação RFC-3339.
-Informação deve ser enviada caso ela exista. Especialmente para contratos repactuados, deve-se alterar a data para a do último vencimento.
+' to 'Data do último vencimento da operação, seguindo a especificação RFC-3339. Informação deve ser enviada caso ela exista. Especialmente para contratos repactuados, deve-se alterar a data para a do último vencimento. Para produtos rotativos, productSubType `CHEQUE_ESPECIAL` e `CONTA_GARANTIDA`, o campo representa a data fim da renovação para contratos ativos ou data do cancelamento para contratos cancelados ou vencidos.
 '
                 - Modified property: instalmentPeriodicityAdditionalInfo
                   - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
@@ -274,6 +276,10 @@ Para o produto CPC (campo `productSubTypeCategory` preenchido com `CREDITO_PESSO
 '
                 - Modified property: productName
                   - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
+                - Modified property: settlementDate
+                  - Description changed from 'Data de liquidação da operação.
+' to 'Data de liquidação da operação. Data do cancelamento do contrato para casos em que não há saldo devedor restante. No caso de cancelamento com saldo devedor, a data só deve ser preenchida quando o mesmo for liquidado.
+'
             - Modified property: links
               - Properties changed
                 - Modified property: first
@@ -484,6 +490,11 @@ O valor a liquidar atualizado do dia deve ser ajustado para compartilhamento pel
                                   - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
                                 - Modified property: feeName
                                   - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
+                      - Modified property: paidAmount
+                        - Description changed from 'Valor do pagamento referente ao  contrato da modalidade de crédito consultada.
+Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.
+' to 'Valor do pagamento referente ao contrato da modalidade de crédito consultada . Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais. Se encargos e taxas foram pagos juntos da parcela, a soma total deve ser adicionada ao valor da parcela neste campo. Caso o pagamento de taxas e encargos tenham sido feitos a parte, devem ser listados no campo ovelParcel.
+'
             - Modified property: links
               - Properties changed
                 - Modified property: first
