@@ -17,7 +17,7 @@ GET /contracts
                   - Modified property: brandName
                     - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
                   - Modified property: companyCnpj
-                    - Description changed from 'Número completo do CNPJ da instituição responsável pelo Cadastro - o CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica. Deve-se ter apenas os números do CNPJ, sem máscara.' to 'Representação alfanumérica completa do CNPJ da instituição responsável pelo Cadastro - o CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica. Deve-se ter apenas a representação alfanumérica do CNPJ, sem máscara.'
+                    - Description changed from 'Número completo do CNPJ da instituição responsável pelo Cadastro - o CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica. Deve-se ter apenas os números do CNPJ, sem máscara.' to 'Representação alfanumérica completa do CNPJ da instituição responsável pelo contrato de empréstimo afim de identificar a instituição credora nos casos de portabilidade de crédito - o CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica. Deve-se ter apenas a representação alfanumérica do CNPJ, sem máscara.'
                     - Pattern changed from '\d{14}$' to '^[0-9A-Z]{12}[0-9]{2}$'
                   - Modified property: productSubTypeCategory
                     - Description changed from 'Categoria para classificação específica relacionada com a submodalidade do produto. Atenção: o preenchimento com o enum CREDITO_PESSOAL_CLEAN, quando aplicável, será obrigatório à partir da publicação da versão 2.5.0 da API Empréstimos, já o enum CONSIGNADO_SIAPE passará a ser de envio obrigatório em data posterior. Demais submodalidades devem ser classificadas na opção OUTROS
@@ -83,8 +83,22 @@ Para o produto CPC (campo `productSubTypeCategory` preenchido com `CREDITO_PESSO
                     - Properties changed
                       - Modified property: additionalInfo
                         - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
+                      - Modified property: postFixedRate
+                        - Description changed from 'Taxa pós fixada aplicada sob o contrato da modalidade crédito. p.ex. 0.0045 .O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%). Para taxas pós fixadas necessário informar o indexador (campo referentialRateIndexerSubType).
+[Restrição] Este campo é de envio obrigatório caso não seja enviado o campo preFixedRate.
+' to 'Taxa pós fixada aplicada sob o contrato da modalidade crédito. p.ex. 0.0045.O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%). Para taxas pós fixadas necessário informar o indexador (campo referentialRateIndexerSubType).
+[Restrição] Este campo é de envio obrigatório caso não seja enviado o campo preFixedRate.
+'
                       - Modified property: referentialRateIndexerAdditionalInfo
                         - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
+                      - Modified property: taxPeriodicity
+                        - Description changed from '"Periodicidade da taxa . (Vide  Enum)
+a.m - ao mês
+a.a. - ao ano"
+' to '"Periodicidade da taxa. (Vide  Enum)
+a.m - ao mês
+a.a. - ao ano"
+'
                 - Modified property: nextInstalmentAmount
                   - Description changed from 'Informa o valor da próxima parcela à vencer. Para contratos liquidados, retornar zero, seguindo o pattern.   [Restrição]   O envio do campo será obrigatório para CPC (campo “productSubTypeCategory” preenchido com CREDITO_PESSOAL_CLEAN).
 ' to 'Informa o valor de face (corresponde ao valor da parcela no vencimento). Para contratos liquidados, retornar zero, seguindo o pattern.
@@ -152,7 +166,7 @@ GET /contracts/{contractId}/payments
                       - Modified property: paidAmount
                         - Description changed from 'Valor do pagamento referente ao  contrato da modalidade de crédito consultada.
 Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.
-' to 'Valor do pagamento referente ao contrato da modalidade de crédito consultada . Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais. Se encargos e taxas foram pagos juntos da parcela, a soma total deve ser adicionada ao valor da parcela neste campo. Caso o pagamento de taxas e encargos tenham sido feitos a parte, devem ser listados no campo ovelParcel.
+' to 'Valor do pagamento referente ao contrato da modalidade de crédito consultada. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais. Se encargos e taxas foram pagos juntos da parcela, a soma total deve ser adicionada ao valor da parcela neste campo. Caso o pagamento de taxas e encargos tenham sido feitos a parte, devem ser listados no campo ovelParcel.
 '
                 - Modified property: totalRemainingAmount
                   - Description changed from 'Valor total que falta para o cliente liquidar o contrato, considerando o somatório total de todas as parcelas a vencer e vencidas, bem como todas as taxas, tarifas e encargos das parcelas. Nos casos de contrato com taxas pós-fixadas, considerar apenas valores pré-fixados, visto que o cálculo pós-fixado ocorre apenas em momento futuro, e que o valor está sujeito às variações de seu indexador. 
