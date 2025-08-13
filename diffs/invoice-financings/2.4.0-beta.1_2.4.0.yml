@@ -2,7 +2,7 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 4
+### Modified Endpoints: 5
 -------------------------
 GET /contracts
 - Responses changed
@@ -16,6 +16,18 @@ GET /contracts
                 - Properties changed
                   - Modified property: brandName
                     - Pattern changed from '^[^\s](.*[^\s])?$' to '^(?!\s)[\w\W\s]*[^\s]$'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - MaxLength changed from 4048 to 2000
+                - Modified property: last
+                  - MaxLength changed from 4048 to 2000
+                - Modified property: next
+                  - MaxLength changed from 4048 to 2000
+                - Modified property: prev
+                  - MaxLength changed from 4048 to 2000
+                - Modified property: self
+                  - MaxLength changed from 4048 to 2000
 GET /contracts/{contractId}
 - Responses changed
   - Modified response: 200
@@ -57,6 +69,8 @@ GET /contracts/{contractId}
                 - New property: last
                 - New property: next
                 - New property: prev
+                - Modified property: self
+                  - MaxLength changed from 4048 to 2000
             - Modified property: meta
               - Required changed
                 - New required property: totalPages
@@ -103,6 +117,8 @@ GET /contracts/{contractId}/payments
                 - New property: last
                 - New property: next
                 - New property: prev
+                - Modified property: self
+                  - MaxLength changed from 4048 to 2000
             - Modified property: meta
               - Required changed
                 - New required property: totalPages
@@ -126,6 +142,8 @@ GET /contracts/{contractId}/scheduled-instalments
                 - New property: last
                 - New property: next
                 - New property: prev
+                - Modified property: self
+                  - MaxLength changed from 4048 to 2000
             - Modified property: meta
               - Required changed
                 - New required property: totalPages
@@ -133,3 +151,22 @@ GET /contracts/{contractId}/scheduled-instalments
               - Properties changed
                 - New property: totalPages
                 - New property: totalRecords
+GET /contracts/{contractId}/warranties
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - MaxLength changed from 4048 to 2000
+                - Modified property: last
+                  - MaxLength changed from 4048 to 2000
+                - Modified property: next
+                  - MaxLength changed from 4048 to 2000
+                - Modified property: prev
+                  - MaxLength changed from 4048 to 2000
+                - Modified property: self
+                  - MaxLength changed from 4048 to 2000
