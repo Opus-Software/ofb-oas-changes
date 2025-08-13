@@ -216,11 +216,14 @@ paths:
       operationId: financingsGetContractsContractIdScheduledInstalments
       parameters:
         - $ref: '#/components/parameters/contractId'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/pageSize'
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/xFapiAuthDate'
         - $ref: '#/components/parameters/xFapiCustomerIpAddress'
         - $ref: '#/components/parameters/xFapiInteractionId'
         - $ref: '#/components/parameters/xCustomerUserAgent'
+        - $ref: '#/components/parameters/pagination-key'
       responses:
         '200':
           $ref: '#/components/responses/OKResponseFinancingsInstalments'
@@ -265,11 +268,14 @@ paths:
       operationId: financingsGetContractsContractIdPayments
       parameters:
         - $ref: '#/components/parameters/contractId'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/pageSize'
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/xFapiAuthDate'
         - $ref: '#/components/parameters/xFapiCustomerIpAddress'
         - $ref: '#/components/parameters/xFapiInteractionId'
         - $ref: '#/components/parameters/xCustomerUserAgent'
+        - $ref: '#/components/parameters/pagination-key'
       responses:
         '200':
           $ref: '#/components/responses/OKResponseFinancingsPayments'
@@ -306,13 +312,6 @@ paths:
             - 'consent:consentId'
             - financings
 components:
-  headers:
-    X-V: 
-      description: |
-          Cabeçalho que indica a versão implementada da API pela instituição financeira para atender à solicitação. Deve ser preenchido de forma completa, por exemplo: x-v : 1.0.2.
-      required: true
-      schema:
-        $ref: '#/components/schemas/X-V'
   schemas:
     ResponseErrorWithAbleAdditionalProperties:
       type: object
@@ -346,7 +345,7 @@ components:
                 pattern: '[\w\W\s]*'
                 maxLength: 2048
         meta:
-          $ref: '#/components/schemas/MetaSingle'
+          $ref: '#/components/schemas/MetaError'
     ResponseFinancingsContractList:
       type: object
       required:
@@ -360,9 +359,9 @@ components:
           items:
             $ref: '#/components/schemas/FinancingsListContract'
         links:
-          $ref: '#/components/schemas/LinksSingle'
+          $ref: '#/components/schemas/Links'
         meta:
-          $ref: '#/components/schemas/MetaSingle'
+          $ref: '#/components/schemas/Meta'
     ResponseFinancingsContract:
       type: object
       required:
@@ -386,9 +385,9 @@ components:
         data:
           $ref: '#/components/schemas/FinancingsInstalments'
         links:
-          $ref: '#/components/schemas/LinksSingle'
+          $ref: '#/components/schemas/Links'
         meta:
-          $ref: '#/components/schemas/MetaSingle'
+          $ref: '#/components/schemas/Meta'
     ResponseFinancingsPayments:
       type: object
       required:
@@ -399,9 +398,9 @@ components:
         data:
           $ref: '#/components/schemas/FinancingsPayments'
         links:
-          $ref: '#/components/schemas/LinksSingle'
+          $ref: '#/components/schemas/Links'
         meta:
-          $ref: '#/components/schemas/MetaSingle'
+          $ref: '#/components/schemas/Meta'
     ResponseFinancingsWarranties:
       type: object
       required:
@@ -545,7 +544,7 @@ components:
         referentialRateIndexerAdditionalInfo:
           type: string
           maxLength: 140
-          pattern: '^[^\s](.*[^\s])?$'
+          pattern: '^(?!\s)[\w\W\s]*[^\s]$'
           example: Informações adicionais
           description: |
             Campo livre para complementar a informação relativa ao Tipo de taxa referencial ou indexador.
@@ -574,15 +573,12 @@ components:
         additionalInfo:
           type: string
           maxLength: 1200
-          pattern: '^[^\s](.*[^\s])?$'
+          pattern: '^(?!\s)[\w\W\s]*[^\s]$'
           example: Informações adicionais
           description: |
             Texto com informações adicionais sobre a composição das taxas de juros pactuadas. 
 
             [Restrição] Caso a instituição possua a informação para compartilhamento, esta deverá ser informada.
-        hasInsuranceContracted:
-          type: boolean
-          description: Campo que identifica se existe seguro contratado para o Adiantamento a Depositante, onde seguro contratado é true e não contratado é false.
     FinancingsBalloonPayment:
       type: object
       description: Lista que traz as datas de vencimento e valor das parcelas não regulares  do contrato da modalidade de crédito consultada.
@@ -638,7 +634,7 @@ components:
           description: Valor do pagamento do encargo pago fora da parcela. Expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais.
         chargeAdditionalInfo:
           type: string
-          pattern: '^[^\s](.*[^\s])?$'
+          pattern: '^(?!\s)[\w\W\s]*[^\s]$'
           maxLength: 140
           example: Informações adicionais
           description: |
@@ -688,7 +684,7 @@ components:
         productName:
           type: string
           maxLength: 140
-          pattern: '^[^\s](.*[^\s])?$'
+          pattern: '^(?!\s)[\w\W\s]*[^\s]$'
           example: Crédito Pessoal Consignado
           description: |
             Denominação/Identificação do nome da Modalidade da Operação de Crédito divulgado ao cliente
@@ -767,7 +763,7 @@ components:
           example: SEMANAL
         instalmentPeriodicityAdditionalInfo:
           type: string
-          pattern: '^[^\s](.*[^\s])?$'
+          pattern: '^(?!\s)[\w\W\s]*[^\s]$'
           maxLength: 50
           example: Informações adicionais sobre periodicidade
           description: |
@@ -800,8 +796,6 @@ components:
             - Em contratos anteriores a 2011 (para o público PJ);
             - Em contratos anteriores a 2019 para os casos de operações de crédito rural (ambos os públicos PF e PJ);
             - Público PJ de médio ou grande porte.
-
-            Quando o CET for indexado dinamicamente a um indicador ainda não divulgado, informar o valor recalculado com o último índice oficial disponível na data da consulta. Assim que o novo índice for publicado, o CET deve ser atualizado na próxima exposição.
         amortizationScheduled:
           type: string
           description: |
@@ -819,7 +813,7 @@ components:
           example: SAC
         amortizationScheduledAdditionalInfo:
           type: string
-          pattern: '^[^\s](.*[^\s])?$'
+          pattern: '^(?!\s)[\w\W\s]*[^\s]$'
           maxLength: 200
           example: Informações complementares relativa à amortização do tipo 'OUTROS'
           description: |
@@ -859,13 +853,13 @@ components:
         feeName:
           type: string
           maxLength: 140
-          pattern: '^[^\s](.*[^\s])?$'
+          pattern: '^(?!\s)[\w\W\s]*[^\s]$'
           description: Denominação da Tarifa pactuada
           example: Excesso em Conta
         feeCode:
           type: string
           maxLength: 140
-          pattern: '^[^\s](.*[^\s])?$'
+          pattern: '^(?!\s)[\w\W\s]*[^\s]$'
           description: Sigla identificadora da tarifa pactuada
           example: EXCESSO_CONTA
         feeChargeType:
@@ -921,14 +915,14 @@ components:
         feeName:
           type: string
           maxLength: 140
-          pattern: '^[^\s](.*[^\s])?$'
+          pattern: '^(?!\s)[\w\W\s]*[^\s]$'
           example: Reavaliação periódica do bem
           description: |
             Denominação da Tarifa pactuada.
         feeCode:
           type: string
           maxLength: 140
-          pattern: '^[^\s](.*[^\s])?$'
+          pattern: '^(?!\s)[\w\W\s]*[^\s]$'
           example: aval_bem
           description: |
             Sigla identificadora da tarifa pactuada.  
@@ -958,7 +952,7 @@ components:
             Campo para informações adicionais.
 
             [Restrição] Obrigatório se selecionada a opção 'OUTROS' em Tipo de encargo pactuado no contrato.
-          pattern: '^[^\s](.*[^\s])?$'
+          pattern: '^(?!\s)[\w\W\s]*[^\s]$'
           example: Informações adicionais sobre encargos.
         chargeRate:
           type: string
@@ -1061,7 +1055,7 @@ components:
           description: 'Identifica de forma única o contrato da operação de crédito do cliente, mantendo as regras de imutabilidade dentro da instituição transmissora.'
         brandName:
           type: string
-          pattern: '^[^\s](.*[^\s])?$'
+          pattern: '^(?!\s)[\w\W\s]*[^\s]$'
           maxLength: 80
           example: Organização A
           description: 'Nome da Marca reportada pelo participante no Open Finance. Recomenda-se utilizar, sempre que possível, o mesmo nome de marca atribuído no campo do diretório Customer Friendly Server Name (Authorisation Server).'
@@ -1137,7 +1131,7 @@ components:
           maxLength: 20
           minLength: 4
           example: '1000.0400'
-          description: Valor necessario para o cliente liquidar a dívida, ou seja, este campo deve ser preenchido com o saldo devedor atualizado descrito no DDC (Documento Descritivo de Crédito).
+          description: Valor necessario para o cliente liquidar a dívida.
         releases:
           type: array
           minItems: 0
@@ -1329,7 +1323,7 @@ components:
           maxLength: 20
           format: date-time
           example: '2021-05-21T08:30:00Z'
-    MetaSingle:
+    MetaError:
       type: object
       description: Meta informações referente à API requisitada.
       required:
@@ -1350,49 +1344,33 @@ components:
         self:
           type: string
           format: url
-          maxLength: 4048
+          maxLength: 2000
           description: URI completo que gerou a resposta atual.
           example: 'https://api.banco.com.br/open-banking/api/v1/resource'
         first:
           type: string
           format: url
-          maxLength: 4048
+          maxLength: 2000
           description: URI da primeira página que originou essa lista de resultados. Restrição - Obrigatório quando não for a primeira página da resposta
           example: 'https://api.banco.com.br/open-banking/api/v1/resource'
         prev:
           type: string
           format: url
-          maxLength: 4048
+          maxLength: 2000
           description: "URI da página anterior dessa lista de resultados. Restrição - \tObrigatório quando não for a primeira página da resposta"
           example: 'https://api.banco.com.br/open-banking/api/v1/resource'
         next:
           type: string
           format: url
-          maxLength: 4048
+          maxLength: 2000
           description: URI da próxima página dessa lista de resultados. Restrição - Obrigatório quando não for a última página da resposta
           example: 'https://api.banco.com.br/open-banking/api/v1/resource'
         last:
           type: string
           format: url
-          maxLength: 4048
+          maxLength: 2000
           description: URI da última página dessa lista de resultados. Restrição - Obrigatório quando não for a última página da resposta
           example: 'https://api.banco.com.br/open-banking/api/v1/resource'
-    LinksSingle:
-      type: object
-      description: Referências para outros recusos da API requisitada.
-      required:
-        - self
-      properties:
-        self:
-          type: string
-          format: url
-          maxLength: 4048
-          description: URI completo que gerou a resposta atual.
-          example: 'https://api.banco.com.br/open-banking/api/v1/resource'
-    X-V:
-      type: string
-      pattern: '^\d+\.\d+\.\d+$'
-      example: 1.0.0  
     XFapiInteractionId:
       type: string
       format: uuid
@@ -1510,8 +1488,6 @@ components:
         x-fapi-interaction-id:
           schema:
             $ref: '#/components/schemas/XFapiInteractionId'
-        x-v:
-          $ref: '#/components/headers/X-V'
       content:
         application/json:
           schema:
@@ -1522,8 +1498,6 @@ components:
         x-fapi-interaction-id:
           schema:
             $ref: '#/components/schemas/XFapiInteractionId'
-        x-v:
-          $ref: '#/components/headers/X-V'
       content:
         application/json:
           schema:
@@ -1534,8 +1508,6 @@ components:
         x-fapi-interaction-id:
           schema:
             $ref: '#/components/schemas/XFapiInteractionId'
-        x-v:
-          $ref: '#/components/headers/X-V'
       content:
         application/json:
           schema:
@@ -1546,8 +1518,6 @@ components:
         x-fapi-interaction-id:
           schema:
             $ref: '#/components/schemas/XFapiInteractionId'
-        x-v:
-          $ref: '#/components/headers/X-V'
       content:
         application/json:
           schema:
@@ -1558,8 +1528,6 @@ components:
         x-fapi-interaction-id:
           schema:
             $ref: '#/components/schemas/XFapiInteractionId'
-        x-v:
-          $ref: '#/components/headers/X-V'
       content:
         application/json:
           schema:
