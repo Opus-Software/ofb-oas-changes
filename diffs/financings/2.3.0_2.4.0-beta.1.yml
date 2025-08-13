@@ -14,6 +14,8 @@ GET /contracts
             - Modified property: data
               - Items changed
                 - Properties changed
+                  - Modified property: brandName
+                    - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
                   - Modified property: companyCnpj
                     - Description changed from 'Número completo do CNPJ da instituição responsável pelo Cadastro - o CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica. Deve-se ter apenas os números do CNPJ, sem máscara.' to 'Registro completo do CNPJ da instituição responsável pelo Cadastro - o CNPJ corresponde a representação alfanumérica da inscrição no Cadastro de Pessoa Jurídica. 
 Deve-se ter apenas os caracteres do CNPJ, sem máscara.
@@ -198,11 +200,33 @@ GET /contracts/{contractId}
           - Properties changed
             - Modified property: data
               - Properties changed
+                - Modified property: amortizationScheduledAdditionalInfo
+                  - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
                 - Modified property: contractedFees
                   - Items changed
                     - Properties changed
+                      - Modified property: feeCode
+                        - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
+                      - Modified property: feeName
+                        - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
                       - Modified property: feeRate
                         - Pattern changed from '^[01]\.\d{6}$' to '^\d{1}\.\d{6}$'
+                - Modified property: contractedFinanceCharges
+                  - Items changed
+                    - Properties changed
+                      - Modified property: chargeAdditionalInfo
+                        - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
+                - Modified property: instalmentPeriodicityAdditionalInfo
+                  - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
+                - Modified property: interestRates
+                  - Items changed
+                    - Properties changed
+                      - Modified property: additionalInfo
+                        - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
+                      - Modified property: referentialRateIndexerAdditionalInfo
+                        - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
+                - Modified property: productName
+                  - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
             - Modified property: links
               - Properties changed
                 - Modified property: first
@@ -380,6 +404,25 @@ GET /contracts/{contractId}/payments
       - Modified media type: application/json
         - Schema changed
           - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: releases
+                  - Items changed
+                    - Properties changed
+                      - Modified property: overParcel
+                        - Properties changed
+                          - Modified property: charges
+                            - Items changed
+                              - Properties changed
+                                - Modified property: chargeAdditionalInfo
+                                  - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
+                          - Modified property: fees
+                            - Items changed
+                              - Properties changed
+                                - Modified property: feeCode
+                                  - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
+                                - Modified property: feeName
+                                  - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
             - Modified property: links
               - Properties changed
                 - Modified property: first
