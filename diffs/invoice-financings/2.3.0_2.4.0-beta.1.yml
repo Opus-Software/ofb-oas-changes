@@ -6,6 +6,16 @@
 -------------------------
 GET /contracts
 - Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: brandName
+                    - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
   - Modified response: 400
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -172,11 +182,33 @@ GET /contracts/{contractId}
             - Modified property: data
               - Properties changed
                 - New property: hasInsuranceContracted
+                - Modified property: amortizationScheduledAdditionalInfo
+                  - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
                 - Modified property: contractedFees
                   - Items changed
                     - Properties changed
+                      - Modified property: feeCode
+                        - Pattern changed from '[\w\W\s]+' to '^[^\s](.*[^\s])?$'
+                      - Modified property: feeName
+                        - Pattern changed from '[\w\W\s]+' to '^[^\s](.*[^\s])?$'
                       - Modified property: feeRate
                         - Pattern changed from '^[01]\.\d{6}$' to '^\d{1}\.\d{6}$'
+                - Modified property: contractedFinanceCharges
+                  - Items changed
+                    - Properties changed
+                      - Modified property: chargeAdditionalInfo
+                        - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
+                - Modified property: instalmentPeriodicityAdditionalInfo
+                  - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
+                - Modified property: interestRates
+                  - Items changed
+                    - Properties changed
+                      - Modified property: additionalInfo
+                        - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
+                      - Modified property: referentialRateIndexerAdditionalInfo
+                        - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
+                - Modified property: productName
+                  - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
             - Modified property: links
               - Properties changed
                 - Deleted property: first
@@ -360,6 +392,25 @@ GET /contracts/{contractId}/payments
               - Properties changed
                 - Modified property: contractOutstandingBalance
                   - Description changed from 'Valor necessario para o cliente liquidar a dívida.' to 'Valor necessário para o cliente liquidar a dívida, ou seja, este campo deve ser preenchido com o saldo devedor atualizado descrito no DDC (Documento Descritivo de Crédito).'
+                - Modified property: releases
+                  - Items changed
+                    - Properties changed
+                      - Modified property: instalmentId
+                        - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
+                      - Modified property: overParcel
+                        - Properties changed
+                          - Modified property: charges
+                            - Items changed
+                              - Properties changed
+                                - Modified property: chargeAdditionalInfo
+                                  - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
+                          - Modified property: fees
+                            - Items changed
+                              - Properties changed
+                                - Modified property: feeCode
+                                  - Pattern changed from '[\w\W\s]+' to '^[^\s](.*[^\s])?$'
+                                - Modified property: feeName
+                                  - Pattern changed from '[\w\W\s]+' to '^[^\s](.*[^\s])?$'
             - Modified property: links
               - Properties changed
                 - Deleted property: first
