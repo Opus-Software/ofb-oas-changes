@@ -2,7 +2,7 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 2
+### Modified Endpoints: 1
 -------------------------
 GET /contracts/{contractId}
 - Responses changed
@@ -22,19 +22,4 @@ Deve-se ter apenas a representação alfanumérica do CNPJ, sem máscara.
 [Restrição] Informação adicional específica para quando o `productSubType` for igual a `CREDITO_PESSOAL_COM_CONSIGNACAO`. 
 Este campo é de envio obrigatório somente enquanto houver vínculo (consignação ativa). 
 Nos casos de desconsignação, o campo pode ser omitido.
-'
-GET /contracts/{contractId}/scheduled-instalments
-- Responses changed
-  - Modified response: 200
-    - Content changed
-      - Modified media type: application/json
-        - Schema changed
-          - Properties changed
-            - Modified property: data
-              - Properties changed
-                - Modified property: totalNumberOfInstalments
-                  - Description changed from 'Prazo Total segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.
-[Restrição] Obrigatoriamente deve ser preenchido caso o typeNumberOfInstalments seja diferente de SEM_PRAZO_TOTAL.
-' to 'Prazo Total segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada. Deve corresponder à soma de `paidInstalments` + `pastDueInstalments` + `dueInstalments`.
-[Restrição] Obrigatoriamente deve ser preenchido caso o `typeNumberOfInstalments` seja diferente de `SEM_PRAZO_TOTAL`.
 '
