@@ -178,6 +178,7 @@ GET /contracts/{contractId}
 [Restrição] Obrigatório quando o campo `amortizationScheduled` for igual a `OUTROS`.
 ' to 'Campo obrigatório para complementar a informação relativa à amortização quando selecionada a opção OUTROS. Preencher o campo quando não aplicável com string vazia ("").
 '
+                  - Pattern changed from '^[^\s](.*[^\s])?$' to '[\w\W\s]*'
                 - Modified property: contractDate
                   - Description changed from 'Data de contratação da operação de crédito. Especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339). 
 Para operações em que o adiantamento a depositantes é disponibilizado ao cliente desde a abertura da conta, utilizar a data de abertura da conta como data de contratação.
@@ -212,6 +213,7 @@ Não aplicável para contratos ativos / Informar data do cancelamento para contr
 [Restrição] Obrigatório quando o campo `instalmentPeriodicity` for igual a `OUTROS`.
 ' to 'Campo obrigatório para complementar a informação relativa à periodicidade de pagamento regular quando tiver a opção OUTROS. Preencher o campo quando não aplicável com string vazia ("").
 '
+                  - Pattern changed from '^[^\s](.*[^\s])?$' to '[\w\W\s]*'
                 - Modified property: interestRates
                   - Items changed
                     - Required changed
