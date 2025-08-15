@@ -39,6 +39,10 @@ Deve-se ter apenas os caracteres do CNPJ, sem máscara.
                   - Description changed from 'Data e hora da consulta, conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), formato UTC.' to 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.'
     - Headers changed
       - Deleted header: x-v
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to ''
+        - Schema changed
+          - Description changed from '' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.'
   - Modified response: 400
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -174,7 +178,6 @@ GET /contracts/{contractId}
 [Restrição] Obrigatório quando o campo `amortizationScheduled` for igual a `OUTROS`.
 ' to 'Campo obrigatório para complementar a informação relativa à amortização quando selecionada a opção OUTROS. Preencher o campo quando não aplicável com string vazia ("").
 '
-                  - Pattern changed from '^[^\s](.*[^\s])?$' to '[\w\W\s]*'
                 - Modified property: contractDate
                   - Description changed from 'Data de contratação da operação de crédito. Especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339). 
 Para operações em que o adiantamento a depositantes é disponibilizado ao cliente desde a abertura da conta, utilizar a data de abertura da conta como data de contratação.
@@ -209,11 +212,11 @@ Não aplicável para contratos ativos / Informar data do cancelamento para contr
 [Restrição] Obrigatório quando o campo `instalmentPeriodicity` for igual a `OUTROS`.
 ' to 'Campo obrigatório para complementar a informação relativa à periodicidade de pagamento regular quando tiver a opção OUTROS. Preencher o campo quando não aplicável com string vazia ("").
 '
-                  - Pattern changed from '^[^\s](.*[^\s])?$' to '[\w\W\s]*'
                 - Modified property: interestRates
                   - Items changed
                     - Required changed
                       - New required property: postFixedRate
+                      - New required property: preFixedRate
                     - Properties changed
                       - Modified property: additionalInfo
                         - Pattern changed from '^[^\s](.*[^\s])?$' to '^(?!\s)[\w\W\s]*[^\s]$'
@@ -221,6 +224,11 @@ Não aplicável para contratos ativos / Informar data do cancelamento para contr
                         - Description changed from 'Taxa pós-fixada aplicada sob o contrato da modalidade crédito. p.ex. 0.0045. O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%).
 [Restrição] Este campo é de envio obrigatório caso não seja enviado o campo `preFixedRate`.
 ' to 'Taxa pós-fixada aplicada sob o contrato da modalidade crédito. p.ex. 0.0045 .O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%). Preencher o campo não aplicável ao contrato com zeros, seguindo o pattern (0.000000).
+'
+                      - Modified property: preFixedRate
+                        - Description changed from 'Taxa pré-fixada aplicada sob o contrato da modalidade crédito. p.ex. 0.014500. O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros(representação de porcentagem p.ex: 0.150000. Este valor representa 15%. O valor 1 representa 100%).
+[Restrição] Este campo é de envio obrigatório caso não seja enviado o campo `postFixedRate`.  
+' to 'Taxa pré-fixada aplicada sob o contrato da modalidade crédito. p.ex. 0.014500. O preenchimento deve respeitar as 6 casas decimais, mesmo que venham preenchidas com zeros(representação de porcentagem p.ex: 0.150000. Este valor representa 15%. O valor 1 representa 100%). Preencher o campo não aplicável ao contrato com zeros, seguindo o pattern (0.000000).
 '
                       - Modified property: referentialRateIndexerAdditionalInfo
                         - Pattern changed from '^[^\s](.*[^\s])?$' to '^(?!\s)[\w\W\s]*[^\s]$'
@@ -253,6 +261,10 @@ a.a. - ao ano"
                   - Description changed from 'Data e hora da consulta, conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), formato UTC.' to 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.'
     - Headers changed
       - Deleted header: x-v
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to ''
+        - Schema changed
+          - Description changed from '' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.'
   - Modified response: 400
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -420,6 +432,10 @@ GET /contracts/{contractId}/payments
                   - Description changed from 'Data e hora da consulta, conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), formato UTC.' to 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.'
     - Headers changed
       - Deleted header: x-v
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to ''
+        - Schema changed
+          - Description changed from '' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.'
   - Modified response: 400
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -573,6 +589,10 @@ GET /contracts/{contractId}/scheduled-instalments
                   - Description changed from 'Data e hora da consulta, conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), formato UTC.' to 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.'
     - Headers changed
       - Deleted header: x-v
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to ''
+        - Schema changed
+          - Description changed from '' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.'
   - Modified response: 400
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -715,6 +735,10 @@ GET /contracts/{contractId}/warranties
                   - Description changed from 'Data e hora da consulta, conforme especificação [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339), formato UTC.' to 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.'
     - Headers changed
       - Deleted header: x-v
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to ''
+        - Schema changed
+          - Description changed from '' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.'
   - Modified response: 400
     - Content changed
       - Modified media type: application/json; charset=utf-8
