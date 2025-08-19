@@ -1,0 +1,169 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 6
+-------------------------
+GET /credit-operations/{contractId}/portability-eligibility
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: portability
+                  - Properties changed
+                    - Modified property: companyName
+                      - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](?:.*[^\s])?$'
+POST /portabilities
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: institution
+                - Properties changed
+                  - Modified property: creditor
+                    - Properties changed
+                      - Modified property: companyName
+                        - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](?:.*[^\s])?$'
+                  - Modified property: proposing
+                    - Properties changed
+                      - Modified property: companyName
+                        - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](?:.*[^\s])?$'
+              - Modified property: proposedContract
+                - Properties changed
+                  - Modified property: amortizationScheduledAdditionalInfo
+                    - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](?:.*[^\s])?$'
+                  - Modified property: contractedFees
+                    - Items changed
+                      - Properties changed
+                        - Modified property: feeCode
+                          - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](?:.*[^\s])?$'
+                        - Modified property: feeName
+                          - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](?:.*[^\s])?$'
+                  - Modified property: contractedFinanceCharges
+                    - Items changed
+                      - Properties changed
+                        - Modified property: chargeAdditionalInfo
+                          - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](?:.*[^\s])?$'
+                  - Modified property: interestRates
+                    - Items changed
+                      - Properties changed
+                        - Modified property: additionalInfo
+                          - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](?:.*[^\s])?$'
+                        - Modified property: referentialRateIndexerAdditionalInfo
+                          - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](?:.*[^\s])?$'
+GET /portabilities/{portabilityId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: institution
+                  - Properties changed
+                    - Modified property: creditor
+                      - Properties changed
+                        - Modified property: companyName
+                          - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](?:.*[^\s])?$'
+                    - Modified property: proposing
+                      - Properties changed
+                        - Modified property: companyName
+                          - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](?:.*[^\s])?$'
+                - Modified property: proposedContract
+                  - Properties changed
+                    - Modified property: amortizationScheduledAdditionalInfo
+                      - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](?:.*[^\s])?$'
+                    - Modified property: contractedFees
+                      - Items changed
+                        - Properties changed
+                          - Modified property: feeCode
+                            - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](?:.*[^\s])?$'
+                          - Modified property: feeName
+                            - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](?:.*[^\s])?$'
+                    - Modified property: contractedFinanceCharges
+                      - Items changed
+                        - Properties changed
+                          - Modified property: chargeAdditionalInfo
+                            - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](?:.*[^\s])?$'
+                    - Modified property: interestRates
+                      - Items changed
+                        - Properties changed
+                          - Modified property: additionalInfo
+                            - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](?:.*[^\s])?$'
+                          - Modified property: referentialRateIndexerAdditionalInfo
+                            - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](?:.*[^\s])?$'
+                - Modified property: rejection
+                  - Properties changed
+                    - Modified property: reason
+                      - Properties changed
+                        - Modified property: typeAdditionalInfo
+                          - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](?:.*[^\s])?$'
+                - Modified property: statusReason
+                  - Properties changed
+                    - Modified property: reasonTypeAdditionalInfo
+                      - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](?:.*[^\s])?$'
+GET /portabilities/{portabilityId}/account-data
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: strCode
+                  - Properties changed
+                    - Modified property: name
+                      - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](?:.*[^\s])?$'
+PATCH /portabilities/{portabilityId}/cancel
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: reason
+                - Properties changed
+                  - Modified property: typeAdditionalInfo
+                    - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](?:.*[^\s])?$'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: reason
+                  - Properties changed
+                    - Modified property: typeAdditionalInfo
+                      - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](?:.*[^\s])?$'
+POST /portabilities/{portabilityId}/payment
+- Request body changed
+  - Content changed
+    - Modified media type: application/jwt
+      - Schema changed
+        - Properties changed
+          - Modified property: data
+            - Properties changed
+              - Modified property: transactionId
+                - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](?:.*[^\s])?$'
+- Responses changed
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/jwt
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: transactionId
+                  - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](?:.*[^\s])?$'
