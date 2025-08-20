@@ -17,6 +17,7 @@ GET /contracts
                   - Modified property: brandName
                     - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
                   - Modified property: companyCnpj
+                    - Description changed from 'Número completo do CNPJ da instituição responsável pelo Cadastro - o CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica. Deve-se ter apenas os números do CNPJ, sem máscara.' to 'Registro completo do CNPJ da instituição responsável pelo Cadastro - o CNPJ corresponde a representação alfanumérica da inscrição no Cadastro de Pessoa Jurídica. Deve-se ter apenas os caracteres do CNPJ, sem máscara.'
                     - Pattern changed from '^\d{14}$' to '^[0-9A-Z]{12}[0-9]{2}$'
             - Modified property: links
               - Properties changed
@@ -203,10 +204,6 @@ GET /contracts/{contractId}
                 - Modified property: contractedFees
                   - Items changed
                     - Properties changed
-                      - Modified property: feeCode
-                        - Pattern changed from '[\w\W\s]+' to '^[^\s](.*[^\s])?$'
-                      - Modified property: feeName
-                        - Pattern changed from '[\w\W\s]+' to '^[^\s](.*[^\s])?$'
                       - Modified property: feeRate
                         - Pattern changed from '^[01]\.\d{6}$' to '^\d{1}\.\d{6}$'
                 - Modified property: contractedFinanceCharges
@@ -424,13 +421,6 @@ GET /contracts/{contractId}/payments
                               - Properties changed
                                 - Modified property: chargeAdditionalInfo
                                   - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
-                          - Modified property: fees
-                            - Items changed
-                              - Properties changed
-                                - Modified property: feeCode
-                                  - Pattern changed from '[\w\W\s]+' to '^[^\s](.*[^\s])?$'
-                                - Modified property: feeName
-                                  - Pattern changed from '[\w\W\s]+' to '^[^\s](.*[^\s])?$'
             - Modified property: links
               - Properties changed
                 - Deleted property: first
@@ -808,6 +798,8 @@ GET /contracts/{contractId}/warranties
                   - MaxLength changed from 2000 to 4048
     - Headers changed
       - New header: x-v
+      - Modified header: x-fapi-interaction-id
+        - Description changed from '' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.'
   - Modified response: 400
     - Content changed
       - Modified media type: application/json; charset=utf-8

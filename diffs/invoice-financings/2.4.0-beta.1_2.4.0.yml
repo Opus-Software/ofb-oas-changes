@@ -17,6 +17,7 @@ GET /contracts
                   - Modified property: brandName
                     - Pattern changed from '^[^\s](.*[^\s])?$' to '^(?!\s)[\w\W\s]*[^\s]$'
                   - Modified property: companyCnpj
+                    - Description changed from 'Registro completo do CNPJ da instituição responsável pelo Cadastro - o CNPJ corresponde a representação alfanumérica da inscrição no Cadastro de Pessoa Jurídica. Deve-se ter apenas os caracteres do CNPJ, sem máscara.' to 'Número completo do CNPJ da instituição responsável pelo Cadastro - o CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica. Deve-se ter apenas os números do CNPJ, sem máscara.'
                     - Pattern changed from '^[0-9A-Z]{12}[0-9]{2}$' to '^\d{14}$'
             - Modified property: links
               - Properties changed
@@ -44,13 +45,6 @@ GET /contracts/{contractId}
                 - Deleted property: hasInsuranceContracted
                 - Modified property: amortizationScheduledAdditionalInfo
                   - Pattern changed from '^[^\s](.*[^\s])?$' to '^(?!\s)[\w\W\s]*[^\s]$'
-                - Modified property: contractedFees
-                  - Items changed
-                    - Properties changed
-                      - Modified property: feeCode
-                        - Pattern changed from '^[^\s](.*[^\s])?$' to '[\w\W\s]+'
-                      - Modified property: feeName
-                        - Pattern changed from '^[^\s](.*[^\s])?$' to '[\w\W\s]+'
                 - Modified property: contractedFinanceCharges
                   - Items changed
                     - Properties changed
@@ -110,13 +104,6 @@ GET /contracts/{contractId}/payments
                               - Properties changed
                                 - Modified property: chargeAdditionalInfo
                                   - Pattern changed from '^[^\s](.*[^\s])?$' to '^(?!\s)[\w\W\s]*[^\s]$'
-                          - Modified property: fees
-                            - Items changed
-                              - Properties changed
-                                - Modified property: feeCode
-                                  - Pattern changed from '^[^\s](.*[^\s])?$' to '[\w\W\s]+'
-                                - Modified property: feeName
-                                  - Pattern changed from '^[^\s](.*[^\s])?$' to '[\w\W\s]+'
             - Modified property: links
               - Properties changed
                 - New property: first
@@ -182,3 +169,5 @@ GET /contracts/{contractId}/warranties
                   - MaxLength changed from 4048 to 2000
     - Headers changed
       - Deleted header: x-v
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to ''
