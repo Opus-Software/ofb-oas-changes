@@ -2,8 +2,22 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 1
+### Modified Endpoints: 2
 -------------------------
+GET /investments/{investmentId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: remuneration
+                  - Properties changed
+                    - Modified property: postFixedIndexerPercentage
+                      - MaxLength changed from 9 to 8
+                      - Pattern changed from '^-?\d{1}\.\d{6}$' to '^\d{1}\.\d{6}$'
 GET /investments/{investmentId}/balances
 - Responses changed
   - Modified response: 200
@@ -13,6 +27,9 @@ GET /investments/{investmentId}/balances
           - Properties changed
             - Modified property: data
               - Properties changed
+                - Modified property: postFixedIndexerPercentage
+                  - MaxLength changed from 9 to 8
+                  - Pattern changed from '^-?\d{1}\.\d{6}$' to '^\d{1}\.\d{6}$'
                 - Modified property: referenceDateTime
                   - Description changed from 'Data e hora da última posição consolidada disponível a que se referem os dados transacionais do cliente disponíveis nos canais eletrônicos; Na representação data deve se considerar os minutos e segundos como zero (00:00:00Z).
 No preenchimento do campo é esperado que a instituição informe a última vez que capturou a posição para compartilhamento no Open Finance. Dessa forma, é possível que:
