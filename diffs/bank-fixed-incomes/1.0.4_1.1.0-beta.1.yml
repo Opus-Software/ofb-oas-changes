@@ -5,6 +5,11 @@
 ### Modified Endpoints: 5
 -------------------------
 GET /investments
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID RFC4122 usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser "espelhado" pela transmissora (server) no cabeçalho de resposta.' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response.
+Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser "espelhado" pela transmissora (server) no cabeçalho de resposta.
+Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.
+'
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -30,8 +35,14 @@ GET /investments
                 - Modified property: self
                   - MaxLength changed from 2000 to 4048
     - Headers changed
+      - New header: x-fapi-interaction-id
       - New header: x-v
 GET /investments/{investmentId}
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID RFC4122 usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser "espelhado" pela transmissora (server) no cabeçalho de resposta.' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response.
+Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser "espelhado" pela transmissora (server) no cabeçalho de resposta.
+Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.
+'
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -63,8 +74,14 @@ GET /investments/{investmentId}
                 - Modified property: self
                   - MaxLength changed from 2000 to 4048
     - Headers changed
+      - New header: x-fapi-interaction-id
       - New header: x-v
 GET /investments/{investmentId}/balances
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID RFC4122 usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser "espelhado" pela transmissora (server) no cabeçalho de resposta.' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response.
+Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser "espelhado" pela transmissora (server) no cabeçalho de resposta.
+Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.
+'
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -99,8 +116,14 @@ No preenchimento do campo é esperado que a instituição informe a última vez 
                 - Modified property: self
                   - MaxLength changed from 2000 to 4048
     - Headers changed
+      - New header: x-fapi-interaction-id
       - New header: x-v
 GET /investments/{investmentId}/transactions
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID RFC4122 usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser "espelhado" pela transmissora (server) no cabeçalho de resposta.' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response.
+Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser "espelhado" pela transmissora (server) no cabeçalho de resposta.
+Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.
+'
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -124,8 +147,14 @@ GET /investments/{investmentId}/transactions
                 - Modified property: self
                   - MaxLength changed from 2000 to 4048
     - Headers changed
+      - New header: x-fapi-interaction-id
       - New header: x-v
 GET /investments/{investmentId}/transactions-current
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID RFC4122 usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser "espelhado" pela transmissora (server) no cabeçalho de resposta.' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response.
+Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser "espelhado" pela transmissora (server) no cabeçalho de resposta.
+Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.
+'
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -149,4 +178,5 @@ GET /investments/{investmentId}/transactions-current
                 - Modified property: self
                   - MaxLength changed from 2000 to 4048
     - Headers changed
+      - New header: x-fapi-interaction-id
       - New header: x-v
