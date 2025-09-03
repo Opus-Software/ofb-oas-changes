@@ -648,6 +648,20 @@ A receptora deve acatar o valor recebido da transmissora.
       - New header: x-fapi-interaction-id
       - New header: x-v
 GET /investments/{investmentId}/transactions-current
+- Modified query param: fromTransactionConversionDate
+  - Description changed from 'Data inicial de filtragem. O período máximo utilizado no filtro é de 7 dias inclusive (D-6).
+[Restrição] Deve obrigatoriamente ser enviado caso o campo toTransactionConversionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
+' to 'Data inicial de filtragem. O período máximo utilizado no filtro é de 7 dias inclusive (D-6).
+[Restrição]  Deve obrigatoriamente sempre ser enviado em conjunto com o campo `toTransactionConversionDate`. 
+Caso os campo `fromTransactionConversionDate` e `toTransactionConversionDate` não sejam enviados, deve ser assumido o dia atual como data padrão.
+'
+- Modified query param: toTransactionConversionDate
+  - Description changed from 'Data final de filtragem. O período máximo utilizado no filtro é de 7 dias inclusive (D-6).
+[Restrição] Deve obrigatoriamente ser enviado caso o campo fromTransactionConversionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
+' to 'Data final de filtragem. O período máximo utilizado no filtro é de 7 dias inclusive (D-6).
+[Restrição] Deve obrigatoriamente sempre ser enviado em conjunto com o campo `fromTransactionConversionDate`. 
+Caso os campo `fromTransactionConversionDate`  e `toTransactionConversionDate` não sejam enviados, deve ser assumido o dia atual como data padrão.
+'
 - Modified header param: x-fapi-interaction-id
   - Description changed from 'Um UUID RFC4122 usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser "espelhado" pela transmissora (server) no cabeçalho de resposta.' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response.
 Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser "espelhado" pela transmissora (server) no cabeçalho de resposta.
