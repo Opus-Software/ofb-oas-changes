@@ -595,6 +595,18 @@ GET /investments/{investmentId}/balances
                 - New property: totalPages
                 - New property: totalRecords
 GET /investments/{investmentId}/transactions
+- Modified query param: fromTransactionDate
+  - Description changed from 'Data inicial de filtragem.      
+[Restrição] Deve obrigatoriamente sempre ser enviado em conjunto com o campo toTransactionDate. Caso os campo fromTransactionDate  e toTransactionDate não sejam enviados, deve ser assumido o dia atual como data padrão.
+' to 'Data inicial de filtragem.      
+[Restrição] Deve obrigatoriamente ser enviado caso o campo toTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
+'
+- Modified query param: toTransactionDate
+  - Description changed from 'Data final de filtragem.      
+[Restrição] Deve obrigatoriamente sempre ser enviado em conjunto com o campo fromTransactionDate . Caso os campo fromTransactionDate  e toTransactionDate não sejam enviados, deve ser assumido o dia atual como data padrão.
+' to 'Data final de filtragem.      
+[Restrição] Deve obrigatoriamente ser enviado caso o campo fromTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
+'
 - Modified header param: x-fapi-interaction-id
   - Description changed from 'Um UUID RFC4122 usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to 'Um UUID RFC4122 usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser "espelhado" pela transmissora (server) no cabeçalho de resposta.'
 - Responses changed
@@ -629,6 +641,18 @@ GET /investments/{investmentId}/transactions
       - Deleted header: x-fapi-interaction-id
       - Deleted header: x-v
 GET /investments/{investmentId}/transactions-current
+- Modified query param: fromTransactionDate
+  - Description changed from 'Data inicial de filtragem. O período máximo utilizado no filtro é de 7 dias inclusive (D-6).       
+[Restrição] Deve obrigatoriamente sempre ser enviado em conjunto com o campo toTransactionDate. Caso os campo fromTransactionDate  e toTransactionDate não sejam enviados, deve ser assumido o dia atual como data padrão.
+' to 'Data inicial de filtragem. O período máximo utilizado no filtro é de 7 dias inclusive (D-6).       
+[Restrição] Deve obrigatoriamente ser enviado caso o campo toTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
+'
+- Modified query param: toTransactionDate
+  - Description changed from 'Data final de filtragem. O período máximo utilizado no filtro é de 7 dias inclusive (D-6).       
+[Restrição] Deve obrigatoriamente sempre ser enviado em conjunto com o campo fromTransactionDate . Caso os campo fromTransactionDate  e toTransactionDate não sejam enviados, deve ser assumido o dia atual como data padrão.
+' to 'Data final de filtragem. O período máximo utilizado no filtro é de 7 dias inclusive (D-6).       
+[Restrição] Deve obrigatoriamente ser enviado caso o campo fromTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
+'
 - Modified header param: x-fapi-interaction-id
   - Description changed from 'Um UUID RFC4122 usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to 'Um UUID RFC4122 usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser "espelhado" pela transmissora (server) no cabeçalho de resposta.'
 - Responses changed
