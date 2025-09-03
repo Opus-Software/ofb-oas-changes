@@ -859,6 +859,18 @@ No preenchimento do campo é esperado que a instituição informe a última vez 
                 - Deleted property: totalPages
                 - Deleted property: totalRecords
 GET /investments/{investmentId}/transactions
+- Modified query param: fromTransactionDate
+  - Description changed from 'Data inicial de filtragem.
+[Restrição] Deve obrigatoriamente ser enviado caso o campo toTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
+' to 'Data inicial de filtragem.
+[Restrição] Deve obrigatoriamente sempre ser enviado em conjunto com o campo `toTransactionDate`. Caso os campo `fromTransactionDate` e `toTransactionDate` não sejam enviados, deve ser assumido o dia atual como data padrão.
+'
+- Modified query param: toTransactionDate
+  - Description changed from 'Data final de filtragem.
+[Restrição] Deve obrigatoriamente ser enviado caso o campo fromTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
+' to 'Data final de filtragem.
+[Restrição] Deve obrigatoriamente sempre ser enviado em conjunto com o campo `fromTransactionDate` . Caso os campo `fromTransactionDate` e `toTransactionDate` não sejam enviados, deve ser assumido o dia atual como data padrão.
+'
 - Modified header param: x-fapi-interaction-id
   - Description changed from 'Um UUID RFC4122 usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser "espelhado" pela transmissora (server) no cabeçalho de resposta.' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response.
 Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser "espelhado" pela transmissora (server) no cabeçalho de resposta.
