@@ -944,9 +944,9 @@ POST /recurring-consents
                   - Description changed from 'Objeto contendo os dados do recebedor (creditor).' to 'Objeto contendo os dados do recebedor (creditor). Em casos de transferências inteligentes para clientes PJ, os CNPJs informados devem possuir a mesma raiz do CNPJ enviado no campo /data/businessEntity/document/identification. Em casos de transferências inteligentes para clientes PN, deve-se aceitar apenas um item no array e este item deve conter as informações do recebedor. O CPF informado deve ser o mesmo do /data/loggedUser/document/identification. Caso alguma das regras mencionadas não sejam seguidas, o detentor deve rejeitar a solicitação (sincronamente) com o erro DETALHE_PAGAMENTO_INVALIDO, e o detalhe deve ser preenchido com a informação referente ao erro.'
               - Modified property: recurringConfiguration
                 - Property 'OneOf' changed
-                  - Schema #/components/schemas/Vrp modified
+                  - Schema #/components/schemas/Sweeping modified
                     - Properties changed
-                      - Modified property: vrp
+                      - Modified property: sweeping
                         - Properties changed
                           - Modified property: periodicLimits
                             - Properties changed
@@ -966,9 +966,9 @@ POST /recurring-consents
                                 - Properties changed
                                   - Modified property: quantityLimit
                                     - Min changed from null to 1
-                  - Schema #/components/schemas/Sweeping modified
+                  - Schema #/components/schemas/Vrp modified
                     - Properties changed
-                      - Modified property: sweeping
+                      - Modified property: vrp
                         - Properties changed
                           - Modified property: periodicLimits
                             - Properties changed
@@ -1146,9 +1146,9 @@ GET /recurring-consents/{recurringConsentId}
                     - Description changed from 'Objeto contendo os dados do recebedor (creditor).' to 'Objeto contendo os dados do recebedor (creditor). Em casos de transferências inteligentes para clientes PJ, os CNPJs informados devem possuir a mesma raiz do CNPJ enviado no campo /data/businessEntity/document/identification. Em casos de transferências inteligentes para clientes PN, deve-se aceitar apenas um item no array e este item deve conter as informações do recebedor. O CPF informado deve ser o mesmo do /data/loggedUser/document/identification. Caso alguma das regras mencionadas não sejam seguidas, o detentor deve rejeitar a solicitação (sincronamente) com o erro DETALHE_PAGAMENTO_INVALIDO, e o detalhe deve ser preenchido com a informação referente ao erro.'
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
-                    - Schema #/components/schemas/Sweeping modified
+                    - Schema #/components/schemas/Vrp modified
                       - Properties changed
-                        - Modified property: sweeping
+                        - Modified property: vrp
                           - Properties changed
                             - Modified property: periodicLimits
                               - Properties changed
@@ -1168,9 +1168,9 @@ GET /recurring-consents/{recurringConsentId}
                                   - Properties changed
                                     - Modified property: quantityLimit
                                       - Min changed from null to 1
-                    - Schema #/components/schemas/Vrp modified
+                    - Schema #/components/schemas/Sweeping modified
                       - Properties changed
-                        - Modified property: vrp
+                        - Modified property: sweeping
                           - Properties changed
                             - Modified property: periodicLimits
                               - Properties changed
@@ -1269,7 +1269,7 @@ PATCH /recurring-consents/{recurringConsentId}
           - Modified property: data
             - Property 'OneOf' changed
               - 1 schemas added
-              - Schema #/components/schemas/ConsentRejection modified
+              - Schema #/components/schemas/ConsentRevocation modified
                 - Properties changed
                   - Deleted property: automatic
                   - Deleted property: creditors
@@ -1279,7 +1279,7 @@ PATCH /recurring-consents/{recurringConsentId}
                     - Properties changed
                       - New property: isCallingProgress
                       - Deleted property: isCallInProgress
-              - Schema #/components/schemas/ConsentRevocation modified
+              - Schema #/components/schemas/ConsentRejection modified
                 - Properties changed
                   - Deleted property: automatic
                   - Deleted property: creditors
@@ -1305,9 +1305,9 @@ PATCH /recurring-consents/{recurringConsentId}
                     - Description changed from 'Objeto contendo os dados do recebedor (creditor).' to 'Objeto contendo os dados do recebedor (creditor). Em casos de transferências inteligentes para clientes PJ, os CNPJs informados devem possuir a mesma raiz do CNPJ enviado no campo /data/businessEntity/document/identification. Em casos de transferências inteligentes para clientes PN, deve-se aceitar apenas um item no array e este item deve conter as informações do recebedor. O CPF informado deve ser o mesmo do /data/loggedUser/document/identification. Caso alguma das regras mencionadas não sejam seguidas, o detentor deve rejeitar a solicitação (sincronamente) com o erro DETALHE_PAGAMENTO_INVALIDO, e o detalhe deve ser preenchido com a informação referente ao erro.'
                 - Modified property: recurringConfiguration
                   - Property 'OneOf' changed
-                    - Schema #/components/schemas/Vrp modified
+                    - Schema #/components/schemas/Sweeping modified
                       - Properties changed
-                        - Modified property: vrp
+                        - Modified property: sweeping
                           - Properties changed
                             - Modified property: periodicLimits
                               - Properties changed
@@ -1327,9 +1327,9 @@ PATCH /recurring-consents/{recurringConsentId}
                                   - Properties changed
                                     - Modified property: quantityLimit
                                       - Min changed from null to 1
-                    - Schema #/components/schemas/Sweeping modified
+                    - Schema #/components/schemas/Vrp modified
                       - Properties changed
-                        - Modified property: sweeping
+                        - Modified property: vrp
                           - Properties changed
                             - Modified property: periodicLimits
                               - Properties changed
