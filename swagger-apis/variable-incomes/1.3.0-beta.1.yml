@@ -605,9 +605,9 @@ components:
         transactionUnitPrice:
           type: object
           description: |
-            Preço unitário da movimentação: valor da unidade do produto na movimentação do investimento. Em transferências de custódia, quando o PU original (da instituição de origem) não estiver disponível para a transmissora, deve ser informado o PU marcado pela instituição na data de transferência. 
-            
-            [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo `transactionType` for preenchido com os valores `COMPRA` ou `VENDA`.
+            Preço unitário da movimentação: valor da unidade do produto na movimentação do investimento.
+
+            [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'transactionType' for preenchido com os valores 'COMPRA' ou 'VENDA'.
           required:
             - amount
             - currency
@@ -664,8 +664,8 @@ components:
         brokerNoteId:
           type: string
           description: |
-            Identifica de forma única o relacionamento do cliente com o produto para cada número de nota de negociação, mantendo as regras de imutabilidade dentro da instituição transmissora. O conteúdo desse campo deve ser utilizado como parâmetro na chamada do endpoint `GET /broker-notes/{brokerNoteId}`. 
-            
+            Identificador da nota de negociação.
+
             [Restrição] Informação de envio obrigatório caso o motivo da movimentação seja compra ou venda.
           maxLength: 100
           pattern: '^[a-zA-Z0-9][a-zA-Z0-9-]{0,99}$'
@@ -712,9 +712,9 @@ components:
         transactionUnitPrice:
           type: object
           description: |
-            Preço unitário da movimentação: valor da unidade do produto na movimentação do investimento. Em transferências de custódia, quando o PU original (da instituição de origem) não estiver disponível para a transmissora, deve ser informado o PU marcado pela instituição na data de transferência. 
-            
-            [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo `transactionType` for preenchido com os valores `COMPRA` ou `VENDA`.
+            Preço unitário da movimentação: valor da unidade do produto na movimentação do investimento.
+
+            [Restrição] Campo de preenchimento obrigatório pelas participantes quando o campo 'transactionType' for preenchido com os valores 'COMPRA' ou 'VENDA'.
           required:
             - amount
             - currency
@@ -771,8 +771,8 @@ components:
         brokerNoteId:
           type: string
           description: |
-            Identifica de forma única o relacionamento do cliente com o produto para cada número de nota de negociação, mantendo as regras de imutabilidade dentro da instituição transmissora. O conteúdo desse campo deve ser utilizado como parâmetro na chamada do endpoint `GET /broker-notes/{brokerNoteId}`. 
-            
+            Identificador da nota de negociação.
+
             [Restrição] Informação de envio obrigatório caso o motivo da movimentação seja compra ou venda.
           maxLength: 100
           pattern: '^[a-zA-Z0-9][a-zA-Z0-9-]{0,99}$'
@@ -1022,7 +1022,7 @@ components:
       properties:
         brokerNoteNumber:
           type: string
-          description: Identificador da nota de negociação. Não deve ser utilizado como chave na API.
+          description: Identificador da nota de negociação.
           maxLength: 16
           pattern: '^\d{1,16}$'
           example: '1854009930314350'
@@ -1431,7 +1431,7 @@ components:
     BrokerNoteId:
       name: brokerNoteId
       in: path
-      description: 'Identifica de forma única o relacionamento do cliente com o produto para cada número de nota de negociação, mantendo as regras de imutabilidade dentro da instituição transmissora.'
+      description: 'Identifica de forma única  o relacionamento do cliente com o produto, mantendo as regras de imutabilidade dentro da instituição transmissora.'
       required: true
       schema:
         type: string
