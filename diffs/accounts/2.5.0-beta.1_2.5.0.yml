@@ -11,13 +11,12 @@ GET /accounts
       - Modified media type: application/json
         - Schema changed
           - Properties changed
-            - Modified property: meta
-              - Required changed
-                - New required property: totalPages
-                - New required property: totalRecords
-              - Properties changed
-                - New property: totalPages
-                - New property: totalRecords
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: companyCnpj
+                    - Description changed from 'Registro completo do CNPJ da instituição responsável pelo Cadastro - o CNPJ corresponde a representação alfanumérica da inscrição no Cadastro de Pessoa Jurídica. Deve-se ter apenas os caracteres do CNPJ, sem máscara.' to 'Número completo do CNPJ da instituição responsável pelo Cadastro - o CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica. Deve-se ter apenas os números do CNPJ, sem máscara'
+                    - Pattern changed from '^[0-9A-Z]{12}[0-9]{2}$' to '^\d{14}$'
     - Headers changed
       - Deleted header: x-v
   - Modified response: 400
@@ -179,17 +178,6 @@ GET /accounts
 GET /accounts/{accountId}
 - Responses changed
   - Modified response: 200
-    - Content changed
-      - Modified media type: application/json
-        - Schema changed
-          - Properties changed
-            - Modified property: meta
-              - Required changed
-                - New required property: totalPages
-                - New required property: totalRecords
-              - Properties changed
-                - New property: totalPages
-                - New property: totalRecords
     - Headers changed
       - Deleted header: x-v
   - Modified response: 400
@@ -351,17 +339,6 @@ GET /accounts/{accountId}
 GET /accounts/{accountId}/balances
 - Responses changed
   - Modified response: 200
-    - Content changed
-      - Modified media type: application/json
-        - Schema changed
-          - Properties changed
-            - Modified property: meta
-              - Required changed
-                - New required property: totalPages
-                - New required property: totalRecords
-              - Properties changed
-                - New property: totalPages
-                - New property: totalRecords
     - Headers changed
       - Deleted header: x-v
   - Modified response: 400
@@ -523,17 +500,6 @@ GET /accounts/{accountId}/balances
 GET /accounts/{accountId}/overdraft-limits
 - Responses changed
   - Modified response: 200
-    - Content changed
-      - Modified media type: application/json
-        - Schema changed
-          - Properties changed
-            - Modified property: meta
-              - Required changed
-                - New required property: totalPages
-                - New required property: totalRecords
-              - Properties changed
-                - New property: totalPages
-                - New property: totalRecords
     - Headers changed
       - Deleted header: x-v
   - Modified response: 400
@@ -695,17 +661,27 @@ GET /accounts/{accountId}/overdraft-limits
 GET /accounts/{accountId}/reserved_balances
 - Responses changed
   - Modified response: 200
+    - Headers changed
+      - Deleted header: x-v
+GET /accounts/{accountId}/transactions
+- Responses changed
+  - Modified response: 200
     - Content changed
       - Modified media type: application/json
         - Schema changed
           - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: partieCnpjCpf
+                    - Pattern changed from '^[0‑9]{11}|[0‑9A‑Z]{12}[0‑9]{2}$' to '^\d{11}$|^\d{14}$'
             - Modified property: meta
               - Required changed
-                - New required property: totalPages
-                - New required property: totalRecords
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
               - Properties changed
-                - New property: totalPages
-                - New property: totalRecords
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
     - Headers changed
       - Deleted header: x-v
   - Modified response: 400
@@ -715,11 +691,11 @@ GET /accounts/{accountId}/reserved_balances
           - Properties changed
             - Modified property: meta
               - Required changed
-                - New required property: totalPages
-                - New required property: totalRecords
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
               - Properties changed
-                - New property: totalPages
-                - New property: totalRecords
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
   - Modified response: 401
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -727,11 +703,11 @@ GET /accounts/{accountId}/reserved_balances
           - Properties changed
             - Modified property: meta
               - Required changed
-                - New required property: totalPages
-                - New required property: totalRecords
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
               - Properties changed
-                - New property: totalPages
-                - New property: totalRecords
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
   - Modified response: 403
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -739,11 +715,11 @@ GET /accounts/{accountId}/reserved_balances
           - Properties changed
             - Modified property: meta
               - Required changed
-                - New required property: totalPages
-                - New required property: totalRecords
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
               - Properties changed
-                - New property: totalPages
-                - New property: totalRecords
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
   - Modified response: 404
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -751,11 +727,11 @@ GET /accounts/{accountId}/reserved_balances
           - Properties changed
             - Modified property: meta
               - Required changed
-                - New required property: totalPages
-                - New required property: totalRecords
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
               - Properties changed
-                - New property: totalPages
-                - New property: totalRecords
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
   - Modified response: 405
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -763,11 +739,11 @@ GET /accounts/{accountId}/reserved_balances
           - Properties changed
             - Modified property: meta
               - Required changed
-                - New required property: totalPages
-                - New required property: totalRecords
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
               - Properties changed
-                - New property: totalPages
-                - New property: totalRecords
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
   - Modified response: 406
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -775,11 +751,11 @@ GET /accounts/{accountId}/reserved_balances
           - Properties changed
             - Modified property: meta
               - Required changed
-                - New required property: totalPages
-                - New required property: totalRecords
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
               - Properties changed
-                - New property: totalPages
-                - New property: totalRecords
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
   - Modified response: 422
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -787,11 +763,11 @@ GET /accounts/{accountId}/reserved_balances
           - Properties changed
             - Modified property: meta
               - Required changed
-                - New required property: totalPages
-                - New required property: totalRecords
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
               - Properties changed
-                - New property: totalPages
-                - New property: totalRecords
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
   - Modified response: 423
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -799,11 +775,11 @@ GET /accounts/{accountId}/reserved_balances
           - Properties changed
             - Modified property: meta
               - Required changed
-                - New required property: totalPages
-                - New required property: totalRecords
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
               - Properties changed
-                - New property: totalPages
-                - New property: totalRecords
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
   - Modified response: 429
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -811,11 +787,11 @@ GET /accounts/{accountId}/reserved_balances
           - Properties changed
             - Modified property: meta
               - Required changed
-                - New required property: totalPages
-                - New required property: totalRecords
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
               - Properties changed
-                - New property: totalPages
-                - New property: totalRecords
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
   - Modified response: 500
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -823,11 +799,11 @@ GET /accounts/{accountId}/reserved_balances
           - Properties changed
             - Modified property: meta
               - Required changed
-                - New required property: totalPages
-                - New required property: totalRecords
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
               - Properties changed
-                - New property: totalPages
-                - New property: totalRecords
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
   - Modified response: 504
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -835,11 +811,11 @@ GET /accounts/{accountId}/reserved_balances
           - Properties changed
             - Modified property: meta
               - Required changed
-                - New required property: totalPages
-                - New required property: totalRecords
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
               - Properties changed
-                - New property: totalPages
-                - New property: totalRecords
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
   - Modified response: 529
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -847,11 +823,11 @@ GET /accounts/{accountId}/reserved_balances
           - Properties changed
             - Modified property: meta
               - Required changed
-                - New required property: totalPages
-                - New required property: totalRecords
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
               - Properties changed
-                - New property: totalPages
-                - New property: totalRecords
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
   - Modified response: default
     - Content changed
       - Modified media type: application/json; charset=utf-8
@@ -859,18 +835,185 @@ GET /accounts/{accountId}/reserved_balances
           - Properties changed
             - Modified property: meta
               - Required changed
-                - New required property: totalPages
-                - New required property: totalRecords
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
               - Properties changed
-                - New property: totalPages
-                - New property: totalRecords
-GET /accounts/{accountId}/transactions
-- Responses changed
-  - Modified response: 200
-    - Headers changed
-      - Deleted header: x-v
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
 GET /accounts/{accountId}/transactions-current
 - Responses changed
   - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: partieCnpjCpf
+                    - Pattern changed from '^[0‑9]{11}|[0‑9A‑Z]{12}[0‑9]{2}$' to '^\d{11}$|^\d{14}$'
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
     - Headers changed
       - Deleted header: x-v
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 422
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 423
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 504
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 529
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
