@@ -21,6 +21,9 @@ GET /accounts
                     - Description changed from 'Dígito da conta' to 'Dígito da conta
 [Restrição] Obrigatoriamente deve ser preenchido quando o campo `type` for diferente de conta pré-paga. Nos casos em que a conta pré-paga possua dígito, o envio é obrigatório.
 '
+                  - Modified property: companyCnpj
+                    - Description changed from 'Número completo do CNPJ da instituição responsável pelo Cadastro - o CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica. Deve-se ter apenas os números do CNPJ, sem máscara' to 'Registro completo do CNPJ da instituição responsável pelo Cadastro - o CNPJ corresponde a representação alfanumérica da inscrição no Cadastro de Pessoa Jurídica. Deve-se ter apenas os caracteres do CNPJ, sem máscara.'
+                    - Pattern changed from '^\d{14}$' to '^[0-9A-Z]{12}[0-9]{2}$'
     - Headers changed
       - New header: x-v
   - Modified response: 400
@@ -696,6 +699,8 @@ GET /accounts/{accountId}/transactions
             - Modified property: data
               - Items changed
                 - Properties changed
+                  - Modified property: partieCnpjCpf
+                    - Pattern changed from '^\d{11}$|^\d{14}$' to '^[0‑9]{11}|[0‑9A‑Z]{12}[0‑9]{2}$'
                   - Modified property: type
                     - New enum values: [TRANSFERENCIA_SALDO_RESERVADO]
             - Modified property: meta
@@ -873,6 +878,8 @@ GET /accounts/{accountId}/transactions-current
             - Modified property: data
               - Items changed
                 - Properties changed
+                  - Modified property: partieCnpjCpf
+                    - Pattern changed from '^\d{11}$|^\d{14}$' to '^[0‑9]{11}|[0‑9A‑Z]{12}[0‑9]{2}$'
                   - Modified property: type
                     - New enum values: [TRANSFERENCIA_SALDO_RESERVADO]
             - Modified property: meta
