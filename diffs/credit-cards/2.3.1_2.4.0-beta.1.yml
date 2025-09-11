@@ -602,14 +602,18 @@ GET /accounts/{creditCardAccountId}/bills/{billId}/transactions
 - Modified query param: fromTransactionDate
   - Description changed from 'Data inicial de filtragem.
 [Restrição] Deve obrigatoriamente ser enviado caso o campo toTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
-' to 'Data inicial de filtragem.
-[Restrição] Deve obrigatoriamente ser enviado caso o campo `toTransactionDate` seja informado. Caso não seja informado os campos de filtro deve se retornar todas as transações correspondentes a fatura. A filtragem deve ser feita utilizando o campo `transactionDateTime`.
+' to 'Data final de filtragem.
+[Restrição] Deve obrigatoriamente ser enviado caso o campo `toTransactionDate` seja informado. 
+Caso não seja informado os campos de filtro deve se retornar todas as transações correspondentes a fatura. 
+A filtragem deve ser feita utilizando o campo `transactionDateTime`.
 '
 - Modified query param: toTransactionDate
   - Description changed from 'Data final de filtragem.
 [Restrição] Deve obrigatoriamente ser enviado caso o campo fromTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
 ' to 'Data inicial de filtragem.
-[Restrição] Deve obrigatoriamente ser enviado caso o campo `toTransactionDate` seja informado. Caso não seja informado os campos de filtro deve se retornar todas as transações correspondentes a fatura. A filtragem deve ser feita utilizando o campo `transactionDateTime`.
+[Restrição] Deve obrigatoriamente ser enviado caso o campo `fromTransactionDate` seja informado. 
+Caso não seja informado os campos de filtro deve se retornar todas as transações correspondentes a fatura. 
+A filtragem deve ser feita utilizando o campo `transactionDateTime`.
 '
 - Modified query param: transactionType
   - Schema changed
@@ -1042,13 +1046,17 @@ A lista a retornar se refere a transações após conciliado. A lista deve ser o
   - Description changed from 'Data inicial de filtragem.
 [Restrição] Deve obrigatoriamente ser enviado caso o campo toTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
 ' to 'Data inicial de filtragem.
-[Restrição] Deve obrigatoriamente ser enviado caso o campo `toTransactionDate` seja informado. Caso não seja informado, deve ser assumido o dia atual. A filtragem deve ser feita utilizando o campo `transactionDateTime`.
+[Restrição] Deve obrigatoriamente ser enviado caso o campo `toTransactionDate` seja informado. 
+Caso não seja informado, deve ser assumido o dia atual. 
+A filtragem deve ser feita utilizando o campo `transactionDateTime`.
 '
 - Modified query param: toTransactionDate
   - Description changed from 'Data final de filtragem.
 [Restrição] Deve obrigatoriamente ser enviado caso o campo fromTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
 ' to 'Data final de filtragem.
-[Restrição] Deve obrigatoriamente ser enviado caso o campo `fromTransactionDate` seja informado. Caso não seja informado, deve ser assumido o dia atual. A filtragem deve ser feita utilizando o campo `transactionDateTime`.
+[Restrição] Deve obrigatoriamente ser enviado caso o campo `fromTransactionDate` seja informado. 
+Caso não seja informado, deve ser assumido o dia atual. 
+A filtragem deve ser feita utilizando o campo `transactionDateTime`.
 '
 - Modified query param: transactionType
   - Schema changed
@@ -1081,12 +1089,13 @@ Preencher apenas para casos de transação em fatura fechada, ou seja, este camp
 ' to '- Para transações já inseridas em fatura: Data definitiva em que a transação foi inserida na fatura. 
 Para compras parceladas, a data deve ser a data onde a parcela foi efetivamente registrada na fatura do cliente.
 - Para transações ainda não inseridas em fatura: Preencher com a data de previsão de vencimento da fatura na qual a transação/parcela será inserida, caso exista.
+- Preencher o campo com a data dummy: 0001-01-01, apenas para os casos nos quais ainda não houver a data de inserção na fatura.
 '
                   - Modified property: brazilianAmount
                     - Description changed from 'Valor da transação expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais, em moeda corrente do Brasil. Deve ser o valor de amount convertido para BRL (em caso de compra internacional) ou o mesmo valor de amount (em caso de compra nacional).
-' to 'Valor original da transação. Expresso em valor monetário com no mínimo 2 casas decimais e no máximo 4 casas decimais. 
-Deve ser sempre preenchido com o valor original da transação independente da nacionalidade, sem convertê-lo. 
-Para compras parceladas o valor do campo deve corresponder ao valor da parcela. 
+' to 'Valor da transação expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais, em moeda corrente do Brasil. 
+Deve ser o valor de amount convertido para BRL (em caso de compra internacional) ou o mesmo valor de amount (em caso de compra nacional). 
+Para compras parceladas o valor do campo deve corresponder ao valor da parcela.
 '
                   - Modified property: transactionDateTime
                     - Description changed from 'Data e hora da transação disponível para os clientes nos canais digitais da instituição. Neste momento, é obrigatório preencher com dados reais com precisão de data, hora e minuto, mesmo que a instituição não exiba para o cliente nesse nível de granularidade, em algumas situações. Dessa forma, os segundos e milissegundos podem ser preenchidos com zero (0), por exemplo: 2024-01-29T11:15:00.000Z.
@@ -1139,13 +1148,17 @@ A lista a retornar se refere a transações após conciliado. A lista deve ser o
   - Description changed from 'Data inicial de filtragem. O período máximo utilizado no filtro é de 7 dias inclusive (D-6).
 [Restrição] Deve obrigatoriamente ser enviado caso o campo toTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
 ' to 'Data inicial de filtragem. O período máximo utilizado no filtro é de 7 dias inclusive (D-6).
-[Restrição] Deve obrigatoriamente ser enviado caso o campo `toTransactionDate` seja informado. Caso não seja informado, deve ser assumido o dia atual. A filtragem deve ser feita utilizando o campo `transactionDateTime`.
+[Restrição] Deve obrigatoriamente ser enviado caso o campo `toTransactionDate` seja informado. 
+Caso não seja informado, deve ser assumido o dia atual. 
+A filtragem deve ser feita utilizando o campo `transactionDateTime`.
 '
 - Modified query param: toTransactionDate
   - Description changed from 'Data final de filtragem. O período máximo utilizado no filtro é de 7 dias inclusive (D-6).
 [Restrição] Deve obrigatoriamente ser enviado caso o campo fromTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
 ' to 'Data final de filtragem. O período máximo utilizado no filtro é de 7 dias inclusive (D-6).
-[Restrição] Deve obrigatoriamente ser enviado caso o campo `fromTransactionDate` seja informado. Caso não seja informado, deve ser assumido o dia atual. A filtragem deve ser feita utilizando o campo `transactionDateTime`.
+[Restrição] Deve obrigatoriamente ser enviado caso o campo `fromTransactionDate` seja informado. 
+Caso não seja informado, deve ser assumido o dia atual. 
+A filtragem deve ser feita utilizando o campo `transactionDateTime`.
 '
 - Modified query param: transactionType
   - Schema changed
@@ -1178,12 +1191,13 @@ Preencher apenas para casos de transação em fatura fechada, ou seja, este camp
 ' to '- Para transações já inseridas em fatura: Data definitiva em que a transação foi inserida na fatura. 
 Para compras parceladas, a data deve ser a data onde a parcela foi efetivamente registrada na fatura do cliente.
 - Para transações ainda não inseridas em fatura: Preencher com a data de previsão de vencimento da fatura na qual a transação/parcela será inserida, caso exista.
+- Preencher o campo com a data dummy: 0001-01-01, apenas para os casos nos quais ainda não houver a data de inserção na fatura.
 '
                   - Modified property: brazilianAmount
                     - Description changed from 'Valor da transação expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais, em moeda corrente do Brasil. Deve ser o valor de amount convertido para BRL (em caso de compra internacional) ou o mesmo valor de amount (em caso de compra nacional).
-' to 'Valor original da transação. Expresso em valor monetário com no mínimo 2 casas decimais e no máximo 4 casas decimais. 
-Deve ser sempre preenchido com o valor original da transação independente da nacionalidade, sem convertê-lo. 
-Para compras parceladas o valor do campo deve corresponder ao valor da parcela. 
+' to 'Valor da transação expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais, em moeda corrente do Brasil. 
+Deve ser o valor de amount convertido para BRL (em caso de compra internacional) ou o mesmo valor de amount (em caso de compra nacional). 
+Para compras parceladas o valor do campo deve corresponder ao valor da parcela.
 '
                   - Modified property: transactionDateTime
                     - Description changed from 'Data e hora da transação disponível para os clientes nos canais digitais da instituição. Neste momento, é obrigatório preencher com dados reais com precisão de data, hora e minuto, mesmo que a instituição não exiba para o cliente nesse nível de granularidade, em algumas situações. Dessa forma, os segundos e milissegundos podem ser preenchidos com zero (0), por exemplo: 2024-01-29T11:15:00.000Z.
