@@ -671,16 +671,16 @@ A lista a retornar se refere a transações após conciliado.
 A lista a retornar se refere a transações após base 2/clearing/conciliado
 '
 - Modified query param: fromTransactionDate
-  - Description changed from 'Data inicial de filtragem.
-[Restrição] Deve obrigatoriamente ser enviado caso o campo `fromTransactionDate` seja informado. 
+  - Description changed from 'Data final de filtragem.
+[Restrição] Deve obrigatoriamente ser enviado caso o campo `toTransactionDate` seja informado. 
 Caso não seja informado os campos de filtro deve se retornar todas as transações correspondentes a fatura. 
 A filtragem deve ser feita utilizando o campo `transactionDateTime`.
 ' to 'Data inicial de filtragem.
 [Restrição] Deve obrigatoriamente ser enviado caso o campo toTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
 '
 - Modified query param: toTransactionDate
-  - Description changed from 'Data final de filtragem.
-[Restrição] Deve obrigatoriamente ser enviado caso o campo `toTransactionDate` seja informado. 
+  - Description changed from 'Data inicial de filtragem.
+[Restrição] Deve obrigatoriamente ser enviado caso o campo `fromTransactionDate` seja informado. 
 Caso não seja informado os campos de filtro deve se retornar todas as transações correspondentes a fatura. 
 A filtragem deve ser feita utilizando o campo `transactionDateTime`.
 ' to 'Data final de filtragem.
@@ -710,19 +710,26 @@ A filtragem deve ser feita utilizando o campo `transactionDateTime`.
                   - New required property: transactionDate
                 - Properties changed
                   - New property: transactionDate
+                  - Deleted property: partieCnpjCpf
+                  - Deleted property: partieName
+                  - Deleted property: partiePersonType
                   - Modified property: billId
                     - Description changed from 'Código único e imutável que identifica a fatura onde consta a transação informada.' to 'Informação que identifica a fatura onde consta a transação informada.'
                   - Modified property: billPostDate
-                    - Description changed from 'Data em que a transação foi inserida na fatura.
+                    - Description changed from 'Data definitiva em que a transação foi inserida na fatura.
+Para compras parceladas, a data deve ser a data onde a parcela foi efetivamente registrada na fatura do cliente.
 ' to 'Data em que a transação foi inserida na fatura'
                   - Modified property: transactionDateTime
                     - Description changed from 'Data e hora da transação disponível para os clientes nos canais digitais da instituição. 
+Nas compras parceladas, deve-se considerar como data válida aquela em que a parcela se tornou disponível ao cliente nos canais digitais. 
 Neste momento, é obrigatório preencher com dados reais com precisão de data, hora e minuto, mesmo que a instituição não exiba para o cliente nesse nível de granularidade, em algumas situações. 
 Dessa forma, os segundos e milissegundos podem ser preenchidos com zero (0), por exemplo: 2024-01-29T11:15:00.000Z.
 ' to 'Data e hora original da transação. 
 No primeiro momento, as instituições poderão complementar informações faltantes com 0 (Por exemplo: 2016-01-29T00:00:00.000Z) 
 A partir de 31/01/2024 é esperado que o campo seja preenchido com informações reais.
 '
+                  - Modified property: transactionName
+                    - Description changed from 'Literal usada na instituição financeira para identificar a transação. A informação apresentada precisa ser a mesma utilizada nos canais eletrônicos da instituição (extrato).' to 'Literal usada na instituição financeira para identificar a transação. A informação apresentada precisa ser a mesma utilizada nos canais eletrônicos da instituição (extrato e fatura).'
                   - Modified property: transactionType
                     - Description changed from 'Traz os tipos de transações. O tipo `PAGAMENTO_FATURA` deve ser utilizado para pagamentos parciais (liberação de limite ou pagamento mínimo, por exemplo) ou total de fatura.' to 'Traz os tipos de Transação'
                     - Deleted enum values: [PAGAMENTO_FATURA]
@@ -1198,6 +1205,9 @@ A filtragem deve ser feita utilizando o campo `transactionDateTime`.
                   - Deleted required property: billPostDate
                 - Properties changed
                   - New property: transactionDate
+                  - Deleted property: partieCnpjCpf
+                  - Deleted property: partieName
+                  - Deleted property: partiePersonType
                   - Modified property: amount
                     - Description changed from 'Valor original da transação. Expresso em valor monetário com no mínimo 2 casas decimais e no máximo 4 casas decimais. 
 Deve ser sempre preenchido com o valor original da transação independente da nacionalidade, sem convertê-lo. 
@@ -1209,8 +1219,10 @@ Para compras parceladas o valor do campo deve corresponder ao valor da parcela.
 Preencher apenas para casos de transação em fatura fechada, ou seja, este campo não é esperado em casos de transação em fatura aberta.
 ' to 'Informação que identifica a fatura onde consta a transação informada. Preencher apenas para casos de transação em fatura fechada, ou seja, este campo não é esperado em casos de transação em fatura aberta.'
                   - Modified property: billPostDate
-                    - Description changed from 'Data em que a transação foi inserida na fatura. 
-Preencher o campo com a data dummy: 0001-01-01, apenas para os casos nos quais ainda não houver a data de inserção na fatura.
+                    - Description changed from '- Para transações já inseridas em fatura: Data definitiva em que a transação foi inserida na fatura. 
+Para compras parceladas, a data deve ser a data onde a parcela foi efetivamente registrada na fatura do cliente.
+- Para transações ainda não inseridas em fatura: Preencher com a data de previsão de vencimento da fatura na qual a transação/parcela será inserida, caso exista.
+- Preencher o campo com a data dummy: 0001-01-01, apenas para os casos nos quais ainda não houver a data de inserção na fatura.
 ' to 'Data em que a transação foi inserida na fatura'
                   - Modified property: brazilianAmount
                     - Description changed from 'Valor da transação expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais, em moeda corrente do Brasil. 
@@ -1220,6 +1232,7 @@ Para compras parceladas o valor do campo deve corresponder ao valor da parcela.
 '
                   - Modified property: transactionDateTime
                     - Description changed from 'Data e hora da transação disponível para os clientes nos canais digitais da instituição. 
+Nas compras parceladas, deve-se considerar como data válida aquela em que a parcela se tornou disponível ao cliente nos canais digitais. 
 Neste momento, é obrigatório preencher com dados reais com precisão de data, hora e minuto, mesmo que a instituição não exiba para o cliente nesse nível de granularidade, em algumas situações. 
 Dessa forma, os segundos e milissegundos podem ser preenchidos com zero (0), por exemplo: 2024-01-29T11:15:00.000Z.
 ' to 'Data e hora original da transação. 
@@ -1318,6 +1331,9 @@ A filtragem deve ser feita utilizando o campo `transactionDateTime`.
                   - Deleted required property: billPostDate
                 - Properties changed
                   - New property: transactionDate
+                  - Deleted property: partieCnpjCpf
+                  - Deleted property: partieName
+                  - Deleted property: partiePersonType
                   - Modified property: amount
                     - Description changed from 'Valor original da transação. Expresso em valor monetário com no mínimo 2 casas decimais e no máximo 4 casas decimais. 
 Deve ser sempre preenchido com o valor original da transação independente da nacionalidade, sem convertê-lo. 
@@ -1329,8 +1345,10 @@ Para compras parceladas o valor do campo deve corresponder ao valor da parcela.
 Preencher apenas para casos de transação em fatura fechada, ou seja, este campo não é esperado em casos de transação em fatura aberta.
 ' to 'Informação que identifica a fatura onde consta a transação informada. Preencher apenas para casos de transação em fatura fechada, ou seja, este campo não é esperado em casos de transação em fatura aberta.'
                   - Modified property: billPostDate
-                    - Description changed from 'Data em que a transação foi inserida na fatura. 
-Preencher o campo com a data dummy: 0001-01-01, apenas para os casos nos quais ainda não houver a data de inserção na fatura.
+                    - Description changed from '- Para transações já inseridas em fatura: Data definitiva em que a transação foi inserida na fatura. 
+Para compras parceladas, a data deve ser a data onde a parcela foi efetivamente registrada na fatura do cliente.
+- Para transações ainda não inseridas em fatura: Preencher com a data de previsão de vencimento da fatura na qual a transação/parcela será inserida, caso exista.
+- Preencher o campo com a data dummy: 0001-01-01, apenas para os casos nos quais ainda não houver a data de inserção na fatura.
 ' to 'Data em que a transação foi inserida na fatura'
                   - Modified property: brazilianAmount
                     - Description changed from 'Valor da transação expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais, em moeda corrente do Brasil. 
@@ -1340,6 +1358,7 @@ Para compras parceladas o valor do campo deve corresponder ao valor da parcela.
 '
                   - Modified property: transactionDateTime
                     - Description changed from 'Data e hora da transação disponível para os clientes nos canais digitais da instituição. 
+Nas compras parceladas, deve-se considerar como data válida aquela em que a parcela se tornou disponível ao cliente nos canais digitais. 
 Neste momento, é obrigatório preencher com dados reais com precisão de data, hora e minuto, mesmo que a instituição não exiba para o cliente nesse nível de granularidade, em algumas situações. 
 Dessa forma, os segundos e milissegundos podem ser preenchidos com zero (0), por exemplo: 2024-01-29T11:15:00.000Z.
 ' to 'Data e hora original da transação. 
