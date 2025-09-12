@@ -1,1 +1,77 @@
-﻿failed to load revision spec from "/data/1.1.0-beta.1.yml" with error unmarshaling JSON: while decoding JSON: json: cannot unmarshal bool into Go struct field TBis.components of type []string
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 3
+-------------------------
+GET /operations
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: companyCnpj
+                    - Pattern changed from '^\d{14}$' to '^[0-9A-Z]{12}[0-9]{2}$'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Format changed from 'uri' to 'url'
+                  - MaxLength changed from 2000 to 4048
+                - Modified property: last
+                  - Format changed from 'uri' to 'url'
+                  - MaxLength changed from 2000 to 4048
+                - Modified property: next
+                  - Format changed from 'uri' to 'url'
+                  - MaxLength changed from 2000 to 4048
+                - Modified property: prev
+                  - Format changed from 'uri' to 'url'
+                  - MaxLength changed from 2000 to 4048
+                - Modified property: self
+                  - Format changed from 'uri' to 'url'
+                  - MaxLength changed from 2000 to 4048
+GET /operations/{operationId}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: authorizedInstitutionCnpjNumber
+                  - Pattern changed from '^\d{14}$' to '^[0-9A-Z]{12}[0-9]{2}$'
+                - Modified property: intermediaryInstitutionCnpjNumber
+                  - Pattern changed from '^\d{14}$' to '^[0-9A-Z]{12}[0-9]{2}$'
+            - Modified property: links
+              - Properties changed
+                - Modified property: self
+                  - Format changed from 'uri' to 'url'
+                  - MaxLength changed from 2000 to 4048
+GET /operations/{operationId}/events
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Format changed from 'uri' to 'url'
+                  - MaxLength changed from 2000 to 4048
+                - Modified property: last
+                  - Format changed from 'uri' to 'url'
+                  - MaxLength changed from 2000 to 4048
+                - Modified property: next
+                  - Format changed from 'uri' to 'url'
+                  - MaxLength changed from 2000 to 4048
+                - Modified property: prev
+                  - Format changed from 'uri' to 'url'
+                  - MaxLength changed from 2000 to 4048
+                - Modified property: self
+                  - Format changed from 'uri' to 'url'
+                  - MaxLength changed from 2000 to 4048
