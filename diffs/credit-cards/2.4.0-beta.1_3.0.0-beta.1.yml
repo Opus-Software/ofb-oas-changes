@@ -672,7 +672,7 @@ A lista a retornar se refere a transações após base 2/clearing/conciliado
 '
 - Modified query param: fromTransactionDate
   - Description changed from 'Data inicial de filtragem.
-[Restrição] Deve obrigatoriamente ser enviado caso o campo `fromTransactionDate` seja informado. 
+[Restrição] Deve obrigatoriamente ser enviado caso o campo `toTransactionDate` seja informado. 
 Caso não seja informado os campos de filtro deve se retornar todas as transações correspondentes a fatura. 
 A filtragem deve ser feita utilizando o campo `transactionDateTime`.
 ' to 'Data inicial de filtragem.
@@ -680,7 +680,7 @@ A filtragem deve ser feita utilizando o campo `transactionDateTime`.
 '
 - Modified query param: toTransactionDate
   - Description changed from 'Data final de filtragem.
-[Restrição] Deve obrigatoriamente ser enviado caso o campo `toTransactionDate` seja informado. 
+[Restrição] Deve obrigatoriamente ser enviado caso o campo `fromTransactionDate` seja informado. 
 Caso não seja informado os campos de filtro deve se retornar todas as transações correspondentes a fatura. 
 A filtragem deve ser feita utilizando o campo `transactionDateTime`.
 ' to 'Data final de filtragem.
@@ -1235,8 +1235,6 @@ No entanto, para casos em que a transação ainda está em processamento, é esp
 Para transações processadas, é esperado que o `transactionld` e demais dados da transação sejam imutáveis. 
 O `transactionId` deve obedecer, no mínimo, as regras de imutabilidade propostas conforme a tabela “Data de imutabilidade por tipo de transação” presente nas orientações desta API
 '
-                  - Modified property: transactionName
-                    - Description changed from 'Literal usada na instituição financeira para identificar a transação. A informação apresentada precisa ser a mesma utilizada nos canais eletrônicos da instituição (extrato).' to 'Literal usada na instituição financeira para identificar a transação. A informação apresentada precisa ser a mesma utilizada nos canais eletrônicos da instituição (extrato e fatura).'
                   - Modified property: transactionType
                     - Description changed from 'Traz os tipos de transações. O tipo `PAGAMENTO_FATURA` deve ser utilizado para pagamentos parciais (liberação de limite ou pagamento mínimo, por exemplo) ou total de fatura.' to 'Traz os tipos de Transação'
                     - Deleted enum values: [PAGAMENTO_FATURA]
@@ -1355,8 +1353,6 @@ No entanto, para casos em que a transação ainda está em processamento, é esp
 Para transações processadas, é esperado que o `transactionld` e demais dados da transação sejam imutáveis. 
 O `transactionId` deve obedecer, no mínimo, as regras de imutabilidade propostas conforme a tabela “Data de imutabilidade por tipo de transação” presente nas orientações desta API
 '
-                  - Modified property: transactionName
-                    - Description changed from 'Literal usada na instituição financeira para identificar a transação. A informação apresentada precisa ser a mesma utilizada nos canais eletrônicos da instituição (extrato).' to 'Literal usada na instituição financeira para identificar a transação. A informação apresentada precisa ser a mesma utilizada nos canais eletrônicos da instituição (extrato e fatura).'
                   - Modified property: transactionType
                     - Description changed from 'Traz os tipos de transações. O tipo `PAGAMENTO_FATURA` deve ser utilizado para pagamentos parciais (liberação de limite ou pagamento mínimo, por exemplo) ou total de fatura.' to 'Traz os tipos de Transação'
                     - Deleted enum values: [PAGAMENTO_FATURA]

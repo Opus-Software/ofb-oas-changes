@@ -603,7 +603,7 @@ GET /accounts/{creditCardAccountId}/bills/{billId}/transactions
   - Description changed from 'Data inicial de filtragem.
 [Restrição] Deve obrigatoriamente ser enviado caso o campo toTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
 ' to 'Data inicial de filtragem.
-[Restrição] Deve obrigatoriamente ser enviado caso o campo `fromTransactionDate` seja informado. 
+[Restrição] Deve obrigatoriamente ser enviado caso o campo `toTransactionDate` seja informado. 
 Caso não seja informado os campos de filtro deve se retornar todas as transações correspondentes a fatura. 
 A filtragem deve ser feita utilizando o campo `transactionDateTime`.
 '
@@ -611,7 +611,7 @@ A filtragem deve ser feita utilizando o campo `transactionDateTime`.
   - Description changed from 'Data final de filtragem.
 [Restrição] Deve obrigatoriamente ser enviado caso o campo fromTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
 ' to 'Data final de filtragem.
-[Restrição] Deve obrigatoriamente ser enviado caso o campo `toTransactionDate` seja informado. 
+[Restrição] Deve obrigatoriamente ser enviado caso o campo `fromTransactionDate` seja informado. 
 Caso não seja informado os campos de filtro deve se retornar todas as transações correspondentes a fatura. 
 A filtragem deve ser feita utilizando o campo `transactionDateTime`.
 '
@@ -1100,8 +1100,6 @@ O `transactionId` deve obedecer, no mínimo, as regras de imutabilidade proposta
 ' to 'Código ou identificador único e imutável prestado pela instituição que mantém a conta para representar a transação individual. 
 Só devem ser compartilhadas transações após conciliação, fazendo com que o `transactionId` seja imutável.
 '
-                  - Modified property: transactionName
-                    - Description changed from 'Literal usada na instituição financeira para identificar a transação. A informação apresentada precisa ser a mesma utilizada nos canais eletrônicos da instituição (extrato e fatura).' to 'Literal usada na instituição financeira para identificar a transação. A informação apresentada precisa ser a mesma utilizada nos canais eletrônicos da instituição (extrato).'
                   - Modified property: transactionType
                     - Description changed from 'Traz os tipos de Transação' to 'Traz os tipos de transações. O tipo `PAGAMENTO_FATURA` deve ser utilizado para pagamentos parciais (liberação de limite ou pagamento mínimo, por exemplo) ou total de fatura.'
                     - New enum values: [PAGAMENTO_FATURA]
@@ -1196,8 +1194,6 @@ O `transactionId` deve obedecer, no mínimo, as regras de imutabilidade proposta
 ' to 'Código ou identificador único e imutável prestado pela instituição que mantém a conta para representar a transação individual. 
 Só devem ser compartilhadas transações após conciliação, fazendo com que o `transactionId` seja imutável.
 '
-                  - Modified property: transactionName
-                    - Description changed from 'Literal usada na instituição financeira para identificar a transação. A informação apresentada precisa ser a mesma utilizada nos canais eletrônicos da instituição (extrato e fatura).' to 'Literal usada na instituição financeira para identificar a transação. A informação apresentada precisa ser a mesma utilizada nos canais eletrônicos da instituição (extrato).'
                   - Modified property: transactionType
                     - Description changed from 'Traz os tipos de Transação' to 'Traz os tipos de transações. O tipo `PAGAMENTO_FATURA` deve ser utilizado para pagamentos parciais (liberação de limite ou pagamento mínimo, por exemplo) ou total de fatura.'
                     - New enum values: [PAGAMENTO_FATURA]
