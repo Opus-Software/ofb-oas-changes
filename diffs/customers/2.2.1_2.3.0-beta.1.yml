@@ -22,7 +22,8 @@ Caso o nome civil informado exceda o limite de 70 caracteres, devem ser mantidos
 Persistindo excesso após a abreviação de todos os intermediários, aplicar truncamento simples ao final do campo para respeitar o limite máximo. Não utilizar reticências.
 '
                       - Modified property: cnpjCpfNumber
-                        - Pattern changed from '^\d{11}$|^\d{14}$' to '^[0-9]{11}|[0-9A-Z]{12}[0-9]{2}$'
+                        - Description changed from 'Identificação do Representante Legal ou Procurador. Número do cadastro nas Receita Federal  (Preencher com CPF ou CNPJ sem formatação)' to 'Identificação do Representante Legal ou Procurador. Registro do cadastro na Receita Federal (Preencher com CPF ou CNPJ sem formatação).'
+                        - Pattern changed from '^\d{11}$|^\d{14}$' to '^([0-9]{11}|[0-9A-Z]{12}[0-9]{2})$'
             - Modified property: links
               - Properties changed
                 - Modified property: first
@@ -123,20 +124,34 @@ GET /personal/financial-relations
                   - Items changed
                     - Properties changed
                       - Modified property: employerCnpjCpf
-                        - Pattern changed from '^\d{14}$|^\d{11}$' to '^[0-9]{11}|[0-9A-Z]{12}[0-9]{2}$'
+                        - Pattern changed from '^\d{14}$|^\d{11}$' to '^([0-9]{11}|[0-9A-Z]{12}[0-9]{2})$'
                       - Modified property: employerName
                         - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
                       - Modified property: paycheckBankCnpj
                         - Pattern changed from '^\d{14}$' to '^[0-9A-Z]{12}[0-9]{2}$'
+                      - Modified property: paycheckBankIspb
+                        - Description changed from 'Número ISPB (Identificador do Sistema de Pagamentos Brasileiros) do instituição financeira contratada para prestar serviço de pagamento de salário (banco-folha).
+' to 'Registro ISPB (Identificador do Sistema de Pagamentos Brasileiros) da instituição contratada para prestar serviço de pagamento de salário (banco-folha).
+'
                 - Modified property: portabilitiesReceived
                   - Items changed
                     - Properties changed
                       - Modified property: employerCnpjCpf
-                        - Pattern changed from '^\d{14}$|^\d{11}$' to '^[0-9]{11}|[0-9A-Z]{12}[0-9]{2}$'
+                        - Description changed from 'Número de inscrição (CPF/CNPJ) do empregador (contratante dos serviços de pagamento), conforme recebido pela comunicação de portabilidade.
+' to 'Registro de inscrição (CPF/CNPJ) do empregador (contratante dos serviços de pagamento), conforme recebido pela comunicação de portabilidade.
+'
+                        - Pattern changed from '^\d{14}$|^\d{11}$' to '^([0-9]{11}|[0-9A-Z]{12}[0-9]{2})$'
                       - Modified property: employerName
                         - Pattern changed from '^(?!\s)[\w\W\s]*[^\s]$' to '^[^\s](.*[^\s])?$'
                       - Modified property: paycheckBankDetainerCnpj
+                        - Description changed from 'Número de inscrição no Cadastro Nacional da Pessoa Jurídica (CNPJ) do banco folha (instituição financeira detentora da conta salário) conforme recebido pela comunicação de portabilidade.
+' to 'Registro de inscrição no Cadastro Nacional da Pessoa Jurídica (CNPJ) do banco folha (instituição detentora da conta salário) conforme recebido pela comunicação de portabilidade.
+'
                         - Pattern changed from '^\d{14}$' to '^[0-9A-Z]{12}[0-9]{2}$'
+                      - Modified property: paycheckBankDetainerIspb
+                        - Description changed from 'Número do ISPB do Banco Folha (instituição financeira detentora da conta salário) conforme recebido pela comunicação de portabilidade.
+' to 'Registro do ISPB do Banco Folha (instituição detentora da conta salário) conforme recebido pela comunicação de portabilidade.
+'
                 - Modified property: procurators
                   - Items changed
                     - Properties changed
@@ -223,6 +238,10 @@ GET /personal/qualifications
                 - New property: employerCnpjCpf
                 - New property: employerName
                 - Modified property: companyCnpj
+                  - Description changed from 'Número completo do CNPJ da instituição responsável pelo Cadastro - o CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica. 
+Deve-se ter apenas os números do CNPJ, sem máscara
+' to 'Representação alfanumérica completa do CNPJ da instituição responsável pelo Cadastro - o CNPJ corresponde a representação alfanumérica de inscrição no Cadastro de Pessoa Jurídica. Deve-se ter apenas os caracteres do CNPJ, sem máscara.
+'
                   - Pattern changed from '^\d{14}$' to '^[0-9A-Z]{12}[0-9]{2}$'
             - Modified property: links
               - Properties changed
