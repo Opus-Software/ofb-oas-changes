@@ -2,21 +2,20 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 5
+### Modified Endpoints: 3
 -------------------------
 GET /contracts
 - Responses changed
   - Modified response: 200
-    - Headers changed
-      - Modified header: x-fapi-interaction-id
-        - Description changed from '' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.'
+    - Content changed
+      - Modified media type: application/json
         - Schema changed
-          - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to ''
-      - Modified header: x-v
-        - Description changed from '' to 'Cabeçalho que indica a versão implementada da API pela instituição financeira. Deve ser preenchido de forma completa, por exemplo: x-v : 1.0.2'
-        - Required changed from false to true
-        - Schema changed
-          - Description changed from 'Cabeçalho que indica a versão implementada da API pela instituição financeira. Deve ser preenchido de forma completa, por exemplo: x-v : 1.0.2' to ''
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: companyCnpj
+                    - Description changed from 'Representação alfanumérica completa do CNPJ da instituição responsável pelo contrato de empréstimo afim de identificar a instituição credora nos casos de portabilidade de crédito - o CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica. Deve-se ter apenas a representação alfanumérica do CNPJ, sem máscara.' to 'Representação alfanumérica completa do CNPJ da instituição responsável pelo contrato de empréstimo afim de identificar a instituição credora nos casos de portabilidade de crédito - o CNPJ corresponde ao registro alfanumérico de inscrição no Cadastro de Pessoa Jurídica. Deve-se ter apenas a representação alfanumérica do CNPJ, sem máscara.'
 GET /contracts/{contractId}
 - Responses changed
   - Modified response: 200
@@ -30,35 +29,12 @@ GET /contracts/{contractId}
                   - Description changed from 'CNPJ do consignante (CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica). 
 Deve-se ter apenas a representação alfanumérica do CNPJ, sem máscara.
 [Restrição] Informação adicional específica para quando o productSubType for igual a CREDITO_PESSOAL_COM_CONSIGNACAO
-' to 'CNPJ do consignante (CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica). 
+' to 'CNPJ do consignante (CNPJ corresponde ao registro alfanumérico de inscrição no Cadastro de Pessoa Jurídica). 
 Deve-se ter apenas a representação alfanumérica do CNPJ, sem máscara.
 [Restrição] Informação adicional específica para quando o `productSubType` for igual a `CREDITO_PESSOAL_COM_CONSIGNACAO`. 
 Este campo é de envio obrigatório somente enquanto houver vínculo (consignação ativa). 
 Nos casos de desconsignação, o campo pode ser omitido.
 '
-    - Headers changed
-      - Modified header: x-fapi-interaction-id
-        - Description changed from '' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.'
-        - Schema changed
-          - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to ''
-      - Modified header: x-v
-        - Description changed from '' to 'Cabeçalho que indica a versão implementada da API pela instituição financeira. Deve ser preenchido de forma completa, por exemplo: x-v : 1.0.2'
-        - Required changed from false to true
-        - Schema changed
-          - Description changed from 'Cabeçalho que indica a versão implementada da API pela instituição financeira. Deve ser preenchido de forma completa, por exemplo: x-v : 1.0.2' to ''
-GET /contracts/{contractId}/payments
-- Responses changed
-  - Modified response: 200
-    - Headers changed
-      - Modified header: x-fapi-interaction-id
-        - Description changed from '' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.'
-        - Schema changed
-          - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to ''
-      - Modified header: x-v
-        - Description changed from '' to 'Cabeçalho que indica a versão implementada da API pela instituição financeira. Deve ser preenchido de forma completa, por exemplo: x-v : 1.0.2'
-        - Required changed from false to true
-        - Schema changed
-          - Description changed from 'Cabeçalho que indica a versão implementada da API pela instituição financeira. Deve ser preenchido de forma completa, por exemplo: x-v : 1.0.2' to ''
 GET /contracts/{contractId}/scheduled-instalments
 - Responses changed
   - Modified response: 200
@@ -74,26 +50,3 @@ GET /contracts/{contractId}/scheduled-instalments
 ' to 'Prazo Total segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada. Deve corresponder à soma de `paidInstalments` + `pastDueInstalments` + `dueInstalments`.
 [Restrição] Obrigatoriamente deve ser preenchido caso o `typeNumberOfInstalments` seja diferente de `SEM_PRAZO_TOTAL`.
 '
-    - Headers changed
-      - Modified header: x-fapi-interaction-id
-        - Description changed from '' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.'
-        - Schema changed
-          - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to ''
-      - Modified header: x-v
-        - Description changed from '' to 'Cabeçalho que indica a versão implementada da API pela instituição financeira. Deve ser preenchido de forma completa, por exemplo: x-v : 1.0.2'
-        - Required changed from false to true
-        - Schema changed
-          - Description changed from 'Cabeçalho que indica a versão implementada da API pela instituição financeira. Deve ser preenchido de forma completa, por exemplo: x-v : 1.0.2' to ''
-GET /contracts/{contractId}/warranties
-- Responses changed
-  - Modified response: 200
-    - Headers changed
-      - Modified header: x-fapi-interaction-id
-        - Description changed from '' to 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.'
-        - Schema changed
-          - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to ''
-      - Modified header: x-v
-        - Description changed from '' to 'Cabeçalho que indica a versão implementada da API pela instituição financeira. Deve ser preenchido de forma completa, por exemplo: x-v : 1.0.2'
-        - Required changed from false to true
-        - Schema changed
-          - Description changed from 'Cabeçalho que indica a versão implementada da API pela instituição financeira. Deve ser preenchido de forma completa, por exemplo: x-v : 1.0.2' to ''
