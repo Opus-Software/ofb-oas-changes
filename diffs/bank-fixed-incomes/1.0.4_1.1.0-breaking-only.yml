@@ -2,8 +2,195 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 4
+### Modified Endpoints: 5
 -------------------------
+GET /investments
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: brandName
+                    - Pattern changed from '[\w\W\s]*' to '^[^\s](.*[^\s])?$'
+                  - Modified property: companyCnpj
+                    - Pattern changed from '^\d{14}$' to '^[0-9A-Z]{12}[0-9]{2}$'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Format changed from 'uri' to 'url'
+                  - MaxLength changed from 2000 to 4048
+                - Modified property: last
+                  - Format changed from 'uri' to 'url'
+                  - MaxLength changed from 2000 to 4048
+                - Modified property: next
+                  - Format changed from 'uri' to 'url'
+                  - MaxLength changed from 2000 to 4048
+                - Modified property: prev
+                  - Format changed from 'uri' to 'url'
+                  - MaxLength changed from 2000 to 4048
+                - Modified property: self
+                  - Format changed from 'uri' to 'url'
+                  - MaxLength changed from 2000 to 4048
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 422
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 423
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 504
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 529
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
 GET /investments/{investmentId}
 - Responses changed
   - Modified response: 200
@@ -13,12 +200,194 @@ GET /investments/{investmentId}
           - Properties changed
             - Modified property: data
               - Properties changed
+                - Modified property: issuerInstitutionCnpjNumber
+                  - Pattern changed from '^\d{14}$' to '^[0-9A-Z]{12}[0-9]{2}$'
                 - Modified property: remuneration
                   - Properties changed
+                    - Modified property: postFixedIndexerPercentage
+                      - MaxLength changed from 8 to 9
+                      - Pattern changed from '^\d{1}\.\d{6}$' to '^-?\d{1}\.\d{6}$'
                     - Modified property: preFixedRate
                       - MaxLength changed from 8 to 9
                       - Pattern changed from '^\d{1}\.\d{6}$' to '^-?\d{1}\.\d{6}$'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Format changed from 'uri' to 'url'
+                  - MaxLength changed from 2000 to 4048
+                - Modified property: last
+                  - Format changed from 'uri' to 'url'
+                  - MaxLength changed from 2000 to 4048
+                - Modified property: next
+                  - Format changed from 'uri' to 'url'
+                  - MaxLength changed from 2000 to 4048
+                - Modified property: prev
+                  - Format changed from 'uri' to 'url'
+                  - MaxLength changed from 2000 to 4048
+                - Modified property: self
+                  - Format changed from 'uri' to 'url'
+                  - MaxLength changed from 2000 to 4048
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 422
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 423
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 504
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 529
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
 GET /investments/{investmentId}/balances
+- Modified path param: investmentId
+  - Schema changed
+    - MaxLength changed from null to 100
+    - Pattern changed from '^[a-zA-Z0-9][a-zA-Z0-9-]{0,99}$' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
 - Responses changed
   - Modified response: 200
     - Content changed
@@ -27,9 +396,193 @@ GET /investments/{investmentId}/balances
           - Properties changed
             - Modified property: data
               - Properties changed
+                - Modified property: postFixedIndexerPercentage
+                  - MaxLength changed from 8 to 9
+                  - Pattern changed from '^\d{1}\.\d{6}$' to '^-?\d{1}\.\d{6}$'
                 - Modified property: preFixedRate
                   - MaxLength changed from 8 to 9
                   - Pattern changed from '^\d{1}\.\d{6}$' to '^-?\d{1}\.\d{6}$'
+                - Modified property: quantity
+                  - MaxLength changed from 24 to 26
+                  - Pattern changed from '^\d{1,15}\.\d{2,8}$' to '^\d{1,15}\.\d{2,10}$'
+                - Modified property: updatedUnitPrice
+                  - Properties changed
+                    - Modified property: amount
+                      - MaxLength changed from 24 to 26
+                      - Pattern changed from '^\d{1,15}\.\d{2,8}$' to '^\d{1,15}\.\d{2,10}$'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Format changed from 'uri' to 'url'
+                  - MaxLength changed from 2000 to 4048
+                - Modified property: last
+                  - Format changed from 'uri' to 'url'
+                  - MaxLength changed from 2000 to 4048
+                - Modified property: next
+                  - Format changed from 'uri' to 'url'
+                  - MaxLength changed from 2000 to 4048
+                - Modified property: prev
+                  - Format changed from 'uri' to 'url'
+                  - MaxLength changed from 2000 to 4048
+                - Modified property: self
+                  - Format changed from 'uri' to 'url'
+                  - MaxLength changed from 2000 to 4048
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 422
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 423
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 504
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: 529
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - Deleted required property: totalPages
+                - Deleted required property: totalRecords
+              - Properties changed
+                - Deleted property: totalPages
+                - Deleted property: totalRecords
 GET /investments/{investmentId}/transactions
 - Responses changed
   - Modified response: 200
@@ -43,6 +596,20 @@ GET /investments/{investmentId}/transactions
                   - Modified property: remunerationTransactionRate
                     - MaxLength changed from 8 to 9
                     - Pattern changed from '^\d{1}\.\d{6}$' to '^-?\d{1}\.\d{6}$'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Format changed from 'uri' to 'url'
+                  - MaxLength changed from 2000 to 4048
+                - Modified property: next
+                  - Format changed from 'uri' to 'url'
+                  - MaxLength changed from 2000 to 4048
+                - Modified property: prev
+                  - Format changed from 'uri' to 'url'
+                  - MaxLength changed from 2000 to 4048
+                - Modified property: self
+                  - Format changed from 'uri' to 'url'
+                  - MaxLength changed from 2000 to 4048
 GET /investments/{investmentId}/transactions-current
 - Responses changed
   - Modified response: 200
@@ -56,3 +623,17 @@ GET /investments/{investmentId}/transactions-current
                   - Modified property: remunerationTransactionRate
                     - MaxLength changed from 8 to 9
                     - Pattern changed from '^\d{1}\.\d{6}$' to '^-?\d{1}\.\d{6}$'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Format changed from 'uri' to 'url'
+                  - MaxLength changed from 2000 to 4048
+                - Modified property: next
+                  - Format changed from 'uri' to 'url'
+                  - MaxLength changed from 2000 to 4048
+                - Modified property: prev
+                  - Format changed from 'uri' to 'url'
+                  - MaxLength changed from 2000 to 4048
+                - Modified property: self
+                  - Format changed from 'uri' to 'url'
+                  - MaxLength changed from 2000 to 4048
