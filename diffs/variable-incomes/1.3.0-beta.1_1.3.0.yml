@@ -1,0 +1,44 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 2
+-------------------------
+GET /investments/{investmentId}/transactions
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: brokerNoteId
+                    - Description changed from 'Identifica de forma única o relacionamento do cliente com o produto para cada número de nota de negociação, mantendo as regras de imutabilidade dentro da instituição transmissora. O conteúdo desse campo deve ser utilizado como parâmetro na chamada do endpoint `GET /broker-notes/{brokerNoteId}`. 
+[Restrição] Informação de envio obrigatório caso o motivo da movimentação seja compra ou venda.
+' to 'Identifica de forma única o relacionamento do cliente com o produto para cada número de nota de negociação (`brokerNoteNumber`), mantendo as regras de imutabilidade dentro da instituição transmissora. 
+O conteúdo desse campo deve ser utilizado como parâmetro na chamada do endpoint `GET /broker-notes/{brokerNoteId}`.
+A relação entre `investmentId` e `brokerNoteId` é de N para N, refletindo que uma nota de negociação pode contemplar múltiplos investimentos e, ao mesmo tempo, um investimento pode estar associado a diferentes notas de negociação.
+A relação entre `brokerNoteId` e `brokerNoteNumber` é de 1 para 1, garantindo que cada nota de negociação natural corresponda a um identificador único e imutável no ecossistema.
+[Restrição] Informação de envio obrigatório caso o motivo da movimentação seja compra ou venda.
+'
+GET /investments/{investmentId}/transactions-current
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: brokerNoteId
+                    - Description changed from 'Identifica de forma única o relacionamento do cliente com o produto para cada número de nota de negociação, mantendo as regras de imutabilidade dentro da instituição transmissora. O conteúdo desse campo deve ser utilizado como parâmetro na chamada do endpoint `GET /broker-notes/{brokerNoteId}`. 
+[Restrição] Informação de envio obrigatório caso o motivo da movimentação seja compra ou venda.
+' to 'Identifica de forma única o relacionamento do cliente com o produto para cada número de nota de negociação (`brokerNoteNumber`), mantendo as regras de imutabilidade dentro da instituição transmissora. 
+O conteúdo desse campo deve ser utilizado como parâmetro na chamada do endpoint `GET /broker-notes/{brokerNoteId}`.
+A relação entre `investmentId` e `brokerNoteId` é de N para N, refletindo que uma nota de negociação pode contemplar múltiplos investimentos e, ao mesmo tempo, um investimento pode estar associado a diferentes notas de negociação.
+A relação entre `brokerNoteId` e `brokerNoteNumber` é de 1 para 1, garantindo que cada nota de negociação natural corresponda a um identificador único e imutável no ecossistema.
+[Restrição] Informação de envio obrigatório caso o motivo da movimentação seja compra ou venda.
+'

@@ -83,7 +83,6 @@
 |  | [3.0.0](swagger-apis/payments/3.0.0.yml) | [3.1.0](swagger-apis/payments/3.1.0.yml) | [YAML](diffs/payments/3.0.0_3.1.0-breaking-only.yml) | [YAML](diffs/payments/3.0.0_3.1.0.yml) |
 |  | [3.1.0](swagger-apis/payments/3.1.0.yml) | [4.0.0](swagger-apis/payments/4.0.0.yml) | [YAML](diffs/payments/3.1.0_4.0.0-breaking-only.yml) | [YAML](diffs/payments/3.1.0_4.0.0.yml) |
 |  | [4.0.0](swagger-apis/payments/4.0.0.yml) | [4.1.0](swagger-apis/payments/4.1.0.yml) | [YAML](diffs/payments/4.0.0_4.1.0-breaking-only.yml) | [YAML](diffs/payments/4.0.0_4.1.0.yml) |
-| payroll-credit-portability | [1.0.0-beta.1](swagger-apis/payroll-credit-portability/1.0.0-beta.1.yml) |  |  |  |
 | pension | [1.0.1](swagger-apis/pension/1.0.1.yml) | [2.0.0](swagger-apis/pension/2.0.0.yml) | [YAML](diffs/pension/1.0.1_2.0.0-breaking-only.yml) | [YAML](diffs/pension/1.0.1_2.0.0.yml) |
 | products-services | [1.0.2](swagger-apis/products-services/1.0.2.yml) | [2.0.0-beta1](swagger-apis/products-services/2.0.0-beta1.yml) | [YAML](diffs/products-services/1.0.2_2.0.0-beta1-breaking-only.yml) | [YAML](diffs/products-services/1.0.2_2.0.0-beta1.yml) |
 |  | [2.0.0-beta1](swagger-apis/products-services/2.0.0-beta1.yml) | [3.0.0](swagger-apis/products-services/3.0.0.yml) | [YAML](diffs/products-services/2.0.0-beta1_3.0.0-breaking-only.yml) | [YAML](diffs/products-services/2.0.0-beta1_3.0.0.yml) |
@@ -100,7 +99,7 @@
 |  | [2.4.0](swagger-apis/unarranged-accounts-overdraft/2.4.0.yml) | [2.5.0](swagger-apis/unarranged-accounts-overdraft/2.5.0.yml) | [YAML](diffs/unarranged-accounts-overdraft/2.4.0_2.5.0-breaking-only.yml) | [YAML](diffs/unarranged-accounts-overdraft/2.4.0_2.5.0.yml) |
 | variable-incomes | [1.0.2](swagger-apis/variable-incomes/1.0.2.yml) | [1.1.0](swagger-apis/variable-incomes/1.1.0.yml) | [YAML](diffs/variable-incomes/1.0.2_1.1.0-breaking-only.yml) | [YAML](diffs/variable-incomes/1.0.2_1.1.0.yml) |
 |  | [1.1.0](swagger-apis/variable-incomes/1.1.0.yml) | [1.2.1](swagger-apis/variable-incomes/1.2.1.yml) | [YAML](diffs/variable-incomes/1.1.0_1.2.1-breaking-only.yml) | [YAML](diffs/variable-incomes/1.1.0_1.2.1.yml) |
-|  | [1.2.1](swagger-apis/variable-incomes/1.2.1.yml) | [1.3.0-beta.1](swagger-apis/variable-incomes/1.3.0-beta.1.yml) | [YAML](diffs/variable-incomes/1.2.1_1.3.0-beta.1-breaking-only.yml) | [YAML](diffs/variable-incomes/1.2.1_1.3.0-beta.1.yml) |
+|  | [1.2.1](swagger-apis/variable-incomes/1.2.1.yml) | [1.3.0](swagger-apis/variable-incomes/1.3.0.yml) | [YAML](diffs/variable-incomes/1.2.1_1.3.0-breaking-only.yml) | [YAML](diffs/variable-incomes/1.2.1_1.3.0.yml) |
 | webhook | [1.0.0-beta1](swagger-apis/webhook/1.0.0-beta1.yml) | [1.1.0](swagger-apis/webhook/1.1.0.yml) | [YAML](diffs/webhook/1.0.0-beta1_1.1.0-breaking-only.yml) | [YAML](diffs/webhook/1.0.0-beta1_1.1.0.yml) |
 |  | [1.1.0](swagger-apis/webhook/1.1.0.yml) | [1.2.0](swagger-apis/webhook/1.2.0.yml) | [YAML](diffs/webhook/1.1.0_1.2.0-breaking-only.yml) | [YAML](diffs/webhook/1.1.0_1.2.0.yml) |
 |  | [1.2.0](swagger-apis/webhook/1.2.0.yml) | [1.3.0-beta.1](swagger-apis/webhook/1.3.0-beta.1.yml) | [YAML](diffs/webhook/1.2.0_1.3.0-beta.1-breaking-only.yml) | [YAML](diffs/webhook/1.2.0_1.3.0-beta.1.yml) |
@@ -440,7 +439,6 @@
 |  | [4.0.0-rc.1](swagger-apis/payments/4.0.0-rc.1.yml) | [4.0.0-rc.2](swagger-apis/payments/4.0.0-rc.2.yml) | [YAML](diffs/payments/4.0.0-rc.1_4.0.0-rc.2.yml) |
 |  | [4.0.0-rc.2](swagger-apis/payments/4.0.0-rc.2.yml) | [4.0.0](swagger-apis/payments/4.0.0.yml) | [YAML](diffs/payments/4.0.0-rc.2_4.0.0.yml) |
 |  | [4.0.0](swagger-apis/payments/4.0.0.yml) | [4.1.0](swagger-apis/payments/4.1.0.yml) | [YAML](diffs/payments/4.0.0_4.1.0.yml) |
-| payroll-credit-portability | [1.0.0-beta.1](swagger-apis/payroll-credit-portability/1.0.0-beta.1.yml) |  |  |
 | pension | [1.0.0-rc1.0](swagger-apis/pension/1.0.0-rc1.0.yml) | [1.0.0-rc2.0](swagger-apis/pension/1.0.0-rc2.0.yml) | [YAML](diffs/pension/1.0.0-rc1.0_1.0.0-rc2.0.yml) |
 |  | [1.0.0-rc2.0](swagger-apis/pension/1.0.0-rc2.0.yml) | [1.0.0-rc3.0](swagger-apis/pension/1.0.0-rc3.0.yml) | [YAML](diffs/pension/1.0.0-rc2.0_1.0.0-rc3.0.yml) |
 |  | [1.0.0-rc3.0](swagger-apis/pension/1.0.0-rc3.0.yml) | [1.0.0](swagger-apis/pension/1.0.0.yml) | [YAML](diffs/pension/1.0.0-rc3.0_1.0.0.yml) |
@@ -506,6 +504,7 @@
 |  | [1.1.0](swagger-apis/variable-incomes/1.1.0.yml) | [1.2.0](swagger-apis/variable-incomes/1.2.0.yml) | [YAML](diffs/variable-incomes/1.1.0_1.2.0.yml) |
 |  | [1.2.0](swagger-apis/variable-incomes/1.2.0.yml) | [1.2.1](swagger-apis/variable-incomes/1.2.1.yml) | [YAML](diffs/variable-incomes/1.2.0_1.2.1.yml) |
 |  | [1.2.1](swagger-apis/variable-incomes/1.2.1.yml) | [1.3.0-beta.1](swagger-apis/variable-incomes/1.3.0-beta.1.yml) | [YAML](diffs/variable-incomes/1.2.1_1.3.0-beta.1.yml) |
+|  | [1.3.0-beta.1](swagger-apis/variable-incomes/1.3.0-beta.1.yml) | [1.3.0](swagger-apis/variable-incomes/1.3.0.yml) | [YAML](diffs/variable-incomes/1.3.0-beta.1_1.3.0.yml) |
 | webhook | [1.0.0-beta.1](swagger-apis/webhook/1.0.0-beta.1.yml) | [1.0.0-beta.2](swagger-apis/webhook/1.0.0-beta.2.yml) | [YAML](diffs/webhook/1.0.0-beta.1_1.0.0-beta.2.yml) |
 |  | [1.0.0-beta.2](swagger-apis/webhook/1.0.0-beta.2.yml) | [1.0.0-beta.3](swagger-apis/webhook/1.0.0-beta.3.yml) | [YAML](diffs/webhook/1.0.0-beta.2_1.0.0-beta.3.yml) |
 |  | [1.0.0-beta.3](swagger-apis/webhook/1.0.0-beta.3.yml) | [1.0.0-rc.1](swagger-apis/webhook/1.0.0-rc.1.yml) | [YAML](diffs/webhook/1.0.0-beta.3_1.0.0-rc.1.yml) |
@@ -515,3 +514,17 @@
 |  | [1.0.0](swagger-apis/webhook/1.0.0.yml) | [1.1.0](swagger-apis/webhook/1.1.0.yml) | [YAML](diffs/webhook/1.0.0_1.1.0.yml) |
 |  | [1.1.0](swagger-apis/webhook/1.1.0.yml) | [1.2.0](swagger-apis/webhook/1.2.0.yml) | [YAML](diffs/webhook/1.1.0_1.2.0.yml) |
 |  | [1.2.0](swagger-apis/webhook/1.2.0.yml) | [1.3.0-beta.1](swagger-apis/webhook/1.3.0-beta.1.yml) | [YAML](diffs/webhook/1.2.0_1.3.0-beta.1.yml) |
+
+## Deprecated APIs
+
+### Majors/Minors
+
+| OAS | Base | Revision | Breaking changes only | Full Diff |
+| --- | --- | --- | --- | --- |
+| payroll-credit-portability | [1.0.0-beta.1](swagger-apis/payroll-credit-portability/1.0.0-beta.1.yml) |  |  |  |
+
+### All revisions
+
+| OAS | Base | Revision | Full Diff |
+| --- | --- | --- | --- |
+| payroll-credit-portability | [1.0.0-beta.1](swagger-apis/payroll-credit-portability/1.0.0-beta.1.yml) |  |  |
