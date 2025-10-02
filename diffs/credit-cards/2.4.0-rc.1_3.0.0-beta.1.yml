@@ -1,0 +1,1388 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 7
+-------------------------
+GET /accounts
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.'
+  - Required changed from true to false
+  - Schema changed
+    - Format changed from 'uuid' to ''
+    - Example changed from 'd78fc4e5-37ca-4da3-adf2-9b082bf92280' to null
+    - MaxLength changed from 36 to 100
+    - Pattern changed from '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: companyCnpj
+                    - Description changed from 'Registro completo do CNPJ da instituição responsável pelo Cadastro – o CNPJ corresponde a representação alfanumérica da inscrição no Cadastro de Pessoa Jurídica. Deve-se ter apenas os caracteres do CNPJ, sem máscara.' to 'Número completo do CNPJ da instituição responsável pelo Cadastro - o CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica. Deve-se ter apenas os números do CNPJ, sem máscara'
+                    - Pattern changed from '^[0-9A-Z]{12}[0-9]{2}$' to '^\d{14}$'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+                  - MaxLength changed from 4048 to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+                  - MaxLength changed from 4048 to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+                  - MaxLength changed from 4048 to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+                  - MaxLength changed from 4048 to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+                  - MaxLength changed from 4048 to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+    - Headers changed
+      - Deleted header: x-v
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to ''
+        - Required changed from true to false
+        - Schema changed
+          - Format changed from 'uuid' to ''
+          - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.'
+          - Example changed from 'd78fc4e5-37ca-4da3-adf2-9b082bf92280' to null
+          - MaxLength changed from 36 to 100
+          - Pattern changed from '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 422
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 423
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 504
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 529
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+GET /accounts/{creditCardAccountId}
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.'
+  - Required changed from true to false
+  - Schema changed
+    - Format changed from 'uuid' to ''
+    - Example changed from 'd78fc4e5-37ca-4da3-adf2-9b082bf92280' to null
+    - MaxLength changed from 36 to 100
+    - Pattern changed from '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: paymentMethod
+                  - Description changed from 'Listagem dos cartões (ex.: virtual/adicional/titular) associados a conta cartão consentida, conforme disponíveis ao usuário nos canais proprietários.
+O envio da listagem paymentMethod vazia só deve ocorrer nos seguintes cenários:
+- Conta com pagamento ativo, mas com todos os métodos de pagamentos cancelados;
+- Conta nova sem emissão de métodos de pagamentos;
+- Conta com cartão no-name: entrega de cartão emergencial ao cliente sem dados do cliente no plástico;
+- Conta bloqueada por furto, roubo ou perda: cartão está inativo e aguardando embossing de novo cartão;
+- Conta suspensa: conta suspensa por falta de pagamento, suspensão judicial, entre outros, no entanto cartão se mantém em posse do cliente;
+- Conta inativa: sem utilização de cartão por mais de X dias, no entanto cartão ainda está atrelado ao cliente;
+- Conta aguardando / revisão da análise do cliente: cliente já solicitou cartão, embossing em processo, mas ainda há análises adicionais (ex.: fraude), para serem concluídas.
+' to 'Listagem dos cartões (ex.: virtual/adicional/titular) associados a conta cartão consentida, conforme disponíveis ao usuário nos canais proprietários.
+'
+                  - MinItems changed from 0 to 1
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+                  - MaxLength changed from 4048 to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+                  - MaxLength changed from 4048 to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+                  - MaxLength changed from 4048 to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+                  - MaxLength changed from 4048 to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+                  - MaxLength changed from 4048 to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+    - Headers changed
+      - Deleted header: x-v
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to ''
+        - Required changed from true to false
+        - Schema changed
+          - Format changed from 'uuid' to ''
+          - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.'
+          - Example changed from 'd78fc4e5-37ca-4da3-adf2-9b082bf92280' to null
+          - MaxLength changed from 36 to 100
+          - Pattern changed from '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 422
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 423
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 504
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 529
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+GET /accounts/{creditCardAccountId}/bills
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.'
+  - Required changed from true to false
+  - Schema changed
+    - Format changed from 'uuid' to ''
+    - Example changed from 'd78fc4e5-37ca-4da3-adf2-9b082bf92280' to null
+    - MaxLength changed from 36 to 100
+    - Pattern changed from '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Required changed
+                  - Deleted required property: billClosingDate
+                - Properties changed
+                  - Deleted property: billClosingDate
+                  - Modified property: billId
+                    - Description changed from 'Código único e imutável que identifica a fatura.' to 'Informação que identifica a fatura'
+                  - Modified property: payments
+                    - Description changed from 'Lista que traz os valores relativos aos pagamentos da Fatura da conta de pagamento pós-paga.
+Pagamentos efetuados a partir do momento que uma nova fatura é fechada e exposta, devem estar listados na fatura fechada, até que haja um novo fechamento.
+' to 'Lista que traz os valores relativos aos pagamentos da Fatura da conta de pagamento pós-paga'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+                  - MaxLength changed from 4048 to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+                  - MaxLength changed from 4048 to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+                  - MaxLength changed from 4048 to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+                  - MaxLength changed from 4048 to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+                  - MaxLength changed from 4048 to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+    - Headers changed
+      - Deleted header: x-v
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to ''
+        - Required changed from true to false
+        - Schema changed
+          - Format changed from 'uuid' to ''
+          - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.'
+          - Example changed from 'd78fc4e5-37ca-4da3-adf2-9b082bf92280' to null
+          - MaxLength changed from 36 to 100
+          - Pattern changed from '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 422
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 423
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 504
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 529
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+GET /accounts/{creditCardAccountId}/bills/{billId}/transactions
+- Description changed from 'Método para obter a lista de transações da conta de pagamento pós-paga identificada por creditCardAccountId e billId mantida pelo cliente na instituição transmissora. 
+A lista a retornar se refere a transações após conciliado.
+' to 'Método para obter a lista de transações da conta de pagamento pós-paga identificada por creditCardAccountId e billId mantida pelo cliente na instituição transmissora. 
+A lista a retornar se refere a transações após base 2/clearing/conciliado
+'
+- Modified query param: fromTransactionDate
+  - Description changed from 'Data inicial de filtragem.
+[Restrição] Deve obrigatoriamente ser enviado caso o campo `toTransactionDate` seja informado. 
+Caso não seja informado os campos de filtro deve se retornar todas as transações correspondentes a fatura. 
+A filtragem deve ser feita utilizando o campo `transactionDateTime`.
+' to 'Data inicial de filtragem.
+[Restrição] Deve obrigatoriamente ser enviado caso o campo toTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
+'
+- Modified query param: toTransactionDate
+  - Description changed from 'Data final de filtragem.
+[Restrição] Deve obrigatoriamente ser enviado caso o campo `fromTransactionDate` seja informado. 
+Caso não seja informado os campos de filtro deve se retornar todas as transações correspondentes a fatura. 
+A filtragem deve ser feita utilizando o campo `transactionDateTime`.
+' to 'Data final de filtragem.
+[Restrição] Deve obrigatoriamente ser enviado caso o campo fromTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
+'
+- Modified query param: transactionType
+  - Schema changed
+    - Description changed from 'Traz os tipos de transações. O tipo `PAGAMENTO_FATURA` deve ser utilizado para pagamentos parciais (liberação de limite ou pagamento mínimo, por exemplo) ou total de fatura.' to 'Traz os tipos de Transação'
+    - Deleted enum values: [PAGAMENTO_FATURA]
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.'
+  - Required changed from true to false
+  - Schema changed
+    - Format changed from 'uuid' to ''
+    - Example changed from 'd78fc4e5-37ca-4da3-adf2-9b082bf92280' to null
+    - MaxLength changed from 36 to 100
+    - Pattern changed from '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Required changed
+                  - New required property: transactionDate
+                - Properties changed
+                  - New property: transactionDate
+                  - Modified property: billId
+                    - Description changed from 'Código único e imutável que identifica a fatura onde consta a transação informada.' to 'Informação que identifica a fatura onde consta a transação informada.'
+                  - Modified property: billPostDate
+                    - Description changed from 'Data em que a transação foi inserida na fatura.
+' to 'Data em que a transação foi inserida na fatura'
+                  - Modified property: transactionDateTime
+                    - Description changed from 'Data e hora da transação. 
+Nas compras parceladas, o `transactionDateTime` deve ser idêntico em todas as parcelas. O campo deve obrigatoriamente refletir a informação exibida ao cliente nos canais digitais da instituição, com precisão de data, hora e minuto — mesmo que a instituição não exiba esse nível de granularidade em seus canais. Nesses casos, os segundos e milissegundos podem ser preenchidos com zero (0). Exemplo: 2024-01-29T11:15:00.000Z.
+' to 'Data e hora original da transação. 
+No primeiro momento, as instituições poderão complementar informações faltantes com 0 (Por exemplo: 2016-01-29T00:00:00.000Z) 
+A partir de 31/01/2024 é esperado que o campo seja preenchido com informações reais.
+'
+                  - Modified property: transactionType
+                    - Description changed from 'Traz os tipos de transações. O tipo `PAGAMENTO_FATURA` deve ser utilizado para pagamentos parciais (liberação de limite ou pagamento mínimo, por exemplo) ou total de fatura.' to 'Traz os tipos de Transação'
+                    - Deleted enum values: [PAGAMENTO_FATURA]
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+                  - MaxLength changed from 4048 to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+                  - MaxLength changed from 4048 to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+                  - MaxLength changed from 4048 to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+                  - MaxLength changed from 4048 to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+                  - MaxLength changed from 4048 to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+    - Headers changed
+      - Deleted header: x-v
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to ''
+        - Required changed from true to false
+        - Schema changed
+          - Format changed from 'uuid' to ''
+          - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.'
+          - Example changed from 'd78fc4e5-37ca-4da3-adf2-9b082bf92280' to null
+          - MaxLength changed from 36 to 100
+          - Pattern changed from '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 422
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 423
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 504
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 529
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+GET /accounts/{creditCardAccountId}/limits
+- New query param: page
+- New query param: page-size
+- New query param: pagination-key
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.'
+  - Required changed from true to false
+  - Schema changed
+    - Format changed from 'uuid' to ''
+    - Example changed from 'd78fc4e5-37ca-4da3-adf2-9b082bf92280' to null
+    - MaxLength changed from 36 to 100
+    - Pattern changed from '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Description changed from '[Restrição] O envio dos dados de limites deve seguir as seguintes orientações:
+- A lista vazia deve ser interpretada como a ausência da informação;
+- Cenário de limite com valor zerado, deve ter um registro explícito informando o valor como zero;
+- Cenário de "cartão sem limite", isto é, cartões em que o uso do limite é flexível, deve ser informado em um registro explícito com isLimitFlexible como true;
+- Os limites globais devem ser compartilhados na lista de limites, definidos pelo enum CONSOLIDADO, no campo consolidationType. Limites já incluídos no global não devem ser compartilhados, para não ocorrer redundância de informações;
+- Limites segregados, que não fazem parte do global, devem ser compartilhados pelo enum INDIVIDUAL, no campo consolidationType.
+- Cartões virtuais, só devem ter seu limite listado caso o limite do mesmo for segregado do global, assim, devem ser compartilhados pelo enum INDIVIDUAL, no campo consolidationType.
+- Só devem ser compartilhados limites de cartões ativos.   
+' to '[Restrição] A lista vazia deve ser interpretada como a ausência da informação.
+Cenário de limite com valor zerado, deve ter um registro explícito informando o valor como zero.
+Cenário de "cartão sem limite", isto é, cartões em que o uso do limite é ilimitado, deve ser informado em um registro explícito com isLimitFlexible como true.
+'
+              - Items changed
+                - Properties changed
+                  - Modified property: usedAmount
+                    - Description changed from 'Valor utilizado do limite informado. 
+Limites extras fornecidos ou contratados e usados pelo cliente devem ser somados neste campo. 
+Assim, se o valor deste campo for maior que o limite do cliente, significa o uso e contratação de limites extras no cartão.
+' to 'Valor utilizado do limite informado'
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+                  - MaxLength changed from 4048 to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: last
+                  - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+                  - MaxLength changed from 4048 to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+                  - MaxLength changed from 4048 to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+                  - MaxLength changed from 4048 to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+                  - MaxLength changed from 4048 to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+    - Headers changed
+      - Deleted header: x-v
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to ''
+        - Required changed from true to false
+        - Schema changed
+          - Format changed from 'uuid' to ''
+          - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.'
+          - Example changed from 'd78fc4e5-37ca-4da3-adf2-9b082bf92280' to null
+          - MaxLength changed from 36 to 100
+          - Pattern changed from '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
+  - Modified response: 400
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 401
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 405
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 406
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 422
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 423
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 429
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 500
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 504
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: 529
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+  - Modified response: default
+    - Content changed
+      - Modified media type: application/json; charset=utf-8
+        - Schema changed
+          - Properties changed
+            - Modified property: meta
+              - Required changed
+                - New required property: totalPages
+                - New required property: totalRecords
+              - Properties changed
+                - New property: totalPages
+                - New property: totalRecords
+GET /accounts/{creditCardAccountId}/transactions
+- Description changed from 'Método para obter a lista de transações histórica (últimos 12 meses, ou recorte desse período) da conta de pagamento pós-paga identificada por `creditCardAccountId` mantida pelo cliente na instituição transmissora. 
+A lista a retornar se refere a transações após conciliado. A lista deve ser ordenada da transação mais recente para a mais antiga.  
+' to 'Método para obter a lista de transações da conta de pagamento pós-paga identificada por creditCardAccountId mantida pelo cliente na instituição transmissora.
+A lista a retornar se refere a transações após base 2/clearing/conciliado'
+- Modified query param: fromTransactionDate
+  - Description changed from 'Data inicial de filtragem.
+[Restrição] Deve obrigatoriamente ser enviado caso o campo `toTransactionDate` seja informado. 
+Caso não seja informado, deve ser assumido o dia atual. 
+A filtragem deve ser feita utilizando o campo `transactionDateTime`.
+' to 'Data inicial de filtragem.
+[Restrição] Deve obrigatoriamente ser enviado caso o campo toTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
+'
+- Modified query param: toTransactionDate
+  - Description changed from 'Data final de filtragem.
+[Restrição] Deve obrigatoriamente ser enviado caso o campo `fromTransactionDate` seja informado. 
+Caso não seja informado, deve ser assumido o dia atual. 
+A filtragem deve ser feita utilizando o campo `transactionDateTime`.
+' to 'Data final de filtragem.
+[Restrição] Deve obrigatoriamente ser enviado caso o campo fromTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
+'
+- Modified query param: transactionType
+  - Schema changed
+    - Description changed from 'Traz os tipos de transações. O tipo `PAGAMENTO_FATURA` deve ser utilizado para pagamentos parciais (liberação de limite ou pagamento mínimo, por exemplo) ou total de fatura.' to 'Traz os tipos de Transação'
+    - Deleted enum values: [PAGAMENTO_FATURA]
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.'
+  - Required changed from true to false
+  - Schema changed
+    - Format changed from 'uuid' to ''
+    - Example changed from 'd78fc4e5-37ca-4da3-adf2-9b082bf92280' to null
+    - MaxLength changed from 36 to 100
+    - Pattern changed from '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Required changed
+                  - New required property: transactionDate
+                  - Deleted required property: billPostDate
+                - Properties changed
+                  - New property: transactionDate
+                  - Modified property: amount
+                    - Description changed from 'Valor original da transação. Expresso em valor monetário com no mínimo 2 casas decimais e no máximo 4 casas decimais. 
+Deve ser sempre preenchido com o valor original da transação independente da nacionalidade, sem convertê-lo. 
+Para compras parceladas o valor do campo deve corresponder ao valor da parcela.   
+' to 'Valor original da transação. Expresso em valor monetário com no mínimo 2 casas decimais e no máximo 4 casas decimais. Deve ser sempre preenchido com o valor original da transação independente da nacionalidade, sem convertê-lo.
+'
+                  - Modified property: billId
+                    - Description changed from 'Código único e imutável que identifica a fatura onde consta a transação informada. 
+Preencher apenas para casos de transação em fatura fechada, ou seja, este campo não é esperado em casos de transação em fatura aberta.
+' to 'Informação que identifica a fatura onde consta a transação informada. Preencher apenas para casos de transação em fatura fechada, ou seja, este campo não é esperado em casos de transação em fatura aberta.'
+                  - Modified property: billPostDate
+                    - Description changed from 'Data em que a transação foi inserida na fatura. 
+Preencher o campo com a data dummy: 0001-01-01, apenas para os casos nos quais ainda não houver a data de inserção na fatura.
+' to 'Data em que a transação foi inserida na fatura'
+                  - Modified property: brazilianAmount
+                    - Description changed from 'Valor da transação expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais, em moeda corrente do Brasil. 
+Deve ser o valor de amount convertido para BRL (em caso de compra internacional) ou o mesmo valor de amount (em caso de compra nacional). 
+Para compras parceladas o valor do campo deve corresponder ao valor da parcela.
+' to 'Valor da transação expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais, em moeda corrente do Brasil. Deve ser o valor de amount convertido para BRL (em caso de compra internacional) ou o mesmo valor de amount (em caso de compra nacional).
+'
+                  - Modified property: transactionDateTime
+                    - Description changed from 'Data e hora da transação. 
+Nas compras parceladas, o `transactionDateTime` deve ser idêntico em todas as parcelas. O campo deve obrigatoriamente refletir a informação exibida ao cliente nos canais digitais da instituição, com precisão de data, hora e minuto — mesmo que a instituição não exiba esse nível de granularidade em seus canais. Nesses casos, os segundos e milissegundos podem ser preenchidos com zero (0). Exemplo: 2024-01-29T11:15:00.000Z.
+' to 'Data e hora original da transação. 
+No primeiro momento, as instituições poderão complementar informações faltantes com 0 (Por exemplo: 2016-01-29T00:00:00.000Z) 
+A partir de 31/01/2024 é esperado que o campo seja preenchido com informações reais.
+'
+                  - Modified property: transactionId
+                    - Description changed from 'Código ou identificador único e imutável prestado pela instituição que mantém a conta para representar a transação individual. 
+Só devem ser compartilhadas transações após conciliação, fazendo com que o `transactionId` seja imutável.
+' to 'Código ou identificador único prestado pela instituição que mantém a conta para representar a transação individual. 
+O ideal é que o `transactionId` seja imutável. 
+No entanto, para casos em que a transação ainda está em processamento, é esperado que o `transactionId` intermediário seja estável, mudando apenas quando a transação sofrer uma mudança em seu estado. 
+Para transações processadas, é esperado que o `transactionld` e demais dados da transação sejam imutáveis. 
+O `transactionId` deve obedecer, no mínimo, as regras de imutabilidade propostas conforme a tabela “Data de imutabilidade por tipo de transação” presente nas orientações desta API
+'
+                  - Modified property: transactionType
+                    - Description changed from 'Traz os tipos de transações. O tipo `PAGAMENTO_FATURA` deve ser utilizado para pagamentos parciais (liberação de limite ou pagamento mínimo, por exemplo) ou total de fatura.' to 'Traz os tipos de Transação'
+                    - Deleted enum values: [PAGAMENTO_FATURA]
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+                  - MaxLength changed from 4048 to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+                  - MaxLength changed from 4048 to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+                  - MaxLength changed from 4048 to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+                  - MaxLength changed from 4048 to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+    - Headers changed
+      - Deleted header: x-v
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to ''
+        - Required changed from true to false
+        - Schema changed
+          - Format changed from 'uuid' to ''
+          - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.'
+          - Example changed from 'd78fc4e5-37ca-4da3-adf2-9b082bf92280' to null
+          - MaxLength changed from 36 to 100
+          - Pattern changed from '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
+GET /accounts/{creditCardAccountId}/transactions-current
+- Description changed from 'Método para obter a lista de transações recentes (últimos 7 dias) da conta de pagamento pós-paga identificada por `creditCardAccountId` mantida pelo cliente na instituição transmissora. 
+A lista a retornar se refere a transações após conciliado. A lista deve ser ordenada a partir da transação mais recente para a mais antiga.
+' to 'Método para obter a lista de transações recentes (últimos 7 dias) da conta de pagamento pós-paga identificada por creditCardAccountId mantida pelo cliente na instituição transmissora.'
+- Modified query param: fromTransactionDate
+  - Description changed from 'Data inicial de filtragem. O período máximo utilizado no filtro é de 7 dias inclusive (D-6).
+[Restrição] Deve obrigatoriamente ser enviado caso o campo `toTransactionDate` seja informado. 
+Caso não seja informado, deve ser assumido o dia atual. 
+A filtragem deve ser feita utilizando o campo `transactionDateTime`.
+' to 'Data inicial de filtragem. O período máximo utilizado no filtro é de 7 dias inclusive (D-6).
+[Restrição] Deve obrigatoriamente ser enviado caso o campo toTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
+'
+- Modified query param: toTransactionDate
+  - Description changed from 'Data final de filtragem. O período máximo utilizado no filtro é de 7 dias inclusive (D-6).
+[Restrição] Deve obrigatoriamente ser enviado caso o campo `fromTransactionDate` seja informado. 
+Caso não seja informado, deve ser assumido o dia atual. 
+A filtragem deve ser feita utilizando o campo `transactionDateTime`.
+' to 'Data final de filtragem. O período máximo utilizado no filtro é de 7 dias inclusive (D-6).
+[Restrição] Deve obrigatoriamente ser enviado caso o campo fromTransactionDate seja informado. Caso não seja informado, deve ser assumido o dia atual.
+'
+- Modified query param: transactionType
+  - Schema changed
+    - Description changed from 'Traz os tipos de transações. O tipo `PAGAMENTO_FATURA` deve ser utilizado para pagamentos parciais (liberação de limite ou pagamento mínimo, por exemplo) ou total de fatura.' to 'Traz os tipos de Transação'
+    - Deleted enum values: [PAGAMENTO_FATURA]
+- Modified header param: x-fapi-interaction-id
+  - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.'
+  - Required changed from true to false
+  - Schema changed
+    - Format changed from 'uuid' to ''
+    - Example changed from 'd78fc4e5-37ca-4da3-adf2-9b082bf92280' to null
+    - MaxLength changed from 36 to 100
+    - Pattern changed from '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Required changed
+                  - New required property: transactionDate
+                  - Deleted required property: billPostDate
+                - Properties changed
+                  - New property: transactionDate
+                  - Modified property: amount
+                    - Description changed from 'Valor original da transação. Expresso em valor monetário com no mínimo 2 casas decimais e no máximo 4 casas decimais. 
+Deve ser sempre preenchido com o valor original da transação independente da nacionalidade, sem convertê-lo. 
+Para compras parceladas o valor do campo deve corresponder ao valor da parcela.   
+' to 'Valor original da transação. Expresso em valor monetário com no mínimo 2 casas decimais e no máximo 4 casas decimais. Deve ser sempre preenchido com o valor original da transação independente da nacionalidade, sem convertê-lo.
+'
+                  - Modified property: billId
+                    - Description changed from 'Código único e imutável que identifica a fatura onde consta a transação informada. 
+Preencher apenas para casos de transação em fatura fechada, ou seja, este campo não é esperado em casos de transação em fatura aberta.
+' to 'Informação que identifica a fatura onde consta a transação informada. Preencher apenas para casos de transação em fatura fechada, ou seja, este campo não é esperado em casos de transação em fatura aberta.'
+                  - Modified property: billPostDate
+                    - Description changed from 'Data em que a transação foi inserida na fatura. 
+Preencher o campo com a data dummy: 0001-01-01, apenas para os casos nos quais ainda não houver a data de inserção na fatura.
+' to 'Data em que a transação foi inserida na fatura'
+                  - Modified property: brazilianAmount
+                    - Description changed from 'Valor da transação expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais, em moeda corrente do Brasil. 
+Deve ser o valor de amount convertido para BRL (em caso de compra internacional) ou o mesmo valor de amount (em caso de compra nacional). 
+Para compras parceladas o valor do campo deve corresponder ao valor da parcela.
+' to 'Valor da transação expresso em valor monetário com no mínimo 2 casas e no máximo 4 casas decimais, em moeda corrente do Brasil. Deve ser o valor de amount convertido para BRL (em caso de compra internacional) ou o mesmo valor de amount (em caso de compra nacional).
+'
+                  - Modified property: transactionDateTime
+                    - Description changed from 'Data e hora da transação. 
+Nas compras parceladas, o `transactionDateTime` deve ser idêntico em todas as parcelas. O campo deve obrigatoriamente refletir a informação exibida ao cliente nos canais digitais da instituição, com precisão de data, hora e minuto — mesmo que a instituição não exiba esse nível de granularidade em seus canais. Nesses casos, os segundos e milissegundos podem ser preenchidos com zero (0). Exemplo: 2024-01-29T11:15:00.000Z.
+' to 'Data e hora original da transação. 
+No primeiro momento, as instituições poderão complementar informações faltantes com 0 (Por exemplo: 2016-01-29T00:00:00.000Z) 
+A partir de 31/01/2024 é esperado que o campo seja preenchido com informações reais.
+'
+                  - Modified property: transactionId
+                    - Description changed from 'Código ou identificador único e imutável prestado pela instituição que mantém a conta para representar a transação individual. 
+Só devem ser compartilhadas transações após conciliação, fazendo com que o `transactionId` seja imutável.
+' to 'Código ou identificador único prestado pela instituição que mantém a conta para representar a transação individual. 
+O ideal é que o `transactionId` seja imutável. 
+No entanto, para casos em que a transação ainda está em processamento, é esperado que o `transactionId` intermediário seja estável, mudando apenas quando a transação sofrer uma mudança em seu estado. 
+Para transações processadas, é esperado que o `transactionld` e demais dados da transação sejam imutáveis. 
+O `transactionId` deve obedecer, no mínimo, as regras de imutabilidade propostas conforme a tabela “Data de imutabilidade por tipo de transação” presente nas orientações desta API
+'
+                  - Modified property: transactionType
+                    - Description changed from 'Traz os tipos de transações. O tipo `PAGAMENTO_FATURA` deve ser utilizado para pagamentos parciais (liberação de limite ou pagamento mínimo, por exemplo) ou total de fatura.' to 'Traz os tipos de Transação'
+                    - Deleted enum values: [PAGAMENTO_FATURA]
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+                  - MaxLength changed from 4048 to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: next
+                  - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+                  - MaxLength changed from 4048 to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: prev
+                  - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+                  - MaxLength changed from 4048 to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+                - Modified property: self
+                  - Format changed from 'url' to 'uri'
+                  - Example changed from 'https://api.banco.com.br/open-banking/api/v2/resource' to 'https://api.banco.com.br/open-banking/api/v1/resource'
+                  - MaxLength changed from 4048 to 2000
+                  - Pattern changed from '' to '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+    - Headers changed
+      - Deleted header: x-v
+      - Modified header: x-fapi-interaction-id
+        - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to ''
+        - Required changed from true to false
+        - Schema changed
+          - Format changed from 'uuid' to ''
+          - Description changed from 'Um UUID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.' to 'Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.'
+          - Example changed from 'd78fc4e5-37ca-4da3-adf2-9b082bf92280' to null
+          - MaxLength changed from 36 to 100
+          - Pattern changed from '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$' to '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'

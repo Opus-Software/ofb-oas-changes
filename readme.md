@@ -32,8 +32,8 @@
 |  | [2.0.1](swagger-apis/credit-cards/2.0.1.yml) | [2.1.0](swagger-apis/credit-cards/2.1.0.yml) | [YAML](diffs/credit-cards/2.0.1_2.1.0-breaking-only.yml) | [YAML](diffs/credit-cards/2.0.1_2.1.0.yml) |
 |  | [2.1.0](swagger-apis/credit-cards/2.1.0.yml) | [2.2.1](swagger-apis/credit-cards/2.2.1.yml) | [YAML](diffs/credit-cards/2.1.0_2.2.1-breaking-only.yml) | [YAML](diffs/credit-cards/2.1.0_2.2.1.yml) |
 |  | [2.2.1](swagger-apis/credit-cards/2.2.1.yml) | [2.3.1](swagger-apis/credit-cards/2.3.1.yml) | [YAML](diffs/credit-cards/2.2.1_2.3.1-breaking-only.yml) | [YAML](diffs/credit-cards/2.2.1_2.3.1.yml) |
-|  | [2.3.1](swagger-apis/credit-cards/2.3.1.yml) | [2.4.0-beta.1](swagger-apis/credit-cards/2.4.0-beta.1.yml) | [YAML](diffs/credit-cards/2.3.1_2.4.0-beta.1-breaking-only.yml) | [YAML](diffs/credit-cards/2.3.1_2.4.0-beta.1.yml) |
-|  | [2.4.0-beta.1](swagger-apis/credit-cards/2.4.0-beta.1.yml) | [3.0.0-beta.1](swagger-apis/credit-cards/3.0.0-beta.1.yml) | [YAML](diffs/credit-cards/2.4.0-beta.1_3.0.0-beta.1-breaking-only.yml) | [YAML](diffs/credit-cards/2.4.0-beta.1_3.0.0-beta.1.yml) |
+|  | [2.3.1](swagger-apis/credit-cards/2.3.1.yml) | [2.4.0-rc.1](swagger-apis/credit-cards/2.4.0-rc.1.yml) | [YAML](diffs/credit-cards/2.3.1_2.4.0-rc.1-breaking-only.yml) | [YAML](diffs/credit-cards/2.3.1_2.4.0-rc.1.yml) |
+|  | [2.4.0-rc.1](swagger-apis/credit-cards/2.4.0-rc.1.yml) | [3.0.0-beta.1](swagger-apis/credit-cards/3.0.0-beta.1.yml) | [YAML](diffs/credit-cards/2.4.0-rc.1_3.0.0-beta.1-breaking-only.yml) | [YAML](diffs/credit-cards/2.4.0-rc.1_3.0.0-beta.1.yml) |
 | credit-fixed-incomes | [1.0.3](swagger-apis/credit-fixed-incomes/1.0.3.yml) | [1.1.0](swagger-apis/credit-fixed-incomes/1.1.0.yml) | [YAML](diffs/credit-fixed-incomes/1.0.3_1.1.0-breaking-only.yml) | [YAML](diffs/credit-fixed-incomes/1.0.3_1.1.0.yml) |
 | credit-portability | [1.0.0](swagger-apis/credit-portability/1.0.0.yml) |  |  |  |
 | customers | [1.0.3](swagger-apis/customers/1.0.3.yml) | [2.0.1](swagger-apis/customers/2.0.1.yml) | [YAML](diffs/customers/1.0.3_2.0.1-breaking-only.yml) | [YAML](diffs/customers/1.0.3_2.0.1.yml) |
@@ -247,7 +247,8 @@
 |  | [2.2.1](swagger-apis/credit-cards/2.2.1.yml) | [2.3.0](swagger-apis/credit-cards/2.3.0.yml) | [YAML](diffs/credit-cards/2.2.1_2.3.0.yml) |
 |  | [2.3.0](swagger-apis/credit-cards/2.3.0.yml) | [2.3.1](swagger-apis/credit-cards/2.3.1.yml) | [YAML](diffs/credit-cards/2.3.0_2.3.1.yml) |
 |  | [2.3.1](swagger-apis/credit-cards/2.3.1.yml) | [2.4.0-beta.1](swagger-apis/credit-cards/2.4.0-beta.1.yml) | [YAML](diffs/credit-cards/2.3.1_2.4.0-beta.1.yml) |
-|  | [2.4.0-beta.1](swagger-apis/credit-cards/2.4.0-beta.1.yml) | [3.0.0-beta.1](swagger-apis/credit-cards/3.0.0-beta.1.yml) | [YAML](diffs/credit-cards/2.4.0-beta.1_3.0.0-beta.1.yml) |
+|  | [2.4.0-beta.1](swagger-apis/credit-cards/2.4.0-beta.1.yml) | [2.4.0-rc.1](swagger-apis/credit-cards/2.4.0-rc.1.yml) | [YAML](diffs/credit-cards/2.4.0-beta.1_2.4.0-rc.1.yml) |
+|  | [2.4.0-rc.1](swagger-apis/credit-cards/2.4.0-rc.1.yml) | [3.0.0-beta.1](swagger-apis/credit-cards/3.0.0-beta.1.yml) | [YAML](diffs/credit-cards/2.4.0-rc.1_3.0.0-beta.1.yml) |
 | credit-fixed-incomes | [1.0.0-rc1.0](swagger-apis/credit-fixed-incomes/1.0.0-rc1.0.yml) | [1.0.0-rc2.0](swagger-apis/credit-fixed-incomes/1.0.0-rc2.0.yml) | [YAML](diffs/credit-fixed-incomes/1.0.0-rc1.0_1.0.0-rc2.0.yml) |
 |  | [1.0.0-rc2.0](swagger-apis/credit-fixed-incomes/1.0.0-rc2.0.yml) | [1.0.0-rc3.0](swagger-apis/credit-fixed-incomes/1.0.0-rc3.0.yml) | [YAML](diffs/credit-fixed-incomes/1.0.0-rc2.0_1.0.0-rc3.0.yml) |
 |  | [1.0.0-rc3.0](swagger-apis/credit-fixed-incomes/1.0.0-rc3.0.yml) | [1.0.0](swagger-apis/credit-fixed-incomes/1.0.0.yml) | [YAML](diffs/credit-fixed-incomes/1.0.0-rc3.0_1.0.0.yml) |
