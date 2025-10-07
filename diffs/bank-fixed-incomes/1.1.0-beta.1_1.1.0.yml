@@ -2,7 +2,7 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 1
+### Modified Endpoints: 3
 -------------------------
 GET /investments/{investmentId}/balances
 - Responses changed
@@ -21,3 +21,27 @@ GET /investments/{investmentId}/balances
                     - Modified property: amount
                       - MaxLength changed from 24 to 26
                       - Pattern changed from '^\d{1,15}\.\d{2,8}$' to '^\d{1,15}\.\d{2,10}$'
+GET /investments/{investmentId}/transactions
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: transactionUnitPrice
+                    - Description changed from 'Preço unitário bruto negociado nas transferências de custódia, quando o PU original (da instituição de origem) não estiver disponível para a transmissora, deve ser informado o PU marcado pela instituição na data de transferência.' to 'Preço unitário bruto negociado na transação. Para os casos de `transactionType` definido como `TRANSFERENCIA_CUSTODIA`, quando o PU original (da instituição de origem) não estiver disponível para a transmissora, deve ser informado o PU da data de transferência. Para os demais casos vale o preço unitário original (da instituição de origem).'
+GET /investments/{investmentId}/transactions-current
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: transactionUnitPrice
+                    - Description changed from 'Preço unitário bruto negociado nas transferências de custódia, quando o PU original (da instituição de origem) não estiver disponível para a transmissora, deve ser informado o PU marcado pela instituição na data de transferência.' to 'Preço unitário bruto negociado na transação. Para os casos de `transactionType` definido como `TRANSFERENCIA_CUSTODIA`, quando o PU original (da instituição de origem) não estiver disponível para a transmissora, deve ser informado o PU da data de transferência. Para os demais casos vale o preço unitário original (da instituição de origem).'
