@@ -2,7 +2,7 @@
 -----------------------
 ### Deleted Endpoints: None
 ---------------------------
-### Modified Endpoints: 1
+### Modified Endpoints: 2
 -------------------------
 GET /investments/{investmentId}
 - Responses changed
@@ -18,3 +18,19 @@ GET /investments/{investmentId}
                     - Modified property: postFixedIndexerPercentage
                       - MaxLength changed from 9 to 10
                       - Pattern changed from '^-?\d{1}\.\d{6}$' to '^-?\d{1,2}\.\d{6}$'
+GET /investments/{investmentId}/balances
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: grossAmount
+                  - Description changed from 'Valor do investimento anterior à dedução de impostos, taxas e
+tarifas (se houver), atualizado (a mercado) na data de referência.
+' to 'Valor do investimento anterior à dedução de impostos, taxas e tarifas (se houver), atualizado (a mercado) na data de referência. Importante: Apenas o imposto e o IOF são compartilhados na versão atual da especificação, porém outras taxas podem ser aplicáveis no cálculo desse valor.   
+'
+                - Modified property: netAmount
+                  - Description changed from 'Valor do investimento posterior a dedução de impostos, taxas e tarifas (se houver), atualizado (a mercado) na data de referência.' to 'Valor do investimento posterior a dedução de impostos, taxas e tarifas (se houver), atualizado (a mercado) na data de referência. Importante: Apenas o imposto e o IOF são compartilhados na versão atual da especificação, porém outras taxas podem ser aplicáveis no cálculo desse valor.  '
