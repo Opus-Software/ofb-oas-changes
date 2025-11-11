@@ -1,0 +1,31 @@
+﻿### New Endpoints: None
+-----------------------
+### Deleted Endpoints: None
+---------------------------
+### Modified Endpoints: 1
+-------------------------
+GET /resources
+- Modified header param: x-customer-user-agent
+  - Schema changed
+    - Pattern changed from '[\w\W\s]*' to '^[^\s](.*[^\s])?$'
+- Modified header param: x-fapi-customer-ip-address
+  - Schema changed
+    - Pattern changed from '[\w\W\s]*' to '^[^\s](.*[^\s])?$'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: links
+              - Properties changed
+                - Modified property: first
+                  - Format changed from 'uri' to 'url'
+                - Modified property: last
+                  - Format changed from 'uri' to 'url'
+                - Modified property: next
+                  - Format changed from 'uri' to 'url'
+                - Modified property: prev
+                  - Format changed from 'uri' to 'url'
+                - Modified property: self
+                  - Format changed from 'uri' to 'url'
