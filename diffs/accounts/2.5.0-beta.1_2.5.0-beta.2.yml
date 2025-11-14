@@ -1,0 +1,29 @@
+﻿### New Endpoints: 1
+--------------------
+GET /accounts/{accountId}/reserved-balances  
+### Deleted Endpoints: 1
+------------------------
+GET /accounts/{accountId}/reserved_balances  
+### Modified Endpoints: 1
+-------------------------
+GET /accounts/{accountId}/balances
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Properties changed
+                - Modified property: hasReservedBalance
+                  - Description changed from 'Informa se o cliente possui um saldo reservado. Caso o cliente possua reservas de saldo ativas, inclusive nos casos de saldo zerado, o valor enviado deve ser `TRUE`.
+Caso o cliente não possua o produto, deve ser `FALSE`. Se o campo retornar `TRUE`, os dados do saldo reservado se encontram no endpoint `GET /accounts/{accountId}/reserved_balances`
+[Restrição] Campo de envio obrigatório pela transmissora que oferta produtos de reservas de saldo atrelados à conta. 
+Este campo refere-se exclusivamente a saldos de reserva que não estão associados a investimentos. 
+Produtos de investimentos devem ser reportados nas APIs de Investimentos.
+' to 'Informa se o cliente possui um saldo reservado. Caso o cliente possua reservas de saldo ativas, inclusive nos casos de saldo zerado, o valor enviado deve ser `TRUE`.
+Caso o cliente não possua o produto, deve ser `FALSE`. Se o campo retornar `TRUE`, os dados do saldo reservado se encontram no endpoint `GET /accounts/{accountId}/reserved-balances`
+[Restrição] Campo de envio obrigatório pela transmissora que oferta produtos de reservas de saldo atrelados à conta. 
+Este campo refere-se exclusivamente a saldos de reserva que não estão associados a investimentos. 
+Produtos de investimentos devem ser reportados nas APIs de Investimentos.
+'

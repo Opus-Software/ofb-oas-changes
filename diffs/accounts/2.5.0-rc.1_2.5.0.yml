@@ -1,8 +1,10 @@
-﻿### New Endpoints: None
------------------------
-### Deleted Endpoints: None
----------------------------
-### Modified Endpoints: 7
+﻿### New Endpoints: 1
+--------------------
+GET /accounts/{accountId}/reserved_balances  
+### Deleted Endpoints: 1
+------------------------
+GET /accounts/{accountId}/reserved-balances  
+### Modified Endpoints: 6
 -------------------------
 GET /accounts
 - Responses changed
@@ -378,6 +380,18 @@ GET /accounts/{accountId}/balances
                     - Modified property: amount
                       - MaxLength changed from 20 to 21
                       - Pattern changed from '^\d{1,15}\.\d{2,4}$' to '^-?\d{1,15}\.\d{2,4}$'
+                - Modified property: hasReservedBalance
+                  - Description changed from 'Informa se o cliente possui um saldo reservado. Caso o cliente possua reservas de saldo ativas, inclusive nos casos de saldo zerado, o valor enviado deve ser `TRUE`.
+Caso o cliente não possua o produto, deve ser `FALSE`. Se o campo retornar `TRUE`, os dados do saldo reservado se encontram no endpoint `GET /accounts/{accountId}/reserved-balances`
+[Restrição] Campo de envio obrigatório pela transmissora que oferta produtos de reservas de saldo atrelados à conta. 
+Este campo refere-se exclusivamente a saldos de reserva que não estão associados a investimentos. 
+Produtos de investimentos devem ser reportados nas APIs de Investimentos.
+' to 'Informa se o cliente possui um saldo reservado. Caso o cliente possua reservas de saldo ativas, inclusive nos casos de saldo zerado, o valor enviado deve ser `TRUE`.
+Caso o cliente não possua o produto, deve ser `FALSE`. Se o campo retornar `TRUE`, os dados do saldo reservado se encontram no endpoint `GET /accounts/{accountId}/reserved_balances`
+[Restrição] Campo de envio obrigatório pela transmissora que oferta produtos de reservas de saldo atrelados à conta. 
+Este campo refere-se exclusivamente a saldos de reserva que não estão associados a investimentos. 
+Produtos de investimentos devem ser reportados nas APIs de Investimentos.
+'
             - Modified property: links
               - Properties changed
                 - Modified property: first
@@ -549,183 +563,6 @@ GET /accounts/{accountId}/balances
                 - New property: totalPages
                 - New property: totalRecords
 GET /accounts/{accountId}/overdraft-limits
-- Responses changed
-  - Modified response: 200
-    - Content changed
-      - Modified media type: application/json
-        - Schema changed
-          - Properties changed
-            - Modified property: links
-              - Properties changed
-                - Modified property: first
-                  - MaxLength changed from 4048 to 2000
-                - Modified property: last
-                  - MaxLength changed from 4048 to 2000
-                - Modified property: next
-                  - MaxLength changed from 4048 to 2000
-                - Modified property: prev
-                  - MaxLength changed from 4048 to 2000
-                - Modified property: self
-                  - MaxLength changed from 4048 to 2000
-    - Headers changed
-      - Deleted header: x-v
-  - Modified response: 400
-    - Content changed
-      - Modified media type: application/json; charset=utf-8
-        - Schema changed
-          - Properties changed
-            - Modified property: meta
-              - Required changed
-                - New required property: totalPages
-                - New required property: totalRecords
-              - Properties changed
-                - New property: totalPages
-                - New property: totalRecords
-  - Modified response: 401
-    - Content changed
-      - Modified media type: application/json; charset=utf-8
-        - Schema changed
-          - Properties changed
-            - Modified property: meta
-              - Required changed
-                - New required property: totalPages
-                - New required property: totalRecords
-              - Properties changed
-                - New property: totalPages
-                - New property: totalRecords
-  - Modified response: 403
-    - Content changed
-      - Modified media type: application/json; charset=utf-8
-        - Schema changed
-          - Properties changed
-            - Modified property: meta
-              - Required changed
-                - New required property: totalPages
-                - New required property: totalRecords
-              - Properties changed
-                - New property: totalPages
-                - New property: totalRecords
-  - Modified response: 404
-    - Content changed
-      - Modified media type: application/json; charset=utf-8
-        - Schema changed
-          - Properties changed
-            - Modified property: meta
-              - Required changed
-                - New required property: totalPages
-                - New required property: totalRecords
-              - Properties changed
-                - New property: totalPages
-                - New property: totalRecords
-  - Modified response: 405
-    - Content changed
-      - Modified media type: application/json; charset=utf-8
-        - Schema changed
-          - Properties changed
-            - Modified property: meta
-              - Required changed
-                - New required property: totalPages
-                - New required property: totalRecords
-              - Properties changed
-                - New property: totalPages
-                - New property: totalRecords
-  - Modified response: 406
-    - Content changed
-      - Modified media type: application/json; charset=utf-8
-        - Schema changed
-          - Properties changed
-            - Modified property: meta
-              - Required changed
-                - New required property: totalPages
-                - New required property: totalRecords
-              - Properties changed
-                - New property: totalPages
-                - New property: totalRecords
-  - Modified response: 422
-    - Content changed
-      - Modified media type: application/json; charset=utf-8
-        - Schema changed
-          - Properties changed
-            - Modified property: meta
-              - Required changed
-                - New required property: totalPages
-                - New required property: totalRecords
-              - Properties changed
-                - New property: totalPages
-                - New property: totalRecords
-  - Modified response: 423
-    - Content changed
-      - Modified media type: application/json; charset=utf-8
-        - Schema changed
-          - Properties changed
-            - Modified property: meta
-              - Required changed
-                - New required property: totalPages
-                - New required property: totalRecords
-              - Properties changed
-                - New property: totalPages
-                - New property: totalRecords
-  - Modified response: 429
-    - Content changed
-      - Modified media type: application/json; charset=utf-8
-        - Schema changed
-          - Properties changed
-            - Modified property: meta
-              - Required changed
-                - New required property: totalPages
-                - New required property: totalRecords
-              - Properties changed
-                - New property: totalPages
-                - New property: totalRecords
-  - Modified response: 500
-    - Content changed
-      - Modified media type: application/json; charset=utf-8
-        - Schema changed
-          - Properties changed
-            - Modified property: meta
-              - Required changed
-                - New required property: totalPages
-                - New required property: totalRecords
-              - Properties changed
-                - New property: totalPages
-                - New property: totalRecords
-  - Modified response: 504
-    - Content changed
-      - Modified media type: application/json; charset=utf-8
-        - Schema changed
-          - Properties changed
-            - Modified property: meta
-              - Required changed
-                - New required property: totalPages
-                - New required property: totalRecords
-              - Properties changed
-                - New property: totalPages
-                - New property: totalRecords
-  - Modified response: 529
-    - Content changed
-      - Modified media type: application/json; charset=utf-8
-        - Schema changed
-          - Properties changed
-            - Modified property: meta
-              - Required changed
-                - New required property: totalPages
-                - New required property: totalRecords
-              - Properties changed
-                - New property: totalPages
-                - New property: totalRecords
-  - Modified response: default
-    - Content changed
-      - Modified media type: application/json; charset=utf-8
-        - Schema changed
-          - Properties changed
-            - Modified property: meta
-              - Required changed
-                - New required property: totalPages
-                - New required property: totalRecords
-              - Properties changed
-                - New property: totalPages
-                - New property: totalRecords
-GET /accounts/{accountId}/reserved_balances
 - Responses changed
   - Modified response: 200
     - Content changed
