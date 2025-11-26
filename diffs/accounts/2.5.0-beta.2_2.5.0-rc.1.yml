@@ -17,16 +17,17 @@ GET /accounts/{accountId}/transactions
                   - Modified property: codeISPB
                     - Description changed from 'Código único atribuído pelo Banco Central do Brasil a cada instituição participante do Sistema de Pagamentos.
 Este campo identifica o ISPB da instituição contraparte da transação e deve ser preenchido de acordo com o atributo que indica o sentido financeiro da transação, de acordo com o campo `creditDebitType`:
- - Para transações de `CREDITO` (entrada de recursos na conta): informar o ISPB da instituição de origem dos recursos.
- - Para transações de `DEBITO` (saída de recursos na conta): informar o ISPB da instituição de destino dos recursos.
+- Para transações de CREDITO (entrada de recursos na conta): informar o ISPB da instituição de origem dos recursos.
+- Para transações de DEBITO (saída de recursos na conta): informar o ISPB da instituição de destino dos recursos. [RESTRIÇÃO] É de preenchimento obrigatório quando existir informação de contraparte.
 ' to 'Código único atribuído pelo Banco Central do Brasil a cada instituição participante do Sistema de Pagamentos. 
 Este campo identifica o ISPB da instituição contraparte da transação e deve ser preenchido de acordo com o atributo que indica o sentido financeiro da transação, de acordo com o campo `creditDebitType`:
  - Para transações de `CREDITO` (entrada de recursos na conta): informar o ISPB da instituição de origem dos recursos.
  - Para transações de `DEBITO` (saída de recursos na conta): informar o ISPB da instituição de destino dos recursos. [RESTRIÇÃO] É de preenchimento   obrigatório quando existir informação de contraparte.  
 '
-                    - Pattern changed from '^\d{8}$' to '^[0-9A-Z]{8}$'
                   - Modified property: partieCompeCode
-                    - Description changed from 'Código identificador atribuído pelo Banco Central do Brasil às instituições participantes do STR (Sistema de Transferência de reservas) referente à pessoa envolvida na transação. O número-código substituiu o antigo código COMPE. Todos os participantes do STR, exceto as Infraestruturas do Mercado Financeiro (IMF) e a Secretaria do Tesouro Nacional, possuem um número-código independentemente de participarem da Centralizadora da Compensação de Cheques (Compe).' to 'Código identificador atribuído pelo Banco Central do Brasil às instituições participantes do STR (Sistema de Transferência de reservas) referente à pessoa envolvida na transação. O número-código substituiu o antigo código COMPE. Todos os participantes do STR, exceto as Infraestruturas do Mercado Financeiro (IMF) e a Secretaria do Tesouro Nacional, possuem um número-código independentemente de participarem da Centralizadora da Compensação de Cheques (Compe). 
+                    - Description changed from 'Código identificador atribuído pelo Banco Central do Brasil às instituições participantes do STR (Sistema de Transferência de reservas) referente à pessoa envolvida na transação. O número-código substituiu o antigo código COMPE. Todos os participantes do STR, exceto as Infraestruturas do Mercado Financeiro (IMF) e a Secretaria do Tesouro Nacional, possuem um número-código independentemente de participarem da Centralizadora da Compensação de Cheques (Compe).
+[RESTRIÇÃO] É de preenchimento obrigatório quando a instituição possuir o número-código.
+' to 'Código identificador atribuído pelo Banco Central do Brasil às instituições participantes do STR (Sistema de Transferência de reservas) referente à pessoa envolvida na transação. O número-código substituiu o antigo código COMPE. Todos os participantes do STR, exceto as Infraestruturas do Mercado Financeiro (IMF) e a Secretaria do Tesouro Nacional, possuem um número-código independentemente de participarem da Centralizadora da Compensação de Cheques (Compe). 
 [RESTRIÇÃO] É de preenchimento obrigatório quando a instituição possuir o número-código.
 '
 GET /accounts/{accountId}/transactions-current
@@ -42,15 +43,16 @@ GET /accounts/{accountId}/transactions-current
                   - Modified property: codeISPB
                     - Description changed from 'Código único atribuído pelo Banco Central do Brasil a cada instituição participante do Sistema de Pagamentos.
 Este campo identifica o ISPB da instituição contraparte da transação e deve ser preenchido de acordo com o atributo que indica o sentido financeiro da transação, de acordo com o campo `creditDebitType`:
- - Para transações de `CREDITO` (entrada de recursos na conta): informar o ISPB da instituição de origem dos recursos.
- - Para transações de `DEBITO` (saída de recursos na conta): informar o ISPB da instituição de destino dos recursos.
+- Para transações de CREDITO (entrada de recursos na conta): informar o ISPB da instituição de origem dos recursos.
+- Para transações de DEBITO (saída de recursos na conta): informar o ISPB da instituição de destino dos recursos. [RESTRIÇÃO] É de preenchimento obrigatório quando existir informação de contraparte.
 ' to 'Código único atribuído pelo Banco Central do Brasil a cada instituição participante do Sistema de Pagamentos. 
 Este campo identifica o ISPB da instituição contraparte da transação e deve ser preenchido de acordo com o atributo que indica o sentido financeiro da transação, de acordo com o campo `creditDebitType`:
  - Para transações de `CREDITO` (entrada de recursos na conta): informar o ISPB da instituição de origem dos recursos.
  - Para transações de `DEBITO` (saída de recursos na conta): informar o ISPB da instituição de destino dos recursos. [RESTRIÇÃO] É de preenchimento   obrigatório quando existir informação de contraparte.  
 '
-                    - Pattern changed from '^\d{8}$' to '^[0-9A-Z]{8}$'
                   - Modified property: partieCompeCode
-                    - Description changed from 'Código identificador atribuído pelo Banco Central do Brasil às instituições participantes do STR (Sistema de Transferência de reservas) referente à pessoa envolvida na transação. O número-código substituiu o antigo código COMPE. Todos os participantes do STR, exceto as Infraestruturas do Mercado Financeiro (IMF) e a Secretaria do Tesouro Nacional, possuem um número-código independentemente de participarem da Centralizadora da Compensação de Cheques (Compe).' to 'Código identificador atribuído pelo Banco Central do Brasil às instituições participantes do STR (Sistema de Transferência de reservas) referente à pessoa envolvida na transação. O número-código substituiu o antigo código COMPE. Todos os participantes do STR, exceto as Infraestruturas do Mercado Financeiro (IMF) e a Secretaria do Tesouro Nacional, possuem um número-código independentemente de participarem da Centralizadora da Compensação de Cheques (Compe). 
+                    - Description changed from 'Código identificador atribuído pelo Banco Central do Brasil às instituições participantes do STR (Sistema de Transferência de reservas) referente à pessoa envolvida na transação. O número-código substituiu o antigo código COMPE. Todos os participantes do STR, exceto as Infraestruturas do Mercado Financeiro (IMF) e a Secretaria do Tesouro Nacional, possuem um número-código independentemente de participarem da Centralizadora da Compensação de Cheques (Compe).
+[RESTRIÇÃO] É de preenchimento obrigatório quando a instituição possuir o número-código.
+' to 'Código identificador atribuído pelo Banco Central do Brasil às instituições participantes do STR (Sistema de Transferência de reservas) referente à pessoa envolvida na transação. O número-código substituiu o antigo código COMPE. Todos os participantes do STR, exceto as Infraestruturas do Mercado Financeiro (IMF) e a Secretaria do Tesouro Nacional, possuem um número-código independentemente de participarem da Centralizadora da Compensação de Cheques (Compe). 
 [RESTRIÇÃO] É de preenchimento obrigatório quando a instituição possuir o número-código.
 '
